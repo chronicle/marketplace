@@ -113,7 +113,8 @@ class NonBuiltIntegrationMetadata(TypedDict):
 
 class IntegrationMetadata(
     mp.core.data_models.abc.Buildable[
-        BuiltIntegrationMetadata, NonBuiltIntegrationMetadata
+        BuiltIntegrationMetadata,
+        NonBuiltIntegrationMetadata,
     ]
 ):
     categories: list[str]
@@ -126,14 +127,14 @@ class IntegrationMetadata(
         str,
         pydantic.Field(
             max_length=mp.core.constants.DISPLAY_NAME_MAX_LENGTH,
-            pattern=mp.core.constants.DISPLAY_NAME_REGEX,
+            pattern=mp.core.constants.SCRIPT_DISPLAY_NAME_REGEX,
         ),
     ]
     identifier: Annotated[
         str,
         pydantic.Field(
             max_length=mp.core.constants.DISPLAY_NAME_MAX_LENGTH,
-            pattern=mp.core.constants.DISPLAY_NAME_REGEX,
+            pattern=mp.core.constants.SCRIPT_IDENTIFIER_REGEX,
         ),
     ]
     python_version: PythonVersion

@@ -84,7 +84,7 @@ class ConnectorMetadata(
         str,
         pydantic.Field(
             max_length=mp.core.constants.DISPLAY_NAME_MAX_LENGTH,
-            pattern=mp.core.constants.DISPLAY_NAME_REGEX,
+            pattern=mp.core.constants.SCRIPT_DISPLAY_NAME_REGEX,
         ),
     ]
     parameters: Annotated[
