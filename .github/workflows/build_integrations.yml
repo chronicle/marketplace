@@ -1,17 +1,21 @@
-name: MP Build marketpalce
+name: Build Marketpalce
 
 on:
   push:
     branches:
+      - '**'
+    paths:
       - 'integrations/commercial/**'
       - 'integrations/third_party/**'
   pull_request:
     branches:
+      - '**'
+    paths:
       - 'integrations/commercial/**'
       - 'integrations/third_party/**'
 
 jobs:
-  mp_check:
+  mp_build:
     runs-on: ubuntu-latest
 
     steps:

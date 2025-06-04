@@ -1,4 +1,4 @@
-name: MP Check Changed Files
+name: Python Code Checks
 
 on:
   push:
