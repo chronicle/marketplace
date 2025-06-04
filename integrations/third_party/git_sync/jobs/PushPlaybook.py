@@ -93,7 +93,7 @@ def main():
                             None,
                         )
                         if not installed_block:
-                            siemplify.LOGGER.warning(
+                            siemplify.LOGGER.warn(
                                 f"Block {block.get('name')} wasn't found in the repo, ignoring",
                             )
                             continue
@@ -102,7 +102,7 @@ def main():
                         )
                         gitsync.content.push_playbook(block)
             else:
-                siemplify.LOGGER.warning(
+                siemplify.LOGGER.warn(
                     f"Playbook {playbook.get('name')} not found, Skipping",
                 )
 

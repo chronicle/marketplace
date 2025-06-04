@@ -1,14 +1,14 @@
 [project]
 name = "GitSync"
-version = "28.0"
+version = "29.0"
 description = "Sync Google SecOps integrations, playbooks, and settings with a GitHub, BitBucket or GitLab instance"
 requires-python = ">=3.11"
 dependencies = [
-    "dulwich==0.22.7",
-    "jinja2==3.1.5",
-    "packaging==24.2",
-    "paramiko==3.5.0",
-    "requests==2.32.3",
+    "dulwich>=0.22.7",
+    "jinja2>=3.1.5",
+    "packaging>=24.2",
+    "paramiko>=3.5.0",
+    "requests>=2.32.3",
 ]
 
 [dependency-groups]

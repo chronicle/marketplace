@@ -623,3 +623,13 @@
     regressive: false
     deprecated: false
     removed: false
+-   description: Improvements and bug fixes.
+    integration_version: 29.0
+    item_name: GitSync
+    item_type: Integration
+    publish_time: 1749023892
+    ticket_number: '422166168'
+    new: false
+    regressive: false
+    deprecated: false
+    removed: false

@@ -39,7 +39,7 @@ from paramiko.ssh_exception import SSHException
 from .definitions import File, Metadata
 
 if TYPE_CHECKING:
-    from logging import Logger
+    from soar_sdk.SiemplifyLogger import SiemplifyLogger
 
 
 class Git:
@@ -54,7 +54,7 @@ class Git:
         username: str,
         author: str,
         verify_ssl: bool,
-        logger: Logger,
+        logger: SiemplifyLogger,
     ):
         """Wrapper for dulwich - a pure python git client.
 
@@ -195,7 +195,7 @@ class Git:
             )
         except porcelain.DivergedBranches:
             self.logger.error("Could not push updates to remote repository!")
-            self.logger.warning(
+            self.logger.warn(
                 "Local repo code has diverged from the remote repository, most "
                 "likely because of new commits that have been pushed to the remote "
                 "repo "

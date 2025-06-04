@@ -202,7 +202,7 @@ class GitSyncManager:
                     f"{integration.identifier} is not installed - installing from the marketplace",
                 )
                 if not self.install_marketplace_integration(integration.identifier):
-                    self.logger.warning(
+                    self.logger.warn(
                         f"Couldn't install integration {integration.identifier} from the marketplace",
                     )
                     return
@@ -273,13 +273,13 @@ class GitSyncManager:
                     "Connector integration successfully installed from the marketplace",
                 )
         if connector.integration_version != installed_version:
-            self.logger.warning(
+            self.logger.warn(
                 "Installed integration version doesn't match the connector integration version. Please upgrade the "
                 "connector.",
             )
             connector.raw_data["isUpdateAvailable"] = True
         if connector.environment not in self.api.get_environment_names():
-            self.logger.warning(
+            self.logger.warn(
                 f"Connector is set to non-existing environment {connector.environment}. Using Default Environment "
                 f"instead",
             )
@@ -357,7 +357,7 @@ class GitSyncManager:
 
         """
         if not self.get_installed_integration_version(job.integration):
-            self.logger.warning(
+            self.logger.warn(
                 f"Error installing job {job.name} - Job integration ({job.integration}) is not installed",
             )
             return
@@ -504,7 +504,7 @@ class GitSyncManager:
             None,
         )
         if not store_integration:
-            self.logger.warning(
+            self.logger.warn(
                 f"Integration {integration_name} wasn't found in the marketplace",
             )
             return False
@@ -517,7 +517,7 @@ class GitSyncManager:
             self.logger.info(f"{integration_name} installed successfully")
             return True
         except Exception as e:
-            self.logger.warning(f"Couldn't install {integration_name} - {e}")
+            self.logger.warn(f"Couldn't install {integration_name} - {e}")
             return False
 
     def get_installed_integration_version(self, integration_name: str) -> float:
@@ -583,7 +583,7 @@ class WorkflowInstaller:
 
     def _log_merge_conflicts(self, workflow: Workflow) -> None:
         if self._has_merge_conflicts(workflow):
-            self.logger.warning(
+            self.logger.warn(
                 "Both the git playbook and local installed playbook were modified."
                 "  Git version will override local changes!",
             )

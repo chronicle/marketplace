@@ -145,12 +145,12 @@ def main():
                                     try:
                                         prop["value"] = secrets[prop["propertyName"]]
                                     except KeyError:
-                                        siemplify.LOGGER.warning(
+                                        siemplify.LOGGER.warn(
                                             f"{instance['instanceName']} was updated with new "
                                             f"parameters but they weren't configured.",
                                         )
                         except Exception:
-                            siemplify.LOGGER.warning(
+                            siemplify.LOGGER.warn(
                                 f"{instance['identifier']} is not configured. Skipping passwords",
                             )
 
