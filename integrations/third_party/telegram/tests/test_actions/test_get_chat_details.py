@@ -1,7 +1,7 @@
 from __future__ import annotations
 
-from integrations.third_party.telegram.actions.SendMessage import main as SendMessage
-from integrations.third_party.telegram.tests.common import CONFIG_PATH, TEST_BOT_TOKEN
+from integrations.third_party.telegram.actions.GetChatDetails import main as GetChatDetails
+from integrations.third_party.telegram.tests.common import CONFIG_PATH
 from integrations.third_party.telegram.tests.core.session import TelegramSession
 from integrations.third_party.telegram.tests.core.telegram import Telegram
 from packages.integration_testing.src.integration_testing.platform.external_context import MockExternalContext
@@ -10,54 +10,58 @@ from packages.integration_testing.src.integration_testing.set_meta import set_me
 from TIPCommon.base.action import ExecutionState
 
 
-class TestSendMessage:
-    MESSAGE_CONTENT = "Hello, Telegram!"
+class TestGetChatDetails:
     CHAT_ID = "123456789"
 
     @set_metadata(
         parameters={
-            "Message": MESSAGE_CONTENT,
             "Chat ID": CHAT_ID
         },
         integration_config_file_path=CONFIG_PATH,
     )
-    def test_send_message_success(
-        self,
-        script_session: TelegramSession,
-        action_output: MockActionOutput,
-        telegram: Telegram
+    def test_get_chat_details_success(
+            self,
+            script_session: TelegramSession,
+            action_output: MockActionOutput,
     ) -> None:
-        SendMessage()
+        GetChatDetails()
 
         assert len(script_session.request_history) == 1
         request = script_session.request_history[0].request
-        assert request.url.path == f"/bot{TEST_BOT_TOKEN}/sendMessage"
-        assert request.kwargs["params"] == {"chat_id": self.CHAT_ID, "text": self.MESSAGE_CONTENT}
 
-        assert action_output.results.output_message == "The message was sent successfully"
+        assert request.url.path.endswith("/getChat")
+
+        assert action_output.results.output_message == f"The chat {self.CHAT_ID} was found successfully"
         assert action_output.results.execution_state == ExecutionState.COMPLETED
-        assert action_output.results.json_output.json_result == {"ok": True, "result": {"chat_id": self.CHAT_ID, "text": self.MESSAGE_CONTENT}}
+        assert action_output.results.json_output.json_result == {
+            "ok": True,
+            "result": {
+                "id": self.CHAT_ID,
+                "type": "channel",
+                "title": "Test Chat",
+                "invite_link": f"https://t.me/joinchat/test_invite_link_{self.CHAT_ID}"
+            }
+        }
 
     @set_metadata(
         parameters={
-            "Message": MESSAGE_CONTENT,
             "Chat ID": CHAT_ID
         },
         integration_config_file_path=CONFIG_PATH,
     )
-    def test_send_message_failure(
+    def test_get_chat_details_failure(
         self,
         script_session: TelegramSession,
         action_output: MockActionOutput,
         telegram: Telegram
     ) -> None:
         telegram.fail_next_call()
-        SendMessage()
+        GetChatDetails()
 
         assert len(script_session.request_history) == 1
         request = script_session.request_history[0].request
-        assert request.url.path == f"/bot{TEST_BOT_TOKEN}/sendMessage"
-        assert request.kwargs["params"] == {"chat_id": self.CHAT_ID, "text": self.MESSAGE_CONTENT}
+        assert request.url.path.endswith("/getChat")
+        assert request.kwargs["params"] == {"chat_id": self.CHAT_ID}
 
-        assert action_output.results.output_message == "Could not send message. Error: b'Simulated API failure for SendMessage'"
+        assert action_output.results.output_message == f"Could not find The chat {self.CHAT_ID}. Error: b'Simulated API failure'"
         assert action_output.results.execution_state == ExecutionState.FAILED

@@ -8,7 +8,7 @@ from integrations.third_party.telegram.tests.core.telegram import Telegram
 from packages.integration_testing.src.integration_testing.common import use_live_api
 
 pytest_plugins = (
-    "packages.integration_testing.tests.test_integration_testing.conftest",
+    "packages.integration_testing.src.integration_testing.conftest",
 )
 
 @pytest.fixture

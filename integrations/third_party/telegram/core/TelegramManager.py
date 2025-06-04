@@ -63,18 +63,22 @@ class TelegramManager:
         return json_res
 
     def get_messages(self, offsetparam, allowed_updates):
-        """Receives messages from a group, channel, or or private chat that the bot is a member of.
+        """Receives messages from a group, channel, or private chat that the bot is a member of.
         :param offsetparam: String, the last update id to get messages from,
                             enables us to control which message to present.
         :param allowed_updates: List of the allowed updates to retrieve
         :return: Return all the messages content according to a given offset
         """
-        url = f"{self.base}/getUpdates?allowed_updates={allowed_updates}"
+
+        url = f"{self.base}/getUpdates"
+        params = {
+            "allowed_updates": allowed_updates
+        }
 
         if offsetparam is not None:
-            url = f"{self.base}/getUpdates?offset={offsetparam}?allowed_updates={allowed_updates}"
+            params["offset"] = offsetparam
 
-        response = self.session.get(url, timeout=5.0)
+        response = self.session.get(url, timeout=5.0, params=params)
 
         try:
             json_res = response.json()
@@ -107,9 +111,9 @@ class TelegramManager:
         :param chat_id: String,the unique identifier or username
         :return: Json, the chat details
         """
-        url = f"{self.base}/getChat?chat_id={chat_id}"
+        url = f"{self.base}/getChat"
 
-        response = self.session.get(url, timeout=5.0)
+        response = self.session.get(url, timeout=5.0, params={"chat_id": chat_id})
 
         try:
             json_res = response.json()
@@ -192,7 +196,7 @@ class TelegramManager:
         try:
             json_res = response.json()
         except Exception:
-            raise Exception(response.content)
+            raise Exception(str(response.content))
         if not json_res.get("ok"):
             raise Exception(json.dumps(json_res))
 
@@ -225,9 +229,11 @@ class TelegramManager:
         :param doc_url: String, the url of the doc to send
         :return: Json, the details of the photo that was sent
         """
-        endpoint_url = f"{self.base}/sendDocument?chat_id={chat_id}&document={doc_url}"
 
-        response = self.session.get(endpoint_url, timeout=5.0)
+        response = self.session.get(f"{self.base}/sendDocument", timeout=5.0, params={
+            "chat_id": chat_id,
+            "document": doc_url
+        })
 
         try:
             json_res = response.json()
@@ -325,7 +331,7 @@ class TelegramManager:
         try:
             json_res = response.json()
         except Exception as err:
-            raise Exception(f"Can't access the telegram API. Error: {err}")
+            raise Exception(response.content)
 
         response.raise_for_status()
 
