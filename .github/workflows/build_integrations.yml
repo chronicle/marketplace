@@ -1,0 +1,36 @@
+name: MP Check Changed Files
+
+on:
+  push:
+    branches:
+      - 'integrations/commercial/**'
+      - 'integrations/third_party/**'
+  pull_request:
+    branches:
+      - 'integrations/commercial/**'
+      - 'integrations/third_party/**'
+
+jobs:
+  mp_check:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+
+    - name: Install mp package
+      run: |
+        pip install --upgrade pip
+        pip install -e ./packages/mp
+
+    - name: Run mp check with changed files
+      shell: bash
+      run: |
+        mp build --repository third_party --repository commercial
