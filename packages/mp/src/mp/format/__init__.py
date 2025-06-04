@@ -92,23 +92,20 @@ def format_files(
     run_params: RuntimeParams = mp.core.config.RuntimeParams(quiet, verbose)
     run_params.set_in_config()
     sources: list[str] = _get_source_files(file_paths, changed_file=changed_files)
-    paths: set[pathlib.Path] = _get_relevant_source_paths(sources)
-    if paths:
-        _format_python_files(paths)
+    if not sources:
+        rich.print("No files found to check")
+        return
 
-    else:
+    paths: set[pathlib.Path] = _get_relevant_source_paths(sources)
+    if not paths:
         rich.print("No relevant python files to format")
+        return
+
+    _format_python_files(paths)
 
 
 def _get_source_files(file_paths: list[str], *, changed_file: bool) -> list[str]:
-    sources: list[str] = (
-        mp.core.unix.get_changed_files() if changed_file else file_paths
-    )
-    if not sources:
-        msg: str = "No files found to check"
-        raise ValueError(msg)
-
-    return sources
+    return mp.core.unix.get_changed_files() if changed_file else file_paths
 
 
 def _get_relevant_source_paths(sources: list[str]) -> set[pathlib.Path]:
