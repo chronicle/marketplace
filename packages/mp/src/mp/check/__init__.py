@@ -44,12 +44,46 @@ app: typer.Typer = typer.Typer()
 
 
 class CheckParams(NamedTuple):
-    file_paths: list[str]
+    file_paths: list[str] | None
     fix: bool
     unsafe_fixes: bool
     changed_files: bool
     static_type_check: bool
     raise_error_on_violations: bool
+
+    def validate(self) -> None:
+        """Validate the parameters.
+
+        Validates input options
+        and ensures compatibility between provided arguments.
+
+        This method performs a series of checks
+        to validate the state of the program's input arguments.
+        It ensures that options provided by the user are in a valid,
+        coherent state before further processing can occur.
+        If invalid options are detected,
+        the method raises appropriate errors
+        to indicate the incompatibility or missing information.
+
+        Raises:
+            typer.BadParameter: If any of the following conditions are met:
+                - `--unsafe-fixes` is used without the `--fix` option.
+                - Neither `file_paths` nor `--changed-files` is provided.
+                - Both `file_paths`and `--changed-files` are provided simultaneously.
+
+        """
+        msg: str
+        if self.unsafe_fixes and not self.fix:
+            msg = "To use --unsafe-fixes the --fix option must be passed as well"
+            raise typer.BadParameter(msg)
+
+        if self.file_paths is None and not self.changed_files:
+            msg = "At least one path or --changed-files must be provided"
+            raise typer.BadParameter(msg)
+
+        if self.file_paths is not None and self.changed_files:
+            msg = "Either provide paths or use --changed-files."
+            raise typer.BadParameter(msg)
 
 
 @app.command(name="check", help="Check and lint python")
@@ -122,9 +156,6 @@ def check(  # noqa: PLR0913
         verbose: Verbose log options
 
     """
-    if file_paths is None:
-        file_paths = []
-
     run_params: RuntimeParams = mp.core.config.RuntimeParams(quiet, verbose)
     run_params.set_in_config()
     params: CheckParams = CheckParams(
@@ -135,18 +166,22 @@ def check(  # noqa: PLR0913
         static_type_check=static_type_check,
         raise_error_on_violations=raise_error_on_violations,
     )
-    _validate_args(params)
+    params.validate()
     _check_paths(params)
 
 
 def _check_paths(check_params: CheckParams) -> None:
+    file_paths: list[str] | None = check_params.file_paths
+    if file_paths is None:
+        file_paths = []
+
     sources: list[str] = _get_source_files(
-        check_params.file_paths,
-        changed_file=check_params.changed_files,
+        file_paths,
+        changed_files=check_params.changed_files,
     )
     paths: set[pathlib.Path] = _get_relevant_source_paths(sources)
     if not paths:
-        rich.print(f"No relevant python files found to check is sources {paths}")
+        rich.print("No relevant python files to check")
         return
 
     if check_params.raise_error_on_violations:
@@ -164,9 +199,9 @@ def _check_paths(check_params: CheckParams) -> None:
         mp.core.code_manipulation.static_type_check_python_files(paths)
 
 
-def _get_source_files(file_paths: list[str], *, changed_file: bool) -> list[str]:
+def _get_source_files(file_paths: list[str], *, changed_files: bool) -> list[str]:
     sources: list[str] = (
-        mp.core.unix.get_changed_files() if changed_file else file_paths
+        mp.core.unix.get_changed_files() if changed_files else file_paths
     )
     if not sources:
         msg: str = "No files found to check"
@@ -184,18 +219,3 @@ def _get_relevant_source_paths(sources: list[str]) -> set[pathlib.Path]:
         )
         or path.is_dir()
     }
-
-
-def _validate_args(check_params: CheckParams) -> None:
-    msg: str
-    if check_params.unsafe_fixes and not check_params.fix:
-        msg = "To use --unsafe-fixes the --fix option must be passed as well"
-        raise typer.BadParameter(msg)
-
-    if check_params.file_paths is None and not check_params.changed_files:
-        msg = "At least one path or --changed-files must be provided"
-        raise typer.BadParameter(msg)
-
-    if check_params.file_paths is not None and check_params.changed_files:
-        msg = "Either provide paths or use --changed-files."
-        raise typer.BadParameter(msg)

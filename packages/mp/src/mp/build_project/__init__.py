@@ -56,7 +56,43 @@ class BuildParams:
     groups: Iterable[str]
     deconstruct: bool
 
-    def as_list(self) -> list[Iterable[RepositoryType] | Iterable[str]]:
+    def validate(self) -> None:
+        """Validate the parameters.
+
+        Validates the provided parameters
+        to ensure proper usage of mutually exclusive
+        options and constraints.
+        Handles error messages and raises exceptions if validation fails.
+
+        Raises:
+            typer.BadParameter:
+                If none of the required options (--repository, --groups, or
+                --integration) are provided.
+            typer.BadParameter:
+                If more than one of the options (--repository, --groups,
+                or --integration) is used at the same time.
+            typer.BadParameter:
+                If the --deconstruct option is used with any option
+                other than --integration.
+
+        """
+        params: list[Iterable[str] | Iterable[RepositoryType]] = self._as_list()
+        msg: str
+        if not any(params):
+            msg = (
+                "At least one of --repository, --groups, or --integration must be used."
+            )
+            raise typer.BadParameter(msg)
+
+        if sum(map(bool, params)) != 1:
+            msg = "Only one of --repository, --groups, or --integration shall be used."
+            raise typer.BadParameter(msg)
+
+        if self.deconstruct and (self.groups or self.repository):
+            msg = "--deconstruct works only with --integration."
+            raise typer.BadParameter(msg)
+
+    def _as_list(self) -> list[Iterable[RepositoryType] | Iterable[str]]:
         return [self.repository, self.integrations, self.groups]
 
 
@@ -119,9 +155,9 @@ def build(  # noqa: PLR0913
     """
     run_params: RuntimeParams = mp.core.config.RuntimeParams(quiet, verbose)
     run_params.set_in_config()
-    _validate_params(
-        build_params=BuildParams(repository, integration, group, deconstruct),
-    )
+
+    params: BuildParams = BuildParams(repository, integration, group, deconstruct)
+    params.validate()
 
     commercial_mp: Marketplace = Marketplace(mp.core.file_utils.get_commercial_path())
     community_mp: Marketplace = Marketplace(mp.core.file_utils.get_community_path())
@@ -158,22 +194,6 @@ def build(  # noqa: PLR0913
             )
 
     rich.print("Done")
-
-
-def _validate_params(build_params: BuildParams) -> None:
-    params: list[Iterable[str] | Iterable[RepositoryType]] = build_params.as_list()
-    msg: str
-    if not any(params):
-        msg = "At least one of --repository, --groups, or --integration must be used."
-        raise typer.BadParameter(msg)
-
-    if sum(map(bool, params)) != 1:
-        msg = "Only one of --repository, --groups, or --integration shall be used."
-        raise typer.BadParameter(msg)
-
-    if build_params.deconstruct and (build_params.groups or build_params.repository):
-        msg = "--deconstruct works only with --integration."
-        raise typer.BadParameter(msg)
 
 
 def _build_integrations(

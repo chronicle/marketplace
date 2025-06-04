@@ -1,4 +1,4 @@
-name: MP Check Changed Files
+name: MP Build marketpalce
 
 on:
   push:
