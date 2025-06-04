@@ -93,7 +93,11 @@ def format_files(
     run_params.set_in_config()
     sources: list[str] = _get_source_files(file_paths, changed_file=changed_files)
     paths: set[pathlib.Path] = _get_relevant_source_paths(sources)
-    _format_python_files(paths)
+    if paths:
+        _format_python_files(paths)
+
+    else:
+        rich.print("No relevant python files to format")
 
 
 def _get_source_files(file_paths: list[str], *, changed_file: bool) -> list[str]:
@@ -108,7 +112,7 @@ def _get_source_files(file_paths: list[str], *, changed_file: bool) -> list[str]
 
 
 def _get_relevant_source_paths(sources: list[str]) -> set[pathlib.Path]:
-    paths: set[pathlib.Path] = {
+    return {
         path
         for source in sources
         if mp.core.file_utils.is_python_file(
@@ -116,11 +120,6 @@ def _get_relevant_source_paths(sources: list[str]) -> set[pathlib.Path]:
         )
         or path.is_dir()
     }
-    if not paths:
-        msg: str = f"No relevant python files found to check is sources {sources}"
-        raise ValueError(msg)
-
-    return paths
 
 
 def _format_python_files(paths: Iterable[pathlib.Path]) -> None:

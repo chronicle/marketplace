@@ -1,4 +1,4 @@
-name: MP Check Changed Files
+name: MP Build marketpalce
 
 on:
   push:
@@ -11,7 +11,7 @@ on:
       - 'integrations/third_party/**'
 
 jobs:
-  mp_check:
+  mp_build_marketplace:
     runs-on: ubuntu-latest
 
     steps:

@@ -1,6 +1,6 @@
 [project]
 name = "integration-testing"
-version = "1.0.3"
+version = "1.0.4"
 description = "Blackbox testing infrastructure to test and run marketplace integration scripts locally using mocks."
 readme = "README.md"
 authors = [
@@ -26,9 +26,9 @@ dev = [
     "mypy>=1.15.0",
     "pytest>=8.3.5",
     "pytest-xdist>=3.7.0",
-    "ruff>=0.11.10",
+    "ruff>=0.11.12",
     "types-pyyaml>=6.0.12.20250516",
-    "types-requests>=2.32.0.20250515",
+    "types-requests>=2.32.0.20250602",
 ]
 
 [tool.mypy]

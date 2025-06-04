@@ -48,7 +48,34 @@ class TestParams:
     integrations: Iterable[str]
     groups: Iterable[str]
 
-    def as_list(self) -> list[Iterable[RepositoryType] | Iterable[str]]:
+    def validate(self) -> None:
+        """Validate the parameters.
+
+        Validates input parameters to ensure that only one parameter among
+        `--repository`, `--groups`,
+         or `--integration` is used during execution.
+
+        Raises appropriate error messages if none or more than one of these
+        parameters is specified.
+
+        Raises:
+            typer.BadParameter: If none of `--repository`, `--groups`, or
+                `--integration` is provided or more than one of them is used.
+
+        """
+        params: list[Iterable[str] | Iterable[RepositoryType]] = self._as_list()
+        msg: str
+        if not any(params):
+            msg = (
+                "At least one of --repository, --groups, or --integration must be used."
+            )
+            raise typer.BadParameter(msg)
+
+        if sum(map(bool, params)) != 1:
+            msg = "Only one of --repository, --groups, or --integration shall be used."
+            raise typer.BadParameter(msg)
+
+    def _as_list(self) -> list[Iterable[RepositoryType] | Iterable[str]]:
         return [self.repository, self.integrations, self.groups]
 
 
@@ -111,7 +138,10 @@ def run_pre_build_tests(  # noqa: PLR0913
 
     run_params: RuntimeParams = mp.core.config.RuntimeParams(quiet, verbose)
     run_params.set_in_config()
-    _validate_params(test_params=TestParams(repository, integration, group))
+
+    params: TestParams = TestParams(repository, integration, group)
+    params.validate()
+
     commercial_path: pathlib.Path = mp.core.file_utils.get_commercial_path()
     community_path: pathlib.Path = mp.core.file_utils.get_community_path()
     if integration:
@@ -137,18 +167,6 @@ def run_pre_build_tests(  # noqa: PLR0913
             rich.print("Testing all integrations and groups in third party repo...")
             _test_repository(community_path)
             rich.print("Done testing third party integrations.")
-
-
-def _validate_params(test_params: TestParams) -> None:
-    params: list[Iterable[str] | Iterable[RepositoryType]] = test_params.as_list()
-    msg: str
-    if not any(params):
-        msg = "At least one of --repository, --groups, or --integration must be used."
-        raise typer.BadParameter(msg)
-
-    if sum(map(bool, params)) != 1:
-        msg = "Only one of --repository, --groups, or --integration shall be used."
-        raise typer.BadParameter(msg)
 
 
 def _test_repository(repo: pathlib.Path) -> None:
