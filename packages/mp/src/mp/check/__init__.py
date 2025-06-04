@@ -179,6 +179,10 @@ def _check_paths(check_params: CheckParams) -> None:
         file_paths,
         changed_files=check_params.changed_files,
     )
+    if not sources:
+        rich.print("No files found to check")
+        return
+
     paths: set[pathlib.Path] = _get_relevant_source_paths(sources)
     if not paths:
         rich.print("No relevant python files to check")
@@ -200,14 +204,7 @@ def _check_paths(check_params: CheckParams) -> None:
 
 
 def _get_source_files(file_paths: list[str], *, changed_files: bool) -> list[str]:
-    sources: list[str] = (
-        mp.core.unix.get_changed_files() if changed_files else file_paths
-    )
-    if not sources:
-        msg: str = "No files found to check"
-        raise ValueError(msg)
-
-    return sources
+    return mp.core.unix.get_changed_files() if changed_files else file_paths
 
 
 def _get_relevant_source_paths(sources: list[str]) -> set[pathlib.Path]:
