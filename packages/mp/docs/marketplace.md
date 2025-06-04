@@ -2,13 +2,16 @@
 
 ## Overview
 
-The `mp` tool simplifies developing, testing, and maintaining integrations for the Google SecOps Marketplace. This document explains the structure of marketplace integrations and how to work with them using the tool.
+The `mp` tool simplifies developing, testing, and maintaining integrations for the
+Google SecOps Marketplace. This document explains the structure of marketplace
+integrations and how to work with them using the tool.
 
 ## Integration Structure
 
 A marketplace integration consists of:
 
-1. **Metadata**: YAML files describing the integration, its capabilities, parameters, etc.
+1. **Metadata**: YAML files describing the integration, its capabilities, parameters,
+   etc.
 2. **Scripts**: Python code that implements the integration functionality
 3. **Dependencies**: Required Python packages for the integration
 
@@ -19,7 +22,8 @@ Integrations exist in two states:
 
 ## Creating a New Integration
 
-1. Create a directory for your integration in the appropriate repository (commercial or community)
+1. Create a directory for your integration in the appropriate repository (commercial or
+   community)
 2. Set up the required structure:
 
 ```
@@ -62,11 +66,14 @@ This is useful when you have a built integration and want to make changes to it.
 
 ## Testing Integrations
 
-The `mp` tool does not directly provide testing functionality for integrations, but you can set up tests in the `tests/` directory of your integration and use standard Python testing tools.
+The `mp` tool does not directly provide testing functionality for integrations, but you
+can set up tests in the `tests/` directory of your integration and use standard Python
+testing tools.
 
 ## Best Practices
 
-1. **Metadata First**: Design your integration metadata carefully before implementing scripts
+1. **Metadata First**: Design your integration metadata carefully before implementing
+   scripts
 2. **Type Safety**: Use type hints in all your Python code
 3. **Error Handling**: Implement robust error handling in your scripts
 4. **Documentation**: Document your integration thoroughly
@@ -77,15 +84,18 @@ The `mp` tool does not directly provide testing functionality for integrations, 
 
 ### Import Restructuring
 
-The tool automatically restructures imports in your scripts during the build process. Be aware that:
+The tool automatically restructures imports in your scripts during the build process. Be
+aware that:
 
 - Relative imports may be converted to absolute imports
 - Common packages might be handled differently in built vs. non-built modes
 
 ### Duplicate Integrations
 
-The tool checks for duplicate integrations across repositories. Ensure your integration name is unique.
+The tool checks for duplicate integrations across repositories. Ensure your integration
+name is unique.
 
 ### File Structure
 
-Maintain the expected file structure for your integration to ensure proper building and deconstructing.
+Maintain the expected file structure for your integration to ensure proper building and
+deconstructing.

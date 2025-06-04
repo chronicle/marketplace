@@ -1,6 +1,7 @@
 # Usage Guide
 
-`mp` is a command-line tool for working with Google SecOps Marketplace integrations. Below are the main commands and their usage.
+`mp` is a command-line tool for working with Google SecOps Marketplace integrations.
+Below are the main commands and their usage.
 
 ## Basic Commands
 
@@ -29,6 +30,7 @@ mp format [FILE_PATHS...]
 ```
 
 Options:
+
 - `--changed-files`: Format only files changed in Git
 - `--quiet`: Reduce output verbosity
 - `--verbose`: Increase output verbosity
@@ -42,6 +44,7 @@ mp check [FILE_PATHS...]
 ```
 
 Options:
+
 - `--fix`: Automatically fix minor issues
 - `--changed-files`: Check only files changed in Git
 - `--static-type-check`: Run static type checking with mypy
@@ -60,12 +63,15 @@ mp build
 ```
 
 You must specify one of the following options:
+
 - `--repository [REPOSITORY_TYPES...]`: Build all integrations in specified repositories
 - `--integration [INTEGRATION_NAMES...]`: Build specific integration(s)
 - `--group [GROUP_NAMES...]`: Build all integrations in specified group(s)
 
 Additional options:
-- `--deconstruct`: Deconstruct built integrations instead of building them (works only with `--integration`)
+
+- `--deconstruct`: Deconstruct built integrations instead of building them (works only
+  with `--integration`)
 - `--quiet`: Reduce output verbosity
 - `--verbose`: Increase output verbosity
 

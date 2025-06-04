@@ -19,7 +19,7 @@ mp/
 
 ## Setting Up Development Environment
 
-1. Clone the repository and install in development mode:
+1. Clone the repository and install it in development mode:
 
 ```bash
 git clone <repository-url>
@@ -83,25 +83,32 @@ Example:
 # In src/mp/my_command/__init__.py
 import typer
 
+
 app = typer.Typer()
+
 
 @app.command(name="my-command")
 def my_command() -> None:
     """My new command."""
     # Command implementation here
-    pass
+    ...
+
 
 # Then in src/mp/__init__.py
 from mp.my_command import app as my_command_app
+
+
 # ...
 main_app.add_typer(my_command_app, name="my-command")
 ```
 
 ## Data Models
 
-The project uses abstract base classes and TypedDict for data models. Key classes include:
+The project uses abstract base classes and TypedDict for data models. Key classes
+include:
 
-- `Buildable`: Abstract base class for objects that can be serialized to and from different formats
+- `Buildable`: Abstract base class for objects that can be serialized to and from
+  different formats
 - `BuildableScript`: Similar to `Buildable` but specifically for script components
 - `ScriptMetadata`: For metadata associated with scripts
 - `SequentialMetadata`: For metadata that appears in sequences
@@ -115,4 +122,4 @@ Extend these classes when adding new data models for integration components.
 3. Run tests and ensure code quality
 4. Submit a pull request
 
-See [contributing.md](../CONTRIBUTING.md) for more details.
+See [contributing.md](./contributing.md) for more details.
