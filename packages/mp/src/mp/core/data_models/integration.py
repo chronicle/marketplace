@@ -272,7 +272,7 @@ class Integration:
             RuntimeError: If the integration has disabled components
 
         """
-        if self.is_custom:
+        if self.has_disabled_parts:
             msg: str = (
                 f"{self.identifier} contains disabled scripts:"
                 f"\nDisabled actions: {', '.join(self.disabled_actions) or None}"
@@ -378,7 +378,7 @@ class Integration:
             Custom action names
 
         """
-        return [am.name for am in self.actions_metadata.values() if am.is_custom]
+        return [a.name for a in self.actions_metadata.values() if a.is_custom]
 
     @property
     def custom_connectors(self) -> list[str]:
@@ -388,7 +388,7 @@ class Integration:
             Custom connector names
 
         """
-        return [cm.name for cm in self.connectors_metadata.values() if cm.is_custom]
+        return [c.name for c in self.connectors_metadata.values() if c.is_custom]
 
     @property
     def custom_jobs(self) -> list[str]:
@@ -398,7 +398,7 @@ class Integration:
             Custom job names
 
         """
-        return [jm.name for jm in self.jobs_metadata.values() if jm.is_custom]
+        return [j.name for j in self.jobs_metadata.values() if j.is_custom]
 
     @property
     def disabled_actions(self) -> list[str]:
@@ -408,7 +408,7 @@ class Integration:
             Disabled action names
 
         """
-        return [am.name for am in self.actions_metadata.values() if am.is_custom]
+        return [a.name for a in self.actions_metadata.values() if not a.is_enabled]
 
     @property
     def disabled_connectors(self) -> list[str]:
@@ -418,7 +418,7 @@ class Integration:
             Disabled connector names
 
         """
-        return [cm.name for cm in self.connectors_metadata.values() if cm.is_custom]
+        return [c.name for c in self.connectors_metadata.values() if not c.is_enabled]
 
     @property
     def disabled_jobs(self) -> list[str]:
@@ -428,7 +428,7 @@ class Integration:
             Disabled job names
 
         """
-        return [jm.name for jm in self.jobs_metadata.values() if jm.is_custom]
+        return [j.name for j in self.jobs_metadata.values() if not j.is_enabled]
 
     def to_built(self) -> BuiltIntegration:
         """Turn the buildable object into a "built" typed dict.

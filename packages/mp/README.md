@@ -51,7 +51,7 @@ mp build --quiet --repository third_party
 mp test --verbose --integration my_integration
 
 # Configure mp parameters
-mp config --marketpalce-path . --processes 7 --display-config
+mp config --marketplace-path . --processes 7 --display-config
 ```
 
 ## License

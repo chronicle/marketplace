@@ -73,11 +73,11 @@ uv pip install -e .
 ## Configure `mp`
 
 When installing `mp` it automatically assumes the marketplace repo is installed at
-`~/marketpalce`.
+`~/marketplace`.
 To configure a different path run
 
 ```shell
-mp config --marketpalce-path /path/to/marketpalce 
+mp config --marketplace-path /path/to/marketplace 
 ```
 
 To find more about configurations, run

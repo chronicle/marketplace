@@ -178,16 +178,14 @@ class Marketplace:
         integration_out_path: pathlib.Path = self.out_path / integration.identifier
         integration_out_path.mkdir(exist_ok=True)
 
-        rich.print("Restructuring integration")
         built: BuiltIntegration = integration.to_built()
         restructure_integration(built, integration_path, integration_out_path)
 
-        rich.print("Writing full details")
         full_details: BuiltFullDetails = integration.to_built_full_details()
         write_full_details(full_details, integration_out_path)
 
     def _remove_project_files_from_built_out_path(self, integration_id: str) -> None:
-        rich.print("Removing unneeded from out path")
+        rich.print("Removing unneeded files from out path")
         self._remove_project_files_from_out_path(integration_id)
         integration: pathlib.Path = self.out_path / integration_id
         mp.core.file_utils.remove_paths_if_exists(

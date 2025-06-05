@@ -164,7 +164,7 @@ def set_is_quiet(*, value: bool) -> None:
     _set_config_key(RUNTIME_SECTION_NAME, QUIET_LOG_KEY, value=b)
 
 
-_T = TypeVar("_T", int, bool, float, pathlib.Path)
+_T = TypeVar("_T", int | bool | float, pathlib.Path)
 
 
 @functools.lru_cache

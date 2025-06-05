@@ -19,6 +19,7 @@ Used for things such as path manipulation and file content operations.
 
 from __future__ import annotations
 
+import dataclasses
 import pathlib
 import shutil
 from typing import TYPE_CHECKING, Any
@@ -152,6 +153,9 @@ def is_integration(path: pathlib.Path, *, group: str = "") -> bool:
 def _is_integration(path: pathlib.Path) -> bool:
     if not path.exists() or not path.is_dir():
         return False
+
+    validator: IntegrationParityValidator = IntegrationParityValidator(path)
+    validator.validate_integration_components_parity()
 
     pyproject_toml: pathlib.Path = path / constants.PROJECT_FILE
     def_: pathlib.Path = path / constants.INTEGRATION_DEF_FILE.format(path.name)
@@ -327,3 +331,77 @@ def remove_files_by_suffix_from_dir(dir_: pathlib.Path, suffix: str) -> None:
     for file in dir_.rglob(f"*{suffix}"):
         if file.is_file() and is_path_in_marketplace(file):
             file.unlink(missing_ok=True)
+
+
+@dataclasses.dataclass(slots=True, frozen=True)
+class IntegrationParityValidator:
+    path: pathlib.Path
+
+    def validate_integration_components_parity(self) -> None:
+        """Validate the components of the integration.
+
+        This method ensures that all critical parts of the integration,
+        including actions, connectors, jobs, and widgets,
+        adhere to the required validation rules.
+        Meaning there is parity between scripts and metadata files 1:1
+
+        """
+        self._validate_actions()
+        self._validate_connectors()
+        self._validate_jobs()
+        self._validate_widgets()
+
+    def _validate_actions(self) -> None:
+        actions: pathlib.Path = self.path / constants.ACTIONS_DIR
+        if actions.exists():
+            _validate_script_metadata_parity(actions, ".py", constants.DEF_FILE_SUFFIX)
+
+    def _validate_connectors(self) -> None:
+        connectors: pathlib.Path = self.path / constants.CONNECTORS_DIR
+        if connectors.exists():
+            _validate_script_metadata_parity(
+                directory=connectors,
+                script_suffix=".py",
+                metadata_suffix=constants.DEF_FILE_SUFFIX,
+            )
+
+    def _validate_jobs(self) -> None:
+        jobs: pathlib.Path = self.path / constants.JOBS_DIR
+        if jobs.exists():
+            _validate_script_metadata_parity(jobs, ".py", constants.DEF_FILE_SUFFIX)
+
+    def _validate_widgets(self) -> None:
+        widgets: pathlib.Path = self.path / constants.WIDGETS_DIR
+        if widgets.exists():
+            _validate_script_metadata_parity(
+                directory=widgets,
+                script_suffix=".html",
+                metadata_suffix=constants.DEF_FILE_SUFFIX,
+            )
+
+
+def _validate_script_metadata_parity(
+    directory: pathlib.Path,
+    script_suffix: str,
+    metadata_suffix: str,
+) -> None:
+    _validate_matching_files(directory, script_suffix, metadata_suffix)
+    _validate_matching_files(directory, metadata_suffix, script_suffix)
+
+
+def _validate_matching_files(
+    directory: pathlib.Path,
+    primary_suffix: str,
+    secondary_suffix: str,
+) -> None:
+    for file in directory.rglob(f"*{primary_suffix}"):
+        if file.name == constants.PACKAGE_FILE:
+            continue
+
+        expected_file: pathlib.Path = file.with_suffix(secondary_suffix)
+        if not expected_file.exists():
+            msg: str = (
+                f"The {directory.name} directory has a file '{file.name}' without a"
+                f"  matching '{secondary_suffix}' file"
+            )
+            raise RuntimeError(msg)
