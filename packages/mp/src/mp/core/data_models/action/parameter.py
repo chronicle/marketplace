@@ -76,7 +76,7 @@ class ActionParameter(
         str,
         pydantic.Field(
             max_length=mp.core.constants.DISPLAY_NAME_MAX_LENGTH,
-            pattern=mp.core.constants.DISPLAY_NAME_REGEX,
+            pattern=mp.core.constants.PARAM_DISPLAY_NAME_REGEX,
         ),
     ]
     optional_values: list[str] | None

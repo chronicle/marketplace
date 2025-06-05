@@ -76,7 +76,7 @@ class WidgetMetadata(
         str,
         pydantic.Field(
             max_length=mp.core.constants.DISPLAY_NAME_MAX_LENGTH,
-            pattern=mp.core.constants.DISPLAY_NAME_REGEX,
+            pattern=mp.core.constants.PARAM_DISPLAY_NAME_REGEX,
         ),
     ]
     type_: WidgetType
@@ -85,7 +85,7 @@ class WidgetMetadata(
         str | None,
         pydantic.Field(
             max_length=mp.core.constants.DISPLAY_NAME_MAX_LENGTH,
-            pattern=mp.core.constants.DISPLAY_NAME_REGEX,
+            pattern=mp.core.constants.SCRIPT_DISPLAY_NAME_REGEX,
         ),
     ]
     description: Annotated[

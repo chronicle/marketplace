@@ -135,6 +135,7 @@ class Integration:
         """Perform various validations over the integration."""
         self._raise_error_if_custom()
         self._raise_error_if_disabled()
+        self._raise_error_if_no_ping_action()
 
     @classmethod
     def from_built_path(cls, path: pathlib.Path) -> Integration:
@@ -235,6 +236,17 @@ class Integration:
         except (KeyError, ValueError, tomllib.TOMLDecodeError) as e:
             msg: str = f"Failed to parse non built\n{pyproject_toml}"
             raise ValueError(msg) from e
+
+    def _raise_error_if_no_ping_action(self) -> None:
+        is_excluded_integration: bool = (
+            self.identifier in mp.core.constants.EXCLUDED_INTEGRATIONS_IDS_WITHOUT_PING
+        )
+        if not is_excluded_integration and not self._has_ping_action():
+            msg: str = f"{self.identifier} doesn't implement a 'ping' action"
+            raise RuntimeError(msg)
+
+    def _has_ping_action(self) -> bool:
+        return any(name.lower() == "ping" for name in self.actions_metadata)
 
     def _raise_error_if_custom(self) -> None:
         """Raise an error if the integration is custom.

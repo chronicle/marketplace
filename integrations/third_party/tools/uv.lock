@@ -569,7 +569,7 @@ wheels = [
 
 [[package]]
 name = "integration-testing"
-version = "1.0.3"
+version = "1.0.4"
 source = { directory = "../../../packages/integration_testing" }
 dependencies = [
     { name = "aiohttp" },
@@ -597,9 +597,9 @@ dev = [
     { name = "mypy", specifier = ">=1.15.0" },
     { name = "pytest", specifier = ">=8.3.5" },
     { name = "pytest-xdist", specifier = ">=3.7.0" },
-    { name = "ruff", specifier = ">=0.11.10" },
+    { name = "ruff", specifier = ">=0.11.12" },
     { name = "types-pyyaml", specifier = ">=6.0.12.20250516" },
-    { name = "types-requests", specifier = ">=2.32.0.20250515" },
+    { name = "types-requests", specifier = ">=2.32.0.20250602" },
 ]
 
 [[package]]

@@ -20,22 +20,16 @@ import configparser
 import dataclasses
 import functools
 import pathlib
+import typing
 import warnings
-from typing import TYPE_CHECKING, Any, TypeVar
+from typing import TypeVar
 
 import typer
 
 import mp.core.constants
 
-if TYPE_CHECKING:
-    from collections.abc import Callable
-
-_T = TypeVar("_T")
-
-
-PACKAGE_ROOT: pathlib.Path = pathlib.Path(__file__).parent.parent
-CONFIG_FILE_NAME: str = "config.ini"
-CONFIG_PATH: pathlib.Path = PACKAGE_ROOT / CONFIG_FILE_NAME
+CONFIG_FILE_NAME: str = ".mp_config"
+CONFIG_PATH: pathlib.Path = pathlib.Path.home() / CONFIG_FILE_NAME
 
 MARKETPLACE_PATH_KEY: str = "marketplace_path"
 PROCESSES_NUMBER_KEY: str = "processes"
@@ -170,24 +164,31 @@ def set_is_quiet(*, value: bool) -> None:
     _set_config_key(RUNTIME_SECTION_NAME, QUIET_LOG_KEY, value=b)
 
 
+_T = TypeVar("_T", int, bool, float, pathlib.Path)
+
+
 @functools.lru_cache
 def _get_config_key(
     section: str,
     key: str,
-    val_type: Callable[[Any], _T],
+    val_type: type[_T],
     /,
 ) -> _T | None:
     config: configparser.ConfigParser = _read_config_if_exists_or_create_defaults()
     if val_type is bool:
-        return config[section].getboolean(key)  # type: ignore[return-value]
+        return typing.cast("_T | None", config[section].getboolean(key))
 
     if val_type is int:
-        return config[section].getint(key)  # type: ignore[return-value]
+        return typing.cast("_T | None", config[section].getint(key))
 
     if val_type is float:
-        return config[section].getfloat(key)  # type: ignore[return-value]
+        return typing.cast("_T | None", config[section].getfloat(key))
 
-    return val_type(config.get(section, key))
+    if val_type is pathlib.Path:
+        return val_type(config.get(section, key))
+
+    msg: str = f"Unsupported type {val_type}"
+    raise ValueError(msg)
 
 
 def _set_config_key(
