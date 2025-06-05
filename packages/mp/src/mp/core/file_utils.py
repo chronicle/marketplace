@@ -405,3 +405,20 @@ def _validate_matching_files(
                 f"  matching '{secondary_suffix}' file"
             )
             raise RuntimeError(msg)
+
+
+def is_commercial_integration(path: pathlib.Path) -> bool:
+    """Check if the given integration path corresponds to a commercial integration.
+
+    This function evaluates whether the provided integration path belongs to the
+    directory designated for commercial integrations.
+
+    Args:
+        path: The path to the integration directory.
+
+    Returns:
+        bool: True if the integration belongs to the commercial directory, False
+            otherwise.
+
+    """
+    return is_integration(path) and path.parent.name == constants.COMMERCIAL_DIR_NAME

@@ -24,6 +24,7 @@ import yaml
 
 import mp.core.constants
 import mp.core.data_models.abc
+import mp.core.file_utils
 import mp.core.utils
 
 from .feature_tags import BuiltFeatureTags, FeatureTags, NonBuiltFeatureTags
@@ -91,6 +92,7 @@ class BuiltIntegrationMetadata(TypedDict):
     Version: float
     IsCustom: bool
     IsPowerUp: bool
+    IsCertified: bool
 
 
 class NonBuiltIntegrationMetadata(TypedDict):
@@ -147,6 +149,7 @@ class IntegrationMetadata(
     should_install_in_system: bool = False
     svg_image: str | None
     version: Annotated[decimal.Decimal, pydantic.Field(decimal_places=1)]
+    is_certified: bool = True
     is_custom: bool = False
     is_available_for_community: bool = True
     is_powerup: bool = False
@@ -175,6 +178,8 @@ class IntegrationMetadata(
         try:
             metadata_content: BuiltIntegrationMetadata = json.loads(built)
             metadata: Self = cls.from_built(metadata_content)
+            is_certified: bool = mp.core.file_utils.is_commercial_integration(path)
+            metadata.is_certified = metadata.is_powerup or is_certified
         except (ValueError, json.JSONDecodeError) as e:
             msg: str = f"Failed to load json from {metadata_path}\n{built}"
             raise ValueError(msg) from e
@@ -200,6 +205,8 @@ class IntegrationMetadata(
         try:
             metadata_content: NonBuiltIntegrationMetadata = yaml.safe_load(built)
             metadata: Self = cls.from_non_built(metadata_content)
+            is_certified: bool = mp.core.file_utils.is_commercial_integration(path)
+            metadata.is_certified = metadata.is_powerup or is_certified
         except (ValueError, json.JSONDecodeError) as e:
             msg: str = f"Failed to load json from {metadata_path}\n{built}"
             raise ValueError(msg) from e
@@ -299,6 +306,7 @@ class IntegrationMetadata(
             Version=float(self.version),
             IsCustom=self.is_custom,
             IsPowerUp=self.is_powerup,
+            IsCertified=self.is_certified,
         )
         mp.core.utils.remove_none_entries_from_mapping(built)
         return built

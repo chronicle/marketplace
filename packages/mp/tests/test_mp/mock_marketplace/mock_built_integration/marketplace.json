@@ -29,6 +29,7 @@
             }
         ],
         "IsAvailableForCommunity": true,
+        "IsCertified": false,
         "IsCustom": false,
         "IsPowerUp": false,
         "LatestReleasePublishTimeUnixTime": 1719273600,
