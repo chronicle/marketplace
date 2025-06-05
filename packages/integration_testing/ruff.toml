@@ -100,5 +100,6 @@ preview = true
     "PLR2004",
     "S311",
     "D",
-    "DOC"
+    "DOC",
+    "PLR6301",
 ]

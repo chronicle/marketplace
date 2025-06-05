@@ -85,7 +85,11 @@ SHORT_DESCRIPTION_MAX_LENGTH: int = 400
 DISPLAY_NAME_MAX_LENGTH: int = 150
 MAX_PARAMETERS_LENGTH: int = 50
 # language=regexp
-SCRIPT_DISPLAY_NAME_REGEX: str = r"^[a-zA-Z0-9-\s]+$"
+SCRIPT_DISPLAY_NAME_REGEX: str = (
+    r"^[a-zA-Z0-9-\s]+$"
+    # Excluded scripts that already have issues with their name
+    r"|^IOC_Enrichment$"
+)
 # language=regexp
 SCRIPT_IDENTIFIER_REGEX: str = (
     r"^[a-zA-Z0-9-_]+$"

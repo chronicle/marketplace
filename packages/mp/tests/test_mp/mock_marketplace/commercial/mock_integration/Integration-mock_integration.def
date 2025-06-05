@@ -27,6 +27,7 @@
         }
     ],
     "IsAvailableForCommunity": true,
+    "IsCertified": false,
     "IsCustom": false,
     "IsPowerUp": false,
     "MarketingDisplayName": "Mock Integration",
