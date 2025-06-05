@@ -241,11 +241,17 @@ class Integration:
         is_excluded_integration: bool = (
             self.identifier in mp.core.constants.EXCLUDED_INTEGRATIONS_IDS_WITHOUT_PING
         )
-        if not is_excluded_integration and not self._has_ping_action():
+        if not is_excluded_integration and not self.has_ping_action():
             msg: str = f"{self.identifier} doesn't implement a 'ping' action"
             raise RuntimeError(msg)
 
-    def _has_ping_action(self) -> bool:
+    def has_ping_action(self) -> bool:
+        """Check whether the integration has a ping action.
+
+        Returns:
+            Whether the integration has a ping action
+
+        """
         return any(name.lower() == "ping" for name in self.actions_metadata)
 
     def _raise_error_if_custom(self) -> None:
@@ -259,9 +265,9 @@ class Integration:
             msg: str = (
                 f"{self.identifier} contains custom scripts:"
                 f"\nIs the integration custom: {self.metadata.is_custom}"
-                f"\nCustom actions: {', '.join(self.custom_actions) or None}"
-                f"\nCustom connectors: {', '.join(self.custom_connectors) or None}"
-                f"\nCustom jobs: {', '.join(self.custom_jobs) or None}"
+                f"\nCustom actions: {', '.join(self._custom_actions) or None}"
+                f"\nCustom connectors: {', '.join(self._custom_connectors) or None}"
+                f"\nCustom jobs: {', '.join(self._custom_jobs) or None}"
             )
             raise RuntimeError(msg)
 
@@ -275,9 +281,9 @@ class Integration:
         if self.has_disabled_parts:
             msg: str = (
                 f"{self.identifier} contains disabled scripts:"
-                f"\nDisabled actions: {', '.join(self.disabled_actions) or None}"
-                f"\nDisabled connectors: {', '.join(self.disabled_connectors) or None}"
-                f"\nDisabled jobs: {', '.join(self.disabled_jobs) or None}"
+                f"\nDisabled actions: {', '.join(self._disabled_actions) or None}"
+                f"\nDisabled connectors: {', '.join(self._disabled_connectors) or None}"
+                f"\nDisabled jobs: {', '.join(self._disabled_jobs) or None}"
             )
             raise RuntimeError(msg)
 
@@ -291,9 +297,9 @@ class Integration:
         """
         return (
             self.metadata.is_custom
-            or self.has_custom_actions
-            or self.has_custom_connectors
-            or self.has_custom_jobs
+            or self._has_custom_actions
+            or self._has_custom_connectors
+            or self._has_custom_jobs
         )
 
     @property
@@ -305,13 +311,13 @@ class Integration:
 
         """
         return (
-            self.has_disabled_actions
-            or self.has_disabled_connectors
-            or self.has_disabled_jobs
+            self._has_disabled_actions
+            or self._has_disabled_connectors
+            or self._has_disabled_jobs
         )
 
     @property
-    def has_custom_actions(self) -> bool:
+    def _has_custom_actions(self) -> bool:
         """Check whether any of the actions are custom.
 
         Returns:
@@ -321,7 +327,7 @@ class Integration:
         return any(a.is_custom for a in self.actions_metadata.values())
 
     @property
-    def has_custom_connectors(self) -> bool:
+    def _has_custom_connectors(self) -> bool:
         """Check whether any of the connectors are custom.
 
         Returns:
@@ -331,7 +337,7 @@ class Integration:
         return any(c.is_custom for c in self.connectors_metadata.values())
 
     @property
-    def has_custom_jobs(self) -> bool:
+    def _has_custom_jobs(self) -> bool:
         """Check whether any of the jobs are custom.
 
         Returns:
@@ -341,7 +347,7 @@ class Integration:
         return any(j.is_custom for j in self.jobs_metadata.values())
 
     @property
-    def has_disabled_actions(self) -> bool:
+    def _has_disabled_actions(self) -> bool:
         """Check whether any of the actions are disabled.
 
         Returns:
@@ -351,7 +357,7 @@ class Integration:
         return any(not a.is_enabled for a in self.actions_metadata.values())
 
     @property
-    def has_disabled_connectors(self) -> bool:
+    def _has_disabled_connectors(self) -> bool:
         """Check whether any of the connectors are disabled.
 
         Returns:
@@ -361,7 +367,7 @@ class Integration:
         return any(not c.is_enabled for c in self.connectors_metadata.values())
 
     @property
-    def has_disabled_jobs(self) -> bool:
+    def _has_disabled_jobs(self) -> bool:
         """Check whether any of the jobs are disabled.
 
         Returns:
@@ -371,7 +377,7 @@ class Integration:
         return any(not j.is_enabled for j in self.jobs_metadata.values())
 
     @property
-    def custom_actions(self) -> list[str]:
+    def _custom_actions(self) -> list[str]:
         """Get a list of custom actions.
 
         Returns:
@@ -381,7 +387,7 @@ class Integration:
         return [a.name for a in self.actions_metadata.values() if a.is_custom]
 
     @property
-    def custom_connectors(self) -> list[str]:
+    def _custom_connectors(self) -> list[str]:
         """Get a list of custom connectors.
 
         Returns:
@@ -391,7 +397,7 @@ class Integration:
         return [c.name for c in self.connectors_metadata.values() if c.is_custom]
 
     @property
-    def custom_jobs(self) -> list[str]:
+    def _custom_jobs(self) -> list[str]:
         """Get a list of custom jobs.
 
         Returns:
@@ -401,7 +407,7 @@ class Integration:
         return [j.name for j in self.jobs_metadata.values() if j.is_custom]
 
     @property
-    def disabled_actions(self) -> list[str]:
+    def _disabled_actions(self) -> list[str]:
         """Get a list of disabled actions.
 
         Returns:
@@ -411,7 +417,7 @@ class Integration:
         return [a.name for a in self.actions_metadata.values() if not a.is_enabled]
 
     @property
-    def disabled_connectors(self) -> list[str]:
+    def _disabled_connectors(self) -> list[str]:
         """Get a list of disabled connectors.
 
         Returns:
@@ -421,7 +427,7 @@ class Integration:
         return [c.name for c in self.connectors_metadata.values() if not c.is_enabled]
 
     @property
-    def disabled_jobs(self) -> list[str]:
+    def _disabled_jobs(self) -> list[str]:
         """Get a list of disabled jobs.
 
         Returns:
