@@ -6,7 +6,7 @@ from soar_sdk.SiemplifyUtils import output_handler
 from TIPCommon import extract_configuration_param
 
 from ..core.constants import INTEGRATION_NAME, PING_SCRIPT_NAME
-from ..core.VectraQUXManager import VectraQUXManager
+from ..core.vectra_qux_manager import VectraQUXManager
 
 
 @output_handler

@@ -1,6 +1,9 @@
 from __future__ import annotations
 
-from collections.abc import Iterable
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from collections.abc import Iterable
 
 USER_TYPES: dict[str, str] = {"Basic": "1", "Licensed": "2", "On-prem": "3"}
 

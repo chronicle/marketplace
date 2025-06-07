@@ -4,7 +4,7 @@ from soar_sdk.ScriptResult import EXECUTION_STATE_COMPLETED, EXECUTION_STATE_FAI
 from soar_sdk.SiemplifyAction import SiemplifyAction
 from soar_sdk.SiemplifyUtils import output_handler
 
-from ..core.BitdefenderGravityZoneManager import BitdefenderGravityZoneManager
+from ..core.bitdefender_gravity_zone_manager import BitdefenderGravityZoneManager
 
 INTEGRATION_NAME = "BitdefenderGravityZone"
 SCRIPT_NAME = "Ping"

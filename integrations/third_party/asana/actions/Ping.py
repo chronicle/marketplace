@@ -3,7 +3,7 @@ from __future__ import annotations
 from soar_sdk.SiemplifyAction import SiemplifyAction
 from soar_sdk.SiemplifyUtils import output_handler
 
-from ..core.AsanaManager import AsanaManager
+from ..core.asana_manager import AsanaManager
 
 IDENTIFIER = "Asana"
 

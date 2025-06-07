@@ -5,7 +5,7 @@ from soar_sdk.SiemplifyAction import SiemplifyAction
 from soar_sdk.SiemplifyUtils import output_handler
 
 from ..core.parameters import Parameters
-from ..core.ZoomManager import ZoomManager
+from ..core.zoom_manager import ZoomManager
 
 INTEGRATION_NAME = "Zoom"
 SCRIPT_NAME = "Ping"

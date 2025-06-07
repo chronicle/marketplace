@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from soar_sdk.SiemplifyAction import SiemplifyAction
 
-from ..core.DoppelManager import DoppelManager
+from ..core.doppel_manager import DoppelManager
 
 # Example Constants
 INTEGRATION_NAME = "DoppelVision"

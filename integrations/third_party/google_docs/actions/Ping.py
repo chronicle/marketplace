@@ -3,7 +3,7 @@ from __future__ import annotations
 from soar_sdk.SiemplifyAction import SiemplifyAction
 from soar_sdk.SiemplifyUtils import output_handler
 
-from ..core.GoogleDocsManager import GoogleDocsManager
+from ..core.google_docs_manager import GoogleDocsManager
 
 IDENTIFIER = "Google Docs"
 

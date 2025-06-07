@@ -3,7 +3,7 @@ from __future__ import annotations
 from soar_sdk.SiemplifyAction import SiemplifyAction
 from soar_sdk.SiemplifyUtils import output_handler
 
-from ..core.CybersixgillManager import PROVIDER, SixgillEnrichManager
+from ..core.cybersixgill_manager import PROVIDER, SixgillEnrichManager
 
 
 @output_handler

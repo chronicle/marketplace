@@ -3,7 +3,7 @@ from __future__ import annotations
 from soar_sdk.SiemplifyAction import SiemplifyAction
 from soar_sdk.SiemplifyUtils import output_handler
 
-from ..core.DataDogManager import DataDogManager
+from ..core.data_dog_manager import DataDogManager
 
 IDENTIFIER = "DataDog"
 

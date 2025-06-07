@@ -4,7 +4,7 @@ from soar_sdk.ScriptResult import EXECUTION_STATE_COMPLETED, EXECUTION_STATE_FAI
 from soar_sdk.SiemplifyAction import SiemplifyAction
 from soar_sdk.SiemplifyUtils import output_handler
 
-from ..core.MicrosoftGraphSecurityManager import MicrosoftGraphSecurityManager
+from ..core.microsoft_graph_security_manager import MicrosoftGraphSecurityManager
 
 INTEGRATION_NAME = "MicrosoftGraphSecurity"
 SCRIPT_NAME = "Ping"

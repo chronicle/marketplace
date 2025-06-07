@@ -4,7 +4,7 @@ from soar_sdk.ScriptResult import EXECUTION_STATE_COMPLETED
 from soar_sdk.SiemplifyAction import SiemplifyAction
 from soar_sdk.SiemplifyUtils import output_handler
 
-from ..core.GoogleDriveManager import GoogleDriveManager
+from ..core.google_drive_manager import GoogleDriveManager
 
 IDENTIFIER = "Google Drive"
 

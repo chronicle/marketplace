@@ -24,7 +24,7 @@ from soar_sdk.SiemplifyUtils import output_handler
 from TIPCommon.extraction import extract_configuration_param
 
 from ..core.constants import PING_SCRIPT_NAME, PROVIDER_NAME
-from ..core.RecordedFutureManager import RecordedFutureManager
+from ..core.recorded_future_manager import RecordedFutureManager
 
 
 @output_handler

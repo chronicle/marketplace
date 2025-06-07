@@ -4,7 +4,7 @@ from soar_sdk.ScriptResult import EXECUTION_STATE_COMPLETED, EXECUTION_STATE_FAI
 from soar_sdk.SiemplifyAction import SiemplifyAction
 from soar_sdk.SiemplifyUtils import output_handler
 
-from ..core.AbuseIPDB import AbuseIPDBInvalidAPIKeyManagerError, AbuseIPDBManager
+from ..core.abuse_ipdb import AbuseIPDBInvalidAPIKeyManagerError, AbuseIPDBManager
 
 IDENTIFIER = "AbuseIPDB"
 SCRIPT_NAME = "AbuseIPDB - Ping"

@@ -6,7 +6,7 @@ from soar_sdk.SiemplifyUtils import output_handler
 from TIPCommon import extract_configuration_param
 
 from ..core.constants import INTEGRATION_NAME, PING_SCRIPT_NAME, PROVIDER_NAME
-from ..core.PulsediveManager import PulsediveManager
+from ..core.pulsedive_manager import PulsediveManager
 
 
 @output_handler

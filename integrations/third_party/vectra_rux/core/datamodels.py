@@ -12,7 +12,7 @@ from .constants import (
     SEVERITY_MAP,
     URL_API_VERSION,
 )
-from .UtilsManager import get_alert_id
+from .utils_manager import get_alert_id
 
 ASSIGNMENT_ID = "Assignment ID"
 

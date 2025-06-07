@@ -3,7 +3,7 @@ from __future__ import annotations
 from soar_sdk.SiemplifyAction import SiemplifyAction
 from soar_sdk.SiemplifyUtils import output_handler
 
-from ..core.EC2Manager import EC2Manager
+from ..core.ec2_manager import EC2Manager
 
 IDENTIFIER = "AWS - EC2"
 

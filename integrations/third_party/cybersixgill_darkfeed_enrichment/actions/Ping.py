@@ -3,8 +3,8 @@ from __future__ import annotations
 from soar_sdk.SiemplifyAction import SiemplifyAction
 from soar_sdk.SiemplifyUtils import output_handler
 
-from ..core.SixgillManager import PROVIDER, SixgillEnrichManager
-from ..core.SixgillResultProcessor import SixgillActionResultProcessor
+from ..core.sixgill_manager import PROVIDER, SixgillEnrichManager
+from ..core.sixgill_result_processor import SixgillActionResultProcessor
 
 
 @output_handler

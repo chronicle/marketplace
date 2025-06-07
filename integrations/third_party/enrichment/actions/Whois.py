@@ -29,7 +29,7 @@ from soar_sdk.SiemplifyUtils import (
 )
 from tldextract import extract
 
-from ..core.IpLocation import DbIpCity
+from ..core.ip_location import DbIpCity
 
 EXTEND_GRAPH_URL = "{}/external/v1/investigator/ExtendCaseGraph"
 

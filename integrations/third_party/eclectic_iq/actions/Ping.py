@@ -4,7 +4,7 @@ from soar_sdk.ScriptResult import EXECUTION_STATE_COMPLETED, EXECUTION_STATE_FAI
 from soar_sdk.SiemplifyAction import SiemplifyAction
 from soar_sdk.SiemplifyUtils import output_handler
 
-from ..core.EclecticIQManager import EclecticIQManager
+from ..core.eclectic_iq_manager import EclecticIQManager
 
 INTEGRATION_NAME = "EclecticIQ"
 SCRIPT_NAME = "Ping"

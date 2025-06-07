@@ -1,8 +1,10 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
+from typing import TYPE_CHECKING
 
-from soar_sdk.SiemplifyConnectors import SiemplifyConnectorExecution
+if TYPE_CHECKING:
+    from soar_sdk.SiemplifyConnectors import SiemplifyConnectorExecution
 
 PROPERTY_KEY = "lasd_message_id"
 

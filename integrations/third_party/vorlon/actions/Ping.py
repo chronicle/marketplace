@@ -4,12 +4,12 @@ from soar_sdk.ScriptResult import EXECUTION_STATE_COMPLETED, EXECUTION_STATE_FAI
 from soar_sdk.SiemplifyAction import SiemplifyAction
 from soar_sdk.SiemplifyUtils import output_handler
 
-from ..core.Constants import (
+from ..core.constants import (
     INTEGRATION_DISPLAY_NAME,
     INTEGRATION_NAME,
     PING_SCRIPT_NAME,
 )
-from ..core.VorlonManager import VorlonManager
+from ..core.vorlon_manager import VorlonManager
 
 
 @output_handler

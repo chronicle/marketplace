@@ -4,7 +4,7 @@ from soar_sdk.SiemplifyAction import SiemplifyAction
 from soar_sdk.SiemplifyUtils import output_handler
 from TIPCommon import extract_configuration_param
 
-from ..core.BanduraCyberManager import BanduraCyberManager
+from ..core.bandura_cyber_manager import BanduraCyberManager
 
 # CONTS
 INTEGRATION_NAME = "BanduraCyber"

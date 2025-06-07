@@ -4,7 +4,7 @@ from soar_sdk.ScriptResult import EXECUTION_STATE_COMPLETED, EXECUTION_STATE_FAI
 from soar_sdk.SiemplifyAction import SiemplifyAction
 from soar_sdk.SiemplifyUtils import output_handler
 
-from ..core.PerimeterXManager import PerimeterXManager, PerimeterXManagerException
+from ..core.perimeter_x_manager import PerimeterXManager, PerimeterXManagerException
 
 INTEGRATION_NAME = "PerimeterX"
 

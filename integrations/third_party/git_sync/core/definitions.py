@@ -41,7 +41,7 @@ from .constants import (
 if TYPE_CHECKING:
     from collections.abc import Iterator
 
-    from .SiemplifyApiClient import SiemplifyApiClient
+    from .siemplify_api_client import SiemplifyApiClient
 
 
 class File:

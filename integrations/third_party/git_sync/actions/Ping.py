@@ -20,7 +20,7 @@ from soar_sdk.SiemplifyAction import SiemplifyAction
 from soar_sdk.SiemplifyUtils import output_handler
 
 from ..core.constants import COMMIT_AUTHOR_REGEX, DEFAULT_AUTHOR, DEFAULT_USERNAME
-from ..core.GitSyncManager import GitSyncManager
+from ..core.git_sync_manager import GitSyncManager
 
 SCRIPT_NAME = "Ping"
 INTEGRATION_NAME = "GitSync"

@@ -40,7 +40,7 @@ from .constants import (
     PLAYBOOK_ALERT_PRODUCT,
     SEVERITY_MAP,
 )
-from .UtilsManager import format_timestamp
+from .utils_manager import format_timestamp
 
 
 class BaseModel:

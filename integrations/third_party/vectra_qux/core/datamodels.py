@@ -15,7 +15,7 @@ from .constants import (
     RULE_GENERATOR,
     SEVERITY_MAP,
 )
-from .UtilsManager import get_alert_id
+from .utils_manager import get_alert_id
 
 # Defining constants
 ASSIGNMENT_ID = "Assignment ID"

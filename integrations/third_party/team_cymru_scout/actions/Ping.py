@@ -4,7 +4,7 @@ from soar_sdk.ScriptResult import EXECUTION_STATE_COMPLETED, EXECUTION_STATE_FAI
 from soar_sdk.SiemplifyAction import SiemplifyAction
 from soar_sdk.SiemplifyUtils import output_handler
 
-from ..core.ApiManager import ApiManager
+from ..core.api_manager import ApiManager
 from ..core.constants import INTEGRATION_NAME, PING_SCRIPT_NAME
 from ..core.utils import get_integration_params
 
