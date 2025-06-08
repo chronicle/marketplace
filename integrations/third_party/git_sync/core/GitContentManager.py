@@ -60,8 +60,8 @@ DENYLIST_FILE = f"{SETTINGS_PATH}/blacklists.json"
 SLA_DEFINITIONS_FILE = f"{SETTINGS_PATH}/slaDefinitions.json"
 
 
-class GitContentManager:
-    def __init__(self, git: Git, api: SiemplifyApiClient):
+class GitContentManager:  # noqa: PLR0904
+    def __init__(self, git: Git, api: SiemplifyApiClient) -> None:
         self.git = git
         self.api = api
         self._metadata = None
