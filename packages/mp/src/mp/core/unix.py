@@ -208,11 +208,13 @@ def init_python_project(project_path: pathlib.Path) -> None:
         raise CommandError(COMMAND_ERR_MSG.format(e)) from e
 
 
-def ruff_check(paths: Iterable[pathlib.Path], /, **flags: bool | str) -> int:
+def ruff_check(
+    paths: Iterable[pathlib.Path], /, **flags: bool | str
+) -> tuple[int, str]:
     """Run `ruff check` on the provided paths.
 
     Returns:
-        The status code
+        The status code and the output
 
     """
     command: list[str] = [sys.executable, "-m", "ruff", "check"]
@@ -262,7 +264,7 @@ def execute_command_and_get_output(
     command: list[str],
     paths: Iterable[pathlib.Path],
     **flags: bool | str,
-) -> int:
+) -> tuple[int, str]:
     """Execute a command and capture its output and status code.
 
     Args:
@@ -271,7 +273,7 @@ def execute_command_and_get_output(
         **flags: any command flags as keyword arguments
 
     Returns:
-        The status code of the process
+        A tuple of the status code and the output of the process
 
     Raises:
         CommandError: if a project is already initialized
@@ -286,28 +288,16 @@ def execute_command_and_get_output(
     command.extend(runtime_config)
 
     try:
-        process: sp.Popen[bytes] = sp.Popen(command)  # noqa: S603
-        for line in _stream_process_output(process):
-            sys.stdout.write(str(line))
-
-        return process.wait()
+        result: sp.CompletedProcess[str] = sp.run(  # noqa: S603
+            command,
+            capture_output=True,
+            text=True,
+            check=False,  # Do not raise CalledProcessError for non-zero exit codes
+        )
+        return result.returncode, result.stdout + result.stderr
 
     except sp.CalledProcessError as e:
         raise CommandError(COMMAND_ERR_MSG.format(e)) from e
-
-
-def _stream_process_output(process: sp.Popen[bytes]) -> Iterator[bytes]:
-    buffer: IO[bytes] | None = process.stdout
-    if process.stdout is None:
-        buffer = process.stderr
-
-    if buffer is None:
-        return
-
-    line: bytes = buffer.readline()
-    while line:
-        yield line
-        line = buffer.readline()
 
 
 def get_changed_files() -> list[str]:

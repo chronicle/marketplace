@@ -24,6 +24,7 @@ and consistency.
 
 from __future__ import annotations
 
+import re
 import pathlib
 import warnings
 from typing import TYPE_CHECKING, Annotated, NamedTuple
@@ -50,6 +51,7 @@ class CheckParams(NamedTuple):
     changed_files: bool
     static_type_check: bool
     raise_error_on_violations: bool
+    summarize: bool
 
     def validate(self) -> None:
         """Validate the parameters.
@@ -129,6 +131,12 @@ def check(  # noqa: PLR0913
             help="Whether to raise error on lint and type check violations",
         ),
     ] = False,
+    summarize: Annotated[
+        bool,
+        typer.Option(
+            help="Show summary of the ruff issues on each type",
+        ),
+    ] = False,
     quiet: Annotated[
         bool,
         typer.Option(
@@ -165,6 +173,7 @@ def check(  # noqa: PLR0913
         changed_files=changed_files,
         static_type_check=static_type_check,
         raise_error_on_violations=raise_error_on_violations,
+        summarize=summarize,
     )
     params.validate()
     _check_paths(params)
@@ -193,11 +202,14 @@ def _check_paths(check_params: CheckParams) -> None:
 
     names: str = "\n".join(p.name for p in paths)
     rich.print(f"Checking {names}")
-    mp.core.code_manipulation.lint_python_files(
+    ruff_output: str = mp.core.code_manipulation.lint_python_files(
         paths,
         fix=check_params.fix,
         unsafe_fixes=check_params.unsafe_fixes,
     )
+    if check_params.summarize:
+        _summarize_ruff_issues(ruff_output)
+
     if check_params.static_type_check:
         rich.print("Performing static type checking on files")
         mp.core.code_manipulation.static_type_check_python_files(paths)
@@ -216,3 +228,29 @@ def _get_relevant_source_paths(sources: list[str]) -> set[pathlib.Path]:
         )
         or path.is_dir()
     }
+
+
+def _summarize_ruff_issues(ruff_output: str) -> None:
+    issue_details: dict[str, dict[str, int | str]] = {}
+    # Ruff output format: "file:line:col: code message (rule_name)"
+    # Example: "src/main.py:10:5: E001 Missing docstring (pydocstyle)"
+    # We are interested in "code" (e.g., "E001") and "message" (e.g., "Missing docstring")
+    for line in ruff_output.splitlines():
+        match = re.search(r":\s*([A-Z]+\d+)\s+(.*)", line)
+        if match:
+            issue_code = match.group(1)
+            issue_message = match.group(2).strip()
+            # Extract only the message part, remove rule name in parentheses if present
+            issue_message = re.sub(r"\s*\(.*\)$", "", issue_message)
+
+            if issue_code not in issue_details:
+                issue_details[issue_code] = {"count": 0, "description": issue_message}
+            issue_details[issue_code]["count"] = int(issue_details[issue_code]["count"]) + 1
+
+    if issue_details:
+        rich.print("\n--- Ruff Issue Summary ---")
+        for code, details in sorted(issue_details.items()):
+            rich.print(f"- {code}: {details['count']} occurrences - {details['description']}")
+        rich.print("--------------------------")
+    else:
+        rich.print("\nNo ruff issues found to summarize.")

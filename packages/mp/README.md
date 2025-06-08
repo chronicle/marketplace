@@ -43,6 +43,7 @@ mp format path/to/files
 
 # Check code quality
 mp check path/to/files --static-type-check --fix --unsafe-fixes
+mp check path/to/files --summarize
 
 # Build an integration
 mp build --quiet --repository third_party

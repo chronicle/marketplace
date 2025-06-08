@@ -17,6 +17,7 @@
 
 from __future__ import annotations
 
+import re
 import warnings
 from collections import deque
 from typing import TYPE_CHECKING
@@ -60,10 +61,15 @@ def run_script_on_paths(
 
 def lint_python_files(
     paths: Iterable[pathlib.Path], *, fix: bool, unsafe_fixes: bool
-) -> None:
-    """Run a linter on python files and fix all unsafe issues."""
+) -> str:
+    """Run a linter on python files and fix all unsafe issues.
+
+    Returns:
+        The output from the ruff check.
+
+    """
     paths = [p for p in paths if p.is_dir() or file_utils.is_python_file(p)]
-    status_code: int = unix.ruff_check(paths, fix=fix, unsafe_fixes=unsafe_fixes)
+    status_code, output = unix.ruff_check(paths, fix=fix, unsafe_fixes=unsafe_fixes)
     if status_code != 0:
         msg: str = (
             "Found linting issues. Consider running `mp check --fix` "
@@ -71,6 +77,7 @@ def lint_python_files(
             " automatically."
         )
         warnings.warn(msg, LinterWarning, stacklevel=1)
+    return output
 
 
 def static_type_check_python_files(paths: Iterable[pathlib.Path]) -> None:
