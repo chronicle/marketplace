@@ -69,7 +69,6 @@ class TelegramManager:
         :param allowed_updates: List of the allowed updates to retrieve
         :return: Return all the messages content according to a given offset
         """
-
         url = f"{self.base}/getUpdates"
         params = {"allowed_updates": allowed_updates}
 
@@ -227,7 +226,6 @@ class TelegramManager:
         :param doc_url: String, the url of the doc to send
         :return: Json, the details of the photo that was sent
         """
-
         response = self.session.get(
             f"{self.base}/sendDocument",
             timeout=5.0,
@@ -329,7 +327,7 @@ class TelegramManager:
 
         try:
             json_res = response.json()
-        except Exception as err:
+        except Exception:
             raise Exception(response.content)
 
         response.raise_for_status()

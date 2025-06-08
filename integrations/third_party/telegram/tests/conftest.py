@@ -12,7 +12,7 @@ pytest_plugins = ("packages.integration_testing.src.integration_testing.conftest
 
 @pytest.fixture
 def telegram() -> Telegram:
-    yield Telegram()
+    return Telegram()
 
 
 @pytest.fixture(autouse=True)
@@ -27,4 +27,4 @@ def script_session(
         monkeypatch.setattr(CreateSession, "create_session", lambda: session)
         monkeypatch.setattr("requests.Session", lambda: session)
 
-    yield session
+    return session
