@@ -3,7 +3,8 @@
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
 ![Maintenance](https://img.shields.io/maintenance/yes/2025)
 
-Disclaimer: this repository is in Preview and the structure might change in the future.
+> [!WARNING]
+> Disclaimer: this repository is in Preview and the structure might change in the future.
 
 👋 Hello and welcome! This repository is the central hub for a wide array of content
 related to the Google SecOps marketplace. Whether you're looking to connect Google
