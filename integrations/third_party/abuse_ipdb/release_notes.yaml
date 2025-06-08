@@ -44,3 +44,13 @@
     regressive: false
     deprecated: false
     removed: false
+-   description: Fake Change
+    integration_version: 5.0
+    item_name: AbuseIPDB
+    item_type: Integration
+    publish_time: 1735201802
+    ticket_number: ''
+    new: false
+    regressive: false
+    deprecated: false
+    removed: false
