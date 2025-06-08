@@ -1,18 +1,20 @@
 from __future__ import annotations
 
 from typing import Any
-from urllib.parse import parse_qs
 
 from integrations.third_party.telegram.tests.core.telegram import Telegram
-
-from packages.integration_testing.src.integration_testing.request import MockRequest
 from packages.integration_testing.src.integration_testing import router
-from packages.integration_testing.src.integration_testing.requests.response import MockResponse
-from packages.integration_testing.src.integration_testing.requests.session import MockSession, RouteFunction
+from packages.integration_testing.src.integration_testing.request import MockRequest
+from packages.integration_testing.src.integration_testing.requests.response import (
+    MockResponse,
+)
+from packages.integration_testing.src.integration_testing.requests.session import (
+    MockSession,
+    RouteFunction,
+)
 
 
 class TelegramSession(MockSession[MockRequest, MockResponse, Telegram]):
-
     def get_routed_functions(self) -> list[RouteFunction]:
         return [
             self.send_message,
@@ -24,7 +26,7 @@ class TelegramSession(MockSession[MockRequest, MockResponse, Telegram]):
             self.send_photo,
             self.send_poll,
             self.set_chat_permissions,
-            self.set_user_permissions
+            self.set_user_permissions,
         ]
 
     @router.get(r"/bot\S+/sendMessage")
@@ -111,7 +113,9 @@ class TelegramSession(MockSession[MockRequest, MockResponse, Telegram]):
             question = payload["question"]
             options = payload["options"]
             is_anonymous = payload["is_anonymous"]
-            response_data = self._product.ask_question(chat_id, question, options, is_anonymous)
+            response_data = self._product.ask_question(
+                chat_id, question, options, is_anonymous
+            )
             return MockResponse(content=response_data)
         except Exception as e:
             return MockResponse(content=str(e), status_code=500)
@@ -126,7 +130,14 @@ class TelegramSession(MockSession[MockRequest, MockResponse, Telegram]):
             can_invite_users = payload["can_invite_users"]
             can_change_info = payload["can_change_info"]
             can_send_messages = payload["can_send_messages"]
-            response_data = self._product.set_default_chat_permissions(chat_id, can_send_polls, can_pin_messages, can_invite_users, can_change_info, can_send_messages)
+            response_data = self._product.set_default_chat_permissions(
+                chat_id,
+                can_send_polls,
+                can_pin_messages,
+                can_invite_users,
+                can_change_info,
+                can_send_messages,
+            )
             return MockResponse(content=response_data)
         except Exception as e:
             return MockResponse(content=str(e), status_code=500)
@@ -146,7 +157,19 @@ class TelegramSession(MockSession[MockRequest, MockResponse, Telegram]):
             can_restrict_users = payload["can_restrict_users"]
             can_pin_messages = payload["can_pin_messages"]
             can_promote_members = payload["can_promote_members"]
-            response_data = self._product.set_user_permissions(chat_id, user_id, is_anonymous, can_change_info, can_post_messages, can_edit_messages, can_delete_messages, can_invite_users, can_restrict_users, can_pin_messages, can_promote_members)
+            response_data = self._product.set_user_permissions(
+                chat_id,
+                user_id,
+                is_anonymous,
+                can_change_info,
+                can_post_messages,
+                can_edit_messages,
+                can_delete_messages,
+                can_invite_users,
+                can_restrict_users,
+                can_pin_messages,
+                can_promote_members,
+            )
             return MockResponse(content=response_data)
         except Exception as e:
             return MockResponse(content=str(e), status_code=500)

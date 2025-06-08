@@ -1,13 +1,15 @@
 from __future__ import annotations
 
+from TIPCommon.base.action import ExecutionState
+
 from integrations.third_party.telegram.actions.GetMessages import main as GetMessages
 from integrations.third_party.telegram.tests.common import CONFIG_PATH
 from integrations.third_party.telegram.tests.core.session import TelegramSession
 from integrations.third_party.telegram.tests.core.telegram import Telegram
-from packages.integration_testing.src.integration_testing.platform.external_context import MockExternalContext
-from packages.integration_testing.src.integration_testing.platform.script_output import MockActionOutput
+from packages.integration_testing.src.integration_testing.platform.script_output import (
+    MockActionOutput,
+)
 from packages.integration_testing.src.integration_testing.set_meta import set_metadata
-from TIPCommon.base.action import ExecutionState
 
 
 class TestGetMessages:
@@ -15,10 +17,7 @@ class TestGetMessages:
     ALLOWED_UPDATES = "message,edited_channel_post"
 
     @set_metadata(
-        parameters={
-            "Offset Param": OFFSET_PARAM,
-            "Allowed Updates": ALLOWED_UPDATES
-        },
+        parameters={"Offset Param": OFFSET_PARAM, "Allowed Updates": ALLOWED_UPDATES},
         integration_config_file_path=CONFIG_PATH,
     )
     def test_get_messages_success(
@@ -32,9 +31,15 @@ class TestGetMessages:
         assert len(script_session.request_history) == 1
         request = script_session.request_history[0].request
         assert request.url.path.endswith("/getUpdates")
-        assert request.kwargs["params"] == {"offset": self.OFFSET_PARAM, "allowed_updates": self.ALLOWED_UPDATES}
+        assert request.kwargs["params"] == {
+            "offset": self.OFFSET_PARAM,
+            "allowed_updates": self.ALLOWED_UPDATES,
+        }
 
-        assert action_output.results.output_message == "The messages were pulled successfully."
+        assert (
+            action_output.results.output_message
+            == "The messages were pulled successfully."
+        )
         assert action_output.results.execution_state == ExecutionState.COMPLETED
         assert action_output.results.json_output.json_result == {
             "ok": True,
@@ -43,7 +48,11 @@ class TestGetMessages:
                     "update_id": 123456789,
                     "message": {
                         "message_id": 1,
-                        "from": {"id": 987654321, "is_bot": False, "first_name": "User"},
+                        "from": {
+                            "id": 987654321,
+                            "is_bot": False,
+                            "first_name": "User",
+                        },
                         "chat": {"id": 12345, "type": "private"},
                         "date": 1678886400,
                         "text": "Hello from Telegram!",
@@ -53,17 +62,14 @@ class TestGetMessages:
         }
 
     @set_metadata(
-        parameters={
-            "Offset Param": OFFSET_PARAM,
-            "Allowed Updates": ALLOWED_UPDATES
-        },
+        parameters={"Offset Param": OFFSET_PARAM, "Allowed Updates": ALLOWED_UPDATES},
         integration_config_file_path=CONFIG_PATH,
     )
     def test_get_messages_failure(
         self,
         script_session: TelegramSession,
         action_output: MockActionOutput,
-        telegram: Telegram
+        telegram: Telegram,
     ) -> None:
         telegram.fail_next_call()
         GetMessages()
@@ -71,7 +77,13 @@ class TestGetMessages:
         assert len(script_session.request_history) == 1
         request = script_session.request_history[0].request
         assert request.url.path.endswith("/getUpdates")
-        assert request.kwargs["params"] == {"offset": self.OFFSET_PARAM, "allowed_updates": self.ALLOWED_UPDATES}
+        assert request.kwargs["params"] == {
+            "offset": self.OFFSET_PARAM,
+            "allowed_updates": self.ALLOWED_UPDATES,
+        }
 
-        assert action_output.results.output_message == "Could not get messages. Error: b'Simulated API failure for GetMessages'"
+        assert (
+            action_output.results.output_message
+            == "Could not get messages. Error: b'Simulated API failure for GetMessages'"
+        )
         assert action_output.results.execution_state == ExecutionState.FAILED

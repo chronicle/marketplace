@@ -1,25 +1,28 @@
 from __future__ import annotations
 
-from integrations.third_party.telegram.actions.GetBotDetails import main as GetBotDetails
+from TIPCommon.base.action import ExecutionState
+
+from integrations.third_party.telegram.actions.GetBotDetails import (
+    main as GetBotDetails,
+)
 from integrations.third_party.telegram.tests.common import CONFIG_PATH
 from integrations.third_party.telegram.tests.core.session import TelegramSession
 from integrations.third_party.telegram.tests.core.telegram import Telegram
-from packages.integration_testing.src.integration_testing.platform.external_context import MockExternalContext
-from packages.integration_testing.src.integration_testing.platform.script_output import MockActionOutput
+from packages.integration_testing.src.integration_testing.platform.script_output import (
+    MockActionOutput,
+)
 from packages.integration_testing.src.integration_testing.set_meta import set_metadata
-from TIPCommon.base.action import ExecutionState
 
 
 class TestGetBotDetails:
     @set_metadata(
         parameters={},
-
         integration_config_file_path=CONFIG_PATH,
     )
     def test_get_bot_details_success(
-            self,
-            script_session: TelegramSession,
-            action_output: MockActionOutput,
+        self,
+        script_session: TelegramSession,
+        action_output: MockActionOutput,
     ) -> None:
         GetBotDetails()
 
@@ -30,11 +33,13 @@ class TestGetBotDetails:
         assert action_output.results.output_message == "The Bot was found successfully"
         assert action_output.results.execution_state == ExecutionState.COMPLETED
         assert action_output.results.json_output.json_result == {
-            "ok": True, "result": {
-                "id": 123456789, "is_bot": True,
+            "ok": True,
+            "result": {
+                "id": 123456789,
+                "is_bot": True,
                 "first_name": "test_bot",
-                "username": "test_bot_username"
-            }
+                "username": "test_bot_username",
+            },
         }
 
     @set_metadata(
@@ -45,7 +50,7 @@ class TestGetBotDetails:
         self,
         script_session: TelegramSession,
         action_output: MockActionOutput,
-        telegram: Telegram
+        telegram: Telegram,
     ) -> None:
         telegram.fail_next_call()
         GetBotDetails()
@@ -54,5 +59,8 @@ class TestGetBotDetails:
         request = script_session.request_history[0].request
         assert request.url.path.endswith("/getMe")
 
-        assert action_output.results.output_message == "The Bot details could not be fetched. Error: b'Simulated API failure for GetBotDetails'"
+        assert (
+            action_output.results.output_message
+            == "The Bot details could not be fetched. Error: b'Simulated API failure for GetBotDetails'"
+        )
         assert action_output.results.execution_state == ExecutionState.FAILED

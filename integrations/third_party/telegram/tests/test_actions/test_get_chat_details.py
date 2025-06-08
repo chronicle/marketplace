@@ -1,28 +1,30 @@
 from __future__ import annotations
 
-from integrations.third_party.telegram.actions.GetChatDetails import main as GetChatDetails
+from TIPCommon.base.action import ExecutionState
+
+from integrations.third_party.telegram.actions.GetChatDetails import (
+    main as GetChatDetails,
+)
 from integrations.third_party.telegram.tests.common import CONFIG_PATH
 from integrations.third_party.telegram.tests.core.session import TelegramSession
 from integrations.third_party.telegram.tests.core.telegram import Telegram
-from packages.integration_testing.src.integration_testing.platform.external_context import MockExternalContext
-from packages.integration_testing.src.integration_testing.platform.script_output import MockActionOutput
+from packages.integration_testing.src.integration_testing.platform.script_output import (
+    MockActionOutput,
+)
 from packages.integration_testing.src.integration_testing.set_meta import set_metadata
-from TIPCommon.base.action import ExecutionState
 
 
 class TestGetChatDetails:
     CHAT_ID = "123456789"
 
     @set_metadata(
-        parameters={
-            "Chat ID": CHAT_ID
-        },
+        parameters={"Chat ID": CHAT_ID},
         integration_config_file_path=CONFIG_PATH,
     )
     def test_get_chat_details_success(
-            self,
-            script_session: TelegramSession,
-            action_output: MockActionOutput,
+        self,
+        script_session: TelegramSession,
+        action_output: MockActionOutput,
     ) -> None:
         GetChatDetails()
 
@@ -31,7 +33,10 @@ class TestGetChatDetails:
 
         assert request.url.path.endswith("/getChat")
 
-        assert action_output.results.output_message == f"The chat {self.CHAT_ID} was found successfully"
+        assert (
+            action_output.results.output_message
+            == f"The chat {self.CHAT_ID} was found successfully"
+        )
         assert action_output.results.execution_state == ExecutionState.COMPLETED
         assert action_output.results.json_output.json_result == {
             "ok": True,
@@ -39,21 +44,19 @@ class TestGetChatDetails:
                 "id": self.CHAT_ID,
                 "type": "channel",
                 "title": "Test Chat",
-                "invite_link": f"https://t.me/joinchat/test_invite_link_{self.CHAT_ID}"
-            }
+                "invite_link": f"https://t.me/joinchat/test_invite_link_{self.CHAT_ID}",
+            },
         }
 
     @set_metadata(
-        parameters={
-            "Chat ID": CHAT_ID
-        },
+        parameters={"Chat ID": CHAT_ID},
         integration_config_file_path=CONFIG_PATH,
     )
     def test_get_chat_details_failure(
         self,
         script_session: TelegramSession,
         action_output: MockActionOutput,
-        telegram: Telegram
+        telegram: Telegram,
     ) -> None:
         telegram.fail_next_call()
         GetChatDetails()
@@ -63,5 +66,8 @@ class TestGetChatDetails:
         assert request.url.path.endswith("/getChat")
         assert request.kwargs["params"] == {"chat_id": self.CHAT_ID}
 
-        assert action_output.results.output_message == f"Could not find The chat {self.CHAT_ID}. Error: b'Simulated API failure'"
+        assert (
+            action_output.results.output_message
+            == f"Could not find The chat {self.CHAT_ID}. Error: b'Simulated API failure'"
+        )
         assert action_output.results.execution_state == ExecutionState.FAILED

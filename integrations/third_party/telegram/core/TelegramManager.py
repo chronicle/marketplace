@@ -71,9 +71,7 @@ class TelegramManager:
         """
 
         url = f"{self.base}/getUpdates"
-        params = {
-            "allowed_updates": allowed_updates
-        }
+        params = {"allowed_updates": allowed_updates}
 
         if offsetparam is not None:
             params["offset"] = offsetparam
@@ -230,10 +228,11 @@ class TelegramManager:
         :return: Json, the details of the photo that was sent
         """
 
-        response = self.session.get(f"{self.base}/sendDocument", timeout=5.0, params={
-            "chat_id": chat_id,
-            "document": doc_url
-        })
+        response = self.session.get(
+            f"{self.base}/sendDocument",
+            timeout=5.0,
+            params={"chat_id": chat_id, "document": doc_url},
+        )
 
         try:
             json_res = response.json()

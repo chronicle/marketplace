@@ -1,13 +1,15 @@
 from __future__ import annotations
 
+from TIPCommon.base.action import ExecutionState
+
 from integrations.third_party.telegram.actions.Ping import main as Ping
 from integrations.third_party.telegram.tests.common import CONFIG_PATH
 from integrations.third_party.telegram.tests.core.session import TelegramSession
 from integrations.third_party.telegram.tests.core.telegram import Telegram
-from packages.integration_testing.src.integration_testing.platform.external_context import MockExternalContext
-from packages.integration_testing.src.integration_testing.platform.script_output import MockActionOutput
+from packages.integration_testing.src.integration_testing.platform.script_output import (
+    MockActionOutput,
+)
 from packages.integration_testing.src.integration_testing.set_meta import set_metadata
-from TIPCommon.base.action import ExecutionState
 
 
 class TestPing:
@@ -38,7 +40,7 @@ class TestPing:
         self,
         script_session: TelegramSession,
         action_output: MockActionOutput,
-        telegram: Telegram
+        telegram: Telegram,
     ) -> None:
         telegram.fail_next_call()
         Ping()
