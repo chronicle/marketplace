@@ -1,14 +1,12 @@
 from __future__ import annotations
 
 from TIPCommon.base.action import ExecutionState
+from integration_testing.platform.script_output import MockActionOutput
+from integration_testing.set_meta import set_metadata
 
-from integrations.third_party.telegram.actions.SendDocument import main as SendDocument
-from integrations.third_party.telegram.tests.common import CONFIG_PATH
-from integrations.third_party.telegram.tests.core.session import TelegramSession
-from packages.integration_testing.src.integration_testing.platform.script_output import (
-    MockActionOutput,
-)
-from packages.integration_testing.src.integration_testing.set_meta import set_metadata
+from ..common import CONFIG_PATH
+from ..core.session import TelegramSession
+from ...actions.SendDocument import main as SendDocument
 
 
 class TestSendDocument:
@@ -35,7 +33,8 @@ class TestSendDocument:
         }
 
         assert (
-            action_output.results.output_message == "The document was sent successfully"
+            action_output.results.output_message
+            == "The document was sent successfully"
         )
         assert action_output.results.execution_state == ExecutionState.COMPLETED
         assert action_output.results.json_output.json_result == {

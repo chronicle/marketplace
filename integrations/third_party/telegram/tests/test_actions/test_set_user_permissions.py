@@ -1,17 +1,13 @@
 from __future__ import annotations
 
 from TIPCommon.base.action import ExecutionState
+from integration_testing.platform.script_output import MockActionOutput
+from integration_testing.set_meta import set_metadata
 
-from integrations.third_party.telegram.actions.SetUserPermissions import (
-    main as SetUserPermissions,
-)
 from integrations.third_party.telegram.tests.common import CONFIG_PATH
-from integrations.third_party.telegram.tests.core.session import TelegramSession
-from integrations.third_party.telegram.tests.core.telegram import Telegram
-from packages.integration_testing.src.integration_testing.platform.script_output import (
-    MockActionOutput,
-)
-from packages.integration_testing.src.integration_testing.set_meta import set_metadata
+from ..core.session import TelegramSession
+from ..core.telegram import Telegram
+from ...actions.SetUserPermissions import main as SetUserPermissions
 
 
 class TestSetUserPermissions:
@@ -133,6 +129,7 @@ class TestSetUserPermissions:
 
         assert (
             action_output.results.output_message
-            == "Could not set user permissions. Error: b'Simulated API failure for SetUserPermissions'"
+            == "Could not set user permissions. Error: b'Simulated API failure for"
+            " SetUserPermissions'"
         )
         assert action_output.results.execution_state == ExecutionState.FAILED

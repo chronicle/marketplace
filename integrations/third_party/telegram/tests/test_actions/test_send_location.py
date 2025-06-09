@@ -1,15 +1,13 @@
 from __future__ import annotations
 
 from TIPCommon.base.action import ExecutionState
+from integration_testing.platform.script_output import MockActionOutput
+from integration_testing.set_meta import set_metadata
 
-from integrations.third_party.telegram.actions.SendLocation import main as SendLocation
-from integrations.third_party.telegram.tests.common import CONFIG_PATH
-from integrations.third_party.telegram.tests.core.session import TelegramSession
-from integrations.third_party.telegram.tests.core.telegram import Telegram
-from packages.integration_testing.src.integration_testing.platform.script_output import (
-    MockActionOutput,
-)
-from packages.integration_testing.src.integration_testing.set_meta import set_metadata
+from ..common import CONFIG_PATH
+from ..core.session import TelegramSession
+from ..core.telegram import Telegram
+from ...actions.SendLocation import main as SendLocation
 
 
 class TestSendLocation:
@@ -38,7 +36,8 @@ class TestSendLocation:
         }
 
         assert (
-            action_output.results.output_message == "The location was sent successfully"
+            action_output.results.output_message
+            == "The location was sent successfully"
         )
         assert action_output.results.execution_state == ExecutionState.COMPLETED
         assert action_output.results.json_output.json_result == {
