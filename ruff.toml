@@ -39,10 +39,7 @@ target-version = "py311"
 
 [lint]
 # Enable Pyflakes (`F`) and a subset of the pycodestyle (`E`) codes by default.
-# Unlike Flake8, Ruff doesn't enable pycodestyle warnings (`W`) or
-# McCabe complexity (`C901`) by default.
-# Check https://docs.astral.sh/ruff/rules/
-select = ["ALL"]
+select = ["E", "F", "CPY"]
 
 ignore = [
     "COM812",  # The formatter enforces consistent use of trailing commas, making the rule redundant
@@ -56,7 +53,7 @@ ignore = [
 ]
 
 # Allow fix for all enabled rules (when `--fix`) is provided.
-fixable = ["ALL"]
+fixable = ["A", "B", "C", "D", "E", "F"]
 unfixable = []
 
 # Allow unused variables when underscore-prefixed.
@@ -108,5 +105,9 @@ preview = true
     "TID252",
 ]
 "**/integrations/third_party/**" = [
-    "CPY001",
+    "CPY",
 ]
+
+[lint.mccabe]
+# Unlike Flake8, default to a complexity level of 10.
+max-complexity = 10

@@ -5,14 +5,14 @@ on:
     branches:
       - '**'
     paths:
-      - 'integrations/commercial/**'
-      - 'integrations/third_party/**'
+      - '**/integrations/commercial/**'
+      - '**/integrations/third_party/**'
   pull_request:
     branches:
       - '**'
     paths:
-      - 'integrations/commercial/**'
-      - 'integrations/third_party/**'
+      - '**/integrations/commercial/**'
+      - '**/integrations/third_party/**'
 
 jobs:
   mp_build:
