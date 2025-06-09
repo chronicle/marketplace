@@ -19,7 +19,7 @@ from __future__ import annotations
 import dataclasses
 import enum
 from collections.abc import Iterable
-from typing import Any, Generic, TypeAlias, TypeVar
+from typing import Any, Generic, NamedTuple, TypeAlias, TypeVar
 
 from . import constants
 
@@ -42,3 +42,24 @@ ManagerName: TypeAlias = str
 class RepositoryType(enum.Enum):
     COMMUNITY = constants.COMMUNITY_DIR_NAME
     COMMERCIAL = constants.COMMERCIAL_DIR_NAME
+
+
+class CheckOutputFormat(enum.Enum):
+    CONCISE = "concise"
+    FULL = "full"
+    JSON = "json"
+    JSON_LINES = "json-lines"
+    JUNIT = "junit"
+    GROUPED = "grouped"
+    GITHUB = "github"
+    GITLAB = "gitlab"
+    PYLINT = "pylint"
+    RD_JSON = "rdjson"
+    AZURE = "azure"
+    SARIF = "sarif"
+
+
+class RuffParams(NamedTuple):
+    output_format: CheckOutputFormat
+    fix: bool
+    unsafe_fixes: bool

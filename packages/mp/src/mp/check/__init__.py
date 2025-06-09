@@ -33,11 +33,13 @@ import typer
 
 import mp.core.code_manipulation
 import mp.core.config
+import mp.core.custom_types
 import mp.core.file_utils
 import mp.core.unix
 
 if TYPE_CHECKING:
     from mp.core.config import RuntimeParams
+    from mp.core.custom_types import RuffParams
 
 __all__: list[str] = ["app"]
 app: typer.Typer = typer.Typer()
@@ -45,8 +47,7 @@ app: typer.Typer = typer.Typer()
 
 class CheckParams(NamedTuple):
     file_paths: list[str] | None
-    fix: bool
-    unsafe_fixes: bool
+    ruff_params: RuffParams
     changed_files: bool
     static_type_check: bool
     raise_error_on_violations: bool
@@ -73,7 +74,7 @@ class CheckParams(NamedTuple):
 
         """
         msg: str
-        if self.unsafe_fixes and not self.fix:
+        if self.ruff_params.unsafe_fixes and not self.ruff_params.fix:
             msg = "To use --unsafe-fixes the --fix option must be passed as well"
             raise typer.BadParameter(msg)
 
@@ -95,6 +96,12 @@ def check(  # noqa: PLR0913
             show_default=False,
         ),
     ] = None,
+    output_format: Annotated[
+        mp.core.custom_types.CheckOutputFormat,
+        typer.Option(
+            help="Output serialization format for violations.",
+        ),
+    ] = mp.core.custom_types.CheckOutputFormat.FULL,
     *,
     fix: Annotated[
         bool,
@@ -146,6 +153,7 @@ def check(  # noqa: PLR0913
 
     Args:
         file_paths: file paths to check/lint
+        output_format: Output serialization format for violations
         fix: whether to fix found issues
         unsafe_fixes: whether to fix all fixable issues, even if unsafe
         changed_files: whether to ignore `file_paths` provided and check only the
@@ -160,8 +168,11 @@ def check(  # noqa: PLR0913
     run_params.set_in_config()
     params: CheckParams = CheckParams(
         file_paths=file_paths,
-        fix=fix,
-        unsafe_fixes=unsafe_fixes,
+        ruff_params=mp.core.custom_types.RuffParams(
+            output_format=mp.core.custom_types.CheckOutputFormat(output_format),
+            fix=fix,
+            unsafe_fixes=unsafe_fixes,
+        ),
         changed_files=changed_files,
         static_type_check=static_type_check,
         raise_error_on_violations=raise_error_on_violations,
@@ -195,8 +206,7 @@ def _check_paths(check_params: CheckParams) -> None:
     rich.print(f"Checking {names}")
     mp.core.code_manipulation.lint_python_files(
         paths,
-        fix=check_params.fix,
-        unsafe_fixes=check_params.unsafe_fixes,
+        params=check_params.ruff_params,
     )
     if check_params.static_type_check:
         rich.print("Performing static type checking on files")

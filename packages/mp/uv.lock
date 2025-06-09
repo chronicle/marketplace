@@ -188,7 +188,7 @@ wheels = [
 
 [[package]]
 name = "mp"
-version = "0.3.2"
+version = "0.3.3"
 source = { editable = "." }
 dependencies = [
     { name = "libcst" },
@@ -220,10 +220,10 @@ requires-dist = [
     { name = "pydantic", specifier = ">=2.11.5" },
     { name = "pyyaml", specifier = ">=6.0.2" },
     { name = "rich", specifier = ">=14.0.0" },
-    { name = "ruff", specifier = ">=0.11.12" },
+    { name = "ruff", specifier = ">=0.11.13" },
     { name = "toml", specifier = ">=0.10.2" },
     { name = "typer", specifier = ">=0.16.0" },
-    { name = "uv", specifier = ">=0.7.11" },
+    { name = "uv", specifier = ">=0.7.12" },
 ]
 
 [package.metadata.requires-dev]
