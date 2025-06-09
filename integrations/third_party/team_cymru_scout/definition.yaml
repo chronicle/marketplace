@@ -1,6 +1,6 @@
 identifier: TeamCymruScout
 name: TeamCymruScout
-version: 3.0
+version: 3.3
 parameters:
 -   name: Authentication Type
     default_value: 'true'
