@@ -16,9 +16,6 @@ class Telegram:
     def add_message(self, message: dict[str, Any]):
         self.messages.append(message)
 
-    def get_messages(self) -> list[dict[str, Any]]:
-        return self.messages
-
     def set_updates_response(self, response: dict):
         self._updates_response = response
 

@@ -32,7 +32,7 @@ class TelegramManager:
         raise Exception(f"Error conecting to telegram API: {response.text}")
 
     def get_updates(self, limit=None, offset=None, allowed_updates=None):
-        """Receives messages from a group, channel, or or private chat that the bot is a member of.
+        """Receives messages from a group, channel, or or private chat.
         :param offsetparam: String, the last update id to get messages from,
                             enables us to control which message to present.
         :param allowed_updates: List of the allowed updates to retrieve
@@ -63,7 +63,7 @@ class TelegramManager:
         return json_res
 
     def get_messages(self, offsetparam, allowed_updates):
-        """Receives messages from a group, channel, or private chat that the bot is a member of.
+        """Receives messages from a group, channel, or private chat.
         :param offsetparam: String, the last update id to get messages from,
                             enables us to control which message to present.
         :param allowed_updates: List of the allowed updates to retrieve
@@ -257,7 +257,7 @@ class TelegramManager:
     ):
         """Promote or demote a user in a supergroup or a channel
         :param chat_id: String, the unique identifier or username
-        :param user_id:  String,the unique identifier of the user you want to promote or demote
+        :param user_id:  String,the unique identifier of the user
         :param is_anonymous: Boolean, the user will be displayed as anonymous
         :param can_change_info: Boolean, the user can change info
         :param can_post_messages: Boolean, the user can post messages
@@ -304,7 +304,7 @@ class TelegramManager:
     ):
         """Promote or demote a user in a supergroup or a channel
         :param chat_id: String, the unique identifier or username
-        :param can_send_polls:  String,the unique identifier of the user you want to promote or demote
+        :param can_send_polls:  String,the unique identifier of the user
         :param can_pin_messages: Boolean, the user will be displayed as anonymous
         :param can_invite_users: Boolean, the user can invite other users
         :param can_edit_the_info: Boolean, the user can change info
@@ -338,7 +338,7 @@ class TelegramManager:
         return json_res
 
     def export_chat_invite_link(self, chat_id):
-        """Export the chat invite link in order to enable the access of the bot to the invite link.
+        """Export invite link in order to enable the access of the bot.
         After exporting, the link can be found in the function get_chat()
         :param chat_id: String,the unique identifier or username
         :return: Json, the invite link details for a given chat

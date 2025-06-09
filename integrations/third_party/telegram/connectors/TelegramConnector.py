@@ -32,7 +32,7 @@ def create_alert(siemplify, alert_id, created_event):
     alert_info.priority = DEFAULT_PRIORITY
     alert_info.device_vendor = VENDOR
     alert_info.device_product = PRODUCT
-    # ----------------------------- Alert Fields initialization END -----------------------------#
+    # ------------------------ Alert Fields initialization END ------------------------#
     try:
         if created_event is not None:
             alert_info.events.append(created_event)
@@ -61,7 +61,8 @@ def create_event_channel_message(siemplify, alert_id, last_message):
     )
 
     siemplify.LOGGER.info(
-        f"--- Finished processing Event: alert_id: {alert_id} |event_name: Telegram message - channel message",
+        f"--- Finished processing Event: alert_id: {alert_id} "
+        "| event_name: Telegram message - channel message"
     )
     return event
 
@@ -81,7 +82,7 @@ def create_event_private_or_group_message(siemplify, alert_id, message):
     )
 
     siemplify.LOGGER.info(
-        f"--- Finished processing Event: alert_id: {alert_id} | event_name: Telegram message - private or group message",
+        f"--- Finished processing Event: alert_id: {alert_id} | event_name: Telegram message - private or group message",  # noqa: E501
     )
     return event
 
@@ -112,7 +113,7 @@ def main(is_test_run):
             start_update_id_to_retrieve = 0
 
         # Get all the new messages from the last_saved_update_id+1
-        # allowed_updates list will contain all the chat you would like to retrieve data from.
+        # allowed_updates list will contain all the chats you would like to retrieve data from. # noqa: E501
         all_messages_dict = telegram_manager.get_updates(
             offset=start_update_id_to_retrieve,
             allowed_updates=[],
@@ -160,7 +161,7 @@ def main(is_test_run):
         if "webhook" in str(e):
             siemplify.LOGGER.error(
                 (
-                    "Suspected active webhook for Telegram. You might need to deactivate it. ",
+                    "Suspected active webhook for Telegram. You might need to deactivate it.",  # noqa: E501
                     "You can do so with the next call: https://api.telegram.org/bot<bot_token>/setWebhook?url=",
                 ),
             )
