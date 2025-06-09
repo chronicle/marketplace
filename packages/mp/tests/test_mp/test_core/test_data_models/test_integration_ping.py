@@ -134,7 +134,7 @@ class TestNoPingAction:
     def test_excluded_integrations_feature(self) -> None:
         """Test the excluded integrations feature works correctly."""
         # Create integration without 'ping'
-        metadata: ActionMetadata = mock.MagicMock()
+        metadata: IntegrationMetadata = mock.MagicMock()
         metadata.identifier = "special_integration"
         metadata.is_custom = False
 

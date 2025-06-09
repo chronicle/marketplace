@@ -29,6 +29,8 @@ if TYPE_CHECKING:
     import pathlib
     from collections.abc import Iterable
 
+    from .custom_types import RuffParams
+
 
 class LinterWarning(RuntimeWarning):
     """Found linting issues."""
@@ -58,12 +60,15 @@ def run_script_on_paths(
         warnings.warn(msg, TestWarning, stacklevel=1)
 
 
-def lint_python_files(
-    paths: Iterable[pathlib.Path], *, fix: bool, unsafe_fixes: bool
-) -> None:
+def lint_python_files(paths: Iterable[pathlib.Path], params: RuffParams) -> None:
     """Run a linter on python files and fix all unsafe issues."""
     paths = [p for p in paths if p.is_dir() or file_utils.is_python_file(p)]
-    status_code: int = unix.ruff_check(paths, fix=fix, unsafe_fixes=unsafe_fixes)
+    status_code: int = unix.ruff_check(
+        paths,
+        output_format=params.output_format.value,
+        fix=params.fix,
+        unsafe_fixes=params.unsafe_fixes,
+    )
     if status_code != 0:
         msg: str = (
             "Found linting issues. Consider running `mp check --fix` "
