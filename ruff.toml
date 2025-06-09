@@ -39,7 +39,7 @@ target-version = "py311"
 
 [lint]
 # Enable Pyflakes (`F`) and a subset of the pycodestyle (`E`) codes by default.
-select = ["E", "F"]
+select = ["E", "F", "CPY"]
 
 ignore = [
     "COM812",  # The formatter enforces consistent use of trailing commas, making the rule redundant
@@ -105,7 +105,7 @@ preview = true
     "TID252",
 ]
 "**/integrations/third_party/**" = [
-    "CPY001",
+    "CPY",
 ]
 # Allow unused imports in __init__.py files.
 "__init__.py" = ["F401"]
