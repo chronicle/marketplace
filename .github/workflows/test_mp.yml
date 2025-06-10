@@ -22,11 +22,11 @@ jobs:
       with:
         fetch-depth: 0
 
-    - name: Set up Python
-      uses: actions/setup-python@v5
+    - name: Install uv
+      uses: astral-sh/setup-uv@v5
       with:
+        version: 'latest'
         python-version: '3.11'
-        tool: 'uv'
 
     - name: Create venv
       working-directory: packages/mp
