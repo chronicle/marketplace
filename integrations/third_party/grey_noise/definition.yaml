@@ -1,23 +1,14 @@
 identifier: GreyNoise
 name: GreyNoise
-version: 6.0
 parameters:
--   name: GN API Key
-    type: password
-    description: GreyNoise API Key
-    is_mandatory: true
-    integration_identifier: GreyNoise
-description: GreyNoise tells security analysts what not to worry about. We do this
-    by curating data on IPs that saturate security tools with noise. This unique perspective
-    helps analysts confidently ignore irrelevant or harmless activity, creating more
-    time to uncover and investigate true threats. Includes Actions to allow IP enrichments
-    and GNQL queries via the GreyNoise API.  This integration supports access to both
-    the Paid and Community APIs.  Users with Community API Access will only have access
-    to the Community IP Lookup Action.  For more details, visit https://greynoise.io
-python_version: '3.11'
+    -   name: GN API Key
+        type: password
+        description: GreyNoise API Key
+        is_mandatory: true
+        integration_identifier: GreyNoise
 categories:
-- Security
-- Threat Intelligence
+    - Security
+    - Threat Intelligence
 svg_image: <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
     x="0px" y="0px" viewBox="0 0 25 25" style="enable-background:new 0 0 25 25;" xml:space="preserve"><g><g><path
     d="M9.4,9c0.9-1,1.9-1.6,3.1-1.9c0.3-0.1,0.6-0.1,1-0.2c0.4-0.1,0.3-0.4,0.3-0.5l0,0c0-0.1-0.1-0.2-0.1-0.2C13.6,6,13.5,6,13.4,6.1c0,0-0.1,0-0.1,0c-0.1,0-0.2,0-0.3,0c-1.5,0.3-2.8,1-3.9,2c-1.3,1.3-2,2.9-2,4.9l0,0l0,0.1c0,0.1,0,0.3,0,0.4c0.1,0.8,0.2,1.5,0.5,2.1c0,0.1,0.2,0.2,0.3,0.2h0c0.2,0,0.3-0.1,0.4-0.2s0.1-0.3,0-0.4c-0.5-1.2-0.6-2.5-0.3-3.8C8.3,10.6,8.8,9.7,9.4,9z

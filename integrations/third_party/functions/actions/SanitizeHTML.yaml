@@ -4,38 +4,38 @@ description: Given a fragment of HTML, SantizeHTML will parse it according to th
     also takes care of things like unclosed and (some) misnested tags.
 integration_identifier: Functions
 parameters:
--   name: Tags
-    default_value: a,abbr,acronym,b,blockquote,code,em,i,li,ol,strong,ul,table,tr,td,th,h1,h2,h3,body,tbody,thead,div,footer,head,header,html,img,option,p,section,span,strong,svg
-    type: string
-    description: 'Tags is the allowed set of HTML tags. Comma separated list. HTML
+    -   name: Tags
+        default_value: a,abbr,acronym,b,blockquote,code,em,i,li,ol,strong,ul,table,tr,td,th,h1,h2,h3,body,tbody,thead,div,footer,head,header,html,img,option,p,section,span,strong,svg
+        type: string
+        description: 'Tags is the allowed set of HTML tags. Comma separated list. HTML
         tags not in this list will be escaped or stripped. '
-    is_mandatory: false
--   name: Attributes
-    type: string
-    description: 'Attributes lets you specify which attributes are allowed. Value
+        is_mandatory: false
+    -   name: Attributes
+        type: string
+        description: 'Attributes lets you specify which attributes are allowed. Value
         should be a comma separated list.
 
         Default  {''a'': [''href'', ''title''], ''abbr'': [''title''],'
-    is_mandatory: false
--   name: Styles
-    type: string
-    description: If you allow the style attribute, specify the allowed styles set,
-        for example color and background-color. Value should be comma separated list.
-    is_mandatory: false
--   name: Allow All Attributes
-    default_value: 'false'
-    type: boolean
-    description: Set to True to allow all attributes.
-    is_mandatory: false
--   name: Input HTML
-    default_value: ''
-    type: string
-    description: The HTML fragment that will be sanitized.
-    is_mandatory: true
+        is_mandatory: false
+    -   name: Styles
+        type: string
+        description: If you allow the style attribute, specify the allowed styles set,
+            for example color and background-color. Value should be comma separated list.
+        is_mandatory: false
+    -   name: Allow All Attributes
+        default_value: 'false'
+        type: boolean
+        description: Set to True to allow all attributes.
+        is_mandatory: false
+    -   name: Input HTML
+        default_value: ''
+        type: string
+        description: The HTML fragment that will be sanitized.
+        is_mandatory: true
 dynamic_results_metadata:
--   result_name: JsonResult
-    show_result: false
-    result_example: '{}'
+    -   result_name: JsonResult
+        show_result: false
+        result_example: '{}'
 default_result_value: ''
 creator: Admin
 script_result_name: ScriptResult

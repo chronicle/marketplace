@@ -1,22 +1,14 @@
 identifier: Telegram
 name: Telegram
-version: 8.0
 parameters:
--   name: API Token
-    type: password
-    description: API Token
-    is_mandatory: true
-    integration_identifier: Telegram
-description: 'Telegram is a cloud-based mobile and desktop messaging app with a focus
-    on security and speed.
-
-    See documentation on how to create a bot in order to use this integration.
-
-    https://core.telegram.org/bots'
-python_version: '3.11'
+    -   name: API Token
+        type: password
+        description: API Token
+        is_mandatory: true
+        integration_identifier: Telegram
 categories:
-- Communications
-- Free to use
+    - Communications
+    - Free to use
 svg_image: "<?xml version=\"1.0\" encoding=\"utf-8\"?><!-- Generator: Adobe Illustrator\
     \ 24.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  --><svg version=\"\
     1.1\" id=\"Layer_1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\"\

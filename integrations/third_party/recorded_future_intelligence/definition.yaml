@@ -1,48 +1,44 @@
 identifier: RecordedFutureIntelligence
 name: RecordedFutureIntelligence
-version: 6.0
 parameters:
--   name: ApiUrl
-    default_value: https://api.recordedfuture.com
-    type: string
-    description: ''
-    is_mandatory: true
-    integration_identifier: RecordedFutureIntelligence
--   name: ApiKey
-    type: password
-    description: ''
-    is_mandatory: true
-    integration_identifier: RecordedFutureIntelligence
--   name: SandboxApiUrl
-    default_value: https://sandbox.recordedfuture.com
-    type: string
-    description: ''
-    is_mandatory: false
-    integration_identifier: RecordedFutureIntelligence
--   name: SandboxApiKey
-    type: password
-    description: ''
-    is_mandatory: false
-    integration_identifier: RecordedFutureIntelligence
--   name: Verify SSL
-    default_value: 'True'
-    type: boolean
-    description: ''
-    is_mandatory: false
-    integration_identifier: RecordedFutureIntelligence
--   name: CollectiveInsights
-    default_value: 'True'
-    type: boolean
-    description: ''
-    is_mandatory: true
-    integration_identifier: RecordedFutureIntelligence
-description: Recorded Future's unique technology collects and analyzes vast amounts
-    of data to deliver relevant cyber threat insights in real-time
-python_version: '3.11'
+    -   name: ApiUrl
+        default_value: https://api.recordedfuture.com
+        type: string
+        description: ''
+        is_mandatory: true
+        integration_identifier: RecordedFutureIntelligence
+    -   name: ApiKey
+        type: password
+        description: ''
+        is_mandatory: true
+        integration_identifier: RecordedFutureIntelligence
+    -   name: SandboxApiUrl
+        default_value: https://sandbox.recordedfuture.com
+        type: string
+        description: ''
+        is_mandatory: false
+        integration_identifier: RecordedFutureIntelligence
+    -   name: SandboxApiKey
+        type: password
+        description: ''
+        is_mandatory: false
+        integration_identifier: RecordedFutureIntelligence
+    -   name: Verify SSL
+        default_value: 'True'
+        type: boolean
+        description: ''
+        is_mandatory: false
+        integration_identifier: RecordedFutureIntelligence
+    -   name: CollectiveInsights
+        default_value: 'True'
+        type: boolean
+        description: ''
+        is_mandatory: true
+        integration_identifier: RecordedFutureIntelligence
 documentation_link: https://go.recordedfuture.com/hubfs/install-guides/google-secops-soar.pdf
 categories:
-- Threat Intelligence
-- Security
+    - Threat Intelligence
+    - Security
 svg_image: <?xml version="1.0" encoding="utf-8"?><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
     xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 50 50"
     style="enable-background:new 0 0 50 50;" xml:space="preserve"><g> <g> <path d="M25.15,17.71h0.27c1.46,0,2.64-1.18,2.64-2.64V4.51c0-1.46-1.18-2.64-2.64-2.64h-0.27c-1.46,0-2.64,1.18-2.64,2.64v10.56

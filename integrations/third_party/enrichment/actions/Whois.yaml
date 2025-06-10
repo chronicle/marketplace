@@ -4,21 +4,21 @@ description: 'Query WHOIS servers for domain registration information.  Supports
     to target entity and a domain age threshold to set the entity to suspicious. '
 integration_identifier: Enrichment
 parameters:
--   name: Create Entities
-    default_value: 'true'
-    type: boolean
-    description: Create and link domain entities to URL and Email / User names.
-    is_mandatory: false
--   name: Domain Age Threshold
-    default_value: ''
-    type: string
-    description: 'Domains who''s age is less than the than the supplied days will
+    -   name: Create Entities
+        default_value: 'true'
+        type: boolean
+        description: Create and link domain entities to URL and Email / User names.
+        is_mandatory: false
+    -   name: Domain Age Threshold
+        default_value: ''
+        type: string
+        description: 'Domains who''s age is less than the than the supplied days will
         be marked suspicious.  '
-    is_mandatory: false
+        is_mandatory: false
 dynamic_results_metadata:
--   result_name: JsonResult
-    show_result: true
-    result_example: "[\r\n\t{\r\n\t\t\"Entity\": \"outlook.com\",\r\n\t\t\"EntityResult\"\
+    -   result_name: JsonResult
+        show_result: true
+        result_example: "[\r\n\t{\r\n\t\t\"Entity\": \"outlook.com\",\r\n\t\t\"EntityResult\"\
         : {\r\n\t\t\t\"id\": [\r\n\t\t\t\t\"2019401_DOMAIN_COM-VRSN\"\r\n\t\t\t],\r\
         \n\t\t\t\"status\": [\r\n\t\t\t\t\"clientDeleteProhibited https://icann.org/epp#clientDeleteProhibited\"\
         ,\r\n\t\t\t\t\"clientTransferProhibited https://icann.org/epp#clientTransferProhibited\"\

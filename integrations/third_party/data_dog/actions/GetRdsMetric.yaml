@@ -7,28 +7,28 @@ description: 'Gets AWS RDS metrics for a given Database instance identifier (CPU
     For more information about AWS RDS metrics: https://docs.datadoghq.com/integrations/amazon_rds/?tab=standard'
 integration_identifier: DataDog
 parameters:
--   name: End Time
-    default_value: '1610557457'
-    type: string
-    description: The end time of the Pod metric in Unixtime.
-    is_mandatory: true
--   name: Start Time
-    default_value: '1507040000'
-    type: string
-    description: The start time of the RDS metric in Unixtime.
-    is_mandatory: true
--   name: Database Instance Identifier
-    default_value: identifier1
-    type: string
-    description: 'The identifier of the data base which you want to get the metrics
+    -   name: End Time
+        default_value: '1610557457'
+        type: string
+        description: The end time of the Pod metric in Unixtime.
+        is_mandatory: true
+    -   name: Start Time
+        default_value: '1507040000'
+        type: string
+        description: The start time of the RDS metric in Unixtime.
+        is_mandatory: true
+    -   name: Database Instance Identifier
+        default_value: identifier1
+        type: string
+        description: 'The identifier of the data base which you want to get the metrics
         to.
 
         identifier1, identifier2'
-    is_mandatory: true
+        is_mandatory: true
 dynamic_results_metadata:
--   result_name: JsonResult
-    show_result: true
-    result_example: "{\r\n\t\"founded_db_instance_identifier\": {\r\n\t\t\"db_instance_identifier:\
+    -   result_name: JsonResult
+        show_result: true
+        result_example: "{\r\n\t\"founded_db_instance_identifier\": {\r\n\t\t\"db_instance_identifier:\
         \ db_instance\": {\r\n\t\t\t\"db_CPU\": {\r\n\t\t\t\t\"status\": \"ok\",\r\
         \n\t\t\t\t\"res_type\": \"time_series\",\r\n\t\t\t\t\"from_date\": 1507040000000,\r\
         \n\t\t\t\t\"series\": [{\r\n\t\t\t\t\t\"end\": 1587686399000,\r\n\t\t\t\t\t\

@@ -9,22 +9,22 @@ description: This action Scans links and domains in real-time to detect suspicio
     intelligence to a whole new level.
 integration_identifier: IPQS Fraud and Risk Scoring
 parameters:
--   name: Strictness
-    default_value: '0'
-    type: ddl
-    description: How strict should we scan this URL? Stricter checks may provide a
-        higher false-positive rate.
-    is_mandatory: true
--   name: Fast
-    default_value: 'false'
-    type: boolean
-    description: When enabled, the API will provide quicker response times using lighter
-        checks and analysis.
-    is_mandatory: false
+    -   name: Strictness
+        default_value: '0'
+        type: ddl
+        description: How strict should we scan this URL? Stricter checks may provide a
+            higher false-positive rate.
+        is_mandatory: true
+    -   name: Fast
+        default_value: 'false'
+        type: boolean
+        description: When enabled, the API will provide quicker response times using lighter
+            checks and analysis.
+        is_mandatory: false
 dynamic_results_metadata:
--   result_name: JsonResult
-    show_result: true
-    result_example: '{}'
+    -   result_name: JsonResult
+        show_result: true
+        result_example: '{}'
 default_result_value: ''
 creator: IPQS
 script_result_name: ScriptResult

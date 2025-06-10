@@ -2,90 +2,90 @@ name: Search Hosts
 description: List hosts based on query parameters.
 integration_identifier: VectraQUX
 parameters:
--   name: Limit
-    type: string
-    description: 'Fetch this many records
+    -   name: Limit
+        type: string
+        description: 'Fetch this many records
 
         '
-    is_mandatory: false
--   name: Tags
-    type: string
-    description: Filter hosts based on Tags
-    is_mandatory: false
--   name: Last Source
-    type: string
-    description: Filter based on Last Source
-    is_mandatory: false
--   name: Order
-    default_value: ''
-    type: ddl
-    description: 'Filter based on ascending ,descending order '
-    is_mandatory: false
--   name: Fields
-    default_value: ''
-    type: multi_choice_parameter
-    description: This parameter take the list of string and filter the response with
-        provided fields
-    is_mandatory: false
--   name: Name
-    type: string
-    description: Filter hosts based on Name
-    is_mandatory: false
--   name: State
-    default_value: ''
-    type: ddl
-    description: Filters host based on the State of host
-    is_mandatory: false
--   name: Threat GTE
-    type: string
-    description: Filter events based on the threat value and return all the hosts
-        for the greater value then provided values
-    is_mandatory: false
--   name: Certainty GTE
-    type: string
-    description: Filter the hosts greater then provided certainty
-    is_mandatory: false
--   name: Last Detection Timestamp GTE
-    type: string
-    description: Filter based on Last Detection Timestamp GTE
-    is_mandatory: false
--   name: Last Detection Timestamp LTE
-    type: string
-    description: Filter hosts based on Last Detection Timestamp LTE
-    is_mandatory: false
--   name: ' Is Targeting Key Asset'
-    default_value: ''
-    type: ddl
-    description: Filter hosts that are targeting key assets
-    is_mandatory: false
--   name: ' Privilege Level GTE'
-    type: string
-    description: Filter based on Privilege Level
-    is_mandatory: false
--   name: Privilege Category
-    default_value: ''
-    type: ddl
-    description: Filter based on Privilege Category
-    is_mandatory: false
--   name: Active Traffic
-    default_value: ''
-    type: ddl
-    description: Filters hosts with active traffic within the last two hours
-    is_mandatory: false
--   name: Order By
-    default_value: ''
-    type: ddl
-    description: 'Order the hosts by  last_timestamp or  threat_score or certainty_score
+        is_mandatory: false
+    -   name: Tags
+        type: string
+        description: Filter hosts based on Tags
+        is_mandatory: false
+    -   name: Last Source
+        type: string
+        description: Filter based on Last Source
+        is_mandatory: false
+    -   name: Order
+        default_value: ''
+        type: ddl
+        description: 'Filter based on ascending ,descending order '
+        is_mandatory: false
+    -   name: Fields
+        default_value: ''
+        type: multi_choice_parameter
+        description: This parameter take the list of string and filter the response with
+            provided fields
+        is_mandatory: false
+    -   name: Name
+        type: string
+        description: Filter hosts based on Name
+        is_mandatory: false
+    -   name: State
+        default_value: ''
+        type: ddl
+        description: Filters host based on the State of host
+        is_mandatory: false
+    -   name: Threat GTE
+        type: string
+        description: Filter events based on the threat value and return all the hosts
+            for the greater value then provided values
+        is_mandatory: false
+    -   name: Certainty GTE
+        type: string
+        description: Filter the hosts greater then provided certainty
+        is_mandatory: false
+    -   name: Last Detection Timestamp GTE
+        type: string
+        description: Filter based on Last Detection Timestamp GTE
+        is_mandatory: false
+    -   name: Last Detection Timestamp LTE
+        type: string
+        description: Filter hosts based on Last Detection Timestamp LTE
+        is_mandatory: false
+    -   name: ' Is Targeting Key Asset'
+        default_value: ''
+        type: ddl
+        description: Filter hosts that are targeting key assets
+        is_mandatory: false
+    -   name: ' Privilege Level GTE'
+        type: string
+        description: Filter based on Privilege Level
+        is_mandatory: false
+    -   name: Privilege Category
+        default_value: ''
+        type: ddl
+        description: Filter based on Privilege Category
+        is_mandatory: false
+    -   name: Active Traffic
+        default_value: ''
+        type: ddl
+        description: Filters hosts with active traffic within the last two hours
+        is_mandatory: false
+    -   name: Order By
+        default_value: ''
+        type: ddl
+        description: 'Order the hosts by  last_timestamp or  threat_score or certainty_score
         or id '
-    is_mandatory: false
--   name: Note Modified Timestamp GTE
-    type: string
-    description: filter based on Note Modified Timestamp GTE
-    is_mandatory: false
+        is_mandatory: false
+    -   name: Note Modified Timestamp GTE
+        type: string
+        description: filter based on Note Modified Timestamp GTE
+        is_mandatory: false
 dynamic_results_metadata:
--   result_name: JsonResult
-    show_result: true
-    result_example: "[\n    {\n        \"id\": 40789,\n        \"name\": \"IP-1.1.1.1\"\
+    -   result_name: JsonResult
+        show_result: true
+        result_example: "[\n    {\n        \"id\": 40789,\n        \"name\": \"IP-1.1.1.1\"\
         ,\n        \"active_traffic\": false,\n        \"has_active_traffic\": false,\n\
         \        \"t_score\": 30,\n        \"threat\": 30,\n        \"c_score\": 90,\n\
         \        \"certainty\": 90,\n        \"severity\": \"medium\",\n        \"\

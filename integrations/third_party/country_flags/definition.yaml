@@ -1,13 +1,9 @@
 identifier: CountryFlags
 name: CountryFlags
-version: 8.0
-parameters: []
-description: Country Flags includes a list of all the countries and their associated
-    flags. You can use this integration to present a country's  flag as a base64.
-python_version: '3.11'
+parameters: [ ]
 categories:
-- Operational
-- Data Enrichment
+    - Operational
+    - Data Enrichment
 svg_image: "<?xml version=\"1.0\" encoding=\"utf-8\"?><!-- Generator: Adobe Illustrator\
     \ 24.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  --><svg version=\"\
     1.1\" id=\"Layer_1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\"\

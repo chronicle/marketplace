@@ -4,28 +4,28 @@ description: This action will get all the data from a case and return a JSON res
     information and events.
 integration_identifier: Tools
 parameters:
--   name: Case Id
-    type: string
-    description: The Case ID to query.  Optional. Will use current case if empty.
-    is_mandatory: false
--   name: Fields to Return
-    type: string
-    description: 'Specify a comma-separated list of fields that need to be returned.
+    -   name: Case Id
+        type: string
+        description: The Case ID to query.  Optional. Will use current case if empty.
+        is_mandatory: false
+    -   name: Fields to Return
+        type: string
+        description: 'Specify a comma-separated list of fields that need to be returned.
         If nothing is provided, all fields are returned. Getting nested values can
         be done using "Nested Keys Delimiter" value to chain nested keys and list
         indexes. For example, if the delimiter is ".": key_1.nested_key_1.0.nested_key_2,
         key_2, key_3.1.nested_key_1'
-    is_mandatory: false
--   name: Nested Keys Delimiter
-    default_value: .
-    type: string
-    description: The delimiter to split nested keys. If missing or not provided fetching
-        nested keys is not possible. Cannot be a comma (",")
-    is_mandatory: false
+        is_mandatory: false
+    -   name: Nested Keys Delimiter
+        default_value: .
+        type: string
+        description: The delimiter to split nested keys. If missing or not provided fetching
+            nested keys is not possible. Cannot be a comma (",")
+        is_mandatory: false
 dynamic_results_metadata:
--   result_name: JsonResult
-    show_result: true
-    result_example: "{\n    \"wallData\": [\n        {\n            \"description\"\
+    -   result_name: JsonResult
+        show_result: true
+        result_example: "{\n    \"wallData\": [\n        {\n            \"description\"\
         : \"Alerts grouped to the case: IRC CONNECTIONS_12D5090A-21CB-4738-89D6-8EC6C8836DFC\"\
         ,\n            \"activityKind\": 6,\n            \"newValue\": null,\n   \
         \         \"creatorUserId\": \"System\",\n            \"id\": 1,\n       \

@@ -2,10 +2,10 @@ name: Update alert priority
 description: Change the alert priority based on the input.
 integration_identifier: ArcannaAI
 parameters:
--   name: Priority
-    default_value: '[ArcannaAI_Get Arcanna decision_1.JsonResult| "result_label"]'
-    type: string
-    description: 'Choose the new priority. Must be one the following values:
+    -   name: Priority
+        default_value: '[ArcannaAI_Get Arcanna decision_1.JsonResult| "result_label"]'
+        type: string
+        description: 'Choose the new priority. Must be one the following values:
 
         - Informative
 
@@ -16,10 +16,10 @@ parameters:
         - High
 
         - Critical'
-    is_mandatory: true
+        is_mandatory: true
 dynamic_results_metadata:
--   result_name: JsonResult
-    show_result: true
-    result_example: null
+    -   result_name: JsonResult
+        show_result: true
+        result_example: null
 creator: 57861f63-e407-4200-90d4-a03bed1eb07e
 script_result_name: Output

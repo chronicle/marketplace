@@ -3,28 +3,28 @@ description: Returns alerts that are linked to the provided alert id, linked ale
     are alerts that has the same secret id & same alert group
 integration_identifier: Vorlon
 parameters:
--   name: Alert Status
-    default_value: ''
-    type: ddl
-    description: Defines the list of alert statuses to retrieve
-    is_mandatory: false
--   name: Page
-    type: string
-    description: Defines the page number
-    is_mandatory: false
--   name: Limit
-    type: string
-    description: If provided, filter by limit. Default is 100
-    is_mandatory: false
--   name: Alert ID
-    default_value: <alert_id>
-    type: string
-    description: Alert ID for which the linked alerts would be returned
-    is_mandatory: true
+    -   name: Alert Status
+        default_value: ''
+        type: ddl
+        description: Defines the list of alert statuses to retrieve
+        is_mandatory: false
+    -   name: Page
+        type: string
+        description: Defines the page number
+        is_mandatory: false
+    -   name: Limit
+        type: string
+        description: If provided, filter by limit. Default is 100
+        is_mandatory: false
+    -   name: Alert ID
+        default_value: <alert_id>
+        type: string
+        description: Alert ID for which the linked alerts would be returned
+        is_mandatory: true
 dynamic_results_metadata:
--   result_name: JsonResult
-    show_result: true
-    result_example: "[\n  {\n    \"created\": 1686562760,\n    \"description\": \"\
+    -   result_name: JsonResult
+        show_result: true
+        result_example: "[\n  {\n    \"created\": 1686562760,\n    \"description\": \"\
         Vorlon detected traffic from salesforce to a new endpoint on asana that may\
         \ contain sensitive data.\",\n    \"id\": \"string\",\n    \"remediation_steps\"\
         : [\n      \"string\"\n    ],\n    \"requesting_service\": {\n      \"host\"\

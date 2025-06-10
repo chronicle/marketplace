@@ -3,15 +3,15 @@ description: 'This will update the alert score by the amount supplied in the ''I
     parameter. '
 integration_identifier: Tools
 parameters:
--   name: Input
-    default_value: '0'
-    type: string
-    description: The value to increment or decrement the alert score by.
-    is_mandatory: true
+    -   name: Input
+        default_value: '0'
+        type: string
+        description: The value to increment or decrement the alert score by.
+        is_mandatory: true
 dynamic_results_metadata:
--   result_name: JsonResult
-    show_result: false
-    result_example: '{}'
+    -   result_name: JsonResult
+        show_result: false
+        result_example: '{}'
 default_result_value: ''
 creator: Rob
 script_result_name: ScriptResult

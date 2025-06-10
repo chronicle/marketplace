@@ -14,7 +14,6 @@
 
 from __future__ import annotations
 
-import decimal
 from typing import TYPE_CHECKING, Annotated, NotRequired, Self, TypedDict
 
 import pydantic
@@ -84,7 +83,10 @@ class JobMetadata(
         pydantic.Field(max_length=mp.core.constants.MAX_PARAMETERS_LENGTH),
     ]
     run_interval_in_seconds: int
-    version: Annotated[decimal.Decimal, pydantic.Field(decimal_places=1, default=1.0)]
+    version: Annotated[
+        pydantic.PositiveFloat,
+        pydantic.Field(ge=mp.core.constants.MINIMUM_SCRIPT_VERSION),
+    ]
 
     @classmethod
     def from_built_integration_path(cls, path: pathlib.Path) -> list[Self]:
@@ -140,7 +142,7 @@ class JobMetadata(
                 JobParameter.from_built(param) for param in built["Parameters"]
             ],
             run_interval_in_seconds=built["RunIntervalInSeconds"],
-            version=decimal.Decimal(built.get("Version", 1.0)),
+            version=built.get("Version", mp.core.constants.MINIMUM_SCRIPT_VERSION),
         )
 
     @classmethod
@@ -164,7 +166,7 @@ class JobMetadata(
                 "run_interval_in_seconds",
                 DEFAULT_RUNTIME_INTERVAL,
             ),
-            version=decimal.Decimal(non_built.get("version", 1.0)),
+            version=non_built.get("version", mp.core.constants.MINIMUM_SCRIPT_VERSION),
         )
 
     def to_built(self) -> BuiltJobMetadata:

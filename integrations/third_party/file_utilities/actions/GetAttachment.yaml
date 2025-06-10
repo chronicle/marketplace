@@ -3,16 +3,16 @@ description: The actions gets an attachment from the case wall (the result is pr
     as a Base64)
 integration_identifier: FileUtilities
 parameters:
--   name: Attachment Scope
-    default_value: Alert
-    type: ddl
-    description: The scope of the attachment that needs to be retrieved - case or
-        alert
-    is_mandatory: true
+    -   name: Attachment Scope
+        default_value: Alert
+        type: ddl
+        description: The scope of the attachment that needs to be retrieved - case or
+            alert
+        is_mandatory: true
 dynamic_results_metadata:
--   result_name: JsonResult
-    show_result: true
-    result_example: "[\n  {\n    \"evidenceName\": \"Siemplify Picture\",\n    \"\
+    -   result_name: JsonResult
+        show_result: true
+        result_example: "[\n  {\n    \"evidenceName\": \"Siemplify Picture\",\n    \"\
         description\": \"Original email attachment\",\n    \"evidenceThumbnailBase64\"\
         : \"\",\n    \"evidenceId\": 4,\n    \"fileType\": \".png\",\n    \"creatorUserId\"\
         : \"EmailV2\",\n    \"id\": 4,\n    \"type\": 4,\n    \"caseId\": 11,\n  \

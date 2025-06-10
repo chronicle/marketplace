@@ -3,37 +3,37 @@ description: This method creates a new task to restore items from the quarantine
     Exchange Servers.
 integration_identifier: Bitdefender GravityZone
 parameters:
--   name: EWS URL
-    type: string
-    description: The Exchange Web Services URL .The EWS URL is necessary when the
-        Exchange Autodiscovery does not work.
-    is_mandatory: false
--   name: Email
-    type: string
-    description: The email address of the Exchange user. This parameter is necessary
-        when the email address is different from the username.
-    is_mandatory: false
--   name: Password
-    default_value: password
-    type: password
-    description: The password of an Exchange user
-    is_mandatory: true
--   name: Username
-    default_value: username
-    type: string
-    description: The username of an Microsoft Exchange user. The username must include
-        the domain name.
-    is_mandatory: true
--   name: Quarantine Item IDs
-    default_value: itemId1,itemId2
-    type: string
-    description: Comma-separated list of quarantine items IDs. The maximum number
-        of items that can be removed once is 100.
-    is_mandatory: true
+    -   name: EWS URL
+        type: string
+        description: The Exchange Web Services URL .The EWS URL is necessary when the
+            Exchange Autodiscovery does not work.
+        is_mandatory: false
+    -   name: Email
+        type: string
+        description: The email address of the Exchange user. This parameter is necessary
+            when the email address is different from the username.
+        is_mandatory: false
+    -   name: Password
+        default_value: password
+        type: password
+        description: The password of an Exchange user
+        is_mandatory: true
+    -   name: Username
+        default_value: username
+        type: string
+        description: The username of an Microsoft Exchange user. The username must include
+            the domain name.
+        is_mandatory: true
+    -   name: Quarantine Item IDs
+        default_value: itemId1,itemId2
+        type: string
+        description: Comma-separated list of quarantine items IDs. The maximum number
+            of items that can be removed once is 100.
+        is_mandatory: true
 dynamic_results_metadata:
--   result_name: JsonResult
-    show_result: false
-    result_example: "{\n    \"items\":[\n        {   \n            \"id\" : \"21a295eeb1a43d8b497b23b7\"\
+    -   result_name: JsonResult
+        show_result: false
+        result_example: "{\n    \"items\":[\n        {   \n            \"id\" : \"21a295eeb1a43d8b497b23b7\"\
         , \"name\" : \"Endpoint 1\",\n            \"label\" : \"endpoint 1\",\n  \
         \          \"fqdn\": \"endpoint1.local\",\n            \"groupId\": \"5a5f4d36b1a43d5f097b23bb\"\
         , \"isManaged\": true,\n            \"isManaged\": true,\n            \"machineType\"\

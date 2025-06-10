@@ -25,12 +25,12 @@ GIT_STATUS_REGEXP: re.Pattern[str] = re.compile(r"^[ A-Z?!]{2} ")
 
 
 def get_python_version_from_version_string(version: str) -> str:
-    """Get the largest python version found in a version string.
+    """Get the smallest python version found in a version string.
 
     Examples:
         >>> v: str = ">=3.11,<3.13"
         >>> get_python_version_from_version_string(v)
-        3.13
+        3.11
 
 
     Args:

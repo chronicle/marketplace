@@ -1,35 +1,27 @@
 identifier: AWS - EC2
 name: AWS - EC2
-version: 2.0
 parameters:
--   name: Access Key ID
-    type: password
-    description: EC2 Access Key ID
-    is_mandatory: true
-    integration_identifier: AWS - EC2
--   name: Default Region
-    default_value: us-east-1
-    type: string
-    description: 'Default Region.
+    -   name: Access Key ID
+        type: password
+        description: EC2 Access Key ID
+        is_mandatory: true
+        integration_identifier: AWS - EC2
+    -   name: Default Region
+        default_value: us-east-1
+        type: string
+        description: 'Default Region.
 
         For more information: https://docs.aws.amazon.com/general/latest/gr/rande.html'
-    is_mandatory: false
-    integration_identifier: AWS - EC2
--   name: Secret Access Key
-    type: password
-    description: EC2 Secret Access Key
-    is_mandatory: true
-    integration_identifier: AWS - EC2
-description: 'Amazon Elastic Compute Cloud (Amazon EC2) is a web service that provides
-    secure, resizable compute capacity in the cloud.
-
-    Amazon EC2’s simple web service interface allows you to obtain and configure capacity
-    with minimal friction. It provides you with complete control of your computing
-    resources and lets you run on Amazon’s proven computing environment.'
-python_version: '3.11'
+        is_mandatory: false
+        integration_identifier: AWS - EC2
+    -   name: Secret Access Key
+        type: password
+        description: EC2 Secret Access Key
+        is_mandatory: true
+        integration_identifier: AWS - EC2
 categories:
-- Cloud
-- IT & Infrastructure
+    - Cloud
+    - IT & Infrastructure
 svg_image: <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg"><path
     d="M12.5167 1L10.6269 1.95337V23.0637L12.5167 24L22.0503 19.2502V5.76684L12.5167
     1Z" fill="#b2b2b8"/><path d="M7.49445 21.4974L8.95855 22.2295V2.78756L7.49445

@@ -3,11 +3,11 @@ description: Enrich a Threat Actor using Sixgill Information (Unpack a threat ac
     activity in the underground by seeing all IOCs they shared in the last 90 days.
     Understand their areas of activity, choice of targets and techniques.)
 integration_identifier: Cybersixgill Darkfeed Enrichment
-parameters: []
+parameters: [ ]
 dynamic_results_metadata:
--   result_name: JsonResult
-    show_result: true
-    result_example: "[\r\n  {\r\n    \"entityIdentifier\": \"bark6222\",\r\n    \"\
+    -   result_name: JsonResult
+        show_result: true
+        result_example: "[\r\n  {\r\n    \"entityIdentifier\": \"bark6222\",\r\n    \"\
         entityResult\": [\r\n      {\r\n        \"created\": \"2021-06-10T12:51:30.329Z\"\
         ,\r\n        \"description\": \"Virustotal link that appeared on a dark web\
         \ site, generally to show malware that is undetected\",\r\n        \"external_reference\"\

@@ -3,15 +3,15 @@ description: Query the get_users_by_name DUO API endpoint to obtain information 
     a specified username.
 integration_identifier: DUO
 parameters:
--   name: Username
-    default_value: admin
-    type: string
-    description: Username
-    is_mandatory: true
+    -   name: Username
+        default_value: admin
+        type: string
+        description: Username
+        is_mandatory: true
 dynamic_results_metadata:
--   result_name: JsonResult
-    show_result: true
-    result_example: "{\n\t\"user_name\": \"username\",\n\t\"user_id\": \"ABC123\"\
+    -   result_name: JsonResult
+        show_result: true
+        result_example: "{\n\t\"user_name\": \"username\",\n\t\"user_id\": \"ABC123\"\
         ,\n\t\"user_data\": [\n\t\t{\n\t\t\t\"alias1\": null,\n\t\t\t\"alias2\": null,\n\
         \t\t\t\"alias3\": null,\n\t\t\t\"alias4\": null,\n\t\t\t\"aliases\": {},\n\
         \t\t\t\"created\": 1488805062,\n\t\t\t\"desktoptokens\": [],\n\t\t\t\"email\"\

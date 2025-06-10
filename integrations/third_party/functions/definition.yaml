@@ -1,12 +1,8 @@
 identifier: Functions
 name: Functions
-version: 28.0
-parameters: []
-description: A set of math and data manipulation actions created for Google SecOps
-    Community to power up playbook capabilities.
-python_version: '3.11'
+parameters: [ ]
 categories:
-- Utility
+    - Utility
 svg_image: <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 25 25"><path d="M4.46,2H20.54A2.46,2.46,0,0,1,23,4.46V20.54A2.46,2.46,0,0,1,20.54,23H4.46A2.46,2.46,0,0,1,2,20.54V4.46A2.46,2.46,0,0,1,4.46,2Zm5.46,8.75h1.91v1.71H9.92V20H8V12.46H6V10.75H8V7.84A3,3,0,0,1,11.19,5h1.4V6.7h-1.4A1.21,1.21,0,0,0,9.92,7.84ZM19,13.91,16.66,17,19,20H16.67L15.5,18.48,14.34,20H12l2.32-3L12,13.91h2.32l1.18,1.54,1.18-1.54Z"
     fill-rule="evenodd"/></svg>

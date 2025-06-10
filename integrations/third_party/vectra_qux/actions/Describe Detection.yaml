@@ -2,15 +2,15 @@ name: Describe Detection
 description: Show all the details of a detection for the given ID.
 integration_identifier: VectraQUX
 parameters:
--   name: Detection ID
-    default_value: '0'
-    type: string
-    description: Unique detection ID to get detection
-    is_mandatory: true
+    -   name: Detection ID
+        default_value: '0'
+        type: string
+        description: Unique detection ID to get detection
+        is_mandatory: true
 dynamic_results_metadata:
--   result_name: JsonResult
-    show_result: true
-    result_example: "{\n    \"id\": 2644,\n    \"url\": \"https://hc2024.vectracloudlab.com/detections/2644\"\
+    -   result_name: JsonResult
+        show_result: true
+        result_example: "{\n    \"id\": 2644,\n    \"url\": \"https://hc2024.vectracloudlab.com/detections/2644\"\
         ,\n    \"detection_url\": \"https://hc2024.vectracloudlab.com/detections/2644\"\
         ,\n    \"category\": \"RECONNAISSANCE\",\n    \"detection\": \"Internal Darknet\
         \ Scan\",\n    \"detection_category\": \"RECONNAISSANCE\",\n    \"detection_type\"\

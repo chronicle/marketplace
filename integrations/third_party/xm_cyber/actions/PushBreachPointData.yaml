@@ -3,30 +3,30 @@ description: This action will add the breach point label to all entities or sele
     entities based on the defined criteria inputs and push these labels to XM Cyber.
 integration_identifier: XMCyber
 parameters:
--   name: Attribute Name
-    default_value: Google_SecOps_BP
-    type: string
-    description: Name of the attribute that must be pushed to entities in XM Cyber.
-    is_mandatory: true
--   name: Parameter
-    default_value: All
-    type: ddl
-    description: Parameter to be checked for each entity to match the criteria.
-    is_mandatory: true
--   name: Operator
-    default_value: Equals
-    type: ddl
-    description: Operator used for for matching the values.
-    is_mandatory: true
--   name: Value
-    default_value: 'true'
-    type: string
-    description: Custom value for matching with the entity parameter value
-    is_mandatory: true
+    -   name: Attribute Name
+        default_value: Google_SecOps_BP
+        type: string
+        description: Name of the attribute that must be pushed to entities in XM Cyber.
+        is_mandatory: true
+    -   name: Parameter
+        default_value: All
+        type: ddl
+        description: Parameter to be checked for each entity to match the criteria.
+        is_mandatory: true
+    -   name: Operator
+        default_value: Equals
+        type: ddl
+        description: Operator used for for matching the values.
+        is_mandatory: true
+    -   name: Value
+        default_value: 'true'
+        type: string
+        description: Custom value for matching with the entity parameter value
+        is_mandatory: true
 dynamic_results_metadata:
--   result_name: JsonResult
-    show_result: true
-    result_example: '{}'
+    -   result_name: JsonResult
+        show_result: true
+        result_example: '{}'
 default_result_value: ''
 creator: af7283aa-f6b7-4c8f-bbe6-e76a38778387
 script_result_name: ScriptResult

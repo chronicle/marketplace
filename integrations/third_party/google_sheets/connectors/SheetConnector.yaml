@@ -1,76 +1,76 @@
 name: Sheet Connector
 parameters:
--   name: Alert Name Column Index
-    default_value: '0'
-    type: integer
-    description: Alert Name Column Index
-    is_mandatory: true
-    is_advanced: false
-    mode: script
--   name: Credentials Json
-    default_value: '{}'
-    type: string
-    description: Credentials Json
-    is_mandatory: true
-    is_advanced: false
-    mode: script
--   name: DeviceProductField
-    default_value: device_product
-    type: string
-    description: The field name used to determine the device product
-    is_mandatory: true
-    is_advanced: false
-    mode: regular
--   name: EventClassId
-    default_value: device_event
-    type: string
-    description: The field name used to determine the event name (sub-type)
-    is_mandatory: true
-    is_advanced: false
-    mode: regular
--   name: Filter Alert Column Index
-    type: integer
-    description: Filter Alert Column Index
-    is_mandatory: false
-    is_advanced: false
-    mode: script
--   name: Filter Alert Column Value
-    type: string
-    description: Filter Alert Column Value
-    is_mandatory: false
-    is_advanced: false
-    mode: script
--   name: Product
-    default_value: <Sheet>
-    type: string
-    description: Product
-    is_mandatory: true
-    is_advanced: false
-    mode: script
--   name: PythonProcessTimeout
-    default_value: '30'
-    type: string
-    description: The timeout limit (in seconds) for the python process running current
-        script
-    is_mandatory: true
-    is_advanced: false
-    mode: regular
--   name: Sheet Id
-    default_value: <Sheet Id>
-    type: string
-    description: Sheet Id
-    is_mandatory: true
-    is_advanced: false
-    mode: script
--   name: Worksheet Name
-    default_value: Sheet1
-    type: string
-    description: Worksheet Name
-    is_mandatory: true
-    is_advanced: false
-    mode: script
+    -   name: Alert Name Column Index
+        default_value: '0'
+        type: integer
+        description: Alert Name Column Index
+        is_mandatory: true
+        is_advanced: false
+        mode: script
+    -   name: Credentials Json
+        default_value: '{}'
+        type: string
+        description: Credentials Json
+        is_mandatory: true
+        is_advanced: false
+        mode: script
+    -   name: DeviceProductField
+        default_value: device_product
+        type: string
+        description: The field name used to determine the device product
+        is_mandatory: true
+        is_advanced: false
+        mode: regular
+    -   name: EventClassId
+        default_value: device_event
+        type: string
+        description: The field name used to determine the event name (sub-type)
+        is_mandatory: true
+        is_advanced: false
+        mode: regular
+    -   name: Filter Alert Column Index
+        type: integer
+        description: Filter Alert Column Index
+        is_mandatory: false
+        is_advanced: false
+        mode: script
+    -   name: Filter Alert Column Value
+        type: string
+        description: Filter Alert Column Value
+        is_mandatory: false
+        is_advanced: false
+        mode: script
+    -   name: Product
+        default_value: <Sheet>
+        type: string
+        description: Product
+        is_mandatory: true
+        is_advanced: false
+        mode: script
+    -   name: PythonProcessTimeout
+        default_value: '30'
+        type: string
+        description: The timeout limit (in seconds) for the python process running current
+            script
+        is_mandatory: true
+        is_advanced: false
+        mode: regular
+    -   name: Sheet Id
+        default_value: <Sheet Id>
+        type: string
+        description: Sheet Id
+        is_mandatory: true
+        is_advanced: false
+        mode: script
+    -   name: Worksheet Name
+        default_value: Sheet1
+        type: string
+        description: Worksheet Name
+        is_mandatory: true
+        is_advanced: false
+        mode: script
 description: The connector pulls each row in a Google Sheet form
 integration: Google Sheets
-rules: []
+rules: [ ]
 is_connector_rules_supported: true
 creator: use-cases

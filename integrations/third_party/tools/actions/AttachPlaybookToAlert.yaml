@@ -2,22 +2,22 @@ name: Attach Playbook to Alert
 description: This action can attach a playbook or block to an alert.
 integration_identifier: Tools
 parameters:
--   name: Playbook Name
-    default_value: ''
-    type: string
-    description: Comma-separated list of playbooks that need to be attached to the
-        alert
-    is_mandatory: true
--   name: Allow Duplicates
-    default_value: 'true'
-    type: boolean
-    description: If selected, action will allow the same playbook to be attached multiple
-        times to the alert.
-    is_mandatory: false
+    -   name: Playbook Name
+        default_value: ''
+        type: string
+        description: Comma-separated list of playbooks that need to be attached to the
+            alert
+        is_mandatory: true
+    -   name: Allow Duplicates
+        default_value: 'true'
+        type: boolean
+        description: If selected, action will allow the same playbook to be attached multiple
+            times to the alert.
+        is_mandatory: false
 dynamic_results_metadata:
--   result_name: JsonResult
-    show_result: false
-    result_example: '{}'
+    -   result_name: JsonResult
+        show_result: false
+        result_example: '{}'
 default_result_value: ''
 creator: Admin
 script_result_name: ScriptResult

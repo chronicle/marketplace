@@ -2,20 +2,20 @@ name: Get Domain Details
 description: 'Get the domain details and present them as a Json result '
 integration_identifier: WHOIS XML API
 parameters:
--   name: Domain Name
-    default_value: google.com
-    type: string
-    description: The domain to scan
-    is_mandatory: true
--   name: Check availability
-    default_value: 'false'
-    type: boolean
-    description: Check availability
-    is_mandatory: false
+    -   name: Domain Name
+        default_value: google.com
+        type: string
+        description: The domain to scan
+        is_mandatory: true
+    -   name: Check availability
+        default_value: 'false'
+        type: boolean
+        description: Check availability
+        is_mandatory: false
 dynamic_results_metadata:
--   result_name: JsonResult
-    show_result: true
-    result_example: "{\"WhoisRecord\": {\n  \"createdDate\": \"1997-09-15T00:00:00-0700\"\
+    -   result_name: JsonResult
+        show_result: true
+        result_example: "{\"WhoisRecord\": {\n  \"createdDate\": \"1997-09-15T00:00:00-0700\"\
         ,\n  \"updatedDate\": \"2019-09-09T08:39:04-0700\",\n  \"expiresDate\": \"\
         2028-09-13T00:00:00-0700\",\n  \"registrant\": {\n    \"organization\": \"\
         Google LLC\",\n    \"state\": \"CA\",\n    \"country\": \"UNITED STATES\"\

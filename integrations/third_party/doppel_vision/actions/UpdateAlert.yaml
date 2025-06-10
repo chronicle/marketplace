@@ -2,34 +2,34 @@ name: Update Alert
 description: Updates a alert in the system with certain parameters.
 integration_identifier: DoppelVision
 parameters:
--   name: Alert_ID
-    default_value: None
-    type: string
-    description: Unique identity for each specific alert in Doppel tenant
-    is_mandatory: false
--   name: Entity
-    default_value: https://dummyurl.com
-    type: string
-    description: Entity to be alerted
-    is_mandatory: false
--   name: Queue_State
-    default_value: actioned
-    type: ddl
-    description: "Queue state value of the Alerts \nValues : \"doppel_review\",\"\
+    -   name: Alert_ID
+        default_value: None
+        type: string
+        description: Unique identity for each specific alert in Doppel tenant
+        is_mandatory: false
+    -   name: Entity
+        default_value: https://dummyurl.com
+        type: string
+        description: Entity to be alerted
+        is_mandatory: false
+    -   name: Queue_State
+        default_value: actioned
+        type: ddl
+        description: "Queue state value of the Alerts \nValues : \"doppel_review\",\"\
         needs_confirmation\",\"monitoring\",\"taken_down\",\"internal_bad_match\"\
         ,\"actioned\",\"no_action\""
-    is_mandatory: true
--   name: Entity_State
-    default_value: active
-    type: ddl
-    description: "Entity state of Alerts \nValues : \"unclassified\", \"down\", \"\
+        is_mandatory: true
+    -   name: Entity_State
+        default_value: active
+        type: ddl
+        description: "Entity state of Alerts \nValues : \"unclassified\", \"down\", \"\
         parked\", \"unrelated\", \"related\", \"suspicious\", \"unknown\", \"active\"\
         , \"resolved\""
-    is_mandatory: true
+        is_mandatory: true
 dynamic_results_metadata:
--   result_name: JsonResult
-    show_result: true
-    result_example: '{}'
+    -   result_name: JsonResult
+        show_result: true
+        result_example: '{}'
 default_result_value: ''
 creator: Anuj Yadav
 script_result_name: ScriptResult

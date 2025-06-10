@@ -3,15 +3,15 @@ description: This action will decode a base64 string and attempt to parse it as 
     EML file.  It will return a list of parsed objects.
 integration_identifier: EmailUtilities
 parameters:
--   name: Base64 EML Blob
-    default_value: <base64encoded_string>
-    type: string
-    description: A base64 encoded string of an EML file.
-    is_mandatory: true
+    -   name: Base64 EML Blob
+        default_value: <base64encoded_string>
+        type: string
+        description: A base64 encoded string of an EML file.
+        is_mandatory: true
 dynamic_results_metadata:
--   result_name: JsonResult
-    show_result: true
-    result_example: "[\n  {\n    \"Entity\": \"=?utf-8?q?Please_join_Zoom_meeting_in_progress?=\"\
+    -   result_name: JsonResult
+        show_result: true
+        result_example: "[\n  {\n    \"Entity\": \"=?utf-8?q?Please_join_Zoom_meeting_in_progress?=\"\
         ,\n    \"EntityResult\": {\n      \"base64_blob\": \"gxMjU0NjUwNDE3NTU4Nz09LS0K\"\
         ,\n      \"headers\": [\n        [\n          \"Delivered-To\",\n        \
         \  \"bbbbb@company.co\"\n        ],\n        [\n          \"Received\",\n\

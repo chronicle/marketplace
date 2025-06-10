@@ -2,24 +2,24 @@ name: Get Row
 description: Retrieves the values of a single row in a sheet
 integration_identifier: Google Sheets
 parameters:
--   name: Sheet Id
-    default_value: <Sheet-Id>
-    type: string
-    description: The shhet id can be found in the sheet url.
-    is_mandatory: true
--   name: Worksheet Name
-    type: string
-    description: Worksheet Name
-    is_mandatory: false
--   name: Row Number
-    default_value: '3'
-    type: string
-    description: Row number (one-based).
-    is_mandatory: true
+    -   name: Sheet Id
+        default_value: <Sheet-Id>
+        type: string
+        description: The shhet id can be found in the sheet url.
+        is_mandatory: true
+    -   name: Worksheet Name
+        type: string
+        description: Worksheet Name
+        is_mandatory: false
+    -   name: Row Number
+        default_value: '3'
+        type: string
+        description: Row number (one-based).
+        is_mandatory: true
 dynamic_results_metadata:
--   result_name: JsonResult
-    show_result: true
-    result_example: '{}'
+    -   result_name: JsonResult
+        show_result: true
+        result_example: '{}'
 default_result_value: ''
 creator: Admin
 script_result_name: ScriptResult

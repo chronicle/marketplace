@@ -3,11 +3,11 @@ description: 'Get the list of OnCalls associated with the hostname Parameters.
 
     '
 integration_identifier: PagerDuty
-parameters: []
+parameters: [ ]
 dynamic_results_metadata:
--   result_name: JsonResult
-    show_result: true
-    result_example: '{}'
+    -   result_name: JsonResult
+        show_result: true
+        result_example: '{}'
 default_result_value: ''
 creator: Admin
 script_result_name: ScriptResult

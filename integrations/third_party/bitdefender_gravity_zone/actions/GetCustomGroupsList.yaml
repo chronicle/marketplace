@@ -2,16 +2,16 @@ name: Get Custom Groups List
 description: This method retrieves the list of groups under a specified group.
 integration_identifier: Bitdefender GravityZone
 parameters:
--   name: Parent ID
-    default_value: ''
-    type: string
-    description: Parent group ID for which the child groups will be listed. 'Computers
-        and Groups' and 'Deleted' groups are returned if the passed parameter is null.
-    is_mandatory: false
+    -   name: Parent ID
+        default_value: ''
+        type: string
+        description: Parent group ID for which the child groups will be listed. 'Computers
+            and Groups' and 'Deleted' groups are returned if the passed parameter is null.
+        is_mandatory: false
 dynamic_results_metadata:
--   result_name: JsonResult
-    show_result: true
-    result_example: "{\r\n    \"items\": [\r\n        {\r\n            \"id\" : \"\
+    -   result_name: JsonResult
+        show_result: true
+        result_example: "{\r\n    \"items\": [\r\n        {\r\n            \"id\" : \"\
         5582c385b1a43deb7f7b23c6\",\r\n            \"name\" : \"myGroup1\"\r\n   \
         \         },\r\n            {\r\n            \"id\" : \"5582d3b3b1a43d897f7b23c8\"\
         ,\r\n            \"name\" : \"myGroup2\"\r\n            }\r\n            \r\

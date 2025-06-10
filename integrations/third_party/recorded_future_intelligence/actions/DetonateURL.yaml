@@ -2,14 +2,14 @@ name: Detonate URL
 description: Submits a URL to the Recorded Future Sandbox for analysis.
 integration_identifier: RecordedFutureIntelligence
 parameters:
--   name: Profile
-    default_value: ''
-    type: string
-    description: Specify the Sandbox profile.
-    is_mandatory: false
+    -   name: Profile
+        default_value: ''
+        type: string
+        description: Specify the Sandbox profile.
+        is_mandatory: false
 dynamic_results_metadata:
--   result_name: JsonResult
-    show_result: true
-    result_example: ''
+    -   result_name: JsonResult
+        show_result: true
+        result_example: ''
 creator: severins
 is_async: true

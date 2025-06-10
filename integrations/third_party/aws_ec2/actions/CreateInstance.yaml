@@ -6,41 +6,41 @@ description: 'Creates new instance for a specific AMI (Amazon Machine Image).
     https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/ec2.html#EC2.Client.run_instances'
 integration_identifier: AWS - EC2
 parameters:
--   name: Image ID
-    default_value: ami-12345
-    type: string
-    description: 'The AMI ID which you want to create a new instance to.
+    -   name: Image ID
+        default_value: ami-12345
+        type: string
+        description: 'The AMI ID which you want to create a new instance to.
 
         For example: ami-12345'
-    is_mandatory: false
--   name: Instance Type
-    default_value: m1.small
-    type: string
-    description: 'The hardware of the host computer to use in your instance.
+        is_mandatory: false
+    -   name: Instance Type
+        default_value: m1.small
+        type: string
+        description: 'The hardware of the host computer to use in your instance.
 
         For example :m1.small'
-    is_mandatory: false
--   name: Max Count
-    default_value: ' '
-    type: string
-    description: The maximum amount of instances to create.
-    is_mandatory: true
--   name: Min Count
-    default_value: ' '
-    type: string
-    description: The minimum number of instances to create.
-    is_mandatory: true
--   name: Security Group ID
-    default_value: sg-12345,sg-6789
-    type: string
-    description: 'The IDs of the security groups you want to assign to the instance
+        is_mandatory: false
+    -   name: Max Count
+        default_value: ' '
+        type: string
+        description: The maximum amount of instances to create.
+        is_mandatory: true
+    -   name: Min Count
+        default_value: ' '
+        type: string
+        description: The minimum number of instances to create.
+        is_mandatory: true
+    -   name: Security Group ID
+        default_value: sg-12345,sg-6789
+        type: string
+        description: 'The IDs of the security groups you want to assign to the instance
 
         For example: sg-12345,sg-6789 (comma seperated).'
-    is_mandatory: false
+        is_mandatory: false
 dynamic_results_metadata:
--   result_name: JsonResult
-    show_result: true
-    result_example: "{\r\n\t\"Groups\": [],\r\n\t\"Instances\": [{\r\n\t\t\t\"AmiLaunchIndex\"\
+    -   result_name: JsonResult
+        show_result: true
+        result_example: "{\r\n\t\"Groups\": [],\r\n\t\"Instances\": [{\r\n\t\t\t\"AmiLaunchIndex\"\
         : \"0\",\r\n\t\t\t\"ImageId\": \"ami-11\",\r\n\t\t\t\"InstanceId\": \"11111\"\
         ,\r\n\t\t\t\"InstanceType\": \"m1.small\",\r\n\t\t\t\"LaunchTime\": \"\",\r\
         \n\t\t\t\"Monitoring\": {\r\n\t\t\t\t\"State\": \"disabled\"\r\n\t\t\t},\r\

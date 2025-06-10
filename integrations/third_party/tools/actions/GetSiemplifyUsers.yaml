@@ -3,15 +3,15 @@ description: This action will return an object containing all users configured i
     the Siemplify system.
 integration_identifier: Tools
 parameters:
--   name: Hide Disabled Users
-    default_value: 'true'
-    type: boolean
-    description: Hide disabled users from the result.
-    is_mandatory: false
+    -   name: Hide Disabled Users
+        default_value: 'true'
+        type: boolean
+        description: Hide disabled users from the result.
+        is_mandatory: false
 dynamic_results_metadata:
--   result_name: JsonResult
-    show_result: true
-    result_example: "{\n    \"siemplifyUsers\": [\n        {\n            \"permissionGroup\"\
+    -   result_name: JsonResult
+        show_result: true
+        result_example: "{\n    \"siemplifyUsers\": [\n        {\n            \"permissionGroup\"\
         : \"string\",\n            \"firstName\": \"string\",\n            \"lastName\"\
         : \"string\",\n            \"permissionType\": 1,\n            \"role\": 1,\n\
         \            \"socRoleId\": 1,\n            \"email\": \"string\",\n     \

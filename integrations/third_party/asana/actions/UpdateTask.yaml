@@ -2,33 +2,33 @@ name: Update Task
 description: Updates a given task in Asana
 integration_identifier: Asana
 parameters:
--   name: Task ID
-    default_value: <Task-Id>
-    type: string
-    description: 'The task ID can be found in the URL:
+    -   name: Task ID
+        default_value: <Task-Id>
+        type: string
+        description: 'The task ID can be found in the URL:
 
         https://app.asana.com/0/{your_project_ID}/{your_task_ID}'
-    is_mandatory: true
--   name: Due Date
-    default_value: '2020-10-08'
-    type: string
-    description: The due date is in the format YYYY-MM-DD
-    is_mandatory: false
--   name: Description
-    default_value: Your new description for this task
-    type: string
-    description: The task description
-    is_mandatory: false
--   name: Assignee
-    default_value: email@gmail.com
-    type: string
-    description: "The user's email of the person you would like to re-assign the task\
+        is_mandatory: true
+    -   name: Due Date
+        default_value: '2020-10-08'
+        type: string
+        description: The due date is in the format YYYY-MM-DD
+        is_mandatory: false
+    -   name: Description
+        default_value: Your new description for this task
+        type: string
+        description: The task description
+        is_mandatory: false
+    -   name: Assignee
+        default_value: email@gmail.com
+        type: string
+        description: "The user's email of the person you would like to re-assign the task\
         \ to. \nNote: This is case sensitive"
-    is_mandatory: false
+        is_mandatory: false
 dynamic_results_metadata:
--   result_name: JsonResult
-    show_result: true
-    result_example: "{\r\n\t\"data\": {\r\n\t\t\"gid\": \"12345\",\r\n\t\t\"resource_type\"\
+    -   result_name: JsonResult
+        show_result: true
+        result_example: "{\r\n\t\"data\": {\r\n\t\t\"gid\": \"12345\",\r\n\t\t\"resource_type\"\
         : \"task\",\r\n\t\t\"name\": \"Buy catnip\",\r\n\t\t\"approval_status\": \"\
         pending\",\r\n\t\t\"assignee_status\": \"upcoming\",\r\n\t\t\"completed\"\
         : false,\r\n\t\t\"completed_at\": \"2012-02-22T02:06:58.147Z\",\r\n\t\t\"\

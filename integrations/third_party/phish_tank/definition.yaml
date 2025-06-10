@@ -1,21 +1,15 @@
 identifier: PhishTank
 name: PhishTank
-version: 9.0
 parameters:
--   name: Service Url
-    default_value: https://checkurl.phishtank.com/checkurl/
-    type: string
-    description: Service Url
-    is_mandatory: true
-    integration_identifier: PhishTank
-description: PhishTank is an anti-phishing site. The company offers a community-based
-    phish verification system where users submit suspected phishes and other users
-    "vote" if it is a phish or not. It is a free service that makes your Internet
-    safer, faster, and smarter.
-python_version: '3.11'
+    -   name: Service Url
+        default_value: https://checkurl.phishtank.com/checkurl/
+        type: string
+        description: Service Url
+        is_mandatory: true
+        integration_identifier: PhishTank
 categories:
-- Security
-- Data Enrichment
+    - Security
+    - Data Enrichment
 svg_image: <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg"><path
     d="M3.47302 9.08973C4.43207 8.71546 5.27417 8.31781 6.13966 7.80319C7.89402 6.77396
     8.31507 4.34124 9.97587 3.17166C10.046 3.82663 9.95248 4.48159 10.0694 5.13655C10.163

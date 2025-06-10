@@ -1,97 +1,97 @@
 name: AirTable Connector
 parameters:
--   name: Alert name field
-    default_value: <alert_name_field>
-    type: string
-    description: Determines the Alert name based on the airtable column name defined
-        in the parameter
-    is_mandatory: false
-    is_advanced: false
-    mode: script
--   name: Alert name prefix
-    default_value: <alert_name_prefix>
-    type: string
-    description: The alert name prefix
-    is_mandatory: false
-    is_advanced: false
-    mode: script
--   name: Alert type
-    default_value: <alert_type>
-    type: string
-    description: Determines the Alert type based on the airtable column name defined
-        in the parameter
-    is_mandatory: true
-    is_advanced: false
-    mode: script
--   name: Api key
-    default_value: ''
-    type: password
-    description: Your API Key can be found in your account overview under API
-    is_mandatory: true
-    is_advanced: false
-    mode: script
--   name: Base id
-    default_value: <base_id>
-    type: string
-    description: Base is a database in Airtable in which you store data. The base
-        ID can be found in the URL of the API page of the base.
-    is_mandatory: true
-    is_advanced: false
-    mode: script
--   name: DeviceProductField
-    default_value: <none>
-    type: string
-    description: The field name used to determine the device product
-    is_mandatory: true
-    is_advanced: false
-    mode: regular
--   name: EventClassId
-    default_value: <none>
-    type: string
-    description: The field name used to determine the event name (sub-type)
-    is_mandatory: true
-    is_advanced: false
-    mode: regular
--   name: Field name
-    default_value: <field_name>
-    type: string
-    description: The field name that you would like to search the value by
-    is_mandatory: false
-    is_advanced: false
-    mode: script
--   name: Field value
-    default_value: <field_value>
-    type: string
-    description: The value that you would like to search for under the relevant field
-        name
-    is_mandatory: false
-    is_advanced: false
-    mode: script
--   name: Max records
-    default_value: '300'
-    type: string
-    description: The maximum rows in the table that will be affected by the action
-    is_mandatory: true
-    is_advanced: false
-    mode: script
--   name: PythonProcessTimeout
-    default_value: '30'
-    type: string
-    description: The timeout limit (in seconds) for the python process running current
-        script
-    is_mandatory: true
-    is_advanced: false
-    mode: regular
--   name: Table name
-    default_value: <table_name>
-    type: string
-    description: Each Base can include multiple tables. The parameter indicates the
-        name of the table within the base.
-    is_mandatory: true
-    is_advanced: false
-    mode: script
+    -   name: Alert name field
+        default_value: <alert_name_field>
+        type: string
+        description: Determines the Alert name based on the airtable column name defined
+            in the parameter
+        is_mandatory: false
+        is_advanced: false
+        mode: script
+    -   name: Alert name prefix
+        default_value: <alert_name_prefix>
+        type: string
+        description: The alert name prefix
+        is_mandatory: false
+        is_advanced: false
+        mode: script
+    -   name: Alert type
+        default_value: <alert_type>
+        type: string
+        description: Determines the Alert type based on the airtable column name defined
+            in the parameter
+        is_mandatory: true
+        is_advanced: false
+        mode: script
+    -   name: Api key
+        default_value: ''
+        type: password
+        description: Your API Key can be found in your account overview under API
+        is_mandatory: true
+        is_advanced: false
+        mode: script
+    -   name: Base id
+        default_value: <base_id>
+        type: string
+        description: Base is a database in Airtable in which you store data. The base
+            ID can be found in the URL of the API page of the base.
+        is_mandatory: true
+        is_advanced: false
+        mode: script
+    -   name: DeviceProductField
+        default_value: <none>
+        type: string
+        description: The field name used to determine the device product
+        is_mandatory: true
+        is_advanced: false
+        mode: regular
+    -   name: EventClassId
+        default_value: <none>
+        type: string
+        description: The field name used to determine the event name (sub-type)
+        is_mandatory: true
+        is_advanced: false
+        mode: regular
+    -   name: Field name
+        default_value: <field_name>
+        type: string
+        description: The field name that you would like to search the value by
+        is_mandatory: false
+        is_advanced: false
+        mode: script
+    -   name: Field value
+        default_value: <field_value>
+        type: string
+        description: The value that you would like to search for under the relevant field
+            name
+        is_mandatory: false
+        is_advanced: false
+        mode: script
+    -   name: Max records
+        default_value: '300'
+        type: string
+        description: The maximum rows in the table that will be affected by the action
+        is_mandatory: true
+        is_advanced: false
+        mode: script
+    -   name: PythonProcessTimeout
+        default_value: '30'
+        type: string
+        description: The timeout limit (in seconds) for the python process running current
+            script
+        is_mandatory: true
+        is_advanced: false
+        mode: regular
+    -   name: Table name
+        default_value: <table_name>
+        type: string
+        description: Each Base can include multiple tables. The parameter indicates the
+            name of the table within the base.
+        is_mandatory: true
+        is_advanced: false
+        mode: script
 description: The Connector ingests records from a given table in Airtable
 integration: AirTable
-rules: []
+rules: [ ]
 is_connector_rules_supported: true
 creator: Admin

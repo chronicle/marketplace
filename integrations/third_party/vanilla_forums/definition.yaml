@@ -1,24 +1,19 @@
 identifier: VanillaForums
 name: VanillaForums
-version: 9.0
 parameters:
--   name: API Token
-    type: password
-    description: API Token
-    is_mandatory: true
-    integration_identifier: VanillaForums
--   name: URL
-    default_value: https://vanillaforums.com/api
-    type: string
-    description: Community URL
-    is_mandatory: true
-    integration_identifier: VanillaForums
-description: Vanilla provides a modern customer community platform to organizations
-    who want to improve customer service, increase advocacy, and strengthen brand
-    loyalty.
-python_version: '3.11'
+    -   name: API Token
+        type: password
+        description: API Token
+        is_mandatory: true
+        integration_identifier: VanillaForums
+    -   name: URL
+        default_value: https://vanillaforums.com/api
+        type: string
+        description: Community URL
+        is_mandatory: true
+        integration_identifier: VanillaForums
 categories:
-- IT & Infrastructure
+    - IT & Infrastructure
 svg_image: <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
     viewBox="0 0 25 25">  <path d="M16.1 21.4c-.1-.25-.25-.55-.35-.8-.3-.7-.6-1.45-.85-2.15-1.2-3.6-1.7-8.1
     1.35-10.95 1-.9 2.2-1.5 3.45-1.8.3-.05 1.3-.2 1.45-.25.35-.1.2-1 .15-1.25-.3-1.3-2.05-1.8-3.2-1.7-1.25.1-2.3.85-3.1

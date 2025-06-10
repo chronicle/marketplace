@@ -1,34 +1,28 @@
 identifier: Zoom
 name: Zoom
-version: 11.0
 parameters:
--   name: JWT Token
-    type: password
-    description: ' JWT - JSON Web Token'
-    is_mandatory: false
-    integration_identifier: Zoom
--   name: Account ID
-    type: string
-    description: Account ID - used for OAuth login
-    is_mandatory: false
-    integration_identifier: Zoom
--   name: Client ID
-    type: string
-    description: Client ID - used for OAuth login
-    is_mandatory: false
-    integration_identifier: Zoom
--   name: Client Secret
-    type: password
-    description: Client Secret - used for OAuth login
-    is_mandatory: false
-    integration_identifier: Zoom
-description: Zoom Video Communications provides video and online chat services through
-    a cloud-based peer-to-peer software platform and is used for teleconferencing,
-    telecommuting, distance education, and social relations. The integration allows
-    you to connect your zoom application via JWT token or OAuth
-python_version: '3.11'
+    -   name: JWT Token
+        type: password
+        description: ' JWT - JSON Web Token'
+        is_mandatory: false
+        integration_identifier: Zoom
+    -   name: Account ID
+        type: string
+        description: Account ID - used for OAuth login
+        is_mandatory: false
+        integration_identifier: Zoom
+    -   name: Client ID
+        type: string
+        description: Client ID - used for OAuth login
+        is_mandatory: false
+        integration_identifier: Zoom
+    -   name: Client Secret
+        type: password
+        description: Client Secret - used for OAuth login
+        is_mandatory: false
+        integration_identifier: Zoom
 categories:
-- IT & Infrastructure
+    - IT & Infrastructure
 svg_image: "<?xml version=\"1.0\" encoding=\"utf-8\"?><!-- Generator: Adobe Illustrator\
     \ 24.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  --><svg version=\"\
     1.1\" id=\"Layer_1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\"\

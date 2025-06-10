@@ -1,45 +1,45 @@
 name: PagerDutyConnector
 parameters:
--   name: acknowledge
-    default_value: 'true'
-    type: boolean
-    description: 'Boolean flag to enable acknowledging the incident in PagerDuty.
+    -   name: acknowledge
+        default_value: 'true'
+        type: boolean
+        description: 'Boolean flag to enable acknowledging the incident in PagerDuty.
         NOTE: The apikey must have permissions to modify incidents or the connector
         will fail.'
-    is_mandatory: false
-    is_advanced: true
-    mode: script
--   name: apiKey
-    default_value: 'null'
-    type: string
-    description: API Key to interact with PagerDuty API
-    is_mandatory: true
-    is_advanced: false
-    mode: script
--   name: DeviceProductField
-    default_value: device_product
-    type: string
-    description: The field name used to determine the device product
-    is_mandatory: true
-    is_advanced: false
-    mode: regular
--   name: EventClassId
-    default_value: event_name
-    type: string
-    description: The field name used to determine the event name (sub-type)
-    is_mandatory: true
-    is_advanced: false
-    mode: regular
--   name: PythonProcessTimeout
-    default_value: '30'
-    type: string
-    description: The timeout limit (in seconds) for the python process running current
-        script
-    is_mandatory: true
-    is_advanced: false
-    mode: regular
+        is_mandatory: false
+        is_advanced: true
+        mode: script
+    -   name: apiKey
+        default_value: 'null'
+        type: string
+        description: API Key to interact with PagerDuty API
+        is_mandatory: true
+        is_advanced: false
+        mode: script
+    -   name: DeviceProductField
+        default_value: device_product
+        type: string
+        description: The field name used to determine the device product
+        is_mandatory: true
+        is_advanced: false
+        mode: regular
+    -   name: EventClassId
+        default_value: event_name
+        type: string
+        description: The field name used to determine the event name (sub-type)
+        is_mandatory: true
+        is_advanced: false
+        mode: regular
+    -   name: PythonProcessTimeout
+        default_value: '30'
+        type: string
+        description: The timeout limit (in seconds) for the python process running current
+            script
+        is_mandatory: true
+        is_advanced: false
+        mode: regular
 description: The connector pulls events from the Pagerduty API https://developer.pagerduty.com/api-reference/9d0b4b12e36f9-list-incidents.
 integration: PagerDuty
-rules: []
+rules: [ ]
 is_connector_rules_supported: true
 creator: d29f584f-9e6b-498a-b6a6-f8fae0e97a8b

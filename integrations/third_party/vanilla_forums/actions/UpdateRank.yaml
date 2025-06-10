@@ -2,20 +2,20 @@ name: Update Rank
 description: Edit the rank of a user
 integration_identifier: VanillaForums
 parameters:
--   name: Rank ID
-    default_value: '2'
-    type: string
-    description: ID of the rank you want to assign to the user
-    is_mandatory: true
--   name: User ID
-    default_value: '0'
-    type: string
-    description: The user id who's rank you would like to edit
-    is_mandatory: true
+    -   name: Rank ID
+        default_value: '2'
+        type: string
+        description: ID of the rank you want to assign to the user
+        is_mandatory: true
+    -   name: User ID
+        default_value: '0'
+        type: string
+        description: The user id who's rank you would like to edit
+        is_mandatory: true
 dynamic_results_metadata:
--   result_name: JsonResult
-    show_result: true
-    result_example: "{\r\n\t\"rankID\": 0\r\n}"
+    -   result_name: JsonResult
+        show_result: true
+        result_example: "{\r\n\t\"rankID\": 0\r\n}"
 default_result_value: ''
 creator: Admin
 script_result_name: ScriptResult

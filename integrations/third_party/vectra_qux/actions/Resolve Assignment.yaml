@@ -2,38 +2,38 @@ name: Resolve Assignment
 description: Resolve assignment based on the given assignment ID and outcome ID.
 integration_identifier: VectraQUX
 parameters:
--   name: Outcome ID
-    default_value: '1'
-    type: string
-    description: "Outcome for resolving an assignment. \n1(Benign True Positive),\
+    -   name: Outcome ID
+        default_value: '1'
+        type: string
+        description: "Outcome for resolving an assignment. \n1(Benign True Positive),\
         \ \n2(Malicious True Positive), \n3(False Positive), \n(Custom outcome is\
         \ allowed)."
-    is_mandatory: true
--   name: Note Title
-    default_value: ' '
-    type: string
-    description: A note to be added for resolving an assignment in the entity
-    is_mandatory: false
--   name: Triage As
-    default_value: ' '
-    type: string
-    description: Triage rule for resolving an assignment in the entity
-    is_mandatory: false
--   name: Detection IDs
-    default_value: ' '
-    type: string
-    description: Provide a list of Integer detection IDs separated by commas or a
-        single detection ID in the list.
-    is_mandatory: false
--   name: Assignment ID
-    default_value: '0'
-    type: string
-    description: Specify the ID of the assignment.
-    is_mandatory: true
+        is_mandatory: true
+    -   name: Note Title
+        default_value: ' '
+        type: string
+        description: A note to be added for resolving an assignment in the entity
+        is_mandatory: false
+    -   name: Triage As
+        default_value: ' '
+        type: string
+        description: Triage rule for resolving an assignment in the entity
+        is_mandatory: false
+    -   name: Detection IDs
+        default_value: ' '
+        type: string
+        description: Provide a list of Integer detection IDs separated by commas or a
+            single detection ID in the list.
+        is_mandatory: false
+    -   name: Assignment ID
+        default_value: '0'
+        type: string
+        description: Specify the ID of the assignment.
+        is_mandatory: true
 dynamic_results_metadata:
--   result_name: JsonResult
-    show_result: true
-    result_example: "{\n  \"assignment\": {\n    \"id\": 256,\n    \"assigned_by\"\
+    -   result_name: JsonResult
+        show_result: true
+        result_example: "{\n  \"assignment\": {\n    \"id\": 256,\n    \"assigned_by\"\
         : {\n      \"id\": 58,\n      \"username\": \"cds-gaurang\"\n    },\n    \"\
         date_assigned\": \"2024-12-03T12:24:40Z\",\n    \"date_resolved\": \"2024-12-04T06:07:34Z\"\
         ,\n    \"events\": [\n      {\n        \"assignment_id\": 256,\n        \"\

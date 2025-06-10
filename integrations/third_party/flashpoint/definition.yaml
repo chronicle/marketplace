@@ -1,20 +1,14 @@
 identifier: Flashpoint
 name: Flashpoint
-version: 10.0
 parameters:
--   name: API Key
-    type: password
-    description: API Key
-    is_mandatory: true
-    integration_identifier: Flashpoint
-description: "Flashpoint is a global trusted leader in risk intelligence for organizations.\
-    \ From bolstering cyber and physical security, to detecting fraud and insider\
-    \ threats. \nFlashpoint enables users to enrich and enhance their internal data\
-    \ with our targeted data acquired from highly-curated sources."
-python_version: '3.11'
+    -   name: API Key
+        type: password
+        description: API Key
+        is_mandatory: true
+        integration_identifier: Flashpoint
 categories:
-- Security
-- Threat Intelligence
+    - Security
+    - Threat Intelligence
 svg_image: "<?xml version=\"1.0\" encoding=\"utf-8\"?><!-- Generator: Adobe Illustrator\
     \ 25.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  --><svg version=\"\
     1.1\" id=\"Layer_1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\"\

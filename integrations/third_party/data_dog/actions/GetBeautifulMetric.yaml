@@ -2,15 +2,15 @@ name: Get Beautiful Metric
 description: Get metrics timeseries points of a given query
 integration_identifier: DataDog
 parameters:
--   name: Series
-    default_value: '{}'
-    type: code
-    description: The timeseries points you want to analyze
-    is_mandatory: true
+    -   name: Series
+        default_value: '{}'
+        type: code
+        description: The timeseries points you want to analyze
+        is_mandatory: true
 dynamic_results_metadata:
--   result_name: JsonResult
-    show_result: true
-    result_example: "{\r\n\t\"unit\": \"cpu\",\r\n\t\"aggregation_by\": \"avg\",\r\
+    -   result_name: JsonResult
+        show_result: true
+        result_example: "{\r\n\t\"unit\": \"cpu\",\r\n\t\"aggregation_by\": \"avg\",\r\
         \n\t\"start_time\": 1607040000000,\r\n\t\"end_time\": 1610668799000,\r\n\t\
         \"full_timeseries_points_list\": [\r\n\t\t[1607040000000.0, 0.008314899947867048],\r\
         \n\t\t[1607644800000.0, 0.04104587218344665],\r\n\t\t[1608249600000.0, 0.050120122766495044],\r\

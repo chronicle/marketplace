@@ -3,16 +3,16 @@ description: The action extracts fields from the event and adds them to the Enti
     fields
 integration_identifier: Enrichment
 parameters:
--   name: Fields to enrich
-    default_value: field_name_1,field_name_2
-    type: string
-    description: The name of the fields in the event that will be used to enrich the
-        entity.  Supports comma separated list.
-    is_mandatory: true
+    -   name: Fields to enrich
+        default_value: field_name_1,field_name_2
+        type: string
+        description: The name of the fields in the event that will be used to enrich the
+            entity.  Supports comma separated list.
+        is_mandatory: true
 dynamic_results_metadata:
--   result_name: JsonResult
-    show_result: true
-    result_example: "{\n  \"user label\": \"SiemplifyTest\",\n  \"user email\": \"\
+    -   result_name: JsonResult
+        show_result: true
+        result_example: "{\n  \"user label\": \"SiemplifyTest\",\n  \"user email\": \"\
         siemplifytest@siemplify.co\"\n}"
 default_result_value: ''
 creator: Robert

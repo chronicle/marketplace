@@ -3,24 +3,24 @@ description: Enriches entities with historic enrichment data using the entity ex
     API key to be configured for the integration.
 integration_identifier: Enrichment
 parameters:
--   name: Field Name
-    default_value: ''
-    type: string
-    description: The field(s) from the Entity Explorer that will be used to enrich
-        the entity. When null all fields will be enriched. Supports comma delimited
-        string.
-    is_mandatory: false
--   name: Use Field Name as Whitelist
-    default_value: 'true'
-    type: boolean
-    description: When true, entities will be enriched with fields from 'Field Name'
-        param.  When False, the list will be used as a denylist and all other fields
-        added
-    is_mandatory: false
+    -   name: Field Name
+        default_value: ''
+        type: string
+        description: The field(s) from the Entity Explorer that will be used to enrich
+            the entity. When null all fields will be enriched. Supports comma delimited
+            string.
+        is_mandatory: false
+    -   name: Use Field Name as Whitelist
+        default_value: 'true'
+        type: boolean
+        description: When true, entities will be enriched with fields from 'Field Name'
+            param.  When False, the list will be used as a denylist and all other fields
+            added
+        is_mandatory: false
 dynamic_results_metadata:
--   result_name: JsonResult
-    show_result: true
-    result_example: '[{"Entity": "F.ATTACKER4@GMAIL.COM", "EntityResult": {}}, {"Entity":
+    -   result_name: JsonResult
+        show_result: true
+        result_example: '[{"Entity": "F.ATTACKER4@GMAIL.COM", "EntityResult": {}}, {"Entity":
         "VICKIE.B@SIEMPLIFY.CO", "EntityResult": {}}, {"Entity": "HTTP://MARKOSSOLOMON.COM/F1Q7QX.PHP",
         "EntityResult": {"VT3_id": "057e8630c8880da8778b4f99e048933efb7cee9abdcf57fad89a7e7a2c7eae04",
         "VT3_title": "Registrant WHOIS contact information verification | Namecheap.com",

@@ -2,22 +2,22 @@ name: List Project Tasks
 description: Lists all the tasks associated with a specific project
 integration_identifier: Asana
 parameters:
--   name: Project Name
-    default_value: Your Project Name
-    type: string
-    description: The name of the project from which you would like to fetch all the
-        tasks
-    is_mandatory: true
--   name: Completed Status
-    default_value: 'false'
-    type: boolean
-    description: 'Marking the checkbox will retrieve only the tasks that were completed
+    -   name: Project Name
+        default_value: Your Project Name
+        type: string
+        description: The name of the project from which you would like to fetch all the
+            tasks
+        is_mandatory: true
+    -   name: Completed Status
+        default_value: 'false'
+        type: boolean
+        description: 'Marking the checkbox will retrieve only the tasks that were completed
         by the user. '
-    is_mandatory: false
+        is_mandatory: false
 dynamic_results_metadata:
--   result_name: JsonResult
-    show_result: true
-    result_example: "{\r\n\t\"Task name: task 1\": {\r\n\t\t\"data\": {\r\n\t\t\t\"\
+    -   result_name: JsonResult
+        show_result: true
+        result_example: "{\r\n\t\"Task name: task 1\": {\r\n\t\t\"data\": {\r\n\t\t\t\"\
         gid\": \"11111111\",\r\n\t\t\t\"assignee\": {\r\n\t\t\t\t\"gid\": \"123456\"\
         ,\r\n\t\t\t\t\"name\": \"Firstname Lastname\",\r\n\t\t\t\t\"resource_type\"\
         : \"user\"\r\n\t\t\t},\r\n\t\t\t\"assignee_status\": \"inbox\",\r\n\t\t\t\"\

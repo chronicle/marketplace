@@ -1,82 +1,82 @@
 name: MS SecureScore Alert
 parameters:
--   name: Threshold
-    default_value: '0'
-    type: integer
-    description: Specify the Secure Score threshold. If your Secure Score drops below
-        this threshold, an alert will be raised.
-    is_mandatory: false
-    is_advanced: false
-    mode: script
--   name: Tenant ID
-    default_value: x
-    type: string
-    description: Tenant ID  from Azure
-    is_mandatory: true
-    is_advanced: false
-    mode: script
--   name: Secret ID
-    default_value: x
-    type: password
-    description: Secret ID from Azure
-    is_mandatory: true
-    is_advanced: false
-    mode: script
--   name: PythonProcessTimeout
-    default_value: '60'
-    type: string
-    description: The timeout limit (in seconds) for the python process running current
-        script
-    is_mandatory: true
-    is_advanced: false
-    mode: regular
--   name: EventClassId
-    default_value: SecureScore
-    type: string
-    description: The field name used to determine the event name (sub-type)
-    is_mandatory: true
-    is_advanced: false
-    mode: regular
--   name: DeviceProductField
-    default_value: Microsoft 365
-    type: string
-    description: The field name used to determine the device product
-    is_mandatory: true
-    is_advanced: false
-    mode: regular
--   name: Default Priority
-    default_value: '60'
-    type: integer
-    description: Set the default priority (-1 to 100). Informative = -1, Low = 40,
-        Medium = 60, High = 80, Critical = 100
-    is_mandatory: true
-    is_advanced: false
-    mode: script
--   name: Client ID
-    default_value: x
-    type: string
-    description: Client ID from Azure
-    is_mandatory: true
-    is_advanced: false
-    mode: script
--   name: Certificate Path
-    type: string
-    description: If authentication based on certificates is used instead of client
-        secret, specify path to the certificate on Siemplify server
-    is_mandatory: false
-    is_advanced: false
-    mode: script
--   name: Certificate Password
-    default_value: ''
-    type: password
-    description: Optional, if certificate is password-protected, specify the password
-        to open the certificate file.
-    is_mandatory: false
-    is_advanced: false
-    mode: script
+    -   name: Threshold
+        default_value: '0'
+        type: integer
+        description: Specify the Secure Score threshold. If your Secure Score drops below
+            this threshold, an alert will be raised.
+        is_mandatory: false
+        is_advanced: false
+        mode: script
+    -   name: Tenant ID
+        default_value: x
+        type: string
+        description: Tenant ID  from Azure
+        is_mandatory: true
+        is_advanced: false
+        mode: script
+    -   name: Secret ID
+        default_value: x
+        type: password
+        description: Secret ID from Azure
+        is_mandatory: true
+        is_advanced: false
+        mode: script
+    -   name: PythonProcessTimeout
+        default_value: '60'
+        type: string
+        description: The timeout limit (in seconds) for the python process running current
+            script
+        is_mandatory: true
+        is_advanced: false
+        mode: regular
+    -   name: EventClassId
+        default_value: SecureScore
+        type: string
+        description: The field name used to determine the event name (sub-type)
+        is_mandatory: true
+        is_advanced: false
+        mode: regular
+    -   name: DeviceProductField
+        default_value: Microsoft 365
+        type: string
+        description: The field name used to determine the device product
+        is_mandatory: true
+        is_advanced: false
+        mode: regular
+    -   name: Default Priority
+        default_value: '60'
+        type: integer
+        description: Set the default priority (-1 to 100). Informative = -1, Low = 40,
+            Medium = 60, High = 80, Critical = 100
+        is_mandatory: true
+        is_advanced: false
+        mode: script
+    -   name: Client ID
+        default_value: x
+        type: string
+        description: Client ID from Azure
+        is_mandatory: true
+        is_advanced: false
+        mode: script
+    -   name: Certificate Path
+        type: string
+        description: If authentication based on certificates is used instead of client
+            secret, specify path to the certificate on Siemplify server
+        is_mandatory: false
+        is_advanced: false
+        mode: script
+    -   name: Certificate Password
+        default_value: ''
+        type: password
+        description: Optional, if certificate is password-protected, specify the password
+            to open the certificate file.
+        is_mandatory: false
+        is_advanced: false
+        mode: script
 description: Allows for easy monitoring of Secure Score. Set a threshold and you will
     be alerted when the score drops below.
 integration: MicrosoftGraphSecurityTools
-rules: []
+rules: [ ]
 is_connector_rules_supported: true
 creator: daniel.harvey

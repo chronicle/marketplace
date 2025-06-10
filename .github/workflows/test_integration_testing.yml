@@ -1,0 +1,39 @@
+name: Run integration_testing tests
+
+on:
+  push:
+    branches:
+      - '**'
+    paths:
+      - 'packages/integration_testing/**'
+  pull_request:
+    branches:
+      - '**'
+    paths:
+      - 'packages/integration_testing/**'
+
+jobs:
+  test_mp:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - name: Install uv
+      uses: astral-sh/setup-uv@v5
+      with:
+        version: 'latest'
+        python-version: '3.11'
+
+    - name: Create venv
+      working-directory: packages/integration_testing
+      run: |
+        uv sync --dev
+
+    - name: Run pytest
+      working-directory: packages/integration_testing
+      run: |
+        .venv/bin/pytest tests -n 10 --cov

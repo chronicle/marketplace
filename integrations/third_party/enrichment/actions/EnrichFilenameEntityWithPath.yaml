@@ -2,11 +2,11 @@ name: Enrich FileName Entity with Path
 description: This action will parse out path, file name, and extension from an entity
     and enrich it with file_path, file_name, and file_extension.
 integration_identifier: Enrichment
-parameters: []
+parameters: [ ]
 dynamic_results_metadata:
--   result_name: JsonResult
-    show_result: true
-    result_example: '[{"Entity":"/var/log/messages","EntityResult":{"file_name":"messages","file_path":"/var/log","file_extension":""}},{"Entity":"file.exe","EntityResult":{"file_name":"file.exe","file_path":"","file_extension":".exe"}},{"Entity":"c:\\windows\\cmd.com","EntityResult":{"file_name":"cmd.com","file_path":"c:\\windows","file_extension":".com"}},{"Entity":"C:\\windows\\test\\test.exe","EntityResult":{"file_name":"test.exe","file_path":"C:\\windows\\test","file_extension":".exe"}}]'
+    -   result_name: JsonResult
+        show_result: true
+        result_example: '[{"Entity":"/var/log/messages","EntityResult":{"file_name":"messages","file_path":"/var/log","file_extension":""}},{"Entity":"file.exe","EntityResult":{"file_name":"file.exe","file_path":"","file_extension":".exe"}},{"Entity":"c:\\windows\\cmd.com","EntityResult":{"file_name":"cmd.com","file_path":"c:\\windows","file_extension":".com"}},{"Entity":"C:\\windows\\test\\test.exe","EntityResult":{"file_name":"test.exe","file_path":"C:\\windows\\test","file_extension":".exe"}}]'
 default_result_value: ''
 creator: Rob
 script_result_name: ScriptResult

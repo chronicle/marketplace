@@ -2,35 +2,35 @@ name: Add Permission
 description: ' Adds permission for a specific file stored in Google Drive '
 integration_identifier: Google Drive
 parameters:
--   name: File Id
-    default_value: <file_id>
-    type: string
-    description: The file Id is presented in the file URL. See example - https://drive.google.com/drive/u/0/folders/{file-id}
-    is_mandatory: true
--   name: Role
-    default_value: reader
-    type: ddl
-    description: '"Owner"- allows to make any changes to the document
+    -   name: File Id
+        default_value: <file_id>
+        type: string
+        description: The file Id is presented in the file URL. See example - https://drive.google.com/drive/u/0/folders/{file-id}
+        is_mandatory: true
+    -   name: Role
+        default_value: reader
+        type: ddl
+        description: '"Owner"- allows to make any changes to the document
 
         "Reader"- allows to open and view the document
 
         "Writer"- allows to leave comments in the document'
-    is_mandatory: true
--   name: Emails
-    default_value: email_1@gmail.com;email_2@gmail.com
-    type: string
-    description: 'Email address of the person you would like to add permission to
+        is_mandatory: true
+    -   name: Emails
+        default_value: email_1@gmail.com;email_2@gmail.com
+        type: string
+        description: 'Email address of the person you would like to add permission to
         the file. You can add multiple emails by adding ";" as a separator. '
-    is_mandatory: true
--   name: Should send notification
-    default_value: 'true'
-    type: boolean
-    description: 'Define if you would like to send a notification to the user. '
-    is_mandatory: false
+        is_mandatory: true
+    -   name: Should send notification
+        default_value: 'true'
+        type: boolean
+        description: 'Define if you would like to send a notification to the user. '
+        is_mandatory: false
 dynamic_results_metadata:
--   result_name: JsonResult
-    show_result: true
-    result_example: "{\n  \"kind\": \"drive#file\",\n  \"id\": \"1bVDM43X43X4Ogfzzvb_PmPRobMmRdAsmOOgk\"\
+    -   result_name: JsonResult
+        show_result: true
+        result_example: "{\n  \"kind\": \"drive#file\",\n  \"id\": \"1bVDM43X43X4Ogfzzvb_PmPRobMmRdAsmOOgk\"\
         ,\n  \"name\": \"test.png\",\n  \"mimeType\": \"image/png\",\n  \"starred\"\
         : false,\n  \"trashed\": false,\n  \"explicitlyTrashed\": false,\n  \"parents\"\
         : [\n    \"0ADdNAjNcLms6Uk9PVA\"\n  ],\n  \"spaces\": [\n    \"drive\"\n \

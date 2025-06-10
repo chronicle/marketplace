@@ -2,32 +2,32 @@ name: logzio-search-logs
 description: Searches logs in your Logz.io operations account.
 integration_identifier: Logzio
 parameters:
--   name: query
-    default_value: '*'
-    type: string
-    description: A search query written in valid Lucene syntax. Cannot be null - send
-        a wildcard (*) if not using a search query.
-    is_mandatory: false
--   name: size
-    type: string
-    description: Number of log results per query. Limited to 1000 logs.
-    is_mandatory: false
--   name: to_time
-    default_value: ''
-    type: string
-    description: Latest time to search. (Leave this empty if you used a relative time
-        for the parameter ‘from_time’.)
-    is_mandatory: false
--   name: from_time
-    default_value: ''
-    type: string
-    description: 'Earliest time to search. Accepts formats supported by dateparser
+    -   name: query
+        default_value: '*'
+        type: string
+        description: A search query written in valid Lucene syntax. Cannot be null - send
+            a wildcard (*) if not using a search query.
+        is_mandatory: false
+    -   name: size
+        type: string
+        description: Number of log results per query. Limited to 1000 logs.
+        is_mandatory: false
+    -   name: to_time
+        default_value: ''
+        type: string
+        description: Latest time to search. (Leave this empty if you used a relative time
+            for the parameter ‘from_time’.)
+        is_mandatory: false
+    -   name: from_time
+        default_value: ''
+        type: string
+        description: 'Earliest time to search. Accepts formats supported by dateparser
         lib: Unix timestamps, relative time, or the format  "%Y-%m-%dT%H:%M:%S.%f".'
-    is_mandatory: true
+        is_mandatory: true
 dynamic_results_metadata:
--   result_name: JsonResult
-    show_result: true
-    result_example: "{\n\t\"results\": [{\n\t\t\"request\": \"value\",\n\t\t\"agent\"\
+    -   result_name: JsonResult
+        show_result: true
+        result_example: "{\n\t\"results\": [{\n\t\t\"request\": \"value\",\n\t\t\"agent\"\
         : \"value\",\n\t\t\"minor\": \"value\",\n\t\t\"auth\": \"value\",\n\t\t\"\
         ident\": \"value\",\n\t\t\"os_major\": \"value\",\n\t\t\"type\": \"value\"\
         ,\n\t\t\"major\": \"value\",\n\t\t\"clientip\": \"value\",\n\t\t\"_logzio_sample_logs\"\

@@ -2,18 +2,18 @@ name: Buffer
 description: The action receives a json and returns it as a json result
 integration_identifier: Tools
 parameters:
--   name: ResultValue
-    type: string
-    description: Result Value input
-    is_mandatory: false
--   name: JSON
-    type: string
-    description: JSON input
-    is_mandatory: false
+    -   name: ResultValue
+        type: string
+        description: Result Value input
+        is_mandatory: false
+    -   name: JSON
+        type: string
+        description: JSON input
+        is_mandatory: false
 dynamic_results_metadata:
--   result_name: JsonResult
-    show_result: true
-    result_example: '{"body":[{"uri":["https://thisisreallyphishy.somethingmadeup.com"],"email":["craig.h.leabhart@emcins.com"],"domain":["somethingmadeup.com"],"content_header":{"content-type":["text/plain;
+    -   result_name: JsonResult
+        show_result: true
+        result_example: '{"body":[{"uri":["https://thisisreallyphishy.somethingmadeup.com"],"email":["craig.h.leabhart@emcins.com"],"domain":["somethingmadeup.com"],"content_header":{"content-type":["text/plain;
         charset=\"Windows-1252\""],"content-transfer-encoding":["quoted-printable"]},"content":"Testing!
         Don’t delete this.\r\n\r\n\r\n\r\nhttps://thisisreallyphishy.somethingmadeup.com\r\n\r\n\r\n\r\nCraig
         H Leabhart\r\nInformation Security Analyst I\r\nGREM, AINS, CYB, Splunk Enterprise

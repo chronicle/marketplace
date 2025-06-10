@@ -8,34 +8,34 @@ description: This action provides real-time email address reputation scoring and
     a history of fraudulent behavior online.
 integration_identifier: IPQS Fraud and Risk Scoring
 parameters:
--   name: Abuse Strictness
-    default_value: '0'
-    type: ddl
-    description: Set the strictness level for machine learning pattern recognition
-        of abusive email addresses with the "recent_abuse" data point.
-    is_mandatory: true
--   name: Fast
-    default_value: 'false'
-    type: boolean
-    description: When this parameter is enabled our API will not perform an SMTP check
-        with the mail service provider, which greatly increases the API speed.
-    is_mandatory: false
--   name: Timeout in seconds
-    default_value: '7'
-    type: string
-    description: 'Maximum number of seconds to wait for a reply from a mail service
+    -   name: Abuse Strictness
+        default_value: '0'
+        type: ddl
+        description: Set the strictness level for machine learning pattern recognition
+            of abusive email addresses with the "recent_abuse" data point.
+        is_mandatory: true
+    -   name: Fast
+        default_value: 'false'
+        type: boolean
+        description: When this parameter is enabled our API will not perform an SMTP check
+            with the mail service provider, which greatly increases the API speed.
+        is_mandatory: false
+    -   name: Timeout in seconds
+        default_value: '7'
+        type: string
+        description: 'Maximum number of seconds to wait for a reply from a mail service
         provider. '
-    is_mandatory: false
--   name: Suggest Domain
-    default_value: 'false'
-    type: boolean
-    description: Force analyze if the email addresses domain has a typo and should
-        be corrected to a popular mail service.
-    is_mandatory: false
+        is_mandatory: false
+    -   name: Suggest Domain
+        default_value: 'false'
+        type: boolean
+        description: Force analyze if the email addresses domain has a typo and should
+            be corrected to a popular mail service.
+        is_mandatory: false
 dynamic_results_metadata:
--   result_name: JsonResult
-    show_result: true
-    result_example: '{}'
+    -   result_name: JsonResult
+        show_result: true
+        result_example: '{}'
 default_result_value: ''
 creator: IPQS
 script_result_name: ScriptResult

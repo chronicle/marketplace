@@ -7,20 +7,20 @@ description: "A set of built-in Python functions - \nAbs - returns the absolute 
     \ number\nSort - returns a sorted number\nSum - sums the items of an iterator"
 integration_identifier: Functions
 parameters:
--   name: Function
-    default_value: Max
-    type: ddl
-    description: Select the Math Function you would like to run on the number
-    is_mandatory: true
--   name: Numbers
-    default_value: 13.5,-90,566,11.32
-    type: string
-    description: The numbers you would like to run the Math function on.
-    is_mandatory: true
+    -   name: Function
+        default_value: Max
+        type: ddl
+        description: Select the Math Function you would like to run on the number
+        is_mandatory: true
+    -   name: Numbers
+        default_value: 13.5,-90,566,11.32
+        type: string
+        description: The numbers you would like to run the Math function on.
+        is_mandatory: true
 dynamic_results_metadata:
--   result_name: JsonResult
-    show_result: true
-    result_example: '{}'
+    -   result_name: JsonResult
+        show_result: true
+        result_example: '{}'
 default_result_value: ''
 creator: Robert
 script_result_name: ScriptResult

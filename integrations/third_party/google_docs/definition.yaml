@@ -1,25 +1,21 @@
 identifier: Google Docs
 name: Google Docs
-version: 6.0
 parameters:
--   name: Credentials Json
-    default_value: '{}'
-    type: string
-    description: 'View the guide on how to create auth json credentials (service account)
+    -   name: Credentials Json
+        default_value: '{}'
+        type: string
+        description: 'View the guide on how to create auth json credentials (service account)
         - provide access for Google Docs
 
         https://gspread.readthedocs.io/en/latest/oauth2.html#enable-api-access
 
         '
-    is_mandatory: true
-    integration_identifier: Google Docs
-description: Google Docs is an online word processor that lets you create and format
-    documents and work with other people.
-python_version: '3.11'
+        is_mandatory: true
+        integration_identifier: Google Docs
 categories:
-- Google
-- Productivity
-- Cloud
+    - Google
+    - Productivity
+    - Cloud
 svg_image: <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 25 25"><path d="M8.37,16.94h7.25v-.89H8.37Zm0,1.78h5.44v-.89H8.37Zm0-6.22v.89h7.25V12.5Zm0,2.66h7.25v-.88H8.37Z"/><path
     d="M4,4.06A2.12,2.12,0,0,1,6.11,2h7.7a.75.75,0,0,1,.53.22l5.44,5.32a.75.75,0,0,1,.22.6v12.8A2.12,2.12,0,0,1,17.89,23H6.11A2.12,2.12,0,0,1,4,20.94ZM17.44,7.33,14.56,4.51V6.73a.64.64,0,0,0,.61.6ZM13.06,3.47H6.11a.64.64,0,0,0-.61.59V20.94a.64.64,0,0,0,.61.59H17.89a.64.64,0,0,0,.61-.59V8.79H15.17a2.12,2.12,0,0,1-2.11-2.06Z"

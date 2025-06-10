@@ -8,11 +8,11 @@ description: Cybersixgill’s Dynamic Vulnerability Exploit (DVE) Score is power
     to effectively prioritize critical vulnerabilities - straight from the Siemplify
     dashboard.
 integration_identifier: Cybersixgill DVE Enrichment
-parameters: []
+parameters: [ ]
 dynamic_results_metadata:
--   result_name: JsonResult
-    show_result: true
-    result_example: "[\r\n  {\r\n    \"entityIdentifier\": \"CVE-2021-21552\",\r\n\
+    -   result_name: JsonResult
+        show_result: true
+        result_example: "[\r\n  {\r\n    \"entityIdentifier\": \"CVE-2021-21552\",\r\n\
         \    \"entityResult\":\r\n    {\r\n      \"created\": \"2021-05-21T00:00:00.001000Z\"\
         ,\r\n      \"description\": \"Dell Wyse Windows Embedded System versions WIE10\
         \ LTSC 2019 and earlier contain an improper authorization vulnerability. A\

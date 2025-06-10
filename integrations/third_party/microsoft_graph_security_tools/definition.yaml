@@ -1,45 +1,39 @@
 identifier: MicrosoftGraphSecurityTools
 name: MicrosoftGraphSecurityTools
-version: 3.0
 parameters:
--   name: Certificate Password
-    type: password
-    description: Optional, if certificate is password-protected, specify the password
-        to open the certificate file.
-    is_mandatory: false
-    integration_identifier: MicrosoftGraphSecurityTools
--   name: Client ID
-    default_value: clientIdhere
-    type: string
-    description: Client ID from Azure
-    is_mandatory: true
-    integration_identifier: MicrosoftGraphSecurityTools
--   name: Secret ID
-    type: password
-    description: Secret ID from Azure
-    is_mandatory: false
-    integration_identifier: MicrosoftGraphSecurityTools
--   name: Tenant ID
-    default_value: tenantidhere
-    type: string
-    description: Tenant ID from Azure here
-    is_mandatory: true
-    integration_identifier: MicrosoftGraphSecurityTools
--   name: Certificate Path
-    type: string
-    description: If authentication based on certificates is  used instead of client
-        secret, specify path to the certificate on Siemplify server
-    is_mandatory: false
-    integration_identifier: MicrosoftGraphSecurityTools
-description: 'Expands on the MicrosoftGraphSecurity integration by providing additional
-    alerting functionality for SOC, along with entity enrichment and remediation actions.
-
-    Additional documentation: https://github.com/snags141/SiemplifyIntegration_MicrosoftGraphSecurityTools'
-python_version: '3.11'
+    -   name: Certificate Password
+        type: password
+        description: Optional, if certificate is password-protected, specify the password
+            to open the certificate file.
+        is_mandatory: false
+        integration_identifier: MicrosoftGraphSecurityTools
+    -   name: Client ID
+        default_value: clientIdhere
+        type: string
+        description: Client ID from Azure
+        is_mandatory: true
+        integration_identifier: MicrosoftGraphSecurityTools
+    -   name: Secret ID
+        type: password
+        description: Secret ID from Azure
+        is_mandatory: false
+        integration_identifier: MicrosoftGraphSecurityTools
+    -   name: Tenant ID
+        default_value: tenantidhere
+        type: string
+        description: Tenant ID from Azure here
+        is_mandatory: true
+        integration_identifier: MicrosoftGraphSecurityTools
+    -   name: Certificate Path
+        type: string
+        description: If authentication based on certificates is  used instead of client
+            secret, specify path to the certificate on Siemplify server
+        is_mandatory: false
+        integration_identifier: MicrosoftGraphSecurityTools
 categories:
-- Security
-- Cloud
-- Cloud Security
+    - Security
+    - Cloud
+    - Cloud Security
 svg_image: "<?xml version=\"1.0\" encoding=\"utf-8\"?><!-- Generator: Adobe Illustrator\
     \ 24.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  --><svg version=\"\
     1.1\" id=\"Layer_1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\"\

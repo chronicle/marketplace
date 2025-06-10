@@ -1,39 +1,31 @@
 identifier: Logzio
 name: Logzio
-version: 3.0
 parameters:
--   name: logzio_security_token
-    type: password
-    description: API token for your Logz.io security account.
-    is_mandatory: true
-    integration_identifier: Logzio
--   name: logzio_region
-    type: string
-    description: 2-letter region code for your Logz.io account.
-    is_mandatory: false
-    integration_identifier: Logzio
--   name: logzio_operations_token
-    type: password
-    description: API token for your Logz.io operations account.
-    is_mandatory: true
-    integration_identifier: Logzio
--   name: logzio_custom_endpoint
-    type: string
-    description: Optional. Relevant if you use a custom URL with the Logz.io API.
-        Overrides logzio_region.
-    is_mandatory: false
-    integration_identifier: Logzio
-description: 'Automatically remediate security incidents identified by Logz.io and
-    increase observability into incident details.
-
-    For more information on configuration and integration details:
-
-    https://docs.logz.io/user-guide/cloud-siem/integration/siemplify/'
-python_version: '3.11'
+    -   name: logzio_security_token
+        type: password
+        description: API token for your Logz.io security account.
+        is_mandatory: true
+        integration_identifier: Logzio
+    -   name: logzio_region
+        type: string
+        description: 2-letter region code for your Logz.io account.
+        is_mandatory: false
+        integration_identifier: Logzio
+    -   name: logzio_operations_token
+        type: password
+        description: API token for your Logz.io operations account.
+        is_mandatory: true
+        integration_identifier: Logzio
+    -   name: logzio_custom_endpoint
+        type: string
+        description: Optional. Relevant if you use a custom URL with the Logz.io API.
+            Overrides logzio_region.
+        is_mandatory: false
+        integration_identifier: Logzio
 documentation_link: https://docs.logz.io/user-guide/cloud-siem/integration/siemplify/
 categories:
-- Security
-- SIEM
+    - Security
+    - SIEM
 svg_image: "<?xml version=\"1.0\" encoding=\"utf-8\"?><!-- Generator: Adobe Illustrator\
     \ 24.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  --><svg version=\"\
     1.1\" id=\"Layer_1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\"\

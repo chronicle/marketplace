@@ -1,68 +1,68 @@
 name: Cybersixgill Actionable Alerts
 parameters:
--   name: Alerts Limit
-    default_value: '50'
-    type: integer
-    description: number of alerts
-    is_mandatory: true
-    is_advanced: false
-    mode: script
--   name: Client Id
-    default_value: clientid
-    type: password
-    description: Client Id
-    is_mandatory: true
-    is_advanced: false
-    mode: script
--   name: Client Secret
-    default_value: secretkey
-    type: password
-    description: Client Secret
-    is_mandatory: true
-    is_advanced: false
-    mode: script
--   name: DeviceProductField
-    default_value: Cybersixgill Actionable Alerts
-    type: string
-    description: The field name used to determine the device product
-    is_mandatory: true
-    is_advanced: false
-    mode: regular
--   name: EventClassId
-    default_value: Cybersixgill Actionable Alerts
-    type: string
-    description: The field name used to determine the event name (sub-type)
-    is_mandatory: true
-    is_advanced: false
-    mode: regular
--   name: Organization id
-    type: string
-    description: Org Id
-    is_mandatory: false
-    is_advanced: false
-    mode: script
--   name: PythonProcessTimeout
-    default_value: '30'
-    type: string
-    description: The timeout limit (in seconds) for the python process running current
-        script
-    is_mandatory: true
-    is_advanced: false
-    mode: regular
--   name: Threat Level
-    type: string
-    description: level of threat
-    is_mandatory: false
-    is_advanced: false
-    mode: script
--   name: Threat Type
-    type: string
-    description: type of threat
-    is_mandatory: false
-    is_advanced: false
-    mode: script
+    -   name: Alerts Limit
+        default_value: '50'
+        type: integer
+        description: number of alerts
+        is_mandatory: true
+        is_advanced: false
+        mode: script
+    -   name: Client Id
+        default_value: clientid
+        type: password
+        description: Client Id
+        is_mandatory: true
+        is_advanced: false
+        mode: script
+    -   name: Client Secret
+        default_value: secretkey
+        type: password
+        description: Client Secret
+        is_mandatory: true
+        is_advanced: false
+        mode: script
+    -   name: DeviceProductField
+        default_value: Cybersixgill Actionable Alerts
+        type: string
+        description: The field name used to determine the device product
+        is_mandatory: true
+        is_advanced: false
+        mode: regular
+    -   name: EventClassId
+        default_value: Cybersixgill Actionable Alerts
+        type: string
+        description: The field name used to determine the event name (sub-type)
+        is_mandatory: true
+        is_advanced: false
+        mode: regular
+    -   name: Organization id
+        type: string
+        description: Org Id
+        is_mandatory: false
+        is_advanced: false
+        mode: script
+    -   name: PythonProcessTimeout
+        default_value: '30'
+        type: string
+        description: The timeout limit (in seconds) for the python process running current
+            script
+        is_mandatory: true
+        is_advanced: false
+        mode: regular
+    -   name: Threat Level
+        type: string
+        description: level of threat
+        is_mandatory: false
+        is_advanced: false
+        mode: script
+    -   name: Threat Type
+        type: string
+        description: type of threat
+        is_mandatory: false
+        is_advanced: false
+        mode: script
 description: ''
 integration: Cybersixgill Actionable Alerts
-rules: []
+rules: [ ]
 is_connector_rules_supported: true
 creator: Admin

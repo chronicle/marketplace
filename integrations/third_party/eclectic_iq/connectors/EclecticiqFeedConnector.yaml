@@ -1,58 +1,58 @@
 name: EclecticIQ - Feed Connector
 parameters:
--   name: API Token
-    default_value: abcd
-    type: password
-    description: toekn
-    is_mandatory: true
-    is_advanced: false
-    mode: script
--   name: DeviceProductField
-    default_value: EclecticIQ
-    type: string
-    description: The field name used to determine the device product
-    is_mandatory: true
-    is_advanced: false
-    mode: regular
--   name: EclecticIQ URL
-    default_value: https://eclecticiq.local
-    type: string
-    description: url
-    is_mandatory: true
-    is_advanced: false
-    mode: script
--   name: EventClassId
-    default_value: Threat Intelligence
-    type: string
-    description: The field name used to determine the event name (sub-type)
-    is_mandatory: true
-    is_advanced: false
-    mode: regular
--   name: Outgoing Feed ID
-    default_value: '1'
-    type: string
-    description: Outgoing Feed ID from which you want to fetch the entities.
-    is_mandatory: true
-    is_advanced: false
-    mode: script
--   name: PythonProcessTimeout
-    default_value: '30'
-    type: string
-    description: The timeout limit (in seconds) for the python process running current
-        script
-    is_mandatory: true
-    is_advanced: false
-    mode: regular
--   name: Verify SSL
-    default_value: 'true'
-    type: boolean
-    description: verify
-    is_mandatory: false
-    is_advanced: true
-    mode: script
+    -   name: API Token
+        default_value: abcd
+        type: password
+        description: toekn
+        is_mandatory: true
+        is_advanced: false
+        mode: script
+    -   name: DeviceProductField
+        default_value: EclecticIQ
+        type: string
+        description: The field name used to determine the device product
+        is_mandatory: true
+        is_advanced: false
+        mode: regular
+    -   name: EclecticIQ URL
+        default_value: https://eclecticiq.local
+        type: string
+        description: url
+        is_mandatory: true
+        is_advanced: false
+        mode: script
+    -   name: EventClassId
+        default_value: Threat Intelligence
+        type: string
+        description: The field name used to determine the event name (sub-type)
+        is_mandatory: true
+        is_advanced: false
+        mode: regular
+    -   name: Outgoing Feed ID
+        default_value: '1'
+        type: string
+        description: Outgoing Feed ID from which you want to fetch the entities.
+        is_mandatory: true
+        is_advanced: false
+        mode: script
+    -   name: PythonProcessTimeout
+        default_value: '30'
+        type: string
+        description: The timeout limit (in seconds) for the python process running current
+            script
+        is_mandatory: true
+        is_advanced: false
+        mode: regular
+    -   name: Verify SSL
+        default_value: 'true'
+        type: boolean
+        description: verify
+        is_mandatory: false
+        is_advanced: true
+        mode: script
 description: This connector facilitates data retrieval from outgoing feeds configured
     by users via  parameters
 integration: EclecticIQ
-rules: []
+rules: [ ]
 is_connector_rules_supported: true
 creator: 02d62532-046f-494f-8c5f-6541026a07d1

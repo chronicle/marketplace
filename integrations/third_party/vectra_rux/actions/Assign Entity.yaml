@@ -2,26 +2,26 @@ name: Assign Entity
 description: Assign an entity to the given user ID.
 integration_identifier: VectraRUX
 parameters:
--   name: Entity ID
-    default_value: ' '
-    type: string
-    description: Entity ID which will be assigned. Entity can be of type Account or
-        Host.
-    is_mandatory: true
--   name: Entity Type
-    default_value: Account
-    type: ddl
-    description: Entity can be of type Account or Host.
-    is_mandatory: true
--   name: User ID
-    default_value: ' '
-    type: string
-    description: User to which assignment will be assigned.
-    is_mandatory: true
+    -   name: Entity ID
+        default_value: ' '
+        type: string
+        description: Entity ID which will be assigned. Entity can be of type Account or
+            Host.
+        is_mandatory: true
+    -   name: Entity Type
+        default_value: Account
+        type: ddl
+        description: Entity can be of type Account or Host.
+        is_mandatory: true
+    -   name: User ID
+        default_value: ' '
+        type: string
+        description: User to which assignment will be assigned.
+        is_mandatory: true
 dynamic_results_metadata:
--   result_name: JsonResult
-    show_result: true
-    result_example: "{\n    \"id\": 559,\n    \"assigned_by\": {\n        \"id\":\
+    -   result_name: JsonResult
+        show_result: true
+        result_example: "{\n    \"id\": 559,\n    \"assigned_by\": {\n        \"id\":\
         \ 22237,\n        \"username\": \"api_client_25cb417aab214139ae8c7394e2b1a3db\"\
         \n    },\n    \"date_assigned\": \"2024-11-21T08:26:26.766207Z\",\n    \"\
         date_resolved\": null,\n    \"events\": [\n        {\n            \"assignment_id\"\

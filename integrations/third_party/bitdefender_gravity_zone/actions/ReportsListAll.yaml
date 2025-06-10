@@ -3,19 +3,19 @@ description: This method returns the list of scheduled reports, according to the
     received.
 integration_identifier: Bitdefender GravityZone
 parameters:
--   name: Report Name
-    type: string
-    description: The name of the report.
-    is_mandatory: false
--   name: Report Type
-    default_value: ''
-    type: ddl
-    description: The report type.
-    is_mandatory: false
+    -   name: Report Name
+        type: string
+        description: The name of the report.
+        is_mandatory: false
+    -   name: Report Type
+        default_value: ''
+        type: ddl
+        description: The report type.
+        is_mandatory: false
 dynamic_results_metadata:
--   result_name: JsonResult
-    show_result: true
-    result_example: "{\r\n    \"items\": [\r\n        {\r\n            \"id\": \"\
+    -   result_name: JsonResult
+        show_result: true
+        result_example: "{\r\n    \"items\": [\r\n        {\r\n            \"id\": \"\
         5638cdceb1a43d46137b23c6\",\r\n            \"name\": \"My report 1\",\r\n\
         \            \"occurrence\": 2,\r\n            \"type\": 2\r\n        },\r\
         \n        {\r\n            \"id\": \"5638d7f8b1a43d49137b23c9\",\r\n     \

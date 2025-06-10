@@ -2,19 +2,19 @@ name: Trigger AI Model training
 description: ''
 integration_identifier: ArcannaAI
 parameters:
--   name: Job ID
-    default_value: ''
-    type: string
-    description: ID For job where training will be triggered
-    is_mandatory: true
--   name: Username
-    default_value: '@Administrator'
-    type: user
-    description: Username for audit
-    is_mandatory: true
+    -   name: Job ID
+        default_value: ''
+        type: string
+        description: ID For job where training will be triggered
+        is_mandatory: true
+    -   name: Username
+        default_value: '@Administrator'
+        type: user
+        description: Username for audit
+        is_mandatory: true
 dynamic_results_metadata:
--   result_name: JsonResult
-    show_result: true
-    result_example: '{"status": "OK", "error_message": ""}'
+    -   result_name: JsonResult
+        show_result: true
+        result_example: '{"status": "OK", "error_message": ""}'
 default_result_value: ''
 creator: 57861f63-e407-4200-90d4-a03bed1eb07e

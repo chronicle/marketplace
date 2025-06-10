@@ -2,78 +2,78 @@ name: Search Detections
 description: List detections based on query parameters.
 integration_identifier: VectraQUX
 parameters:
--   name: Last Timestamp GTE
-    type: string
-    description: filter by last timestamp that greater or equal to given timestamp
-    is_mandatory: false
--   name: Host ID
-    type: string
-    description: filter by host ID
-    is_mandatory: false
--   name: Tags
-    type: string
-    description: filter by coma separated tags
-    is_mandatory: false
--   name: Is Targeting Key Asset
-    default_value: ''
-    type: ddl
-    description: filter if detections are targeting key asset or not
-    is_mandatory: false
--   name: Note Modified Timestamp GTE
-    type: string
-    description: filter based on note modified by timestamp
-    is_mandatory: false
--   name: Order
-    default_value: ''
-    type: ddl
-    description: filter detections in ascending or descending order
-    is_mandatory: false
--   name: Limit
-    type: string
-    description: fetch given number of records
-    is_mandatory: false
--   name: Order By
-    default_value: ''
-    type: ddl
-    description: order by created_datetime, last_timestamp, t_score, c_score, id
-    is_mandatory: false
--   name: Fields
-    default_value: ''
-    type: multi_choice_parameter
-    description: get only given fields
-    is_mandatory: false
--   name: State
-    default_value: ''
-    type: ddl
-    description: 'filter by state
+    -   name: Last Timestamp GTE
+        type: string
+        description: filter by last timestamp that greater or equal to given timestamp
+        is_mandatory: false
+    -   name: Host ID
+        type: string
+        description: filter by host ID
+        is_mandatory: false
+    -   name: Tags
+        type: string
+        description: filter by coma separated tags
+        is_mandatory: false
+    -   name: Is Targeting Key Asset
+        default_value: ''
+        type: ddl
+        description: filter if detections are targeting key asset or not
+        is_mandatory: false
+    -   name: Note Modified Timestamp GTE
+        type: string
+        description: filter based on note modified by timestamp
+        is_mandatory: false
+    -   name: Order
+        default_value: ''
+        type: ddl
+        description: filter detections in ascending or descending order
+        is_mandatory: false
+    -   name: Limit
+        type: string
+        description: fetch given number of records
+        is_mandatory: false
+    -   name: Order By
+        default_value: ''
+        type: ddl
+        description: order by created_datetime, last_timestamp, t_score, c_score, id
+        is_mandatory: false
+    -   name: Fields
+        default_value: ''
+        type: multi_choice_parameter
+        description: get only given fields
+        is_mandatory: false
+    -   name: State
+        default_value: ''
+        type: ddl
+        description: 'filter by state
 
         '
-    is_mandatory: false
--   name: Detection Type
-    type: string
-    description: filter by detection type
-    is_mandatory: false
--   name: Detection Category
-    default_value: ''
-    type: ddl
-    description: filter by detection category
-    is_mandatory: false
--   name: Src IP
-    type: string
-    description: filter by source IP
-    is_mandatory: false
--   name: Threat GTE
-    type: string
-    description: filter by threat
-    is_mandatory: false
--   name: Certainty GTE
-    type: string
-    description: filter by certainty
-    is_mandatory: false
+        is_mandatory: false
+    -   name: Detection Type
+        type: string
+        description: filter by detection type
+        is_mandatory: false
+    -   name: Detection Category
+        default_value: ''
+        type: ddl
+        description: filter by detection category
+        is_mandatory: false
+    -   name: Src IP
+        type: string
+        description: filter by source IP
+        is_mandatory: false
+    -   name: Threat GTE
+        type: string
+        description: filter by threat
+        is_mandatory: false
+    -   name: Certainty GTE
+        type: string
+        description: filter by certainty
+        is_mandatory: false
 dynamic_results_metadata:
--   result_name: JsonResult
-    show_result: true
-    result_example: "[\n    {\n        \"summary\": {\n            \"accounts\": [\n\
+    -   result_name: JsonResult
+        show_result: true
+        result_example: "[\n    {\n        \"summary\": {\n            \"accounts\": [\n\
         \                \"\"\n            ],\n            \"function_uuids\": [\n\
         \                \"wkssvc\",\n                \"srvsvc\"\n            ],\n\
         \            \"dst_ips\": [\n                \"1.1.1.1\"\n            ]\n\

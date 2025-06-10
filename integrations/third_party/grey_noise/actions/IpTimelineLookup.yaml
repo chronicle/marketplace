@@ -3,20 +3,20 @@ description: Retrieve Daily Scanning events for an IP. Requires additional licen
     to use. Consumes 1 Search per valid IP submitted.
 integration_identifier: GreyNoise
 parameters:
--   name: days
-    default_value: '30'
-    type: string
-    description: Number of days from today to retrieve timeline information
-    is_mandatory: true
--   name: limit
-    default_value: '50'
-    type: string
-    description: Maximum number of timeline events to return
-    is_mandatory: true
+    -   name: days
+        default_value: '30'
+        type: string
+        description: Number of days from today to retrieve timeline information
+        is_mandatory: true
+    -   name: limit
+        default_value: '50'
+        type: string
+        description: Maximum number of timeline events to return
+        is_mandatory: true
 dynamic_results_metadata:
--   result_name: JsonResult
-    show_result: true
-    result_example: '{"results": [{"Entity": "1.1.1.1", "EntityResult": {"activity":
+    -   result_name: JsonResult
+        show_result: true
+        result_example: '{"results": [{"Entity": "1.1.1.1", "EntityResult": {"activity":
         [{"timestamp": "2023-08-14T00:00:00Z", "country": "China", "country_code":
         "CN", "asn": "AS9808", "region": "Sichuan", "city": "Chengdu", "category":
         "isp", "rdns": "", "organization": "China Mobile Communications Group Co.,

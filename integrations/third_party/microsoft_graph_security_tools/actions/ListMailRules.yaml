@@ -4,15 +4,15 @@ description: 'Get all the messageRule objects defined for the user''s Inbox.
     https://docs.microsoft.com/en-us/graph/api/mailfolder-list-messagerules?view=graph-rest-1.0&tabs=http'
 integration_identifier: MicrosoftGraphSecurityTools
 parameters:
--   name: User ID
-    default_value: john.smith@mail.com
-    type: string
-    description: User ID/userPrincipalName (email)
-    is_mandatory: true
+    -   name: User ID
+        default_value: john.smith@mail.com
+        type: string
+        description: User ID/userPrincipalName (email)
+        is_mandatory: true
 dynamic_results_metadata:
--   result_name: JsonResult
-    show_result: true
-    result_example: "[\r\n    {\r\n        \"id\": \"BQCBAcc7hg4=\",\r\n        \"\
+    -   result_name: JsonResult
+        show_result: true
+        result_example: "[\r\n    {\r\n        \"id\": \"BQCBAcc7hg4=\",\r\n        \"\
         displayName\": \"IBM XForce\",\r\n        \"sequence\": 1,\r\n        \"isEnabled\"\
         : \"True\",\r\n        \"hasError\": \"False\",\r\n        \"isReadOnly\"\
         : \"False\",\r\n        \"conditions\": {\r\n            \"fromAddresses\"\

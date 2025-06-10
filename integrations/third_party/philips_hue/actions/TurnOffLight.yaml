@@ -2,20 +2,20 @@ name: Turn Off Light
 description: Turns light off by light ID.
 integration_identifier: PhilipsHUE
 parameters:
--   name: Light ID
-    default_value: '1'
-    type: string
-    description: 'ID of the light you want to turn off.
+    -   name: Light ID
+        default_value: '1'
+        type: string
+        description: 'ID of the light you want to turn off.
 
 
         How to view hue lights:
 
         https://developers.meethue.com/develop/get-started-2/#turning-a-light-on-and-off'
-    is_mandatory: true
+        is_mandatory: true
 dynamic_results_metadata:
--   result_name: JsonResult
-    show_result: true
-    result_example: "{\n  \"light_id\": \"2\",\n  \"info\": {\n    \"light reachability\"\
+    -   result_name: JsonResult
+        show_result: true
+        result_example: "{\n  \"light_id\": \"2\",\n  \"info\": {\n    \"light reachability\"\
         : true,\n    \"results\": [\n      {\n        \"success\": {\n          \"\
         /lights/2/state/hue\": 10000\n        }\n      },\n      {\n        \"success\"\
         : {\n          \"/lights/2/state/sat\": 254\n        }\n      },\n      {\n\

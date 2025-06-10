@@ -3,15 +3,15 @@ description: Create an alert for the provided entity. Will fail if entity is inv
     or protected in Doppel's system.
 integration_identifier: DoppelVision
 parameters:
--   name: Entity
-    default_value: https://dummyrul.com
-    type: string
-    description: Entity to be alerted.
-    is_mandatory: true
+    -   name: Entity
+        default_value: https://dummyrul.com
+        type: string
+        description: Entity to be alerted.
+        is_mandatory: true
 dynamic_results_metadata:
--   result_name: JsonResult
-    show_result: true
-    result_example: '{}'
+    -   result_name: JsonResult
+        show_result: true
+        result_example: '{}'
 default_result_value: ''
 creator: Anuj Yadav
 script_result_name: ScriptResult

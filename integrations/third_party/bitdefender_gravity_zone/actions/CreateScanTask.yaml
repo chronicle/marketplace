@@ -2,39 +2,39 @@ name: Create Scan Task
 description: This method creates a task to isolate the specified endpoint.
 integration_identifier: Bitdefender GravityZone
 parameters:
--   name: Target IDs
-    default_value: targetId1,targetId2
-    type: string
-    description: A list with the IDs of the targets to scan. The target ID can designate
-        an endpoint or a container.
-    is_mandatory: true
--   name: Scan Type
-    default_value: Quick
-    type: ddl
-    description: 'The type of scan. Available options are: 1 - quick scan; 2 - full
+    -   name: Target IDs
+        default_value: targetId1,targetId2
+        type: string
+        description: A list with the IDs of the targets to scan. The target ID can designate
+            an endpoint or a container.
+        is_mandatory: true
+    -   name: Scan Type
+        default_value: Quick
+        type: ddl
+        description: 'The type of scan. Available options are: 1 - quick scan; 2 - full
         scan; 3 - memory scan; 4 - custom scan'
-    is_mandatory: true
--   name: Task Name
-    type: string
-    description: The name of the task. If the parameter is not passed, the name will
-        be automatically generated.
-    is_mandatory: false
--   name: Custom Scan - Depth
-    default_value: Normal
-    type: ddl
-    description: 'The scan profile. Available options: 1 - aggressive; 2 - normal;
+        is_mandatory: true
+    -   name: Task Name
+        type: string
+        description: The name of the task. If the parameter is not passed, the name will
+            be automatically generated.
+        is_mandatory: false
+    -   name: Custom Scan - Depth
+        default_value: Normal
+        type: ddl
+        description: 'The scan profile. Available options: 1 - aggressive; 2 - normal;
         3 - permissive. This parameter is only used when scan type is Custom'
-    is_mandatory: false
--   name: Custom Scan - Paths
-    default_value: LocalDrives
-    type: string
-    description: Comma-separated list of target paths to be scanned. This parameter
-        is only used when scan type is Custom
-    is_mandatory: false
+        is_mandatory: false
+    -   name: Custom Scan - Paths
+        default_value: LocalDrives
+        type: string
+        description: Comma-separated list of target paths to be scanned. This parameter
+            is only used when scan type is Custom
+        is_mandatory: false
 dynamic_results_metadata:
--   result_name: JsonResult
-    show_result: false
-    result_example: "{\n    \"items\":[\n        {   \n            \"id\" : \"21a295eeb1a43d8b497b23b7\"\
+    -   result_name: JsonResult
+        show_result: false
+        result_example: "{\n    \"items\":[\n        {   \n            \"id\" : \"21a295eeb1a43d8b497b23b7\"\
         , \"name\" : \"Endpoint 1\",\n            \"label\" : \"endpoint 1\",\n  \
         \          \"fqdn\": \"endpoint1.local\",\n            \"groupId\": \"5a5f4d36b1a43d5f097b23bb\"\
         , \"isManaged\": true,\n            \"isManaged\": true,\n            \"machineType\"\

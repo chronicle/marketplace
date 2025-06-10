@@ -4,47 +4,47 @@ description: 'Get events from Datadog.
     For more information: https://docs.datadoghq.com/api/v1/events/'
 integration_identifier: DataDog
 parameters:
--   name: Sources
-    default_value: alert
-    type: string
-    description: 'The sources to retrieve the events from.
+    -   name: Sources
+        default_value: alert
+        type: string
+        description: 'The sources to retrieve the events from.
 
         For example in order to see events from the triggered monitor write: ''alert''  '
-    is_mandatory: true
--   name: Start Time
-    default_value: '1400000470'
-    type: string
-    description: The start time of the events in Unixtime.
-    is_mandatory: true
--   name: End Time
-    default_value: '1610557457'
-    type: string
-    description: The end time of the events  in Unixtime.
-    is_mandatory: true
--   name: Priority
-    default_value: all
-    type: ddl
-    description: "The priority of the events you want to retrieve. \n"
-    is_mandatory: false
--   name: Tags
-    default_value: monitor
-    type: string
-    description: 'A comma separated list of tags that will filter the list of monitors
+        is_mandatory: true
+    -   name: Start Time
+        default_value: '1400000470'
+        type: string
+        description: The start time of the events in Unixtime.
+        is_mandatory: true
+    -   name: End Time
+        default_value: '1610557457'
+        type: string
+        description: The end time of the events  in Unixtime.
+        is_mandatory: true
+    -   name: Priority
+        default_value: all
+        type: ddl
+        description: "The priority of the events you want to retrieve. \n"
+        is_mandatory: false
+    -   name: Tags
+        default_value: monitor
+        type: string
+        description: 'A comma separated list of tags that will filter the list of monitors
         by scope.
 
         For example: ''monitor''.'
-    is_mandatory: false
--   name: Unaggregated
-    default_value: 'true'
-    type: boolean
-    description: 'True- if you want to retrieve the full list of events.
+        is_mandatory: false
+    -   name: Unaggregated
+        default_value: 'true'
+        type: boolean
+        description: 'True- if you want to retrieve the full list of events.
 
         False - if you want to retrieve aggregated list of events.'
-    is_mandatory: false
+        is_mandatory: false
 dynamic_results_metadata:
--   result_name: JsonResult
-    show_result: true
-    result_example: "{\r\n\t\"events\": [{\r\n\t\t\"date_happened\": 1610487676,\r\
+    -   result_name: JsonResult
+        show_result: true
+        result_example: "{\r\n\t\"events\": [{\r\n\t\t\"date_happened\": 1610487676,\r\
         \n\t\t\"alert_type\": \"error\",\r\n\t\t\"is_aggregate\": false,\r\n\t\t\"\
         title\": \"[Triggered on {host:i-123456}] Node filesystem used in Percent\
         \ i-123456\",\r\n\t\t\"url\": \"/event/event?id=1111111111\",\r\n\t\t\"text\"\

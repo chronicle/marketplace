@@ -3,22 +3,22 @@ description: Add an analyst note to previously enriched entities in Siemplify, t
     Recorded Future entities. Action will add the note to the relevant scope entities.
 integration_identifier: RecordedFutureIntelligence
 parameters:
--   name: Note Title
-    default_value: Note Title
-    type: string
-    description: Specify the title for the note
-    is_mandatory: true
--   name: Note Text
-    default_value: Note Text
-    type: string
-    description: Specify the Text for the note
-    is_mandatory: true
--   name: Topic
-    default_value: None
-    type: ddl
-    description: Specify the relevant Note topic from the list, if needed.
-    is_mandatory: false
-dynamic_results_metadata: []
+    -   name: Note Title
+        default_value: Note Title
+        type: string
+        description: Specify the title for the note
+        is_mandatory: true
+    -   name: Note Text
+        default_value: Note Text
+        type: string
+        description: Specify the Text for the note
+        is_mandatory: true
+    -   name: Topic
+        default_value: None
+        type: ddl
+        description: Specify the relevant Note topic from the list, if needed.
+        is_mandatory: false
+dynamic_results_metadata: [ ]
 creator: admin
 simulation_data_json: '{"Entities": ["FILEHASH", "DestinationURL", "CVE", "HOSTNAME",
     "ADDRESS"]}'

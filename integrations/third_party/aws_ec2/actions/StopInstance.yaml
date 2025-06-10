@@ -6,23 +6,23 @@ description: 'Stops a specific instance in AWS - EC2.
     For more information:  https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/ec2.html#EC2.Client.stop_instances'
 integration_identifier: AWS - EC2
 parameters:
--   name: Instance Ids
-    default_value: instance_id1,instance_id2
-    type: content
-    description: 'The instance IDs which you want to stop (comma separated).
+    -   name: Instance Ids
+        default_value: instance_id1,instance_id2
+        type: content
+        description: 'The instance IDs which you want to stop (comma separated).
 
         For example: instance_id1,instance_id2'
-    is_mandatory: true
--   name: Force Instance To Stop
-    default_value: 'false'
-    type: boolean
-    description: Forces the instance to stop without processing the file system caches
-        or file system metadata.
-    is_mandatory: false
+        is_mandatory: true
+    -   name: Force Instance To Stop
+        default_value: 'false'
+        type: boolean
+        description: Forces the instance to stop without processing the file system caches
+            or file system metadata.
+        is_mandatory: false
 dynamic_results_metadata:
--   result_name: JsonResult
-    show_result: true
-    result_example: "{\r\n\t\"i-1111\": {\r\n\t\t\"StoppingInstances\": [{\r\n\t\t\
+    -   result_name: JsonResult
+        show_result: true
+        result_example: "{\r\n\t\"i-1111\": {\r\n\t\t\"StoppingInstances\": [{\r\n\t\t\
         \t\"CurrentState\": {\r\n\t\t\t\t\"Code\": 80,\r\n\t\t\t\t\"Name\": \"stopped\"\
         \r\n\t\t\t},\r\n\t\t\t\"InstanceId\": \"i-1111\",\r\n\t\t\t\"PreviousState\"\
         : {\r\n\t\t\t\t\"Code\": 80,\r\n\t\t\t\t\"Name\": \"stopped\"\r\n\t\t\t}\r\

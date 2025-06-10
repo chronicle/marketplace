@@ -2,36 +2,36 @@ name: Convert Time Format
 description: 'Convert a datetime value from one format to another format.  '
 integration_identifier: Functions
 parameters:
--   name: Input
-    default_value: <input val>
-    type: string
-    description: The input datetime value that will be converted.
-    is_mandatory: true
--   name: From Format
-    default_value: X
-    type: string
-    description: "The datetime format the input string is in.  \nhttps://strftime.org/"
-    is_mandatory: true
--   name: To Format
-    default_value: YYYY/MM/DD
-    type: string
-    description: The desired time format of the output.  Use Arrow time format.  https://arrow.readthedocs.io/en/stable/#supported-tokens
-    is_mandatory: true
--   name: Time Delta In Seconds
-    default_value: '0'
-    type: string
-    description: Shift parameter that allows to change the output actual time to either
-        the future (positive) or past (negative). This shift is measured in seconds
-    is_mandatory: true
--   name: Timezone
-    default_value: ''
-    type: string
-    description: Output timezone
-    is_mandatory: false
+    -   name: Input
+        default_value: <input val>
+        type: string
+        description: The input datetime value that will be converted.
+        is_mandatory: true
+    -   name: From Format
+        default_value: X
+        type: string
+        description: "The datetime format the input string is in.  \nhttps://strftime.org/"
+        is_mandatory: true
+    -   name: To Format
+        default_value: YYYY/MM/DD
+        type: string
+        description: The desired time format of the output.  Use Arrow time format.  https://arrow.readthedocs.io/en/stable/#supported-tokens
+        is_mandatory: true
+    -   name: Time Delta In Seconds
+        default_value: '0'
+        type: string
+        description: Shift parameter that allows to change the output actual time to either
+            the future (positive) or past (negative). This shift is measured in seconds
+        is_mandatory: true
+    -   name: Timezone
+        default_value: ''
+        type: string
+        description: Output timezone
+        is_mandatory: false
 dynamic_results_metadata:
--   result_name: JsonResult
-    show_result: true
-    result_example: '{}'
+    -   result_name: JsonResult
+        show_result: true
+        result_example: '{}'
 default_result_value: ''
 creator: Rob
 script_result_name: ScriptResult
