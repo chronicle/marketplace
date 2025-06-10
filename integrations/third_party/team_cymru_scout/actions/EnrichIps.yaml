@@ -2,11 +2,11 @@ name: Enrich IPs
 description: Enriches the IP Address Entities from the information available in Team
     Cymru Scout platform.
 integration_identifier: TeamCymruScout
-parameters: []
+parameters: [ ]
 dynamic_results_metadata:
--   result_name: JsonResult
-    show_result: true
-    result_example: "{\r\n    \"1.1.1.1\": {\r\n        \"ip\": \"1.1.1.1\",\r\n \
+    -   result_name: JsonResult
+        show_result: true
+        result_example: "{\r\n    \"1.1.1.1\": {\r\n        \"ip\": \"1.1.1.1\",\r\n \
         \       \"country_code\": \"US\",\r\n        \"as_info\": [\r\n          \
         \  {\r\n                \"asn\": 13335,\r\n                \"as_name\": \"\
         CLOUDFLARENET, US\"\r\n            }\r\n        ],\r\n        \"insights\"\

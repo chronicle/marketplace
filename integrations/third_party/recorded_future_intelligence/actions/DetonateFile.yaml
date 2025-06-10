@@ -2,30 +2,30 @@ name: Detonate File
 description: Submits a File to the Recorded Future Sandbox for analysis.
 integration_identifier: RecordedFutureIntelligence
 parameters:
--   name: File Path
-    default_value: ''
-    type: string
-    description: Specify the file path.
-    is_mandatory: true
--   name: File Source
-    type: ddl
-    description: Destination to pull files from. By default, the action attempts to
-        pull the file from Google Cloud storage bucket. Saving an attachment to the
-        local file system is a fallback option.
-    is_mandatory: true
--   name: Profile
-    default_value: ''
-    type: string
-    description: Specify the Sandbox profile.
-    is_mandatory: false
--   name: Password
-    default_value: ''
-    type: string
-    description: Password for the archive sample.
-    is_mandatory: false
+    -   name: File Path
+        default_value: ''
+        type: string
+        description: Specify the file path.
+        is_mandatory: true
+    -   name: File Source
+        type: ddl
+        description: Destination to pull files from. By default, the action attempts to
+            pull the file from Google Cloud storage bucket. Saving an attachment to the
+            local file system is a fallback option.
+        is_mandatory: true
+    -   name: Profile
+        default_value: ''
+        type: string
+        description: Specify the Sandbox profile.
+        is_mandatory: false
+    -   name: Password
+        default_value: ''
+        type: string
+        description: Password for the archive sample.
+        is_mandatory: false
 dynamic_results_metadata:
--   result_name: JsonResult
-    show_result: true
-    result_example: ''
+    -   result_name: JsonResult
+        show_result: true
+        result_example: ''
 creator: severins
 is_async: true

@@ -2,48 +2,48 @@ name: List Assignments
 description: List all the assignments based on the query parameters.
 integration_identifier: VectraQUX
 parameters:
--   name: Accounts IDs
-    default_value: ''
-    type: string
-    description: Comma-separated account ids to filter out accounts.
-    is_mandatory: false
--   name: Hosts IDs
-    default_value: ''
-    type: string
-    description: Comma-separated host ids to filter out accounts.
-    is_mandatory: false
--   name: Assignees IDs
-    default_value: ''
-    type: string
-    description: Comma-separated assignment ids to filter out accounts.
-    is_mandatory: false
--   name: Resolution IDs
-    default_value: ''
-    type: string
-    description: Comma-separated outcome ids to filter out accounts.
-    is_mandatory: false
--   name: Resolved
-    default_value: None
-    type: ddl
-    description: Filter by resolved status.[true/false]
-    is_mandatory: false
--   name: Created After
-    default_value: ''
-    type: string
-    description: 'Filter by created after the timestamp.
+    -   name: Accounts IDs
+        default_value: ''
+        type: string
+        description: Comma-separated account ids to filter out accounts.
+        is_mandatory: false
+    -   name: Hosts IDs
+        default_value: ''
+        type: string
+        description: Comma-separated host ids to filter out accounts.
+        is_mandatory: false
+    -   name: Assignees IDs
+        default_value: ''
+        type: string
+        description: Comma-separated assignment ids to filter out accounts.
+        is_mandatory: false
+    -   name: Resolution IDs
+        default_value: ''
+        type: string
+        description: Comma-separated outcome ids to filter out accounts.
+        is_mandatory: false
+    -   name: Resolved
+        default_value: None
+        type: ddl
+        description: Filter by resolved status.[true/false]
+        is_mandatory: false
+    -   name: Created After
+        default_value: ''
+        type: string
+        description: 'Filter by created after the timestamp.
 
         Supported formats: 2 minutes, 2 hours, 2 days, 2 weeks, 2 months, 2 years,
         yyyy-mm-dd, yyyy-mm-ddTHH: MM:SSZ. '
-    is_mandatory: false
--   name: Limit
-    default_value: ''
-    type: string
-    description: Specify the limit for fetching the records.
-    is_mandatory: false
+        is_mandatory: false
+    -   name: Limit
+        default_value: ''
+        type: string
+        description: Specify the limit for fetching the records.
+        is_mandatory: false
 dynamic_results_metadata:
--   result_name: JsonResult
-    show_result: true
-    result_example: "[\n    {\n        \"id\": 225,\n        \"assigned_by\": {\n\
+    -   result_name: JsonResult
+        show_result: true
+        result_example: "[\n    {\n        \"id\": 225,\n        \"assigned_by\": {\n\
         \            \"id\": 62,\n            \"username\": \"cds-crestphantom\"\n\
         \        },\n        \"date_assigned\": \"2024-11-20T09:06:47Z\",\n      \
         \  \"date_resolved\": \"2024-11-20T09:09:36Z\",\n        \"events\": [\n \

@@ -3,39 +3,39 @@ description: Returns the summary information available for the given query follo
     the Scout query language.
 integration_identifier: TeamCymruScout
 parameters:
--   name: Query
-    default_value: comms.ip="1.1.1.1"
-    type: string
-    description: A simple or advanced query as described by the Scout query language
-        in the Team Cymru Scout platform.
-    is_mandatory: true
--   name: Start Date
-    type: string
-    description: The latest date for results, formatted YYYY-MM-DD in UTC time. If
-        not provided, the default value will be 29 days prior to today, in UTC.
-    is_mandatory: false
--   name: End Date
-    type: string
-    description: The earliest date for results, formatted YYYY-MM-DD in UTC time.
-        If not provided, the default value will be today's date in UTC.
-    is_mandatory: false
--   name: Days
-    type: string
-    description: 'Relative offset in days (integer) from current time in UTC.
+    -   name: Query
+        default_value: comms.ip="1.1.1.1"
+        type: string
+        description: A simple or advanced query as described by the Scout query language
+            in the Team Cymru Scout platform.
+        is_mandatory: true
+    -   name: Start Date
+        type: string
+        description: The latest date for results, formatted YYYY-MM-DD in UTC time. If
+            not provided, the default value will be 29 days prior to today, in UTC.
+        is_mandatory: false
+    -   name: End Date
+        type: string
+        description: The earliest date for results, formatted YYYY-MM-DD in UTC time.
+            If not provided, the default value will be today's date in UTC.
+        is_mandatory: false
+    -   name: Days
+        type: string
+        description: 'Relative offset in days (integer) from current time in UTC.
 
         Note: this will take priority over start_date and end_date if all three are
         passed.'
-    is_mandatory: false
--   name: Size
-    type: string
-    description: 'Size, in records, of the search results.
+        is_mandatory: false
+    -   name: Size
+        type: string
+        description: 'Size, in records, of the search results.
 
         Note: The maximum allowed size is 5000.'
-    is_mandatory: false
+        is_mandatory: false
 dynamic_results_metadata:
--   result_name: JsonResult
-    show_result: true
-    result_example: "{\r\n  \"request_id\": \"593a8f91-57a1-521e-b8cc-57de7e3bc6ae\"\
+    -   result_name: JsonResult
+        show_result: true
+        result_example: "{\r\n  \"request_id\": \"593a8f91-57a1-521e-b8cc-57de7e3bc6ae\"\
         ,\r\n  \"total\": 594,\r\n  \"query\": \"fingerprints.hash = \\\"40d1db40d00040d1dc43d1db1db43d5ecfbe778b06e32b538bd51f24eb7398\\\
         \"\",\r\n  \"size\": 3,\r\n  \"start_date\": \"2024-09-18\",\r\n  \"end_date\"\
         : \"2024-09-22\",\r\n  \"usage\": {\r\n    \"used_queries\": 14173,\r\n  \

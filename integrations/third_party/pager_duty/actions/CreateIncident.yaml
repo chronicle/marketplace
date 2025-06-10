@@ -4,34 +4,34 @@ description: 'Create a new incident with the given parameters.
     '
 integration_identifier: PagerDuty
 parameters:
--   name: Details
-    default_value: A disk is getting full on this machine. You should investigate
-        what is causing the disk to fill, and ensure that there is an automated process
-        in place for ensuring data is rotated (eg. logs should have logrotate around
-        them). If data is expected to stay on this disk forever, you should start
-        planning to scale up to a larger disk.
-    type: string
-    description: ''
-    is_mandatory: true
--   name: Title
-    default_value: The server is on fire.
-    type: string
-    description: ''
-    is_mandatory: true
--   name: Email
-    default_value: tcondello@siemplify.co
-    type: string
-    description: ''
-    is_mandatory: true
--   name: Urgency
-    default_value: high
-    type: string
-    description: ''
-    is_mandatory: true
+    -   name: Details
+        default_value: A disk is getting full on this machine. You should investigate
+            what is causing the disk to fill, and ensure that there is an automated process
+            in place for ensuring data is rotated (eg. logs should have logrotate around
+            them). If data is expected to stay on this disk forever, you should start
+            planning to scale up to a larger disk.
+        type: string
+        description: ''
+        is_mandatory: true
+    -   name: Title
+        default_value: The server is on fire.
+        type: string
+        description: ''
+        is_mandatory: true
+    -   name: Email
+        default_value: tcondello@siemplify.co
+        type: string
+        description: ''
+        is_mandatory: true
+    -   name: Urgency
+        default_value: high
+        type: string
+        description: ''
+        is_mandatory: true
 dynamic_results_metadata:
--   result_name: JsonResult
-    show_result: true
-    result_example: "{\n    \"incident\": {\n        \"incident_number\": 5,\n   \
+    -   result_name: JsonResult
+        show_result: true
+        result_example: "{\n    \"incident\": {\n        \"incident_number\": 5,\n   \
         \     \"title\": \"TEST TEST 3\",\n        \"description\": \"TEST TEST 3\"\
         ,\n        \"created_at\": \"2023-04-03T09:42:54Z\",\n        \"status\":\
         \ \"triggered\",\n        \"incident_key\": \"4e529b3b3494498bba65e6f58e3ae8d7\"\

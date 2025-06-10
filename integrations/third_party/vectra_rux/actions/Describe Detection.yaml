@@ -2,15 +2,15 @@ name: Describe Detection
 description: Show all the details of a detection for the given ID.
 integration_identifier: VectraRUX
 parameters:
--   name: Detection ID
-    default_value: '0'
-    type: string
-    description: Unique ID of detection to get detection.
-    is_mandatory: true
+    -   name: Detection ID
+        default_value: '0'
+        type: string
+        description: Unique ID of detection to get detection.
+        is_mandatory: true
 dynamic_results_metadata:
--   result_name: JsonResult
-    show_result: true
-    result_example: "{\n    \"notes\": [],\n    \"filtered_by_user\": false,\n   \
+    -   result_name: JsonResult
+        show_result: true
+        result_example: "{\n    \"notes\": [],\n    \"filtered_by_user\": false,\n   \
         \ \"is_targeting_key_asset\": false,\n    \"detection_type\": \"Kerberoasting:\
         \ Weak Cipher Request\",\n    \"detection\": \"Kerberoasting: Weak Cipher\
         \ Request\",\n    \"description\": null,\n    \"id\": 34344,\n    \"last_timestamp\"\

@@ -2,15 +2,15 @@ name: Lookup
 description: Check if a specific URL is safe for browsing
 integration_identifier: Google Safe Browsing
 parameters:
--   name: Url
-    default_value: http://malware.testing.google.test/testing/malware/
-    type: string
-    description: The URL you would like to check in Google Safe Browsing.
-    is_mandatory: true
+    -   name: Url
+        default_value: http://malware.testing.google.test/testing/malware/
+        type: string
+        description: The URL you would like to check in Google Safe Browsing.
+        is_mandatory: true
 dynamic_results_metadata:
--   result_name: JsonResult
-    show_result: true
-    result_example: "{\n  \"http://malware.testing.google.test/testing/malware/\"\
+    -   result_name: JsonResult
+        show_result: true
+        result_example: "{\n  \"http://malware.testing.google.test/testing/malware/\"\
         : {\n    \"malicious\": true,\n    \"platforms\": [\n      \"ANY_PLATFORM\"\
         \n    ],\n    \"threats\": [\n      \"MALWARE\"\n    ],\n    \"cache\": \"\
         300s\"\n  }\n}"

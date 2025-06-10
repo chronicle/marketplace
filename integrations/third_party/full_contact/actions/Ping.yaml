@@ -1,11 +1,11 @@
 name: Ping
 description: Test connectivity with Full Contact product
 integration_identifier: Full Contact
-parameters: []
+parameters: [ ]
 dynamic_results_metadata:
--   result_name: JsonResult
-    show_result: false
-    result_example: "{\n    \"FullContact_CompanyName\": \"Gmail\",\n    \"FullContact_CompanyType\"\
+    -   result_name: JsonResult
+        show_result: false
+        result_example: "{\n    \"FullContact_CompanyName\": \"Gmail\",\n    \"FullContact_CompanyType\"\
         : \"Data Processing and Preparation\",\n    \"FullContact_FoundedYear\": null,\n\
         \    \"FullContact_CompanyEmployees\": 50000,\n    \"FullContact_CompanyWebSite\"\
         : \"http://www.gmail.com\",\n    \"FullContact_CompanyCountry\": \"United\

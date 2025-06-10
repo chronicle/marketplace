@@ -2,15 +2,15 @@ name: Policies - Get Details
 description: This method retrieves all information related to a security policy.
 integration_identifier: Bitdefender GravityZone
 parameters:
--   name: Policy ID
-    default_value: 5e1023820d21ea80605bf919
-    type: string
-    description: The ID of the policy to be queried.
-    is_mandatory: true
+    -   name: Policy ID
+        default_value: 5e1023820d21ea80605bf919
+        type: string
+        description: The ID of the policy to be queried.
+        is_mandatory: true
 dynamic_results_metadata:
--   result_name: JsonResult
-    show_result: true
-    result_example: '{"result": {"id": "5121da426803fa2d0e000017", "name": "Default
+    -   result_name: JsonResult
+        show_result: true
+        result_example: '{"result": {"id": "5121da426803fa2d0e000017", "name": "Default
         policy", "createdBy": "root+us@bitdefender.com", "createDate": "None", "lastModifyDate":
         "2015-10-29T12:27:57", "settings": {"antimalware": {"onAccess": {"onAccessScanning":
         {"enable": true, "profile": 2, "settings": {"general": {"fileTypes": {"scanLocalFile":

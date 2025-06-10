@@ -2,32 +2,32 @@ name: Create User
 description: Creating a new user in zoom
 integration_identifier: Zoom
 parameters:
--   name: First Name
-    default_value: FirstName
-    type: string
-    description: First Name
-    is_mandatory: true
--   name: Last Name
-    default_value: LastName
-    type: string
-    description: Last Name
-    is_mandatory: true
--   name: Email
-    default_value: email@gmail.com
-    type: string
-    description: The user's email you want to create
-    is_mandatory: true
--   name: User Type
-    default_value: Basic
-    type: ddl
-    description: 'The user license type can be:
+    -   name: First Name
+        default_value: FirstName
+        type: string
+        description: First Name
+        is_mandatory: true
+    -   name: Last Name
+        default_value: LastName
+        type: string
+        description: Last Name
+        is_mandatory: true
+    -   name: Email
+        default_value: email@gmail.com
+        type: string
+        description: The user's email you want to create
+        is_mandatory: true
+    -   name: User Type
+        default_value: Basic
+        type: ddl
+        description: 'The user license type can be:
 
         ''Basic'', ''Licensed'', ''On-prem''.'
-    is_mandatory: true
+        is_mandatory: true
 dynamic_results_metadata:
--   result_name: JsonResult
-    show_result: true
-    result_example: "{\r\n\t\"id\": \"k&KdKr6TLWuxdDtk0hjSzL\",\r\n\t\"meta\": {\r\
+    -   result_name: JsonResult
+        show_result: true
+        result_example: "{\r\n\t\"id\": \"k&KdKr6TLWuxdDtk0hjSzL\",\r\n\t\"meta\": {\r\
         \n\t\t\"resourceType\": \"User\",\r\n\t\t\"location\": \"https://api.zoom.us/scim2/Users/k&KdKr6TLWuxdDtk0hjSzL\"\
         ,\r\n\t\t\"version\": \"1.0.0\"\r\n\t},\r\n\t\"schemas\": [\r\n\t\t\"urn:ietf:params:scim:schemas:core:2.0:User\"\
         \r\n\t],\r\n\t\"name\": {\r\n\t\t\"givenName\": \"Fancy\",\r\n\t\t\"familyName\"\

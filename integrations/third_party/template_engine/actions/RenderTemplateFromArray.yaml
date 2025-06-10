@@ -3,38 +3,38 @@ description: Render Template, but for lists.  Loops through a list and applies t
     Jinja template to each list item.
 integration_identifier: TemplateEngine
 parameters:
--   name: Array input
-    default_value: '[]'
-    type: content
-    description: Point to output from a previous Action that outputs an Array
-    is_mandatory: false
--   name: Jinja
-    default_value: 'Start
+    -   name: Array input
+        default_value: '[]'
+        type: content
+        description: Point to output from a previous Action that outputs an Array
+        is_mandatory: false
+    -   name: Jinja
+        default_value: 'Start
 
         {{ row.name }}
 
         End'
-    type: code
-    description: The Jinja template code to be rendered.  Will override Template parameter.
-        Append |safe to disable HTML encoding.
-    is_mandatory: false
--   name: join
-    default_value: ','
-    type: string
-    description: JOIN character between loops to join together
-    is_mandatory: false
--   name: prefix
-    type: string
-    description: Prefix string before output
-    is_mandatory: false
--   name: suffix
-    type: string
-    description: Suffix string after output
-    is_mandatory: false
+        type: code
+        description: The Jinja template code to be rendered.  Will override Template parameter.
+            Append |safe to disable HTML encoding.
+        is_mandatory: false
+    -   name: join
+        default_value: ','
+        type: string
+        description: JOIN character between loops to join together
+        is_mandatory: false
+    -   name: prefix
+        type: string
+        description: Prefix string before output
+        is_mandatory: false
+    -   name: suffix
+        type: string
+        description: Suffix string after output
+        is_mandatory: false
 dynamic_results_metadata:
--   result_name: JsonResult
-    show_result: true
-    result_example: '{}'
+    -   result_name: JsonResult
+        show_result: true
+        result_example: '{}'
 default_result_value: ''
 creator: 53ed574a-634a-45df-a637-60ffdc3c8aef
 script_result_name: ScriptResult

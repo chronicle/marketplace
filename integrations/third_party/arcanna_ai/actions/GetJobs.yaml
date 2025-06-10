@@ -1,11 +1,11 @@
 name: Get Jobs
 description: Retrieves Arcanna.AI available jobs  and saves the results
 integration_identifier: ArcannaAI
-parameters: []
+parameters: [ ]
 dynamic_results_metadata:
--   result_name: JsonResult
-    show_result: true
-    result_example: "[\n    {\n      \"job_id\": 3207,\n      \"title\": \"Arcanna\
+    -   result_name: JsonResult
+        show_result: true
+        result_example: "[\n    {\n      \"job_id\": 3207,\n      \"title\": \"Arcanna\
         \ Demo Job\",\n      \"status\": \"ENABLED\",\n      \"retrain_state\": null,\n\
         \      \"retrain_msg\": null,\n      \"labels\": [\n        \"Low\",\n   \
         \     \"Medium\",\n        \"High\",\n        \"Critical\",\n        \"Informative\"\

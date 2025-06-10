@@ -1,75 +1,75 @@
 name: Vorlon Connector
 parameters:
--   name: API Root
-    default_value: https://<domain_name>.vorlon.io
-    type: string
-    description: Vorlon URL
-    is_mandatory: true
-    is_advanced: false
-    mode: script
--   name: Client ID
-    default_value: ' '
-    type: string
-    description: Client ID
-    is_mandatory: true
-    is_advanced: false
-    mode: script
--   name: Client Secret
-    default_value: ' '
-    type: password
-    description: Client Secret
-    is_mandatory: true
-    is_advanced: false
-    mode: script
--   name: DeviceProductField
-    default_value: Vorlon
-    type: string
-    description: The field name used to determine the device product
-    is_mandatory: true
-    is_advanced: false
-    mode: regular
--   name: EventClassId
-    default_value: type
-    type: string
-    description: The field name used to determine the event name (sub-type)
-    is_mandatory: true
-    is_advanced: false
-    mode: regular
--   name: Max Days Backwards
-    default_value: '1'
-    type: string
-    description: 'Amount of hours from where to fetch incidents.
+    -   name: API Root
+        default_value: https://<domain_name>.vorlon.io
+        type: string
+        description: Vorlon URL
+        is_mandatory: true
+        is_advanced: false
+        mode: script
+    -   name: Client ID
+        default_value: ' '
+        type: string
+        description: Client ID
+        is_mandatory: true
+        is_advanced: false
+        mode: script
+    -   name: Client Secret
+        default_value: ' '
+        type: password
+        description: Client Secret
+        is_mandatory: true
+        is_advanced: false
+        mode: script
+    -   name: DeviceProductField
+        default_value: Vorlon
+        type: string
+        description: The field name used to determine the device product
+        is_mandatory: true
+        is_advanced: false
+        mode: regular
+    -   name: EventClassId
+        default_value: type
+        type: string
+        description: The field name used to determine the event name (sub-type)
+        is_mandatory: true
+        is_advanced: false
+        mode: regular
+    -   name: Max Days Backwards
+        default_value: '1'
+        type: string
+        description: 'Amount of hours from where to fetch incidents.
 
 
         Default value is 1 Day'
-    is_mandatory: false
-    is_advanced: true
-    mode: script
--   name: Max Incidents per Fetch
-    default_value: '10'
-    type: string
-    description: Get the maximum number incidents to fetch
-    is_mandatory: true
-    is_advanced: false
-    mode: script
--   name: Open Alerts Only
-    default_value: 'true'
-    type: boolean
-    description: Select to fetch alerts with "open" status only and ignore "dismissed"
-        and "resolved" alerts
-    is_mandatory: false
-    is_advanced: true
-    mode: script
--   name: PythonProcessTimeout
-    default_value: '30'
-    type: string
-    description: The timeout limit (in seconds) for the python process running current
-        script
-    is_mandatory: true
-    is_advanced: false
-    mode: regular
+        is_mandatory: false
+        is_advanced: true
+        mode: script
+    -   name: Max Incidents per Fetch
+        default_value: '10'
+        type: string
+        description: Get the maximum number incidents to fetch
+        is_mandatory: true
+        is_advanced: false
+        mode: script
+    -   name: Open Alerts Only
+        default_value: 'true'
+        type: boolean
+        description: Select to fetch alerts with "open" status only and ignore "dismissed"
+            and "resolved" alerts
+        is_mandatory: false
+        is_advanced: true
+        mode: script
+    -   name: PythonProcessTimeout
+        default_value: '30'
+        type: string
+        description: The timeout limit (in seconds) for the python process running current
+            script
+        is_mandatory: true
+        is_advanced: false
+        mode: regular
 description: ''
 integration: Vorlon
-rules: []
+rules: [ ]
 is_connector_rules_supported: true
 creator: fe5f742c-a69e-4116-ad38-b1d7c5194541

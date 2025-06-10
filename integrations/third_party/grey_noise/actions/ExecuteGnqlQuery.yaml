@@ -2,20 +2,20 @@ name: Execute GNQL Query
 description: Run a GreyNoise GNQL. Consumes 1 Search per IP returned by the query.
 integration_identifier: GreyNoise
 parameters:
--   name: query
-    default_value: classification:malicious last_seen:1d
-    type: string
-    description: GreyNoise Query in GNQL format to execute
-    is_mandatory: true
--   name: limit
-    default_value: '10'
-    type: string
-    description: Maximum number of results to return, default is 10
-    is_mandatory: false
+    -   name: query
+        default_value: classification:malicious last_seen:1d
+        type: string
+        description: GreyNoise Query in GNQL format to execute
+        is_mandatory: true
+    -   name: limit
+        default_value: '10'
+        type: string
+        description: Maximum number of results to return, default is 10
+        is_mandatory: false
 dynamic_results_metadata:
--   result_name: JsonResult
-    show_result: true
-    result_example: '{"results": [{"Entity": "query_result", "EntityResult": {"complete":
+    -   result_name: JsonResult
+        show_result: true
+        result_example: '{"results": [{"Entity": "query_result", "EntityResult": {"complete":
         false, "count": 126828, "data": [{"ip": "1.1.1.1", "seen": true, "classification":
         "malicious", "spoofable": false, "first_seen": "2021-01-06", "last_seen":
         "2021-02-03", "actor": "unknown", "vpn": false, "vpn_service": "", "tags":

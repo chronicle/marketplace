@@ -2,11 +2,11 @@ name: Calculate Risk Score
 description: This action retrieves the event details of an Alert and generates final
     Alert JSON Object which can be used by a Playbook for Alert filtration.
 integration_identifier: XMCyber
-parameters: []
+parameters: [ ]
 dynamic_results_metadata:
--   result_name: JsonResult
-    show_result: true
-    result_example: "{\r\n  \"base_risk_score\": 45,\r\n  \"risk_score\": 99,\r\n\
+    -   result_name: JsonResult
+        show_result: true
+        result_example: "{\r\n  \"base_risk_score\": 45,\r\n  \"risk_score\": 99,\r\n\
         \  \"is_critical_asset\": true,\r\n  \"is_highly_privileged\": true,\r\n \
         \ \"is_predefined_admin\": true,\r\n  \"user_without_mfa\": true,\r\n  \"\
         compromised_risk_score_level\": \"CRITICAL\",\r\n  \"compromised_choke_point_score_level\"\

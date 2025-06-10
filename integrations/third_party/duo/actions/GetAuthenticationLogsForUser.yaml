@@ -6,28 +6,28 @@ description: 'Obtains the user data and authentication logs for a specified user
     Useful to help determine if an auth source is normally seen.'
 integration_identifier: DUO
 parameters:
--   name: Authentication Threshold
-    default_value: '2'
-    type: string
-    description: Number of successful authentications to indicate a source may be
-        from a known safe entity.
-    is_mandatory: true
--   name: Number Days Back
-    default_value: '1'
-    type: string
-    description: 'Number of days back to obtain authentication logs from.
+    -   name: Authentication Threshold
+        default_value: '2'
+        type: string
+        description: Number of successful authentications to indicate a source may be
+            from a known safe entity.
+        is_mandatory: true
+    -   name: Number Days Back
+        default_value: '1'
+        type: string
+        description: 'Number of days back to obtain authentication logs from.
 
         Default 1 day'
-    is_mandatory: true
--   name: Username
-    default_value: ''
-    type: string
-    description: Username to retrieve logs for.
-    is_mandatory: false
+        is_mandatory: true
+    -   name: Username
+        default_value: ''
+        type: string
+        description: Username to retrieve logs for.
+        is_mandatory: false
 dynamic_results_metadata:
--   result_name: JsonResult
-    show_result: true
-    result_example: '{"username": "someuser", "user_id": "ABCDEFGH1234LMNOPQ12", "user_data":
+    -   result_name: JsonResult
+        show_result: true
+        result_example: '{"username": "someuser", "user_id": "ABCDEFGH1234LMNOPQ12", "user_data":
         [{"alias1": null, "alias2": null, "alias3": null, "alias4": null, "aliases":
         {}, "created": 1488805062, "desktoptokens": [], "email": "someuser@domain.com",
         "firstname": "USER T", "groups": [{"desc": "", "group_id": "123ABCEDOKIOUA123AW",

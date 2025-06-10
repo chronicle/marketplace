@@ -2,11 +2,11 @@ name: Get Original Alert Json
 description: 'The action gets the original alert Json (raw data) and presents it as
     a Json result. '
 integration_identifier: Tools
-parameters: []
+parameters: [ ]
 dynamic_results_metadata:
--   result_name: JsonResult
-    show_result: true
-    result_example: "{\n  \"Cases\": [\n    {\n      \"Events\": [\n        {\n  \
+    -   result_name: JsonResult
+        show_result: true
+        result_example: "{\n  \"Cases\": [\n    {\n      \"Events\": [\n        {\n  \
         \        \"_fields\": {\n            \"BaseEventIds\": \"[]\",\n         \
         \   \"ParentEventId\": -1,\n            \"deviceEventClassId\": \"Email check\"\
         ,\n            \"DeviceProduct\": \"Phishing email detector\",\n         \

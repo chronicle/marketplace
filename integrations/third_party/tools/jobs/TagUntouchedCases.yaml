@@ -1,17 +1,17 @@
 name: Tag Untouched Cases
 parameters:
--   name: Tags
-    default_value: Open Case Review
-    type: string
-    description: The tags to apply when the maximum time parameter is met, please
-        use commas to separate if you would like to use more than one
-    is_mandatory: true
--   name: Unmodified Time
-    default_value: '8'
-    type: integer
-    description: The amount of time, in hours, required to trigger a tag(s) to be
-        added to a case.
-    is_mandatory: true
+    -   name: Tags
+        default_value: Open Case Review
+        type: string
+        description: The tags to apply when the maximum time parameter is met, please
+            use commas to separate if you would like to use more than one
+        is_mandatory: true
+    -   name: Unmodified Time
+        default_value: '8'
+        type: integer
+        description: The amount of time, in hours, required to trigger a tag(s) to be
+            added to a case.
+        is_mandatory: true
 description: This job will search all open cases, and identify cases that have not
     been touched in Max Time hours, and apply the tag/tags listed in the tags parameter
 integration: Tools

@@ -2,15 +2,15 @@ name: Unmark Detection Fixed
 description: Unmark the given detections as fixed.
 integration_identifier: VectraQUX
 parameters:
--   name: Detection IDs
-    default_value: N/A
-    type: string
-    description: Coma separated values of IDs
-    is_mandatory: true
+    -   name: Detection IDs
+        default_value: N/A
+        type: string
+        description: Coma separated values of IDs
+        is_mandatory: true
 dynamic_results_metadata:
--   result_name: JsonResult
-    show_result: true
-    result_example: '{"_meta": {"level": "Success", "message": "Successfully marked
+    -   result_name: JsonResult
+        show_result: true
+        result_example: '{"_meta": {"level": "Success", "message": "Successfully marked
         detections"}}'
 default_result_value: ''
 creator: Admin

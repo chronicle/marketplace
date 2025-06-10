@@ -2,11 +2,11 @@ name: Get Event Data JSON
 description: This action retrieves entity details from events associated with the
     Alert or Case, enriched by XM Cyber, and returns the JSON output.
 integration_identifier: XMCyber
-parameters: []
+parameters: [ ]
 dynamic_results_metadata:
--   result_name: JsonResult
-    show_result: true
-    result_example: "{\r\n  \"entity_id_1\": {\r\n    \"Choke Point Score\": 200.0,\r\
+    -   result_name: JsonResult
+        show_result: true
+        result_example: "{\r\n  \"entity_id_1\": {\r\n    \"Choke Point Score\": 200.0,\r\
         \n    \"Is Critical Asset\": true,\r\n    \"AD Admins And DCs\": false,\r\n\
         \    \"Is External\": true,\r\n    \"User without MFA\": true,\r\n    \"Tenant\
         \ Name\": \"Test Tenant 1\",\r\n    \"Compromise Risk Score\": 73,\r\n   \

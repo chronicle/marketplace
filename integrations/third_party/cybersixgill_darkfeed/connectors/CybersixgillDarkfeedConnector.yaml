@@ -1,54 +1,54 @@
 name: Cybersixgill - Darkfeed Connector
 parameters:
--   name: PythonProcessTimeout
-    default_value: '30'
-    type: string
-    description: The timeout limit (in seconds) for the python process running current
-        script
-    is_mandatory: true
-    is_advanced: false
-    mode: regular
--   name: EventClassId
-    default_value: 'Cybersixgill Darkfeed '
-    type: string
-    description: The field name used to determine the event name (sub-type)
-    is_mandatory: true
-    is_advanced: false
-    mode: regular
--   name: DeviceProductField
-    default_value: 'Cybersixgill Darkfeed '
-    type: string
-    description: The field name used to determine the device product
-    is_mandatory: true
-    is_advanced: false
-    mode: regular
--   name: Client Secret
-    default_value: ''
-    type: password
-    description: Secret Key
-    is_mandatory: true
-    is_advanced: false
-    mode: script
--   name: Client Id
-    default_value: Client_Id
-    type: string
-    description: Client ID
-    is_mandatory: true
-    is_advanced: false
-    mode: script
--   name: Alerts Limit
-    default_value: '20'
-    type: integer
-    description: Number of alerts to be ingested into the platform
-    is_mandatory: true
-    is_advanced: false
-    mode: script
+    -   name: PythonProcessTimeout
+        default_value: '30'
+        type: string
+        description: The timeout limit (in seconds) for the python process running current
+            script
+        is_mandatory: true
+        is_advanced: false
+        mode: regular
+    -   name: EventClassId
+        default_value: 'Cybersixgill Darkfeed '
+        type: string
+        description: The field name used to determine the event name (sub-type)
+        is_mandatory: true
+        is_advanced: false
+        mode: regular
+    -   name: DeviceProductField
+        default_value: 'Cybersixgill Darkfeed '
+        type: string
+        description: The field name used to determine the device product
+        is_mandatory: true
+        is_advanced: false
+        mode: regular
+    -   name: Client Secret
+        default_value: ''
+        type: password
+        description: Secret Key
+        is_mandatory: true
+        is_advanced: false
+        mode: script
+    -   name: Client Id
+        default_value: Client_Id
+        type: string
+        description: Client ID
+        is_mandatory: true
+        is_advanced: false
+        mode: script
+    -   name: Alerts Limit
+        default_value: '20'
+        type: integer
+        description: Number of alerts to be ingested into the platform
+        is_mandatory: true
+        is_advanced: false
+        mode: script
 description: Powered by the broadest, automated collection from the deep and dark
     web, Cybersixgill Darkfeed is a feed of malicious indicators of compromise (IOCs),
     including domains, URLs, hashes and IP addresses. IOCs are automatically extracted
     and delivered in real-time, and it is actionable, allowing Siemplify customers
     to receive and preemptively block items that threaten their organization.
 integration: Cybersixgill Darkfeed
-rules: []
+rules: [ ]
 is_connector_rules_supported: true
 creator: Admin

@@ -1,11 +1,11 @@
 name: Blocklist - List Items
 description: This method lists all the hashes that are present in the blocklist.
 integration_identifier: Bitdefender GravityZone
-parameters: []
+parameters: [ ]
 dynamic_results_metadata:
--   result_name: JsonResult
-    show_result: true
-    result_example: "{\r\n    \"items\": [\r\n        {\r\n            \"companyId\"\
+    -   result_name: JsonResult
+        show_result: true
+        result_example: "{\r\n    \"items\": [\r\n        {\r\n            \"companyId\"\
         : \"5b680f6fb1a43d860a7b23c8\",\r\n            \"hash\": \"098f6bcd4621d373cade4e832627b4f6\"\
         ,\r\n            \"hashType\": 2,\r\n            \"id\": \"5b7ac19bb1a43dfb107b23c6\"\
         ,\r\n            \"source\": 3,\r\n            \"sourceInfo\": \"Added from\

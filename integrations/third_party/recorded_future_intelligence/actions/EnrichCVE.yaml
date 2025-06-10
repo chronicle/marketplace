@@ -2,28 +2,28 @@ name: Enrich CVE
 description: Query Recorded Future to get intelligence about the CVE.
 integration_identifier: RecordedFutureIntelligence
 parameters:
--   name: Risk Score Threshold
-    default_value: '25'
-    type: string
-    description: "Represents the minimum malicious risk score for a CVE to be marked\
+    -   name: Risk Score Threshold
+        default_value: '25'
+        type: string
+        description: "Represents the minimum malicious risk score for a CVE to be marked\
         \ malicious. Has a range of 0-99. Has the following levels: \n Very Critical:\
         \ 90-99 \n Critical: 80-89 \n High: 65-79 \n Medium: 25-64 \n Low: 5-24 \n\
         \ None: 0"
-    is_mandatory: true
--   name: Include Links
-    default_value: 'false'
-    type: boolean
-    description: If enabled, action will get information about links.
-    is_mandatory: false
--   name: Enable Collective Insights
-    default_value: 'true'
-    type: boolean
-    description: If enabled, contribute detections back to Recorded Future.
-    is_mandatory: false
+        is_mandatory: true
+    -   name: Include Links
+        default_value: 'false'
+        type: boolean
+        description: If enabled, action will get information about links.
+        is_mandatory: false
+    -   name: Enable Collective Insights
+        default_value: 'true'
+        type: boolean
+        description: If enabled, contribute detections back to Recorded Future.
+        is_mandatory: false
 dynamic_results_metadata:
--   result_name: JsonResult
-    show_result: true
-    result_example: '[{"Entity": "CVE-2014-0160", "EntityResult": [{"entity": {"id":
+    -   result_name: JsonResult
+        show_result: true
+        result_example: '[{"Entity": "CVE-2014-0160", "EntityResult": [{"entity": {"id":
         "K5GW38", "name": "CVE-2014-0160", "type": "CyberVulnerability", "description":
         "The (1) TLS and (2) DTLS implementations in OpenSSL 1.0.1 before 1.0.1g do
         not properly handle Heartbeat Extension packets, which allows remote attackers

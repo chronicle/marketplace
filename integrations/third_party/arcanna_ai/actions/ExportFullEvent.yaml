@@ -2,20 +2,20 @@ name: Export full event
 description: ''
 integration_identifier: ArcannaAI
 parameters:
--   name: Job ID
-    default_value: ' '
-    type: string
-    description: Where to fetch event
-    is_mandatory: true
--   name: Event ID
-    default_value: ' '
-    type: string
-    description: Event ID To fetch
-    is_mandatory: true
+    -   name: Job ID
+        default_value: ' '
+        type: string
+        description: Where to fetch event
+        is_mandatory: true
+    -   name: Event ID
+        default_value: ' '
+        type: string
+        description: Event ID To fetch
+        is_mandatory: true
 dynamic_results_metadata:
--   result_name: JsonResult
-    show_result: true
-    result_example: "{\n    \"event_id\": \" 32072928741742\",\n    \"ingest_timestamp\"\
+    -   result_name: JsonResult
+        show_result: true
+        result_example: "{\n    \"event_id\": \" 32072928741742\",\n    \"ingest_timestamp\"\
         : \"2024-05-30T07:21:46.292874Z\",\n    \"status\": \"OK\",\n    \"arcanna_event\"\
         : {\n        \"id\": \"32072928741742\",\n        \"metadata\": {\n      \
         \      \"severity\": 0,\n            \"ingested_timestamp\": \"2024-05-30T07:21:46.292874Z\"\

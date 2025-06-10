@@ -1,11 +1,11 @@
 name: Ping
 description: Check connectivity
 integration_identifier: beSECURE
-parameters: []
+parameters: [ ]
 dynamic_results_metadata:
--   result_name: JsonResult
-    show_result: false
-    result_example: '{}'
+    -   result_name: JsonResult
+        show_result: false
+        result_example: '{}'
 default_result_value: ''
 creator: Noam
 script_result_name: ScriptResult

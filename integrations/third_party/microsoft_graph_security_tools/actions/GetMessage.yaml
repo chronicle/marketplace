@@ -4,20 +4,20 @@ description: 'Get Email Message from a user''s inbox
     https://docs.microsoft.com/en-us/graph/api/message-get?view=graph-rest-1.0&tabs=http'
 integration_identifier: MicrosoftGraphSecurityTools
 parameters:
--   name: User ID
-    default_value: john.smith@email.com
-    type: string
-    description: User ID/userPrincipalName (email)
-    is_mandatory: true
--   name: Message ID
-    default_value: AAMkADhMGAAA=
-    type: string
-    description: ID of the message to retrieve
-    is_mandatory: true
+    -   name: User ID
+        default_value: john.smith@email.com
+        type: string
+        description: User ID/userPrincipalName (email)
+        is_mandatory: true
+    -   name: Message ID
+        default_value: AAMkADhMGAAA=
+        type: string
+        description: ID of the message to retrieve
+        is_mandatory: true
 dynamic_results_metadata:
--   result_name: JsonResult
-    show_result: true
-    result_example: "{\r\n    \"@odata.context\":\"https://graph.microsoft.com/v1.0/$metadata#users('7f180cbb-a5ae-457c-b7e8-6f5b42ba33e7')/messages/$entity\"\
+    -   result_name: JsonResult
+        show_result: true
+        result_example: "{\r\n    \"@odata.context\":\"https://graph.microsoft.com/v1.0/$metadata#users('7f180cbb-a5ae-457c-b7e8-6f5b42ba33e7')/messages/$entity\"\
         ,\r\n    \"@odata.etag\":\"W/\\\"CQAAABYAAAC4ofQHEIqCSbQPot83AFcbAAAnjjuZ\\\
         \"\",\r\n    \"id\":\"AAMkADhMGAAA=\",\r\n    \"createdDateTime\":\"2018-09-09T03:15:05Z\"\
         ,\r\n    \"lastModifiedDateTime\":\"2018-09-09T03:15:08Z\",\r\n    \"changeKey\"\

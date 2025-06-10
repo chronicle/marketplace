@@ -1,48 +1,48 @@
 name: Cybersixgill - DVE Connector
 parameters:
--   name: PythonProcessTimeout
-    default_value: '30'
-    type: string
-    description: The timeout limit (in seconds) for the python process running current
-        script
-    is_mandatory: true
-    is_advanced: false
-    mode: regular
--   name: EventClassId
-    default_value: Cybersixgill DVE Feed
-    type: string
-    description: The field name used to determine the event name (sub-type)
-    is_mandatory: true
-    is_advanced: false
-    mode: regular
--   name: DeviceProductField
-    default_value: Cybersixgill DVE Feed
-    type: string
-    description: The field name used to determine the device product
-    is_mandatory: true
-    is_advanced: false
-    mode: regular
--   name: Client Secret
-    default_value: ''
-    type: password
-    description: Secret Key
-    is_mandatory: true
-    is_advanced: false
-    mode: script
--   name: Client Id
-    default_value: Client_ID
-    type: string
-    description: Client Id
-    is_mandatory: true
-    is_advanced: false
-    mode: script
--   name: Alerts Limit
-    default_value: '20'
-    type: integer
-    description: Number of alerts to be ingested into the platform.
-    is_mandatory: true
-    is_advanced: false
-    mode: script
+    -   name: PythonProcessTimeout
+        default_value: '30'
+        type: string
+        description: The timeout limit (in seconds) for the python process running current
+            script
+        is_mandatory: true
+        is_advanced: false
+        mode: regular
+    -   name: EventClassId
+        default_value: Cybersixgill DVE Feed
+        type: string
+        description: The field name used to determine the event name (sub-type)
+        is_mandatory: true
+        is_advanced: false
+        mode: regular
+    -   name: DeviceProductField
+        default_value: Cybersixgill DVE Feed
+        type: string
+        description: The field name used to determine the device product
+        is_mandatory: true
+        is_advanced: false
+        mode: regular
+    -   name: Client Secret
+        default_value: ''
+        type: password
+        description: Secret Key
+        is_mandatory: true
+        is_advanced: false
+        mode: script
+    -   name: Client Id
+        default_value: Client_ID
+        type: string
+        description: Client Id
+        is_mandatory: true
+        is_advanced: false
+        mode: script
+    -   name: Alerts Limit
+        default_value: '20'
+        type: integer
+        description: Number of alerts to be ingested into the platform.
+        is_mandatory: true
+        is_advanced: false
+        mode: script
 description: The Cybersixgill Dynamic Vulnerability Exploit (DVE) Score is based on
     the most comprehensive collection of vulnerability-related threat intelligence
     and is the only solution that provides users total context and predicts the immediate
@@ -51,6 +51,6 @@ description: The Cybersixgill Dynamic Vulnerability Exploit (DVE) Score is based
     as irrelevant and have a higher probability of being exploited - directly from
     the Siemplify dashboard.
 integration: Cybersixgill DVE Feed
-rules: []
+rules: [ ]
 is_connector_rules_supported: true
 creator: Admin

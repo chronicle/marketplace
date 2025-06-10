@@ -1,11 +1,11 @@
 name: Ping
 description: Tests Connectivity to Bandura Cyber
 integration_identifier: Bandura Cyber
-parameters: []
+parameters: [ ]
 dynamic_results_metadata:
--   result_name: JsonResult
-    show_result: false
-    result_example: '{}'
+    -   result_name: JsonResult
+        show_result: false
+        result_example: '{}'
 default_result_value: ''
 creator: ddiserens
 script_result_name: ScriptResult

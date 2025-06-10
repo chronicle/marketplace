@@ -9,34 +9,34 @@ description: 'Fetch the information of a specific instance.
     https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/ec2.html#EC2.Client.describe_instances'
 integration_identifier: AWS - EC2
 parameters:
--   name: Instance Ids
-    default_value: ''
-    type: string
-    description: 'The instance IDs which you want to fetch.
+    -   name: Instance Ids
+        default_value: ''
+        type: string
+        description: 'The instance IDs which you want to fetch.
 
         For example: instanceID1,instanceID2
 
         '
-    is_mandatory: false
--   name: Filters
-    default_value: '{"Name": "instance-type", "Values": ["t2.micro"]}'
-    type: content
-    description: "The filters of the instances you want to fetch.\nFor example: \n\
+        is_mandatory: false
+    -   name: Filters
+        default_value: '{"Name": "instance-type", "Values": ["t2.micro"]}'
+        type: content
+        description: "The filters of the instances you want to fetch.\nFor example: \n\
         {\"NameFilter1\": \"NameFilter1\", \"Values\": [\"value1\", \"value2\"]}"
-    is_mandatory: false
--   name: Max Results
-    default_value: ''
-    type: string
-    description: 'The maximum number of results to return (between 5 to 1000)
+        is_mandatory: false
+    -   name: Max Results
+        default_value: ''
+        type: string
+        description: 'The maximum number of results to return (between 5 to 1000)
 
         For example: 5
 
         '
-    is_mandatory: false
+        is_mandatory: false
 dynamic_results_metadata:
--   result_name: JsonResult
-    show_result: true
-    result_example: "{\r\n\t\"Reservations\": [{\r\n\t\t\"Groups\": [{\r\n\t\t\t\"\
+    -   result_name: JsonResult
+        show_result: true
+        result_example: "{\r\n\t\"Reservations\": [{\r\n\t\t\"Groups\": [{\r\n\t\t\t\"\
         GroupName\": \"string\",\r\n\t\t\t\"GroupId\": \"string\"\r\n\t\t}],\r\n\t\
         \t\"Instances\": [{\r\n\t\t\t\"AmiLaunchIndex\": 123,\r\n\t\t\t\"ImageId\"\
         : \"string\",\r\n\t\t\t\"InstanceId\": \"string\",\r\n\t\t\t\"InstanceType\"\

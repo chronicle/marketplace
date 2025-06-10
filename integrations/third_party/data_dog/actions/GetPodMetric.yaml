@@ -6,25 +6,25 @@ description: 'Gets a Pod metric (CPU, Memory and processes).
     For more information about Kubernetes metrics: https://docs.datadoghq.com/agent/kubernetes/data_collected/'
 integration_identifier: DataDog
 parameters:
--   name: Pod Name
-    default_value: pod_namespace
-    type: string
-    description: The Pod Namespace
-    is_mandatory: true
--   name: End Time
-    default_value: '1610557457'
-    type: string
-    description: The end time of the Pod metric in Unixtime.
-    is_mandatory: true
--   name: Start Time
-    default_value: '1507040000'
-    type: string
-    description: The start time of the Pod metric in Unixtime.
-    is_mandatory: true
+    -   name: Pod Name
+        default_value: pod_namespace
+        type: string
+        description: The Pod Namespace
+        is_mandatory: true
+    -   name: End Time
+        default_value: '1610557457'
+        type: string
+        description: The end time of the Pod metric in Unixtime.
+        is_mandatory: true
+    -   name: Start Time
+        default_value: '1507040000'
+        type: string
+        description: The start time of the Pod metric in Unixtime.
+        is_mandatory: true
 dynamic_results_metadata:
--   result_name: JsonResult
-    show_result: true
-    result_example: "{\r\n\t\"pod_name_X\": {\r\n\t\t\"pod_CPU\": {\r\n\t\t\t\"status\"\
+    -   result_name: JsonResult
+        show_result: true
+        result_example: "{\r\n\t\"pod_name_X\": {\r\n\t\t\"pod_CPU\": {\r\n\t\t\t\"status\"\
         : \"ok\",\r\n\t\t\t\"res_type\": \"time_series\",\r\n\t\t\t\"from_date\":\
         \ 1507040000000,\r\n\t\t\t\"series\": [{\r\n\t\t\t\t\"end\": 1610668799000,\r\
         \n\t\t\t\t\"attributes\": {},\r\n\t\t\t\t\"metric\": \"kubernetes.cpu.system.total\"\

@@ -3,20 +3,20 @@ description: Converts logs from your Logz.io accounts into a constant JSON forma
     that is compatible with Siemplify’s playbooks.
 integration_identifier: Logzio
 parameters:
--   name: fields_to_search
-    default_value: ''
-    type: string
-    description: Comma separated list of fields to search within the JSON.
-    is_mandatory: true
--   name: raw_json
-    default_value: ''
-    type: string
-    description: Raw data in JSON format that is to be searched.
-    is_mandatory: true
+    -   name: fields_to_search
+        default_value: ''
+        type: string
+        description: Comma separated list of fields to search within the JSON.
+        is_mandatory: true
+    -   name: raw_json
+        default_value: ''
+        type: string
+        description: Raw data in JSON format that is to be searched.
+        is_mandatory: true
 dynamic_results_metadata:
--   result_name: JsonResult
-    show_result: true
-    result_example: "{\n   \"results\":[\n      {\n         \"entityType\":\"field_key\"\
+    -   result_name: JsonResult
+        show_result: true
+        result_example: "{\n   \"results\":[\n      {\n         \"entityType\":\"field_key\"\
         ,\n         \"entityIdentifier\":\"field_value\"\n      },\n      {\n    \
         \     \"entityType\":\"field_key2\",\n         \"entityIdentifier\":\"field_key2\"\
         \n      }\n   ]\n}"

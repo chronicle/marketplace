@@ -1,60 +1,60 @@
 name: Scheduled Connector
 parameters:
--   name: Alert fields
-    default_value: "{\n  \"field_name_1\": \"field_value_1\",\n  \"field_name_2\"\
+    -   name: Alert fields
+        default_value: "{\n  \"field_name_1\": \"field_value_1\",\n  \"field_name_2\"\
         : \"field_value_2\"\n}"
-    type: string
-    description: The alert fields you would like to insert in a json format
-    is_mandatory: true
-    is_advanced: false
-    mode: script
--   name: Alert name
-    default_value: <alert_name>
-    type: string
-    description: The Alert name associated with the alert that will be created
-    is_mandatory: true
-    is_advanced: false
-    mode: script
--   name: Alert type
-    default_value: <alert_type>
-    type: string
-    description: The Alert type associated with the alert that will be created
-    is_mandatory: false
-    is_advanced: false
-    mode: script
--   name: DeviceProductField
-    default_value: <none>
-    type: string
-    description: The field name used to determine the device product
-    is_mandatory: true
-    is_advanced: false
-    mode: regular
--   name: EventClassId
-    default_value: <none>
-    type: string
-    description: The field name used to determine the event name (sub-type)
-    is_mandatory: true
-    is_advanced: false
-    mode: regular
--   name: Product name
-    default_value: <product_name>
-    type: string
-    description: The Product name associated with the alert that will be created
-    is_mandatory: false
-    is_advanced: false
-    mode: script
--   name: PythonProcessTimeout
-    default_value: '30'
-    type: string
-    description: The timeout limit (in seconds) for the python process running current
-        script
-    is_mandatory: true
-    is_advanced: false
-    mode: regular
+        type: string
+        description: The alert fields you would like to insert in a json format
+        is_mandatory: true
+        is_advanced: false
+        mode: script
+    -   name: Alert name
+        default_value: <alert_name>
+        type: string
+        description: The Alert name associated with the alert that will be created
+        is_mandatory: true
+        is_advanced: false
+        mode: script
+    -   name: Alert type
+        default_value: <alert_type>
+        type: string
+        description: The Alert type associated with the alert that will be created
+        is_mandatory: false
+        is_advanced: false
+        mode: script
+    -   name: DeviceProductField
+        default_value: <none>
+        type: string
+        description: The field name used to determine the device product
+        is_mandatory: true
+        is_advanced: false
+        mode: regular
+    -   name: EventClassId
+        default_value: <none>
+        type: string
+        description: The field name used to determine the event name (sub-type)
+        is_mandatory: true
+        is_advanced: false
+        mode: regular
+    -   name: Product name
+        default_value: <product_name>
+        type: string
+        description: The Product name associated with the alert that will be created
+        is_mandatory: false
+        is_advanced: false
+        mode: script
+    -   name: PythonProcessTimeout
+        default_value: '30'
+        type: string
+        description: The timeout limit (in seconds) for the python process running current
+            script
+        is_mandatory: true
+        is_advanced: false
+        mode: regular
 description: 'A custom connector created to trigger playbooks by a given alert product,
     name and type and enables to edit the parameters according to your specific use
     case. '
 integration: Connectors
-rules: []
+rules: [ ]
 is_connector_rules_supported: true
 creator: Admin

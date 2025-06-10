@@ -2,30 +2,30 @@ name: Create Document
 description: Creates a new document and determining who to share the doc with
 integration_identifier: Google Docs
 parameters:
--   name: Title
-    default_value: New Document
-    type: string
-    description: 'The document title of the document you would like to create. '
-    is_mandatory: true
--   name: Role
-    default_value: reader
-    type: ddl
-    description: '"Owner"- allows to make any changes to the document
+    -   name: Title
+        default_value: New Document
+        type: string
+        description: 'The document title of the document you would like to create. '
+        is_mandatory: true
+    -   name: Role
+        default_value: reader
+        type: ddl
+        description: '"Owner"- allows to make any changes to the document
 
         "Reader"- allows to open and view the document
 
         "Writer"- allows to leave comments in the document'
-    is_mandatory: true
--   name: Emails
-    default_value: email_1@gmail.com;email_2@gmail.com
-    type: string
-    description: 'Email address of the person you would like to add permission to
+        is_mandatory: true
+    -   name: Emails
+        default_value: email_1@gmail.com;email_2@gmail.com
+        type: string
+        description: 'Email address of the person you would like to add permission to
         the document. You can add multiple emails by adding ";" as a separator. '
-    is_mandatory: true
+        is_mandatory: true
 dynamic_results_metadata:
--   result_name: JsonResult
-    show_result: true
-    result_example: "{\n  \"kind\": \"drive#file\",\n  \"id\": \"1bVDM43X43X4Ogfzzvb_PmPRobMmRdAsmOOgk\"\
+    -   result_name: JsonResult
+        show_result: true
+        result_example: "{\n  \"kind\": \"drive#file\",\n  \"id\": \"1bVDM43X43X4Ogfzzvb_PmPRobMmRdAsmOOgk\"\
         ,\n  \"name\": \"test.png\",\n  \"mimeType\": \"image/png\",\n  \"starred\"\
         : false,\n  \"trashed\": false,\n  \"explicitlyTrashed\": false,\n  \"parents\"\
         : [\n    \"0ADdNAjNcLms6Uk9PVA\"\n  ],\n  \"spaces\": [\n    \"drive\"\n \

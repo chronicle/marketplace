@@ -2,25 +2,25 @@ name: Replace Content
 description: 'Replaces specific text in a document '
 integration_identifier: Google Docs
 parameters:
--   name: Document Id
-    default_value: <document_id>
-    type: string
-    description: 'The document Id can be found in the URL.
+    -   name: Document Id
+        default_value: <document_id>
+        type: string
+        description: 'The document Id can be found in the URL.
 
         For example: https://docs.google.com/document/d/{YourDocumentId}/'
-    is_mandatory: true
--   name: Json
-    default_value: "{\n  \"items\": [\n    {\n      \"text_to_search\": \"Hello\"\
+        is_mandatory: true
+    -   name: Json
+        default_value: "{\n  \"items\": [\n    {\n      \"text_to_search\": \"Hello\"\
         ,\n      \"text_to_replace\": \"HELLO\",\n      \"match_case\": \"true\"\n\
         \    },\n    {\n      \"text_to_search\": \"World\",\n      \"text_to_replace\"\
         : \"WORLD\",\n      \"match_case\": \"true\"\n    }\n  ]\n}"
-    type: code
-    description: 'The content in json format you want to replace in the document. '
-    is_mandatory: true
+        type: code
+        description: 'The content in json format you want to replace in the document. '
+        is_mandatory: true
 dynamic_results_metadata:
--   result_name: JsonResult
-    show_result: false
-    result_example: '{}'
+    -   result_name: JsonResult
+        show_result: false
+        result_example: '{}'
 default_result_value: ''
 creator: Admin
 script_result_name: ScriptResult

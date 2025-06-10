@@ -2,34 +2,34 @@ name: Render Template
 description: 'This action will render a Jinja2 template using a JSON input.  '
 integration_identifier: TemplateEngine
 parameters:
--   name: JSON Object
-    default_value: '{}'
-    type: content
-    description: The raw JSON object that will be used to render the template.  This
-        value is available as the variable input_json in the Jinja template.
-    is_mandatory: false
--   name: Jinja
-    default_value: ''
-    type: code
-    description: The Jinja template code to be rendered.  Will override Template parameter.
-        Append |safe to disable HTML encoding.
-    is_mandatory: false
--   name: Include Case Data
-    default_value: 'false'
-    type: boolean
-    description: When enabled, entity attributes and event data are available under
-        the variables input_json['SiemplifyEvents'] and input_json['SiemplifyEntities']
-    is_mandatory: false
--   name: Template
-    default_value: ''
-    type: email_content
-    description: The Jinja2 template to be rendered.  Can be a HTML template from
-        "Settings->Environment" or added in content box.
-    is_mandatory: false
+    -   name: JSON Object
+        default_value: '{}'
+        type: content
+        description: The raw JSON object that will be used to render the template.  This
+            value is available as the variable input_json in the Jinja template.
+        is_mandatory: false
+    -   name: Jinja
+        default_value: ''
+        type: code
+        description: The Jinja template code to be rendered.  Will override Template parameter.
+            Append |safe to disable HTML encoding.
+        is_mandatory: false
+    -   name: Include Case Data
+        default_value: 'false'
+        type: boolean
+        description: When enabled, entity attributes and event data are available under
+            the variables input_json['SiemplifyEvents'] and input_json['SiemplifyEntities']
+        is_mandatory: false
+    -   name: Template
+        default_value: ''
+        type: email_content
+        description: The Jinja2 template to be rendered.  Can be a HTML template from
+            "Settings->Environment" or added in content box.
+        is_mandatory: false
 dynamic_results_metadata:
--   result_name: JsonResult
-    show_result: true
-    result_example: '{}'
+    -   result_name: JsonResult
+        show_result: true
+        result_example: '{}'
 default_result_value: ''
 creator: Robert
 script_result_name: ScriptResult

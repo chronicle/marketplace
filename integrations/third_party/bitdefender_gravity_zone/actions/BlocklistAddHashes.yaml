@@ -3,20 +3,20 @@ description: 'Use this method to add one or more file hashes to the Blocklist. H
     supported: SHA256, MD5.'
 integration_identifier: Bitdefender GravityZone
 parameters:
--   name: Hash List
-    default_value: hash1,hash2
-    type: string
-    description: A comma-separated list of SHA256 or MD5 hashes.
-    is_mandatory: true
--   name: Source Info
-    default_value: Determined to be malicious.
-    type: string
-    description: A description for the hashes.
-    is_mandatory: true
+    -   name: Hash List
+        default_value: hash1,hash2
+        type: string
+        description: A comma-separated list of SHA256 or MD5 hashes.
+        is_mandatory: true
+    -   name: Source Info
+        default_value: Determined to be malicious.
+        type: string
+        description: A description for the hashes.
+        is_mandatory: true
 dynamic_results_metadata:
--   result_name: JsonResult
-    show_result: false
-    result_example: "{\n    \"items\":[\n        {   \n            \"id\" : \"21a295eeb1a43d8b497b23b7\"\
+    -   result_name: JsonResult
+        show_result: false
+        result_example: "{\n    \"items\":[\n        {   \n            \"id\" : \"21a295eeb1a43d8b497b23b7\"\
         , \"name\" : \"Endpoint 1\",\n            \"label\" : \"endpoint 1\",\n  \
         \          \"fqdn\": \"endpoint1.local\",\n            \"groupId\": \"5a5f4d36b1a43d5f097b23bb\"\
         , \"isManaged\": true,\n            \"isManaged\": true,\n            \"machineType\"\

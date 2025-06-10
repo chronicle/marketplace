@@ -1,94 +1,94 @@
 name: DataDog Connector
 parameters:
--   name: API Key
-    default_value: ''
-    type: password
-    description: API Key
-    is_mandatory: true
-    is_advanced: false
-    mode: script
--   name: APP Key
-    default_value: ''
-    type: password
-    description: APP Key
-    is_mandatory: true
-    is_advanced: false
-    mode: script
--   name: Base URL
-    default_value: ' https://api.datadoghq.com'
-    type: string
-    description: 'The Base url '
-    is_mandatory: true
-    is_advanced: false
-    mode: script
--   name: DeviceProductField
-    default_value: device_product
-    type: string
-    description: The field name used to determine the device product
-    is_mandatory: true
-    is_advanced: false
-    mode: regular
--   name: EventClassId
-    default_value: event_name
-    type: string
-    description: The field name used to determine the event name (sub-type)
-    is_mandatory: true
-    is_advanced: false
-    mode: regular
--   name: Max Days Back
-    default_value: '7'
-    type: integer
-    description: 'Max days back '
-    is_mandatory: true
-    is_advanced: false
-    mode: script
--   name: Priority
-    default_value: all
-    type: string
-    description: "The priority of the events you want to retrieve. \nCould be 'low',\
+    -   name: API Key
+        default_value: ''
+        type: password
+        description: API Key
+        is_mandatory: true
+        is_advanced: false
+        mode: script
+    -   name: APP Key
+        default_value: ''
+        type: password
+        description: APP Key
+        is_mandatory: true
+        is_advanced: false
+        mode: script
+    -   name: Base URL
+        default_value: ' https://api.datadoghq.com'
+        type: string
+        description: 'The Base url '
+        is_mandatory: true
+        is_advanced: false
+        mode: script
+    -   name: DeviceProductField
+        default_value: device_product
+        type: string
+        description: The field name used to determine the device product
+        is_mandatory: true
+        is_advanced: false
+        mode: regular
+    -   name: EventClassId
+        default_value: event_name
+        type: string
+        description: The field name used to determine the event name (sub-type)
+        is_mandatory: true
+        is_advanced: false
+        mode: regular
+    -   name: Max Days Back
+        default_value: '7'
+        type: integer
+        description: 'Max days back '
+        is_mandatory: true
+        is_advanced: false
+        mode: script
+    -   name: Priority
+        default_value: all
+        type: string
+        description: "The priority of the events you want to retrieve. \nCould be 'low',\
         \ 'normal' or 'all'"
-    is_mandatory: false
-    is_advanced: false
-    mode: script
--   name: PythonProcessTimeout
-    default_value: '30'
-    type: string
-    description: The timeout limit (in seconds) for the python process running current
-        script
-    is_mandatory: true
-    is_advanced: false
-    mode: regular
--   name: Sources
-    default_value: alert
-    type: string
-    description: 'The sources to retrieve the events from.
+        is_mandatory: false
+        is_advanced: false
+        mode: script
+    -   name: PythonProcessTimeout
+        default_value: '30'
+        type: string
+        description: The timeout limit (in seconds) for the python process running current
+            script
+        is_mandatory: true
+        is_advanced: false
+        mode: regular
+    -   name: Sources
+        default_value: alert
+        type: string
+        description: 'The sources to retrieve the events from.
 
         For example in order to see events from the triggered monitor write: ''alert''
         .'
-    is_mandatory: true
-    is_advanced: false
-    mode: script
--   name: Tags
-    default_value: monitor
-    type: string
-    description: 'A comma separated list of tags that will filter the list of monitors
+        is_mandatory: true
+        is_advanced: false
+        mode: script
+    -   name: Tags
+        default_value: monitor
+        type: string
+        description: 'A comma separated list of tags that will filter the list of monitors
         by scope.
 
         For example: ''monitor''.'
-    is_mandatory: false
-    is_advanced: false
-    mode: script
--   name: Unaggregated
-    default_value: 'true'
-    type: boolean
-    description: 'True- if you want to retrieve the full list of events.
+        is_mandatory: false
+        is_advanced: false
+        mode: script
+    -   name: Unaggregated
+        default_value: 'true'
+        type: boolean
+        description: 'True- if you want to retrieve the full list of events.
 
         False - if you want to retrieve aggregated list of events.'
-    is_mandatory: false
-    is_advanced: false
-    mode: script
+        is_mandatory: false
+        is_advanced: false
+        mode: script
 description: Ingest events from DataDog by given filters(e.g. tags, priority)
 integration: DataDog
-rules: []
+rules: [ ]
 is_connector_rules_supported: true
 creator: Admin

@@ -6,16 +6,16 @@ description: 'This action will remove a playbook from a case, delete any result 
     with an instance name of Siemplify.  See CSM / Support for additional details.'
 integration_identifier: Tools
 parameters:
--   name: Playbook Name
-    default_value: Basic Phishing PB - Zero to Hero
-    type: playbook_name
-    description: This is the name of the playbook that will be removed from the case
-        and re-attached.  Once re-attached, it will run again.
-    is_mandatory: true
+    -   name: Playbook Name
+        default_value: Basic Phishing PB - Zero to Hero
+        type: playbook_name
+        description: This is the name of the playbook that will be removed from the case
+            and re-attached.  Once re-attached, it will run again.
+        is_mandatory: true
 dynamic_results_metadata:
--   result_name: JsonResult
-    show_result: true
-    result_example: '{}'
+    -   result_name: JsonResult
+        show_result: true
+        result_example: '{}'
 default_result_value: ''
 creator: Robert
 script_result_name: ScriptResult

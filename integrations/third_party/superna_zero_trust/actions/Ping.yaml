@@ -1,11 +1,11 @@
 name: Ping
 description: ''
 integration_identifier: SupernaZeroTrust
-parameters: []
+parameters: [ ]
 dynamic_results_metadata:
--   result_name: JsonResult
-    show_result: false
-    result_example: '{}'
+    -   result_name: JsonResult
+        show_result: false
+        result_example: '{}'
 default_result_value: ''
 creator: 015f9a45-808a-4c76-8598-adad98670462
 is_async: true

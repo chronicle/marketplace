@@ -1,46 +1,46 @@
 name: Slack Connector For Code Defender
 parameters:
--   name: Slack Channel
-    default_value: cd_alerts
-    type: string
-    description: Enter the slack channel name without the preceding "#". If your slack
-        channel name is "#cd_alerts", then enter "cd_alerts"
-    is_mandatory: true
-    is_advanced: false
-    mode: script
--   name: Slack API Key
-    default_value: this-is-not-a-valid-key
-    type: password
-    description: API Key used to connect to Slack
-    is_mandatory: true
-    is_advanced: false
-    mode: script
--   name: PythonProcessTimeout
-    default_value: '30'
-    type: string
-    description: The timeout limit (in seconds) for the python process running current
-        script
-    is_mandatory: true
-    is_advanced: false
-    mode: regular
--   name: EventClassId
-    default_value: event_type
-    type: string
-    description: The field name used to determine the event name (sub-type)
-    is_mandatory: true
-    is_advanced: false
-    mode: regular
--   name: DeviceProductField
-    default_value: PerimterXCodeDefender
-    type: string
-    description: The field name used to determine the device product
-    is_mandatory: true
-    is_advanced: false
-    mode: regular
+    -   name: Slack Channel
+        default_value: cd_alerts
+        type: string
+        description: Enter the slack channel name without the preceding "#". If your slack
+            channel name is "#cd_alerts", then enter "cd_alerts"
+        is_mandatory: true
+        is_advanced: false
+        mode: script
+    -   name: Slack API Key
+        default_value: this-is-not-a-valid-key
+        type: password
+        description: API Key used to connect to Slack
+        is_mandatory: true
+        is_advanced: false
+        mode: script
+    -   name: PythonProcessTimeout
+        default_value: '30'
+        type: string
+        description: The timeout limit (in seconds) for the python process running current
+            script
+        is_mandatory: true
+        is_advanced: false
+        mode: regular
+    -   name: EventClassId
+        default_value: event_type
+        type: string
+        description: The field name used to determine the event name (sub-type)
+        is_mandatory: true
+        is_advanced: false
+        mode: regular
+    -   name: DeviceProductField
+        default_value: PerimterXCodeDefender
+        type: string
+        description: The field name used to determine the device product
+        is_mandatory: true
+        is_advanced: false
+        mode: regular
 description: This connector is used to connect to a Slack Channel that has been configured
     to receive PerimeterX Code Defender alerts. Any alerts discovered on the channel
     are imported into Siemplify via this connector.
 integration: PerimeterX
-rules: []
+rules: [ ]
 is_connector_rules_supported: true
 creator: Admin
