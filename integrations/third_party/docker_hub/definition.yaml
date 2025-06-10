@@ -1,25 +1,19 @@
 identifier: Docker Hub
 name: Docker Hub
-version: 13.0
 parameters:
--   name: Username
-    type: string
-    description: Docker hub username
-    is_mandatory: false
-    integration_identifier: Docker Hub
--   name: Password
-    type: password
-    description: Docker Hub password
-    is_mandatory: false
-    integration_identifier: Docker Hub
-description: Docker is a tool designed to make it easier to create, deploy, and run
-    applications by using containers. Containers allow a developer to package up an
-    application with all of the parts it needs, such as libraries and other dependencies,
-    and deploy it as one package.
-python_version: '3.11'
+    -   name: Username
+        type: string
+        description: Docker hub username
+        is_mandatory: false
+        integration_identifier: Docker Hub
+    -   name: Password
+        type: password
+        description: Docker Hub password
+        is_mandatory: false
+        integration_identifier: Docker Hub
 categories:
-- IT & Infrastructure
-- Free to use
+    - IT & Infrastructure
+    - Free to use
 svg_image: "<?xml version=\"1.0\" encoding=\"utf-8\"?><!-- Generator: Adobe Illustrator\
     \ 24.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  --><svg version=\"\
     1.1\" id=\"Layer_1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\"\

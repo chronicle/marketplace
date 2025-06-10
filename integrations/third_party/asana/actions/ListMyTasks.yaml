@@ -2,28 +2,28 @@ name: List My Tasks
 description: Lists all the tasks associated with a user in Asana
 integration_identifier: Asana
 parameters:
--   name: User's Email
-    default_value: email@gmail.com
-    type: string
-    description: The email of the user you would like to retrieve tasks for in Asana
-    is_mandatory: true
--   name: Workspace Name
-    default_value: Your Workspace Name
-    type: string
-    description: 'The workspace name.
+    -   name: User's Email
+        default_value: email@gmail.com
+        type: string
+        description: The email of the user you would like to retrieve tasks for in Asana
+        is_mandatory: true
+    -   name: Workspace Name
+        default_value: Your Workspace Name
+        type: string
+        description: 'The workspace name.
 
         Note: This is case sensitive'
-    is_mandatory: true
--   name: Completed Status
-    default_value: 'false'
-    type: boolean
-    description: 'Marking the checkbox will retrieve only the tasks that were completed
+        is_mandatory: true
+    -   name: Completed Status
+        default_value: 'false'
+        type: boolean
+        description: 'Marking the checkbox will retrieve only the tasks that were completed
         by the user. '
-    is_mandatory: false
+        is_mandatory: false
 dynamic_results_metadata:
--   result_name: JsonResult
-    show_result: true
-    result_example: "{\r\n\t\"Task name: task 1\": {\r\n\t\t\"data\": {\r\n\t\t\t\"\
+    -   result_name: JsonResult
+        show_result: true
+        result_example: "{\r\n\t\"Task name: task 1\": {\r\n\t\t\"data\": {\r\n\t\t\t\"\
         gid\": \"11111111\",\r\n\t\t\t\"assignee\": {\r\n\t\t\t\t\"gid\": \"123456\"\
         ,\r\n\t\t\t\t\"name\": \"Firstname Lastname\",\r\n\t\t\t\t\"resource_type\"\
         : \"user\"\r\n\t\t\t},\r\n\t\t\t\"assignee_status\": \"inbox\",\r\n\t\t\t\"\

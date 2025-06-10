@@ -1,44 +1,24 @@
 identifier: ArcannaAI
 name: ArcannaAI
-version: 7.0
 parameters:
--   name: Url
-    default_value: https://your-arcanna.url
-    type: string
-    description: ''
-    is_mandatory: true
-    integration_identifier: ArcannaAI
--   name: Api Key
-    type: password
-    description: ''
-    is_mandatory: true
-    integration_identifier: ArcannaAI
--   name: SSL Verification
-    default_value: 'false'
-    type: boolean
-    description: ''
-    is_mandatory: false
-    integration_identifier: ArcannaAI
-description: 'Arcanna.ai is a platform for delivering decision intelligence. It augments
-    Security Operation Center analysts in dealing with incoming threats by increasing
-    analyst efficiency in decision-making.
-
-
-    Arcanna.ai continuously learns from cybersecurity experts by using an innovative
-    method for expert knowledge integration into deep neural nets by combining a continuous
-    human feedback-loop, Natural Language Processing and deep learning.
-
-
-    Our platform enables SOC Analyst decisions to be augmented using AI models obtained
-    by encoding knowledge from the existing processes across the entire security team
-    and uses it to predict future decisions, increasing efficiency in decision-making.
-
-
-    More information is available at https://arcanna.ai
-
-    '
-python_version: '3.11'
-categories: []
+    -   name: Url
+        default_value: https://your-arcanna.url
+        type: string
+        description: ''
+        is_mandatory: true
+        integration_identifier: ArcannaAI
+    -   name: Api Key
+        type: password
+        description: ''
+        is_mandatory: true
+        integration_identifier: ArcannaAI
+    -   name: SSL Verification
+        default_value: 'false'
+        type: boolean
+        description: ''
+        is_mandatory: false
+        integration_identifier: ArcannaAI
+categories: [ ]
 svg_image: "<svg width=\"48\" height=\"48\" viewBox=\"0 0 48 48\" fill=\"none\" xmlns=\"\
     http://www.w3.org/2000/svg\">\r\n<path fill-rule=\"evenodd\" clip-rule=\"evenodd\"\
     \ d=\"M11.52 0C5.15768 0 0 5.15768 0 11.52V36.48C0 42.8423 5.15768 48 11.52 48H36.48C42.8423\

@@ -14,7 +14,6 @@
 
 categories:
     - IT & Infrastructure
-description: Mock Integration description
 documentation_link: https://cloud.google.com/chronicle/docs/soar/marketplace-integrations/mock-integration
 feature_tags:
     integration_visibility_properties:
@@ -30,6 +29,4 @@ parameters:
         name: Mock Parameter
         type: password
         default_value: ''
-python_version: '3.11'
 svg_image: <?xml version="1.0" encoding="UTF-8"?><svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 25"><path d="M23.8,11.73L18.8Z" fill-rule="evenodd"/></svg>
-version: 2.0

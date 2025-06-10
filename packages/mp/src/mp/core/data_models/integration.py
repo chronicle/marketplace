@@ -15,10 +15,9 @@
 from __future__ import annotations
 
 import dataclasses
-import decimal
 import itertools
 import tomllib
-from typing import TYPE_CHECKING, Any, TypedDict
+from typing import TYPE_CHECKING, TypedDict
 
 import mp.core.constants
 import mp.core.file_utils
@@ -27,15 +26,16 @@ import mp.core.utils
 from .action.metadata import ActionMetadata
 from .connector.metadata import ConnectorMetadata
 from .custom_families.metadata import CustomFamily
-from .integration_meta.metadata import IntegrationMetadata, PythonVersion
+from .integration_meta.metadata import IntegrationMetadata
 from .job.metadata import JobMetadata
 from .mapping_rules.metadata import MappingRule
+from .pyproject_toml import PyProjectToml
 from .release_notes.metadata import ReleaseNote
 from .widget.metadata import WidgetMetadata
 
 if TYPE_CHECKING:
     import pathlib
-    from collections.abc import Mapping, MutableMapping, Sequence
+    from collections.abc import Mapping, Sequence
 
     from mp.core.custom_types import (
         ActionName,
@@ -55,6 +55,7 @@ if TYPE_CHECKING:
     from .integration_meta.parameter import BuiltIntegrationParameter
     from .job.metadata import BuiltJobMetadata, NonBuiltJobMetadata
     from .mapping_rules.metadata import BuiltMappingRule, NonBuiltMappingRule
+    from .pyproject_toml import PyProjectTomlFile
     from .release_notes.metadata import BuiltReleaseNote, NonBuiltReleaseNote
     from .widget.metadata import BuiltWidgetMetadata, NonBuiltWidgetMetadata
 
@@ -81,10 +82,6 @@ class NonBuiltIntegration(TypedDict):
     connectors: Mapping[ConnectorName, NonBuiltConnectorMetadata]
     jobs: Mapping[JobName, NonBuiltJobMetadata]
     widgets: Mapping[WidgetName, NonBuiltWidgetMetadata]
-
-
-class IntegrationPyProjectToml(TypedDict):
-    project: MutableMapping[str, Any]
 
 
 class FullDetailsReleaseNoteJson(TypedDict):
@@ -199,13 +196,13 @@ class Integration:
         """
         project_file_path: pathlib.Path = path / mp.core.constants.PROJECT_FILE
         file_content: str = project_file_path.read_text(encoding="utf-8")
-        pyproject_toml: IntegrationPyProjectToml = tomllib.loads(file_content)  # type: ignore[assignment]
+        pyproject_toml: PyProjectTomlFile = tomllib.loads(file_content)  # type: ignore[assignment]
         try:
             integration_meta: IntegrationMetadata = (
                 IntegrationMetadata.from_non_built_integration_path(path)
             )
             _update_integration_meta_form_pyproject(
-                pyproject_toml=pyproject_toml,
+                pyproject_toml_file=pyproject_toml,
                 integration_meta=integration_meta,
             )
             return cls(
@@ -553,21 +550,17 @@ class Integration:
 
 
 def _update_integration_meta_form_pyproject(
-    pyproject_toml: IntegrationPyProjectToml,
+    pyproject_toml_file: PyProjectTomlFile,
     integration_meta: IntegrationMetadata,
 ) -> None:
     """Update the integration's metadata based on changes in the project file.
 
     Args:
-        pyproject_toml: the integration's project file
+        pyproject_toml_file: the integration's project file content loaded as a dict
         integration_meta: the integration's metadata
 
     """
-    pyv: str = mp.core.utils.get_python_version_from_version_string(
-        pyproject_toml["project"]["requires-python"],
-    )
-    integration_meta.python_version = PythonVersion.from_string(pyv)
-    integration_meta.description = pyproject_toml["project"]["description"]
-    integration_meta.version = decimal.Decimal(
-        float(pyproject_toml["project"]["version"])
-    )
+    pyproject_toml: PyProjectToml = PyProjectToml.model_load(pyproject_toml_file)
+    integration_meta.python_version = pyproject_toml.project.requires_python
+    integration_meta.description = pyproject_toml.project.description
+    integration_meta.version = pyproject_toml.project.version

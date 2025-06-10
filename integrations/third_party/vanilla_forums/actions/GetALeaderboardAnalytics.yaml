@@ -2,38 +2,38 @@ name: Get a Leaderboard Analytics
 description: Fetch analytics for leaderboards in a given date range
 integration_identifier: VanillaForums
 parameters:
--   name: Leaderboards
-    default_value: top-posters, top-discussion-starters
-    type: string
-    description: "Leaderboards seperated by comma. \nFor example: top-posters, top-discussion-starters"
-    is_mandatory: true
--   name: To
-    default_value: '2021-12-30'
-    type: string
-    description: 'End of the time frame
+    -   name: Leaderboards
+        default_value: top-posters, top-discussion-starters
+        type: string
+        description: "Leaderboards seperated by comma. \nFor example: top-posters, top-discussion-starters"
+        is_mandatory: true
+    -   name: To
+        default_value: '2021-12-30'
+        type: string
+        description: 'End of the time frame
 
         Syntax:
 
         {yyyy}-{mm}-{dd}'
-    is_mandatory: true
--   name: Amount Limit
-    default_value: '10'
-    type: string
-    description: The max number of rows to return for each board
-    is_mandatory: true
--   name: From
-    default_value: '2021-01-01'
-    type: string
-    description: 'Start of the time frame
+        is_mandatory: true
+    -   name: Amount Limit
+        default_value: '10'
+        type: string
+        description: The max number of rows to return for each board
+        is_mandatory: true
+    -   name: From
+        default_value: '2021-01-01'
+        type: string
+        description: 'Start of the time frame
 
         Syntax:
 
         {yyyy}-{mm}-{dd}'
-    is_mandatory: true
+        is_mandatory: true
 dynamic_results_metadata:
--   result_name: JsonResult
-    show_result: true
-    result_example: "[{\r\n\t\"board\": \"top-discussion-starters\",\r\n\t\"board_details\"\
+    -   result_name: JsonResult
+        show_result: true
+        result_example: "[{\r\n\t\"board\": \"top-discussion-starters\",\r\n\t\"board_details\"\
         : [{\r\n\t\t\"recordID\": 1111,\r\n\t\t\"recordType\": \"user\",\r\n\t\t\"\
         id\": 1111,\r\n\t\t\"position\": 1,\r\n\t\t\"positionChange\": \"New\",\r\n\
         \t\t\"previous\": null,\r\n\t\t\"url\": \"/profile/Name%20LastName\",\r\n\t\

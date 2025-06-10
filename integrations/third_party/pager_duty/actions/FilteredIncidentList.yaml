@@ -2,69 +2,69 @@ name: Filtered Incident List
 description: Use filters to found a specific incident.
 integration_identifier: PagerDuty
 parameters:
--   name: Additional_Data
-    default_value: ''
-    type: multi_choice_parameter
-    description: Additional details to include.
-    is_mandatory: false
--   name: sort_by
-    default_value: ''
-    type: multi_choice_parameter
-    description: Pick one of the Four options and decide in which order asc or desc
-    is_mandatory: false
--   name: Urgencies
-    default_value: ''
-    type: multi_choice_parameter
-    description: Urgencies
-    is_mandatory: false
--   name: User_IDS
-    type: string
-    description: it can be more than one
-    is_mandatory: false
--   name: Team_IDS
-    default_value: ''
-    type: string
-    description: it can be more than one
-    is_mandatory: false
--   name: Incident_Key
-    type: string
-    description: Incident_Key
-    is_mandatory: false
--   name: Incidents_Statuses
-    default_value: ''
-    type: multi_choice_parameter
-    description: Incidents_Statuses
-    is_mandatory: false
--   name: Data_Range
-    default_value: ''
-    type: string
-    description: Data_Range
-    is_mandatory: false
--   name: Until
-    default_value: ''
-    type: string
-    description: Date format YYYY-MM-DD
-    is_mandatory: false
--   name: Since
-    default_value: ''
-    type: string
-    description: 'Date format YYYY-MM-DD
+    -   name: Additional_Data
+        default_value: ''
+        type: multi_choice_parameter
+        description: Additional details to include.
+        is_mandatory: false
+    -   name: sort_by
+        default_value: ''
+        type: multi_choice_parameter
+        description: Pick one of the Four options and decide in which order asc or desc
+        is_mandatory: false
+    -   name: Urgencies
+        default_value: ''
+        type: multi_choice_parameter
+        description: Urgencies
+        is_mandatory: false
+    -   name: User_IDS
+        type: string
+        description: it can be more than one
+        is_mandatory: false
+    -   name: Team_IDS
+        default_value: ''
+        type: string
+        description: it can be more than one
+        is_mandatory: false
+    -   name: Incident_Key
+        type: string
+        description: Incident_Key
+        is_mandatory: false
+    -   name: Incidents_Statuses
+        default_value: ''
+        type: multi_choice_parameter
+        description: Incidents_Statuses
+        is_mandatory: false
+    -   name: Data_Range
+        default_value: ''
+        type: string
+        description: Data_Range
+        is_mandatory: false
+    -   name: Until
+        default_value: ''
+        type: string
+        description: Date format YYYY-MM-DD
+        is_mandatory: false
+    -   name: Since
+        default_value: ''
+        type: string
+        description: 'Date format YYYY-MM-DD
 
         Maximum range is 6 months'
-    is_mandatory: false
--   name: Email
-    default_value: Email
-    type: string
-    description: Email
-    is_mandatory: true
--   name: Service_IDS
-    type: string
-    description: Service_IDS
-    is_mandatory: false
+        is_mandatory: false
+    -   name: Email
+        default_value: Email
+        type: string
+        description: Email
+        is_mandatory: true
+    -   name: Service_IDS
+        type: string
+        description: Service_IDS
+        is_mandatory: false
 dynamic_results_metadata:
--   result_name: JsonResult
-    show_result: true
-    result_example: '{}'
+    -   result_name: JsonResult
+        show_result: true
+        result_example: '{}'
 default_result_value: ''
 creator: Admin
 script_result_name: ScriptResult

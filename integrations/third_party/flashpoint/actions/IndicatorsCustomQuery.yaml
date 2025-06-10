@@ -4,66 +4,66 @@ description: 'Custom query for specific indicators (events and attributes)
     See the documentation: "https://docs.fp.tools/#!/indicators/"'
 integration_identifier: Flashpoint
 parameters:
--   name: Sort By Time
-    default_value: Descending
-    type: ddl
-    description: Presents the data in a descending or ascending order.
-    is_mandatory: false
--   name: Entity Types
-    default_value: url,domain,ip-src
-    type: string
-    description: 'Entity types to retrieve data for (comma separated)
+    -   name: Sort By Time
+        default_value: Descending
+        type: ddl
+        description: Presents the data in a descending or ascending order.
+        is_mandatory: false
+    -   name: Entity Types
+        default_value: url,domain,ip-src
+        type: string
+        description: 'Entity types to retrieve data for (comma separated)
 
         For example: url,domain,ip-src.
 
         More info : https://www.circl.lu/doc/misp/categories-and-types/'
-    is_mandatory: false
--   name: Limit
-    default_value: '10'
-    type: string
-    description: The maximum number of result objects to return.
-    is_mandatory: false
--   name: Start Date
-    default_value: '2020-02-26T14:49:07Z'
-    type: string
-    description: "Retrieves values created after the specified date. \nFor example:\
+        is_mandatory: false
+    -   name: Limit
+        default_value: '10'
+        type: string
+        description: The maximum number of result objects to return.
+        is_mandatory: false
+    -   name: Start Date
+        default_value: '2020-02-26T14:49:07Z'
+        type: string
+        description: "Retrieves values created after the specified date. \nFor example:\
         \ 2020-02-26T14:49:07Z\nFor more info: https://docs.fp.tools/"
-    is_mandatory: false
--   name: End Date
-    default_value: '2020-02-25T14:49:07Z'
-    type: string
-    description: "Retrieves values created before the specified date. \nFor example:\
+        is_mandatory: false
+    -   name: End Date
+        default_value: '2020-02-25T14:49:07Z'
+        type: string
+        description: "Retrieves values created before the specified date. \nFor example:\
         \ 2020-11-25T14:49:07Z\nFor more info:https://docs.fp.tools/"
-    is_mandatory: false
--   name: Search Tags
-    default_value: malware,ransomware
-    type: string
-    description: 'Search for a specific keyword (comma separated).
+        is_mandatory: false
+    -   name: Search Tags
+        default_value: malware,ransomware
+        type: string
+        description: 'Search for a specific keyword (comma separated).
 
         For example: malware,ransomware.'
-    is_mandatory: false
--   name: Query
-    default_value: malicious
-    type: string
-    description: 'Custom query to retrieve data for.
+        is_mandatory: false
+    -   name: Query
+        default_value: malicious
+        type: string
+        description: 'Custom query to retrieve data for.
 
         For example:
 
         For more info:'
-    is_mandatory: false
--   name: Indicator Type
-    default_value: attribute
-    type: ddl
-    description: 'Simple-simplified list of indicators of compromise
+        is_mandatory: false
+    -   name: Indicator Type
+        default_value: attribute
+        type: ddl
+        description: 'Simple-simplified list of indicators of compromise
 
         Attribute- indicators of compromise (IOCs)
 
         Event- groupings of different indicators of compromise.'
-    is_mandatory: true
+        is_mandatory: true
 dynamic_results_metadata:
--   result_name: JsonResult
-    show_result: true
-    result_example: "[\r\n  {\r\n    \"Attribute\": [\r\n      {\r\n        \"category\"\
+    -   result_name: JsonResult
+        show_result: true
+        result_example: "[\r\n  {\r\n    \"Attribute\": [\r\n      {\r\n        \"category\"\
         : \"string\",\r\n        \"comment\": \"string\",\r\n        \"fpid\": {},\r\
         \n        \"href\": {},\r\n        \"timestamp\": 0,\r\n        \"type\":\
         \ \"string\",\r\n        \"uuid\": \"string\",\r\n        \"value\": {}\r\n\

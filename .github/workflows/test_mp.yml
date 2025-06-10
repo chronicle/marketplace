@@ -1,0 +1,39 @@
+name: Run mp tests
+
+on:
+  push:
+    branches:
+      - '**'
+    paths:
+      - 'packages/mp/**'
+  pull_request:
+    branches:
+      - '**'
+    paths:
+      - 'packages/mp/**'
+
+jobs:
+  test_mp:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - name: Install uv
+      uses: astral-sh/setup-uv@v5
+      with:
+        version: 'latest'
+        python-version: '3.11'
+
+    - name: Create venv
+      working-directory: packages/mp
+      run: |
+        uv sync --dev
+
+    - name: Run pytest
+      working-directory: packages/mp
+      run: |
+        .venv/bin/pytest tests -n 10 --cov

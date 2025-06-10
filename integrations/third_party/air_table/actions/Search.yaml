@@ -2,38 +2,38 @@ name: Search
 description: Search specific fields (columns) in a table
 integration_identifier: AirTable
 parameters:
--   name: Field value
-    default_value: ''
-    type: string
-    description: The value of a specific field in a table
-    is_mandatory: true
--   name: Field name
-    default_value: ''
-    type: string
-    description: The name of a specific field (column) in the table
-    is_mandatory: true
--   name: Table name
-    default_value: ''
-    type: string
-    description: A table stores similar (structured) data, and each base can have
-        multiple tables.  This parameter indicates the name of the table within the
-        base.
-    is_mandatory: true
--   name: Base id
-    default_value: ''
-    type: string
-    description: 'Base is a database in Airtable in which you store data.The base
+    -   name: Field value
+        default_value: ''
+        type: string
+        description: The value of a specific field in a table
+        is_mandatory: true
+    -   name: Field name
+        default_value: ''
+        type: string
+        description: The name of a specific field (column) in the table
+        is_mandatory: true
+    -   name: Table name
+        default_value: ''
+        type: string
+        description: A table stores similar (structured) data, and each base can have
+            multiple tables.  This parameter indicates the name of the table within the
+            base.
+        is_mandatory: true
+    -   name: Base id
+        default_value: ''
+        type: string
+        description: 'Base is a database in Airtable in which you store data.The base
         ID can be found in the URL of the API page of the base. '
-    is_mandatory: true
--   name: Max records
-    default_value: '100'
-    type: string
-    description: The maximum records (rows) that will be affected by the action
-    is_mandatory: false
+        is_mandatory: true
+    -   name: Max records
+        default_value: '100'
+        type: string
+        description: The maximum records (rows) that will be affected by the action
+        is_mandatory: false
 dynamic_results_metadata:
--   result_name: JsonResult
-    show_result: true
-    result_example: "[\n  {\n    \"id\": \"recCc2V3tpfStq4kh\",\n    \"fields\": {\n\
+    -   result_name: JsonResult
+        show_result: true
+        result_example: "[\n  {\n    \"id\": \"recCc2V3tpfStq4kh\",\n    \"fields\": {\n\
         \      \"Field_Name_1\": \"Field_Value_1\",\n      \"Field_Name_2\": \"Field_Value_2\"\
         ,\n      \"Field_Name_3\": \"Field_Value_3\"\n    },\n    \"createdTime\"\
         : \"2019-06-27T06:22:10.000Z\"\n  }\n]"

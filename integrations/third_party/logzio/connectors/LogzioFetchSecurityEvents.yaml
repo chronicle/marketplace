@@ -1,86 +1,86 @@
 name: LOGZIO fetch-security-events
 parameters:
--   name: DeviceProductField
-    default_value: device_product
-    type: string
-    description: The field name used to determine the device product
-    is_mandatory: true
-    is_advanced: false
-    mode: regular
--   name: EventClassId
-    default_value: event_name
-    type: string
-    description: The field name used to determine the event name (sub-type)
-    is_mandatory: true
-    is_advanced: false
-    mode: regular
--   name: from_date
-    default_value: ''
-    type: string
-    description: 'Earliest time to search. Accepts formats supported by dateparser
+    -   name: DeviceProductField
+        default_value: device_product
+        type: string
+        description: The field name used to determine the device product
+        is_mandatory: true
+        is_advanced: false
+        mode: regular
+    -   name: EventClassId
+        default_value: event_name
+        type: string
+        description: The field name used to determine the event name (sub-type)
+        is_mandatory: true
+        is_advanced: false
+        mode: regular
+    -   name: from_date
+        default_value: ''
+        type: string
+        description: 'Earliest time to search. Accepts formats supported by dateparser
         lib: Unix timestamps, relative time, or the format  "%Y-%m-%dT%H:%M:%S.%f".'
-    is_mandatory: true
-    is_advanced: false
-    mode: script
--   name: logzio_custom_endpoint
-    type: string
-    description: 'Optional. Relevant if you use a custom URL with the Logz.io API.
+        is_mandatory: true
+        is_advanced: false
+        mode: script
+    -   name: logzio_custom_endpoint
+        type: string
+        description: 'Optional. Relevant if you use a custom URL with the Logz.io API.
         Overrides logzio_region.
 
         '
-    is_mandatory: false
-    is_advanced: false
-    mode: script
--   name: logzio_region
-    type: string
-    description: 2-letter region code for your Logz.io account.
-    is_mandatory: false
-    is_advanced: false
-    mode: script
--   name: logzio_token
-    default_value: ''
-    type: password
-    description: 'API token for your Logz.io security account.
+        is_mandatory: false
+        is_advanced: false
+        mode: script
+    -   name: logzio_region
+        type: string
+        description: 2-letter region code for your Logz.io account.
+        is_mandatory: false
+        is_advanced: false
+        mode: script
+    -   name: logzio_token
+        default_value: ''
+        type: password
+        description: 'API token for your Logz.io security account.
 
         '
-    is_mandatory: true
-    is_advanced: false
-    mode: script
--   name: page_size
-    default_value: '25'
-    type: integer
-    description: Controls the number of results per page. Valid inputs are 1 to 1000.
-    is_mandatory: false
-    is_advanced: false
-    mode: script
--   name: PythonProcessTimeout
-    default_value: '30'
-    type: string
-    description: The timeout limit (in seconds) for the python process running current
-        script
-    is_mandatory: true
-    is_advanced: false
-    mode: regular
--   name: search_term
-    default_value: ''
-    type: string
-    description: 'Filter for a matching string in the rule name.
+        is_mandatory: true
+        is_advanced: false
+        mode: script
+    -   name: page_size
+        default_value: '25'
+        type: integer
+        description: Controls the number of results per page. Valid inputs are 1 to 1000.
+        is_mandatory: false
+        is_advanced: false
+        mode: script
+    -   name: PythonProcessTimeout
+        default_value: '30'
+        type: string
+        description: The timeout limit (in seconds) for the python process running current
+            script
+        is_mandatory: true
+        is_advanced: false
+        mode: regular
+    -   name: search_term
+        default_value: ''
+        type: string
+        description: 'Filter for a matching string in the rule name.
 
         '
-    is_mandatory: false
-    is_advanced: false
-    mode: script
--   name: severities
-    default_value: ''
-    type: string
-    description: 'A comma-delimited list of security rules severities: "INFO", "LOW",
+        is_mandatory: false
+        is_advanced: false
+        mode: script
+    -   name: severities
+        default_value: ''
+        type: string
+        description: 'A comma-delimited list of security rules severities: "INFO", "LOW",
         "MEDIUM", "HIGH", "SEVERE".'
-    is_mandatory: false
-    is_advanced: false
-    mode: script
+        is_mandatory: false
+        is_advanced: false
+        mode: script
 description: Fetches security events from your Logz.io security account and converts
     them into new cases in your Siemplify account.
 integration: Logzio
-rules: []
+rules: [ ]
 is_connector_rules_supported: true
 creator: Admin

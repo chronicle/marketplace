@@ -2,26 +2,26 @@ name: Remove Tags
 description: Remove tags from the given entity ID.
 integration_identifier: VectraRUX
 parameters:
--   name: Tags
-    default_value: test-tag
-    type: string
-    description: List of the Tags which user wants to remove from the account, host
-        or detection.
-    is_mandatory: true
--   name: Entity ID
-    default_value: '101'
-    type: string
-    description: Entity IDs from which user wants to remove Tags
-    is_mandatory: true
--   name: Entity Type
-    default_value: Account
-    type: ddl
-    description: The type of the entity in which tags will be added.
-    is_mandatory: true
+    -   name: Tags
+        default_value: test-tag
+        type: string
+        description: List of the Tags which user wants to remove from the account, host
+            or detection.
+        is_mandatory: true
+    -   name: Entity ID
+        default_value: '101'
+        type: string
+        description: Entity IDs from which user wants to remove Tags
+        is_mandatory: true
+    -   name: Entity Type
+        default_value: Account
+        type: ddl
+        description: The type of the entity in which tags will be added.
+        is_mandatory: true
 dynamic_results_metadata:
--   result_name: JsonResult
-    show_result: true
-    result_example: '[{"Entity Id": "103", "Entity Type": "account", "Status": "success",
+    -   result_name: JsonResult
+        show_result: true
+        result_example: '[{"Entity Id": "103", "Entity Type": "account", "Status": "success",
         "Tags": ["tast-tag:-:", "1", "xsoar1"]}]'
 default_result_value: ''
 creator: Admin

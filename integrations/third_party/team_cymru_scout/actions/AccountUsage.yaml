@@ -1,11 +1,11 @@
 name: Account Usage
 description: Returns the current account usage metrics of Team Cymru Scout API.
 integration_identifier: TeamCymruScout
-parameters: []
+parameters: [ ]
 dynamic_results_metadata:
--   result_name: JsonResult
-    show_result: true
-    result_example: "{\r\n    \"used_queries\": 1401,\r\n    \"remaining_queries\"\
+    -   result_name: JsonResult
+        show_result: true
+        result_example: "{\r\n    \"used_queries\": 1401,\r\n    \"remaining_queries\"\
         : 48599,\r\n    \"query_limit\": 50000,\r\n    \"foundation_api_usage\": {\r\
         \n        \"used_queries\": 2,\r\n        \"remaining_queries\": 9998,\r\n\
         \        \"query_limit\": 10000\r\n    },\r\n    \"ai_insights_usage\": {\r\

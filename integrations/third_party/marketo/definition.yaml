@@ -1,33 +1,27 @@
 identifier: Marketo
 name: Marketo
-version: 16.0
 parameters:
--   name: Client Secret
-    default_value: Client Secret
-    type: string
-    description: ' The client secret of the Marketo account'
-    is_mandatory: true
-    integration_identifier: Marketo
--   name: Client Id
-    default_value: Client Id
-    type: string
-    description: ' The client id of the Marketo account'
-    is_mandatory: true
-    integration_identifier: Marketo
--   name: Munchkin Id
-    default_value: Munchkin Id
-    type: string
-    description: '  The Munchkin Id of the Marketo account'
-    is_mandatory: true
-    integration_identifier: Marketo
-description: Marketo, Inc. is an American software company, headquartered in San Mateo,
-    California. Marketo develops and sells marketing automation software for account-based
-    marketing and other marketing services and products including SEO and content
-    creation.
-python_version: '3.11'
+    -   name: Client Secret
+        default_value: Client Secret
+        type: string
+        description: ' The client secret of the Marketo account'
+        is_mandatory: true
+        integration_identifier: Marketo
+    -   name: Client Id
+        default_value: Client Id
+        type: string
+        description: ' The client id of the Marketo account'
+        is_mandatory: true
+        integration_identifier: Marketo
+    -   name: Munchkin Id
+        default_value: Munchkin Id
+        type: string
+        description: '  The Munchkin Id of the Marketo account'
+        is_mandatory: true
+        integration_identifier: Marketo
 categories:
-- Productivity
-- Cloud
+    - Productivity
+    - Cloud
 svg_image: <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
     viewBox="0 0 25 25">  <path d="M16.35 1.4v22.2L22 19.05V4.5l-5.65-3.1zM9.1 20.75l4.6-2V4.7L9.1
     3.3v17.45zM3 18.25l3.5-.9V6.2L3 5.65v12.6z"/></svg>

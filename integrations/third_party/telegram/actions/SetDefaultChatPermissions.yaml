@@ -4,42 +4,42 @@ description: "Sets default chat permissions for all new members. \nNote: The bot
     \ the can_restrict_members admin permissions."
 integration_identifier: Telegram
 parameters:
--   name: Can Send Messages
-    default_value: 'true'
-    type: boolean
-    description: 'If the user is allowed to send text messages, contacts and locations '
-    is_mandatory: false
--   name: Can Edit Info
-    default_value: 'true'
-    type: boolean
-    description: If the user is allowed to edit the chat title, photo and other settings.
-        Can't be applied in supergroups
-    is_mandatory: false
--   name: Chat ID
-    default_value: '123456'
-    type: string
-    description: The chat ID which you want the bot to set the default permissions
-        to.
-    is_mandatory: true
--   name: Can Invite Users
-    default_value: 'true'
-    type: boolean
-    description: The user can invite new users to the chat.
-    is_mandatory: false
--   name: Can Pin Messages
-    default_value: 'true'
-    type: boolean
-    description: "If the user is allowed to pin messages. \nCan't be applied in supergroups"
-    is_mandatory: false
--   name: Can Send Polls
-    default_value: 'true'
-    type: boolean
-    description: If the user is allowed to send polls.
-    is_mandatory: false
+    -   name: Can Send Messages
+        default_value: 'true'
+        type: boolean
+        description: 'If the user is allowed to send text messages, contacts and locations '
+        is_mandatory: false
+    -   name: Can Edit Info
+        default_value: 'true'
+        type: boolean
+        description: If the user is allowed to edit the chat title, photo and other settings.
+            Can't be applied in supergroups
+        is_mandatory: false
+    -   name: Chat ID
+        default_value: '123456'
+        type: string
+        description: The chat ID which you want the bot to set the default permissions
+            to.
+        is_mandatory: true
+    -   name: Can Invite Users
+        default_value: 'true'
+        type: boolean
+        description: The user can invite new users to the chat.
+        is_mandatory: false
+    -   name: Can Pin Messages
+        default_value: 'true'
+        type: boolean
+        description: "If the user is allowed to pin messages. \nCan't be applied in supergroups"
+        is_mandatory: false
+    -   name: Can Send Polls
+        default_value: 'true'
+        type: boolean
+        description: If the user is allowed to send polls.
+        is_mandatory: false
 dynamic_results_metadata:
--   result_name: JsonResult
-    show_result: true
-    result_example: "{\r\n\t\"ok\": true,\r\n\t\"result\": {\r\n\t\t\"message_id\"\
+    -   result_name: JsonResult
+        show_result: true
+        result_example: "{\r\n\t\"ok\": true,\r\n\t\"result\": {\r\n\t\t\"message_id\"\
         : 5,\r\n\t\t\"from\": {\r\n\t\t\t\"id\": 123456,\r\n\t\t\t\"is_bot\": true,\r\
         \n\t\t\t\"first_name\": \"test_test\",\r\n\t\t\t\"username\": \"test_bot\"\
         \r\n\t\t},\r\n\t\t\"chat\": {\r\n\t\t\t\"id\": -1111111,\r\n\t\t\t\"title\"\

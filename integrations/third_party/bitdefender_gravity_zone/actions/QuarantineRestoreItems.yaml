@@ -4,33 +4,33 @@ description: 'This method creates a new task to restore items from the quarantin
     '
 integration_identifier: Bitdefender GravityZone
 parameters:
--   name: Location to Restore
-    type: string
-    description: The absolute path to the folder where the items will be restored.
-        If the parameter is not set, the original location will be used.
-    is_mandatory: false
--   name: Quarantine Item IDs
-    default_value: itemId1,itemId2
-    type: string
-    description: Comma-separated list of quarantine items IDs. The maximum number
-        of items that can be removed once is 100.
-    is_mandatory: true
--   name: Service
-    default_value: Computers
-    type: ddl
-    description: 'Allowed services are: computers, for "Computers and Virtual Machines"
+    -   name: Location to Restore
+        type: string
+        description: The absolute path to the folder where the items will be restored.
+            If the parameter is not set, the original location will be used.
+        is_mandatory: false
+    -   name: Quarantine Item IDs
+        default_value: itemId1,itemId2
+        type: string
+        description: Comma-separated list of quarantine items IDs. The maximum number
+            of items that can be removed once is 100.
+        is_mandatory: true
+    -   name: Service
+        default_value: Computers
+        type: ddl
+        description: 'Allowed services are: computers, for "Computers and Virtual Machines"
         or exchange, for "Security for Exchange"'
-    is_mandatory: true
--   name: Add Exclusion in Policy
-    default_value: 'false'
-    type: boolean
-    description: Exclude the files to be restored from future scans. Exclusions do
-        not apply to items with the Default Policy assigned.
-    is_mandatory: false
+        is_mandatory: true
+    -   name: Add Exclusion in Policy
+        default_value: 'false'
+        type: boolean
+        description: Exclude the files to be restored from future scans. Exclusions do
+            not apply to items with the Default Policy assigned.
+        is_mandatory: false
 dynamic_results_metadata:
--   result_name: JsonResult
-    show_result: false
-    result_example: "{\n    \"items\":[\n        {   \n            \"id\" : \"21a295eeb1a43d8b497b23b7\"\
+    -   result_name: JsonResult
+        show_result: false
+        result_example: "{\n    \"items\":[\n        {   \n            \"id\" : \"21a295eeb1a43d8b497b23b7\"\
         , \"name\" : \"Endpoint 1\",\n            \"label\" : \"endpoint 1\",\n  \
         \          \"fqdn\": \"endpoint1.local\",\n            \"groupId\": \"5a5f4d36b1a43d5f097b23bb\"\
         , \"isManaged\": true,\n            \"isManaged\": true,\n            \"machineType\"\

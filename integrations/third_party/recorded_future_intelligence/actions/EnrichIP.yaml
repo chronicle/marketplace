@@ -2,28 +2,28 @@ name: Enrich IP
 description: Query Recorded Future to get intelligence about the IP address.
 integration_identifier: RecordedFutureIntelligence
 parameters:
--   name: Risk Score Threshold
-    default_value: '25'
-    type: string
-    description: "Represents the minimum malicious risk score for an IP to be marked\
+    -   name: Risk Score Threshold
+        default_value: '25'
+        type: string
+        description: "Represents the minimum malicious risk score for an IP to be marked\
         \ malicious. Has a range of 0-99. Below is the band levels: \n Very Malicious:\
         \ 90-99 \n Malicious: 65-89 \n Suspicious: 25-64 \n Unusual: 5-24 \n No Malicious\
         \ content: 0"
-    is_mandatory: true
--   name: Include Links
-    default_value: 'false'
-    type: boolean
-    description: If enabled, action will get information about links.
-    is_mandatory: false
--   name: Enable Collective Insights
-    default_value: 'true'
-    type: boolean
-    description: If enabled, contribute detections back to Recorded Future.
-    is_mandatory: false
+        is_mandatory: true
+    -   name: Include Links
+        default_value: 'false'
+        type: boolean
+        description: If enabled, action will get information about links.
+        is_mandatory: false
+    -   name: Enable Collective Insights
+        default_value: 'true'
+        type: boolean
+        description: If enabled, contribute detections back to Recorded Future.
+        is_mandatory: false
 dynamic_results_metadata:
--   result_name: JsonResult
-    show_result: true
-    result_example: '[{"Entity": "1.1.1.1", "EntityResult": [{"entity": {"id": "ip:1.1.1.1",
+    -   result_name: JsonResult
+        show_result: true
+        result_example: '[{"Entity": "1.1.1.1", "EntityResult": [{"entity": {"id": "ip:1.1.1.1",
         "name": "1.1.1.1", "type": "IpAddress"}, "intelCard": "https://app.recordedfuture.com/live/sc/entity/ip%3A1.1.1.1",
         "location": {"organization": "Huawei Cloud Service data center", "cidr": {"id":
         "ip:1.1.1.1/17", "name": "1.1.1.1/17", "type": "IpAddress"}, "location": {"continent":

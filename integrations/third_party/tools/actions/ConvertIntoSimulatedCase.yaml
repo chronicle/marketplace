@@ -2,29 +2,29 @@ name: Convert Into Simulated Case
 description: ''
 integration_identifier: Tools
 parameters:
--   name: Push to Simulated Cases
-    default_value: 'false'
-    type: boolean
-    description: Full Acuracy
-    is_mandatory: false
--   name: Save JSON as Case Wall File
-    default_value: 'true'
-    type: boolean
-    description: Whether to save the json definition to the case wall for downloading
-    is_mandatory: false
--   name: Override Alert Name
-    type: string
-    description: Override Alert name in the config for tracking/separation
-    is_mandatory: false
--   name: Full path name
-    default_value: 'false'
-    type: boolean
-    description: Create a name in the full format 'source_product_eventType'
-    is_mandatory: false
+    -   name: Push to Simulated Cases
+        default_value: 'false'
+        type: boolean
+        description: Full Acuracy
+        is_mandatory: false
+    -   name: Save JSON as Case Wall File
+        default_value: 'true'
+        type: boolean
+        description: Whether to save the json definition to the case wall for downloading
+        is_mandatory: false
+    -   name: Override Alert Name
+        type: string
+        description: Override Alert name in the config for tracking/separation
+        is_mandatory: false
+    -   name: Full path name
+        default_value: 'false'
+        type: boolean
+        description: Create a name in the full format 'source_product_eventType'
+        is_mandatory: false
 dynamic_results_metadata:
--   result_name: JsonResult
-    show_result: true
-    result_example: "{\n  \"Cases\": [\n    {\n      \"Events\": [\n        {\n  \
+    -   result_name: JsonResult
+        show_result: true
+        result_example: "{\n  \"Cases\": [\n    {\n      \"Events\": [\n        {\n  \
         \        \"_fields\": {\n            \"BaseEventIds\": \"[]\",\n         \
         \   \"ParentEventId\": -1,\n            \"deviceEventClassId\": \"Email check\"\
         ,\n            \"DeviceProduct\": \"Phishing email detector\",\n         \

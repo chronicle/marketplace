@@ -2,21 +2,21 @@ name: Set Endpoint Label
 description: This method sets a new label to an endpoint.
 integration_identifier: Bitdefender GravityZone
 parameters:
--   name: Label
-    default_value: Some label
-    type: string
-    description: A string representing the label. The maximum allowed length is 64
-        characters. Enter an empty string to reset a previously set label.
-    is_mandatory: true
--   name: Endpoint ID
-    default_value: oBFA8Ie3Oh4iXCtyr5Z9iw
-    type: string
-    description: The ID of the endpoint for which the details will be returned
-    is_mandatory: true
+    -   name: Label
+        default_value: Some label
+        type: string
+        description: A string representing the label. The maximum allowed length is 64
+            characters. Enter an empty string to reset a previously set label.
+        is_mandatory: true
+    -   name: Endpoint ID
+        default_value: oBFA8Ie3Oh4iXCtyr5Z9iw
+        type: string
+        description: The ID of the endpoint for which the details will be returned
+        is_mandatory: true
 dynamic_results_metadata:
--   result_name: JsonResult
-    show_result: false
-    result_example: "{\n    \"items\":[\n        {   \n            \"id\" : \"21a295eeb1a43d8b497b23b7\"\
+    -   result_name: JsonResult
+        show_result: false
+        result_example: "{\n    \"items\":[\n        {   \n            \"id\" : \"21a295eeb1a43d8b497b23b7\"\
         , \"name\" : \"Endpoint 1\",\n            \"label\" : \"endpoint 1\",\n  \
         \          \"fqdn\": \"endpoint1.local\",\n            \"groupId\": \"5a5f4d36b1a43d5f097b23bb\"\
         , \"isManaged\": true,\n            \"isManaged\": true,\n            \"machineType\"\

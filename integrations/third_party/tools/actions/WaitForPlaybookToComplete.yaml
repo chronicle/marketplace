@@ -3,15 +3,15 @@ description: This action will cause a playbook to wait until another playbook or
     that is running on the same alert, completes.
 integration_identifier: Tools
 parameters:
--   name: Playbook Name
-    default_value: ''
-    type: string
-    description: The name of the playbook or block.
-    is_mandatory: true
+    -   name: Playbook Name
+        default_value: ''
+        type: string
+        description: The name of the playbook or block.
+        is_mandatory: true
 dynamic_results_metadata:
--   result_name: JsonResult
-    show_result: false
-    result_example: '{}'
+    -   result_name: JsonResult
+        show_result: false
+        result_example: '{}'
 default_result_value: ''
 creator: Admin
 is_async: true

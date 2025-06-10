@@ -2,26 +2,26 @@ name: Create Token
 description: Creates token for a new webhook.
 integration_identifier: Webhook
 parameters:
--   name: Default Content
-    default_value: Hello world
-    type: string
-    description: Content to be presented upon the webhook URL click, if successful.
-    is_mandatory: true
--   name: Default Content Type
-    default_value: text/html
-    type: string
-    description: Type of content to be presented upon the new webhook URL click
-    is_mandatory: true
--   name: Timeout
-    default_value: '0'
-    type: string
-    description: "Amount of seconds to wait before returning the response (intended\
+    -   name: Default Content
+        default_value: Hello world
+        type: string
+        description: Content to be presented upon the webhook URL click, if successful.
+        is_mandatory: true
+    -   name: Default Content Type
+        default_value: text/html
+        type: string
+        description: Type of content to be presented upon the new webhook URL click
+        is_mandatory: true
+    -   name: Timeout
+        default_value: '0'
+        type: string
+        description: "Amount of seconds to wait before returning the response (intended\
         \ for testing timeouts). \nMax is 10."
-    is_mandatory: false
+        is_mandatory: false
 dynamic_results_metadata:
--   result_name: JsonResult
-    show_result: true
-    result_example: "{\r\n\t\"uuid\": \"7fc8d86a-280a-4308-9cb4-48a8070cfe81\",\r\n\
+    -   result_name: JsonResult
+        show_result: true
+        result_example: "{\r\n\t\"uuid\": \"7fc8d86a-280a-4308-9cb4-48a8070cfe81\",\r\n\
         \t\"redirect\": false,\r\n\t\"alias\": null,\r\n\t\"actions\": true,\r\n\t\
         \"cors\": false,\r\n\t\"expiry\": true,\r\n\t\"timeout\": 0,\r\n\t\"premium\"\
         : false,\r\n\t\"user_id\": null,\r\n\t\"password\": false,\r\n\t\"ip\": \"\

@@ -2,15 +2,15 @@ name: Get Certificate Details
 description: Getting the certificate of a given URL
 integration_identifier: Tools
 parameters:
--   name: Url to check
-    default_value: expired.badssl.com
-    type: string
-    description: Url to check
-    is_mandatory: true
+    -   name: Url to check
+        default_value: expired.badssl.com
+        type: string
+        description: Url to check
+        is_mandatory: true
 dynamic_results_metadata:
--   result_name: JsonResult
-    show_result: true
-    result_example: "{\r\n  \"SAN\": [\r\n    \"*.badssl.com\",\r\n    \"badssl.com\"\
+    -   result_name: JsonResult
+        show_result: true
+        result_example: "{\r\n  \"SAN\": [\r\n    \"*.badssl.com\",\r\n    \"badssl.com\"\
         ],\r\n  \"commonName\": \"*.badssl.com\",\r\n  \"days_to_expiration\": 160,\r\
         \n  \"hostname\": \"self-signed.badssl.com\",\r\n  \"ip\": \"1.1.1.1\",\r\n\
         \  \"is_expired\": false,\r\n  \"is_self_signed\": true,\r\n  \"issuer\":\

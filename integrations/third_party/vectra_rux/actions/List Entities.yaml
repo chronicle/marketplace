@@ -2,70 +2,70 @@ name: List Entities
 description: List all the entities based on the query parameters.
 integration_identifier: VectraRUX
 parameters:
--   name: Entity Type
-    default_value: ''
-    type: ddl
-    description: 'Request entities of a specific type, valid values: “account”, “host”.
+    -   name: Entity Type
+        default_value: ''
+        type: ddl
+        description: 'Request entities of a specific type, valid values: “account”, “host”.
 
 
         '
-    is_mandatory: true
--   name: Order By
-    default_value: ''
-    type: ddl
-    description: Sorts records by fields like last_timestamp, threat_score, and certainty_score.
-        Use “-” for descending order.
-    is_mandatory: false
--   name: Fields
-    default_value: ''
-    type: multi_choice_parameter
-    description: filter the fields wanted to show
-    is_mandatory: false
--   name: Name
-    type: string
-    description: filter based on entity Name
-    is_mandatory: false
--   name: State
-    default_value: ''
-    type: ddl
-    description: filter based on State
-    is_mandatory: false
--   name: Last Detection Timestamp GTE
-    type: string
-    description: filter based on Last Detection Timestamp GTE
-    is_mandatory: false
--   name: Last Detection Timestamp LTE
-    type: string
-    description: filter based on Last Detection Timestamp LTE
-    is_mandatory: false
--   name: Tags
-    type: string
-    description: filter based on Tags(pass comma separated values)
-    is_mandatory: false
--   name: Note Modified Timestamp GTE
-    type: string
-    description: filter based on Note Modified Timestamp GTE
-    is_mandatory: false
--   name: Prioritized
-    default_value: ''
-    type: ddl
-    description: filter based on if the entity is prioritized or not
-    is_mandatory: false
--   name: Limit
-    type: string
-    description: 'Fetch this number of Entities
+        is_mandatory: true
+    -   name: Order By
+        default_value: ''
+        type: ddl
+        description: Sorts records by fields like last_timestamp, threat_score, and certainty_score.
+            Use “-” for descending order.
+        is_mandatory: false
+    -   name: Fields
+        default_value: ''
+        type: multi_choice_parameter
+        description: filter the fields wanted to show
+        is_mandatory: false
+    -   name: Name
+        type: string
+        description: filter based on entity Name
+        is_mandatory: false
+    -   name: State
+        default_value: ''
+        type: ddl
+        description: filter based on State
+        is_mandatory: false
+    -   name: Last Detection Timestamp GTE
+        type: string
+        description: filter based on Last Detection Timestamp GTE
+        is_mandatory: false
+    -   name: Last Detection Timestamp LTE
+        type: string
+        description: filter based on Last Detection Timestamp LTE
+        is_mandatory: false
+    -   name: Tags
+        type: string
+        description: filter based on Tags(pass comma separated values)
+        is_mandatory: false
+    -   name: Note Modified Timestamp GTE
+        type: string
+        description: filter based on Note Modified Timestamp GTE
+        is_mandatory: false
+    -   name: Prioritized
+        default_value: ''
+        type: ddl
+        description: filter based on if the entity is prioritized or not
+        is_mandatory: false
+    -   name: Limit
+        type: string
+        description: 'Fetch this number of Entities
 
         '
-    is_mandatory: false
--   name: Order
-    default_value: ''
-    type: ddl
-    description: filter based on ascending or descending
-    is_mandatory: false
+        is_mandatory: false
+    -   name: Order
+        default_value: ''
+        type: ddl
+        description: filter based on ascending or descending
+        is_mandatory: false
 dynamic_results_metadata:
--   result_name: JsonResult
-    show_result: true
-    result_example: "[\n    {\n        \"id\": 64512,\n        \"name\": \"deltics-2\"\
+    -   result_name: JsonResult
+        show_result: true
+        result_example: "[\n    {\n        \"id\": 64512,\n        \"name\": \"deltics-2\"\
         ,\n        \"breadth_contrib\": 0,\n        \"importance\": 1,\n        \"\
         type\": \"host\",\n        \"is_prioritized\": false,\n        \"severity\"\
         : \"Low\",\n        \"urgency_score\": 0,\n        \"velocity_contrib\": 0,\n\

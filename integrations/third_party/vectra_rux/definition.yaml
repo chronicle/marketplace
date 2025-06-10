@@ -1,40 +1,32 @@
 identifier: VectraRUX
 name: Vectra RUX
-version: 2.0
 parameters:
--   name: API Root
-    default_value: https://<address>:<port>
-    type: string
-    description: The base URL of the API, used as the entry point for all API requests.
-    is_mandatory: true
-    integration_identifier: VectraRUX
--   name: Client ID
-    default_value: '12345'
-    type: string
-    description: A unique identifier assigned to each client to authenticate and authorize
-        API requests.
-    is_mandatory: true
-    integration_identifier: VectraRUX
--   name: Client Secret
-    type: password
-    description: A confidential key associated with the client ID, used to authenticate
-        and securely authorize API requests.
-    is_mandatory: true
-    integration_identifier: VectraRUX
-description: Vectra AI’s cloud-native threat detection platform consolidates cloud,
-    data center, networks, and IoT into one view, seamlessly integrating with existing
-    systems. This integration enables investigative and generic actions on the Chronicle
-    SOAR platform, allowing users to implement various use cases on the Vectra Cloud
-    platform. This integration was tested with the APIs of Team Vectra. In case of
-    any queries, please reach out to support@vectra.ai
-python_version: '3.11'
+    -   name: API Root
+        default_value: https://<address>:<port>
+        type: string
+        description: The base URL of the API, used as the entry point for all API requests.
+        is_mandatory: true
+        integration_identifier: VectraRUX
+    -   name: Client ID
+        default_value: '12345'
+        type: string
+        description: A unique identifier assigned to each client to authenticate and authorize
+            API requests.
+        is_mandatory: true
+        integration_identifier: VectraRUX
+    -   name: Client Secret
+        type: password
+        description: A confidential key associated with the client ID, used to authenticate
+            and securely authorize API requests.
+        is_mandatory: true
+        integration_identifier: VectraRUX
 documentation_link: https://support.vectra.ai/s/article/KB-VS-1851
 categories:
-- Security
-- Network Security
-- SIEM
-- Cloud Security
-- XDR
+    - Security
+    - Network Security
+    - SIEM
+    - Cloud Security
+    - XDR
 svg_image: "<?xml version=\"1.0\" encoding=\"utf-8\"?><!-- Generator: Adobe Illustrator\
     \ 24.3.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  --><svg version=\"\
     1.1\" id=\"Layer_1\" width=\"300\" height=\"390\" xmlns=\"http://www.w3.org/2000/svg\"\

@@ -6,39 +6,39 @@ description: This actions allows to search for a specific field from each entity
     in.
 integration_identifier: Tools
 parameters:
--   name: SearchInData
-    default_value: '[     {         "Data": "[Event.from]",         "RegEx": "(?<=@)[^.]+(?=\\.)"     }
+    -   name: SearchInData
+        default_value: '[     {         "Data": "[Event.from]",         "RegEx": "(?<=@)[^.]+(?=\\.)"     }
         ]'
-    type: string
-    description: "A JSON that represents the string(s) you want to search in\n[{\n\
+        type: string
+        description: "A JSON that represents the string(s) you want to search in\n[{\n\
         \ \"Data\": \"\",\n \"RegEx\": \"\"\n}]"
-    is_mandatory: true
--   name: FieldsInput
-    default_value: '[     {         "RegexForFieldName": "",         "FieldName":
+        is_mandatory: true
+    -   name: FieldsInput
+        default_value: '[     {         "RegexForFieldName": "",         "FieldName":
         "body",         "RegexForFieldValue": ""     },     {         "RegexForFieldName":
         ".*(_url_).*",         "FieldName": "",         "RegexForFieldValue": ""     },     {         "RegexForFieldName":
         "",         "FieldName": "body",         "RegexForFieldValue": "HostName:
         (.*?)"     } ]'
-    type: string
-    description: "A JSON that describes what fields should be tested for\n[{\n \"\
+        type: string
+        description: "A JSON that describes what fields should be tested for\n[{\n \"\
         RegexForFieldName\": \"\",\n \"FieldName\": \"Field name to search\",\n \"\
         RegexForFieldValue\": \"\"\n}]"
-    is_mandatory: true
--   name: ShouldEnrichEntity
-    default_value: domain_matched
-    type: string
-    description: If set to "<VAL>" will also put an enrichment value on the entity
-        to be recognized as "matched" with the value. The key will be "<VAL>"
-    is_mandatory: false
--   name: IsCaseSensitive
-    default_value: 'false'
-    type: boolean
-    description: 'Is the field case sensitive '
-    is_mandatory: false
+        is_mandatory: true
+    -   name: ShouldEnrichEntity
+        default_value: domain_matched
+        type: string
+        description: If set to "<VAL>" will also put an enrichment value on the entity
+            to be recognized as "matched" with the value. The key will be "<VAL>"
+        is_mandatory: false
+    -   name: IsCaseSensitive
+        default_value: 'false'
+        type: boolean
+        description: 'Is the field case sensitive '
+        is_mandatory: false
 dynamic_results_metadata:
--   result_name: JsonResult
-    show_result: true
-    result_example: "[\n  {\n    \"Entity\": \"F.ATTACKER4@GMAIL.COM\",\n    \"EntityResult\"\
+    -   result_name: JsonResult
+        show_result: true
+        result_example: "[\n  {\n    \"Entity\": \"F.ATTACKER4@GMAIL.COM\",\n    \"EntityResult\"\
         : [\n      {\n        \"RegexForFieldName\": \".*\",\n        \"FieldName\"\
         : \"\",\n        \"RegexForFieldValue\": \"\",\n        \"ResultsToSearch\"\
         : {\n          \"val_to_search\": [\n            [\n              {\n    \

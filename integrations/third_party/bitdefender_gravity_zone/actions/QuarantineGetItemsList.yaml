@@ -18,58 +18,58 @@ description: 'This method retrieves the list of quarantined items available for 
     The Exchange filters require a valid license key for Security for Exchange.'
 integration_identifier: Bitdefender GravityZone
 parameters:
--   name: Service
-    default_value: Computers
-    type: ddl
-    description: 'Allowed services are: computers, for "Computers and Virtual Machines"
+    -   name: Service
+        default_value: Computers
+        type: ddl
+        description: 'Allowed services are: computers, for "Computers and Virtual Machines"
         or exchange, for "Security for Exchange"'
-    is_mandatory: true
--   name: Filter - Threat Name
-    type: string
-    description: 'Filters the quarantined items by threat name.
+        is_mandatory: true
+    -   name: Filter - Threat Name
+        type: string
+        description: 'Filters the quarantined items by threat name.
 
         This filter is available for computers and exchange services.'
-    is_mandatory: false
--   name: Filter - Start Date
-    type: string
-    description: "Filters the items that quarantined after the specified date. \n\
+        is_mandatory: false
+    -   name: Filter - Start Date
+        type: string
+        description: "Filters the items that quarantined after the specified date. \n\
         Format for startDate is in ISO 8601.\nThe filter is available for computers\
         \ and exchange."
-    is_mandatory: false
--   name: Filter - End Date
-    type: string
-    description: 'Filters the items quarantined before the specified date.
+        is_mandatory: false
+    -   name: Filter - End Date
+        type: string
+        description: 'Filters the items quarantined before the specified date.
 
         Format for startDate is in ISO 8601.
 
         The filter is available for computers and exchange.'
-    is_mandatory: false
--   name: Filter - File Path
-    type: string
-    description: Filters the quarantined items by file path. This filter is available
-        for computers service.
-    is_mandatory: false
--   name: Filter - IP Address
-    type: string
-    description: Filters the quarantine items by IP address. This filter is available
-        for computers service.
-    is_mandatory: false
--   name: Filter - Action Status
-    default_value: None
-    type: ddl
-    description: Filters the quarantine items by action status. "Pending Save" Is
-        only available to the Exchange Service.
-    is_mandatory: false
--   name: Endpoint ID
-    type: string
-    description: ID of the computer for which you want to retrieve the quarantined
-        items. If not passed, he method returns the items quarantined in the entire
-        network.
-    is_mandatory: false
+        is_mandatory: false
+    -   name: Filter - File Path
+        type: string
+        description: Filters the quarantined items by file path. This filter is available
+            for computers service.
+        is_mandatory: false
+    -   name: Filter - IP Address
+        type: string
+        description: Filters the quarantine items by IP address. This filter is available
+            for computers service.
+        is_mandatory: false
+    -   name: Filter - Action Status
+        default_value: None
+        type: ddl
+        description: Filters the quarantine items by action status. "Pending Save" Is
+            only available to the Exchange Service.
+        is_mandatory: false
+    -   name: Endpoint ID
+        type: string
+        description: ID of the computer for which you want to retrieve the quarantined
+            items. If not passed, he method returns the items quarantined in the entire
+            network.
+        is_mandatory: false
 dynamic_results_metadata:
--   result_name: JsonResult
-    show_result: true
-    result_example: "{\r\n    \"items\": [\r\n        {\r\n            \"id\": \"\
+    -   result_name: JsonResult
+        show_result: true
+        result_example: "{\r\n    \"items\": [\r\n        {\r\n            \"id\": \"\
         5d3968e0f23f730ecb0f68c2\",\r\n\"quarantinedOn\": \"2019-07-28T11:31:28\"\
         ,\r\n\"actionStatus\": 1,\r\n\"companyId\": \"55896b87b7894d0f367b23c6\",\r\
         \n\"endpointId\": \"5d36c255f23f730fa91944e2\",\r\n\"endpointName\": \"Computer\

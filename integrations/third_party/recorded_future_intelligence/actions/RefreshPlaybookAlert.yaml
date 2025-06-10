@@ -3,23 +3,23 @@ description: Updates information in a case created by the Playbook Alerts Connec
     with new data from the Recorded Future platform
 integration_identifier: RecordedFutureIntelligence
 parameters:
--   name: Playbook Alert ID
-    default_value: ''
-    type: string
-    description: Specify the ID of the playbook alert for which you would like to
-        fetch details
-    is_mandatory: true
--   name: Category
-    default_value: ''
-    type: string
-    description: The Category of the Playbook Alert. Possible values are domain_abuse,
-        cyber_vulnerability, code_repo_leakage, third_party_risk, identity_novel_exposures,
-        and geopolitics_facility
-    is_mandatory: true
+    -   name: Playbook Alert ID
+        default_value: ''
+        type: string
+        description: Specify the ID of the playbook alert for which you would like to
+            fetch details
+        is_mandatory: true
+    -   name: Category
+        default_value: ''
+        type: string
+        description: The Category of the Playbook Alert. Possible values are domain_abuse,
+            cyber_vulnerability, code_repo_leakage, third_party_risk, identity_novel_exposures,
+            and geopolitics_facility
+        is_mandatory: true
 dynamic_results_metadata:
--   result_name: JsonResult
-    show_result: true
-    result_example: '{"playbook_alert_id": "task:1ce58e62-de8a-471b-81d4-c98743376937",
+    -   result_name: JsonResult
+        show_result: true
+        result_example: '{"playbook_alert_id": "task:1ce58e62-de8a-471b-81d4-c98743376937",
         "panel_status": {"status": "New", "priority": "Moderate", "created": "2024-11-05T15:33:25.392Z",
         "updated": "2024-11-05T15:34:40.652Z", "case_rule_id": "report:oT8Yal", "case_rule_label":
         "Domain Abuse", "owner_id": "uhash:oDJ5LVWfXL", "owner_name": "Enterprise

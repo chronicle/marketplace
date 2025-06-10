@@ -1,22 +1,18 @@
 identifier: Google Sheets
 name: Google Sheets
-version: 13.0
 parameters:
--   name: Credentials Json
-    default_value: '{}'
-    type: password
-    description: 'View the guide on how to create auth json credentials (service account)
+    -   name: Credentials Json
+        default_value: '{}'
+        type: password
+        description: 'View the guide on how to create auth json credentials (service account)
 
         https://gspread.readthedocs.io/en/latest/oauth2.html#enable-api-access'
-    is_mandatory: true
-    integration_identifier: Google Sheets
-description: 'Google Sheets is a spreadsheet program included as part of a free, web-based
-    software office suite offered by Google within its Google Drive service. '
-python_version: '3.11'
+        is_mandatory: true
+        integration_identifier: Google Sheets
 categories:
-- Google
-- Productivity
-- Cloud
+    - Google
+    - Productivity
+    - Cloud
 svg_image: "<?xml version=\"1.0\" encoding=\"utf-8\"?><!-- Generator: Adobe Illustrator\
     \ 24.2.3, SVG Export Plug-In . SVG Version: 6.00 Build 0)  --><svg version=\"\
     1.1\" id=\"Layer_1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\"\

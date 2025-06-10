@@ -1,58 +1,58 @@
 name: Pull reports
 parameters:
--   name: Verify SSL Ceritifcate?
-    default_value: 'true'
-    type: boolean
-    description: Verify SSL Ceritifcate?
-    is_mandatory: false
-    is_advanced: false
-    mode: script
--   name: Check Every X Minutes
-    default_value: ' '
-    type: string
-    description: rotation_time
-    is_mandatory: true
-    is_advanced: false
-    mode: script
--   name: URL
-    default_value: ' '
-    type: string
-    description: url
-    is_mandatory: true
-    is_advanced: false
-    mode: script
--   name: API Key
-    default_value: ''
-    type: password
-    description: API Key
-    is_mandatory: true
-    is_advanced: false
-    mode: script
--   name: DeviceProductField
-    default_value: beSECURE Pull Reports
-    type: string
-    description: The field name used to determine the device product
-    is_mandatory: true
-    is_advanced: false
-    mode: regular
--   name: EventClassId
-    default_value: ''
-    type: string
-    description: The field name used to determine the event name (sub-type)
-    is_mandatory: false
-    is_advanced: false
-    mode: regular
--   name: PythonProcessTimeout
-    default_value: '30'
-    type: string
-    description: The timeout limit (in seconds) for the python process running current
-        script
-    is_mandatory: true
-    is_advanced: false
-    mode: regular
+    -   name: Verify SSL Ceritifcate?
+        default_value: 'true'
+        type: boolean
+        description: Verify SSL Ceritifcate?
+        is_mandatory: false
+        is_advanced: false
+        mode: script
+    -   name: Check Every X Minutes
+        default_value: ' '
+        type: string
+        description: rotation_time
+        is_mandatory: true
+        is_advanced: false
+        mode: script
+    -   name: URL
+        default_value: ' '
+        type: string
+        description: url
+        is_mandatory: true
+        is_advanced: false
+        mode: script
+    -   name: API Key
+        default_value: ''
+        type: password
+        description: API Key
+        is_mandatory: true
+        is_advanced: false
+        mode: script
+    -   name: DeviceProductField
+        default_value: beSECURE Pull Reports
+        type: string
+        description: The field name used to determine the device product
+        is_mandatory: true
+        is_advanced: false
+        mode: regular
+    -   name: EventClassId
+        default_value: ''
+        type: string
+        description: The field name used to determine the event name (sub-type)
+        is_mandatory: false
+        is_advanced: false
+        mode: regular
+    -   name: PythonProcessTimeout
+        default_value: '30'
+        type: string
+        description: The timeout limit (in seconds) for the python process running current
+            script
+        is_mandatory: true
+        is_advanced: false
+        mode: regular
 description: A flexible, accurate, low maintenance Vulnerability Assessment and Management
     solution that delivers solid security improvements
 integration: beSECURE
-rules: []
+rules: [ ]
 is_connector_rules_supported: true
 creator: Admin

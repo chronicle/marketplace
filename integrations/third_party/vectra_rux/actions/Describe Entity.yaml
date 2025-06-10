@@ -2,20 +2,20 @@ name: Describe Entity
 description: Show all the details of an entity for the given ID.
 integration_identifier: VectraRUX
 parameters:
--   name: Entity ID
-    default_value: '0'
-    type: string
-    description: Unique id for Entity to get entity
-    is_mandatory: true
--   name: Entity Type
-    default_value: Account
-    type: ddl
-    description: Type of entity either Account or Host
-    is_mandatory: true
+    -   name: Entity ID
+        default_value: '0'
+        type: string
+        description: Unique id for Entity to get entity
+        is_mandatory: true
+    -   name: Entity Type
+        default_value: Account
+        type: ddl
+        description: Type of entity either Account or Host
+        is_mandatory: true
 dynamic_results_metadata:
--   result_name: JsonResult
-    show_result: true
-    result_example: "{\n    \"id\": 68599,\n    \"name\": \"csoarqa-12\",\n    \"\
+    -   result_name: JsonResult
+        show_result: true
+        result_example: "{\n    \"id\": 68599,\n    \"name\": \"csoarqa-12\",\n    \"\
         breadth_contrib\": 1,\n    \"importance\": 1,\n    \"type\": \"host\",\n \
         \   \"is_prioritized\": true,\n    \"severity\": \"High\",\n    \"urgency_score\"\
         : 76,\n    \"velocity_contrib\": 2,\n    \"detection_set\": [\n        \"\

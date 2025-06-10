@@ -2,60 +2,60 @@ name: List Groups
 description: List groups based on the query parameters.
 integration_identifier: VectraQUX
 parameters:
--   name: Host Names
-    type: string
-    description: Comma separated values of host names
-    is_mandatory: false
--   name: Account Names
-    type: string
-    description: Comma separated values of account names
-    is_mandatory: false
--   name: Domains
-    type: string
-    description: Comma separated values of domains
-    is_mandatory: false
--   name: Host Ids
-    type: string
-    description: Comma separated values of host ids
-    is_mandatory: false
--   name: Importance
-    default_value: None
-    type: ddl
-    description: Importance of group
-    is_mandatory: false
--   name: IPs
-    type: string
-    description: Comma separated values of ips
-    is_mandatory: false
--   name: Last Modified Timestamp GTE
-    type: string
-    description: Last modified timestamp (greater or equal) of group
-    is_mandatory: false
--   name: Last Modified By
-    type: string
-    description: Username who has modified the group
-    is_mandatory: false
--   name: Name
-    type: string
-    description: Name of group
-    is_mandatory: false
--   name: Type
-    default_value: None
-    type: ddl
-    description: Type of group
-    is_mandatory: false
--   name: Limit
-    type: string
-    description: Specify limit for fetching records.
-    is_mandatory: false
--   name: Description
-    type: string
-    description: Description of group (case insensitive match)
-    is_mandatory: false
+    -   name: Host Names
+        type: string
+        description: Comma separated values of host names
+        is_mandatory: false
+    -   name: Account Names
+        type: string
+        description: Comma separated values of account names
+        is_mandatory: false
+    -   name: Domains
+        type: string
+        description: Comma separated values of domains
+        is_mandatory: false
+    -   name: Host Ids
+        type: string
+        description: Comma separated values of host ids
+        is_mandatory: false
+    -   name: Importance
+        default_value: None
+        type: ddl
+        description: Importance of group
+        is_mandatory: false
+    -   name: IPs
+        type: string
+        description: Comma separated values of ips
+        is_mandatory: false
+    -   name: Last Modified Timestamp GTE
+        type: string
+        description: Last modified timestamp (greater or equal) of group
+        is_mandatory: false
+    -   name: Last Modified By
+        type: string
+        description: Username who has modified the group
+        is_mandatory: false
+    -   name: Name
+        type: string
+        description: Name of group
+        is_mandatory: false
+    -   name: Type
+        default_value: None
+        type: ddl
+        description: Type of group
+        is_mandatory: false
+    -   name: Limit
+        type: string
+        description: Specify limit for fetching records.
+        is_mandatory: false
+    -   name: Description
+        type: string
+        description: Description of group (case insensitive match)
+        is_mandatory: false
 dynamic_results_metadata:
--   result_name: JsonResult
-    show_result: true
-    result_example: "[\n    {\n        \"id\": 1,\n        \"name\": \"Cognito - Zoom\"\
+    -   result_name: JsonResult
+        show_result: true
+        result_example: "[\n    {\n        \"id\": 1,\n        \"name\": \"Cognito - Zoom\"\
         ,\n        \"description\": \"IPs used by the Zoom service\",\n        \"\
         last_modified\": \"2023-11-20T22:57:11Z\",\n        \"last_modified_by\":\
         \ \"cognito\",\n        \"type\": \"ip\",\n        \"members\": [\n      \

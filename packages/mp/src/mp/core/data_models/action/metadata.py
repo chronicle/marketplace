@@ -14,7 +14,6 @@
 
 from __future__ import annotations
 
-import decimal
 from typing import TYPE_CHECKING, Annotated, NotRequired, Self, TypedDict
 
 import pydantic
@@ -107,7 +106,10 @@ class ActionMetadata(
     creator: str
     script_result_name: str
     simulation_data_json: str
-    version: Annotated[decimal.Decimal, pydantic.Field(decimal_places=1)]
+    version: Annotated[
+        pydantic.PositiveFloat,
+        pydantic.Field(ge=mp.core.constants.MINIMUM_SCRIPT_VERSION),
+    ]
 
     @classmethod
     def from_built_integration_path(cls, path: pathlib.Path) -> list[Self]:
@@ -178,7 +180,7 @@ class ActionMetadata(
             script_result_name=built.get("ScriptResultName", "is_success"),
             simulation_data_json=built.get("SimulationDataJson", '{"Entities": []}'),
             default_result_value=built.get("DefaultResultValue"),
-            version=decimal.Decimal(built.get("Version", 1.0)),
+            version=built.get("Version", mp.core.constants.MINIMUM_SCRIPT_VERSION),
         )
 
     @classmethod
@@ -219,7 +221,7 @@ class ActionMetadata(
                 '{"Entities": []}',
             ),
             default_result_value=non_built.get("default_result_value"),
-            version=decimal.Decimal(non_built.get("version", 1.0)),
+            version=non_built.get("version", mp.core.constants.MINIMUM_SCRIPT_VERSION),
         )
 
     def to_built(self) -> BuiltActionMetadata:

@@ -1,15 +1,12 @@
 identifier: DoppelVision
 name: DoppelVision
-version: 2.0
 parameters:
--   name: API_Key
-    type: password
-    description: API Key required to access Doppel Tenant
-    is_mandatory: true
-    integration_identifier: DoppelVision
-description: Test Integration for DoppelVision Playbook
-python_version: '3.11'
-categories: []
+    -   name: API_Key
+        type: password
+        description: API Key required to access Doppel Tenant
+        is_mandatory: true
+        integration_identifier: DoppelVision
+categories: [ ]
 svg_image: <svg id="svg" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
     width="400" height="400" viewBox="0, 0, 400,400"><g id="svgg"><path id="path0"
     d="M194.000 62.936 C 140.222 65.189,92.373 99.168,72.709 149.068 C 43.560 223.038,81.600

@@ -2,42 +2,42 @@ name: Create Hash From Base64
 description: Returns hashes for provided base64s.
 integration_identifier: FileUtilities
 parameters:
--   name: Base64
-    default_value: '-'
-    type: content
-    description: One more more base64 encoded strings. Strings should be separated
-        by the defined separator.
-    is_mandatory: true
--   name: Hash Algorythm
-    default_value: sha1
-    type: ddl
-    description: hash type (sha1, sha256, md5...)
-    is_mandatory: true
--   name: Names
-    default_value: ''
-    type: string
-    description: "List of names that identify the base64 strings. Typically filenames.\
+    -   name: Base64
+        default_value: '-'
+        type: content
+        description: One more more base64 encoded strings. Strings should be separated
+            by the defined separator.
+        is_mandatory: true
+    -   name: Hash Algorythm
+        default_value: sha1
+        type: ddl
+        description: hash type (sha1, sha256, md5...)
+        is_mandatory: true
+    -   name: Names
+        default_value: ''
+        type: string
+        description: "List of names that identify the base64 strings. Typically filenames.\
         \ \nList of names must contain the same quantity as the list of base64 strings."
-    is_mandatory: false
--   name: Names Separator
-    default_value: ','
-    type: string
-    description: A character to separate the list of names by.
-    is_mandatory: true
--   name: Include Base64
-    default_value: 'true'
-    type: boolean
-    description: Include the base64 input strings in the output.
-    is_mandatory: false
--   name: Base64 Separator
-    default_value: ','
-    type: string
-    description: A character to separate the base64 strings by.
-    is_mandatory: true
+        is_mandatory: false
+    -   name: Names Separator
+        default_value: ','
+        type: string
+        description: A character to separate the list of names by.
+        is_mandatory: true
+    -   name: Include Base64
+        default_value: 'true'
+        type: boolean
+        description: Include the base64 input strings in the output.
+        is_mandatory: false
+    -   name: Base64 Separator
+        default_value: ','
+        type: string
+        description: A character to separate the base64 strings by.
+        is_mandatory: true
 dynamic_results_metadata:
--   result_name: JsonResult
-    show_result: true
-    result_example: "[\n  {\n    \"Path\": \"/path/to/file.extension\",\n    \"Hash\"\
+    -   result_name: JsonResult
+        show_result: true
+        result_example: "[\n  {\n    \"Path\": \"/path/to/file.extension\",\n    \"Hash\"\
         : \"da39a3ee5e6b4b0d3255bfef95601890afd80709\",\n    \"HashAlgorythm\": \"\
         sha1\"\n  }\n]"
 default_result_value: ''

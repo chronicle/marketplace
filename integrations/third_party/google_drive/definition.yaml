@@ -1,25 +1,18 @@
 identifier: Google Drive
 name: Google Drive
-version: 5.0
 parameters:
--   name: Credentials Json
-    type: password
-    description: 'View the guide on how to create auth json credentials (service account)
+    -   name: Credentials Json
+        type: password
+        description: 'View the guide on how to create auth json credentials (service account)
         - provide access for Google Drive
 
         https://gspread.readthedocs.io/en/latest/oauth2.html#enable-api-access'
-    is_mandatory: true
-    integration_identifier: Google Drive
-description: Google Drive is a cloud-based storage solution that allows you to save
-    files online and access them anywhere from any smartphone, tablet, or computer.
-    You can use Drive on your computer or mobile device to securely upload files and
-    edit them online. Drive also makes it easy for others to edit and collaborate
-    on files.
-python_version: '3.11'
+        is_mandatory: true
+        integration_identifier: Google Drive
 categories:
-- Google
-- Productivity
-- Cloud
+    - Google
+    - Productivity
+    - Cloud
 svg_image: "<?xml version=\"1.0\" encoding=\"utf-8\"?><!-- Generator: Adobe Illustrator\
     \ 24.2.3, SVG Export Plug-In . SVG Version: 6.00 Build 0)  --><svg version=\"\
     1.1\" id=\"Layer_1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\"\

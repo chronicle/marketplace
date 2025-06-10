@@ -2,20 +2,20 @@ name: Change Case Name
 description: The action changes the case's name (title)
 integration_identifier: Tools
 parameters:
--   name: New Name
-    type: string
-    description: The new name of the case
-    is_mandatory: false
--   name: Only If First Alert
-    default_value: 'false'
-    type: boolean
-    description: If marked as True, will only change the case's name if the action
-        was executed on the first alert in the case
-    is_mandatory: false
+    -   name: New Name
+        type: string
+        description: The new name of the case
+        is_mandatory: false
+    -   name: Only If First Alert
+        default_value: 'false'
+        type: boolean
+        description: If marked as True, will only change the case's name if the action
+            was executed on the first alert in the case
+        is_mandatory: false
 dynamic_results_metadata:
--   result_name: JsonResult
-    show_result: true
-    result_example: '{}'
+    -   result_name: JsonResult
+        show_result: true
+        result_example: '{}'
 default_result_value: ''
 creator: Robert
 script_result_name: ScriptResult

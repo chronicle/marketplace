@@ -1,51 +1,29 @@
 identifier: Luminar IOCs and Leaked Credentials
 name: Luminar IOCs and Leaked Credentials
-version: 3.0
 parameters:
--   name: Luminar Base URL
-    default_value: https://demo.cyberluminar.com
-    type: string
-    description: Please enter valid Luminar Base URL
-    is_mandatory: true
-    integration_identifier: Luminar IOCs and Leaked Credentials
--   name: Luminar API Account ID
-    type: password
-    description: Please enter valid Luminar API Account ID
-    is_mandatory: true
-    integration_identifier: Luminar IOCs and Leaked Credentials
--   name: Luminar API Client ID
-    type: password
-    description: Please enter valid Luminar API Client ID
-    is_mandatory: true
-    integration_identifier: Luminar IOCs and Leaked Credentials
--   name: Luminar API Client Secret
-    type: password
-    description: Please enter valid Luminar API Client Secret
-    is_mandatory: true
-    integration_identifier: Luminar IOCs and Leaked Credentials
-description: 'Cognyte is a global leader in security analytics software that empowers
-    governments and enterprises with Actionable Intelligence for a safer world. Our
-    open software fuses, analyzes and visualizes disparate data sets at scale to help
-    security organizations find the needles in the haystacks. Over 1,000 government
-    and enterprise customers in more than 100 countries rely on Cognyte’s solutions
-    to accelerate security investigations and connect the dots to successfully identify,
-    neutralize, and prevent threats to national security, business continuity and
-    cyber security.
-
-
-    Luminar is an asset-based cybersecurity intelligence platform that empowers enterprise
-    organizations to build and maintain a proactive threat intelligence operation
-    that enables to anticipate and mitigate cyber threats, reduce risk and enhance
-    security resilience. Luminar enables security teams to define a customized, dynamic
-    monitoring plan to uncover malicious activity in its earliest stages on all layers
-    of the Web.
-
-
-    “Luminar IOCs and Leaked Credentials” App allows integration of intelligence-based
-    IOC data and customer-related leaked records identified by Luminar.'
-python_version: '3.11'
+    -   name: Luminar Base URL
+        default_value: https://demo.cyberluminar.com
+        type: string
+        description: Please enter valid Luminar Base URL
+        is_mandatory: true
+        integration_identifier: Luminar IOCs and Leaked Credentials
+    -   name: Luminar API Account ID
+        type: password
+        description: Please enter valid Luminar API Account ID
+        is_mandatory: true
+        integration_identifier: Luminar IOCs and Leaked Credentials
+    -   name: Luminar API Client ID
+        type: password
+        description: Please enter valid Luminar API Client ID
+        is_mandatory: true
+        integration_identifier: Luminar IOCs and Leaked Credentials
+    -   name: Luminar API Client Secret
+        type: password
+        description: Please enter valid Luminar API Client Secret
+        is_mandatory: true
+        integration_identifier: Luminar IOCs and Leaked Credentials
 categories:
-- Threat Intelligence
+    - Threat Intelligence
 svg_image: <?xml version="1.0" encoding="UTF-8"?><svg id="Layer_1" xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 25 25"><defs><style>.cls-1{fill-rule:evenodd;}</style></defs><path
     class="cls-1" d="m13.67,17.84c4.65-1.03,7.89-4.23,7.25-7.13-.65-2.9-4.94-4.42-9.59-3.38-4.65,1.04-7.89,4.23-7.25,7.13.65,2.9,4.94,4.42,9.59,3.38h0Zm-.47-2.1c2.79-.62,4.74-2.54,4.35-4.28-.39-1.74-2.96-2.65-5.75-2.03-2.79.62-4.74,2.53-4.35,4.28.39,1.74,2.96,2.65,5.75,2.03Z"/></svg>

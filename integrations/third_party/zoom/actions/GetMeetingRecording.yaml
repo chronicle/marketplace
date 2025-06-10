@@ -4,15 +4,15 @@ description: 'Fetch a specific recording stored in cloud
     '
 integration_identifier: Zoom
 parameters:
--   name: Meeting ID
-    default_value: '123456'
-    type: string
-    description: The ID of the desired meeting recording
-    is_mandatory: true
+    -   name: Meeting ID
+        default_value: '123456'
+        type: string
+        description: The ID of the desired meeting recording
+        is_mandatory: true
 dynamic_results_metadata:
--   result_name: JsonResult
-    show_result: true
-    result_example: "{\r\n\t\"uuid\": \"gkABCDEbbbbbbbkPuA==\",\r\n\t\"id\": 68000000031879,\r\
+    -   result_name: JsonResult
+        show_result: true
+        result_example: "{\r\n\t\"uuid\": \"gkABCDEbbbbbbbkPuA==\",\r\n\t\"id\": 68000000031879,\r\
         \n\t\"account_id\": \"EABkdslfBBBdk\",\r\n\t\"host_id\": \"z8yBXksaAAjdhfsfdfkjgg\"\
         ,\r\n\t\"topic\": \"MyTestPollMeeting\",\r\n\t\"type\": 2,\r\n\t\"start_time\"\
         : \"2019-08-29T21:54:49Z\",\r\n\t\"timezone\": \"America/Los_Angeles\",\r\n\

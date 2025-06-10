@@ -3,11 +3,11 @@ description: Enrich an IP using Sixgill Information (C&C server IP addresses for
     prevalent malware and for servers involved in botnets, DDoS attacks, proxy anonymization,
     compromised RDP addresses and more.)
 integration_identifier: Cybersixgill Darkfeed Enrichment
-parameters: []
+parameters: [ ]
 dynamic_results_metadata:
--   result_name: JsonResult
-    show_result: true
-    result_example: "[\r\n  {\r\n    \"entityIdentifier\": \"1.1.1.1\",\r\n    \"\
+    -   result_name: JsonResult
+        show_result: true
+        result_example: "[\r\n  {\r\n    \"entityIdentifier\": \"1.1.1.1\",\r\n    \"\
         entityResult\": [\r\n      {\r\n        \"created\": \"2021-05-22T00:35:14.615Z\"\
         ,\r\n        \"description\": \"IP address was listed as a C2 server for a\
         \ ddos attack\",\r\n        \"external_reference\": [\r\n          {\r\n \

@@ -1,63 +1,63 @@
 name: DUO - Trust Monitor Connector
 parameters:
--   name: PythonProcessTimeout
-    default_value: '30'
-    type: string
-    description: The timeout limit (in seconds) for the python process running current
-        script
-    is_mandatory: true
-    is_advanced: false
-    mode: regular
--   name: EventClassId
-    default_value: event_name
-    type: string
-    description: The field name used to determine the event name (sub-type)
-    is_mandatory: true
-    is_advanced: false
-    mode: regular
--   name: DeviceProductField
-    default_value: device_product
-    type: string
-    description: The field name used to determine the device product
-    is_mandatory: true
-    is_advanced: false
-    mode: regular
--   name: Days Back
-    default_value: '1'
-    type: integer
-    description: The max days back to retrieve data from
-    is_mandatory: true
-    is_advanced: false
-    mode: script
--   name: API Hostname
-    default_value: api-XXXXXXXX.duosecurity.com
-    type: string
-    description: 'API hostname for your tenant: api-XXXXXXXX.duosecurity.com.'
-    is_mandatory: true
-    is_advanced: false
-    mode: script
--   name: Admin Secret Key
-    default_value: x
-    type: password
-    description: 'DUO Admin API Secret Key
+    -   name: PythonProcessTimeout
+        default_value: '30'
+        type: string
+        description: The timeout limit (in seconds) for the python process running current
+            script
+        is_mandatory: true
+        is_advanced: false
+        mode: regular
+    -   name: EventClassId
+        default_value: event_name
+        type: string
+        description: The field name used to determine the event name (sub-type)
+        is_mandatory: true
+        is_advanced: false
+        mode: regular
+    -   name: DeviceProductField
+        default_value: device_product
+        type: string
+        description: The field name used to determine the device product
+        is_mandatory: true
+        is_advanced: false
+        mode: regular
+    -   name: Days Back
+        default_value: '1'
+        type: integer
+        description: The max days back to retrieve data from
+        is_mandatory: true
+        is_advanced: false
+        mode: script
+    -   name: API Hostname
+        default_value: api-XXXXXXXX.duosecurity.com
+        type: string
+        description: 'API hostname for your tenant: api-XXXXXXXX.duosecurity.com.'
+        is_mandatory: true
+        is_advanced: false
+        mode: script
+    -   name: Admin Secret Key
+        default_value: x
+        type: password
+        description: 'DUO Admin API Secret Key
 
         https://duo.com/docs/adminapi'
-    is_mandatory: true
-    is_advanced: false
-    mode: script
--   name: Admin Integration Key
-    default_value: x
-    type: password
-    description: 'DUO Admin API Integration Key
+        is_mandatory: true
+        is_advanced: false
+        mode: script
+    -   name: Admin Integration Key
+        default_value: x
+        type: password
+        description: 'DUO Admin API Integration Key
 
         https://duo.com/docs/adminapi'
-    is_mandatory: true
-    is_advanced: false
-    mode: script
+        is_mandatory: true
+        is_advanced: false
+        mode: script
 description: 'Creates cases from last X days of DUO Trust Monitor Events.
 
     https://duo.com/docs/adminapi#trust-monitor'
 integration: DUO
-rules: []
+rules: [ ]
 is_connector_rules_supported: true
 creator: John

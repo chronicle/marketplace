@@ -1,88 +1,88 @@
 name: MS365 MFA Alert
 parameters:
--   name: Tenant ID
-    default_value: x
-    type: string
-    description: Tenant ID from Azure
-    is_mandatory: true
-    is_advanced: false
-    mode: script
--   name: Self Service Reset Alert
-    default_value: 'false'
-    type: boolean
-    description: Create alert when a user has the ability to self-service reset their
-        password/MFA.
-    is_mandatory: false
-    is_advanced: false
-    mode: script
--   name: Secret ID
-    default_value: x
-    type: password
-    description: Secret ID from Azure
-    is_mandatory: true
-    is_advanced: false
-    mode: script
--   name: PythonProcessTimeout
-    default_value: '60'
-    type: string
-    description: The timeout limit (in seconds) for the python process running current
-        script
-    is_mandatory: true
-    is_advanced: false
-    mode: regular
--   name: MFA Registration Alert
-    default_value: 'true'
-    type: boolean
-    description: Create alert when a user is not registered for MFA. Recommended.
-    is_mandatory: false
-    is_advanced: false
-    mode: script
--   name: Exclude Guests
-    default_value: 'false'
-    type: boolean
-    description: 'Exclude guests/external users from alerts (emails containing #EXT#)'
-    is_mandatory: false
-    is_advanced: false
-    mode: script
--   name: EventClassId
-    default_value: MFA Alert
-    type: string
-    description: The field name used to determine the event name (sub-type)
-    is_mandatory: true
-    is_advanced: false
-    mode: regular
--   name: DeviceProductField
-    default_value: Microsoft 365
-    type: string
-    description: The field name used to determine the device product
-    is_mandatory: true
-    is_advanced: false
-    mode: regular
--   name: Client ID
-    default_value: x
-    type: string
-    description: Client ID from Azure
-    is_mandatory: true
-    is_advanced: false
-    mode: script
--   name: Certificate Path
-    type: string
-    description: If authentication based on certificates is used instead of client
-        secret, specify path to the certificate on Siemplify server
-    is_mandatory: false
-    is_advanced: false
-    mode: script
--   name: Certificate Password
-    default_value: ''
-    type: password
-    description: Optional, if certificate is password-protected, specify the password
-        to open the certificate file.
-    is_mandatory: false
-    is_advanced: false
-    mode: script
+    -   name: Tenant ID
+        default_value: x
+        type: string
+        description: Tenant ID from Azure
+        is_mandatory: true
+        is_advanced: false
+        mode: script
+    -   name: Self Service Reset Alert
+        default_value: 'false'
+        type: boolean
+        description: Create alert when a user has the ability to self-service reset their
+            password/MFA.
+        is_mandatory: false
+        is_advanced: false
+        mode: script
+    -   name: Secret ID
+        default_value: x
+        type: password
+        description: Secret ID from Azure
+        is_mandatory: true
+        is_advanced: false
+        mode: script
+    -   name: PythonProcessTimeout
+        default_value: '60'
+        type: string
+        description: The timeout limit (in seconds) for the python process running current
+            script
+        is_mandatory: true
+        is_advanced: false
+        mode: regular
+    -   name: MFA Registration Alert
+        default_value: 'true'
+        type: boolean
+        description: Create alert when a user is not registered for MFA. Recommended.
+        is_mandatory: false
+        is_advanced: false
+        mode: script
+    -   name: Exclude Guests
+        default_value: 'false'
+        type: boolean
+        description: 'Exclude guests/external users from alerts (emails containing #EXT#)'
+        is_mandatory: false
+        is_advanced: false
+        mode: script
+    -   name: EventClassId
+        default_value: MFA Alert
+        type: string
+        description: The field name used to determine the event name (sub-type)
+        is_mandatory: true
+        is_advanced: false
+        mode: regular
+    -   name: DeviceProductField
+        default_value: Microsoft 365
+        type: string
+        description: The field name used to determine the device product
+        is_mandatory: true
+        is_advanced: false
+        mode: regular
+    -   name: Client ID
+        default_value: x
+        type: string
+        description: Client ID from Azure
+        is_mandatory: true
+        is_advanced: false
+        mode: script
+    -   name: Certificate Path
+        type: string
+        description: If authentication based on certificates is used instead of client
+            secret, specify path to the certificate on Siemplify server
+        is_mandatory: false
+        is_advanced: false
+        mode: script
+    -   name: Certificate Password
+        default_value: ''
+        type: password
+        description: Optional, if certificate is password-protected, specify the password
+            to open the certificate file.
+        is_mandatory: false
+        is_advanced: false
+        mode: script
 description: Alert on negative changes to user MFA registration. Use the allowlist
     to prevent alerts for legacy service accounts that don't support MFA, etc.
 integration: MicrosoftGraphSecurityTools
-rules: []
+rules: [ ]
 is_connector_rules_supported: true
 creator: daniel.harvey

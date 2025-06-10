@@ -2,21 +2,21 @@ name: Upload File From Path
 description: Uploads a file from a specific path to Google Drive
 integration_identifier: Google Drive
 parameters:
--   name: File Path
-    default_value: /temp/image.png
-    type: string
-    description: The file path from which the file will be uploaded to Google Drive
-    is_mandatory: true
--   name: Share with emails
-    default_value: email1@gmail.com;email2@gmail.com
-    type: string
-    description: 'Email address of the person you would like to add permission to
+    -   name: File Path
+        default_value: /temp/image.png
+        type: string
+        description: The file path from which the file will be uploaded to Google Drive
+        is_mandatory: true
+    -   name: Share with emails
+        default_value: email1@gmail.com;email2@gmail.com
+        type: string
+        description: 'Email address of the person you would like to add permission to
         the file. You can add multiple emails by adding ";" as a separator. '
-    is_mandatory: true
+        is_mandatory: true
 dynamic_results_metadata:
--   result_name: JsonResult
-    show_result: true
-    result_example: "{\n  \"kind\": \"drive#file\",\n  \"id\": \"1bVDM43X43X4Ogfzzvb_PmPRobMmRdAsmOOgk\"\
+    -   result_name: JsonResult
+        show_result: true
+        result_example: "{\n  \"kind\": \"drive#file\",\n  \"id\": \"1bVDM43X43X4Ogfzzvb_PmPRobMmRdAsmOOgk\"\
         ,\n  \"name\": \"test.png\",\n  \"mimeType\": \"image/png\",\n  \"starred\"\
         : false,\n  \"trashed\": false,\n  \"explicitlyTrashed\": false,\n  \"parents\"\
         : [\n    \"0ADdNAjNcLms6Uk9PVA\"\n  ],\n  \"spaces\": [\n    \"drive\"\n \

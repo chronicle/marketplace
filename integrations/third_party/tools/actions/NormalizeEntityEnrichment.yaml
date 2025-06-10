@@ -2,19 +2,19 @@ name: Normalize Entity Enrichment
 description: The action receives a list of keys from the entity and replaces them
 integration_identifier: Tools
 parameters:
--   name: Normalization Data
-    default_value: '[     {         "entitiy_field_name": "AT_fields_Name",         "new_name":
+    -   name: Normalization Data
+        default_value: '[     {         "entitiy_field_name": "AT_fields_Name",         "new_name":
         "InternalEnrichment_Name"     },     {         "entitiy_field_name": "AT_fields_Direct-Manager",         "new_name":
         "InternalEnrichment_DirectManager_Name"     },     {         "entitiy_field_name":
         "AT_Manager_fields_Work-Email",         "new_name": "InternalEnrichment_DirectManager_Email"     }
         ]'
-    type: string
-    description: 'Enter a  JSON in the format of the example presented below. '
-    is_mandatory: true
+        type: string
+        description: 'Enter a  JSON in the format of the example presented below. '
+        is_mandatory: true
 dynamic_results_metadata:
--   result_name: JsonResult
-    show_result: true
-    result_example: '{}'
+    -   result_name: JsonResult
+        show_result: true
+        result_example: '{}'
 default_result_value: ''
 creator: Robert
 script_result_name: ScriptResult

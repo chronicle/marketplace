@@ -14,7 +14,6 @@
 
 from __future__ import annotations
 
-import decimal
 from typing import TYPE_CHECKING, Annotated, NotRequired, TypedDict
 
 import pydantic
@@ -68,7 +67,10 @@ class ReleaseNote(
     regressive: bool
     removed: bool
     ticket: str | None
-    version: Annotated[decimal.Decimal, pydantic.Field(decimal_places=1)]
+    version: Annotated[
+        pydantic.PositiveFloat,
+        pydantic.Field(ge=mp.core.constants.MINIMUM_SCRIPT_VERSION),
+    ]
 
     @classmethod
     def from_built_integration_path(cls, path: pathlib.Path) -> list[ReleaseNote]:
@@ -109,7 +111,7 @@ class ReleaseNote(
         return cls(
             description=built["ChangeDescription"],
             deprecated=built["Deprecated"],
-            version=decimal.Decimal(built["IntroducedInIntegrationVersion"]),
+            version=built["IntroducedInIntegrationVersion"],
             item_name=built["ItemName"],
             item_type=built["ItemType"],
             new=built["New"],
@@ -124,7 +126,7 @@ class ReleaseNote(
         return cls(
             description=non_built["description"],
             deprecated=non_built["deprecated"],
-            version=decimal.Decimal(non_built["integration_version"]),
+            version=non_built["integration_version"],
             item_name=non_built["item_name"],
             item_type=non_built["item_type"],
             new=non_built["new"],

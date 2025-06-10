@@ -1,23 +1,20 @@
 identifier: Imgbb
 name: Imgbb
-version: 4.0
 parameters:
--   name: API Key
-    type: password
-    description: API Key
-    is_mandatory: true
-    integration_identifier: Imgbb
--   name: Verify SSL
-    default_value: 'true'
-    type: boolean
-    description: Verify Proxy
-    is_mandatory: false
-    integration_identifier: Imgbb
-description: Imgbb is a free image hosting and sharing service.
-python_version: '3.11'
+    -   name: API Key
+        type: password
+        description: API Key
+        is_mandatory: true
+        integration_identifier: Imgbb
+    -   name: Verify SSL
+        default_value: 'true'
+        type: boolean
+        description: Verify Proxy
+        is_mandatory: false
+        integration_identifier: Imgbb
 categories:
-- Free to use
-- IT & Infrastructure
+    - Free to use
+    - IT & Infrastructure
 svg_image: "<?xml version=\"1.0\" encoding=\"utf-8\"?><!-- Generator: Adobe Illustrator\
     \ 24.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  --><svg version=\"\
     1.1\" id=\"Layer_1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\"\

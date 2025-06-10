@@ -1,21 +1,15 @@
 identifier: Full Contact
 name: Full Contact
-version: 9.0
 parameters:
--   name: API Key
-    type: password
-    description: API Key
-    is_mandatory: false
-    integration_identifier: Full Contact
-description: 'FullContact is a privacy-safe Identity Resolution company designed for
-    individuals and teams. It has the capability to collect contact data and information
-    of companies, enterprises, and professionals; and organizes them into a centralized
-    location. '
-python_version: '3.11'
+    -   name: API Key
+        type: password
+        description: API Key
+        is_mandatory: false
+        integration_identifier: Full Contact
 categories:
-- Operational
-- Data Enrichment
-- Identity
+    - Operational
+    - Data Enrichment
+    - Identity
 svg_image: <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
     viewBox="0 0 25 25"> <path fill-rule="evenodd" d="M5 22.53a.438.438 0 00.43.47h14.136a.441.441
     0 00.434-.47 9.747 9.747 0 00-.799-3.425 9.408 9.408 0 00-1.818-2.75c-.215-.225-.583-.064-.583.254v.224c0

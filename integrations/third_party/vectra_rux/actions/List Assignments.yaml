@@ -2,43 +2,43 @@ name: List Assignments
 description: List all the assignments based on the query parameters.
 integration_identifier: VectraRUX
 parameters:
--   name: Accounts IDs
-    type: string
-    description: Comma-separated account ids to filter out accounts.
-    is_mandatory: false
--   name: Assignees IDs
-    type: string
-    description: Comma-separated user ids to filter out accounts.
-    is_mandatory: false
--   name: Resolution IDs
-    type: string
-    description: Comma-separated outcome ids to filter out accounts.
-    is_mandatory: false
--   name: Resolved
-    default_value: None
-    type: ddl
-    description: Filter by resolved status.[true/false]
-    is_mandatory: false
--   name: Created After
-    type: string
-    description: 'Filter by created after the timestamp.
+    -   name: Accounts IDs
+        type: string
+        description: Comma-separated account ids to filter out accounts.
+        is_mandatory: false
+    -   name: Assignees IDs
+        type: string
+        description: Comma-separated user ids to filter out accounts.
+        is_mandatory: false
+    -   name: Resolution IDs
+        type: string
+        description: Comma-separated outcome ids to filter out accounts.
+        is_mandatory: false
+    -   name: Resolved
+        default_value: None
+        type: ddl
+        description: Filter by resolved status.[true/false]
+        is_mandatory: false
+    -   name: Created After
+        type: string
+        description: 'Filter by created after the timestamp.
 
         Supported formats: 2 minutes, 2 hours, 2 days, 2 weeks, 2 months, 2 years,
         yyyy-mm-dd, yyyy-mm-ddTHH: MM:SSZ. '
-    is_mandatory: false
--   name: Limit
-    type: string
-    description: Specify the limit for fetching the records.
-    is_mandatory: false
--   name: Hosts IDs
-    default_value: ' '
-    type: string
-    description: Comma-separated host ids to filter out accounts.
-    is_mandatory: false
+        is_mandatory: false
+    -   name: Limit
+        type: string
+        description: Specify the limit for fetching the records.
+        is_mandatory: false
+    -   name: Hosts IDs
+        default_value: ' '
+        type: string
+        description: Comma-separated host ids to filter out accounts.
+        is_mandatory: false
 dynamic_results_metadata:
--   result_name: JsonResult
-    show_result: true
-    result_example: "[\n    {\n        \"id\": 554,\n        \"assigned_by\": {\n\
+    -   result_name: JsonResult
+        show_result: true
+        result_example: "[\n    {\n        \"id\": 554,\n        \"assigned_by\": {\n\
         \            \"id\": 22231,\n            \"username\": \"crest.phantom@crestdata.ai\"\
         \n        },\n        \"date_assigned\": \"2024-11-20T09:48:55Z\",\n     \
         \   \"date_resolved\": \"2024-11-20T09:52:26Z\",\n        \"events\": [\n\

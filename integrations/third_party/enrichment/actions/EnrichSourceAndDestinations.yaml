@@ -2,11 +2,11 @@ name: Enrich Source and Destinations
 description: This action will add the source and destination links to IPs and hostnames
     in the alert.
 integration_identifier: Enrichment
-parameters: []
+parameters: [ ]
 dynamic_results_metadata:
--   result_name: JsonResult
-    show_result: false
-    result_example: '{}'
+    -   result_name: JsonResult
+        show_result: false
+        result_example: '{}'
 default_result_value: ''
 creator: Rob
 script_result_name: ScriptResult

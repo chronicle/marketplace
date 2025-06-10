@@ -3,16 +3,16 @@ description: This method exposes the hourly usage for each Amazon instance categ
     (micro, medium etc.).
 integration_identifier: Bitdefender GravityZone
 parameters:
--   name: Target Month
-    default_value: 01/2020
-    type: string
-    description: 'The month for which the usage is returned. The month will be provided
+    -   name: Target Month
+        default_value: 01/2020
+        type: string
+        description: 'The month for which the usage is returned. The month will be provided
         in the following format: mm/yyyy. The default value is the current month.'
-    is_mandatory: true
+        is_mandatory: true
 dynamic_results_metadata:
--   result_name: JsonResult
-    show_result: true
-    result_example: "{\r\n    \"result\": {\r\n        \"micro\": 11,\r\n        \"\
+    -   result_name: JsonResult
+        show_result: true
+        result_example: "{\r\n    \"result\": {\r\n        \"micro\": 11,\r\n        \"\
         medium\": 157\r\n    }\r\n}"
 default_result_value: ''
 creator: daniel.harvey

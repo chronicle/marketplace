@@ -1,21 +1,21 @@
 name: Vectra QUX - Clear Empty Cases Job
 parameters:
--   name: Max Hours Backwards
-    default_value: '24'
-    type: string
-    description: Maximum hours to fetch open cases with alerts starting after the
-        given time (defaults to 24 hours, '0' for all open cases)
-    is_mandatory: false
--   name: Environments
-    default_value: Default Environment
-    type: string
-    description: 'Environments (Comma-separated allowed, Default: Default Environment) '
-    is_mandatory: true
--   name: Products
-    default_value: Vectra QUX
-    type: string
-    description: 'Product Field Name (Comma-separated allowed, Default: Vectra QUX) '
-    is_mandatory: true
+    -   name: Max Hours Backwards
+        default_value: '24'
+        type: string
+        description: Maximum hours to fetch open cases with alerts starting after the
+            given time (defaults to 24 hours, '0' for all open cases)
+        is_mandatory: false
+    -   name: Environments
+        default_value: Default Environment
+        type: string
+        description: 'Environments (Comma-separated allowed, Default: Default Environment) '
+        is_mandatory: true
+    -   name: Products
+        default_value: Vectra QUX
+        type: string
+        description: 'Product Field Name (Comma-separated allowed, Default: Vectra QUX) '
+        is_mandatory: true
 description: Job to close empty cases and alerts based on the given filters
 integration: VectraQUX
 creator: Admin

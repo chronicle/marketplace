@@ -2,31 +2,31 @@ name: Enrich IP
 description: Enrich IP using information from Pulsedive.
 integration_identifier: Pulsedive
 parameters:
--   name: Threshold
-    default_value: medium
-    type: ddl
-    description: 'Specify the threshold where the entity should be marked as malicious
+    -   name: Threshold
+        default_value: medium
+        type: ddl
+        description: 'Specify the threshold where the entity should be marked as malicious
         or suspicious, for Siemplify to label it as suspicious. '
-    is_mandatory: true
--   name: Retrieve Comments
-    default_value: 'true'
-    type: boolean
-    description: If enabled, action will retrieve comments about the entity.
-    is_mandatory: false
--   name: Only Suspicious Entity Insight
-    default_value: 'false'
-    type: boolean
-    description: If enabled, action will only create an insight for suspicious entities.
-    is_mandatory: false
--   name: Max Comments To Return
-    default_value: '50'
-    type: string
-    description: Specify how many comments to return.
-    is_mandatory: false
+        is_mandatory: true
+    -   name: Retrieve Comments
+        default_value: 'true'
+        type: boolean
+        description: If enabled, action will retrieve comments about the entity.
+        is_mandatory: false
+    -   name: Only Suspicious Entity Insight
+        default_value: 'false'
+        type: boolean
+        description: If enabled, action will only create an insight for suspicious entities.
+        is_mandatory: false
+    -   name: Max Comments To Return
+        default_value: '50'
+        type: string
+        description: Specify how many comments to return.
+        is_mandatory: false
 dynamic_results_metadata:
--   result_name: JsonResult
-    show_result: true
-    result_example: "{\n  \"results\": [\n    {\n      \"Entity\": \"1.1.1.1\",\n\
+    -   result_name: JsonResult
+        show_result: true
+        result_example: "{\n  \"results\": [\n    {\n      \"Entity\": \"1.1.1.1\",\n\
         \      \"EntityResult\": {\n        \"iid\": 178,\n        \"type\": \"ip\"\
         ,\n        \"indicator\": \"1.1.1.1\",\n        \"risk\": \"low\",\n     \
         \   \"risk_recommended\": \"low\",\n        \"manualrisk\": 0,\n        \"\

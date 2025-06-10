@@ -1,54 +1,49 @@
 identifier: DUO
 name: DUO
-version: 3.0
 parameters:
--   name: API Hostname
-    default_value: api-XXXXXXXX.duosecurity.com
-    type: string
-    description: 'API hostname for your tenant: api-XXXXXXXX.duosecurity.com.'
-    is_mandatory: true
-    integration_identifier: DUO
--   name: Admin Secret Key
-    type: password
-    description: 'The Duo Admin API provides programmatic access to the administrative
+    -   name: API Hostname
+        default_value: api-XXXXXXXX.duosecurity.com
+        type: string
+        description: 'API hostname for your tenant: api-XXXXXXXX.duosecurity.com.'
+        is_mandatory: true
+        integration_identifier: DUO
+    -   name: Admin Secret Key
+        type: password
+        description: 'The Duo Admin API provides programmatic access to the administrative
         functionality of Duo Security''s two-factor authentication platform.
 
         https://duo.com/docs/adminapi'
-    is_mandatory: true
-    integration_identifier: DUO
--   name: Admin Integration Key
-    type: password
-    description: 'The Duo Admin API provides programmatic access to the administrative
+        is_mandatory: true
+        integration_identifier: DUO
+    -   name: Admin Integration Key
+        type: password
+        description: 'The Duo Admin API provides programmatic access to the administrative
         functionality of Duo Security''s two-factor authentication platform.
 
         https://duo.com/docs/adminapi'
-    is_mandatory: true
-    integration_identifier: DUO
--   name: Auth Integration Key
-    type: password
-    description: 'The Duo Auth API is a low-level, RESTful API for adding strong two-factor
+        is_mandatory: true
+        integration_identifier: DUO
+    -   name: Auth Integration Key
+        type: password
+        description: 'The Duo Auth API is a low-level, RESTful API for adding strong two-factor
         authentication to your website or application.
 
 
         https://duo.com/docs/authapi'
-    is_mandatory: true
-    integration_identifier: DUO
--   name: Auth Secret Key
-    type: password
-    description: 'The Duo Auth API is a low-level, RESTful API for adding strong two-factor
+        is_mandatory: true
+        integration_identifier: DUO
+    -   name: Auth Secret Key
+        type: password
+        description: 'The Duo Auth API is a low-level, RESTful API for adding strong two-factor
         authentication to your website or application.
 
 
         https://duo.com/docs/authapi'
-    is_mandatory: true
-    integration_identifier: DUO
-description: Cisco's MFA Solution. Duo is engineered to provide a simple, streamlined
-    login experience for every user and application, and as a cloud-based solution,
-    it integrates easily with your existing technology.
-python_version: '3.11'
+        is_mandatory: true
+        integration_identifier: DUO
 categories:
-- Operational
-- Identity
+    - Operational
+    - Identity
 svg_image: <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
     viewBox="0 0 25 25">  <path d="M3 3h10.094A8.906 8.906 0 0122 11.906H3V3zM3 22h10.094A8.906
     8.906 0 0022 13.094H3V22z"/></svg>

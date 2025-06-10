@@ -3,15 +3,15 @@ description: Use this playbook to unlock a user that was previousl locked out fr
     all Superna protected NAS storage.
 integration_identifier: SupernaZeroTrust
 parameters:
--   name: UserName
-    default_value: demo\demo1
-    type: string
-    description: name of user in format domain\username or username@domain
-    is_mandatory: true
+    -   name: UserName
+        default_value: demo\demo1
+        type: string
+        description: name of user in format domain\username or username@domain
+        is_mandatory: true
 dynamic_results_metadata:
--   result_name: JsonResult
-    show_result: true
-    result_example: '{}'
+    -   result_name: JsonResult
+        show_result: true
+        result_example: '{}'
 default_result_value: ''
 creator: 015f9a45-808a-4c76-8598-adad98670462
 is_async: true

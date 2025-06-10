@@ -1,52 +1,52 @@
 name: Lacework Connector
 parameters:
--   name: accountName
-    default_value: 'null'
-    type: string
-    description: https://docs.lacework.com/generate-api-access-keys-and-tokens
-    is_mandatory: true
-    is_advanced: false
-    mode: script
--   name: DeviceProductField
-    default_value: device_product
-    type: string
-    description: The field name used to determine the device product
-    is_mandatory: true
-    is_advanced: false
-    mode: regular
--   name: EventClassId
-    default_value: event_name
-    type: string
-    description: The field name used to determine the event name (sub-type)
-    is_mandatory: true
-    is_advanced: false
-    mode: regular
--   name: keyId
-    default_value: 'null'
-    type: string
-    description: https://docs.lacework.com/generate-api-access-keys-and-tokens
-    is_mandatory: true
-    is_advanced: false
-    mode: script
--   name: PythonProcessTimeout
-    default_value: '30'
-    type: string
-    description: The timeout limit (in seconds) for the python process running current
-        script
-    is_mandatory: true
-    is_advanced: false
-    mode: regular
--   name: secret
-    default_value: 'null'
-    type: password
-    description: https://docs.lacework.com/generate-api-access-keys-and-tokens
-    is_mandatory: true
-    is_advanced: false
-    mode: script
--   name: severity_threshold
-    default_value: '3'
-    type: string
-    description: 'Lacework Event Severity Threshold. Refer to mapping below and input
+    -   name: accountName
+        default_value: 'null'
+        type: string
+        description: https://docs.lacework.com/generate-api-access-keys-and-tokens
+        is_mandatory: true
+        is_advanced: false
+        mode: script
+    -   name: DeviceProductField
+        default_value: device_product
+        type: string
+        description: The field name used to determine the device product
+        is_mandatory: true
+        is_advanced: false
+        mode: regular
+    -   name: EventClassId
+        default_value: event_name
+        type: string
+        description: The field name used to determine the event name (sub-type)
+        is_mandatory: true
+        is_advanced: false
+        mode: regular
+    -   name: keyId
+        default_value: 'null'
+        type: string
+        description: https://docs.lacework.com/generate-api-access-keys-and-tokens
+        is_mandatory: true
+        is_advanced: false
+        mode: script
+    -   name: PythonProcessTimeout
+        default_value: '30'
+        type: string
+        description: The timeout limit (in seconds) for the python process running current
+            script
+        is_mandatory: true
+        is_advanced: false
+        mode: regular
+    -   name: secret
+        default_value: 'null'
+        type: password
+        description: https://docs.lacework.com/generate-api-access-keys-and-tokens
+        is_mandatory: true
+        is_advanced: false
+        mode: script
+    -   name: severity_threshold
+        default_value: '3'
+        type: string
+        description: 'Lacework Event Severity Threshold. Refer to mapping below and input
         appropriate threshold:
 
         1 - Critical
@@ -58,12 +58,12 @@ parameters:
         4 - Low
 
         5 - Info'
-    is_mandatory: true
-    is_advanced: false
-    mode: script
+        is_mandatory: true
+        is_advanced: false
+        mode: script
 description: 'The connector pulls events from the Events API. Note: by default, the
     connector pulls events with severity 3 or above (3, 2, 1).'
 integration: Lacework
-rules: []
+rules: [ ]
 is_connector_rules_supported: true
 creator: 0d989d8c-9b9b-4fd3-bb09-bfd590d26d60

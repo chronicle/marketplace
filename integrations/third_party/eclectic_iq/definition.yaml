@@ -1,33 +1,27 @@
 identifier: EclecticIQ
 name: EclecticIQ
-version: 3.0
 parameters:
--   name: EclecticIQ URL
-    default_value: http://eclecticiq.local
-    type: ip
-    description: Host URL
-    is_mandatory: true
-    integration_identifier: EclecticIQ
--   name: API Token
-    type: password
-    description: API Token to access the IC Platform
-    is_mandatory: true
-    integration_identifier: EclecticIQ
--   name: Verify SSL
-    default_value: 'true'
-    type: boolean
-    description: Verify SSL
-    is_mandatory: false
-    integration_identifier: EclecticIQ
-description: "EclecticIQ is a global provider of threat intelligence technology and\
-    \ services.  \n\nThe most targeted organizations in the world – including governments\
-    \ and large enterprises – use our platform to automate intelligence management\
-    \ at scale and accelerate collaboration across security teams."
-python_version: '3.11'
+    -   name: EclecticIQ URL
+        default_value: http://eclecticiq.local
+        type: ip
+        description: Host URL
+        is_mandatory: true
+        integration_identifier: EclecticIQ
+    -   name: API Token
+        type: password
+        description: API Token to access the IC Platform
+        is_mandatory: true
+        integration_identifier: EclecticIQ
+    -   name: Verify SSL
+        default_value: 'true'
+        type: boolean
+        description: Verify SSL
+        is_mandatory: false
+        integration_identifier: EclecticIQ
 categories:
-- eclecticiq
-- tip
-- Threat Intelligence
+    - eclecticiq
+    - tip
+    - Threat Intelligence
 svg_image: "<?xml version=\"1.0\" encoding=\"utf-8\"?><!-- Generator: Adobe Illustrator\
     \ 25.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  --><svg version=\"\
     1.1\" id=\"Laag_1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\"\

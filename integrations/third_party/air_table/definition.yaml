@@ -1,29 +1,23 @@
 identifier: AirTable
 name: AirTable
-version: 15.0
 parameters:
--   name: Api key
-    type: password
-    description: The API key is used to create the connection with airtable
-    is_mandatory: false
-    integration_identifier: AirTable
--   name: Base id
-    type: string
-    description: .
-    is_mandatory: false
-    integration_identifier: AirTable
--   name: Table name
-    type: string
-    description: .
-    is_mandatory: false
-    integration_identifier: AirTable
-description: Airtable can store information in a spreadsheet that's visually appealing
-    and easy-to-use, but it's also powerful enough to act as a database that businesses
-    can use for customer-relationship management (CRM), task management, project planning,
-    and tracking inventory.
-python_version: '3.11'
+    -   name: Api key
+        type: password
+        description: The API key is used to create the connection with airtable
+        is_mandatory: false
+        integration_identifier: AirTable
+    -   name: Base id
+        type: string
+        description: .
+        is_mandatory: false
+        integration_identifier: AirTable
+    -   name: Table name
+        type: string
+        description: .
+        is_mandatory: false
+        integration_identifier: AirTable
 categories:
-- IT & Infrastructure
+    - IT & Infrastructure
 svg_image: <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
     viewBox="0 0 25 25"> <path d="M21.35 8.2c.45-.15.45-.8 0-.95L13.6 4c-.7-.3-1.5-.3-2.2
     0L3.6 7.2c-.45.2-.45.8 0 .95l7.8 3.1c.7.25 1.45.25 2.15 0l7.8-3.05zM22.2 9.1l-8.7

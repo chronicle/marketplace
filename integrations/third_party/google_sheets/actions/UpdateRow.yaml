@@ -2,33 +2,33 @@ name: Update Row
 description: Updates a specific row in a sheet
 integration_identifier: Google Sheets
 parameters:
--   name: Sheet Id
-    default_value: <Sheet-Id>
-    type: string
-    description: 'The sheet id can be found in the sheet url.
+    -   name: Sheet Id
+        default_value: <Sheet-Id>
+        type: string
+        description: 'The sheet id can be found in the sheet url.
 
         https://docs.google.com/spreadsheets/d/{YourSpreadSheetId}/edit#gid=0'
-    is_mandatory: true
--   name: Worksheet Name
-    default_value: <Sheet-Name>
-    type: string
-    description: 'The worksheet name is the Sheet tab name. The default Sheet name
+        is_mandatory: true
+    -   name: Worksheet Name
+        default_value: <Sheet-Name>
+        type: string
+        description: 'The worksheet name is the Sheet tab name. The default Sheet name
         is "Sheet1". Note: it is case sensitive. '
-    is_mandatory: false
--   name: Row Number
-    default_value: '1'
-    type: string
-    description: 'The row number of the row you would like to update in the sheet. '
-    is_mandatory: true
--   name: Values
-    default_value: val_1,val_2,val_3,val_4,val_5
-    type: string
-    description: 'The values you would like to update in the row. '
-    is_mandatory: true
+        is_mandatory: false
+    -   name: Row Number
+        default_value: '1'
+        type: string
+        description: 'The row number of the row you would like to update in the sheet. '
+        is_mandatory: true
+    -   name: Values
+        default_value: val_1,val_2,val_3,val_4,val_5
+        type: string
+        description: 'The values you would like to update in the row. '
+        is_mandatory: true
 dynamic_results_metadata:
--   result_name: JsonResult
-    show_result: false
-    result_example: '{}'
+    -   result_name: JsonResult
+        show_result: false
+        result_example: '{}'
 default_result_value: ''
 creator: Admin
 script_result_name: ScriptResult

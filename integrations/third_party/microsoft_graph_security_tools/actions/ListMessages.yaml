@@ -2,24 +2,24 @@ name: List Messages
 description: List the messages in a user's mailbox
 integration_identifier: MicrosoftGraphSecurityTools
 parameters:
--   name: Query Parameters
-    type: string
-    description: 'Should begin with ''$'' - See MS Graph docs for query-parameters.
+    -   name: Query Parameters
+        type: string
+        description: 'Should begin with ''$'' - See MS Graph docs for query-parameters.
         EG: $filter=subject eq ''test'''
-    is_mandatory: false
--   name: Select Filter
-    type: string
-    description: 'CSV list of fields to return, eg: sender,subject'
-    is_mandatory: false
--   name: User ID
-    default_value: john.smith@mail.com
-    type: string
-    description: User ID/userPrincipalName (email)
-    is_mandatory: true
+        is_mandatory: false
+    -   name: Select Filter
+        type: string
+        description: 'CSV list of fields to return, eg: sender,subject'
+        is_mandatory: false
+    -   name: User ID
+        default_value: john.smith@mail.com
+        type: string
+        description: User ID/userPrincipalName (email)
+        is_mandatory: true
 dynamic_results_metadata:
--   result_name: JsonResult
-    show_result: true
-    result_example: "[\r\n    {\r\n        \"@odata.etag\": \"W/\\\"CQAAABYAAADHcgC8Hl9tRZ/hc1wEUs1TAAAwR4Hg\\\
+    -   result_name: JsonResult
+        show_result: true
+        result_example: "[\r\n    {\r\n        \"@odata.etag\": \"W/\\\"CQAAABYAAADHcgC8Hl9tRZ/hc1wEUs1TAAAwR4Hg\\\
         \"\",\r\n        \"id\": \"AAMkAGUAAAwTW09AAA=\",\r\n        \"subject\":\
         \ \"You have late tasks!\",\r\n        \"sender\": {\r\n            \"emailAddress\"\
         : {\r\n                \"name\": \"Microsoft Planner\",\r\n              \

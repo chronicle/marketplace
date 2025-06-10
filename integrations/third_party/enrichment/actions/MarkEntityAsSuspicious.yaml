@@ -1,11 +1,11 @@
 name: Mark Entity as Suspicious
 description: This action will mark the entities in the scope as suspicious.
 integration_identifier: Enrichment
-parameters: []
+parameters: [ ]
 dynamic_results_metadata:
--   result_name: JsonResult
-    show_result: false
-    result_example: "{\n  \"user label\": \"SiemplifyTest\",\n  \"user email\": \"\
+    -   result_name: JsonResult
+        show_result: false
+        result_example: "{\n  \"user label\": \"SiemplifyTest\",\n  \"user email\": \"\
         siemplifytest@siemplify.co\"\n}"
 default_result_value: ''
 creator: Admin

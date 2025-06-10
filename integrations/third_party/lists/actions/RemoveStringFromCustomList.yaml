@@ -2,20 +2,20 @@ name: Remove String from Custom List
 description: The action removes a string from a custom list.
 integration_identifier: Lists
 parameters:
--   name: Category
-    default_value: WhiteList
-    type: string
-    description: Custom list Category
-    is_mandatory: true
--   name: ListItem
-    default_value: cajs3i
-    type: string
-    description: The list item string to add to the custom list.
-    is_mandatory: true
+    -   name: Category
+        default_value: WhiteList
+        type: string
+        description: Custom list Category
+        is_mandatory: true
+    -   name: ListItem
+        default_value: cajs3i
+        type: string
+        description: The list item string to add to the custom list.
+        is_mandatory: true
 dynamic_results_metadata:
--   result_name: JsonResult
-    show_result: true
-    result_example: "[\n    {\n        \"Entity\": \"1.2.3.4\",\n        \"EntityResult\"\
+    -   result_name: JsonResult
+        show_result: true
+        result_example: "[\n    {\n        \"Entity\": \"1.2.3.4\",\n        \"EntityResult\"\
         : false\n    },\n    {\n        \"Entity\": \"google.com\",\n        \"EntityResult\"\
         : true\n    },\n    {\n        \"Entity\": \"yahoo.co.uk\",\n        \"EntityResult\"\
         : false\n    }\n]"

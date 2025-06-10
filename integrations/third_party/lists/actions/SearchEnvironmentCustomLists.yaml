@@ -3,20 +3,20 @@ description: Search a specified string within the records of an environment's cu
     list. (If no values are provided will return all custom lists records)
 integration_identifier: Lists
 parameters:
--   name: String to Search
-    default_value: ''
-    type: string
-    description: String to search within list values
-    is_mandatory: false
--   name: Categories
-    default_value: ''
-    type: string
-    description: Comma separated values
-    is_mandatory: false
+    -   name: String to Search
+        default_value: ''
+        type: string
+        description: String to search within list values
+        is_mandatory: false
+    -   name: Categories
+        default_value: ''
+        type: string
+        description: Comma separated values
+        is_mandatory: false
 dynamic_results_metadata:
--   result_name: JsonResult
-    show_result: true
-    result_example: '[{"entityIdentifier": "1.1.1.1", "category": "vuln_scanner",
+    -   result_name: JsonResult
+        show_result: true
+        result_example: '[{"entityIdentifier": "1.1.1.1", "category": "vuln_scanner",
         "forDBMigration": false, "environments": ["Default Environment"], "id": 5,
         "creationTimeUnixTimeInMs": 1673953571935, "modificationTimeUnixTimeInMs":
         1673953571935}, {"entityIdentifier": "1.1.1.1", "category": "vuln_scanner",

@@ -2,30 +2,30 @@ name: Get Arcanna decision
 description: ''
 integration_identifier: ArcannaAI
 parameters:
--   name: Job Id
-    default_value: ''
-    type: string
-    description: Arcanna Job id
-    is_mandatory: true
--   name: Event Id
-    default_value: ''
-    type: string
-    description: Arcanna Event ID
-    is_mandatory: true
--   name: Retry count
-    default_value: '20'
-    type: string
-    description: How many times request should be re-tried
-    is_mandatory: true
--   name: Seconds per retry
-    default_value: '5'
-    type: string
-    description: How many seconds should wait between requests
-    is_mandatory: true
+    -   name: Job Id
+        default_value: ''
+        type: string
+        description: Arcanna Job id
+        is_mandatory: true
+    -   name: Event Id
+        default_value: ''
+        type: string
+        description: Arcanna Event ID
+        is_mandatory: true
+    -   name: Retry count
+        default_value: '20'
+        type: string
+        description: How many times request should be re-tried
+        is_mandatory: true
+    -   name: Seconds per retry
+        default_value: '5'
+        type: string
+        description: How many seconds should wait between requests
+        is_mandatory: true
 dynamic_results_metadata:
--   result_name: JsonResult
-    show_result: true
-    result_example: "{\n    \"event_id\": \"3207204311332\",\n    \"ingest_timestamp\"\
+    -   result_name: JsonResult
+        show_result: true
+        result_example: "{\n    \"event_id\": \"3207204311332\",\n    \"ingest_timestamp\"\
         : \"2024-05-30T07:06:02.020431Z\",\n    \"status\": \"OK\",\n    \"result\"\
         : \"class_1\",\n    \"result_label\": \"Escalate\",\n    \"error_message\"\
         : \"\",\n    \"bucket_state\": \"new\",\n    \"outlier\": false,\n    \"confidence_score\"\

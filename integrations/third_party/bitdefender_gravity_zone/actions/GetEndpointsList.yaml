@@ -2,63 +2,63 @@ name: Get Endpoints List
 description: Get list of endpoints
 integration_identifier: Bitdefender GravityZone
 parameters:
--   name: Filter - SSID
-    type: string
-    description: The SSID (Active Directory SID of the endpoint) used to filter the
-        endpoints regardless of their protection status.
-    is_mandatory: false
--   name: Filter - Depth - All Items Recursively
-    default_value: 'false'
-    type: boolean
-    description: Boolean to filter all endpoints recursively within the Network Inventory
-        of a company.
-    is_mandatory: false
--   name: Filter - Security Servers
-    default_value: 'false'
-    type: boolean
-    description: Boolean to filter all Security Servers
-    is_mandatory: false
--   name: Filter - Managed Relays
-    default_value: 'false'
-    type: boolean
-    description: 'Boolean to filter all endpoints with Relay role. '
-    is_mandatory: false
--   name: Filter - Managed Exchange Servers
-    default_value: 'false'
-    type: boolean
-    description: Boolean to filter all protected Exchange servers.
-    is_mandatory: false
--   name: Parent ID
-    type: string
-    description: The ID of the target company or group. If not specified or set with
-        a company ID, the method returns only the endpoints under Computers and Groups.
-    is_mandatory: false
--   name: Endpoints
-    default_value: All
-    type: ddl
-    description: Select whether to return only managed endpoints, unmanaged endpoints,
-        or all endpoints.
-    is_mandatory: true
--   name: Filter - Managed with BEST
-    default_value: 'false'
-    type: boolean
-    description: Boolean to filter all endpoints with the security agent installed
-        on them.
-    is_mandatory: false
--   name: Filter - Name
-    type: string
-    description: A string for filtering the items by name. Minimum required string
-        length is three characters.
-    is_mandatory: false
--   name: Filter - MAC Addresses
-    type: string
-    description: Comma-separated list of MAC addresses used to filter the endpoints
-        regardless of their protection status.
-    is_mandatory: false
+    -   name: Filter - SSID
+        type: string
+        description: The SSID (Active Directory SID of the endpoint) used to filter the
+            endpoints regardless of their protection status.
+        is_mandatory: false
+    -   name: Filter - Depth - All Items Recursively
+        default_value: 'false'
+        type: boolean
+        description: Boolean to filter all endpoints recursively within the Network Inventory
+            of a company.
+        is_mandatory: false
+    -   name: Filter - Security Servers
+        default_value: 'false'
+        type: boolean
+        description: Boolean to filter all Security Servers
+        is_mandatory: false
+    -   name: Filter - Managed Relays
+        default_value: 'false'
+        type: boolean
+        description: 'Boolean to filter all endpoints with Relay role. '
+        is_mandatory: false
+    -   name: Filter - Managed Exchange Servers
+        default_value: 'false'
+        type: boolean
+        description: Boolean to filter all protected Exchange servers.
+        is_mandatory: false
+    -   name: Parent ID
+        type: string
+        description: The ID of the target company or group. If not specified or set with
+            a company ID, the method returns only the endpoints under Computers and Groups.
+        is_mandatory: false
+    -   name: Endpoints
+        default_value: All
+        type: ddl
+        description: Select whether to return only managed endpoints, unmanaged endpoints,
+            or all endpoints.
+        is_mandatory: true
+    -   name: Filter - Managed with BEST
+        default_value: 'false'
+        type: boolean
+        description: Boolean to filter all endpoints with the security agent installed
+            on them.
+        is_mandatory: false
+    -   name: Filter - Name
+        type: string
+        description: A string for filtering the items by name. Minimum required string
+            length is three characters.
+        is_mandatory: false
+    -   name: Filter - MAC Addresses
+        type: string
+        description: Comma-separated list of MAC addresses used to filter the endpoints
+            regardless of their protection status.
+        is_mandatory: false
 dynamic_results_metadata:
--   result_name: JsonResult
-    show_result: true
-    result_example: "{\r\n    \"items\": [\r\n        {\r\n            \"id\" : \"\
+    -   result_name: JsonResult
+        show_result: true
+        result_example: "{\r\n    \"items\": [\r\n        {\r\n            \"id\" : \"\
         21a295eeb1a43d8b497b23b7\",\r\n            \"name\" : \"Endpoint 1\",\r\n\
         \            \"label\" : \"endpoint 1\",\r\n            \"fqdn\": \"endpoint1.local\"\
         ,\r\n            \"groupId\": \"5a5f4d36b1a43d5f097b23bb\",\r\n          \

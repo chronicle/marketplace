@@ -2,34 +2,34 @@ name: Get Threat Details
 description: Performs a look in Pulsedive to get threat information.
 integration_identifier: Pulsedive
 parameters:
--   name: Threat Name
-    default_value: ''
-    type: string
-    description: 'Specify the threat name you would like to retrieve. '
-    is_mandatory: false
--   name: Threat ID
-    type: string
-    description: Specific the threat id that you wish to retrieve information
-    is_mandatory: false
--   name: Retrieve Comments
-    default_value: 'true'
-    type: boolean
-    description: Get Comments from Threat
-    is_mandatory: false
--   name: Split Risk
-    default_value: 'true'
-    type: boolean
-    description: 'You can split out the indicator counts by risk '
-    is_mandatory: false
--   name: Create Insight
-    default_value: 'false'
-    type: boolean
-    description: Create Siemplify Insight with Threat Details
-    is_mandatory: false
+    -   name: Threat Name
+        default_value: ''
+        type: string
+        description: 'Specify the threat name you would like to retrieve. '
+        is_mandatory: false
+    -   name: Threat ID
+        type: string
+        description: Specific the threat id that you wish to retrieve information
+        is_mandatory: false
+    -   name: Retrieve Comments
+        default_value: 'true'
+        type: boolean
+        description: Get Comments from Threat
+        is_mandatory: false
+    -   name: Split Risk
+        default_value: 'true'
+        type: boolean
+        description: 'You can split out the indicator counts by risk '
+        is_mandatory: false
+    -   name: Create Insight
+        default_value: 'false'
+        type: boolean
+        description: Create Siemplify Insight with Threat Details
+        is_mandatory: false
 dynamic_results_metadata:
--   result_name: JsonResult
-    show_result: true
-    result_example: "{\n  \"results\": [\n    {\n      \"Entity\": \"pulsedive.com\"\
+    -   result_name: JsonResult
+        show_result: true
+        result_example: "{\n  \"results\": [\n    {\n      \"Entity\": \"pulsedive.com\"\
         ,\n      \"EntityResult\": {\n        \"iid\": 53929,\n        \"type\": \"\
         domain\",\n        \"indicator\": \"pulsedive.com\",\n        \"risk\": \"\
         none\",\n        \"risk_recommended\": \"none\",\n        \"manualrisk\":\

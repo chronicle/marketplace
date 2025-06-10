@@ -1,18 +1,13 @@
 identifier: IPQS Fraud and Risk Scoring
 name: IPQS Fraud and Risk Scoring
-version: 4.0
 parameters:
--   name: API Key
-    type: password
-    description: IPQualityScore API Key
-    is_mandatory: true
-    integration_identifier: IPQS Fraud and Risk Scoring
-description: IPQS Fraud and Risk Scoring provides enterprise grade fraud prevention,
-    risk analysis, and threat detection. Analyze IP addresses, email addresses, and
-    URLs or domains to identify sophisticated bad actors and high risk behavior.
-python_version: '3.11'
+    -   name: API Key
+        type: password
+        description: IPQualityScore API Key
+        is_mandatory: true
+        integration_identifier: IPQS Fraud and Risk Scoring
 categories:
-- Data Enrichment
+    - Data Enrichment
 svg_image: <?xml version="1.0" encoding="UTF-8"?><svg id="a" xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 25 25"><path d="M21.13,11.91c-1.51-3.49-4.19-7.86-4.83-7.86-.27,0-.2,.49,.29,2.11,.18,.58,.47,1.64,.66,2.35,.32,1.23,.33,1.32,.05,1.86-.25,.48-.38,.57-.87,.57-.44,0-.67-.11-.94-.46-.33-.42-.36-.67-.36-2.75,0-2.97-.14-3.05-1.21-.69-.24,.53-.49,.89-.56,.81-.07-.08-.27-.73-.44-1.44-.49-2.08-2.04-5.63-1.73-3.97,.4,2.17,.29,3.62-.44,5.55-.65,1.72-1.09,.97-1.26-2.18-.06-1.13-.18-2.02-.26-1.97-.47,.27-3.21,4.25-4.35,6.3-.66,1.18-1.4,3.14-1.68,4.41-.23,1.04-.24,1.46-.08,2.55,.22,1.45,.55,2.19,1.58,3.45,.69,.85,2.75,2.46,3.15,2.46,.16,0,.21-.48,.21-1.86,0-2.22,.17-2.51,1.45-2.51h.77v-2.15c0-1.87,.05-2.22,.34-2.68,.63-.98,2.26-1.27,3.34-.6,.72,.45,.92,1.16,.92,3.4v2.03h.77c.55,0,.87,.1,1.12,.33,.31,.3,.35,.51,.32,2.11-.02,.98,0,1.82,.05,1.86,.18,.17,2.13-1.08,2.87-1.82,.42-.43,1.03-1.29,1.35-1.91,.52-1,.59-1.31,.65-2.66,.07-1.76-.17-3.02-.86-4.63Zm-8.86,2.52c-.26,.14-.3,.43-.3,2.16v2l.51,.07c.28,.04,.55,.04,.6,0,.05-.04,.08-.96,.08-2.05,0-2.24-.15-2.59-.89-2.18Z"
     fill-rule="evenodd"/></svg>

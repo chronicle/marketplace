@@ -2,39 +2,39 @@ name: Create Task
 description: 'Create a task for a specific project '
 integration_identifier: Asana
 parameters:
--   name: Task Subject
-    default_value: Your Task Subject
-    type: string
-    description: The new task subject
-    is_mandatory: true
--   name: Assignee
-    default_value: ''
-    type: string
-    description: 'The user to whom you will assign the task.
+    -   name: Task Subject
+        default_value: Your Task Subject
+        type: string
+        description: The new task subject
+        is_mandatory: true
+    -   name: Assignee
+        default_value: ''
+        type: string
+        description: 'The user to whom you will assign the task.
 
         Note: This is case sensitive!'
-    is_mandatory: false
--   name: Due Date
-    default_value: ''
-    type: string
-    description: The due date is in the format YYYY-MM-DD
-    is_mandatory: false
--   name: Description
-    default_value: Your task description
-    type: string
-    description: The description of the new task
-    is_mandatory: true
--   name: Project Name
-    default_value: 'Your Project Name '
-    type: string
-    description: 'The name of the project to which you want to assign the task.
+        is_mandatory: false
+    -   name: Due Date
+        default_value: ''
+        type: string
+        description: The due date is in the format YYYY-MM-DD
+        is_mandatory: false
+    -   name: Description
+        default_value: Your task description
+        type: string
+        description: The description of the new task
+        is_mandatory: true
+    -   name: Project Name
+        default_value: 'Your Project Name '
+        type: string
+        description: 'The name of the project to which you want to assign the task.
 
         Note: this is case sensitive'
-    is_mandatory: true
+        is_mandatory: true
 dynamic_results_metadata:
--   result_name: JsonResult
-    show_result: true
-    result_example: "{\r\n\t\"data\": {\r\n\t\t\"gid\": \"12345\",\r\n\t\t\"resource_type\"\
+    -   result_name: JsonResult
+        show_result: true
+        result_example: "{\r\n\t\"data\": {\r\n\t\t\"gid\": \"12345\",\r\n\t\t\"resource_type\"\
         : \"task\",\r\n\t\t\"name\": \"Buy catnip\",\r\n\t\t\"approval_status\": \"\
         pending\",\r\n\t\t\"assignee_status\": \"upcoming\",\r\n\t\t\"completed\"\
         : false,\r\n\t\t\"completed_at\": \"2012-02-22T02:06:58.147Z\",\r\n\t\t\"\
