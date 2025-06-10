@@ -1,13 +1,9 @@
 identifier: Spell Checker
 name: Spell Checker
-version: 7.0
-parameters: []
-description: Pyspellchecker provides a library for determining if a word is misspelled
-    and what the likely correct spelling would be based on word frequency.
-python_version: '3.11'
+parameters: [ ]
 categories:
-- Operational
-- Development Tools
+    - Operational
+    - Development Tools
 svg_image: <svg width="21" height="18" viewBox="0 0 21 18" fill="none" xmlns="http://www.w3.org/2000/svg"><path
     d="M20.5903 8.34155H18.5647V0.408448C18.5647 0.184089 18.38 0 18.155 0H9.79885C9.57378
     0 9.38912 0.184089 9.38912 0.408448V7.73751C9.38912 7.73751 6.61913 4.97617 6.61336

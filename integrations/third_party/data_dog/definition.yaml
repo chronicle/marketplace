@@ -1,25 +1,18 @@
 identifier: DataDog
 name: DataDog
-version: 8.0
 parameters:
--   name: API Key
-    type: password
-    description: API Key
-    is_mandatory: true
-    integration_identifier: DataDog
--   name: APP Key
-    type: password
-    description: APP Key (Application Key)
-    is_mandatory: true
-    integration_identifier: DataDog
-description: Datadog is an essential monitoring platform for cloud applications. It
-    brings together data from servers, containers, databases, and third-party services
-    to make your stack entirely observable. These capabilities help DevOps teams avoid
-    downtime, resolve performance issues, and ensure customers are getting the best
-    user experience.
-python_version: '3.11'
+    -   name: API Key
+        type: password
+        description: API Key
+        is_mandatory: true
+        integration_identifier: DataDog
+    -   name: APP Key
+        type: password
+        description: APP Key (Application Key)
+        is_mandatory: true
+        integration_identifier: DataDog
 categories:
-- IT & Infrastructure
+    - IT & Infrastructure
 svg_image: "<?xml version=\"1.0\" encoding=\"utf-8\"?><!-- Generator: Adobe Illustrator\
     \ 25.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  --><svg version=\"\
     1.1\" id=\"Layer_1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\"\

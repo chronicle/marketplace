@@ -1,9 +1,6 @@
 identifier: ChronicleSupportTools
 name: ChronicleSupportTools
-version: 4.0
-parameters: []
-python_version: '3.11'
-categories: []
-description: ''
+parameters: [ ]
+categories: [ ]
 image_base64: null
 svg_image: null

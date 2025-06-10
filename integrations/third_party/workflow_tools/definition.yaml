@@ -1,63 +1,55 @@
 identifier: Workflow Tools
 name: Workflow Tools
-version: 3.0
 parameters:
--   name: Siemplify API Root
-    default_value: https://localhost
-    type: string
-    description: You should only change this if your Siemplify architecture requires
-        it and you know what you are doing.
-    is_mandatory: true
-    integration_identifier: Workflow Tools
--   name: Slack Webhook URL
-    type: string
-    description: 'An optional slack webhook URL that we can use to send audit messages.
+    -   name: Siemplify API Root
+        default_value: https://localhost
+        type: string
+        description: You should only change this if your Siemplify architecture requires
+            it and you know what you are doing.
+        is_mandatory: true
+        integration_identifier: Workflow Tools
+    -   name: Slack Webhook URL
+        type: string
+        description: 'An optional slack webhook URL that we can use to send audit messages.
 
         Leave empty to disable'
-    is_mandatory: false
-    integration_identifier: Workflow Tools
--   name: Verify SSL
-    default_value: 'false'
-    type: boolean
-    description: Whether to verify requests made to the Siemplify API
-    is_mandatory: false
-    integration_identifier: Workflow Tools
--   name: Siemplify API Key
-    type: password
-    description: API Key generated in Siemplify Settings
-    is_mandatory: false
-    integration_identifier: Workflow Tools
--   name: Approval Manager
-    default_value: '@Administrator'
-    type: string
-    description: The Siemplify username or role of a person or group of people that
-        is permitted to approve this action and allow the workflow to continue.
-    is_mandatory: true
-    integration_identifier: Workflow Tools
--   name: Secondary Approval Manager
-    type: string
-    description: The Siemplify username or role of a secondary person or group of
-        people that is permitted to approve this action and allow the workflow to
-        continue.
-    is_mandatory: false
-    integration_identifier: Workflow Tools
--   name: Siemplify Instance Hostname
-    default_value: https://siemplify.mycompany.com
-    type: string
-    description: The address/hostname of your Siemplify instance. This is used to
-        generate clickable links in slack message content so you can quickly jump
-        into a case directly from slack. This could be a domain or an IP address that
-        resolves your instance.
-    is_mandatory: true
-    integration_identifier: Workflow Tools
-description: 'Gain more control over your workflows, with tools such as approval stages
-    that can only be completed by a specified user or group. This can be actioned
-    against a specific alert by moving it into a different case when the workflow
-    requires, or by requiring an approval action against the case as a whole.
-
-    Documentation: https://github.com/snags141/SiemplifyIntegration_WorkflowTools'
-python_version: '3.11'
-categories: []
+        is_mandatory: false
+        integration_identifier: Workflow Tools
+    -   name: Verify SSL
+        default_value: 'false'
+        type: boolean
+        description: Whether to verify requests made to the Siemplify API
+        is_mandatory: false
+        integration_identifier: Workflow Tools
+    -   name: Siemplify API Key
+        type: password
+        description: API Key generated in Siemplify Settings
+        is_mandatory: false
+        integration_identifier: Workflow Tools
+    -   name: Approval Manager
+        default_value: '@Administrator'
+        type: string
+        description: The Siemplify username or role of a person or group of people that
+            is permitted to approve this action and allow the workflow to continue.
+        is_mandatory: true
+        integration_identifier: Workflow Tools
+    -   name: Secondary Approval Manager
+        type: string
+        description: The Siemplify username or role of a secondary person or group of
+            people that is permitted to approve this action and allow the workflow to
+            continue.
+        is_mandatory: false
+        integration_identifier: Workflow Tools
+    -   name: Siemplify Instance Hostname
+        default_value: https://siemplify.mycompany.com
+        type: string
+        description: The address/hostname of your Siemplify instance. This is used to
+            generate clickable links in slack message content so you can quickly jump
+            into a case directly from slack. This could be a domain or an IP address that
+            resolves your instance.
+        is_mandatory: true
+        integration_identifier: Workflow Tools
+categories: [ ]
 svg_image: "<?xml version=\"1.0\" encoding=\"utf-8\"?><!-- Generator: Adobe Illustrator\
     \ 25.2.3, SVG Export Plug-In . SVG Version: 6.00 Build 0)  --><svg version=\"\
     1.1\" id=\"Layer_1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\"\

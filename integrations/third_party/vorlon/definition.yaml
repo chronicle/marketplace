@@ -1,6 +1,5 @@
 identifier: Vorlon
 name: Vorlon
-version: 4.0
 parameters:
 -   name: API Root
     default_value: https://<your_domain>.vorlon.io
@@ -19,11 +18,6 @@ parameters:
     description: ''
     is_mandatory: true
     integration_identifier: Vorlon
-description: Vorlon empowers security teams to detect, investigate and respond to
-    third-party application risks. The solution provides risk profiling of apps, delivers
-    visibility, and enables continuous discovery and monitoring of third-party applications
-    and data in motion.
-python_version: '3.11'
 categories:
 - Cloud Application Security
 svg_image: "<?xml version=\"1.0\" encoding=\"utf-8\"?><!-- Generator: Adobe Illustrator\

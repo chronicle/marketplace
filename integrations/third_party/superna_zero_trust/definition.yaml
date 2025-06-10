@@ -1,29 +1,26 @@
 identifier: SupernaZeroTrust
 name: SupernaZeroTrust
-version: 4.0
 parameters:
--   name: eyeglass_ip
-    default_value: 1.1.1.1
-    type: ip
-    description: ''
-    is_mandatory: true
-    integration_identifier: SupernaZeroTrust
--   name: api_token
-    default_value: '1234'
-    type: string
-    description: api token
-    is_mandatory: true
-    integration_identifier: SupernaZeroTrust
--   name: Verify SSL
-    default_value: 'false'
-    type: boolean
-    description: Verify SSL
-    is_mandatory: true
-    integration_identifier: SupernaZeroTrust
-description: Superna cyber storage automations
-python_version: '3.11'
+    -   name: eyeglass_ip
+        default_value: 1.1.1.1
+        type: ip
+        description: ''
+        is_mandatory: true
+        integration_identifier: SupernaZeroTrust
+    -   name: api_token
+        default_value: '1234'
+        type: string
+        description: api token
+        is_mandatory: true
+        integration_identifier: SupernaZeroTrust
+    -   name: Verify SSL
+        default_value: 'false'
+        type: boolean
+        description: Verify SSL
+        is_mandatory: true
+        integration_identifier: SupernaZeroTrust
 categories:
-- cyber storage
+    - cyber storage
 svg_image: "<?xml version=\"1.0\" encoding=\"utf-8\"?><!-- Generator: Adobe Illustrator\
     \ 27.9.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  --><svg version=\"\
     1.1\" id=\"Layer_1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\"\

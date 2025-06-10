@@ -15,7 +15,6 @@
 from __future__ import annotations
 
 import base64
-import decimal
 import json
 from typing import TYPE_CHECKING, Annotated, NotRequired, Self, TypedDict
 
@@ -97,17 +96,17 @@ class BuiltIntegrationMetadata(TypedDict):
 
 class NonBuiltIntegrationMetadata(TypedDict):
     categories: list[str]
-    description: str
+    description: NotRequired[str]
     feature_tags: NotRequired[NonBuiltFeatureTags | None]
     name: str
     identifier: str
-    python_version: str
+    python_version: NotRequired[str]
     documentation_link: NotRequired[str | None]
     image_base64: str | None
     parameters: list[NonBuiltIntegrationParameter]
     should_install_in_system: NotRequired[bool]
     svg_image: str | None
-    version: float
+    version: NotRequired[float]
     is_custom: NotRequired[bool]
     is_available_for_community: NotRequired[bool]
     is_powerup: NotRequired[bool]
@@ -120,10 +119,6 @@ class IntegrationMetadata(
     ]
 ):
     categories: list[str]
-    description: Annotated[
-        str,
-        pydantic.Field(max_length=mp.core.constants.LONG_DESCRIPTION_MAX_LENGTH),
-    ]
     feature_tags: FeatureTags | None
     name: Annotated[
         str,
@@ -139,24 +134,31 @@ class IntegrationMetadata(
             pattern=mp.core.constants.SCRIPT_IDENTIFIER_REGEX,
         ),
     ]
-    python_version: PythonVersion
     documentation_link: pydantic.HttpUrl | pydantic.FileUrl | None
     image_base64: pydantic.Base64Bytes | None
     parameters: Annotated[
         list[IntegrationParameter],
         pydantic.Field(max_length=mp.core.constants.MAX_PARAMETERS_LENGTH),
     ]
+    python_version: PythonVersion = PythonVersion.PY_3_11
+    description: Annotated[
+        str,
+        pydantic.Field(max_length=mp.core.constants.LONG_DESCRIPTION_MAX_LENGTH),
+    ] = ""
+    version: Annotated[
+        pydantic.PositiveFloat,
+        pydantic.Field(ge=mp.core.constants.MINIMUM_SCRIPT_VERSION),
+    ] = mp.core.constants.MINIMUM_SCRIPT_VERSION
     should_install_in_system: bool = False
     svg_image: str | None
-    version: Annotated[decimal.Decimal, pydantic.Field(decimal_places=1)]
     is_certified: bool = True
     is_custom: bool = False
     is_available_for_community: bool = True
     is_powerup: bool = False
     minimum_system_version: Annotated[
-        decimal.Decimal,
-        pydantic.Field(ge=MINIMUM_SYSTEM_VERSION, max_digits=2, decimal_places=1),
-    ] = decimal.Decimal(MINIMUM_SYSTEM_VERSION)
+        pydantic.PositiveFloat,
+        pydantic.Field(ge=MINIMUM_SYSTEM_VERSION),
+    ] = MINIMUM_SYSTEM_VERSION
 
     @classmethod
     def from_built_integration_path(cls, path: pathlib.Path) -> Self:
@@ -235,7 +237,7 @@ class IntegrationMetadata(
             ],
             should_install_in_system=built["ShouldInstalledInSystem"],
             svg_image=built.get("SVGImage", built.get("SvgImage")),
-            version=decimal.Decimal(built["Version"]),
+            version=built["Version"],
             is_custom=built.get("IsCustom", False),
             is_available_for_community=built.get("IsAvailableForCommunity", True),
             is_powerup=built.get("IsPowerUp", False),
@@ -250,11 +252,9 @@ class IntegrationMetadata(
 
         return cls(
             categories=non_built["categories"],
-            description=non_built["description"],
             feature_tags=feature_tags,
             name=non_built["name"],
             identifier=non_built["identifier"],
-            python_version=PythonVersion.from_string(non_built["python_version"]),
             documentation_link=non_built.get("documentation_link"),
             image_base64=non_built["image_base64"],
             parameters=[
@@ -263,7 +263,6 @@ class IntegrationMetadata(
             should_install_in_system=non_built.get("should_install_in_system", False),
             is_custom=non_built.get("is_custom", False),
             svg_image=non_built.get("svg_image"),
-            version=decimal.Decimal(non_built["version"]),
             is_available_for_community=non_built.get(
                 "is_available_for_community",
                 True,
@@ -303,7 +302,7 @@ class IntegrationMetadata(
             PythonVersion=self.python_version.value,
             SVGImage=self.svg_image,
             ShouldInstalledInSystem=self.should_install_in_system,
-            Version=float(self.version),
+            Version=self.version,
             IsCustom=self.is_custom,
             IsPowerUp=self.is_powerup,
             IsCertified=self.is_certified,
@@ -321,10 +320,7 @@ class IntegrationMetadata(
         non_built: NonBuiltIntegrationMetadata = NonBuiltIntegrationMetadata(
             identifier=self.identifier,
             name=self.name,
-            version=float(self.version),
             parameters=[p.to_non_built() for p in self.parameters],
-            description=self.description,
-            python_version=self.python_version.to_string(),
             documentation_link=(
                 str(self.documentation_link)
                 if self.documentation_link is not None

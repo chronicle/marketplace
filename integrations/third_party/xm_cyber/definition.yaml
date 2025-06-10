@@ -1,41 +1,31 @@
 identifier: XMCyber
 name: XMCyber
-version: 2.0
 parameters:
--   name: Base URL
-    default_value: https://<base_url>
-    type: string
-    description: 'Base URL of the XMCyber instance. NOTE: Must include ''https://'''
-    is_mandatory: true
-    integration_identifier: XMCyber
--   name: API Key
-    default_value: ''
-    type: password
-    description: The API Key using which the API calls would be made to the XMCyber
-        instance
-    is_mandatory: true
-    integration_identifier: XMCyber
--   name: Access Token Based Authentication
-    default_value: 'true'
-    type: boolean
-    description: 'Type of authentication. Check: For Access Token Based Authentication.
+    -   name: Base URL
+        default_value: https://<base_url>
+        type: string
+        description: 'Base URL of the XMCyber instance. NOTE: Must include ''https://'''
+        is_mandatory: true
+        integration_identifier: XMCyber
+    -   name: API Key
+        default_value: ''
+        type: password
+        description: The API Key using which the API calls would be made to the XMCyber
+            instance
+        is_mandatory: true
+        integration_identifier: XMCyber
+    -   name: Access Token Based Authentication
+        default_value: 'true'
+        type: boolean
+        description: 'Type of authentication. Check: For Access Token Based Authentication.
         Uncheck : For API Key Based Authentication'
-    is_mandatory: false
-    integration_identifier: XMCyber
-description: 'This integration app will integrate XM Cyber''s Continuous Exposure
-    Management platform to Google SecOps SIEM-SOAR flow by enriching Alerts & cases
-    with relevant attack-graph, risky and criticality findings from XM Cyber, and
-    also pushing entities involved in Alerts back to CEM as potential breach points.
-
-    This integration app requires ingestion of entity data from XM Cyber CEM and incorporating
-    XM Cyber CEM parameters and metrics to SIEM rules. In case of any queries, please
-    reach out to sup-ops@xmcyber.com.'
-python_version: '3.11'
+        is_mandatory: false
+        integration_identifier: XMCyber
 documentation_link: https://info.xmcyber.com/hubfs/XMCyber%20Integration%20for%20SecOps%20SOAR%20-%20User%20Guide%20(1).docx.pdf
 categories:
-- SIEM
-- Security
-- Data Enrichment
+    - SIEM
+    - Security
+    - Data Enrichment
 svg_image: '<svg  xmlns="http://www.w3.org/2000/svg"  xmlns:xlink="http://www.w3.org/1999/xlink"  id="Layer_1"  data-name="Layer
     1"  viewBox="0 0 165 165"  fill="currentColor">  <defs>    <style>      .cls-1
     {        fill: currentColor;      }      .cls-2 {        fill: url(#radial-gradient);      }      .cls-3
