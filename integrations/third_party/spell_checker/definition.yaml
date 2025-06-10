@@ -1,6 +1,6 @@
 identifier: Spell Checker
 name: Spell Checker
-version: 7.0
+version: 7.5
 parameters: []
 description: Pyspellchecker provides a library for determining if a word is misspelled
     and what the likely correct spelling would be based on word frequency.
