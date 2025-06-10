@@ -1,18 +1,16 @@
-name: Build Marketpalce
+name: Build marketpalce integrations
 
 on:
   push:
     branches:
       - '**'
     paths:
-      - '**/integrations/commercial/**'
-      - '**/integrations/third_party/**'
+      - 'integrations/**'
   pull_request:
     branches:
       - '**'
     paths:
-      - '**/integrations/commercial/**'
-      - '**/integrations/third_party/**'
+      - 'integrations/**'
 
 jobs:
   mp_build:
