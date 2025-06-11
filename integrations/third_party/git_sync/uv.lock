@@ -1193,8 +1193,8 @@ wheels = [
 
 [[package]]
 name = "soar-sdk"
-version = "0.1.2"
-source = { git = "https://github.com/chronicle/soar-sdk.git#f7a2d838658dac919e13dac68b84e5a9a90eb591" }
+version = "0.1.3"
+source = { git = "https://github.com/chronicle/soar-sdk.git#1c1f8140e204d61b2cde2dc103869e8cbeb21216" }
 dependencies = [
     { name = "arrow" },
     { name = "chardet" },
