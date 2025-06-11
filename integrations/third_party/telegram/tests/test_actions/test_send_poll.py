@@ -7,7 +7,7 @@ from integration_testing.set_meta import set_metadata
 from ..common import CONFIG_PATH
 from ..core.session import TelegramSession
 from ..core.product import Telegram
-from ...actions.SendPoll import main as SendPoll
+from ...actions import SendPoll
 
 
 class TestSendPoll:
@@ -30,7 +30,7 @@ class TestSendPoll:
         script_session: TelegramSession,
         action_output: MockActionOutput,
     ) -> None:
-        SendPoll()
+        SendPoll.main()
 
         # Assert that the correct API call was made
         assert len(script_session.request_history) == 1
@@ -74,7 +74,7 @@ class TestSendPoll:
         telegram: Telegram,
     ) -> None:
         with telegram.fail_requests():
-            SendPoll()
+            SendPoll.main()
 
         assert len(script_session.request_history) == 1
         request = script_session.request_history[0].request

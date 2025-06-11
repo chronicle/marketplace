@@ -7,7 +7,7 @@ from integration_testing.set_meta import set_metadata
 from integrations.third_party.telegram.tests.common import CONFIG_PATH
 from ..core.session import TelegramSession
 from ..core.product import Telegram
-from ...actions.SetDefaultChatPermissions import main as SetDefaultChatPermissions
+from ...actions import SetDefaultChatPermissions
 
 
 class TestSetDefaultChatPermissions:
@@ -34,7 +34,7 @@ class TestSetDefaultChatPermissions:
         script_session: TelegramSession,
         action_output: MockActionOutput,
     ) -> None:
-        SetDefaultChatPermissions()
+        SetDefaultChatPermissions.main()
 
         # Assert that the correct API call was made
         assert len(script_session.request_history) == 1
@@ -86,7 +86,7 @@ class TestSetDefaultChatPermissions:
         telegram: Telegram,
     ) -> None:
         with telegram.fail_requests():
-            SetDefaultChatPermissions()
+            SetDefaultChatPermissions.main()
 
         assert len(script_session.request_history) == 1
         request = script_session.request_history[0].request

@@ -6,7 +6,7 @@ from integration_testing.set_meta import set_metadata
 
 from ..common import CONFIG_PATH
 from ..core.session import TelegramSession
-from ...actions.SendDocument import main as SendDocument
+from ...actions import SendDocument
 
 
 class TestSendDocument:
@@ -22,7 +22,7 @@ class TestSendDocument:
         script_session: TelegramSession,
         action_output: MockActionOutput,
     ) -> None:
-        SendDocument()
+        SendDocument.main()
 
         assert len(script_session.request_history) == 1
         request = script_session.request_history[0].request

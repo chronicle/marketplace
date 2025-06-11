@@ -7,7 +7,7 @@ from integration_testing.set_meta import set_metadata
 from ..common import CONFIG_PATH
 from ..core.session import TelegramSession
 from ..core.product import Telegram
-from ...actions.GetBotDetails import main as GetBotDetails
+from ...actions import GetBotDetails
 
 
 class TestGetBotDetails:
@@ -20,7 +20,7 @@ class TestGetBotDetails:
         script_session: TelegramSession,
         action_output: MockActionOutput,
     ) -> None:
-        GetBotDetails()
+        GetBotDetails.main()
 
         assert len(script_session.request_history) == 1
         request = script_session.request_history[0].request
@@ -49,7 +49,7 @@ class TestGetBotDetails:
         telegram: Telegram,
     ) -> None:
         with telegram.fail_requests():
-            GetBotDetails()
+            GetBotDetails.main()
 
         assert len(script_session.request_history) == 1
         request = script_session.request_history[0].request

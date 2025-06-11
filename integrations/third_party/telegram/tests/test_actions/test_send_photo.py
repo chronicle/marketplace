@@ -7,7 +7,7 @@ from integration_testing.set_meta import set_metadata
 from ..common import CONFIG_PATH
 from ..core.session import TelegramSession
 from ..core.product import Telegram
-from ...actions.SendPhoto import main as SendPhoto
+from ...actions import SendPhoto
 
 
 class TestSendPhoto:
@@ -23,7 +23,7 @@ class TestSendPhoto:
         script_session: TelegramSession,
         action_output: MockActionOutput,
     ) -> None:
-        SendPhoto()
+        SendPhoto.main()
 
         assert len(script_session.request_history) == 1
         request = script_session.request_history[0].request
@@ -51,7 +51,7 @@ class TestSendPhoto:
         telegram: Telegram,
     ) -> None:
         with telegram.fail_requests():
-            SendPhoto()
+            SendPhoto.main()
 
         assert len(script_session.request_history) == 1
         request = script_session.request_history[0].request

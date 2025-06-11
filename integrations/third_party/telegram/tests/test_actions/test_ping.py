@@ -7,7 +7,7 @@ from integration_testing.set_meta import set_metadata
 from ..common import CONFIG_PATH
 from ..core.session import TelegramSession
 from ..core.product import Telegram
-from ...actions.Ping import main as Ping
+from ...actions import Ping
 
 
 class TestPing:
@@ -20,7 +20,7 @@ class TestPing:
         script_session: TelegramSession,
         action_output: MockActionOutput,
     ) -> None:
-        Ping()
+        Ping.main()
 
         # Assert that the correct API call was made
         assert len(script_session.request_history) == 1
@@ -41,7 +41,7 @@ class TestPing:
         telegram: Telegram,
     ) -> None:
         with telegram.fail_requests():
-            Ping()
+            Ping.main()
 
         # Assert that the correct API call was made
         assert len(script_session.request_history) == 1

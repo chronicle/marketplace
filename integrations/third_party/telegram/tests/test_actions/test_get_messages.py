@@ -7,7 +7,7 @@ from integration_testing.set_meta import set_metadata
 from ..common import CONFIG_PATH
 from ..core.session import TelegramSession
 from ..core.product import Telegram
-from ...actions.GetMessages import main as GetMessages
+from ...actions import GetMessages
 
 
 class TestGetMessages:
@@ -23,7 +23,7 @@ class TestGetMessages:
         script_session: TelegramSession,
         action_output: MockActionOutput,
     ) -> None:
-        GetMessages()
+        GetMessages.main()
 
         # Assert that the correct API call was made
         assert len(script_session.request_history) == 1
@@ -70,7 +70,7 @@ class TestGetMessages:
         telegram: Telegram,
     ) -> None:
         with telegram.fail_requests():
-            GetMessages()
+            GetMessages.main()
 
         assert len(script_session.request_history) == 1
         request = script_session.request_history[0].request

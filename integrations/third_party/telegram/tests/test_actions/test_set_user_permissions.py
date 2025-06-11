@@ -7,7 +7,7 @@ from integration_testing.set_meta import set_metadata
 from integrations.third_party.telegram.tests.common import CONFIG_PATH
 from ..core.session import TelegramSession
 from ..core.product import Telegram
-from ...actions.SetUserPermissions import main as SetUserPermissions
+from ...actions import SetUserPermissions
 
 
 class TestSetUserPermissions:
@@ -44,7 +44,7 @@ class TestSetUserPermissions:
         script_session: TelegramSession,
         action_output: MockActionOutput,
     ) -> None:
-        SetUserPermissions()
+        SetUserPermissions.main()
 
         assert len(script_session.request_history) == 1
         request = script_session.request_history[0].request
@@ -108,7 +108,7 @@ class TestSetUserPermissions:
         telegram: Telegram,
     ) -> None:
         with telegram.fail_requests():
-            SetUserPermissions()
+            SetUserPermissions.main()
 
         assert len(script_session.request_history) == 1
         request = script_session.request_history[0].request

@@ -7,7 +7,7 @@ from integration_testing.set_meta import set_metadata
 from ..common import CONFIG_PATH, TEST_BOT_TOKEN
 from ..core.session import TelegramSession
 from ..core.product import Telegram
-from ...actions.SendMessage import main as SendMessage
+from ...actions import SendMessage
 
 
 class TestSendMessage:
@@ -24,7 +24,7 @@ class TestSendMessage:
         action_output: MockActionOutput,
         telegram: Telegram,
     ) -> None:
-        SendMessage()
+        SendMessage.main()
 
         assert len(script_session.request_history) == 1
         request = script_session.request_history[0].request
@@ -54,7 +54,7 @@ class TestSendMessage:
         telegram: Telegram,
     ) -> None:
         with telegram.fail_requests():
-            SendMessage()
+            SendMessage.main()
 
         assert len(script_session.request_history) == 1
         request = script_session.request_history[0].request

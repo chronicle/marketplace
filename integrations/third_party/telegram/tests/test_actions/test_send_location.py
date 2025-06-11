@@ -7,7 +7,7 @@ from integration_testing.set_meta import set_metadata
 from ..common import CONFIG_PATH
 from ..core.session import TelegramSession
 from ..core.product import Telegram
-from ...actions.SendLocation import main as SendLocation
+from ...actions import SendLocation
 
 
 class TestSendLocation:
@@ -24,7 +24,7 @@ class TestSendLocation:
         script_session: TelegramSession,
         action_output: MockActionOutput,
     ) -> None:
-        SendLocation()
+        SendLocation.main()
 
         assert len(script_session.request_history) == 1
         request = script_session.request_history[0].request
@@ -59,7 +59,7 @@ class TestSendLocation:
         telegram: Telegram,
     ) -> None:
         with telegram.fail_requests():
-            SendLocation()
+            SendLocation.main()
 
         assert len(script_session.request_history) == 1
         request = script_session.request_history[0].request
