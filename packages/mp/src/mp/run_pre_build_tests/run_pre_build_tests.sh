@@ -34,18 +34,24 @@ main() {
 }
 
 test_integrations() {
+  local overall_status=0
   for integration in "${INTEGRATIONS[@]}"; do
-    log_debug "#### Processing integration: ${integration} ####"
+    integration_name=$(basename "${integration}")
+    print_with_color "---------- Processing integration: ${integration_name}"
     test_integration "${integration}"
     local integration_status=$?
     if [ ${integration_status} -ne 0 ]; then
       log_error "Processing failed for integration '${integration}' with status ${integration_status}."
-      return ${integration_status}
+      overall_status=${integration_status}
+    else
+      log_debug "Integration '${integration}' processed successfully."
     fi
-    log_debug "Integration '${integration}' processed successfully."
   done
-  log_debug "All integrations processed successfully."
-  return 0
+
+  if [ ${overall_status} -eq 0 ]; then
+    log_debug "All integrations processed successfully."
+  fi
+  return ${overall_status}
 }
 
 test_integration() {
@@ -101,7 +107,7 @@ test_integration() {
 
     return ${test_status}
   else
-    log_debug "No tests directory found at ${integration_tests_path}. Skipping tests for ${integration_path}."
+    print_with_color "No tests directory found at ${integration_tests_path}."
     return 0
   fi
 }
