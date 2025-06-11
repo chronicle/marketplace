@@ -19,7 +19,18 @@ class TestPing:
         self,
         script_session: TelegramSession,
         action_output: MockActionOutput,
+        telegram: Telegram
     ) -> None:
+        telegram.set_bot_details({
+            "ok": True,
+            "result": {
+                "id": 123456789,
+                "is_bot": True,
+                "first_name": "test_bot",
+                "username": "test_bot_username",
+            },
+        })
+
         Ping.main()
 
         # Assert that the correct API call was made
