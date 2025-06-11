@@ -22,7 +22,14 @@ class TestSendPhoto:
         self,
         script_session: TelegramSession,
         action_output: MockActionOutput,
+        telegram: Telegram,
     ) -> None:
+        expected_send_photo_response = {
+            "ok": True,
+            "result": {"chat_id": self.CHAT_ID, "photo_url": self.PHOTO_URL},
+        }
+        telegram.set_send_photo_response(expected_send_photo_response)
+
         SendPhoto.main()
 
         assert len(script_session.request_history) == 1
@@ -35,10 +42,7 @@ class TestSendPhoto:
 
         assert action_output.results.output_message == "The photo was sent successfully"
         assert action_output.results.execution_state == ExecutionState.COMPLETED
-        assert action_output.results.json_output.json_result == {
-            "ok": True,
-            "result": {"chat_id": self.CHAT_ID, "photo_url": self.PHOTO_URL},
-        }
+        assert action_output.results.json_output.json_result == expected_send_photo_response
 
     @set_metadata(
         parameters={"Chat ID": CHAT_ID, "Photo URL": PHOTO_URL},

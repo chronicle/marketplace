@@ -33,7 +33,23 @@ class TestSetDefaultChatPermissions:
         self,
         script_session: TelegramSession,
         action_output: MockActionOutput,
+        telegram: Telegram,
     ) -> None:
+        expected_set_default_chat_permissions_response = {
+            "ok": True,
+            "result": {
+                "chat_id": self.CHAT_ID,
+                "permissions": {
+                    "can_send_polls": self.CAN_SEND_POLLS,
+                    "can_pin_messages": self.CAN_PIN_MESSAGES,
+                    "can_invite_users": self.CAN_INVITE_USERS,
+                    "can_change_info": self.CAN_EDIT_INFO,
+                    "can_post_messages": self.CAN_SEND_MESSAGES,
+                },
+            },
+        }
+        telegram.set_set_default_chat_permissions_response(expected_set_default_chat_permissions_response)
+
         SetDefaultChatPermissions.main()
 
         # Assert that the correct API call was made
@@ -54,19 +70,7 @@ class TestSetDefaultChatPermissions:
             == f"The permissions of the chat {self.CHAT_ID} were changed successfully"
         )
         assert action_output.results.execution_state == ExecutionState.COMPLETED
-        assert action_output.results.json_output.json_result == {
-            "ok": True,
-            "result": {
-                "chat_id": self.CHAT_ID,
-                "permissions": {
-                    "can_send_polls": self.CAN_SEND_POLLS,
-                    "can_pin_messages": self.CAN_PIN_MESSAGES,
-                    "can_invite_users": self.CAN_INVITE_USERS,
-                    "can_change_info": self.CAN_EDIT_INFO,
-                    "can_post_messages": self.CAN_SEND_MESSAGES,
-                },
-            },
-        }
+        assert action_output.results.json_output.json_result == expected_set_default_chat_permissions_response
 
     @set_metadata(
         parameters={

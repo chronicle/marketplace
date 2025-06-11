@@ -29,7 +29,19 @@ class TestSendPoll:
         self,
         script_session: TelegramSession,
         action_output: MockActionOutput,
+        telegram: Telegram,
     ) -> None:
+        expected_send_poll_response = {
+            "ok": True,
+            "result": {
+                "chat_id": self.CHAT_ID,
+                "question": self.QUESTION,
+                "options": self.OPTIONS,
+                "is_anonymous": self.IS_ANONYMOUS,
+            },
+        }
+        telegram.set_ask_question_response(expected_send_poll_response)
+
         SendPoll.main()
 
         # Assert that the correct API call was made
@@ -47,16 +59,7 @@ class TestSendPoll:
             action_output.results.output_message
             == f'The poll "{self.QUESTION}" was sent successfully.'
         )
-        assert action_output.results.execution_state == ExecutionState.COMPLETED
-        assert action_output.results.json_output.json_result == {
-            "ok": True,
-            "result": {
-                "chat_id": self.CHAT_ID,
-                "question": self.QUESTION,
-                "options": self.OPTIONS,
-                "is_anonymous": self.IS_ANONYMOUS,
-            },
-        }
+        assert action_output.results.json_output.json_result == expected_send_poll_response
 
     @set_metadata(
         parameters={

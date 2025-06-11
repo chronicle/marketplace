@@ -10,6 +10,14 @@ from TIPCommon.types import SingleJson
 class Telegram:
     messages: list[SingleJson] = dataclasses.field(default_factory=list)
     _updates_response: SingleJson | None = None
+    _chat_details: SingleJson | None = None
+    _bot_details: SingleJson | None = None
+    _send_doc_response: SingleJson | None = None
+    _send_location_response: SingleJson | None = None
+    _send_photo_response: SingleJson | None = None
+    _ask_question_response: SingleJson | None = None
+    _set_default_chat_permissions_response: SingleJson | None = None
+    _set_user_permissions_response: SingleJson | None = None
     _fail_requests_active: bool = False
 
     @contextlib.contextmanager
@@ -26,6 +34,30 @@ class Telegram:
     def set_updates_response(self, response: SingleJson):
         self._updates_response = response
 
+    def set_chat_details(self, response: SingleJson):
+        self._chat_details = response
+
+    def set_bot_details(self, response: SingleJson):
+        self._bot_details = response
+
+    def set_send_doc_response(self, response: SingleJson):
+        self._send_doc_response = response
+
+    def set_send_location_response(self, response: SingleJson):
+        self._send_location_response = response
+
+    def set_send_photo_response(self, response: SingleJson):
+        self._send_photo_response = response
+
+    def set_ask_question_response(self, response: SingleJson):
+        self._ask_question_response = response
+
+    def set_set_default_chat_permissions_response(self, response: SingleJson):
+        self._set_default_chat_permissions_response = response
+
+    def set_set_user_permissions_response(self, response: SingleJson):
+        self._set_user_permissions_response = response
+
     def send_message(self, chat_id: str, text: str) -> SingleJson:
         if self._fail_requests_active:
             raise Exception("Simulated API failure for SendMessage")
@@ -39,6 +71,10 @@ class Telegram:
     def test_connectivity(self) -> SingleJson:
         if self._fail_requests_active:
             raise Exception("Simulated API failure for GetBotDetails")
+
+        if self._bot_details:
+            return self._bot_details
+
         return {
             "ok": True,
             "result": {
@@ -52,6 +88,10 @@ class Telegram:
     def get_chat_details(self, chat_id: str) -> SingleJson:
         if self._fail_requests_active:
             raise Exception("Simulated API failure")
+
+        if self._chat_details:
+            return self._chat_details
+
         return {
             "ok": True,
             "result": {
@@ -96,6 +136,8 @@ class Telegram:
     def send_doc(self, chat_id: str, doc_url: str) -> SingleJson:
         if self._fail_requests_active:
             raise Exception("Simulated API failure for SendDocument")
+        if self._send_doc_response:
+            return self._send_doc_response
         return {
             "ok": True,
             "result": {
@@ -108,6 +150,10 @@ class Telegram:
     def send_location(self, chat_id: str, latitude: str, longitude: str) -> SingleJson:
         if self._fail_requests_active:
             raise Exception("Mock API failure")
+
+        if self._send_location_response:
+            return self._send_location_response
+
         return {
             "ok": True,
             "result": {
@@ -120,13 +166,20 @@ class Telegram:
     def send_photo(self, chat_id: str, photo_url: str) -> SingleJson:
         if self._fail_requests_active:
             raise Exception("Simulated API failure for SendPhoto")
+        if self._send_photo_response:
+            return self._send_photo_response
         return {"ok": True, "result": {"chat_id": chat_id, "photo_url": photo_url}}
 
     def ask_question(
         self, chat_id: str, question: str, options: list[str], is_anonymous: bool
     ) -> SingleJson:
+
         if self._fail_requests_active:
             raise Exception("Simulated API failure for SendPoll")
+
+        if self._ask_question_response:
+            return self._ask_question_response
+
         return {
             "ok": True,
             "result": {
@@ -148,6 +201,8 @@ class Telegram:
     ) -> SingleJson:
         if self._fail_requests_active:
             raise Exception("Simulated API failure for SetDefaultChatPermissions")
+        if self._set_default_chat_permissions_response:
+            return self._set_default_chat_permissions_response
         return {
             "ok": True,
             "result": {
@@ -178,6 +233,8 @@ class Telegram:
     ) -> SingleJson:
         if self._fail_requests_active:
             raise Exception("Simulated API failure for SetUserPermissions")
+        if self._set_user_permissions_response:
+            return self._set_user_permissions_response
         return {
             "ok": True,
             "result": {

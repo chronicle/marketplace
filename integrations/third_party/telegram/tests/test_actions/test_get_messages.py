@@ -22,24 +22,9 @@ class TestGetMessages:
         self,
         script_session: TelegramSession,
         action_output: MockActionOutput,
+        telegram: Telegram,
     ) -> None:
-        GetMessages.main()
-
-        # Assert that the correct API call was made
-        assert len(script_session.request_history) == 1
-        request = script_session.request_history[0].request
-        assert request.url.path.endswith("/getUpdates")
-        assert request.kwargs["params"] == {
-            "offset": self.OFFSET_PARAM,
-            "allowed_updates": self.ALLOWED_UPDATES,
-        }
-
-        assert (
-            action_output.results.output_message
-            == "The messages were pulled successfully."
-        )
-        assert action_output.results.execution_state == ExecutionState.COMPLETED
-        assert action_output.results.json_output.json_result == {
+        expected_messages = {
             "ok": True,
             "result": [
                 {
@@ -58,6 +43,25 @@ class TestGetMessages:
                 }
             ],
         }
+        telegram.set_updates_response(expected_messages)
+
+        GetMessages.main()
+
+        # Assert that the correct API call was made
+        assert len(script_session.request_history) == 1
+        request = script_session.request_history[0].request
+        assert request.url.path.endswith("/getUpdates")
+        assert request.kwargs["params"] == {
+            "offset": self.OFFSET_PARAM,
+            "allowed_updates": self.ALLOWED_UPDATES,
+        }
+
+        assert (
+            action_output.results.output_message
+            == "The messages were pulled successfully."
+        )
+        assert action_output.results.execution_state == ExecutionState.COMPLETED
+        assert action_output.results.json_output.json_result == expected_messages
 
     @set_metadata(
         parameters={"Offset Param": OFFSET_PARAM, "Allowed Updates": ALLOWED_UPDATES},

@@ -43,7 +43,27 @@ class TestSetUserPermissions:
         self,
         script_session: TelegramSession,
         action_output: MockActionOutput,
+        telegram: Telegram,
     ) -> None:
+
+        expected_set_user_permissions_response = {
+            "ok": True,
+            "result": {
+                "chat_id": self.CHAT_ID,
+                "user_id": self.USER_ID,
+                "is_anonymous": self.IS_ANONYMOUS,
+                "can_change_info": self.CAN_EDIT_INFO,
+                "can_post_messages": self.CAN_POST_MESSAGES,
+                "can_edit_messages": self.CAN_EDIT_MESSAGES,
+                "can_delete_messages": self.CAN_DELETE_MESSAGES,
+                "can_invite_users": self.CAN_INVITE_USERS,
+                "can_restrict_users": self.CAN_RESTRICT_USERS,
+                "can_pin_messages": self.CAN_PIN_MESSAGES,
+                "can_promote_members": self.CAN_PROMOTE_MEMBERS,
+            },
+        }
+        telegram.set_set_user_permissions_response(expected_set_user_permissions_response)
+
         SetUserPermissions.main()
 
         assert len(script_session.request_history) == 1
@@ -68,22 +88,7 @@ class TestSetUserPermissions:
             == f"The permissions of the user {self.USER_ID} were set successfully"
         )
         assert action_output.results.execution_state == ExecutionState.COMPLETED
-        assert action_output.results.json_output.json_result == {
-            "ok": True,
-            "result": {
-                "chat_id": self.CHAT_ID,
-                "user_id": self.USER_ID,
-                "is_anonymous": self.IS_ANONYMOUS,
-                "can_change_info": self.CAN_EDIT_INFO,
-                "can_post_messages": self.CAN_POST_MESSAGES,
-                "can_edit_messages": self.CAN_EDIT_MESSAGES,
-                "can_delete_messages": self.CAN_DELETE_MESSAGES,
-                "can_invite_users": self.CAN_INVITE_USERS,
-                "can_restrict_users": self.CAN_RESTRICT_USERS,
-                "can_pin_messages": self.CAN_PIN_MESSAGES,
-                "can_promote_members": self.CAN_PROMOTE_MEMBERS,
-            },
-        }
+        assert action_output.results.json_output.json_result == expected_set_user_permissions_response
 
     @set_metadata(
         parameters={

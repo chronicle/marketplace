@@ -21,7 +21,20 @@ class TestGetChatDetails:
         self,
         script_session: TelegramSession,
         action_output: MockActionOutput,
+        telegram: Telegram,
     ) -> None:
+        
+        expected_chat_details = {
+            "ok": True,
+            "result": {
+                "id": self.CHAT_ID,
+                "type": "channel",
+                "title": "Test Chat",
+                "invite_link": f"https://t.me/joinchat/test_invite_link_{self.CHAT_ID}",
+            },
+        }
+        telegram.set_chat_details(expected_chat_details)
+
         GetChatDetails.main()
 
         assert len(script_session.request_history) == 1
@@ -34,15 +47,7 @@ class TestGetChatDetails:
             == f"The chat {self.CHAT_ID} was found successfully"
         )
         assert action_output.results.execution_state == ExecutionState.COMPLETED
-        assert action_output.results.json_output.json_result == {
-            "ok": True,
-            "result": {
-                "id": self.CHAT_ID,
-                "type": "channel",
-                "title": "Test Chat",
-                "invite_link": f"https://t.me/joinchat/test_invite_link_{self.CHAT_ID}",
-            },
-        }
+        assert action_output.results.json_output.json_result == expected_chat_details
 
     @set_metadata(
         parameters={"Chat ID": CHAT_ID},

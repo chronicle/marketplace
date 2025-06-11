@@ -23,7 +23,18 @@ class TestSendLocation:
         self,
         script_session: TelegramSession,
         action_output: MockActionOutput,
+        telegram: Telegram,
     ) -> None:
+        expected_send_location_response = {
+            "ok": True,
+            "result": {
+                "chat_id": self.CHAT_ID,
+                "latitude": self.LATITUDE,
+                "longitude": self.LONGITUDE,
+            },
+        }
+        telegram.set_send_location_response(expected_send_location_response)
+
         SendLocation.main()
 
         assert len(script_session.request_history) == 1
@@ -39,14 +50,7 @@ class TestSendLocation:
             action_output.results.output_message == "The location was sent successfully"
         )
         assert action_output.results.execution_state == ExecutionState.COMPLETED
-        assert action_output.results.json_output.json_result == {
-            "ok": True,
-            "result": {
-                "chat_id": self.CHAT_ID,
-                "latitude": self.LATITUDE,
-                "longitude": self.LONGITUDE,
-            },
-        }
+        assert action_output.results.json_output.json_result == expected_send_location_response
 
     @set_metadata(
         parameters={"Chat ID": CHAT_ID, "Latitude": LATITUDE, "Longitude": LONGITUDE},

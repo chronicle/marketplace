@@ -19,16 +19,9 @@ class TestGetBotDetails:
         self,
         script_session: TelegramSession,
         action_output: MockActionOutput,
+        telegram: Telegram,
     ) -> None:
-        GetBotDetails.main()
-
-        assert len(script_session.request_history) == 1
-        request = script_session.request_history[0].request
-        assert request.url.path.endswith("/getMe")
-
-        assert action_output.results.output_message == "The Bot was found successfully"
-        assert action_output.results.execution_state == ExecutionState.COMPLETED
-        assert action_output.results.json_output.json_result == {
+        expected_bot_details = {
             "ok": True,
             "result": {
                 "id": 123456789,
@@ -37,6 +30,17 @@ class TestGetBotDetails:
                 "username": "test_bot_username",
             },
         }
+        telegram.set_bot_details(expected_bot_details)
+
+        GetBotDetails.main()
+
+        assert len(script_session.request_history) == 1
+        request = script_session.request_history[0].request
+        assert request.url.path.endswith("/getMe")
+
+        assert action_output.results.output_message == "The Bot was found successfully"
+        assert action_output.results.execution_state == ExecutionState.COMPLETED
+        assert action_output.results.json_output.json_result == expected_bot_details
 
     @set_metadata(
         parameters={},

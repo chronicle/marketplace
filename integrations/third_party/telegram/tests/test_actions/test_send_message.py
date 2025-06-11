@@ -24,6 +24,11 @@ class TestSendMessage:
         action_output: MockActionOutput,
         telegram: Telegram,
     ) -> None:
+        expected_message_response = {
+            "ok": True,
+            "result": {"chat_id": self.CHAT_ID, "text": self.MESSAGE_CONTENT},
+        }
+
         SendMessage.main()
 
         assert len(script_session.request_history) == 1
@@ -38,10 +43,7 @@ class TestSendMessage:
             action_output.results.output_message == "The message was sent successfully"
         )
         assert action_output.results.execution_state == ExecutionState.COMPLETED
-        assert action_output.results.json_output.json_result == {
-            "ok": True,
-            "result": {"chat_id": self.CHAT_ID, "text": self.MESSAGE_CONTENT},
-        }
+        assert action_output.results.json_output.json_result == expected_message_response
 
     @set_metadata(
         parameters={"Message": MESSAGE_CONTENT, "Chat ID": CHAT_ID},
