@@ -132,6 +132,7 @@ add_path_to_pyhon_path() {
     if [[ ":PYTHONPATH:" != *"${path}"* ]]; then
       log_debug "Adding ${path} to PYTHONPATH"
       PYTHONPATH="${path}:${PYTHONPATH}"
+      export PYTHONPATH
     else
       log_debug "${path} already added to PYTHONPATH"
     fi
