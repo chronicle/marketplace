@@ -22,10 +22,12 @@ dependencies = [
     "oletools==0.60.2",
     "pydnsbl==1.1.6",
     "pyleri",
+    "python-magic>=0.4.27",
     "red-black-tree-mod",
     "requests>=2.32.3",
     "timeout-decorator",
     "tld==0.13",
+    "tldextract>=5.3.0",
     "urlextract==1.9.0",
 ]
 
