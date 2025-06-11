@@ -45,7 +45,6 @@ class TestSetUserPermissions:
         action_output: MockActionOutput,
         telegram: Telegram,
     ) -> None:
-
         expected_set_user_permissions_response = {
             "ok": True,
             "result": {
@@ -62,7 +61,9 @@ class TestSetUserPermissions:
                 "can_promote_members": self.CAN_PROMOTE_MEMBERS,
             },
         }
-        telegram.set_set_user_permissions_response(expected_set_user_permissions_response)
+        telegram.set_set_user_permissions_response(
+            expected_set_user_permissions_response
+        )
 
         SetUserPermissions.main()
 
@@ -88,7 +89,10 @@ class TestSetUserPermissions:
             == f"The permissions of the user {self.USER_ID} were set successfully"
         )
         assert action_output.results.execution_state == ExecutionState.COMPLETED
-        assert action_output.results.json_output.json_result == expected_set_user_permissions_response
+        assert (
+            action_output.results.json_output.json_result
+            == expected_set_user_permissions_response
+        )
 
     @set_metadata(
         parameters={

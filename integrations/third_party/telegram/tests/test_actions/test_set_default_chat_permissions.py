@@ -48,7 +48,9 @@ class TestSetDefaultChatPermissions:
                 },
             },
         }
-        telegram.set_set_default_chat_permissions_response(expected_set_default_chat_permissions_response)
+        telegram.set_set_default_chat_permissions_response(
+            expected_set_default_chat_permissions_response
+        )
 
         SetDefaultChatPermissions.main()
 
@@ -70,7 +72,10 @@ class TestSetDefaultChatPermissions:
             == f"The permissions of the chat {self.CHAT_ID} were changed successfully"
         )
         assert action_output.results.execution_state == ExecutionState.COMPLETED
-        assert action_output.results.json_output.json_result == expected_set_default_chat_permissions_response
+        assert (
+            action_output.results.json_output.json_result
+            == expected_set_default_chat_permissions_response
+        )
 
     @set_metadata(
         parameters={

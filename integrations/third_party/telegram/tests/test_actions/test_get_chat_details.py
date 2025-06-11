@@ -23,7 +23,6 @@ class TestGetChatDetails:
         action_output: MockActionOutput,
         telegram: Telegram,
     ) -> None:
-        
         expected_chat_details = {
             "ok": True,
             "result": {

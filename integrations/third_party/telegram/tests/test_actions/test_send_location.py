@@ -50,7 +50,10 @@ class TestSendLocation:
             action_output.results.output_message == "The location was sent successfully"
         )
         assert action_output.results.execution_state == ExecutionState.COMPLETED
-        assert action_output.results.json_output.json_result == expected_send_location_response
+        assert (
+            action_output.results.json_output.json_result
+            == expected_send_location_response
+        )
 
     @set_metadata(
         parameters={"Chat ID": CHAT_ID, "Latitude": LATITUDE, "Longitude": LONGITUDE},

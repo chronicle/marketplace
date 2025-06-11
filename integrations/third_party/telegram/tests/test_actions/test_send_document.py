@@ -5,6 +5,7 @@ from integration_testing.platform.script_output import MockActionOutput
 from integration_testing.set_meta import set_metadata
 
 from ..common import CONFIG_PATH
+from ..core.product import Telegram
 from ..core.session import TelegramSession
 from ...actions import SendDocument
 
@@ -47,4 +48,6 @@ class TestSendDocument:
             action_output.results.output_message == "The document was sent successfully"
         )
         assert action_output.results.execution_state == ExecutionState.COMPLETED
-        assert action_output.results.json_output.json_result == expected_send_doc_response
+        assert (
+            action_output.results.json_output.json_result == expected_send_doc_response
+        )

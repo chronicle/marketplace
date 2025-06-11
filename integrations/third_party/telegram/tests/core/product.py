@@ -74,16 +74,9 @@ class Telegram:
 
         if self._bot_details:
             return self._bot_details
-
-        return {
-            "ok": True,
-            "result": {
-                "id": 123456789,
-                "is_bot": True,
-                "first_name": "test_bot",
-                "username": "test_bot_username",
-            },
-        }
+        raise Exception(
+            "Bot details not set for test_connectivity. Use set_bot_details()."
+        )
 
     def get_chat_details(self, chat_id: str) -> SingleJson:
         if self._fail_requests_active:
@@ -91,16 +84,9 @@ class Telegram:
 
         if self._chat_details:
             return self._chat_details
-
-        return {
-            "ok": True,
-            "result": {
-                "id": chat_id,
-                "type": "channel",
-                "title": "Test Chat",
-                "invite_link": f"https://t.me/joinchat/test_invite_link_{chat_id}",
-            },
-        }
+        raise Exception(
+            "Chat details not set for get_chat_details. Use set_chat_details()."
+        )
 
     def get_messages(
         self, offset: str | None, allowed_updates: str | None
@@ -111,41 +97,18 @@ class Telegram:
 
         if self._updates_response:
             return self._updates_response
-
-        # Existing default behavior
-        return {
-            "ok": True,
-            "result": [
-                {
-                    "update_id": 123456789,
-                    "message": {
-                        "message_id": 1,
-                        "from": {
-                            "id": 987654321,
-                            "is_bot": False,
-                            "first_name": "User",
-                        },
-                        "chat": {"id": 12345, "type": "private"},
-                        "date": 1678886400,
-                        "text": "Hello from Telegram!",
-                    },
-                }
-            ],
-        }
+        raise Exception(
+            "Updates response not set for get_messages. Use set_updates_response()."
+        )
 
     def send_doc(self, chat_id: str, doc_url: str) -> SingleJson:
         if self._fail_requests_active:
             raise Exception("Simulated API failure for SendDocument")
         if self._send_doc_response:
             return self._send_doc_response
-        return {
-            "ok": True,
-            "result": {
-                "chat_id": chat_id,
-                "document_url": doc_url,
-                "file_id": "test_file_id",
-            },
-        }
+        raise Exception(
+            "Send document response not set for send_doc. Use set_send_doc_response()."
+        )
 
     def send_location(self, chat_id: str, latitude: str, longitude: str) -> SingleJson:
         if self._fail_requests_active:
@@ -153,42 +116,32 @@ class Telegram:
 
         if self._send_location_response:
             return self._send_location_response
-
-        return {
-            "ok": True,
-            "result": {
-                "chat_id": chat_id,
-                "latitude": latitude,
-                "longitude": longitude,
-            },
-        }
+        raise Exception(
+            "Send location response not set for send_location. "
+            "Use set_send_location_response()."
+        )
 
     def send_photo(self, chat_id: str, photo_url: str) -> SingleJson:
         if self._fail_requests_active:
             raise Exception("Simulated API failure for SendPhoto")
         if self._send_photo_response:
             return self._send_photo_response
-        return {"ok": True, "result": {"chat_id": chat_id, "photo_url": photo_url}}
+        raise Exception(
+            "Send photo response not set for send_photo. Use set_send_photo_response()."
+        )
 
     def ask_question(
         self, chat_id: str, question: str, options: list[str], is_anonymous: bool
     ) -> SingleJson:
-
         if self._fail_requests_active:
             raise Exception("Simulated API failure for SendPoll")
 
         if self._ask_question_response:
             return self._ask_question_response
-
-        return {
-            "ok": True,
-            "result": {
-                "chat_id": chat_id,
-                "question": question,
-                "options": options,
-                "is_anonymous": is_anonymous,
-            },
-        }
+        raise Exception(
+            "Ask question response not set for ask_question. "
+            "Use set_ask_question_response()."
+        )
 
     def set_default_chat_permissions(
         self,
@@ -203,19 +156,11 @@ class Telegram:
             raise Exception("Simulated API failure for SetDefaultChatPermissions")
         if self._set_default_chat_permissions_response:
             return self._set_default_chat_permissions_response
-        return {
-            "ok": True,
-            "result": {
-                "chat_id": chat_id,
-                "permissions": {
-                    "can_send_polls": can_send_polls,
-                    "can_pin_messages": can_pin_messages,
-                    "can_invite_users": can_invite_users,
-                    "can_change_info": can_change_info,
-                    "can_post_messages": can_post_messages,
-                },
-            },
-        }
+        raise Exception(
+            "Set default chat permissions response "
+            "not set for set_default_chat_permissions. "
+            "Use set_set_default_chat_permissions_response()."
+        )
 
     def set_user_permissions(
         self,
@@ -235,19 +180,7 @@ class Telegram:
             raise Exception("Simulated API failure for SetUserPermissions")
         if self._set_user_permissions_response:
             return self._set_user_permissions_response
-        return {
-            "ok": True,
-            "result": {
-                "chat_id": chat_id,
-                "user_id": user_id,
-                "is_anonymous": is_anonymous,
-                "can_change_info": can_change_info,
-                "can_post_messages": can_post_messages,
-                "can_edit_messages": can_edit_messages,
-                "can_delete_messages": can_delete_messages,
-                "can_invite_users": can_invite_users,
-                "can_restrict_users": can_restrict_users,
-                "can_pin_messages": can_pin_messages,
-                "can_promote_members": can_promote_members,
-            },
-        }
+        raise Exception(
+            "Set user permissions response not set for set_user_permissions."
+            " Use set_set_user_permissions_response()."
+        )

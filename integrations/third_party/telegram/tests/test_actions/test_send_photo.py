@@ -42,7 +42,10 @@ class TestSendPhoto:
 
         assert action_output.results.output_message == "The photo was sent successfully"
         assert action_output.results.execution_state == ExecutionState.COMPLETED
-        assert action_output.results.json_output.json_result == expected_send_photo_response
+        assert (
+            action_output.results.json_output.json_result
+            == expected_send_photo_response
+        )
 
     @set_metadata(
         parameters={"Chat ID": CHAT_ID, "Photo URL": PHOTO_URL},

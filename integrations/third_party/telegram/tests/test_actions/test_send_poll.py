@@ -59,7 +59,9 @@ class TestSendPoll:
             action_output.results.output_message
             == f'The poll "{self.QUESTION}" was sent successfully.'
         )
-        assert action_output.results.json_output.json_result == expected_send_poll_response
+        assert (
+            action_output.results.json_output.json_result == expected_send_poll_response
+        )
 
     @set_metadata(
         parameters={
