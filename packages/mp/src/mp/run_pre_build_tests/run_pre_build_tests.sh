@@ -119,8 +119,18 @@ add_sdk_to_python_path() {
   python_version=$(python3 -V 2>&1 | awk '{print $2}' | cut -d'.' -f1,2)
   sdk_path="$(pwd)/${venv_path}/lib/python${python_version}/site-packages/soar_sdk"
   if [ ! -d "${sdk_path}" ]; then
-    log_debug "Can't find the SDK at the expected path: ${sdk_path}"
-    exit 1
+    base=$(pwd)/${venv_path}
+    for dir in "${base}"/lib/*; do
+      sdk_path="${dir}/site-packages/soar_sdk"
+      if [ -d "${sdk_path}" ]; then
+        break
+      fi
+    done
+
+    if [ ! -d "${sdk_path}" ]; then
+      log_debug "Can't find the SDK at the expected path: ${sdk_path}"
+      exit 1
+    fi
   fi
 
   add_path_to_pyhon_path "${sdk_path}"
