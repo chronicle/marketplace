@@ -113,7 +113,7 @@ class BuiltFullDetails(TypedDict):
 
 @dataclasses.dataclass(slots=True, frozen=True)
 class Integration:
-    path: pathlib.Path
+    python_version: str
     identifier: str
     metadata: IntegrationMetadata
     release_notes: Sequence[ReleaseNote]
@@ -154,8 +154,15 @@ class Integration:
             integration_meta: IntegrationMetadata = (
                 IntegrationMetadata.from_built_integration_path(path)
             )
+            python_version_file: pathlib.Path = (
+                path / mp.core.constants.PYTHON_VERSION_FILE
+            )
+            python_version: str = ""
+            if python_version_file.exists():
+                python_version = python_version_file.read_text(encoding="utf-8")
+
             return cls(
-                path=path,
+                python_version=python_version,
                 identifier=integration_meta.identifier,
                 metadata=integration_meta,
                 release_notes=ReleaseNote.from_built_integration_path(path),
@@ -208,8 +215,15 @@ class Integration:
                 pyproject_toml_file=pyproject_toml,
                 integration_meta=integration_meta,
             )
+            python_version_file: pathlib.Path = (
+                path / mp.core.constants.PYTHON_VERSION_FILE
+            )
+            python_version: str = ""
+            if python_version_file.exists():
+                python_version = python_version_file.read_text(encoding="utf-8")
+
             return cls(
-                path=path,
+                python_version=python_version,
                 identifier=integration_meta.identifier,
                 metadata=integration_meta,
                 release_notes=ReleaseNote.from_non_built_integration_path(path),
@@ -263,11 +277,17 @@ class Integration:
                 version in "pyproject.toml"
 
         """
-        python_version: pathlib.Path = self.path / mp.core.constants.PYTHON_VERSION_FILE
-        configured_version: str = python_version.read_text(encoding="utf-8")
+        msg: str
+        if not self.python_version:
+            msg = (
+                f"Missing {mp.core.constants.PYTHON_VERSION_FILE}"
+                " file or the file is empty"
+            )
+            raise ValueError(msg)
+
         metadata_version: str = self.metadata.python_version.to_string()
-        if configured_version != metadata_version:
-            msg: str = (
+        if self.python_version != metadata_version:
+            msg = (
                 f"Make sure the version in the {mp.core.constants.PYTHON_VERSION_FILE}"
                 " matches the lowest supported version configured in"
                 f" {mp.core.constants.PROJECT_FILE}"

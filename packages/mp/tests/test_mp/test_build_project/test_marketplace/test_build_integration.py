@@ -66,11 +66,13 @@ def test_non_existing_integration_raises_file_not_found_error(
     mock_get_marketplace_path: str,
     assert_build_integration: Callable[[pathlib.Path], None],
 ) -> None:
+    p: pathlib.Path = tmp_path / "fake_integration"
+    p.mkdir()
     with (
         unittest.mock.patch(mock_get_marketplace_path, return_value=tmp_path),
         pytest.raises(FileNotFoundError, match=r"Invalid integration .*"),
     ):
-        assert_build_integration(tmp_path / "fake_integration")
+        assert_build_integration(p)
 
 
 @pytest.fixture
@@ -82,11 +84,18 @@ def assert_build_integration(
         commercial: pathlib.Path = tmp_path / built_integration.parent.name
         shutil.copytree(integration_path.parent, commercial)
         integration: pathlib.Path = commercial / built_integration.name
+        py_version: pathlib.Path = integration / mp.core.constants.PYTHON_VERSION_FILE
+        if integration.exists():
+            py_version.write_text("3.11", encoding="utf-8")
 
         marketplace: Marketplace = mp.build_project.marketplace.Marketplace(commercial)
         marketplace.build_integration(integration)
 
         out_integration: pathlib.Path = marketplace.out_path / integration.name
+        out_py_version: pathlib.Path = (
+            out_integration / mp.core.constants.PYTHON_VERSION_FILE
+        )
+        out_py_version.unlink(missing_ok=True)
         expected_file_names: set[str] = {
             p.name for p in built_integration.rglob("*.*") if ".venv" not in p.parts
         }
