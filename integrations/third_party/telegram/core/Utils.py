@@ -42,9 +42,7 @@ class LastMessage:
                     f"{type(last_saved_update_id)}",
                 )
 
-            siemplify.LOGGER.info(
-                f"Last saved update id read: {last_saved_update_id}"
-            )
+            siemplify.LOGGER.info(f"Last saved update id read: {last_saved_update_id}")
             return cls(last_saved_update_id)
 
         except Exception as e:

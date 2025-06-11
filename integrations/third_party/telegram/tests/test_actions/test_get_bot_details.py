@@ -6,7 +6,7 @@ from integration_testing.set_meta import set_metadata
 
 from ..common import CONFIG_PATH
 from ..core.session import TelegramSession
-from ..core.telegram import Telegram
+from ..core.product import Telegram
 from ...actions.GetBotDetails import main as GetBotDetails
 
 
@@ -26,9 +26,7 @@ class TestGetBotDetails:
         request = script_session.request_history[0].request
         assert request.url.path.endswith("/getMe")
 
-        assert (
-            action_output.results.output_message == "The Bot was found successfully"
-        )
+        assert action_output.results.output_message == "The Bot was found successfully"
         assert action_output.results.execution_state == ExecutionState.COMPLETED
         assert action_output.results.json_output.json_result == {
             "ok": True,

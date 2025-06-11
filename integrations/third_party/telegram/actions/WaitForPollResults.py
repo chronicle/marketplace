@@ -122,7 +122,8 @@ def main(is_first_run):
                     result_value = False
                 else:
                     output_message = (
-                        f"Votes threashold for poll <{poll_id}> not yet met, though some answers were found.\n"  # noqa: E501
+                        f"Votes threashold for poll <{poll_id}> not yet met, "
+                        "though some answers were found.\n"
                         f"Still waiting. \n Time passed:<{duration}>s"
                     )
                     status = EXECUTION_STATE_INPROGRESS
@@ -165,7 +166,8 @@ def main(is_first_run):
                 .get("options")
             )
         siemplify.LOGGER.info(
-            f"\n  status: {status}\n  result_value: {result_value}\n  output_message: {output_message}",  # noqa: E501
+            f"\n  status: {status}\n  result_value: {result_value}\n"
+            f"  output_message: {output_message}",
         )
 
         siemplify.LOGGER.info("----------------- Main - Finished -----------------")

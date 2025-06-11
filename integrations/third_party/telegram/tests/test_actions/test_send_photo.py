@@ -6,7 +6,7 @@ from integration_testing.set_meta import set_metadata
 
 from ..common import CONFIG_PATH
 from ..core.session import TelegramSession
-from ..core.telegram import Telegram
+from ..core.product import Telegram
 from ...actions.SendPhoto import main as SendPhoto
 
 
@@ -33,9 +33,7 @@ class TestSendPhoto:
             "photo": self.PHOTO_URL,
         }
 
-        assert (
-            action_output.results.output_message == "The photo was sent successfully"
-        )
+        assert action_output.results.output_message == "The photo was sent successfully"
         assert action_output.results.execution_state == ExecutionState.COMPLETED
         assert action_output.results.json_output.json_result == {
             "ok": True,

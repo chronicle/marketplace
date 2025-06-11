@@ -1,25 +1,26 @@
 from __future__ import annotations
 
 import dataclasses
-from typing import Any
+
+from TIPCommon.types import SingleJson
 
 
-@dataclasses.dataclass
+@dataclasses.dataclass(slots=True)
 class Telegram:
-    messages: list[dict[str, Any]] = dataclasses.field(default_factory=list)
+    messages: list[SingleJson] = dataclasses.field(default_factory=list)
     should_fail_next_call: bool = False
-    _updates_response: dict | None = None
+    _updates_response: SingleJson | None = None
 
     def fail_next_call(self):
         self.should_fail_next_call = True
 
-    def add_message(self, message: dict[str, Any]):
+    def add_message(self, message: SingleJson):
         self.messages.append(message)
 
-    def set_updates_response(self, response: dict):
+    def set_updates_response(self, response: SingleJson):
         self._updates_response = response
 
-    def send_message(self, chat_id: str, text: str) -> dict[str, Any]:
+    def send_message(self, chat_id: str, text: str) -> SingleJson:
         if self.should_fail_next_call:
             self.should_fail_next_call = False
             raise Exception("Simulated API failure for SendMessage")
@@ -30,7 +31,7 @@ class Telegram:
         self.add_message(message)
         return {"ok": True, "result": message}
 
-    def test_connectivity(self) -> dict:
+    def test_connectivity(self) -> SingleJson:
         if self.should_fail_next_call:
             self.should_fail_next_call = False
             raise Exception("Simulated API failure for GetBotDetails")
@@ -44,7 +45,7 @@ class Telegram:
             },
         }
 
-    def get_chat_details(self, chat_id: str) -> dict:
+    def get_chat_details(self, chat_id: str) -> SingleJson:
         if self.should_fail_next_call:
             self.should_fail_next_call = False
             raise Exception("Simulated API failure")
@@ -58,7 +59,9 @@ class Telegram:
             },
         }
 
-    def get_messages(self, offset: str | None, allowed_updates: str | None) -> dict:
+    def get_messages(
+        self, offset: str | None, allowed_updates: str | None
+    ) -> SingleJson:
         # Return pre-set updates response if available
         if self.should_fail_next_call:
             self.should_fail_next_call = False
@@ -88,7 +91,7 @@ class Telegram:
             ],
         }
 
-    def send_doc(self, chat_id: str, doc_url: str) -> dict:
+    def send_doc(self, chat_id: str, doc_url: str) -> SingleJson:
         if self.should_fail_next_call:
             self.should_fail_next_call = False
             raise Exception("Simulated API failure for SendDocument")
@@ -101,7 +104,7 @@ class Telegram:
             },
         }
 
-    def send_location(self, chat_id: str, latitude: str, longitude: str) -> dict:
+    def send_location(self, chat_id: str, latitude: str, longitude: str) -> SingleJson:
         if self.should_fail_next_call:
             self.should_fail_next_call = False
             raise Exception("Simulated API failure for SendLocation")
@@ -114,7 +117,7 @@ class Telegram:
             },
         }
 
-    def send_photo(self, chat_id: str, photo_url: str) -> dict:
+    def send_photo(self, chat_id: str, photo_url: str) -> SingleJson:
         if self.should_fail_next_call:
             self.should_fail_next_call = False
             raise Exception("Simulated API failure for SendPhoto")
@@ -122,7 +125,7 @@ class Telegram:
 
     def ask_question(
         self, chat_id: str, question: str, options: list[str], is_anonymous: bool
-    ) -> dict:
+    ) -> SingleJson:
         if self.should_fail_next_call:
             self.should_fail_next_call = False
             raise Exception("Simulated API failure for SendPoll")
@@ -144,7 +147,7 @@ class Telegram:
         can_invite_users: bool,
         can_change_info: bool,
         can_post_messages: bool,
-    ) -> dict:
+    ) -> SingleJson:
         if self.should_fail_next_call:
             self.should_fail_next_call = False
             raise Exception("Simulated API failure for SetDefaultChatPermissions")
@@ -175,7 +178,7 @@ class Telegram:
         can_restrict_users: bool,
         can_pin_messages: bool,
         can_promote_members: bool,
-    ) -> dict:
+    ) -> SingleJson:
         if self.should_fail_next_call:
             self.should_fail_next_call = False
             raise Exception("Simulated API failure for SetUserPermissions")

@@ -6,7 +6,7 @@ from integration_testing.set_meta import set_metadata
 
 from ..common import CONFIG_PATH
 from ..core.session import TelegramSession
-from ..core.telegram import Telegram
+from ..core.product import Telegram
 from ...actions.SendPoll import main as SendPoll
 
 

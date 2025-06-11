@@ -6,7 +6,7 @@ from integration_testing.set_meta import set_metadata
 
 from ..common import CONFIG_PATH, TEST_BOT_TOKEN
 from ..core.session import TelegramSession
-from ..core.telegram import Telegram
+from ..core.product import Telegram
 from ...actions.SendMessage import main as SendMessage
 
 
@@ -35,8 +35,7 @@ class TestSendMessage:
         }
 
         assert (
-            action_output.results.output_message
-            == "The message was sent successfully"
+            action_output.results.output_message == "The message was sent successfully"
         )
         assert action_output.results.execution_state == ExecutionState.COMPLETED
         assert action_output.results.json_output.json_result == {

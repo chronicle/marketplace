@@ -33,8 +33,7 @@ class TestSendDocument:
         }
 
         assert (
-            action_output.results.output_message
-            == "The document was sent successfully"
+            action_output.results.output_message == "The document was sent successfully"
         )
         assert action_output.results.execution_state == ExecutionState.COMPLETED
         assert action_output.results.json_output.json_result == {

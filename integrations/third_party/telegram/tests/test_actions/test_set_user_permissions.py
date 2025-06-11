@@ -6,7 +6,7 @@ from integration_testing.set_meta import set_metadata
 
 from integrations.third_party.telegram.tests.common import CONFIG_PATH
 from ..core.session import TelegramSession
-from ..core.telegram import Telegram
+from ..core.product import Telegram
 from ...actions.SetUserPermissions import main as SetUserPermissions
 
 

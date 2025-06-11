@@ -2,8 +2,11 @@ from __future__ import annotations
 
 from typing import Any
 
-from integrations.third_party.telegram.tests.core.telegram import Telegram
+from integrations.third_party.telegram.tests.core.product import Telegram
 from packages.integration_testing.src.integration_testing import router
+from packages.integration_testing.src.integration_testing.common import (
+    get_request_payload,
+)
 from packages.integration_testing.src.integration_testing.request import MockRequest
 from packages.integration_testing.src.integration_testing.requests.response import (
     MockResponse,
@@ -32,7 +35,7 @@ class TelegramSession(MockSession[MockRequest, MockResponse, Telegram]):
     @router.get(r"/bot\S+/sendMessage")
     def send_message(self, request: MockRequest) -> MockResponse:
         try:
-            payload: dict[str, Any] = request.kwargs["params"]
+            payload: dict[str, Any] = get_request_payload(request)
             chat_id = payload["chat_id"]
             text = payload["text"]
 
@@ -52,7 +55,7 @@ class TelegramSession(MockSession[MockRequest, MockResponse, Telegram]):
     @router.get(r"/bot\S+/getChat")
     def get_chat(self, request: MockRequest) -> MockResponse:
         try:
-            payload: dict[str, Any] = request.kwargs["params"]
+            payload: dict[str, Any] = get_request_payload(request)
             chat_id = payload["chat_id"]
             response_data = self._product.get_chat_details(chat_id)
             return MockResponse(content=response_data)
@@ -62,7 +65,7 @@ class TelegramSession(MockSession[MockRequest, MockResponse, Telegram]):
     @router.get(r"/bot\S+/getUpdates")
     def get_updates(self, request: MockRequest) -> MockResponse:
         try:
-            payload: dict[str, Any] = request.kwargs["params"]
+            payload: dict[str, Any] = get_request_payload(request)
             offset = payload.get("offset")
             allowed_updates = payload.get("allowed_updates")
             response_data = self._product.get_messages(offset, allowed_updates)
@@ -73,7 +76,7 @@ class TelegramSession(MockSession[MockRequest, MockResponse, Telegram]):
     @router.get(r"/bot\S+/sendDocument")
     def send_document(self, request: MockRequest) -> MockResponse:
         try:
-            payload: dict[str, Any] = request.kwargs["params"]
+            payload: dict[str, Any] = get_request_payload(request)
             chat_id = payload["chat_id"]
             doc_url = payload["document"]
             response_data = self._product.send_doc(chat_id, doc_url)
@@ -87,7 +90,7 @@ class TelegramSession(MockSession[MockRequest, MockResponse, Telegram]):
             self._product.should_fail_next_call = False
             return MockResponse(content="Mock API failure", status_code=500)
 
-        payload: dict[str, Any] = request.kwargs["params"]
+        payload: dict[str, Any] = get_request_payload(request)
         chat_id = payload["chat_id"]
         latitude = payload["latitude"]
         longitude = payload["longitude"]
@@ -97,7 +100,7 @@ class TelegramSession(MockSession[MockRequest, MockResponse, Telegram]):
     @router.get(r"/bot\S+/sendPhoto")
     def send_photo(self, request: MockRequest) -> MockResponse:
         try:
-            payload: dict[str, Any] = request.kwargs["params"]
+            payload: dict[str, Any] = get_request_payload(request)
             chat_id = payload["chat_id"]
             photo_url = payload["photo"]
             response_data = self._product.send_photo(chat_id, photo_url)
@@ -108,7 +111,7 @@ class TelegramSession(MockSession[MockRequest, MockResponse, Telegram]):
     @router.get(r"/bot\S+/sendPoll")
     def send_poll(self, request: MockRequest) -> MockResponse:
         try:
-            payload: dict[str, Any] = request.kwargs["params"]
+            payload: dict[str, Any] = get_request_payload(request)
             chat_id = payload["chat_id"]
             question = payload["question"]
             options = payload["options"]
@@ -123,7 +126,7 @@ class TelegramSession(MockSession[MockRequest, MockResponse, Telegram]):
     @router.get(r"/bot\S+/setChatPermissions")
     def set_chat_permissions(self, request: MockRequest) -> MockResponse:
         try:
-            payload: dict[str, Any] = request.kwargs["params"]
+            payload: dict[str, Any] = get_request_payload(request)
             chat_id = payload["chat_id"]
             can_send_polls = payload["can_send_polls"]
             can_pin_messages = payload["can_pin_messages"]
@@ -145,7 +148,7 @@ class TelegramSession(MockSession[MockRequest, MockResponse, Telegram]):
     @router.get(r"/bot\S+/promoteChatMember")
     def set_user_permissions(self, request: MockRequest) -> MockResponse:
         try:
-            payload: dict[str, Any] = request.kwargs["data"]
+            payload: dict[str, Any] = get_request_payload(request)
             chat_id = payload["chat_id"]
             user_id = payload["user_id"]
             is_anonymous = payload["is_anonymous"]

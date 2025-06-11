@@ -4,7 +4,7 @@ import pytest
 from TIPCommon.base.utils import CreateSession
 
 from integrations.third_party.telegram.tests.core.session import TelegramSession
-from integrations.third_party.telegram.tests.core.telegram import Telegram
+from integrations.third_party.telegram.tests.core.product import Telegram
 from packages.integration_testing.src.integration_testing.common import use_live_api
 
 pytest_plugins = ("packages.integration_testing.src.integration_testing.conftest",)
