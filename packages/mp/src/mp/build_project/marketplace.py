@@ -285,7 +285,6 @@ class Marketplace:
         integration: pathlib.Path = self.out_path / integration_name
         mp.core.file_utils.remove_paths_if_exists(
             integration / mp.core.constants.REQUIREMENTS_FILE,
-            integration / mp.core.constants.PYTHON_VERSION_FILE,
             integration / mp.core.constants.README_FILE,
             integration / mp.core.constants.INTEGRATION_VENV,
         )

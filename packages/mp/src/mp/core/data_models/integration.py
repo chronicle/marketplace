@@ -113,6 +113,7 @@ class BuiltFullDetails(TypedDict):
 
 @dataclasses.dataclass(slots=True, frozen=True)
 class Integration:
+    path: pathlib.Path
     identifier: str
     metadata: IntegrationMetadata
     release_notes: Sequence[ReleaseNote]
@@ -133,6 +134,7 @@ class Integration:
         self._raise_error_if_custom()
         self._raise_error_if_disabled()
         self._raise_error_if_no_ping_action()
+        self._validate_python_version()
 
     @classmethod
     def from_built_path(cls, path: pathlib.Path) -> Integration:
@@ -153,6 +155,7 @@ class Integration:
                 IntegrationMetadata.from_built_integration_path(path)
             )
             return cls(
+                path=path,
                 identifier=integration_meta.identifier,
                 metadata=integration_meta,
                 release_notes=ReleaseNote.from_built_integration_path(path),
@@ -206,6 +209,7 @@ class Integration:
                 integration_meta=integration_meta,
             )
             return cls(
+                path=path,
                 identifier=integration_meta.identifier,
                 metadata=integration_meta,
                 release_notes=ReleaseNote.from_non_built_integration_path(path),
@@ -250,6 +254,25 @@ class Integration:
 
         """
         return any(name.lower() == "ping" for name in self.actions_metadata)
+
+    def _validate_python_version(self) -> None:
+        """Validate the integration's python version in the '.python-version' file.
+
+        Raises:
+            ValueError: When the version inside ".python-version" doesn't match the
+                version in "pyproject.toml"
+
+        """
+        python_version: pathlib.Path = self.path / mp.core.constants.PYTHON_VERSION_FILE
+        configured_version: str = python_version.read_text(encoding="utf-8")
+        metadata_version: str = self.metadata.python_version.to_string()
+        if configured_version != metadata_version:
+            msg: str = (
+                f"Make sure the version in the {mp.core.constants.PYTHON_VERSION_FILE}"
+                " matches the lowest supported version configured in"
+                f" {mp.core.constants.PROJECT_FILE}"
+            )
+            raise ValueError(msg)
 
     def _raise_error_if_custom(self) -> None:
         """Raise an error if the integration is custom.
