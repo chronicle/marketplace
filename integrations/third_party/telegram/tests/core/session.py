@@ -86,16 +86,15 @@ class TelegramSession(MockSession[MockRequest, MockResponse, Telegram]):
 
     @router.get(r"/bot\S+/sendLocation")
     def send_location(self, request: MockRequest) -> MockResponse:
-        if self._product.should_fail_next_call:
-            self._product.should_fail_next_call = False
-            return MockResponse(content="Mock API failure", status_code=500)
-
-        payload: dict[str, Any] = get_request_payload(request)
-        chat_id = payload["chat_id"]
-        latitude = payload["latitude"]
-        longitude = payload["longitude"]
-        response_data = self._product.send_location(chat_id, latitude, longitude)
-        return MockResponse(content=response_data)
+        try:
+            payload: dict[str, Any] = get_request_payload(request)
+            chat_id = payload["chat_id"]
+            latitude = payload["latitude"]
+            longitude = payload["longitude"]
+            response_data = self._product.send_location(chat_id, latitude, longitude)
+            return MockResponse(content=response_data)
+        except Exception as e:
+            return MockResponse(content=str(e), status_code=500)
 
     @router.get(r"/bot\S+/sendPhoto")
     def send_photo(self, request: MockRequest) -> MockResponse:

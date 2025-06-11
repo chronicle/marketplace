@@ -107,8 +107,8 @@ class TestSetUserPermissions:
         action_output: MockActionOutput,
         telegram: Telegram,
     ) -> None:
-        telegram.fail_next_call()
-        SetUserPermissions()
+        with telegram.fail_requests():
+            SetUserPermissions()
 
         assert len(script_session.request_history) == 1
         request = script_session.request_history[0].request

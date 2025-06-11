@@ -40,8 +40,8 @@ class TestPing:
         action_output: MockActionOutput,
         telegram: Telegram,
     ) -> None:
-        telegram.fail_next_call()
-        Ping()
+        with telegram.fail_requests():
+            Ping()
 
         # Assert that the correct API call was made
         assert len(script_session.request_history) == 1

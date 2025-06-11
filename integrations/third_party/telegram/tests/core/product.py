@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import contextlib
 import dataclasses
 
 from TIPCommon.types import SingleJson
@@ -8,11 +9,16 @@ from TIPCommon.types import SingleJson
 @dataclasses.dataclass(slots=True)
 class Telegram:
     messages: list[SingleJson] = dataclasses.field(default_factory=list)
-    should_fail_next_call: bool = False
     _updates_response: SingleJson | None = None
+    _fail_requests_active: bool = False
 
-    def fail_next_call(self):
-        self.should_fail_next_call = True
+    @contextlib.contextmanager
+    def fail_requests(self):
+        self._fail_requests_active = True
+        try:
+            yield
+        finally:
+            self._fail_requests_active = False
 
     def add_message(self, message: SingleJson):
         self.messages.append(message)
@@ -21,8 +27,7 @@ class Telegram:
         self._updates_response = response
 
     def send_message(self, chat_id: str, text: str) -> SingleJson:
-        if self.should_fail_next_call:
-            self.should_fail_next_call = False
+        if self._fail_requests_active:
             raise Exception("Simulated API failure for SendMessage")
         message = {
             "chat_id": chat_id,
@@ -32,8 +37,7 @@ class Telegram:
         return {"ok": True, "result": message}
 
     def test_connectivity(self) -> SingleJson:
-        if self.should_fail_next_call:
-            self.should_fail_next_call = False
+        if self._fail_requests_active:
             raise Exception("Simulated API failure for GetBotDetails")
         return {
             "ok": True,
@@ -46,8 +50,7 @@ class Telegram:
         }
 
     def get_chat_details(self, chat_id: str) -> SingleJson:
-        if self.should_fail_next_call:
-            self.should_fail_next_call = False
+        if self._fail_requests_active:
             raise Exception("Simulated API failure")
         return {
             "ok": True,
@@ -63,8 +66,7 @@ class Telegram:
         self, offset: str | None, allowed_updates: str | None
     ) -> SingleJson:
         # Return pre-set updates response if available
-        if self.should_fail_next_call:
-            self.should_fail_next_call = False
+        if self._fail_requests_active:
             raise Exception("Simulated API failure for GetMessages")
 
         if self._updates_response:
@@ -92,8 +94,7 @@ class Telegram:
         }
 
     def send_doc(self, chat_id: str, doc_url: str) -> SingleJson:
-        if self.should_fail_next_call:
-            self.should_fail_next_call = False
+        if self._fail_requests_active:
             raise Exception("Simulated API failure for SendDocument")
         return {
             "ok": True,
@@ -105,9 +106,8 @@ class Telegram:
         }
 
     def send_location(self, chat_id: str, latitude: str, longitude: str) -> SingleJson:
-        if self.should_fail_next_call:
-            self.should_fail_next_call = False
-            raise Exception("Simulated API failure for SendLocation")
+        if self._fail_requests_active:
+            raise Exception("Mock API failure")
         return {
             "ok": True,
             "result": {
@@ -118,16 +118,14 @@ class Telegram:
         }
 
     def send_photo(self, chat_id: str, photo_url: str) -> SingleJson:
-        if self.should_fail_next_call:
-            self.should_fail_next_call = False
+        if self._fail_requests_active:
             raise Exception("Simulated API failure for SendPhoto")
         return {"ok": True, "result": {"chat_id": chat_id, "photo_url": photo_url}}
 
     def ask_question(
         self, chat_id: str, question: str, options: list[str], is_anonymous: bool
     ) -> SingleJson:
-        if self.should_fail_next_call:
-            self.should_fail_next_call = False
+        if self._fail_requests_active:
             raise Exception("Simulated API failure for SendPoll")
         return {
             "ok": True,
@@ -148,8 +146,7 @@ class Telegram:
         can_change_info: bool,
         can_post_messages: bool,
     ) -> SingleJson:
-        if self.should_fail_next_call:
-            self.should_fail_next_call = False
+        if self._fail_requests_active:
             raise Exception("Simulated API failure for SetDefaultChatPermissions")
         return {
             "ok": True,
@@ -179,8 +176,7 @@ class Telegram:
         can_pin_messages: bool,
         can_promote_members: bool,
     ) -> SingleJson:
-        if self.should_fail_next_call:
-            self.should_fail_next_call = False
+        if self._fail_requests_active:
             raise Exception("Simulated API failure for SetUserPermissions")
         return {
             "ok": True,
