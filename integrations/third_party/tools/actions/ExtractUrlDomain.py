@@ -11,8 +11,9 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
 from __future__ import annotations
+
+from typing import Any
 
 from soar_sdk.ScriptResult import EXECUTION_STATE_COMPLETED, EXECUTION_STATE_FAILED
 from soar_sdk.SiemplifyAction import SiemplifyAction
@@ -27,24 +28,25 @@ SCRIPT_NAME = "Tools_ExtractURLDomain"
 
 
 @output_handler
-def main():
+def main() -> None:
+    """Execute the main function to extract URL domains."""
     siemplify = SiemplifyAction()
     siemplify.script_name = SCRIPT_NAME
     siemplify.LOGGER.info("----------------- Main - Started -----------------")
+
     try:
         status = EXECUTION_STATE_COMPLETED
         output_message = "No URLs processed"
         result_value = 0
-        failed_entities = []
-        successfull_entities = []
-        json_result = {}
-        out_message_list = []
+        failed_entities: list[Any] = []
+        successfull_entities: list[Any] = []
+        json_result: dict[str, dict[str, str | dict[str, str]]] = {}
+        out_message_list: list[str] = []
 
         urls = siemplify.parameters.get("URLs")
         extract_subdomain = (
             siemplify.extract_action_param(
-                "Extract subdomain",
-                print_value=True,
+                "Extract subdomain", print_value=True
             ).lower()
             == "true"
         )
@@ -61,9 +63,15 @@ def main():
                             "source_entity_type": EntityTypes.URL,
                         }
                         result_value += 1
+                    else:
+                        out_message_list.append(
+                            f"Invalid domain or suffix for URL {url}"
+                        )
+                        json_result[url.strip()] = {"Error": "Invalid domain or suffix"}
+
                 except Exception as e:
                     out_message_list.append(
-                        f"Failed extracting domain for param URL {url}",
+                        f"Failed extracting domain for param URL {url}"
                     )
                     json_result[url.strip()] = {"Error": f"Exception: {e}"}
 
@@ -81,6 +89,9 @@ def main():
                     }
                 else:
                     failed_entities.append(entity)
+                    json_result[entity.identifier] = {
+                        "Error": "Invalid domain or suffix"
+                    }
             except Exception as e:
                 failed_entities.append(entity)
                 json_result[entity.identifier] = {"Error": f"Exception: {e}"}
@@ -88,25 +99,25 @@ def main():
         if successfull_entities:
             siemplify.update_entities(successfull_entities)
             out_message_list.append(
-                f"Domain extracted for {[x.identifier for x in successfull_entities]}",
+                f"Domain extracted for {[x.identifier for x in successfull_entities]}"
             )
 
         if failed_entities:
             out_message_list.append(
-                f"Failed extracting domain for {[x.identifier for x in failed_entities]}",
+                "Failed extracting domain for "
+                f"{[x.identifier for x in failed_entities]}"
             )
 
         if json_result:
             siemplify.result.add_result_json(
-                convert_dict_to_json_result_dict(json_result),
+                convert_dict_to_json_result_dict(json_result)
             )
         if out_message_list:
             output_message = "\n".join(out_message_list)
 
         result_value += len(successfull_entities)
-    except Exception as e:
-        siemplify.LOGGER.error(f"General error performing action {SCRIPT_NAME}")
-        siemplify.LOGGER.exception(e)
+    except Exception:
+        siemplify.LOGGER.exception("General error performing action %s", SCRIPT_NAME)
         status = EXECUTION_STATE_FAILED
         result_value = "Failed"
         output_message += "\n unknown failure"
