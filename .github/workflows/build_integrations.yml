@@ -4,13 +4,9 @@ on:
   push:
     branches:
       - '**'
-    paths:
-      - 'integrations/**'
   pull_request:
     branches:
       - '**'
-    paths:
-      - 'integrations/**'
 
 jobs:
   mp_build:

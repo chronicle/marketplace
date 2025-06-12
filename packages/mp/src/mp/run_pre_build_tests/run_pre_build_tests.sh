@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # Copyright 2025 Google LLC
 #
@@ -34,24 +34,29 @@ main() {
 }
 
 test_integrations() {
-  # shellcheck disable=SC3054
+  local overall_status=0
   for integration in "${INTEGRATIONS[@]}"; do
-    log_debug "#### Processing integration: ${integration} ####"
+    integration_name=$(basename "${integration}")
+    print_with_color "---------- Processing integration: ${integration_name}"
     test_integration "${integration}"
     local integration_status=$?
     if [ ${integration_status} -ne 0 ]; then
       log_error "Processing failed for integration '${integration}' with status ${integration_status}."
-      return ${integration_status} # Exit test_integrations with the error code
+      overall_status=${integration_status}
+    else
+      log_debug "Integration '${integration}' processed successfully."
     fi
-    log_debug "Integration '${integration}' processed successfully."
   done
-  log_debug "All integrations processed successfully."
-  return 0 # All integrations passed
+
+  if [ ${overall_status} -eq 0 ]; then
+    log_debug "All integrations processed successfully."
+  fi
+  return ${overall_status}
 }
 
 test_integration() {
   integration_path="$1"
-  validate_directory "${integration_path}" # Exits script on error
+  validate_directory "${integration_path}"
 
   integration_tests_path="${integration_path}/tests"
   if [ -d "${integration_tests_path}" ]; then
@@ -61,18 +66,15 @@ test_integration() {
     original_dir=$(pwd)
     if ! cd "${integration_path}"; then
       log_error "Failed to cd to ${integration_path}"
-      return 1 # Return error status
+      return 1
     fi
 
-    # After cd, venv_path is relative to the integration directory
     local venv_path=".venv"
 
-    log_debug "Syncing venv in $(pwd)/${venv_path}"
     sync_venv "${venv_path}"
     local sync_status=$?
     if [ ${sync_status} -ne 0 ]; then
       log_error "Failed to sync venv for ${integration_path}. Status: ${sync_status}"
-      # Attempt to cd back before returning
       if ! cd "${original_dir}"; then
         log_error "Critical: Failed to cd back to ${original_dir}."
         exit 1
@@ -80,7 +82,8 @@ test_integration() {
       return ${sync_status}
     fi
 
-    log_debug "Sourcing venv $(pwd)/${venv_path}/bin/activate"
+    add_sdk_to_python_path "${venv_path}"
+
     source_venv "${venv_path}"
     local source_status=$?
     if [ ${source_status} -ne 0 ]; then
@@ -93,24 +96,19 @@ test_integration() {
     fi
 
     log_debug "Running tests for integration ${integration_path}"
-    run_tests "${venv_path}" # venv_path is relative, e.g., ".venv"
+    run_tests "${venv_path}"
     local test_status=$?
     log_debug "Tests for ${integration_path} finished with status ${test_status}."
 
-    if type deactivate >/dev/null 2>&1; then
-      log_debug "Deactivating venv"
-      deactivate
-    fi
-
     if ! cd "${original_dir}"; then
       log_error "Critical: Failed to cd back to ${original_dir} from $(pwd). Exiting."
-      exit 1 # This is a critical failure affecting script integrity
+      exit 1
     fi
 
     return ${test_status}
   else
-    log_debug "No tests directory found at ${integration_tests_path}. Skipping tests for ${integration_path}."
-    return 0 # No tests to run, so success for this integration's test phase.
+    print_with_color "No tests directory found at ${integration_tests_path}."
+    return 0
   fi
 }
 
@@ -122,9 +120,50 @@ validate_directory() {
   fi
 }
 
+add_sdk_to_python_path() {
+  venv_path="$1"
+  python_version=$(python3 -V 2>&1 | awk '{print $2}' | cut -d'.' -f1,2)
+  sdk_path="$(pwd)/${venv_path}/lib/python${python_version}/site-packages/soar_sdk"
+  if [ ! -d "${sdk_path}" ]; then
+    base=$(pwd)/${venv_path}
+    for dir in "${base}"/lib/*; do
+      sdk_path="${dir}/site-packages/soar_sdk"
+      if [ -d "${sdk_path}" ]; then
+        break
+      fi
+    done
+
+    if [ ! -d "${sdk_path}" ]; then
+      log_debug "Can't find the SDK at the expected path: ${sdk_path}"
+      exit 1
+    fi
+  fi
+
+  add_path_to_pyhon_path "${sdk_path}"
+  trap 'remove_path_python_path "${sdk_path}"' EXIT INT
+}
+
+add_path_to_pyhon_path() {
+  for path in "${@}"; do
+    if [[ ":PYTHONPATH:" != *"${path}"* ]]; then
+      log_debug "Adding ${path} to PYTHONPATH"
+      PYTHONPATH="${path}:${PYTHONPATH}"
+      export PYTHONPATH
+    else
+      log_debug "${path} already added to PYTHONPATH"
+    fi
+  done
+}
+
+remove_path_python_path() {
+  path="$1"
+  log_debug "Removing ${path} from PYTHONPATH"
+  PYTHONPATH=$(echo "$PYTHONPATH" | sed -e "s|${path}:||" -e "s|:${path}||" -e "s|${path}||")
+  export PYTHONPATH
+}
+
 sync_venv() {
   venv_path="$1"
-  # This function assumes it's called from within the integration's directory
   if [ -d "${venv_path}" ]; then
     log_debug "Virtual environment already exists in $(pwd)/${venv_path}"
   else
@@ -145,31 +184,38 @@ sync_venv() {
     if [ ${sync_status} -ne 0 ]; then
       log_error "uv sync failed with status ${sync_status} for $(pwd)/${venv_path}"
       if [ -n "${sync_cmd_output}" ]; then log_error "uv sync output: ${sync_cmd_output}"; fi
-      return ${sync_status} # Propagate error
+      return ${sync_status}
     else
       if [ "${VERBOSE}" = true ] && [ -n "${sync_cmd_output}" ]; then log_debug "uv sync output: ${sync_cmd_output}"; fi
     fi
   fi
-  return 0 # Success
+  return 0
 }
 
 source_venv() {
-  local venv_path="$1" # e.g., ".venv" when called from within integration dir
-  local venv_activate_script="${venv_path}/bin/activate"
+  venv_path="$1"
+  venv_activate_script="${venv_path}/bin/activate"
   log_debug "Attempting to source venv: $(pwd)/${venv_activate_script}"
   if [ -f "${venv_activate_script}" ]; then
-    # shellcheck disable=SC1090
+    # shellcheck source="${venv_path}/bin/activate"
     . "${venv_activate_script}"
-    return 0 # Success
+    trap 'deactivate_venv' EXIT INT
+    return 0
   else
     log_error "Activation script not found: $(pwd)/${venv_activate_script}"
-    return 1 # Return 1 if activation script is not found
+    return 1
+  fi
+}
+
+deactivate_venv() {
+  if type deactivate >/dev/null 2>&1; then
+    log_debug "Deactivating venv"
+    deactivate
   fi
 }
 
 run_tests() {
-  venv_path="$1" # e.g., ".venv"
-  # Assumes CWD is the integration directory, so ./tests is correct
+  venv_path="$1"
   if [ "${VERBOSE}" = true ]; then
     "${venv_path}/bin/python3" -m pytest -vv ./tests
   elif [ "${QUIET}" = true ]; then
@@ -177,7 +223,6 @@ run_tests() {
   else
     "${venv_path}/bin/python3" -m pytest ./tests
   fi
-  # The exit status of pytest will be the implicit return status of this function
 }
 
 print_with_color() {
@@ -185,7 +230,6 @@ print_with_color() {
 }
 
 log_error() {
-  # Consider printing errors to stderr: >&2
   print_with_color "[ERROR] $1" >&2
 }
 
@@ -207,7 +251,6 @@ init_args() {
       shift
       ;;
     *)
-      # shellcheck disable=SC3024
       INTEGRATIONS+=("$1")
       shift
       ;;

@@ -1,6 +1,6 @@
 [project]
 name = "mp"
-version = "0.3.4"
+version = "0.3.5"
 description = "General Purpose CLI tool for Google SecOps Marketplace"
 readme = "README.md"
 authors = [
@@ -25,7 +25,7 @@ classifiers = [
     "Programming Language :: Python :: 3 :: Only",
 ]
 dependencies = [
-    "libcst>=1.8.0",
+    "libcst>=1.8.1",
     "mypy>=1.16.0",
     "pip>=25.1.1",
     "pydantic>=2.11.5",
