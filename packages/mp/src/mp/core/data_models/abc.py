@@ -17,7 +17,8 @@ from __future__ import annotations
 import abc
 import enum
 import json
-from typing import TYPE_CHECKING, Generic, Self, TypeVar
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, Generic, Self, TypeVar
 
 import pydantic
 import yaml
@@ -51,8 +52,8 @@ class RepresentableEnum(enum.Enum):
         return self.name.casefold()
 
 
-_BT = TypeVar("_BT")
-_NBT = TypeVar("_NBT")
+_BT = TypeVar("_BT", bound=Mapping[str, Any])
+_NBT = TypeVar("_NBT", bound=Mapping[str, Any])
 
 
 class Buildable(pydantic.BaseModel, abc.ABC, Generic[_BT, _NBT]):
