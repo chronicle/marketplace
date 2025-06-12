@@ -200,6 +200,8 @@ dependencies = [
     { name = "ruff" },
     { name = "toml" },
     { name = "typer" },
+    { name = "types-pyyaml" },
+    { name = "types-toml" },
     { name = "uv" },
 ]
 
@@ -208,8 +210,6 @@ dev = [
     { name = "pytest" },
     { name = "pytest-cov" },
     { name = "pytest-xdist" },
-    { name = "types-pyyaml" },
-    { name = "types-toml" },
 ]
 
 [package.metadata]
@@ -223,6 +223,8 @@ requires-dist = [
     { name = "ruff", specifier = ">=0.11.13" },
     { name = "toml", specifier = ">=0.10.2" },
     { name = "typer", specifier = ">=0.16.0" },
+    { name = "types-pyyaml", specifier = ">=6.0.12.20250516" },
+    { name = "types-toml", specifier = ">=0.10.8.20240310" },
     { name = "uv", specifier = ">=0.7.12" },
 ]
 
@@ -231,8 +233,6 @@ dev = [
     { name = "pytest", specifier = ">=8.4.0" },
     { name = "pytest-cov", specifier = ">=6.2.1" },
     { name = "pytest-xdist", specifier = ">=3.7.0" },
-    { name = "types-pyyaml", specifier = ">=6.0.12.20250516" },
-    { name = "types-toml", specifier = ">=0.10.8.20240310" },
 ]
 
 [[package]]
