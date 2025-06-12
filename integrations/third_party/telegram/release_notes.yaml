@@ -81,3 +81,13 @@
     regressive: false
     deprecated: false
     removed: false
+-   description: Telegram - Adding unit-tests.
+    integration_version: 9.0
+    item_name: TelegramConnector
+    item_type: Integration
+    publish_time: 1749637936
+    ticket_number: xxx
+    new: false
+    regressive: false
+    deprecated: false
+    removed: false

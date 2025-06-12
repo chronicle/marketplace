@@ -420,7 +420,7 @@ def get_request_payload(
 ) -> SingleJson:
     """Get the payload of a request."""
     if keys is None:
-        keys = ("json", "payload", "params")
+        keys = ("json", "payload", "params", "data")
 
     for key in keys:
         if key in request.kwargs:
