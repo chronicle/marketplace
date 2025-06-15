@@ -72,7 +72,6 @@ def set_metadata(  # noqa: PLR0913, PLR0917
             jobs that use the Job base class
         connector_def_file_path: The path to the connector's ".connectordef" file.
             This must be used in connectors that use the Connector base class
-
     """
     input_context = none_to_default_value(input_context, {})
     integration_config = none_to_default_value(integration_config, {})

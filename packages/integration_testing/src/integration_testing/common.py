@@ -80,7 +80,7 @@ VALID_DEF_SUFFIXES: Collection[str] = (
 )
 
 
-def create_case_comment(  # noqa: PLR0913
+def create_case_comment(  # noqa: PLR0913, PLR0917
     comment: str,
     comment_id: int,
     case_id: int,
@@ -90,12 +90,12 @@ def create_case_comment(  # noqa: PLR0913
     modification_time_unix_time_in_ms: int | None = None,
     creation_time_unix_time_in_ms: int | None = None,
     creator_full_name: str | None = None,
-    is_deleted: bool | None = None,
     last_editor: str | None = None,
     last_editor_full_name: str | None = None,
     modification_time_unix_time_in_ms_for_client: int | None = None,
     comment_for_client: str | None = None,
     *,
+    is_deleted: bool | None = None,
     is_favorite: bool = False,
 ) -> CaseComment:
     """Create a case comment."""
@@ -131,7 +131,7 @@ def create_case_comment(  # noqa: PLR0913
     )
 
 
-def create_case_details(  # noqa: PLR0913
+def create_case_details(  # noqa: PLR0913, PLR0917
     id_: int,
     name: str,
     creation_time_unix_time_ms: int | None = None,
@@ -210,7 +210,7 @@ def create_case_details(  # noqa: PLR0913
     )
 
 
-def create_entity(  # noqa: PLR0913
+def create_entity(  # noqa: PLR0913, PLR0917
     identifier: str,
     type_: EntityTypesEnum,
     alert_identifier: str = "Id",
