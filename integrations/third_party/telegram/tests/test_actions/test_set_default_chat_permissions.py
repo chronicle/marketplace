@@ -1,13 +1,13 @@
 from __future__ import annotations
 
-from TIPCommon.base.action import ExecutionState
 from integration_testing.platform.script_output import MockActionOutput
 from integration_testing.set_meta import set_metadata
+from TIPCommon.base.action import ExecutionState
 
-from integrations.third_party.telegram.tests.common import CONFIG_PATH
-from ..core.session import TelegramSession
-from ..core.product import Telegram
 from ...actions import SetDefaultChatPermissions
+from ..common import CONFIG_PATH
+from ..core.product import Telegram
+from ..core.session import TelegramSession
 
 
 class TestSetDefaultChatPermissions:

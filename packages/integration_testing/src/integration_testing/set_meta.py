@@ -41,7 +41,7 @@ TestFn = Callable[..., None]
 PatchParams = tuple[str, GeneralFunction]
 
 
-def set_metadata(  # noqa: PLR0913
+def set_metadata(  # noqa: PLR0913, PLR0917
     func: TestFn | None = None,
     parameters: SingleJson | None = None,
     entities: list[Entity] | None = None,
@@ -80,7 +80,7 @@ def set_metadata(  # noqa: PLR0913
     entities = none_to_default_value(entities, [])
     ec = none_to_default_value(external_context, MockExternalContext())
 
-    # @functools.wraps(func)
+    @functools.wraps(func)
     def decorator(fn: TestFn) -> TestFn:
         if "external_context" in inspect.signature(fn).parameters:
             fn = functools.partial(fn, external_context=ec)
