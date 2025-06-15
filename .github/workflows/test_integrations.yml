@@ -32,4 +32,4 @@ jobs:
               shell: bash
               run: |
                   mp config --marketplace-path . --processes 10 --display-config
-                  mp test --repository third_party --repository commercial
+                  mp test --repository third_party --repository commercial --raise-error-on-violations
