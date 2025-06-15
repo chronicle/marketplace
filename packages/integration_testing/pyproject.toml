@@ -1,6 +1,6 @@
 [project]
 name = "integration-testing"
-version = "1.0.4"
+version = "1.0.5"
 description = "Blackbox testing infrastructure to test and run marketplace integration scripts locally using mocks."
 readme = "README.md"
 authors = [
@@ -8,13 +8,13 @@ authors = [
 ]
 requires-python = ">=3.11"
 dependencies = [
-    "aiohttp>=3.12.4",
+    "aiohttp>=3.12.13",
     "environmentcommon",
     "pyyaml>=6.0.2",
-    "requests>=2.32.3",
+    "requests>=2.32.4",
     "soar-sdk",
     "tipcommon",
-    "yarl>=1.20.0",
+    "yarl>=1.20.1",
 ]
 
 [build-system]
@@ -23,12 +23,12 @@ build-backend = "hatchling.build"
 
 [dependency-groups]
 dev = [
-    "mypy>=1.15.0",
-    "pytest>=8.3.5",
+    "mypy>=1.16.0",
+    "pytest>=8.4.0",
     "pytest-xdist>=3.7.0",
-    "ruff>=0.11.12",
+    "ruff>=0.11.13",
     "types-pyyaml>=6.0.12.20250516",
-    "types-requests>=2.32.0.20250602",
+    "types-requests>=2.32.0.20250611",
 ]
 
 [tool.mypy]
@@ -46,8 +46,6 @@ addopts = [
 testpaths = [
     "tests/",
 ]
-asyncio_mode = "auto"
-asyncio_default_fixture_loop_scope = "function"
 
 [tool.uv.sources]
 tipcommon = { path = "../TIPCommon-2.0.6/TIPCommon-2.0.6-py2.py3-none-any.whl" }
