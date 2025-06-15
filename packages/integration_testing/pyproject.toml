@@ -1,6 +1,6 @@
 [project]
 name = "integration-testing"
-version = "1.0.6"
+version = "1.0.5"
 description = "Blackbox testing infrastructure to test and run marketplace integration scripts locally using mocks."
 readme = "README.md"
 authors = [
@@ -11,7 +11,7 @@ dependencies = [
     "aiohttp>=3.12.13",
     "environmentcommon",
     "pyyaml>=6.0.2",
-    "requests>=2.32.4",
+    "requests>=2.32.3",
     "soar-sdk",
     "tipcommon",
     "yarl>=1.20.1",

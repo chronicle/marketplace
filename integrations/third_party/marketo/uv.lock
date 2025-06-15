@@ -535,7 +535,7 @@ wheels = [
 
 [[package]]
 name = "integration-testing"
-version = "1.0.6"
+version = "1.0.5"
 source = { directory = "../../../packages/integration_testing" }
 dependencies = [
     { name = "aiohttp" },
@@ -552,7 +552,7 @@ requires-dist = [
     { name = "aiohttp", specifier = ">=3.12.13" },
     { name = "environmentcommon", path = "../../../packages/EnvironmentCommon-1.0.2/EnvironmentCommon-1.0.2-py2.py3-none-any.whl" },
     { name = "pyyaml", specifier = ">=6.0.2" },
-    { name = "requests", specifier = ">=2.32.4" },
+    { name = "requests", specifier = ">=2.32.3" },
     { name = "soar-sdk", git = "https://github.com/chronicle/soar-sdk.git" },
     { name = "tipcommon", path = "../../../packages/TIPCommon-2.0.6/TIPCommon-2.0.6-py2.py3-none-any.whl" },
     { name = "yarl", specifier = ">=1.20.1" },
