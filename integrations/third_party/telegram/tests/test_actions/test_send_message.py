@@ -1,13 +1,13 @@
 from __future__ import annotations
 
-from TIPCommon.base.action import ExecutionState
 from integration_testing.platform.script_output import MockActionOutput
 from integration_testing.set_meta import set_metadata
+from TIPCommon.base.action import ExecutionState
 
-from ..common import CONFIG_PATH, TEST_BOT_TOKEN
-from ..core.session import TelegramSession
-from ..core.product import Telegram
 from ...actions import SendMessage
+from ..common import CONFIG_PATH, TEST_BOT_TOKEN
+from ..core.product import Telegram
+from ..core.session import TelegramSession
 
 
 class TestSendMessage:

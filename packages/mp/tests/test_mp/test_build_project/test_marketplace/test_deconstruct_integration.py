@@ -87,7 +87,7 @@ def assert_deconstruct_integration(
             requirements: pathlib.Path = (
                 integration / mp.core.constants.REQUIREMENTS_FILE
             )
-            requirements.write_text("requests==2.32.3\n", encoding="utf-8")
+            requirements.write_text("requests==2.32.4\n", encoding="utf-8")
             py_version.write_text("3.11", encoding="utf-8")
 
         marketplace: Marketplace = mp.build_project.marketplace.Marketplace(commercial)

@@ -1,20 +1,17 @@
 from __future__ import annotations
 
-from TIPCommon.base.action import ExecutionState
 from integration_testing.platform.script_output import MockActionOutput
 from integration_testing.set_meta import set_metadata
+from TIPCommon.base.action import ExecutionState
 
-from ..common import CONFIG_PATH
-from ..core.session import TelegramSession
-from ..core.product import Telegram
 from ...actions import GetBotDetails
+from ..common import CONFIG_PATH
+from ..core.product import Telegram
+from ..core.session import TelegramSession
 
 
 class TestGetBotDetails:
-    @set_metadata(
-        parameters={},
-        integration_config_file_path=CONFIG_PATH,
-    )
+    @set_metadata(integration_config_file_path=CONFIG_PATH)
     def test_get_bot_details_success(
         self,
         script_session: TelegramSession,
@@ -42,10 +39,7 @@ class TestGetBotDetails:
         assert action_output.results.execution_state == ExecutionState.COMPLETED
         assert action_output.results.json_output.json_result == expected_bot_details
 
-    @set_metadata(
-        parameters={},
-        integration_config_file_path=CONFIG_PATH,
-    )
+    @set_metadata(integration_config_file_path=CONFIG_PATH)
     def test_get_bot_details_failure(
         self,
         script_session: TelegramSession,

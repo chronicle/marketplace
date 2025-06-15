@@ -20,7 +20,6 @@ import uuid
 
 from integration_testing import router
 from integration_testing.common import get_empty_response
-from integration_testing.product import MockProduct
 from integration_testing.request import HttpMethod, MockRequest
 from integration_testing.requests.response import MockResponse
 from integration_testing.requests.session import MockSession, RouteFunction
