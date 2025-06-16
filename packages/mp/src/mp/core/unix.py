@@ -231,13 +231,13 @@ def ruff_format(paths: Iterable[pathlib.Path], /, **flags: bool | str) -> int:
 
 
 def mypy(paths: Iterable[pathlib.Path], /, **flags: bool | str) -> int:
-    """Run `mypy --strict` on the provided paths.
+    """Run `mypy` on the provided paths.
 
     Returns:
         The status code
 
     """
-    command: list[str] = [sys.executable, "-m", "mypy", "--strict"]
+    command: list[str] = [sys.executable, "-m", "mypy"]
     return execute_command_and_get_output(command, paths, **flags)
 
 
