@@ -32,7 +32,7 @@ class TelegramManager:
         raise Exception(f"Error conecting to telegram API: {response.text}")
 
     def get_updates(self, limit=None, offset=None, allowed_updates=None):
-        """Receives messages from a group, channel, or or private chat that the bot is a member of.
+        """Receives messages from a group, channel, or or private chat.
         :param offsetparam: String, the last update id to get messages from,
                             enables us to control which message to present.
         :param allowed_updates: List of the allowed updates to retrieve
@@ -63,18 +63,19 @@ class TelegramManager:
         return json_res
 
     def get_messages(self, offsetparam, allowed_updates):
-        """Receives messages from a group, channel, or or private chat that the bot is a member of.
+        """Receives messages from a group, channel, or private chat.
         :param offsetparam: String, the last update id to get messages from,
                             enables us to control which message to present.
         :param allowed_updates: List of the allowed updates to retrieve
         :return: Return all the messages content according to a given offset
         """
-        url = f"{self.base}/getUpdates?allowed_updates={allowed_updates}"
+        url = f"{self.base}/getUpdates"
+        params = {"allowed_updates": allowed_updates}
 
         if offsetparam is not None:
-            url = f"{self.base}/getUpdates?offset={offsetparam}?allowed_updates={allowed_updates}"
+            params["offset"] = offsetparam
 
-        response = self.session.get(url, timeout=5.0)
+        response = self.session.get(url, timeout=5.0, params=params)
 
         try:
             json_res = response.json()
@@ -107,9 +108,9 @@ class TelegramManager:
         :param chat_id: String,the unique identifier or username
         :return: Json, the chat details
         """
-        url = f"{self.base}/getChat?chat_id={chat_id}"
+        url = f"{self.base}/getChat"
 
-        response = self.session.get(url, timeout=5.0)
+        response = self.session.get(url, timeout=5.0, params={"chat_id": chat_id})
 
         try:
             json_res = response.json()
@@ -192,7 +193,7 @@ class TelegramManager:
         try:
             json_res = response.json()
         except Exception:
-            raise Exception(response.content)
+            raise Exception(str(response.content))
         if not json_res.get("ok"):
             raise Exception(json.dumps(json_res))
 
@@ -225,9 +226,11 @@ class TelegramManager:
         :param doc_url: String, the url of the doc to send
         :return: Json, the details of the photo that was sent
         """
-        endpoint_url = f"{self.base}/sendDocument?chat_id={chat_id}&document={doc_url}"
-
-        response = self.session.get(endpoint_url, timeout=5.0)
+        response = self.session.get(
+            f"{self.base}/sendDocument",
+            timeout=5.0,
+            params={"chat_id": chat_id, "document": doc_url},
+        )
 
         try:
             json_res = response.json()
@@ -254,7 +257,7 @@ class TelegramManager:
     ):
         """Promote or demote a user in a supergroup or a channel
         :param chat_id: String, the unique identifier or username
-        :param user_id:  String,the unique identifier of the user you want to promote or demote
+        :param user_id:  String,the unique identifier of the user
         :param is_anonymous: Boolean, the user will be displayed as anonymous
         :param can_change_info: Boolean, the user can change info
         :param can_post_messages: Boolean, the user can post messages
@@ -301,7 +304,7 @@ class TelegramManager:
     ):
         """Promote or demote a user in a supergroup or a channel
         :param chat_id: String, the unique identifier or username
-        :param can_send_polls:  String,the unique identifier of the user you want to promote or demote
+        :param can_send_polls:  String,the unique identifier of the user
         :param can_pin_messages: Boolean, the user will be displayed as anonymous
         :param can_invite_users: Boolean, the user can invite other users
         :param can_edit_the_info: Boolean, the user can change info
@@ -324,8 +327,8 @@ class TelegramManager:
 
         try:
             json_res = response.json()
-        except Exception as err:
-            raise Exception(f"Can't access the telegram API. Error: {err}")
+        except Exception:
+            raise Exception(response.content)
 
         response.raise_for_status()
 
@@ -335,7 +338,7 @@ class TelegramManager:
         return json_res
 
     def export_chat_invite_link(self, chat_id):
-        """Export the chat invite link in order to enable the access of the bot to the invite link.
+        """Export invite link in order to enable the access of the bot.
         After exporting, the link can be found in the function get_chat()
         :param chat_id: String,the unique identifier or username
         :return: Json, the invite link details for a given chat

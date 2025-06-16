@@ -105,7 +105,10 @@ def main(is_first_run):
                     if (
                         option.get("voter_count") >= vote_threshold
                     ):  # threshold satisfied.
-                        output_message = f"answers threshold met for poll <{poll_id}> after <{duration}s>"
+                        output_message = (
+                            f"answers threshold met for poll <{poll_id}> after "
+                            f"<{duration}s>"
+                        )
                         status = EXECUTION_STATE_COMPLETED
                         result_value = True
                         break
@@ -119,7 +122,8 @@ def main(is_first_run):
                     result_value = False
                 else:
                     output_message = (
-                        f"Votes threashold for poll <{poll_id}> not yet met, though some answers were found. \n "
+                        f"Votes threashold for poll <{poll_id}> not yet met, "
+                        "though some answers were found.\n"
                         f"Still waiting. \n Time passed:<{duration}>s"
                     )
                     status = EXECUTION_STATE_INPROGRESS
@@ -138,7 +142,7 @@ def main(is_first_run):
             result_value = False
         else:
             output_message = (
-                f"Still waiting for answers to meet requirements for poll {poll_id}. \n "
+                f"Still waiting for answers to meet requirements for poll {poll_id}.\n"
                 f"Time passed:<{duration}s>"
             )
             status = EXECUTION_STATE_INPROGRESS
@@ -162,7 +166,8 @@ def main(is_first_run):
                 .get("options")
             )
         siemplify.LOGGER.info(
-            f"\n  status: {status}\n  result_value: {result_value}\n  output_message: {output_message}",
+            f"\n  status: {status}\n  result_value: {result_value}\n"
+            f"  output_message: {output_message}",
         )
 
         siemplify.LOGGER.info("----------------- Main - Finished -----------------")
