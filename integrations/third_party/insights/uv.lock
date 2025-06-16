@@ -547,7 +547,7 @@ dev = [
 
 [[package]]
 name = "integration-testing"
-version = "1.0.5"
+version = "1.0.6"
 source = { directory = "../../../packages/integration_testing" }
 dependencies = [
     { name = "aiohttp" },

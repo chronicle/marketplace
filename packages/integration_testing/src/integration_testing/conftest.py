@@ -18,9 +18,10 @@ import sys
 from typing import TYPE_CHECKING
 
 import pytest
-from soar_sdk import SiemplifyLogger, SiemplifyUtils
-from soar_sdk.SiemplifyBase import SiemplifyBase
-from soar_sdk.SiemplifyConnectors import SiemplifyConnectorExecution
+import SiemplifyLogger
+import SiemplifyUtils
+from SiemplifyBase import SiemplifyBase
+from SiemplifyConnectors import SiemplifyConnectorExecution
 from TIPCommon.base.utils import CreateSession
 
 from .common import use_live_api
