@@ -220,6 +220,10 @@ class IntegrationMetadata(
         if raw_feature_tags is not None:
             feature_tags = FeatureTags.from_built(raw_feature_tags)
 
+        image: str | bytes | None = built["ImageBase64"]
+        if isinstance(image, str):
+            image = image.encode()
+
         return cls(
             categories=built["Categories"],
             description=built["Description"],
@@ -228,7 +232,7 @@ class IntegrationMetadata(
             identifier=built["Identifier"],
             python_version=PythonVersion(built["PythonVersion"]),
             documentation_link=built["DocumentationLink"],
-            image_base64=built["ImageBase64"],
+            image_base64=image,
             parameters=[
                 IntegrationParameter.from_built(p)
                 for p in built["IntegrationProperties"]
@@ -248,13 +252,17 @@ class IntegrationMetadata(
         if raw_feature_tags is not None:
             feature_tags = FeatureTags.from_non_built(raw_feature_tags)
 
+        image: str | bytes | None = non_built["image_base64"]
+        if isinstance(image, str):
+            image = image.encode()
+
         return cls(
             categories=non_built["categories"],
             feature_tags=feature_tags,
             name=non_built["name"],
             identifier=non_built["identifier"],
             documentation_link=non_built.get("documentation_link"),
-            image_base64=non_built["image_base64"],
+            image_base64=image,
             parameters=[
                 IntegrationParameter.from_non_built(p) for p in non_built["parameters"]
             ],
