@@ -1,6 +1,6 @@
 name: Ping
 description: ''
-integration_identifier: Resolution Intelligence Cloud
+integration_identifier: NetenrichConnect
 parameters: []
 dynamic_results_metadata:
 -   result_name: JsonResult
