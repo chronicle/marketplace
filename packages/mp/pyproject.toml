@@ -64,6 +64,9 @@ exclude = [
     'dist',
 ]
 
+[tool.pydantic-mypy]
+init_typed = false
+
 [tool.pytest.ini_options]
 pythonpath = "src"
 addopts = [

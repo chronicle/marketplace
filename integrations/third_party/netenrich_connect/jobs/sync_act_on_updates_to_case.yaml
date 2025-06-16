@@ -1,0 +1,5 @@
+name: Sync ActOn Updates To Case
+parameters: []
+description: This job will synchronize information of ActOns™ to Case
+integration: NetenrichConnect
+creator: 7cee2921-f223-4193-acb3-e71e60e904bb
