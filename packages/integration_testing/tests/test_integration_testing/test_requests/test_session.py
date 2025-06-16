@@ -32,8 +32,10 @@ class TestInitialization:
         assert session is not None
 
     def test_initialization_with_parameters(self) -> None:
-        product: MockProduct = MockProduct()
-        session: MockSession = MockSession(product)
+        class MockProduct:
+            pass
+
+        session: MockSession = MockSession(MockProduct())
 
         assert session is not None
 

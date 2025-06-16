@@ -35,10 +35,13 @@ if TYPE_CHECKING:
 
 
 @pytest.fixture(autouse=True)
-def script_session(
-    monkeypatch: pytest.MonkeyPatch,
-) -> MockSession:
-    """Mock scripts' sessions and to view request and response history."""
+def script_session(monkeypatch: pytest.MonkeyPatch) -> MockSession:
+    """Mock scripts' sessions and to view request and response history.
+
+    Returns:
+        A mock session object.
+
+    """
     session: MockSession = MockSession()
     if not use_live_api():
         monkeypatch.setattr(CreateSession, "create_session", lambda: session)
@@ -157,9 +160,7 @@ def action_output(monkeypatch: pytest.MonkeyPatch) -> Iterator[MockActionOutput]
 
 
 @pytest.fixture
-def connector_output(
-    monkeypatch: pytest.MonkeyPatch,
-) -> Iterator[MockConnectorOutput]:
+def connector_output(monkeypatch: pytest.MonkeyPatch) -> Iterator[MockConnectorOutput]:
     """Fixture for mocking and capturing connector output streams.
 
     This fixture temporarily replaces the real standard output and error streams used by
@@ -184,5 +185,10 @@ def connector_output(
 
 @pytest.fixture
 def external_context() -> MockExternalContext:
-    """External context DB-like object."""
+    """External context DB-like object.
+
+    Returns:
+        A mock external context object.
+
+    """
     return MockExternalContext()

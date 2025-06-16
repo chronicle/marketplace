@@ -73,6 +73,10 @@ def set_metadata(  # noqa: PLR0913, PLR0917
         connector_def_file_path: The path to the connector's ".connectordef" file.
             This must be used in connectors that use the Connector base class
 
+    Returns:
+        Runs the function it's decorating with all the mocks required to run
+        a marketplace script.
+
     """
     input_context = none_to_default_value(input_context, {})
     integration_config = none_to_default_value(integration_config, {})

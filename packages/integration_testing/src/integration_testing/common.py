@@ -39,7 +39,6 @@ from TIPCommon.data_models import (
 )
 
 from .platform.external_context import ExternalContextRow
-from .requests.response import MockResponse
 
 if TYPE_CHECKING:
     from collections.abc import Collection, Iterable
@@ -98,7 +97,12 @@ def create_case_comment(  # noqa: PLR0913, PLR0917
     is_deleted: bool | None = None,
     is_favorite: bool = False,
 ) -> CaseComment:
-    """Create a case comment."""
+    """Create a case comment object with default values.
+
+    Returns:
+        A CaseComment object
+
+    """
     now: int = int(time.time()) * NUM_OF_MILLI_IN_SEC
     return CaseComment(
         comment=comment,
@@ -162,7 +166,12 @@ def create_case_details(  # noqa: PLR0913, PLR0917
     is_manual_case: bool = False,
     can_open_incident: bool = False,
 ) -> CaseDetails:
-    """Create a case details object."""
+    """Create a case details object.
+
+    Returns:
+        A CaseDetails object
+
+    """
     now: int = int(time.time()) * NUM_OF_MILLI_IN_SEC
     return CaseDetails(
         id_=id_,
@@ -226,7 +235,12 @@ def create_entity(  # noqa: PLR0913, PLR0917
     is_suspicious: bool = False,
     is_vulnerable: bool = False,
 ) -> Entity:
-    """Create an entity object that has default values to parameters."""
+    """Create an entity object that has default values to parameters.
+
+    Returns:
+        An Entity object
+
+    """
     if additional_properties is None:
         additional_properties = {"OriginalIdentifier": identifier}
 
@@ -251,7 +265,12 @@ def prepare_connector_params(
     connector_def_file: str | pathlib.Path | None,
     params: SingleJson,
 ) -> list[ConnectorParameter]:
-    """Prepare connector parameters as a list of ConnectorParameter objects."""
+    """Prepare connector parameters as a list of ConnectorParameter objects.
+
+    Returns:
+        A list of ConnectorParameter objects.
+
+    """
     connector_def: SingleJson = get_def_file_content(connector_def_file)
     def_parameters: list[SingleJson] = connector_def.get("Parameters", [])
     if not def_parameters:
@@ -265,7 +284,12 @@ def prepare_job_params(
     job_def_file: str | pathlib.Path | None,
     params: SingleJson,
 ) -> list[JobParameter]:
-    """Prepare job parameters as a list of JobParameter objects."""
+    """Prepare job parameters as a list of JobParameter objects.
+
+    Returns:
+        A list of JobParameter objects.
+
+    """
     _remove_python_process_from_job_params(params)
     job_def: SingleJson = get_def_file_content(job_def_file)
     def_parameters: list[SingleJson] = job_def.get("Parameters", [])
@@ -276,18 +300,23 @@ def prepare_job_params(
 
 
 def use_live_api() -> bool:
-    """Whether to use live API requests or mocks."""
+    """Whether to use live API requests or mocks.
+
+    Returns:
+        Whether the USE_LIVE_API environment variable is set to true.
+
+    """
     envar: str = os.environ.get(USE_LIVE_API_ENVAR, "false")
     return envar.lower() not in {"false", "", None}
 
 
-def get_empty_response(_: MockRequest) -> MockResponse:
-    """Get an empty response."""
-    return MockResponse()
-
-
 def get_def_file_content(def_file_path: str | pathlib.Path | None) -> SingleJson:
-    """Get the content of a def file."""
+    """Get the content of a def file.
+
+    Returns:
+        the contents of an integration's definition file as a dictionary.
+
+    """
     if def_file_path is None:
         return {}
 
@@ -418,7 +447,12 @@ def get_request_payload(
     request: MockRequest,
     keys: Iterable[str] | None = None,
 ) -> SingleJson:
-    """Get the payload of a request."""
+    """Get the payload of a request.
+
+    Returns:
+        The payload of a request.
+
+    """
     if keys is None:
         keys = ("json", "payload", "params", "data")
 
