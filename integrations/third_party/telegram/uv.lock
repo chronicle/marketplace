@@ -992,7 +992,7 @@ dependencies = [
 
 [[package]]
 name = "telegram"
-version = "8.0"
+version = "9.0"
 source = { virtual = "." }
 dependencies = [
     { name = "requests" },
