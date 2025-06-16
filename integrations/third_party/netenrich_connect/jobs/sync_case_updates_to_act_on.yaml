@@ -1,0 +1,6 @@
+name: Sync Case Updates To ActOn
+parameters: []
+description: This job will be scheduled for every 1 minute to sync Case updates to
+    ActOns™
+integration: NetenrichConnect
+creator: 7cee2921-f223-4193-acb3-e71e60e904bb
