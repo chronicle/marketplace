@@ -316,6 +316,10 @@ def get_def_file_content(def_file_path: str | pathlib.Path | None) -> SingleJson
     Returns:
         the contents of an integration's definition file as a dictionary.
 
+    Raises:
+        ValueError:
+            When the provided path is not of a valid JSON file.
+
     """
     if def_file_path is None:
         return {}
@@ -334,10 +338,12 @@ def get_def_file_content(def_file_path: str | pathlib.Path | None) -> SingleJson
 
 
 def set_sys_argv(args: list[str]) -> None:
+    """Set sys.argv"""
     sys.argv = args
 
 
 def set_is_first_run_to_true() -> None:
+    """Set the 'is_first_run' sys arg of async actions to True."""
     first_run_arg_num: int = 3
     if not sys.argv or len(sys.argv) < first_run_arg_num:
         set_sys_argv(["", "", ""])
@@ -346,6 +352,7 @@ def set_is_first_run_to_true() -> None:
 
 
 def set_is_first_run_to_false() -> None:
+    """Set the 'is_first_run' sys arg of async actions to True."""
     first_run_arg_num: int = 3
     if not sys.argv or len(sys.argv) < first_run_arg_num:
         set_sys_argv(["", "", ""])
@@ -354,6 +361,7 @@ def set_is_first_run_to_false() -> None:
 
 
 def set_is_test_run_to_false() -> None:
+    """Set the 'is_test_run' sys arg of connectors to False."""
     test_run_arg_length: int = 2
     if not sys.argv or len(sys.argv) < test_run_arg_length:
         set_sys_argv(["", "", ""])
@@ -362,6 +370,7 @@ def set_is_test_run_to_false() -> None:
 
 
 def set_is_test_run_to_true() -> None:
+    """Set the 'is_test_run' sys arg of connectors to True."""
     test_run_arg_length: int = 2
     if not sys.argv or len(sys.argv) < test_run_arg_length:
         set_sys_argv(["", "", ""])
@@ -409,7 +418,12 @@ def _create_connector_parameters(
     def_parameters: list[SingleJson],
     params: SingleJson,
 ) -> list[ConnectorParameter]:
-    """Create a connector parameters list made out of parameters and def parameters."""
+    """Create a connector parameters list made out of parameters and def parameters.
+
+    Returns:
+        A list of ConnectorParameter objects.
+
+    """
     results: list[ConnectorParameter] = []
     for parameter in def_parameters:
         parameter["param_name"] = parameter["Name"]
@@ -430,7 +444,12 @@ def _create_job_parameters(
     def_parameters: list[SingleJson],
     params: SingleJson,
 ) -> list[JobParameter]:
-    """Create a job parameters list made out of parameters and def parameters."""
+    """Create a job parameters list made out of parameters and def parameters.
+
+    Returns:
+        A list of JobParameter objects.
+
+    """
     results: list[JobParameter] = []
     for parameter in def_parameters:
         parameter["name"] = parameter["Name"]
