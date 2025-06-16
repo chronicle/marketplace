@@ -338,7 +338,7 @@ def get_def_file_content(def_file_path: str | pathlib.Path | None) -> SingleJson
 
 
 def set_sys_argv(args: list[str]) -> None:
-    """Set sys.argv"""
+    """Set 'sys.argv'."""
     sys.argv = args
 
 
