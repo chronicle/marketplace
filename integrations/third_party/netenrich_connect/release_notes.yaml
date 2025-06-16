@@ -3,7 +3,7 @@
     item_name: Netenrich Connect
     item_type: Integration
     publish_time: 1750078459
-    ticket_number: 409501626
+    ticket_number: "409501626"
     new: true
     regressive: false
     deprecated: false
