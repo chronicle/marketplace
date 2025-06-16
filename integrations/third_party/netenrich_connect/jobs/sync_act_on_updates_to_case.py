@@ -816,9 +816,6 @@ def main():
 if __name__ == "__main__":
     try:
         main()
-        # siem = SiemplifyJob()
-        # siem.LOGGER.info(f"{siem.assign_case.__doc__}")
-
     except Exception as ex:
         print(f"Exception occurred while processing the request: {ex}")
         traceback.print_exc()

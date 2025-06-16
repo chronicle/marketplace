@@ -46,4 +46,5 @@ def main():
         siemplify.end(f"Ping failed with error: {str(e)}", False)
 
 
-main()
+if __name__ == "__main__":
+    main()
