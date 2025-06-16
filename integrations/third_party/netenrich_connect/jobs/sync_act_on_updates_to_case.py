@@ -74,7 +74,8 @@ def save_decoded_file(siemplify, base64_content, output_folder, output_filename)
         with open(output_file_path, "wb") as file:
             file.write(decoded_content)
         siemplify.LOGGER.info(
-            f"File '{output_filename}' has been successfully saved in '{output_folder}'."
+            f"File '{output_filename}' has been successfully saved in"
+            f" '{output_folder}'."
         )
     except Exception as e:
         siemplify.LOGGER.info(f"Error writing file: {e}")
@@ -96,11 +97,13 @@ def add_comment_to_case(
                 and post.get("messageTypeId", 0) in SYSTEM_NOTES_MESSAGE_IDS
             ):
                 siemplify.LOGGER.info(
-                    f"As Allow System Notes : {allow_system_notes}, not updating comment"
+                    f"As Allow System Notes : {allow_system_notes}, not updating"
+                    " comment"
                 )
                 continue
             siemplify.LOGGER.info(
-                f"Proceeding with adding comments with system notes flag : {allow_system_notes}"
+                "Proceeding with adding comments with system notes flag :"
+                f" {allow_system_notes}"
             )
             if (post.get("content") or post.get("postContent")) and post.get(
                 "attachments"
@@ -200,7 +203,8 @@ def update_description(
             )
         except Exception as e:
             siemplify.LOGGER.error(
-                f"Failed to update case description for the case : {case_id} with Error: {str(e)}"
+                f"Failed to update case description for the case : {case_id}"
+                f" with Error: {str(e)}"
             )
 
 
@@ -220,7 +224,8 @@ def update_title(siemplify, case_id: str, incoming_title: str, case_title: str):
             )
         except Exception as e:
             siemplify.LOGGER.error(
-                f"Failed to update case title for the case : {case_id} with Error: {str(e)}"
+                f"Failed to update case title for the case : {case_id} with Error:"
+                f" {str(e)}"
             )
 
 
@@ -296,11 +301,13 @@ def delta_sync_entities(siemplify, ri_entities: list[dict], case_info: dict):
                 )
             except Exception as e:
                 siemplify.LOGGER.error(
-                    f"Exception occurred while adding entity to case. Discarding other updates. The error is: {e}"
+                    "Exception occurred while adding entity to case. Discarding other"
+                    f" updates. The error is: {e}"
                 )
                 return
     siemplify.LOGGER.info(
-        f"Successfully updated entities info for the case id : {case_info.get('identifier')}"
+        "Successfully updated entities info for the case id :"
+        f" {case_info.get('identifier')}"
     )
 
 
@@ -332,7 +339,8 @@ def update_entity_api(
         )
     except Exception as e:
         siemplify.LOGGER.error(
-            f"Failed to update entity key : {key} with value: {value}, the error is: {e}"
+            f"Failed to update entity key : {key} with value: {value}, the error is:"
+            f" {e}"
         )
 
 
@@ -354,7 +362,8 @@ def prepare_scoring_evidence_body(ticket_data: dict) -> list[dict]:
 
 
 def prepare_alerts_body(ticket_data: dict) -> list[dict]:
-    # Appending the first 10 alerts of the ticket based on the limit for the additional attributes in SOAR Case
+    # Appending the first 10 alerts of the ticket based on the limit for the additional
+    # attributes in SOAR Case
     alerts_list = ticket_data.get("alerts", [])[0:10]
     extracted_alert_data = [
         {
@@ -412,7 +421,8 @@ def update_ticket_data(
     ]
 
     siemplify.LOGGER.info(f"Adding all necessary properties of ActOn for {case_id}")
-    # Appending first 10 entities, 10 alerts based on the limit for the additional attributes in SOAR Case
+    # Appending first 10 entities, 10 alerts based on the limit for the additional
+    # attributes in SOAR Case
     body = {
         "scoringEvidence": json.dumps(extracted_scoring_evidence_data),
         "riActonId": ri_acton_id,
@@ -496,7 +506,8 @@ def fetch_soc_role(siemplify, soc_role_id: str) -> dict:
         return response.json()
     except Exception as e:
         siemplify.LOGGER.error(
-            f"Failed to fetch soc role information for the id: {soc_role_id}, the error is: {e}"
+            f"Failed to fetch soc role information for the id: {soc_role_id}, the error"
+            f" is: {e}"
         )
 
 
@@ -517,7 +528,8 @@ def search_soc_role(siemplify, soc_role_name: str) -> dict | None:
             return roles_info["objectsList"][0]
     except Exception as e:
         siemplify.LOGGER.error(
-            f"Failed to search soc role information for the name: {soc_role_name}, the error is: {e}"
+            f"Failed to search soc role information for the name: {soc_role_name},"
+            f" the error is: {e}"
         )
 
 
@@ -527,7 +539,8 @@ def get_default_soc_role(siemplify) -> dict | None:
         request_body = {}
         response = siemplify.session.post(url, data=json.dumps(request_body))
         siemplify.LOGGER.info(
-            f"Response code from soc role search API for default role is: {response.status_code}"
+            "Response code from soc role search API for default role is:"
+            f" {response.status_code}"
         )
         response.raise_for_status()
         roles_info = response.json()
@@ -606,7 +619,8 @@ def add_attachment(
             description=description,
         )
         siemplify.LOGGER.info(
-            f"Added attachment {attachment_id} for case: {case_id} with size: {attachment_data.get('fileSize')}MB"
+            f"Added attachment {attachment_id} for case: {case_id} with size:"
+            f" {attachment_data.get('fileSize')}MB"
         )
     except Exception as ex:
         siemplify.LOGGER.info(
@@ -698,7 +712,8 @@ def main():
     ticket_data = input_payload.get("ticket")
     case_id = get_or_create_case(siemplify, input_payload=input_payload, is_new=is_new)
     case_info = get_case_info(siemplify, case_id=case_id)
-    # As per the requirement, we are not grouping alerts in the SOAR instances of customer, so taking the first alert
+    # As per the requirement, we are not grouping alerts in the SOAR instances of
+    # customer, so taking the first alert
     alert_identifier = case_info.get("cyber_alerts")[0].get("identifier")
     if siemplify.parameters.get("COMMENT"):
         add_comment_to_case(

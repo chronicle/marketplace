@@ -22,7 +22,6 @@ import traceback
 
 import requests
 from requests.adapters import HTTPAdapter
-from soar_sdk.ScriptResult import EXECUTION_STATE_COMPLETED
 from soar_sdk.SiemplifyJob import SiemplifyJob
 from soar_sdk.SiemplifyUtils import output_handler, utc_now
 from urllib3.util.retry import Retry
@@ -195,7 +194,8 @@ def post_to_inbound_ingest_webhook(case_info: dict, siemplify):
         )
         resp.raise_for_status()
         siemplify.LOGGER.info(
-            f"posted to RI for the case id : {case_id} with posts : {case_info.get('posts')}",
+            f"posted to RI for the case id : {case_id} with posts :"
+            f" {case_info.get('posts')}",
         )
     except requests.exceptions.RequestException as e:
         siemplify.LOGGER.error(
@@ -215,7 +215,8 @@ def filter_wall_activity_info(
         response.raise_for_status()
         activities_info = response.json()
         siemplify.LOGGER.info(
-            f"Successfully fetched activity info for the case id : {case_id} from: {last_sync_utc} to: {current_utc}",
+            f"Successfully fetched activity info for the case id : {case_id} from:"
+            f" {last_sync_utc} to: {current_utc}",
         )
         activities_info = sorted(
             activities_info,
@@ -260,7 +261,8 @@ def search_soc_role(soc_role_name: str, siemplify) -> dict | None:
             return roles_info["objectsList"][0]
     except Exception as e:
         siemplify.LOGGER.error(
-            f"Failed to search soc role information for the name: {soc_role_name}, the error is: {e}",
+            f"Failed to search soc role information for the name: {soc_role_name},"
+            f" the error is: {e}",
         )
 
 
@@ -361,11 +363,13 @@ def update_case_data(
 
 def get_updated_cases(last_sync_utc, current_utc, siemplify) -> list[dict]:
     siemplify.LOGGER.info(
-        f"Synchronize update incident from SOAR to RIC from: {last_sync_utc} to {current_utc}",
+        f"Synchronize update incident from SOAR to RIC from: {last_sync_utc} to"
+        f" {current_utc}"
     )
 
     siemplify.LOGGER.info(
-        f"Fetching case id's that are updated {JOB_SCHEDULE_INTERVAL_IN_MIN} minutes ago",
+        f"Fetching case id's that are updated {JOB_SCHEDULE_INTERVAL_IN_MIN} minutes"
+        f" ago"
     )
     case_ids = siemplify.get_cases_ids_by_filter(
         update_time_from_unix_time_in_ms=last_sync_utc,
@@ -446,7 +450,7 @@ def main():
     )
     for updated_case in updated_cases or []:
         post_to_inbound_ingest_webhook(case_info=updated_case, siemplify=siemplify)
-    status = EXECUTION_STATE_COMPLETED  # used to flag back to siemplify system, the action final status
+
     siemplify.end_script()
 
 
