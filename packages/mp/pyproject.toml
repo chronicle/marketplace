@@ -1,6 +1,6 @@
 [project]
 name = "mp"
-version = "0.3.6"
+version = "0.3.7"
 description = "General Purpose CLI tool for Google SecOps Marketplace"
 readme = "README.md"
 authors = [
@@ -63,6 +63,9 @@ exclude = [
     'build',
     'dist',
 ]
+
+[tool.pydantic-mypy]
+init_typed = false
 
 [tool.pytest.ini_options]
 pythonpath = "src"
