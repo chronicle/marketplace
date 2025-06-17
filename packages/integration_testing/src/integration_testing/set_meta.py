@@ -41,7 +41,7 @@ TestFn = Callable[..., None]
 PatchParams = tuple[str, GeneralFunction]
 
 
-def set_metadata(  # noqa: PLR0913
+def set_metadata(  # noqa: PLR0913, PLR0917
     func: TestFn | None = None,
     parameters: SingleJson | None = None,
     entities: list[Entity] | None = None,
@@ -73,6 +73,10 @@ def set_metadata(  # noqa: PLR0913
         connector_def_file_path: The path to the connector's ".connectordef" file.
             This must be used in connectors that use the Connector base class
 
+    Returns:
+        Runs the function it's decorating with all the mocks required to run
+        a marketplace script.
+
     """
     input_context = none_to_default_value(input_context, {})
     integration_config = none_to_default_value(integration_config, {})
@@ -80,7 +84,6 @@ def set_metadata(  # noqa: PLR0913
     entities = none_to_default_value(entities, [])
     ec = none_to_default_value(external_context, MockExternalContext())
 
-    # @functools.wraps(func)
     def decorator(fn: TestFn) -> TestFn:
         if "external_context" in inspect.signature(fn).parameters:
             fn = functools.partial(fn, external_context=ec)
@@ -130,7 +133,7 @@ def _get_json_context_patch_path_and_fn(
     if json_context.get("parameters") is None:
         json_context["parameters"] = parameters
 
-    context_path: str = "soar_sdk.SiemplifyBase.SiemplifyBase.get_script_context"
+    context_path: str = "SiemplifyBase.SiemplifyBase.get_script_context"
     mock_get_context: Supplier[SingleJson] = functools.partial(
         get_mock_input_context,
         context=json_context,
@@ -142,7 +145,7 @@ def _get_json_context_patch_path_and_fn(
 def _get_entities_path_and_fn(
     entities: list[Entity] | None,
 ) -> tuple[str, list[Entity] | None]:
-    path: str = "soar_sdk.SiemplifyAction.SiemplifyAction.target_entities"
+    path: str = "SiemplifyAction.SiemplifyAction.target_entities"
     return path, entities
 
 
@@ -150,7 +153,7 @@ def _get_integration_config_path_and_fn(
     file_path: str | pathlib.Path | None,
     integration_config: SingleJson,
 ) -> PatchParams:
-    path: str = "soar_sdk.Siemplify.Siemplify.get_configuration_from_server"
+    path: str = "Siemplify.Siemplify.get_configuration_from_server"
 
     def mock_get_configuration() -> SingleJson:
         return integration_config
@@ -195,10 +198,10 @@ def _get_connector_parameters(
 
 
 def _get_set_context_path_and_fn(db: MockExternalContext) -> PatchParams:
-    path: str = "soar_sdk.SiemplifyBase.SiemplifyBase.set_context_property_in_server"
+    path: str = "SiemplifyBase.SiemplifyBase.set_context_property_in_server"
     return path, db.set_row_value
 
 
 def _get_get_context_path_and_fn(db: MockExternalContext) -> PatchParams:
-    path: str = "soar_sdk.SiemplifyBase.SiemplifyBase.get_context_property_from_server"
+    path: str = "SiemplifyBase.SiemplifyBase.get_context_property_from_server"
     return path, db.get_row_value

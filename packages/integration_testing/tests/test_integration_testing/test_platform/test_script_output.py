@@ -65,8 +65,8 @@ class TestActionScriptOutput:
 
         action_output.flush()
 
-        assert out_io.getvalue() == ""
-        assert err_io.getvalue() == ""
+        assert not out_io.getvalue()
+        assert not err_io.getvalue()
 
     def test_results_return_action_output_when_output_contains_action_output(
         self,
@@ -125,8 +125,8 @@ class TestConnectorScriptOutput:
 
         connector_output.flush()
 
-        assert out_io.getvalue() == ""
-        assert err_io.getvalue() == ""
+        assert not out_io.getvalue()
+        assert not err_io.getvalue()
 
     def test_results_return_connector_output_when_output_contains_connector_output(
         self,

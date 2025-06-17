@@ -214,10 +214,10 @@ dev = [
 
 [package.metadata]
 requires-dist = [
-    { name = "libcst", specifier = ">=1.8.1" },
+    { name = "libcst", specifier = ">=1.8.2" },
     { name = "mypy", specifier = ">=1.16.0" },
     { name = "pip", specifier = ">=25.1.1" },
-    { name = "pydantic", specifier = ">=2.11.5" },
+    { name = "pydantic", specifier = ">=2.11.7" },
     { name = "pyyaml", specifier = ">=6.0.2" },
     { name = "rich", specifier = ">=14.0.0" },
     { name = "ruff", specifier = ">=0.11.13" },
@@ -225,7 +225,7 @@ requires-dist = [
     { name = "typer", specifier = ">=0.16.0" },
     { name = "types-pyyaml", specifier = ">=6.0.12.20250516" },
     { name = "types-toml", specifier = ">=0.10.8.20240310" },
-    { name = "uv", specifier = ">=0.7.12" },
+    { name = "uv", specifier = ">=0.7.13" },
 ]
 
 [package.metadata.requires-dev]

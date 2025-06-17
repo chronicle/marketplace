@@ -23,8 +23,8 @@ import time
 from typing import TYPE_CHECKING
 
 import yaml
-from soar_sdk.OverflowManager import OverflowManager, OverflowManagerSettings
-from soar_sdk.SiemplifyDataModel import DomainEntityInfo
+from OverflowManager import OverflowManager, OverflowManagerSettings
+from SiemplifyDataModel import DomainEntityInfo
 from TIPCommon.base.action import CaseComment, EntityTypesEnum
 from TIPCommon.base.job import JobParameter
 from TIPCommon.consts import NUM_OF_MILLI_IN_SEC
@@ -39,7 +39,6 @@ from TIPCommon.data_models import (
 )
 
 from .platform.external_context import ExternalContextRow
-from .requests.response import MockResponse
 
 if TYPE_CHECKING:
     from collections.abc import Collection, Iterable
@@ -80,7 +79,7 @@ VALID_DEF_SUFFIXES: Collection[str] = (
 )
 
 
-def create_case_comment(  # noqa: PLR0913
+def create_case_comment(  # noqa: PLR0913, PLR0917
     comment: str,
     comment_id: int,
     case_id: int,
@@ -90,15 +89,20 @@ def create_case_comment(  # noqa: PLR0913
     modification_time_unix_time_in_ms: int | None = None,
     creation_time_unix_time_in_ms: int | None = None,
     creator_full_name: str | None = None,
-    is_deleted: bool | None = None,
     last_editor: str | None = None,
     last_editor_full_name: str | None = None,
     modification_time_unix_time_in_ms_for_client: int | None = None,
     comment_for_client: str | None = None,
     *,
+    is_deleted: bool | None = None,
     is_favorite: bool = False,
 ) -> CaseComment:
-    """Create a case comment."""
+    """Create a case comment object with default values.
+
+    Returns:
+        A CaseComment object
+
+    """
     now: int = int(time.time()) * NUM_OF_MILLI_IN_SEC
     return CaseComment(
         comment=comment,
@@ -131,7 +135,7 @@ def create_case_comment(  # noqa: PLR0913
     )
 
 
-def create_case_details(  # noqa: PLR0913
+def create_case_details(  # noqa: PLR0913, PLR0917
     id_: int,
     name: str,
     creation_time_unix_time_ms: int | None = None,
@@ -162,7 +166,12 @@ def create_case_details(  # noqa: PLR0913
     is_manual_case: bool = False,
     can_open_incident: bool = False,
 ) -> CaseDetails:
-    """Create a case details object."""
+    """Create a case details object.
+
+    Returns:
+        A CaseDetails object
+
+    """
     now: int = int(time.time()) * NUM_OF_MILLI_IN_SEC
     return CaseDetails(
         id_=id_,
@@ -210,7 +219,7 @@ def create_case_details(  # noqa: PLR0913
     )
 
 
-def create_entity(  # noqa: PLR0913
+def create_entity(  # noqa: PLR0913, PLR0917
     identifier: str,
     type_: EntityTypesEnum,
     alert_identifier: str = "Id",
@@ -226,7 +235,12 @@ def create_entity(  # noqa: PLR0913
     is_suspicious: bool = False,
     is_vulnerable: bool = False,
 ) -> Entity:
-    """Create an entity object that has default values to parameters."""
+    """Create an entity object that has default values to parameters.
+
+    Returns:
+        An Entity object
+
+    """
     if additional_properties is None:
         additional_properties = {"OriginalIdentifier": identifier}
 
@@ -251,7 +265,12 @@ def prepare_connector_params(
     connector_def_file: str | pathlib.Path | None,
     params: SingleJson,
 ) -> list[ConnectorParameter]:
-    """Prepare connector parameters as a list of ConnectorParameter objects."""
+    """Prepare connector parameters as a list of ConnectorParameter objects.
+
+    Returns:
+        A list of ConnectorParameter objects.
+
+    """
     connector_def: SingleJson = get_def_file_content(connector_def_file)
     def_parameters: list[SingleJson] = connector_def.get("Parameters", [])
     if not def_parameters:
@@ -265,7 +284,12 @@ def prepare_job_params(
     job_def_file: str | pathlib.Path | None,
     params: SingleJson,
 ) -> list[JobParameter]:
-    """Prepare job parameters as a list of JobParameter objects."""
+    """Prepare job parameters as a list of JobParameter objects.
+
+    Returns:
+        A list of JobParameter objects.
+
+    """
     _remove_python_process_from_job_params(params)
     job_def: SingleJson = get_def_file_content(job_def_file)
     def_parameters: list[SingleJson] = job_def.get("Parameters", [])
@@ -276,18 +300,27 @@ def prepare_job_params(
 
 
 def use_live_api() -> bool:
-    """Whether to use live API requests or mocks."""
+    """Whether to use live API requests or mocks.
+
+    Returns:
+        Whether the USE_LIVE_API environment variable is set to true.
+
+    """
     envar: str = os.environ.get(USE_LIVE_API_ENVAR, "false")
     return envar.lower() not in {"false", "", None}
 
 
-def get_empty_response(_: MockRequest) -> MockResponse:
-    """Get an empty response."""
-    return MockResponse()
-
-
 def get_def_file_content(def_file_path: str | pathlib.Path | None) -> SingleJson:
-    """Get the content of a def file."""
+    """Get the content of a def file.
+
+    Returns:
+        the contents of an integration's definition file as a dictionary.
+
+    Raises:
+        ValueError:
+            When the provided path is not of a valid JSON file.
+
+    """
     if def_file_path is None:
         return {}
 
@@ -305,10 +338,12 @@ def get_def_file_content(def_file_path: str | pathlib.Path | None) -> SingleJson
 
 
 def set_sys_argv(args: list[str]) -> None:
+    """Set 'sys.argv'."""
     sys.argv = args
 
 
 def set_is_first_run_to_true() -> None:
+    """Set the 'is_first_run' sys arg of async actions to True."""
     first_run_arg_num: int = 3
     if not sys.argv or len(sys.argv) < first_run_arg_num:
         set_sys_argv(["", "", ""])
@@ -317,6 +352,7 @@ def set_is_first_run_to_true() -> None:
 
 
 def set_is_first_run_to_false() -> None:
+    """Set the 'is_first_run' sys arg of async actions to True."""
     first_run_arg_num: int = 3
     if not sys.argv or len(sys.argv) < first_run_arg_num:
         set_sys_argv(["", "", ""])
@@ -325,6 +361,7 @@ def set_is_first_run_to_false() -> None:
 
 
 def set_is_test_run_to_false() -> None:
+    """Set the 'is_test_run' sys arg of connectors to False."""
     test_run_arg_length: int = 2
     if not sys.argv or len(sys.argv) < test_run_arg_length:
         set_sys_argv(["", "", ""])
@@ -333,6 +370,7 @@ def set_is_test_run_to_false() -> None:
 
 
 def set_is_test_run_to_true() -> None:
+    """Set the 'is_test_run' sys arg of connectors to True."""
     test_run_arg_length: int = 2
     if not sys.argv or len(sys.argv) < test_run_arg_length:
         set_sys_argv(["", "", ""])
@@ -380,7 +418,12 @@ def _create_connector_parameters(
     def_parameters: list[SingleJson],
     params: SingleJson,
 ) -> list[ConnectorParameter]:
-    """Create a connector parameters list made out of parameters and def parameters."""
+    """Create a connector parameters list made out of parameters and def parameters.
+
+    Returns:
+        A list of ConnectorParameter objects.
+
+    """
     results: list[ConnectorParameter] = []
     for parameter in def_parameters:
         parameter["param_name"] = parameter["Name"]
@@ -401,7 +444,12 @@ def _create_job_parameters(
     def_parameters: list[SingleJson],
     params: SingleJson,
 ) -> list[JobParameter]:
-    """Create a job parameters list made out of parameters and def parameters."""
+    """Create a job parameters list made out of parameters and def parameters.
+
+    Returns:
+        A list of JobParameter objects.
+
+    """
     results: list[JobParameter] = []
     for parameter in def_parameters:
         parameter["name"] = parameter["Name"]
@@ -418,7 +466,12 @@ def get_request_payload(
     request: MockRequest,
     keys: Iterable[str] | None = None,
 ) -> SingleJson:
-    """Get the payload of a request."""
+    """Get the payload of a request.
+
+    Returns:
+        The payload of a request.
+
+    """
     if keys is None:
         keys = ("json", "payload", "params", "data")
 

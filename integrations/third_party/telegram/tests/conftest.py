@@ -1,13 +1,13 @@
 from __future__ import annotations
 
 import pytest
+from integration_testing.common import use_live_api
 from TIPCommon.base.utils import CreateSession
 
-from integrations.third_party.telegram.tests.core.session import TelegramSession
-from integrations.third_party.telegram.tests.core.product import Telegram
-from packages.integration_testing.src.integration_testing.common import use_live_api
+from .core.product import Telegram
+from .core.session import TelegramSession
 
-pytest_plugins = ("packages.integration_testing.src.integration_testing.conftest",)
+pytest_plugins = ("integration_testing.conftest",)
 
 
 @pytest.fixture

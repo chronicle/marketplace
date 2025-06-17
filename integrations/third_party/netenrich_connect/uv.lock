@@ -526,7 +526,7 @@ wheels = [
 
 [[package]]
 name = "integration-testing"
-version = "1.0.4"
+version = "1.0.6"
 source = { directory = "../../../packages/integration_testing" }
 dependencies = [
     { name = "aiohttp" },
@@ -540,23 +540,23 @@ dependencies = [
 
 [package.metadata]
 requires-dist = [
-    { name = "aiohttp", specifier = ">=3.12.4" },
+    { name = "aiohttp", specifier = ">=3.12.13" },
     { name = "environmentcommon", path = "../../../packages/EnvironmentCommon-1.0.2/EnvironmentCommon-1.0.2-py2.py3-none-any.whl" },
     { name = "pyyaml", specifier = ">=6.0.2" },
     { name = "requests", specifier = ">=2.32.3" },
     { name = "soar-sdk", git = "https://github.com/chronicle/soar-sdk.git" },
     { name = "tipcommon", path = "../../../packages/TIPCommon-2.0.6/TIPCommon-2.0.6-py2.py3-none-any.whl" },
-    { name = "yarl", specifier = ">=1.20.0" },
+    { name = "yarl", specifier = ">=1.20.1" },
 ]
 
 [package.metadata.requires-dev]
 dev = [
-    { name = "mypy", specifier = ">=1.15.0" },
-    { name = "pytest", specifier = ">=8.3.5" },
+    { name = "mypy", specifier = ">=1.16.0" },
+    { name = "pytest", specifier = ">=8.4.0" },
     { name = "pytest-xdist", specifier = ">=3.7.0" },
-    { name = "ruff", specifier = ">=0.11.12" },
+    { name = "ruff", specifier = ">=0.11.13" },
     { name = "types-pyyaml", specifier = ">=6.0.12.20250516" },
-    { name = "types-requests", specifier = ">=2.32.0.20250602" },
+    { name = "types-requests", specifier = ">=2.32.0.20250611" },
 ]
 
 [[package]]

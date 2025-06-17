@@ -101,7 +101,7 @@ def check(  # noqa: PLR0913
         typer.Option(
             help="Output serialization format for violations.",
         ),
-    ] = mp.core.custom_types.CheckOutputFormat.FULL,
+    ] = mp.core.custom_types.CheckOutputFormat.FULL.value,
     *,
     fix: Annotated[
         bool,
@@ -169,7 +169,7 @@ def check(  # noqa: PLR0913
     params: CheckParams = CheckParams(
         file_paths=file_paths,
         ruff_params=mp.core.custom_types.RuffParams(
-            output_format=mp.core.custom_types.CheckOutputFormat(output_format),
+            output_format=output_format,
             fix=fix,
             unsafe_fixes=unsafe_fixes,
         ),
