@@ -386,3 +386,13 @@
     regressive: false
     deprecated: false
     removed: false
+-   description: Parse Case Wall Email - Actions Updates.
+    integration_version: 35.0
+    item_name: Parse Case Wall Email
+    item_type: Action
+    publish_time: 1739944925
+    ticket_number: '422642880'
+    new: false
+    regressive: false
+    deprecated: false
+    removed: false

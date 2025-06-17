@@ -1037,21 +1037,21 @@ class EMLParser:
                 self.header_email_list("reply-to")[0],
             )[1]
         except Exception as e:
-            self.logger.warning(f"Error parsing field reply-to due to {e}")
+            self.logger.warn(f"Error parsing field reply-to due to {e}")
 
         try:
             headers.in_reply_to = email.utils.parseaddr(
                 self.header_email_list("in-reply-to")[0],
             )[1]
         except Exception as e:
-            self.logger.warning(f"Error parsing field in-reply-to due to {e}")
+            self.logger.warn(f"Error parsing field in-reply-to due to {e}")
 
         try:
             headers.return_path = email.utils.parseaddr(
                 self.header_email_list("return-path")[0],
             )[1]
         except Exception as e:
-            self.logger.warning(f"Error parsing field return-path due to {e}")
+            self.logger.warn(f"Error parsing field return-path due to {e}")
 
         # parse and decode delivered-to
         headers.delivered_to = self.header_email_list("delivered-to")
