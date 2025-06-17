@@ -199,16 +199,16 @@ def _get_latest_release_time(release_notes: Iterable[ReleaseNote]) -> int | None
     if not latest_version:
         return None
 
-    latest_publish_time: int | None = latest_version_rn[0].publish_time
-    if latest_publish_time is not None:
-        latest_publish_time *= mp.core.constants.MS_IN_SEC
-
-    return latest_publish_time
+    return latest_version_rn[0].publish_time
 
 
 def _get_update_notification_time(latest_release_time: int) -> int:
-    return UPDATE_NOTIFICATIONS_DAYS * DAY_IN_MILLISECONDS + latest_release_time
+    release_time_ms: int = latest_release_time * mp.core.constants.MS_IN_SEC
+    expiration_delta_ms: int = UPDATE_NOTIFICATIONS_DAYS * DAY_IN_MILLISECONDS
+    return release_time_ms + expiration_delta_ms
 
 
 def _get_new_notification_time(latest_release_time: int) -> int:
-    return NEW_NOTIFICATION_DAYS * DAY_IN_MILLISECONDS + latest_release_time
+    release_time_ms: int = latest_release_time * mp.core.constants.MS_IN_SEC
+    expiration_delta_ms: int = NEW_NOTIFICATION_DAYS * DAY_IN_MILLISECONDS
+    return expiration_delta_ms + release_time_ms
