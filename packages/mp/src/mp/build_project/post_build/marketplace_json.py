@@ -138,10 +138,12 @@ class MarketplaceJsonDefinition:
         self,
         metadata: BuiltFullDetailsIntegrationMetadata,
     ) -> None:
-        release_times: ReleaseTimes = self._get_integration_release_time(metadata)
+        release_times: ReleaseTimes = self._get_integration_release_time()
+        has_connectors: bool = self._has_connectors()
+        supported_actions: list[BuiltSupportedAction] = self._get_supported_actions()
         extra_attrs: FullDetailsExtraAttrs = FullDetailsExtraAttrs(
-            HasConnectors=self._has_connectors(),
-            SupportedActions=self._get_supported_actions(),
+            HasConnectors=has_connectors,
+            SupportedActions=supported_actions,
             LatestReleasePublishTimeUnixTime=release_times.latest_release,
             UpdateNotificationExpired=release_times.update_notification,
             NewNotificationExpired=release_times.new_notification,
@@ -149,26 +151,17 @@ class MarketplaceJsonDefinition:
         metadata.update(extra_attrs)  # type: ignore[typeddict-item]
         mp.core.utils.remove_none_entries_from_mapping(metadata)
 
-    def _get_integration_release_time(
-        self,
-        def_file: BuiltFullDetailsIntegrationMetadata,
-    ) -> ReleaseTimes:
+    def _get_integration_release_time(self) -> ReleaseTimes:
         release_notes: Sequence[ReleaseNote] = ReleaseNote.from_built_integration_path(
             self.integration_path,
         )
-        latest_release_time: int | None = _calculate_latest_release_time(release_notes)
+        latest_release_time: int | None = _get_latest_release_time(release_notes)
         if latest_release_time is None or latest_release_time < 0:
             return ReleaseTimes(None, None, None)
 
-        return ReleaseTimes(
-            latest_release=latest_release_time,
-            update_notification=_get_update_notification_time(latest_release_time),
-            new_notification=(
-                _get_new_notification_time(latest_release_time)
-                if int(def_file["Version"]) == 1
-                else None
-            ),
-        )
+        update_notification: int = _get_update_notification_time(latest_release_time)
+        new_notification: int = _get_new_notification_time(latest_release_time)
+        return ReleaseTimes(latest_release_time, update_notification, new_notification)
 
     def _has_connectors(self) -> bool:
         return any(ConnectorMetadata.from_built_integration_path(self.integration_path))
@@ -195,7 +188,7 @@ class MarketplaceJsonDefinition:
         return supported_action
 
 
-def _calculate_latest_release_time(release_notes: Iterable[ReleaseNote]) -> int | None:
+def _get_latest_release_time(release_notes: Iterable[ReleaseNote]) -> int | None:
     if not release_notes:
         return 0
 
@@ -206,7 +199,11 @@ def _calculate_latest_release_time(release_notes: Iterable[ReleaseNote]) -> int 
     if not latest_version:
         return None
 
-    return latest_version_rn[0].publish_time
+    latest_publish_time: int | None = latest_version_rn[0].publish_time
+    if latest_publish_time is not None:
+        latest_publish_time *= mp.core.constants.MS_IN_SEC
+
+    return latest_publish_time
 
 
 def _get_update_notification_time(latest_release_time: int) -> int:

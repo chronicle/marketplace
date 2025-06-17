@@ -88,7 +88,7 @@ class CheckParams(NamedTuple):
 
 
 @app.command(name="check", help="Check and lint python")
-def check(  # noqa: PLR0913
+def check(
     file_paths: Annotated[
         list[str] | None,
         typer.Argument(
@@ -101,7 +101,7 @@ def check(  # noqa: PLR0913
         typer.Option(
             help="Output serialization format for violations.",
         ),
-    ] = mp.core.custom_types.CheckOutputFormat.FULL.value,
+    ] = mp.core.custom_types.CheckOutputFormat.FULL,
     *,
     fix: Annotated[
         bool,
