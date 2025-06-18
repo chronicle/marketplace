@@ -13,12 +13,12 @@
 # limitations under the License.
 from __future__ import annotations
 
-from typing import Any
-
 from soar_sdk.ScriptResult import EXECUTION_STATE_COMPLETED, EXECUTION_STATE_FAILED
 from soar_sdk.SiemplifyAction import SiemplifyAction
 from soar_sdk.SiemplifyDataModel import EntityTypes
 from soar_sdk.SiemplifyUtils import convert_dict_to_json_result_dict, output_handler
+
+from TIPCommon.types import SingleJson
 
 from ..core.ToolsCommon import get_domain_from_string
 
@@ -33,13 +33,12 @@ def main() -> None:
     siemplify = SiemplifyAction()
     siemplify.script_name = SCRIPT_NAME
     siemplify.LOGGER.info("----------------- Main - Started -----------------")
-
+    output_message = "No URLs processed"
     try:
         status = EXECUTION_STATE_COMPLETED
-        output_message = "No URLs processed"
         result_value = 0
-        failed_entities: list[Any] = []
-        successfull_entities: list[Any] = []
+        failed_entities: list[SingleJson] = []
+        successful_entities: list[SingleJson] = []
         json_result: dict[str, dict[str, str | dict[str, str]]] = {}
         out_message_list: list[str] = []
 
@@ -82,7 +81,7 @@ def main() -> None:
                     entity.additional_properties["siemplifytools_extracted_domain"] = (
                         domain
                     )
-                    successfull_entities.append(entity)
+                    successful_entities.append(entity)
                     json_result[entity.identifier] = {
                         "domain": domain,
                         "source_entity_type": entity.entity_type,
@@ -96,10 +95,10 @@ def main() -> None:
                 failed_entities.append(entity)
                 json_result[entity.identifier] = {"Error": f"Exception: {e}"}
 
-        if successfull_entities:
-            siemplify.update_entities(successfull_entities)
+        if successful_entities:
+            siemplify.update_entities(successful_entities)
             out_message_list.append(
-                f"Domain extracted for {[x.identifier for x in successfull_entities]}"
+                f"Domain extracted for {[x.identifier for x in successful_entities]}"
             )
 
         if failed_entities:
@@ -115,7 +114,7 @@ def main() -> None:
         if out_message_list:
             output_message = "\n".join(out_message_list)
 
-        result_value += len(successfull_entities)
+        result_value += len(successful_entities)
     except Exception:
         siemplify.LOGGER.exception("General error performing action %s", SCRIPT_NAME)
         status = EXECUTION_STATE_FAILED

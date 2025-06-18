@@ -15,10 +15,13 @@
 from __future__ import annotations
 
 import json
-import re
 from typing import Any
 
 from tldextract import extract
+from tldextract.tldextract import ExtractResult
+
+from .constants import LABEL_REGEX
+
 
 # CONSTS
 OPEN_PH_PARENTHASIS = "{"
@@ -127,9 +130,10 @@ def find_key_path_in_json(key_path: list[str], json_data: Any) -> Any:
 
 
 def find_key_path_recursive(
-        key_list: list[str],
-        current_json: Any,
-        iteration: int=0) -> list[Any]:
+    key_list: list[str],
+    current_json: Any,
+    iteration: int = 0,
+) -> list[Any]:
     """Recursively finds values based on a key path in a JSON-like structure.
 
     Handles nested dictionaries and lists.
@@ -166,6 +170,7 @@ def find_key_path_recursive(
             f"{current_json}",
         ]
 
+
 def get_entity_by_string(identifier: str, entities: list[Any]) -> Any | None:
     """Find an entity by its identifier string (case-insensitive)."""
     for ent in entities:
@@ -193,27 +198,37 @@ def is_supported_siemplify_version(version: tuple, min_version: tuple) -> bool:
     """
     return version >= min_version
 
-def get_domain_from_string(identifier: str, extract_subdomain: bool) -> str:
-    """Extract the domain or full subdomain+domain+suffix from a given identifier string.
+
+def get_domain_from_string(identifier: str, extract_subdomain: bool) -> str | None:
+    """
+    Extract the domain or full subdomain+domain+suffix from a given identifier string.
 
     Args:
         identifier: The input URL or identifier.
         extract_subdomain: If True, includes subdomain in the result.
 
     Returns:
-        Extracted domain, optionally including subdomain.
+        A valid domain string or None if the input is invalid.
     """
-    result = extract(identifier.strip().lower())
+    result: ExtractResult = extract(identifier.strip().lower())
 
-    REGEX = re.compile(r"^[a-zA-Z][a-zA-Z0-9-]{0,61}[a-zA-Z0-9]$")
-    SUFFIX_REGEX = re.compile(r"^[a-zA-Z]{2,6}$")
-
-    if not REGEX.fullmatch(result.domain) or not SUFFIX_REGEX.fullmatch(result.suffix):
+    if not (result.domain and is_valid_label(result.domain)):
+        return None
+    if not (
+        result.suffix and all(is_valid_label(part) for part in result.suffix.split("."))
+    ):
         return None
 
     if extract_subdomain:
-        if result.subdomain and REGEX.fullmatch(result.subdomain):
-            return f"{result.subdomain}.{result.domain}.{result.suffix}"
+        if result.subdomain:
+            sub_parts = result.subdomain.split(".")
+            if all(is_valid_label(part) for part in sub_parts):
+                return ".".join(sub_parts + [result.domain, result.suffix])
+
         return f"{result.domain}.{result.suffix}"
 
-    return result.registered_domain
+    return f"{result.domain}.{result.suffix}"
+
+
+def is_valid_label(label: str) -> bool:
+    return bool(LABEL_REGEX.fullmatch(label))
