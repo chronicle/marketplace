@@ -73,7 +73,6 @@ PYTHON_VERSION_FILE: str = ".python-version"
 
 MS_IN_SEC: int = 1_000
 
-ALLOWED_PYTHON_VERSIONS: set[str] = {"3.11", "3.12"}
 EXCLUDED_INTEGRATIONS_IDS_WITHOUT_PING: set[str] = {
     "ChronicleSupportTools",
     "Connectors",
