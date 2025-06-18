@@ -27,6 +27,9 @@ parameters:
     -   name: Sort Direction
         default_value: Descending
         type: ddl
+        optional_values:
+            - Descending
+            - Ascending
         description: The direction of the records you would like to sort by - Descending\Ascending
         is_mandatory: true
 dynamic_results_metadata:

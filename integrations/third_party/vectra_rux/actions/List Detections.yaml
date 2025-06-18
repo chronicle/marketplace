@@ -5,6 +5,13 @@ parameters:
     -   name: Detection Category
         default_value: ''
         type: ddl
+        optional_values:
+            - Info
+            - Exfiltration
+            - Lateral Movement
+            - Reconnaissance
+            - Botnet
+            - Command and Control
         description: Filter detections by Detection Category
         is_mandatory: false
     -   name: Threat GTE
@@ -30,6 +37,9 @@ parameters:
     -   name: Entity Type
         default_value: ''
         type: ddl
+        optional_values:
+            - Host
+            - Account
         description: Type of Entity
         is_mandatory: false
     -   name: Entity ID
@@ -39,6 +49,9 @@ parameters:
     -   name: Is Targeting Key Asset
         default_value: ''
         type: ddl
+        optional_values:
+            - "True"
+            - "False"
         description: Filter detections based on if it's targeting key asset or not
         is_mandatory: false
     -   name: Note Modified Timestamp GTE
@@ -52,16 +65,27 @@ parameters:
     -   name: Order
         default_value: ''
         type: ddl
+        optional_values:
+            - Ascending
+            - Descending
         description: Order records by ascending or descending
         is_mandatory: false
     -   name: Order By
         default_value: ''
         type: ddl
+        optional_values:
+            - last_timestamp
+            - threat_score
+            - certainty_score
         description: Order records by  last_timestamp, threat_score, and certainty_score
         is_mandatory: false
     -   name: State
         default_value: ''
         type: ddl
+        optional_values:
+            - Active
+            - Inactive
+            - Fixed
         description: Filter detections by State
         is_mandatory: false
     -   name: Detection Type

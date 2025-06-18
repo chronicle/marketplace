@@ -10,6 +10,17 @@ parameters:
     -   name: Function
         default_value: Max
         type: ddl
+        optional_values:
+            - Max
+            - Min
+            - Round
+            - Sort
+            - Sum
+            - Float
+            - Hex
+            - Int
+            - Abs
+            - Display
         description: Select the Math Function you would like to run on the number
         is_mandatory: true
     -   name: Numbers

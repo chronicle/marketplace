@@ -15,8 +15,12 @@ parameters:
         description: Comma-separated outcome ids to filter out accounts.
         is_mandatory: false
     -   name: Resolved
-        default_value: None
+        default_value: "None"
         type: ddl
+        optional_values:
+            - "None"
+            - "True"
+            - "False"
         description: Filter by resolved status.[true/false]
         is_mandatory: false
     -   name: Created After

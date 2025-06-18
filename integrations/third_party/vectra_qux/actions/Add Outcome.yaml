@@ -10,6 +10,10 @@ parameters:
     -   name: Category
         default_value: malicious_true_positive
         type: ddl
+        optional_values:
+            - malicious_true_positive
+            - benign_true_positive
+            - false_positive
         description: "The category of the outcome. \nCategories include:\n• malicious_true_positive\n\
         • benign_true_positive\n• false_positive"
         is_mandatory: true

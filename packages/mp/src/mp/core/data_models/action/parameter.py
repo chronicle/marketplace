@@ -14,7 +14,7 @@
 
 from __future__ import annotations
 
-from typing import Annotated, NotRequired, TypedDict
+from typing import Annotated, Any, NotRequired, TypedDict
 
 import pydantic
 
@@ -49,7 +49,7 @@ class BuiltActionParameter(TypedDict):
     Description: str
     IsMandatory: bool
     Name: str
-    OptionalValues: NotRequired[list[str]]
+    OptionalValues: list[str] | None
     Type: int
     Value: str | bool | int | float | None
     DefaultValue: str | bool | int | float | None
@@ -59,7 +59,7 @@ class NonBuiltActionParameter(TypedDict):
     description: str
     is_mandatory: bool
     name: str
-    optional_values: NotRequired[list[str]]
+    optional_values: NotRequired[list[str] | None]
     type: str
     default_value: NotRequired[str | bool | int | float | None]
 
@@ -82,6 +82,43 @@ class ActionParameter(
     optional_values: list[str] | None
     type_: ActionParamType
     default_value: str | bool | float | int | None
+
+    def model_post_init(self, context: Any, /) -> None:  # noqa: D102, ANN401, ARG002
+        self._validate_optional_values()
+        self._validate_default_value_is_in_optional_values()
+
+    def _validate_optional_values(self) -> None:
+        msg: str
+        if self._is_optional_values_type and self.optional_values is None:
+            msg = "Multiple options parameters must have optional values"
+            raise ValueError(msg)
+
+        if self.optional_values is not None and not self._is_optional_values_type:
+            msg = "Non-multiple options parameters must not have optional values"
+            raise ValueError(msg)
+
+    @property
+    def _is_optional_values_type(self) -> bool:
+        return self.type_ in {
+            ActionParamType.DDL,
+            ActionParamType.MULTI_CHOICE_PARAMETER,
+            ActionParamType.MULTI_VALUES,
+        }
+
+    def _validate_default_value_is_in_optional_values(self) -> None:
+        if not self._is_default_value_in_optional_values():
+            msg: str = (
+                "The default value of a multiple options parameter must be one of"
+                " the options"
+            )
+            raise ValueError(msg)
+
+    def _is_default_value_in_optional_values(self) -> bool:
+        return (
+            self.default_value in {None, ""}
+            or self.optional_values is None
+            or self.default_value in self.optional_values
+        )
 
     @classmethod
     def _from_built(cls, built: BuiltActionParameter) -> ActionParameter:
@@ -130,18 +167,15 @@ class ActionParameter(
             A built version of the action parameter dict
 
         """
-        results: BuiltActionParameter = BuiltActionParameter(
+        return BuiltActionParameter(
             DefaultValue=self.default_value,
             Description=self.description,
             IsMandatory=self.is_mandatory,
             Name=self.name,
             Type=self.type_.value,
             Value=self.default_value,
+            OptionalValues=self.optional_values,
         )
-        if self.optional_values is not None:
-            results["OptionalValues"] = self.optional_values
-
-        return results
 
     def to_non_built(self) -> NonBuiltActionParameter:
         """Create a non-built action param dict.
@@ -154,6 +188,7 @@ class ActionParameter(
             name=self.name,
             default_value=self.default_value,
             type=self.type_.to_string(),
+            optional_values=self.optional_values,
             description=self.description,
             is_mandatory=self.is_mandatory,
         )

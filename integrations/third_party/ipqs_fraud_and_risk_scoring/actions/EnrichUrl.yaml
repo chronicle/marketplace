@@ -12,6 +12,10 @@ parameters:
     -   name: Strictness
         default_value: '0'
         type: ddl
+        optional_values:
+            - '0'
+            - '1'
+            - '2'
         description: How strict should we scan this URL? Stricter checks may provide a
             higher false-positive rate.
         is_mandatory: true

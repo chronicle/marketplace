@@ -5,6 +5,11 @@ parameters:
     -   name: Task Status
         default_value: All
         type: ddl
+        optional_values:
+            - All
+            - Pending
+            - In-progress
+            - Finished
         description: The status of the task.
         is_mandatory: true
     -   name: Task Name

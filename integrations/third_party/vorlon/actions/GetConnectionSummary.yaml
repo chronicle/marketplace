@@ -25,6 +25,9 @@ parameters:
     -   name: Type
         default_value: observed
         type: ddl
+        optional_values:
+            - observed
+            - detected
         description: Type of connection
         is_mandatory: false
     -   name: Secret IDs

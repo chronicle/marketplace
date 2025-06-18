@@ -21,6 +21,15 @@ parameters:
     -   name: Status
         default_value: Select One
         type: ddl
+        optional_values:
+            - Select One
+            - New
+            - Assigned
+            - Unassigned
+            - Pending
+            - Dismissed
+            - Resolved
+            - Flag for Tuning
         description: Specify the new status for the alert.
         is_mandatory: true
 dynamic_results_metadata:

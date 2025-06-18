@@ -5,6 +5,9 @@ parameters:
     -   name: Order
         default_value: ''
         type: ddl
+        optional_values:
+            - Ascending
+            - Descending
         description: filter accounts by ascending or descending
         is_mandatory: false
     -   name: Limit
@@ -14,12 +17,37 @@ parameters:
     -   name: Order By
         default_value: ''
         type: ddl
+        optional_values:
+            - t_score
+            - c_score
+            - last_detection_timestamp
+            - id
         description: 'Order Accounts based on filters like last_timestamp, threat_score,
         and certainty_score,id. '
         is_mandatory: false
     -   name: Fields
         default_value: ''
         type: multi_choice_parameter
+        optional_values:
+            - id
+            - url
+            - name
+            - state
+            - threat
+            - certainty
+            - severity
+            - account_type
+            - tags
+            - note
+            - notes
+            - note_modfied_by
+            - note_modified_timestamp
+            - privilege_level
+            - privilege_category
+            - last_detection_timestamp
+            - detection_set
+            - probable_home
+            - detection_summaries
         description: 'filter accounts with coma separated values of fields.
 
         '
@@ -31,6 +59,9 @@ parameters:
     -   name: State
         default_value: ''
         type: ddl
+        optional_values:
+            - Active
+            - Inactive
         description: filter based on account State
         is_mandatory: false
     -   name: Threat GTE
@@ -70,6 +101,10 @@ parameters:
     -   name: Privilege Category
         default_value: ''
         type: ddl
+        optional_values:
+            - Low
+            - Medium
+            - High
         description: filter based on Privilege Category
         is_mandatory: false
 dynamic_results_metadata:

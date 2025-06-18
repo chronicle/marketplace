@@ -187,7 +187,7 @@ class Integration:
                 },
             )
         except ValueError as e:
-            msg: str = f"Failed to load integration {path}"
+            msg: str = f"Failed to load integration {path.name}"
             raise ValueError(msg) from e
 
     @classmethod
@@ -249,7 +249,7 @@ class Integration:
             )
 
         except (KeyError, ValueError, tomllib.TOMLDecodeError) as e:
-            msg: str = f"Failed to parse non built\n{pyproject_toml}"
+            msg: str = f"Failed to load integration {path.name}"
             raise ValueError(msg) from e
 
     def _raise_error_if_no_ping_action(self) -> None:

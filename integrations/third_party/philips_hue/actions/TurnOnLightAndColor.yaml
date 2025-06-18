@@ -15,11 +15,23 @@ parameters:
     -   name: Color
         default_value: Green
         type: ddl
+        optional_values:
+            - Red
+            - Orange
+            - Yellow
+            - Green
+            - Blue
+            - Purple
+            - Pink
         description: Color of the light.
         is_mandatory: true
     -   name: Alert effect
-        default_value: None
+        default_value: "None"
         type: ddl
+        optional_values:
+            - "None"
+            - Flicker-Once
+            - Flicker-Loop
         description: 'None: Light just turns on
 
         Flicker-Once: Light flickers once, then stays on

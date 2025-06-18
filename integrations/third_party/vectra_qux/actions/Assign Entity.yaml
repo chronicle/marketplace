@@ -11,6 +11,9 @@ parameters:
     -   name: Entity Type
         default_value: Account
         type: ddl
+        optional_values:
+            - Account
+            - Host
         description: It can be either Account or Host.
         is_mandatory: true
     -   name: User ID

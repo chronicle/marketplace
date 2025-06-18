@@ -15,6 +15,12 @@ parameters:
     -   name: Function
         default_value: Plus
         type: ddl
+        optional_values:
+            - Plus
+            - Sub
+            - Multi
+            - Div
+            - Mod
         description: 'The function you would like to run on 2 given arguments '
         is_mandatory: true
     -   name: Arg 2

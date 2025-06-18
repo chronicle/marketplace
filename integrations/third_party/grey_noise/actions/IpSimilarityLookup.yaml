@@ -11,6 +11,13 @@ parameters:
     -   name: minimum_score
         default_value: '90'
         type: ddl
+        optional_values:
+            - '75'
+            - '80'
+            - '85'
+            - '90'
+            - '95'
+            - '100'
         description: The minimum simlarity score to return in the results.
         is_mandatory: true
 dynamic_results_metadata:

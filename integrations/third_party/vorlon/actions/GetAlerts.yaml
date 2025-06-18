@@ -30,6 +30,10 @@ parameters:
     -   name: Alert Status
         default_value: open
         type: ddl
+        optional_values:
+            - open
+            - dismissed
+            - resolved
         description: Defines the list of alert statuses to retrieve
         is_mandatory: false
     -   name: Limit

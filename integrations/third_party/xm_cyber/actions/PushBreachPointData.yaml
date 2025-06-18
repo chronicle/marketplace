@@ -11,11 +11,44 @@ parameters:
     -   name: Parameter
         default_value: All
         type: ddl
+        optional_values:
+            - All
+            - entityID
+            - Affected Entities
+            - Affected Critical Assets
+            - Compromised Risk Score
+            - Is Critical Asset
+            - Choke Point Score
+            - Attacked By Techniques
+            - Labels
+            - Domain Name
+            - Enabled
+            - Account ID
+            - Highly Privileged
+            - Last Activity Date
+            - Predefined Admin
+            - ARN
+            - Is External
+            - Tenant ID
+            - Tenant Name
+            - User without MFA
+            - AD Risk to Domain
+            - AD Risky Principals
+            - AD Admins And DCs
         description: Parameter to be checked for each entity to match the criteria.
         is_mandatory: true
     -   name: Operator
         default_value: Equals
         type: ddl
+        optional_values:
+            - Less than
+            - Greater than
+            - Less than equal to
+            - Greater than equal to
+            - Equals
+            - Not equal to
+            - Contains
+            - Not Contains
         description: Operator used for for matching the values.
         is_mandatory: true
     -   name: Value

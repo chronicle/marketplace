@@ -5,6 +5,9 @@ parameters:
     -   name: Template Type
         default_value: Standard
         type: ddl
+        optional_values:
+            - HTML
+            - Standard
         description: HTML or Standard Template
         is_mandatory: true
 dynamic_results_metadata:

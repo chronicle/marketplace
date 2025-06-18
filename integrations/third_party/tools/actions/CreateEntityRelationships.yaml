@@ -19,6 +19,10 @@ parameters:
     -   name: Connect As
         default_value: Source
         type: ddl
+        optional_values:
+            - Source
+            - Destination
+            - Linked
         description: Connect entity identifiers using source, destination, or linked relationship
             to the target entity identifiers.
         is_mandatory: true

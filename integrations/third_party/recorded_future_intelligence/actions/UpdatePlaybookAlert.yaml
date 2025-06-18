@@ -20,16 +20,31 @@ parameters:
     -   name: Status
         default_value: Select One
         type: ddl
+        optional_values:
+            - Select One
+            - New
+            - In Progress
+            - Dismissed
+            - Resolved
         description: Specify the new status for the alert.
         is_mandatory: false
     -   name: Priority
         default_value: Select One
         type: ddl
+        optional_values:
+            - Select One
+            - High
+            - Moderate
+            - Informational
         description: Specify the new priority for the alert.
         is_mandatory: false
     -   name: Reopen Strategy
         default_value: Select One
         type: ddl
+        optional_values:
+            - Select One
+            - Never
+            - Significant Updates
         description: Specify the reopen strategy for the alert.
         is_mandatory: false
 dynamic_results_metadata:

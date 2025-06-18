@@ -22,6 +22,7 @@ from typing import TypedDict
 SNAKE_PATTERN_1 = re.compile(r"(.)([A-Z][a-z]+)")
 SNAKE_PATTERN_2 = re.compile(r"([a-z0-9])([A-Z])")
 GIT_STATUS_REGEXP: re.Pattern[str] = re.compile(r"^[ A-Z?!]{2} ")
+ERR_MSG_STRING_LIMIT: int = 256
 
 
 def get_python_version_from_version_string(version: str) -> str:
@@ -80,3 +81,10 @@ def str_to_snake_case(s: str) -> str:
     s = s.replace(" ", "").replace("-", "")
     s = re.sub(SNAKE_PATTERN_1, r"\1_\2", s)
     return re.sub(SNAKE_PATTERN_2, r"\1_\2", s).lower()
+
+
+def trim_values(s: str, /) -> str:
+    if len(s) > ERR_MSG_STRING_LIMIT:
+        return f"{s[: ERR_MSG_STRING_LIMIT - 3]}...{s[len(s) - 1 :]}"
+
+    return s

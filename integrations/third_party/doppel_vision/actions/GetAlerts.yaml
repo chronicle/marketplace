@@ -11,6 +11,14 @@ parameters:
     -   name: Product
         default_value: ''
         type: ddl
+        optional_values:
+            - domains
+            - social_media
+            - mobile_apps
+            - ecommerce
+            - crypto
+            - emails
+            - paid_adds
         description: Product category the report belongs to.
         is_mandatory: false
     -   name: Created Before
@@ -26,11 +34,17 @@ parameters:
     -   name: Sort Type
         default_value: ''
         type: ddl
+        optional_values:
+            - date_sourced
+            - date_last_actioned
         description: The field to sort the reports by. Defaults to date_sourced.
         is_mandatory: false
     -   name: Sort Order
         default_value: ''
         type: ddl
+        optional_values:
+            - asc
+            - desc
         description: The order to sort the reports by. Defaults to desc.
         is_mandatory: false
     -   name: Page
@@ -41,6 +55,13 @@ parameters:
     -   name: Queue State
         default_value: ''
         type: ddl
+        optional_values:
+            - doppel_review
+            - actioned
+            - needs_confirmation
+            - taken_down
+            - monitoring
+            - archived
         description: New queue status to update alert with (id required)
         is_mandatory: false
     -   name: Tags

@@ -5,6 +5,9 @@ parameters:
     -   name: Entity Type
         default_value: ''
         type: ddl
+        optional_values:
+            - Host
+            - Account
         description: 'Request entities of a specific type, valid values: “account”, “host”.
 
 
@@ -13,12 +16,43 @@ parameters:
     -   name: Order By
         default_value: ''
         type: ddl
+        optional_values:
+            - urgency_score
+            - last_detection_timestamp
+            - name
+            - last_modified_timestamp
         description: Sorts records by fields like last_timestamp, threat_score, and certainty_score.
             Use “-” for descending order.
         is_mandatory: false
     -   name: Fields
         default_value: ''
         type: multi_choice_parameter
+        optional_values:
+            - id
+            - name
+            - breadth_contrib
+            - importance
+            - type
+            - is_prioritized
+            - severity
+            - urgency_score
+            - velocity_contrib
+            - detection_set
+            - last_detection_timestamp
+            - last_modified_timestamp
+            - notes
+            - attack_rating
+            - privilege_level
+            - privilege_category
+            - attack_profile
+            - sensors
+            - state
+            - tags
+            - url
+            - host_type
+            - account_type
+            - ip
+            - entity_type
         description: filter the fields wanted to show
         is_mandatory: false
     -   name: Name
@@ -28,6 +62,9 @@ parameters:
     -   name: State
         default_value: ''
         type: ddl
+        optional_values:
+            - Active
+            - Inactive
         description: filter based on State
         is_mandatory: false
     -   name: Last Detection Timestamp GTE
@@ -49,6 +86,9 @@ parameters:
     -   name: Prioritized
         default_value: ''
         type: ddl
+        optional_values:
+            - "True"
+            - "False"
         description: filter based on if the entity is prioritized or not
         is_mandatory: false
     -   name: Limit
@@ -60,6 +100,9 @@ parameters:
     -   name: Order
         default_value: ''
         type: ddl
+        optional_values:
+            - Ascending
+            - Descending
         description: filter based on ascending or descending
         is_mandatory: false
 dynamic_results_metadata:

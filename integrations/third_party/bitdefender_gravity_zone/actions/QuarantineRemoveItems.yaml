@@ -5,6 +5,9 @@ parameters:
     -   name: Service
         default_value: Computers
         type: ddl
+        optional_values:
+            - Computers
+            - Exchange
         description: 'Allowed services are: computers, for "Computers and Virtual Machines"
         or exchange, for "Security for Exchange"'
         is_mandatory: true

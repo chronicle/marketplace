@@ -20,6 +20,10 @@ parameters:
     -   name: User Type
         default_value: Basic
         type: ddl
+        optional_values:
+            - Basic
+            - Licensed
+            - On-prem
         description: 'The user license type can be:
 
         ''Basic'', ''Licensed'', ''On-prem''.'

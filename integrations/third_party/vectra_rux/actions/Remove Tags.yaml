@@ -16,6 +16,10 @@ parameters:
     -   name: Entity Type
         default_value: Account
         type: ddl
+        optional_values:
+            - Account
+            - Host
+            - Detection
         description: The type of the entity in which tags will be added.
         is_mandatory: true
 dynamic_results_metadata:

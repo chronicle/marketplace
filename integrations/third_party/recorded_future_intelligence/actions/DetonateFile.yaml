@@ -9,6 +9,9 @@ parameters:
         is_mandatory: true
     -   name: File Source
         type: ddl
+        optional_values:
+            - GCP Bucket
+            - Local File System
         description: Destination to pull files from. By default, the action attempts to
             pull the file from Google Cloud storage bucket. Saving an attachment to the
             local file system is a fallback option.

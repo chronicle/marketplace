@@ -10,6 +10,9 @@ parameters:
     -   name: Entity Type
         default_value: Account
         type: ddl
+        optional_values:
+            - Account
+            - Host
         description: Type of an entity, It could be either Account or Host.
         is_mandatory: true
     -   name: Limit
@@ -19,6 +22,10 @@ parameters:
     -   name: State
         default_value: Active
         type: ddl
+        optional_values:
+            - Active
+            - Inactive
+            - Fixed
         description: State of detections to filter.
         is_mandatory: true
 dynamic_results_metadata:
