@@ -101,7 +101,7 @@ def check(  # noqa: PLR0913
         typer.Option(
             help="Output serialization format for violations.",
         ),
-    ] = mp.core.custom_types.CheckOutputFormat.FULL.value,
+    ] = mp.core.custom_types.CheckOutputFormat.FULL,
     *,
     fix: Annotated[
         bool,

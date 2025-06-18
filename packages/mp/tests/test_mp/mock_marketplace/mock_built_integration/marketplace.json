@@ -35,6 +35,7 @@
         "LatestReleasePublishTimeUnixTime": 1719273600,
         "MarketingDisplayName": "Mock Integration",
         "MinimumSystemVersion": 5.3,
+        "NewNotificationExpired": 1721865600000,
         "PythonVersion": 3,
         "SVGImage": "<?xml version=\"1.0\" encoding=\"UTF-8\"?><svg id=\"Layer_1\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 25 25\"><path d=\"M23.8,11.73L18.8Z\" fill-rule=\"evenodd\"/></svg>",
         "ShouldInstalledInSystem": false,
@@ -44,7 +45,7 @@
                 "Name": "Mock Integration Action"
             }
         ],
-        "UpdateNotificationExpired": 2064873600,
+        "UpdateNotificationExpired": 1719619200000,
         "Version": 2.0
     }
 ]
