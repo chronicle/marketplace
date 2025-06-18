@@ -31,7 +31,7 @@ from collections import Counter
 from email.utils import parseaddr
 from html import unescape
 from json import JSONEncoder
-from typing import Any
+from typing import Any, Optional
 from urllib.parse import parse_qs, unquote, urlparse
 
 import chardet
@@ -42,7 +42,9 @@ import magic
 import olefile
 from html2text import HTML2Text
 from msg_parser import MsOxMessage
+from soar_sdk.SiemplifyAction import SiemplifyAction
 from soar_sdk.SiemplifyDataModel import EntityTypes
+from soar_sdk.SiemplifyLogger import SiemplifyLogger
 from soar_sdk.SiemplifyUtils import dict_to_flat
 from tld import get_fld
 from urlextract import URLExtract
@@ -772,7 +774,7 @@ class Headers:
 
 
 class EmailBody:
-    def __init__(self, logger=None, email_utils=None):
+    def __init__(self, logger: SiemplifyLogger, email_utils=None):
         self.logger = logger
         self.email_utils = email_utils
 
@@ -845,10 +847,17 @@ class EmailBody:
 
 
 class MSGParser:
-    def __init__(self, msg_extractor, msg_parser, email_utils=None):
+    def __init__(
+        self,
+        msg_extractor: Any,
+        msg_parser: dict[str, Any],
+        email_utils: EmailUtils,
+        logger: SiemplifyLogger
+    ):
         self.msg_extractor = msg_extractor
         self.msg_parser = msg_parser
         self.email_utils = email_utils
+        self.logger: SiemplifyLogger = logger
 
     def parse_headers(self):
         _headers = {}
@@ -954,7 +963,7 @@ class MSGParser:
         headers = self.parse_headers()
         headers.rename_from()
         parsed_msg["header"] = headers.__dict__
-        email_body = EmailBody(email_utils=self.email_utils)
+        email_body = EmailBody(logger=self.logger, email_utils=self.email_utils)
 
         parsed_msg["body"].append(
             email_body.body(self.msg_extractor.body, "text/plain"),
@@ -981,9 +990,10 @@ class MSGParser:
                     msox_obj = self.msg_parser["attachments"][msox_attachments]
             if _attachment.type == "msg":
                 parser = MSGParser(
-                    _attachment.data,
-                    msox_obj,
+                    msg_extractor=_attachment.data,
+                    msg_parser=msox_obj,
                     email_utils=self.email_utils,
+                    logger=self.logger
                 )
                 parsed_nested_msg = parser.parse()
                 parsed_nested_msg["source_file"] = f"{msox_obj['AttachFilename']}.msg"
@@ -1005,10 +1015,10 @@ class MSGParser:
 
 
 class EMLParser:
-    def __init__(self, msg, email_utils=None, logger=None):
+    def __init__(self, msg, logger: SiemplifyLogger, email_utils: EmailUtils):
         self.msg = msg
-        self.email_utils = email_utils
-        self.logger = logger
+        self.email_utils: EmailUtils = email_utils
+        self.logger: SiemplifyLogger = logger
 
     def parse_headers(self):
         # parse and decode subject
@@ -1037,21 +1047,21 @@ class EMLParser:
                 self.header_email_list("reply-to")[0],
             )[1]
         except Exception as e:
-            self.logger.warning(f"Error parsing field reply-to due to {e}")
+            self.logger.warn(f"Error parsing field reply-to due to {e}")
 
         try:
             headers.in_reply_to = email.utils.parseaddr(
                 self.header_email_list("in-reply-to")[0],
             )[1]
         except Exception as e:
-            self.logger.warning(f"Error parsing field in-reply-to due to {e}")
+            self.logger.warn(f"Error parsing field in-reply-to due to {e}")
 
         try:
             headers.return_path = email.utils.parseaddr(
                 self.header_email_list("return-path")[0],
             )[1]
         except Exception as e:
-            self.logger.warning(f"Error parsing field return-path due to {e}")
+            self.logger.warn(f"Error parsing field return-path due to {e}")
 
         # parse and decode delivered-to
         headers.delivered_to = self.header_email_list("delivered-to")
@@ -1164,7 +1174,7 @@ class EMLParser:
 
     def parse_body(self):
         raw_bodies = self.get_raw_body_text(self.msg)
-        email_body = EmailBody(email_utils=self.email_utils)
+        email_body = EmailBody(logger=self.logger, email_utils=self.email_utils)
         body = []
 
         # the body is multi part if more than 1.
@@ -1450,12 +1460,12 @@ class EMLParser:
 
 
 class EmailManager:
-    def __init__(self, siemplify=None, logger=None, custom_regex=None):
-        self.logger = logger
-        self.siemplify = siemplify
+    def __init__(self, siemplify: SiemplifyAction, logger: SiemplifyLogger, custom_regex: dict[str, str]):
+        self.logger: SiemplifyLogger = logger
+        self.siemplify: SiemplifyAction = siemplify
         self.attachments = []
         self.attached_emails = []
-        self.custom_regex = custom_regex
+        self.custom_regex: dict[str, str] = custom_regex
 
     def traverse_attachments(self, attachment_name, content_bytes, nested_level):
         try:
@@ -1540,7 +1550,12 @@ class EmailManager:
         msox = MsOxMessage(message)
         msg_parser = msox._message.as_dict()
         email_utils = EmailUtils(custom_regex=self.custom_regex)
-        parser = MSGParser(msg_extractor, msg_parser, email_utils=email_utils)
+        parser = MSGParser(
+            msg_extractor=msg_extractor,
+            msg_parser=msg_parser,
+            email_utils=email_utils,
+            logger=self.logger
+        )
         return parser.parse()
 
     def parse_eml(self, eml_file_content: bytes) -> dict[str, Any]:
@@ -1558,7 +1573,7 @@ class EmailManager:
         email_utils = EmailUtils(custom_regex=self.custom_regex)
         if not msg:
             return None
-        parser = EMLParser(msg=msg, email_utils=email_utils, logger=self.logger)
+        parser = EMLParser(msg=msg, logger=self.logger, email_utils=email_utils)
         return parser.parse()
 
     def get_alert_entity_identifiers(self):
