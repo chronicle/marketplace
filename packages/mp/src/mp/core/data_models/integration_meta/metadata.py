@@ -41,7 +41,6 @@ MINIMUM_SYSTEM_VERSION: float = 5.3
 
 
 class PythonVersion(mp.core.data_models.abc.RepresentableEnum):
-    PY_3_7 = 2
     PY_3_11 = 3
 
     @classmethod
@@ -51,12 +50,22 @@ class PythonVersion(mp.core.data_models.abc.RepresentableEnum):
         Returns:
             The PythonVersion object
 
+        Raises:
+            ValueError:
+                When the python version doesn't match a valid version
+
         """
         str_to_enum: dict[str, PythonVersion] = {
-            "3.7": cls.PY_3_7,
             "3.11": cls.PY_3_11,
         }
-        return str_to_enum[str(s)]
+        try:
+            return str_to_enum[str(s)]
+        except KeyError:
+            msg: str = (
+                f"Invalid python version for integrations: {s}"
+                f"\nSupported versions: {', '.join(str_to_enum.keys())}"
+            )
+            raise ValueError(msg) from None
 
     def to_string(self) -> str:
         """PythonVersion's string representation.
@@ -64,12 +73,22 @@ class PythonVersion(mp.core.data_models.abc.RepresentableEnum):
         Returns:
             A string representation of the object
 
+        Raises:
+            ValueError:
+                When the python version doesn't match a valid version
+
         """
         enum_to_str: dict[PythonVersion, str] = {
-            PythonVersion.PY_3_7: "3.7",
             PythonVersion.PY_3_11: "3.11",
         }
-        return enum_to_str[self]
+        try:
+            return enum_to_str[self]
+        except KeyError:
+            msg: str = (
+                f"Invalid python version for integrations: {self}"
+                f"\nSupported versions: {', '.join(str(e.value) for e in enum_to_str)}"
+            )
+            raise ValueError(msg) from None
 
 
 class BuiltIntegrationMetadata(TypedDict):
