@@ -1,6 +1,10 @@
 identifier: Tools
 name: Tools
-parameters: [ ]
+version: 65.0
+parameters: []
+description: 'A set of utility actions for data manipulation and common platform tasks
+    to power up playbook capabilities. '
+python_version: '3.11'
 categories:
     - Utility
 svg_image: "<?xml version=\"1.0\" encoding=\"utf-8\"?><!-- Generator: Adobe Illustrator\

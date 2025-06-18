@@ -15,9 +15,13 @@
 from __future__ import annotations
 
 import json
+from typing import Any
 
 from tldextract import extract
 from tldextract.tldextract import ExtractResult
+
+from .constants import LABEL_REGEX
+
 
 # CONSTS
 OPEN_PH_PARENTHASIS = "{"
@@ -28,12 +32,14 @@ DEBUG = True
 # new comment
 
 
-def print_debug(to_print, function=""):
+def print_debug(to_print: str, function: str = "") -> None:
+    """Print debug messages if DEBUG is enabled."""
     if DEBUG:
         print(f"{function} DEBUG: {to_print}")
 
 
-def evaluate_function(val, func_name, func_values):
+def evaluate_function(val: Any, func_name: str, func_values: list[str]) -> Any:
+    """Evaluate a pipe function on a given value."""
     if func_name == "default":
         if not val:
             return func_values[0]
@@ -49,7 +55,7 @@ def evaluate_function(val, func_name, func_values):
             return len(val)
         if isinstance(val, dict):
             return len(val.keys())
-        raise Exception(f"unsupported object: {val}")
+        raise TypeError(f"unsupported object: {val}")
     if func_name == "to_str":
         if isinstance(val, list):
             return ", ".join([str(x) for x in val])
@@ -61,22 +67,19 @@ def evaluate_function(val, func_name, func_values):
             delimeter = ",".join(func_values)
             return delimeter.join([str(x) for x in val])
         except Exception:
-            raise Exception(val)
-
-    # elif func_name == "ph":
-    #     pass
+            raise ValueError(val)
     else:
-        raise Exception(f"Unknown pipe function: {func_name}")
+        raise ValueError(f"Unknown pipe function: {func_name}")
 
 
-def parse_placeholder(curr_json, placeholder, pipe):
+def parse_placeholder(curr_json: Any, placeholder: str, pipe: str) -> Any | None:
+    """Parse a single placeholder string and evaluates its content against curr_json."""
     pipes = [x.strip() for x in placeholder.split(pipe)]
 
-    # val = None
     for i, function_str in enumerate(pipes):
         first_split = function_str.strip().split("(")
         if len(first_split) > 2:
-            raise Exception(f"Bad format for pipe function: {function_str}")
+            raise ValueError(f"Bad format for pipe function: {function_str}")
         if len(first_split) == 1:
             # Assuming key_path here
             if isinstance(curr_json, list) or isinstance(curr_json, dict):
@@ -93,12 +96,13 @@ def parse_placeholder(curr_json, placeholder, pipe):
 
 
 def parse_raw_message(
-    curr_json,
-    raw_message,
-    pipe=PIPE,
-    open_ph=OPEN_PH_PARENTHASIS,
-    close_ph=CLOSE_PH_PARENTHASIS,
-):
+    curr_json: dict[str, Any],
+    raw_message: str,
+    pipe: str = PIPE,
+    open_ph: str = OPEN_PH_PARENTHASIS,
+    close_ph: str = CLOSE_PH_PARENTHASIS,
+) -> str:
+    """Parse a raw message string, replacing placeholders with values from curr_json."""
     new_message = ""
     first_break = raw_message.split(open_ph)
     new_message += first_break[0]
@@ -106,7 +110,7 @@ def parse_raw_message(
     while i < len(first_break):
         second_break = first_break[i].split(close_ph)
         if len(second_break) < 2:
-            raise Exception(
+            raise ValueError(
                 f"Missing close PH: '{close_ph}'. Raw message {raw_message}",
             )
         message_shard = parse_placeholder(curr_json, second_break[0], pipe)
@@ -116,15 +120,24 @@ def parse_raw_message(
     return new_message
 
 
-def find_key_path_in_json(key_path, json_data):
-    """Finds the relevant key_path in a json object.
+def find_key_path_in_json(key_path: list[str], json_data: Any) -> Any:
+    """Find the relevant key_path in a json object.
+
     If list encountered, this function will return a list of values, one for each
     match in each of the list's elements (using the rest of the keys)
     """
     return find_key_path_recursive(key_path, json_data)
 
 
-def find_key_path_recursive(key_list, current_json, iteration=0):
+def find_key_path_recursive(
+    key_list: list[str],
+    current_json: Any,
+    iteration: int = 0,
+) -> list[Any]:
+    """Recursively finds values based on a key path in a JSON-like structure.
+
+    Handles nested dictionaries and lists.
+    """
     if key_list:
         if isinstance(current_json, list):
             if key_list:
@@ -155,49 +168,67 @@ def find_key_path_recursive(key_list, current_json, iteration=0):
             return current_json
         return [
             f"{current_json}",
-        ]  # Found val, return it. Format to make everything into string
+        ]
 
 
-def GetEntityByString(identifier, entities):
+def get_entity_by_string(identifier: str, entities: list[Any]) -> Any | None:
+    """Find an entity by its identifier string (case-insensitive)."""
     for ent in entities:
         if identifier.lower() == ent.identifier.lower():
             return ent
     return None
 
 
-def parse_version_string_to_tuple(version):
-    """Parse version represented as string to tuple
+def parse_version_string_to_tuple(version: str) -> tuple:
+    """Parse version represented as string to tuple.
+
     :param version: {str} Version represented as string. For example "5.6.1"
     :return: {tuple} Tuple of the version. For example (5,6,1)
     """
     return tuple(map(int, (version.split("."))))
 
 
-def is_supported_siemplify_version(version, min_version):
-    """Check if Siemplify version is supported
+def is_supported_siemplify_version(version: tuple, min_version: tuple) -> bool:
+    """Check if Siemplify version is supported.
+
     :param version: {tuple} Tuple representing siemplify version. Example (5,6,1)
-    :param min_version: {Tuple} Tuple representing minimum supported siemplify version. Example (5,6,0)
+    :param min_version: {Tuple} Tuple representing minimum supported siemplify version.
+    Example (5,6,0)
     :return: {bool} True if siemplify version is supported, otherwise False
     """
     return version >= min_version
 
 
-def get_domain_from_string(identifier: str, extract_subdomain: bool) -> str:
-    """Extracts the domain or full subdomain+domain+suffix from a given identifier string
+def get_domain_from_string(identifier: str, extract_subdomain: bool) -> str | None:
+    """
+    Extract the domain or full subdomain+domain+suffix from a given identifier string.
 
     Args:
-        identifier (str): The input URL or identifier
-        extract_subdomain (bool):if True, includes subdomain in the result.
-
+        identifier: The input URL or identifier.
+        extract_subdomain: If True, includes subdomain in the result.
 
     Returns:
-        str: Extracted domain, optionally including subdomain.
-
+        A valid domain string or None if the input is invalid.
     """
     result: ExtractResult = extract(identifier.strip().lower())
+
+    if not (result.domain and is_valid_label(result.domain)):
+        return None
+    if not (
+        result.suffix and all(is_valid_label(part) for part in result.suffix.split("."))
+    ):
+        return None
+
     if extract_subdomain:
         if result.subdomain:
-            return ".".join([result.subdomain, result.domain, result.suffix])
-        return ".".join([result.domain, result.suffix])
+            sub_parts = result.subdomain.split(".")
+            if all(is_valid_label(part) for part in sub_parts):
+                return ".".join(sub_parts + [result.domain, result.suffix])
 
-    return result.registered_domain
+        return f"{result.domain}.{result.suffix}"
+
+    return f"{result.domain}.{result.suffix}"
+
+
+def is_valid_label(label: str) -> bool:
+    return bool(LABEL_REGEX.fullmatch(label))
