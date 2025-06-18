@@ -5,16 +5,36 @@ parameters:
     -   name: Additional_Data
         default_value: ''
         type: multi_choice_parameter
+        optional_values:
+            - users
+            - services
+            - conference_bridge
+            - priorities
+            - acknowledgers
+            - assignees
+            - teams
+            - escalation_policies
+            - first_trigger_log_entries
         description: Additional details to include.
         is_mandatory: false
     -   name: sort_by
         default_value: ''
         type: multi_choice_parameter
+        optional_values:
+            - incident_number
+            - created_at
+            - resolved_at
+            - urgency
+            - asc
+            - desc
         description: Pick one of the Four options and decide in which order asc or desc
         is_mandatory: false
     -   name: Urgencies
         default_value: ''
         type: multi_choice_parameter
+        optional_values:
+            - low
+            - high
         description: Urgencies
         is_mandatory: false
     -   name: User_IDS
@@ -33,6 +53,10 @@ parameters:
     -   name: Incidents_Statuses
         default_value: ''
         type: multi_choice_parameter
+        optional_values:
+            - triggered
+            - acknowledged
+            - resolved
         description: Incidents_Statuses
         is_mandatory: false
     -   name: Data_Range

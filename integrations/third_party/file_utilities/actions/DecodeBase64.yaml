@@ -10,6 +10,9 @@ parameters:
     -   name: Encoding
         default_value: UTF-8
         type: ddl
+        optional_values:
+            - UTF-8
+            - ASCII
         description: Choose the encoding option from the list
         is_mandatory: true
 dynamic_results_metadata:

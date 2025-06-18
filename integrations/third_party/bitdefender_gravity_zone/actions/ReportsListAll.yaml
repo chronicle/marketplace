@@ -10,6 +10,33 @@ parameters:
     -   name: Report Type
         default_value: ''
         type: ddl
+        optional_values:
+            - Antiphishing Activity
+            - Blocked Applications
+            - Blocked Websites
+            - Data Protection
+            - Device Control Activity
+            - Endpoint Modules Status
+            - Endpoint Protection Status
+            - Firewall Activity
+            - Malware Status
+            - Monthly License Usage
+            - Network Status
+            - On demand scanning
+            - Policy Compliance
+            - Security Audit
+            - Security Server Status
+            - Top 10 Detected Malware
+            - Top 10 Infected Endpoints
+            - Update Status
+            - Upgrade Status
+            - AWS Monthly Usage
+            - Endpoint Encryption Status
+            - HyperDetect Activity
+            - Network Patch Status
+            - Sandbox Analyzer Failed Submissions
+            - Network Incidents
+            - Email Security Usage
         description: The report type.
         is_mandatory: false
 dynamic_results_metadata:

@@ -11,6 +11,10 @@ parameters:
     -   name: Strictness
         default_value: '0'
         type: ddl
+        optional_values:
+            - '0'
+            - '1'
+            - '2'
         description: How in depth (strict) do you want this reputation check to be? Stricter
             checks may provide a higher false-positive rate.
         is_mandatory: true

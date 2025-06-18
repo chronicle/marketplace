@@ -39,6 +39,23 @@ parameters:
     -   name: Function
         default_value: Lower
         type: ddl
+        optional_values:
+            - Lower
+            - Upper
+            - Count
+            - Find
+            - IsAlpha
+            - IsDigit
+            - Replace
+            - Strip
+            - Title
+            - Regex Replace
+            - JSON Serialize
+            - Regex
+            - Split
+            - DecodeBase64
+            - EncodeBase64
+            - RemoveNewLines
         description: Select the function you would like to run from the list
         is_mandatory: true
 dynamic_results_metadata:

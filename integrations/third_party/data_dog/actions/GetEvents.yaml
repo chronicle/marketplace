@@ -24,6 +24,10 @@ parameters:
     -   name: Priority
         default_value: all
         type: ddl
+        optional_values:
+            - all
+            - normal
+            - low
         description: "The priority of the events you want to retrieve. \n"
         is_mandatory: false
     -   name: Tags

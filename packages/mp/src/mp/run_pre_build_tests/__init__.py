@@ -146,14 +146,32 @@ def run_pre_build_tests(  # noqa: PLR0913
     community_path: pathlib.Path = mp.core.file_utils.get_community_path()
     if integration:
         rich.print("Testing integrations...")
-        _test_integrations(set(integration), commercial_path)
-        _test_integrations(set(integration), community_path)
+        commercial_integrations: set[pathlib.Path] = _get_mp_paths_from_names(
+            names=integration,
+            marketplace_path=commercial_path,
+        )
+        _test_integrations(commercial_integrations)
+
+        community_integrations: set[pathlib.Path] = _get_mp_paths_from_names(
+            names=integration,
+            marketplace_path=community_path,
+        )
+        _test_integrations(community_integrations)
         rich.print("Done testing integrations.")
 
     elif group:
         rich.print("Testing groups...")
-        _test_groups(set(group), commercial_path)
-        _test_groups(set(group), community_path)
+        commercial_groups: set[pathlib.Path] = _get_mp_paths_from_names(
+            names=group,
+            marketplace_path=commercial_path,
+        )
+        _test_groups(commercial_groups)
+
+        community_groups: set[pathlib.Path] = _get_mp_paths_from_names(
+            names=group,
+            marketplace_path=community_path,
+        )
+        _test_groups(community_groups)
         rich.print("Done testing groups.")
 
     elif repository:
@@ -174,61 +192,27 @@ def _test_repository(repo: pathlib.Path) -> None:
         mp.core.file_utils.get_integrations_and_groups_from_paths(repo)
     )
     if products.integrations:
-        _test_integrations(products.integrations, repo)
+        _test_integrations(products.integrations)
 
     if products.groups:
-        _test_groups(products.groups, repo)
+        _test_groups(products.groups)
 
 
-def _test_groups(
-    groups: Iterable[str | pathlib.Path],
-    marketplace_path: pathlib.Path,
-) -> None:
-    valid_groups: set[pathlib.Path] = _get_marketplace_paths_from_names(
-        names=groups,
-        marketplace_path=marketplace_path,
-    )
-    valid_group_names: set[str] = {g.name for g in valid_groups}
-    not_found: set[str] = set(map(str, groups)).difference(valid_group_names)
-    if not_found:
-        rich.print(f"The following groups could not be found: {', '.join(not_found)}")
-
-    if valid_groups:
-        rich.print(f"Testing the following groups: {', '.join(valid_group_names)}")
-        for group in valid_groups:
-            _test_integrations(group.iterdir(), marketplace_path)
+def _test_groups(groups: Iterable[pathlib.Path]) -> None:
+    for group in groups:
+        rich.print(f"===== Testing group: {group.name}")
+        _test_integrations(group.iterdir())
 
 
-def _test_integrations(
-    integrations: Iterable[str | pathlib.Path],
-    marketplace_path: pathlib.Path,
-) -> None:
-    valid_integrations_: set[pathlib.Path] = _get_marketplace_paths_from_names(
-        names=integrations,
-        marketplace_path=marketplace_path,
-    )
-    valid_integration_names: set[str] = {i.name for i in valid_integrations_}
-    not_found: set[str] = set(map(str, integrations)).difference(
-        valid_integration_names
-    )
-    if not_found:
-        rich.print(
-            "The following integrations could not be found in"
-            f" the {marketplace_path.name} marketplace: {', '.join(not_found)}",
-        )
-    if valid_integrations_:
-        rich.print(
-            "Testing the following integrations in the"
-            f" the {marketplace_path.name} marketplace:"
-            f" {', '.join(valid_integration_names)}"
-        )
+def _test_integrations(integrations: Iterable[pathlib.Path]) -> None:
+    if integrations:
         mp.core.code_manipulation.run_script_on_paths(
             script_path=RUN_PRE_BUILD_TESTS_PATH,
-            paths=valid_integrations_,
+            paths=integrations,
         )
 
 
-def _get_marketplace_paths_from_names(
+def _get_mp_paths_from_names(
     names: Iterable[str | pathlib.Path],
     marketplace_path: pathlib.Path,
 ) -> set[pathlib.Path]:

@@ -21,6 +21,9 @@ parameters:
     -   name: Service
         default_value: Computers
         type: ddl
+        optional_values:
+            - Computers
+            - Exchange
         description: 'Allowed services are: computers, for "Computers and Virtual Machines"
         or exchange, for "Security for Exchange"'
         is_mandatory: true
@@ -55,8 +58,12 @@ parameters:
             for computers service.
         is_mandatory: false
     -   name: Filter - Action Status
-        default_value: None
+        default_value: "None"
         type: ddl
+        optional_values:
+            - "None"
+            - Pending Save
+            - Saved
         description: Filters the quarantine items by action status. "Pending Save" Is
             only available to the Exchange Service.
         is_mandatory: false

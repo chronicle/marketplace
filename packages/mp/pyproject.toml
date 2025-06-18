@@ -1,6 +1,6 @@
 [project]
 name = "mp"
-version = "0.3.4"
+version = "0.3.9"
 description = "General Purpose CLI tool for Google SecOps Marketplace"
 readme = "README.md"
 authors = [
@@ -25,25 +25,25 @@ classifiers = [
     "Programming Language :: Python :: 3 :: Only",
 ]
 dependencies = [
-    "libcst>=1.8.0",
-    "mypy>=1.16.0",
+    "libcst>=1.8.2",
+    "mypy>=1.16.1",
     "pip>=25.1.1",
-    "pydantic>=2.11.5",
+    "pydantic>=2.11.7",
     "pyyaml>=6.0.2",
     "rich>=14.0.0",
-    "ruff>=0.11.13",
+    "ruff>=0.12.13",
     "toml>=0.10.2",
     "typer>=0.16.0",
-    "uv>=0.7.12",
+    "uv>=0.7.13",
+    "types-pyyaml>=6.0.12.20250516",
+    "types-toml>=0.10.8.20240310",
 ]
 
 [dependency-groups]
 dev = [
     "pytest>=8.4.0",
-    "pytest-cov>=6.1.1",
+    "pytest-cov>=6.2.1",
     "pytest-xdist>=3.7.0",
-    "types-pyyaml>=6.0.12.20250516",
-    "types-toml>=0.10.8.20240310",
 ]
 
 [project.scripts]
@@ -63,6 +63,9 @@ exclude = [
     'build',
     'dist',
 ]
+
+[tool.pydantic-mypy]
+init_typed = false
 
 [tool.pytest.ini_options]
 pythonpath = "src"

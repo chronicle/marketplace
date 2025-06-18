@@ -6,6 +6,9 @@ parameters:
     -   name: Attachment Scope
         default_value: Alert
         type: ddl
+        optional_values:
+            - Case
+            - Alert
         description: The scope of the attachment that needs to be retrieved - case or
             alert
         is_mandatory: true

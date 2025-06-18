@@ -22,6 +22,18 @@ parameters:
     -   name: Create Observed Entities
         default_value: All
         type: ddl
+        optional_values:
+            - All
+            - URLs
+            - Emails
+            - IPs
+            - Hashes
+            - URLs, Emails, and IPs
+            - URLs, Emails, and Hashes
+            - Emails and IPs
+            - URLs and Hashes
+            - Emails and Hashes
+            - None
         description: 'Create Entities out of the observed entities in the email body.
 
         ''All'' will create URL, Email, IP, and Hash entities.'

@@ -18,9 +18,10 @@ import sys
 from typing import TYPE_CHECKING
 
 import pytest
-from soar_sdk import SiemplifyLogger, SiemplifyUtils
-from soar_sdk.SiemplifyBase import SiemplifyBase
-from soar_sdk.SiemplifyConnectors import SiemplifyConnectorExecution
+import SiemplifyLogger
+import SiemplifyUtils
+from SiemplifyBase import SiemplifyBase
+from SiemplifyConnectors import SiemplifyConnectorExecution
 from TIPCommon.base.utils import CreateSession
 
 from .common import use_live_api
@@ -34,10 +35,13 @@ if TYPE_CHECKING:
 
 
 @pytest.fixture(autouse=True)
-def script_session(
-    monkeypatch: pytest.MonkeyPatch,
-) -> MockSession:
-    """Mock scripts' sessions and to view request and response history."""
+def script_session(monkeypatch: pytest.MonkeyPatch) -> MockSession:
+    """Mock scripts' sessions and to view request and response history.
+
+    Returns:
+        A mock session object.
+
+    """
     session: MockSession = MockSession()
     if not use_live_api():
         monkeypatch.setattr(CreateSession, "create_session", lambda: session)
@@ -156,9 +160,7 @@ def action_output(monkeypatch: pytest.MonkeyPatch) -> Iterator[MockActionOutput]
 
 
 @pytest.fixture
-def connector_output(
-    monkeypatch: pytest.MonkeyPatch,
-) -> Iterator[MockConnectorOutput]:
+def connector_output(monkeypatch: pytest.MonkeyPatch) -> Iterator[MockConnectorOutput]:
     """Fixture for mocking and capturing connector output streams.
 
     This fixture temporarily replaces the real standard output and error streams used by
@@ -183,5 +185,10 @@ def connector_output(
 
 @pytest.fixture
 def external_context() -> MockExternalContext:
-    """External context DB-like object."""
+    """External context DB-like object.
+
+    Returns:
+        A mock external context object.
+
+    """
     return MockExternalContext()

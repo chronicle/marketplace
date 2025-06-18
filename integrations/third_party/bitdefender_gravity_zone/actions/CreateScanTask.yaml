@@ -11,6 +11,11 @@ parameters:
     -   name: Scan Type
         default_value: Quick
         type: ddl
+        optional_values:
+            - Quick
+            - Full
+            - Memory
+            - Custom
         description: 'The type of scan. Available options are: 1 - quick scan; 2 - full
         scan; 3 - memory scan; 4 - custom scan'
         is_mandatory: true
@@ -22,6 +27,10 @@ parameters:
     -   name: Custom Scan - Depth
         default_value: Normal
         type: ddl
+        optional_values:
+            - Aggressive
+            - Normal
+            - Permissive
         description: 'The scan profile. Available options: 1 - aggressive; 2 - normal;
         3 - permissive. This parameter is only used when scan type is Custom'
         is_mandatory: false

@@ -41,7 +41,6 @@ MINIMUM_SYSTEM_VERSION: float = 5.3
 
 
 class PythonVersion(mp.core.data_models.abc.RepresentableEnum):
-    PY_3_7 = 2
     PY_3_11 = 3
 
     @classmethod
@@ -51,12 +50,22 @@ class PythonVersion(mp.core.data_models.abc.RepresentableEnum):
         Returns:
             The PythonVersion object
 
+        Raises:
+            ValueError:
+                When the python version doesn't match a valid version
+
         """
         str_to_enum: dict[str, PythonVersion] = {
-            "3.7": cls.PY_3_7,
             "3.11": cls.PY_3_11,
         }
-        return str_to_enum[str(s)]
+        try:
+            return str_to_enum[str(s)]
+        except KeyError:
+            msg: str = (
+                f"Invalid python version for integrations: {s}"
+                f"\nSupported versions: {', '.join(str_to_enum.keys())}"
+            )
+            raise ValueError(msg) from None
 
     def to_string(self) -> str:
         """PythonVersion's string representation.
@@ -64,12 +73,22 @@ class PythonVersion(mp.core.data_models.abc.RepresentableEnum):
         Returns:
             A string representation of the object
 
+        Raises:
+            ValueError:
+                When the python version doesn't match a valid version
+
         """
         enum_to_str: dict[PythonVersion, str] = {
-            PythonVersion.PY_3_7: "3.7",
             PythonVersion.PY_3_11: "3.11",
         }
-        return enum_to_str[self]
+        try:
+            return enum_to_str[self]
+        except KeyError:
+            msg: str = (
+                f"Invalid python version for integrations: {self}"
+                f"\nSupported versions: {', '.join(str(e.value) for e in enum_to_str)}"
+            )
+            raise ValueError(msg) from None
 
 
 class BuiltIntegrationMetadata(TypedDict):
@@ -180,8 +199,7 @@ class IntegrationMetadata(
         try:
             metadata_content: BuiltIntegrationMetadata = json.loads(built)
             metadata: Self = cls.from_built(metadata_content)
-            is_certified: bool = mp.core.file_utils.is_commercial_integration(path)
-            metadata.is_certified = metadata.is_powerup or is_certified
+            metadata.is_certified = mp.core.file_utils.is_commercial_integration(path)
         except (ValueError, json.JSONDecodeError) as e:
             msg: str = f"Failed to load json from {metadata_path}\n{built}"
             raise ValueError(msg) from e
@@ -207,8 +225,7 @@ class IntegrationMetadata(
         try:
             metadata_content: NonBuiltIntegrationMetadata = yaml.safe_load(built)
             metadata: Self = cls.from_non_built(metadata_content)
-            is_certified: bool = mp.core.file_utils.is_commercial_integration(path)
-            metadata.is_certified = metadata.is_powerup or is_certified
+            metadata.is_certified = mp.core.file_utils.is_commercial_integration(path)
         except (ValueError, json.JSONDecodeError) as e:
             msg: str = f"Failed to load json from {metadata_path}\n{built}"
             raise ValueError(msg) from e
@@ -222,6 +239,10 @@ class IntegrationMetadata(
         if raw_feature_tags is not None:
             feature_tags = FeatureTags.from_built(raw_feature_tags)
 
+        image: str | bytes | None = built["ImageBase64"]
+        if isinstance(image, str):
+            image = image.encode()
+
         return cls(
             categories=built["Categories"],
             description=built["Description"],
@@ -230,7 +251,7 @@ class IntegrationMetadata(
             identifier=built["Identifier"],
             python_version=PythonVersion(built["PythonVersion"]),
             documentation_link=built["DocumentationLink"],
-            image_base64=built["ImageBase64"],
+            image_base64=image,
             parameters=[
                 IntegrationParameter.from_built(p)
                 for p in built["IntegrationProperties"]
@@ -250,13 +271,17 @@ class IntegrationMetadata(
         if raw_feature_tags is not None:
             feature_tags = FeatureTags.from_non_built(raw_feature_tags)
 
+        image: str | bytes | None = non_built["image_base64"]
+        if isinstance(image, str):
+            image = image.encode()
+
         return cls(
             categories=non_built["categories"],
             feature_tags=feature_tags,
             name=non_built["name"],
             identifier=non_built["identifier"],
             documentation_link=non_built.get("documentation_link"),
-            image_base64=non_built["image_base64"],
+            image_base64=image,
             parameters=[
                 IntegrationParameter.from_non_built(p) for p in non_built["parameters"]
             ],

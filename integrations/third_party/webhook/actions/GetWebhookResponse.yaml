@@ -5,6 +5,9 @@ parameters:
     -   name: Pending Condition
         default_value: TimeFrame
         type: ddl
+        optional_values:
+            - AwaitClick
+            - TimeFrame
         description: 'TimeFrame - Choose the custom timeout condition.
 
         AwaitClick - Wait for first click before ending script.'
@@ -20,6 +23,9 @@ parameters:
     -   name: Responses To Retrieve
         default_value: All
         type: ddl
+        optional_values:
+            - Latest
+            - All
         description: Choose All to retrieve all responses data, or Latest to retrieve
             only the latest responses data.
         is_mandatory: true

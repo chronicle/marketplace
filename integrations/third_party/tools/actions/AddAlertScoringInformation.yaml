@@ -17,6 +17,12 @@ parameters:
     -   name: Severity
         default_value: Informational
         type: ddl
+        optional_values:
+            - Informational
+            - Low
+            - Medium
+            - High
+            - Critical
         description: The severity.
         is_mandatory: true
     -   name: Category

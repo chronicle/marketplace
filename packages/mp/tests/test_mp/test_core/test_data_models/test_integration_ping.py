@@ -22,9 +22,12 @@ import pytest
 import mp.core.constants
 from mp.core.data_models.action.metadata import ActionMetadata
 from mp.core.data_models.integration import Integration
+from mp.core.data_models.integration_meta.metadata import PythonVersion
 
 if TYPE_CHECKING:
-    from mp.core.data_models.integration_meta.metadata import IntegrationMetadata
+    from mp.core.data_models.integration_meta.metadata import (
+        IntegrationMetadata,
+    )
 
 
 class TestNoPingAction:
@@ -83,10 +86,12 @@ class TestNoPingAction:
         metadata: IntegrationMetadata = mock.MagicMock()
         metadata.identifier = "test_integration"
         metadata.is_custom = False
+        metadata.python_version = PythonVersion.PY_3_11
 
         # Test that creating the integration still works (ping exists but is disabled)
         with pytest.raises(RuntimeError, match="contains disabled scripts"):
             Integration(
+                python_version=PythonVersion.PY_3_11.to_string(),
                 identifier="test_integration",
                 metadata=metadata,
                 release_notes=[],
@@ -114,10 +119,12 @@ class TestNoPingAction:
         metadata: IntegrationMetadata = mock.MagicMock()
         metadata.identifier = "test_integration"
         metadata.is_custom = False
+        metadata.python_version = PythonVersion.PY_3_11
 
         # Test that creating the integration still works (ping exists but is disabled)
         with pytest.raises(RuntimeError, match="contains custom scripts"):
             Integration(
+                python_version=PythonVersion.PY_3_11.to_string(),
                 identifier="test_integration",
                 metadata=metadata,
                 release_notes=[],
@@ -137,10 +144,12 @@ class TestNoPingAction:
         metadata: IntegrationMetadata = mock.MagicMock()
         metadata.identifier = "special_integration"
         metadata.is_custom = False
+        metadata.python_version = PythonVersion.PY_3_11
 
         # First try with empty exclusion list - should fail
         with pytest.raises(RuntimeError, match="doesn't implement a 'ping' action"):
             Integration(
+                python_version=PythonVersion.PY_3_11.to_string(),
                 identifier="special_integration",
                 metadata=metadata,
                 release_notes=[],
@@ -161,6 +170,7 @@ class TestNoPingAction:
         ):
             # Should not raise exception
             integration: Integration = Integration(
+                python_version=PythonVersion.PY_3_11.to_string(),
                 identifier="special_integration",
                 metadata=metadata,
                 release_notes=[],

@@ -8,6 +8,12 @@ parameters:
     -   name: Archive Type
         default_value: zip
         type: ddl
+        optional_values:
+            - zip
+            - tar
+            - gztar
+            - bztar
+            - xztar
         description: "The type of archive to create.  \n\nSupports: \nzip,\nuncompressed\
         \ tar-file\ngzip'ed tar-file\nbzip2'ed tar-file\nxz'ed tar-file"
         is_mandatory: true

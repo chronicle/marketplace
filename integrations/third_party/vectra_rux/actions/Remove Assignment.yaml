@@ -10,6 +10,9 @@ parameters:
     -   name: Entity Type
         default_value: Account
         type: ddl
+        optional_values:
+            - Account
+            - Host
         description: 'Entity Type
 
         (Account, Host)'

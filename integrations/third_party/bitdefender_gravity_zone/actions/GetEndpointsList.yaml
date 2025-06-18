@@ -36,6 +36,10 @@ parameters:
     -   name: Endpoints
         default_value: All
         type: ddl
+        optional_values:
+            - All
+            - Managed
+            - Unmanaged
         description: Select whether to return only managed endpoints, unmanaged endpoints,
             or all endpoints.
         is_mandatory: true

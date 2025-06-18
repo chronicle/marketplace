@@ -7,6 +7,9 @@ parameters:
     -   name: Sort By Time
         default_value: Descending
         type: ddl
+        optional_values:
+            - Ascending
+            - Descending
         description: Presents the data in a descending or ascending order.
         is_mandatory: false
     -   name: Entity Types
@@ -54,6 +57,10 @@ parameters:
     -   name: Indicator Type
         default_value: attribute
         type: ddl
+        optional_values:
+            - simple
+            - event
+            - attribute
         description: 'Simple-simplified list of indicators of compromise
 
         Attribute- indicators of compromise (IOCs)

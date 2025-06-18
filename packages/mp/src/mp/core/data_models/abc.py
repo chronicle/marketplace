@@ -17,10 +17,13 @@ from __future__ import annotations
 import abc
 import enum
 import json
-from typing import TYPE_CHECKING, Generic, Self, TypeVar
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, Generic, Self, TypeVar
 
 import pydantic
 import yaml
+
+import mp.core.utils
 
 if TYPE_CHECKING:
     import pathlib
@@ -51,8 +54,8 @@ class RepresentableEnum(enum.Enum):
         return self.name.casefold()
 
 
-_BT = TypeVar("_BT")
-_NBT = TypeVar("_NBT")
+_BT = TypeVar("_BT", bound=Mapping[str, Any])
+_NBT = TypeVar("_NBT", bound=Mapping[str, Any])
 
 
 class Buildable(pydantic.BaseModel, abc.ABC, Generic[_BT, _NBT]):
@@ -118,7 +121,7 @@ class Buildable(pydantic.BaseModel, abc.ABC, Generic[_BT, _NBT]):
             metadata: Self = cls._from_built(built)
         except (KeyError, ValueError) as e:
             msg: str = f"Failed to load built\n{built}"
-            raise ValueError(msg) from e
+            raise ValueError(mp.core.utils.trim_values(msg)) from e
         else:
             return metadata
 
@@ -140,7 +143,7 @@ class Buildable(pydantic.BaseModel, abc.ABC, Generic[_BT, _NBT]):
             metadata: Self = cls._from_non_built(non_built)
         except (KeyError, ValueError) as e:
             msg: str = f"Failed to load non-built\n{non_built}"
-            raise ValueError(msg) from e
+            raise ValueError(mp.core.utils.trim_values(msg)) from e
         else:
             return metadata
 
@@ -211,7 +214,7 @@ class BuildableScript(pydantic.BaseModel, abc.ABC, Generic[_BT, _NBT]):
             metadata: Self = cls._from_built(file_name, built)
         except (KeyError, ValueError) as e:
             msg: str = f"Failed to load built\n{built}"
-            raise ValueError(msg) from e
+            raise ValueError(mp.core.utils.trim_values(msg)) from e
         else:
             return metadata
 
@@ -234,7 +237,7 @@ class BuildableScript(pydantic.BaseModel, abc.ABC, Generic[_BT, _NBT]):
             metadata: Self = cls._from_non_built(file_name, non_built)
         except (KeyError, ValueError) as e:
             msg: str = f"Failed to load non-built\n{non_built}"
-            raise ValueError(msg) from e
+            raise ValueError(mp.core.utils.trim_values(msg)) from e
         else:
             return metadata
 
@@ -286,7 +289,7 @@ class ScriptMetadata(BuildableScript[_BT, _NBT], abc.ABC, Generic[_BT, _NBT]):
             built: Self = cls.from_built(metadata_path.stem, metadata_json)
         except (ValueError, json.JSONDecodeError) as e:
             msg: str = f"Failed to load json from {metadata_path}: {built_content}"
-            raise ValueError(msg) from e
+            raise ValueError(mp.core.utils.trim_values(msg)) from e
         else:
             return built
 
@@ -313,7 +316,7 @@ class ScriptMetadata(BuildableScript[_BT, _NBT], abc.ABC, Generic[_BT, _NBT]):
             )
         except (ValueError, yaml.YAMLError) as e:
             msg: str = f"Failed to load yaml from {metadata_path}: {non_built_content}"
-            raise ValueError(msg) from e
+            raise ValueError(mp.core.utils.trim_values(msg)) from e
         else:
             return non_built
 
@@ -365,7 +368,7 @@ class SequentialMetadata(Buildable[_BT, _NBT], abc.ABC, Generic[_BT, _NBT]):
             results: list[Self] = [cls.from_built(c) for c in content]
         except (ValueError, json.JSONDecodeError) as e:
             msg: str = f"Failed to load json from {meta_path}\n{built}"
-            raise ValueError(msg) from e
+            raise ValueError(mp.core.utils.trim_values(msg)) from e
         else:
             return results
 
@@ -389,6 +392,6 @@ class SequentialMetadata(Buildable[_BT, _NBT], abc.ABC, Generic[_BT, _NBT]):
             results: list[Self] = [cls.from_non_built(c) for c in content]
         except (ValueError, yaml.YAMLError) as e:
             msg: str = f"Failed to load yaml from {meta_path}\n{non_built}"
-            raise ValueError(msg) from e
+            raise ValueError(mp.core.utils.trim_values(msg)) from e
         else:
             return results

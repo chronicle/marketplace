@@ -15,8 +15,14 @@ parameters:
         description: Name of group
         is_mandatory: false
     -   name: Type
-        default_value: None
+        default_value: "None"
         type: ddl
+        optional_values:
+            - account"
+            - ip"
+            - domain"
+            - host"
+            - "None"
         description: Type of group
         is_mandatory: false
     -   name: Limit
@@ -40,8 +46,14 @@ parameters:
         description: Comma separated values of host names
         is_mandatory: false
     -   name: Importance
-        default_value: None
+        default_value: "None"
         type: ddl
+        optional_values:
+            - low
+            - medium
+            - high
+            - never_prioritize
+            - "None"
         description: Importance of group
         is_mandatory: false
     -   name: IPs

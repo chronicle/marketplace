@@ -15,6 +15,10 @@ parameters:
     -   name: Entity Type
         default_value: Account
         type: ddl
+        optional_values:
+            - Account
+            - Host
+            - Detection
         description: Type of the entity in which the note will be added
         is_mandatory: true
 dynamic_results_metadata:

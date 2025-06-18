@@ -5,6 +5,9 @@ parameters:
     -   name: Meeting Type
         default_value: Scheduled
         type: ddl
+        optional_values:
+            - Instant
+            - Scheduled
         description: 'The type of the meeting can be ''Instant'' or ''Scheduled''
 
         Setting the meeting to ''Instant'' will overlap the configuration of the ''Scheduled''
@@ -23,8 +26,12 @@ parameters:
         description: The meeting topic
         is_mandatory: true
     -   name: Auto Recording Type
-        default_value: none
+        default_value: "none"
         type: ddl
+        optional_values:
+            - local
+            - cloud
+            - "none"
         description: "'local'-Recording automatically on the local server.\n'cloud'-Recording\
         \  automatically on cloud.\n'none'- Choose if you do not want to record. \n"
         is_mandatory: true

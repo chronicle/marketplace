@@ -111,6 +111,9 @@ def get_integrations_and_groups_from_paths(
     integrations: set[pathlib.Path] = set()
     groups: set[pathlib.Path] = set()
     for path in paths:
+        if not path.exists():
+            continue
+
         for dir_ in path.iterdir():
             if is_group(dir_):
                 groups.add(dir_)

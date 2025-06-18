@@ -11,6 +11,10 @@ parameters:
     -   name: Abuse Strictness
         default_value: '0'
         type: ddl
+        optional_values:
+            - '0'
+            - '1'
+            - '2'
         description: Set the strictness level for machine learning pattern recognition
             of abusive email addresses with the "recent_abuse" data point.
         is_mandatory: true

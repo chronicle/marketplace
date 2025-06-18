@@ -5,6 +5,9 @@ parameters:
     -   name: Scope
         default_value: Alert
         type: ddl
+        optional_values:
+            - Case
+            - Alert
         description: Alert or Case or Global
         is_mandatory: true
     -   name: Key

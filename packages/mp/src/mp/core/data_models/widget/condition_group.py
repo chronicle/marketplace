@@ -44,32 +44,22 @@ class ConditionGroup(
 
     @classmethod
     def _from_built(cls, built: BuiltConditionGroup) -> ConditionGroup:
-        try:
-            return cls(
-                conditions=[
-                    Condition.from_built(condition) for condition in built["conditions"]
-                ],
-                logical_operator=LogicalOperator(built["logicalOperator"]),
-            )
-        except (KeyError, ValueError) as e:
-            msg: str = f"Failed to load built\n{built}"
-            raise ValueError(msg) from e
+        return cls(
+            conditions=[
+                Condition.from_built(condition) for condition in built["conditions"]
+            ],
+            logical_operator=LogicalOperator(built["logicalOperator"]),
+        )
 
     @classmethod
     def _from_non_built(cls, non_built: NonBuiltConditionGroup) -> ConditionGroup:
-        try:
-            return cls(
-                conditions=[
-                    Condition.from_non_built(condition)
-                    for condition in non_built["conditions"]
-                ],
-                logical_operator=LogicalOperator.from_string(
-                    non_built["logical_operator"],
-                ),
-            )
-        except (KeyError, ValueError) as e:
-            msg: str = f"Failed to load non built\n{non_built}"
-            raise ValueError(msg) from e
+        return cls(
+            conditions=[
+                Condition.from_non_built(condition)
+                for condition in non_built["conditions"]
+            ],
+            logical_operator=LogicalOperator.from_string(non_built["logical_operator"]),
+        )
 
     def to_built(self) -> BuiltConditionGroup:
         """Turn the buildable object into a "built" typed dict.

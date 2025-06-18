@@ -10,6 +10,9 @@ parameters:
     -   name: Entity Type
         default_value: Account
         type: ddl
+        optional_values:
+            - Account
+            - Host
         description: Type can be of Account or Host.
         is_mandatory: true
 dynamic_results_metadata:

@@ -15,6 +15,10 @@ parameters:
     -   name: Role
         default_value: Writer
         type: ddl
+        optional_values:
+            - Owner
+            - Writer
+            - Reader
         description: '"Owner"- allows to make any changes to the document
 
         "Reader"- allows to open and view the document
