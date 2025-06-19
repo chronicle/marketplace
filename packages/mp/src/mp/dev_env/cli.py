@@ -1,9 +1,12 @@
+# Copyright (c) 2024, Your Company or Name
+import json
 from pathlib import Path
 
 import typer
 
 from .api import BackendAPI
 from .utils import (
+    CONFIG_PATH,
     build_integration,
     find_built_integration_dir,
     get_integration_identifier,
@@ -18,21 +21,25 @@ app = typer.Typer(
 
 @app.command()
 def login() -> None:
+    """Authenticate to the dev environment (playground).
+    """
     api_root = typer.prompt("API root (e.g. https://playground.example.com)")
     username = typer.prompt("Username")
     password = typer.prompt("Password", hide_input=True)
     config = {"api_root": api_root, "username": username, "password": password}
-    from .utils import CONFIG_PATH
-
-    with CONFIG_PATH.open("w") as f:
-        import json
-
+    with CONFIG_PATH.open("w", encoding="utf-8") as f:
         json.dump(config, f)
     typer.echo(f"[dev-env] Credentials saved to {CONFIG_PATH}")
 
 
 @app.command()
 def deploy(integration: str) -> None:
+    """Build and deploy an integration to the dev environment (playground).
+
+    Raises:
+        typer.Exit: If the integration is not found or the build/upload fails.
+
+    """
     config = load_dev_env_config()
     integrations_root = Path.cwd() / "integrations"
     source_path = None
@@ -65,4 +72,4 @@ def deploy(integration: str) -> None:
         typer.echo(f"[dev-env] Upload result: {result}")
     except Exception as e:
         typer.echo(f"[dev-env] Upload failed: {e}")
-        raise typer.Exit(1)
+        raise typer.Exit(1) from e
