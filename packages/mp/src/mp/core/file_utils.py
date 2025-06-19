@@ -209,6 +209,19 @@ def remove_paths_if_exists(*paths: pathlib.Path) -> None:
         _remove_path_if_exists(path)
 
 
+def remove_globs_if_exists(*patterns: str, root: pathlib.Path) -> None:
+    """Remove all files and directories matching the given glob patterns.
+
+    Args:
+        *patterns: Glob patterns to match (e.g., "*.pyc", "**/__pycache__").
+        root: The root directory to search from.
+
+    """
+    for pattern in patterns:
+        for path in root.glob(pattern):
+            _remove_path_if_exists(path)
+
+
 def _remove_path_if_exists(path: pathlib.Path) -> None:
     if path.is_file() and is_path_in_marketplace(path):
         path.unlink(missing_ok=True)

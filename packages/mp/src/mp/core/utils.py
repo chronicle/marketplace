@@ -84,6 +84,15 @@ def str_to_snake_case(s: str) -> str:
 
 
 def trim_values(s: str, /) -> str:
+    """Trim a string to a maximum length.
+
+    Args:
+        s: the string to trim
+
+    Returns:
+        The trimmed string
+
+    """
     if len(s) > ERR_MSG_STRING_LIMIT:
         return f"{s[: ERR_MSG_STRING_LIMIT - 3]}...{s[len(s) - 1 :]}"
 
