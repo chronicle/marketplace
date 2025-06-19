@@ -16,6 +16,15 @@
             "Mode": 2,
             "Name": "PubSub Project ID",
             "Type": 2
+        },
+        {
+            "DefaultValue": true,
+            "Description": "Verify SSL",
+            "IsAdvanced": false,
+            "IsMandatory": false,
+            "Mode": 2,
+            "Name": "Verify SSL",
+            "Type": 0
         }
     ],
     "Rules": [

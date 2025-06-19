@@ -14,7 +14,7 @@ parameters:
         is_mandatory: true
         integration_identifier: VectraQUX
     -   name: Verify SSL
-        default_value: 'true'
+        default_value: true
         type: boolean
         description: "Determines if SSL certificates should be verified or not. \nNOTE:\
         \ This field will be used only if Verify SSL checkbox is checked."

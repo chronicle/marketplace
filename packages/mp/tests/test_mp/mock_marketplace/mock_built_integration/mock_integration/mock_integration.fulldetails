@@ -22,6 +22,15 @@
             "PropertyName": "Mock Parameter",
             "PropertyType": 3,
             "Value": ""
+        },
+        {
+            "IntegrationIdentifier": "mock_integration",
+            "IsMandatory": true,
+            "PropertyDescription": "Verify SSL",
+            "PropertyDisplayName": "Verify SSL",
+            "PropertyName": "Verify SSL",
+            "PropertyType": 0,
+            "Value": true
         }
     ],
     "IsCustom": false,

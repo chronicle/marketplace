@@ -24,13 +24,13 @@ parameters:
         is_mandatory: false
         integration_identifier: RecordedFutureIntelligence
     -   name: Verify SSL
-        default_value: 'True'
+        default_value: true
         type: boolean
         description: ''
         is_mandatory: false
         integration_identifier: RecordedFutureIntelligence
     -   name: CollectiveInsights
-        default_value: 'True'
+        default_value: true
         type: boolean
         description: ''
         is_mandatory: true

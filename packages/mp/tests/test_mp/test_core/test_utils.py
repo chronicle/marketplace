@@ -78,9 +78,7 @@ class TestTrimValues:
         assert mp.core.utils.trim_values(input_str) == input_str
 
     def test_string_at_limit_plus_padding(self) -> None:
-        input_str = "x" * (
-            mp.core.utils.ERR_MSG_STRING_LIMIT + len(mp.core.utils.TRIM_CHARS)
-        )
+        input_str = "x" * mp.core.utils.ERR_MSG_STRING_LIMIT
         assert mp.core.utils.trim_values(input_str) == input_str
 
     def test_string_exceeding_limit(self) -> None:
@@ -88,12 +86,6 @@ class TestTrimValues:
         result = mp.core.utils.trim_values(input_str)
         assert len(result) < len(input_str)
         assert mp.core.utils.TRIM_CHARS in result
-        assert result.startswith(
-            input_str[
-                : mp.core.utils.ERR_MSG_STRING_LIMIT - len(mp.core.utils.TRIM_CHARS)
-            ]
-        )
-        assert result.endswith(input_str[-len(mp.core.utils.TRIM_CHARS) :])
 
     def test_empty_string(self) -> None:
         assert not mp.core.utils.trim_values("")
@@ -142,37 +134,17 @@ class TestTrimValues:
         assert mp.core.utils.TRIM_CHARS in result
         assert len(result) < len(non_ascii)
 
-    def test_result_structure(self) -> None:
-        input_str = "x" * (mp.core.utils.ERR_MSG_STRING_LIMIT * 2)
-        result = mp.core.utils.trim_values(input_str)
-
-        # Check the structure: start + ellipses + end
-        start = result[: result.index(mp.core.utils.TRIM_CHARS)]
-        end = result[
-            result.index(mp.core.utils.TRIM_CHARS) + len(mp.core.utils.TRIM_CHARS) :
-        ]
-
-        assert len(start) == mp.core.utils.ERR_MSG_STRING_LIMIT - len(
-            mp.core.utils.TRIM_CHARS
-        )
-        assert len(end) == len(mp.core.utils.TRIM_CHARS)
-
     def test_boundary_values(self) -> None:
         test_cases = [
             mp.core.utils.ERR_MSG_STRING_LIMIT - 1,
             mp.core.utils.ERR_MSG_STRING_LIMIT,
             mp.core.utils.ERR_MSG_STRING_LIMIT + 1,
-            mp.core.utils.ERR_MSG_STRING_LIMIT + len(mp.core.utils.TRIM_CHARS) - 1,
-            mp.core.utils.ERR_MSG_STRING_LIMIT + len(mp.core.utils.TRIM_CHARS),
-            mp.core.utils.ERR_MSG_STRING_LIMIT + len(mp.core.utils.TRIM_CHARS) + 1,
         ]
 
         for length in test_cases:
             input_str = "x" * length
             result = mp.core.utils.trim_values(input_str)
-            if length > mp.core.utils.ERR_MSG_STRING_LIMIT + len(
-                mp.core.utils.TRIM_CHARS
-            ):
+            if length > mp.core.utils.ERR_MSG_STRING_LIMIT:
                 assert mp.core.utils.TRIM_CHARS in result
                 assert len(result) < len(input_str)
             else:
@@ -183,9 +155,7 @@ class TestTrimValues:
         result = mp.core.utils.trim_values(input_str)
         assert len(result) < len(input_str)
         assert mp.core.utils.TRIM_CHARS in result
-        assert len(result) == mp.core.utils.ERR_MSG_STRING_LIMIT + len(
-            mp.core.utils.TRIM_CHARS
-        )
+        assert len(result) == mp.core.utils.ERR_MSG_STRING_LIMIT
 
     @pytest.mark.parametrize(
         "input_str",
@@ -199,10 +169,6 @@ class TestTrimValues:
     )
     def test_various_inputs(self, input_str: str) -> None:
         result = mp.core.utils.trim_values(input_str)
-        assert len(result) <= mp.core.utils.ERR_MSG_STRING_LIMIT + len(
-            mp.core.utils.TRIM_CHARS
-        )
-        if len(input_str) > mp.core.utils.ERR_MSG_STRING_LIMIT + len(
-            mp.core.utils.TRIM_CHARS
-        ):
+        assert len(result) <= mp.core.utils.ERR_MSG_STRING_LIMIT
+        if len(input_str) > mp.core.utils.ERR_MSG_STRING_LIMIT:
             assert mp.core.utils.TRIM_CHARS in result

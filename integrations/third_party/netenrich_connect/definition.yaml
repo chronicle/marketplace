@@ -18,7 +18,7 @@ parameters:
     is_mandatory: true
     integration_identifier: NetenrichConnect
 -   name: Verify SSL
-    default_value: 'true'
+    default_value: true
     type: boolean
     description: Verify SSL when making requests
     is_mandatory: false
