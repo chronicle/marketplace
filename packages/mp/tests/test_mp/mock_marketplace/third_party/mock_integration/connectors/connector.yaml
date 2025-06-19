@@ -27,6 +27,13 @@ parameters:
         mode: script
         name: PubSub Project ID
         type: string
+    -   default_value: true
+        description: Verify SSL
+        is_advanced: false
+        is_mandatory: false
+        mode: script
+        name: Verify SSL
+        type: boolean
 rules:
     -   rule_name: EXTERNAL
         rule_type: allow_list
