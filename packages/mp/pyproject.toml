@@ -1,6 +1,6 @@
 [project]
 name = "mp"
-version = "0.3.11"
+version = "0.3.12"
 description = "General Purpose CLI tool for Google SecOps Marketplace"
 readme = "README.md"
 authors = [
@@ -37,6 +37,7 @@ dependencies = [
     "uv>=0.7.13",
     "types-pyyaml>=6.0.12.20250516",
     "types-toml>=0.10.8.20240310",
+    "requests>=2.32.3",
 ]
 
 [dependency-groups]
