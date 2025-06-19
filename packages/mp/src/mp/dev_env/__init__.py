@@ -18,18 +18,22 @@ from __future__ import annotations
 import json
 import pathlib
 from typing import Annotated, NamedTuple
+
 import rich
 import typer
+
 from . import api, utils
 
 app = typer.Typer(
     help="Commands for interacting with the development environment (playground)"
 )
 
+
 class DevEnvParams(NamedTuple):
     username: str
     password: str
     api_root: str
+
 
 @app.command()
 def login(
@@ -37,7 +41,8 @@ def login(
         str | None,
         typer.Option(
             "--api-root",
-            help="API root (e.g. https://playground.example.com). If not provided, will prompt.",
+            help="API root (e.g. https://playground.example.com). "
+            "If not provided, will prompt.",
         ),
     ] = None,
     username: Annotated[
@@ -55,6 +60,7 @@ def login(
             hide_input=True,
         ),
     ] = None,
+    *,
     no_verify: Annotated[
         bool,
         typer.Option(
@@ -63,7 +69,18 @@ def login(
         ),
     ] = False,
 ) -> None:
-    """Authenticate to the dev environment (playground)."""
+    """Authenticate to the dev environment (playground).
+
+    Args:
+        api_root: The API root of the dev environment.
+        username: The username to authenticate with.
+        password: The password to authenticate with.
+        no_verify: Skip credential verification after saving.
+
+    Raises:
+        typer.Exit: If the API root, username, or password is not provided.
+
+    """
     if api_root is None:
         api_root = typer.prompt("API root (e.g. https://playground.example.com)")
     if username is None:
@@ -74,7 +91,9 @@ def login(
     if api_root is None or username is None or password is None:
         rich.print(
             "API root, username, and password are required. "
-            "Please provide them using the --api-root, --username, and --password options."
+            "Please provide them using the"
+            "--api-root, --username, and --password options."
+            "Or run 'mp dev-env login' to be prompted for them."
         )
         raise typer.Exit(1)
 
@@ -103,9 +122,20 @@ def login(
             )
             raise typer.Exit(1) from e
 
+
 @app.command()
-def deploy(integration: str = typer.Argument(..., help="Integration to build and deploy.")) -> None:
-    """Build and deploy an integration to the dev environment (playground)."""
+def deploy(
+    integration: str = typer.Argument(..., help="Integration to build and deploy."),
+) -> None:
+    """Build and deploy an integration to the dev environment (playground).
+
+    Args:
+        integration: The integration to build and deploy.
+
+    Raises:
+        typer.Exit: If the integration is not found.
+
+    """
     config = utils.load_dev_env_config()
     integrations_root = pathlib.Path.cwd() / "integrations"
     source_path = None

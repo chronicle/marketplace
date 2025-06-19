@@ -74,7 +74,11 @@ def get_out_integrations_path() -> pathlib.Path:
         The out/integrations' directory path
 
     """
-    return config.get_marketplace_path() / constants.OUT_DIR_NAME / constants.INTEGRATIONS_DIR_NAME
+    return (
+        config.get_marketplace_path()
+        / constants.OUT_DIR_NAME
+        / constants.INTEGRATIONS_DIR_NAME
+    )
 
 
 def discover_core_modules(path: pathlib.Path) -> list[ManagerName]:
