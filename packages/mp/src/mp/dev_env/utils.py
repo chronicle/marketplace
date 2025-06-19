@@ -12,21 +12,25 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+from __future__ import annotations
+
 import json
 import os
+import pathlib
 import subprocess  # noqa: S404
 import zipfile
-from pathlib import Path
-from typing import Any
 
+import rich
 import typer
 
+import mp.core.constants
+import mp.core.file_utils
 from mp.core.data_models.integration import Integration
 
-CONFIG_PATH = Path.home() / ".mp_dev_env.json"
+CONFIG_PATH = pathlib.Path.home() / ".mp_dev_env.json"
 
 
-def zip_integration_dir(integration_dir: Path) -> Path:
+def zip_integration_dir(integration_dir: pathlib.Path) -> pathlib.Path:
     """Zip the contents of a built integration directory for upload.
 
     Args:
@@ -39,14 +43,15 @@ def zip_integration_dir(integration_dir: Path) -> Path:
     zip_path = integration_dir.with_suffix(".zip")
     with zipfile.ZipFile(zip_path, "w", zipfile.ZIP_DEFLATED) as zipf:
         for root, _, files in os.walk(integration_dir):
+            root_path = pathlib.Path(root)
             for file in files:
-                file_path = Path(root) / file
+                file_path = root_path / file
                 arcname = file_path.relative_to(integration_dir)
                 zipf.write(file_path, arcname)
     return zip_path
 
 
-def load_dev_env_config() -> dict[str, Any]:
+def load_dev_env_config() -> dict[str, str]:
     """Load the dev environment configuration from the config file.
 
     Returns:
@@ -57,7 +62,7 @@ def load_dev_env_config() -> dict[str, Any]:
 
     """
     if not CONFIG_PATH.exists():
-        typer.echo("[dev-env] Not logged in. Please run 'mp dev-env login' first.")
+        rich.print("[red] Not logged in. Please run 'mp dev-env login' first. [/red]")
         raise typer.Exit(1)
     with CONFIG_PATH.open(encoding="utf-8") as f:
         return json.load(f)
@@ -75,17 +80,18 @@ def build_integration(integration: str) -> None:
     """
     result = subprocess.run(  # noqa: S603
         ["mp", "build", "--integration", integration, "--quiet"],  # noqa: S607
-        check=False,
         capture_output=True,
+        check=False,
         text=True,
     )
     if result.returncode != 0:
-        typer.echo(f"[dev-env] Build failed:\n{result.stderr}")
+        rich.print(f"[red]Build failed:\n{result.stderr}[/red]")
         raise typer.Exit(result.returncode)
-    typer.echo(f"[dev-env] Build output:\n{result.stdout}")
+
+    rich.print(f"Build output:\n{result.stdout}")
 
 
-def get_integration_identifier(source_path: Path) -> str:
+def get_integration_identifier(source_path: pathlib.Path) -> str:
     """Get the integration identifier from the non-built integration path.
 
     Args:
@@ -101,13 +107,13 @@ def get_integration_identifier(source_path: Path) -> str:
     try:
         integration_obj = Integration.from_non_built_path(source_path)
     except ValueError as e:
-        typer.echo(f"[dev-env] Could not determine integration identifier: {e}")
+        rich.print(f"[red]Could not determine integration identifier: {e}[/red]")
         raise typer.Exit(1) from e
     else:
         return integration_obj.identifier
 
 
-def find_built_integration_dir(_: Path, identifier: str) -> Path:
+def find_built_integration_dir(_: pathlib.Path, identifier: str) -> pathlib.Path:
     """Find the built integration directory.
 
     Args:
@@ -121,13 +127,13 @@ def find_built_integration_dir(_: Path, identifier: str) -> Path:
         typer.Exit: If the built integration is not found.
 
     """
-    root = Path.cwd() / "out" / "integrations"
-    for repo in ["commercial", "third_party"]:
+    root = mp.core.file_utils.get_out_integrations_path()
+    for repo in mp.core.constants.INTEGRATIONS_TYPES:
         candidate = root / repo / identifier
         if candidate.exists():
             return candidate
-    typer.echo(
-        f"[dev-env] Built integration not found for identifier '{identifier}' "
-        "in out/integrations."
+    rich.print(
+        f"[red]Built integration not found for identifier '{identifier}' "
+        "in out/integrations.[/red]"
     )
     raise typer.Exit(1)

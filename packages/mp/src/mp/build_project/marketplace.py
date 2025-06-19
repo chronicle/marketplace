@@ -205,9 +205,8 @@ class Marketplace:
             / mp.core.constants.OUT_MANAGERS_SCRIPTS_DIR
             / mp.core.constants.PACKAGE_FILE,
         )
-        mp.core.file_utils.remove_globs_if_exists(
-            "**/*.pyc",
-            "**/__pycache__",
+        mp.core.file_utils.remove_rglobs_if_exists(
+            *mp.core.constants.EXCLUDED_GLOBS,
             root=integration,
         )
 

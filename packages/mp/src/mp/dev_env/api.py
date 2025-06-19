@@ -12,16 +12,15 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+from __future__ import annotations
+
 import base64
-import warnings
-from pathlib import Path
-from typing import Any
+from typing import TYPE_CHECKING, Any
 
 import requests
-from urllib3.exceptions import InsecureRequestWarning
 
-# Suppress only the InsecureRequestWarning from urllib3
-warnings.filterwarnings("ignore", category=InsecureRequestWarning)
+if TYPE_CHECKING:
+    import pathlib
 
 
 class BackendAPI:
@@ -39,12 +38,12 @@ class BackendAPI:
         """Authenticate and store the session token."""
         login_url = f"{self.api_root}/api/external/v1/accounts/Login?format=camel"
         login_payload = {"userName": self.username, "password": self.password}
-        resp = self.session.post(login_url, json=login_payload, verify=False)
+        resp = self.session.post(login_url, json=login_payload)
         resp.raise_for_status()
         self.token = resp.json()["token"]
         self.session.headers.update({"Authorization": f"Bearer {self.token}"})
 
-    def get_integration_details(self, zip_path: Path) -> dict[str, Any]:
+    def get_integration_details(self, zip_path: pathlib.Path) -> dict[str, Any]:
         """Get integration details from a zipped package.
 
         Args:
@@ -59,11 +58,13 @@ class BackendAPI:
         )
         data = base64.b64encode(zip_path.read_bytes()).decode()
         details_payload = {"data": data}
-        resp = self.session.post(details_url, json=details_payload, verify=False)
+        resp = self.session.post(details_url, json=details_payload)
         resp.raise_for_status()
         return resp.json()
 
-    def upload_integration(self, zip_path: Path, integration_id: str) -> dict[str, Any]:
+    def upload_integration(
+        self, zip_path: pathlib.Path, integration_id: str
+    ) -> dict[str, Any]:
         """Upload a zipped integration package to the backend.
 
         Args:
@@ -81,6 +82,6 @@ class BackendAPI:
             "integrationIdentifier": integration_id,
             "isCustom": False,
         }
-        resp = self.session.post(upload_url, json=upload_payload, verify=False)
+        resp = self.session.post(upload_url, json=upload_payload)
         resp.raise_for_status()
         return resp.json()

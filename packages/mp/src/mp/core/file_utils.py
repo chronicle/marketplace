@@ -67,6 +67,16 @@ def get_integrations_path() -> pathlib.Path:
     return config.get_marketplace_path() / constants.INTEGRATIONS_DIR_NAME
 
 
+def get_out_integrations_path() -> pathlib.Path:
+    """Get the out/integrations' path.
+
+    Returns:
+        The out/integrations' directory path
+
+    """
+    return config.get_marketplace_path() / constants.OUT_DIR_NAME / constants.INTEGRATIONS_DIR_NAME
+
+
 def discover_core_modules(path: pathlib.Path) -> list[ManagerName]:
     """Discover core/manager modules in an integration.
 
@@ -173,11 +183,7 @@ def is_group(path: pathlib.Path) -> bool:
 
     """
     parents: set[str] = {p.name for p in (path, *path.parents)}
-    valid_base_dirs: tuple[str, ...] = (
-        constants.COMMUNITY_DIR_NAME,
-        constants.COMMERCIAL_DIR_NAME,
-    )
-    return bool(parents.intersection(valid_base_dirs) and _is_group(path))
+    return bool(parents.intersection(constants.INTEGRATIONS_TYPES) and _is_group(path))
 
 
 def _is_group(path: pathlib.Path) -> bool:
@@ -209,7 +215,7 @@ def remove_paths_if_exists(*paths: pathlib.Path) -> None:
         _remove_path_if_exists(path)
 
 
-def remove_globs_if_exists(*patterns: str, root: pathlib.Path) -> None:
+def remove_rglobs_if_exists(*patterns: str, root: pathlib.Path) -> None:
     """Remove all files and directories matching the given glob patterns.
 
     Args:
@@ -218,7 +224,7 @@ def remove_globs_if_exists(*patterns: str, root: pathlib.Path) -> None:
 
     """
     for pattern in patterns:
-        for path in root.glob(pattern):
+        for path in root.rglob(pattern):
             _remove_path_if_exists(path)
 
 
