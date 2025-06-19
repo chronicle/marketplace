@@ -23,6 +23,7 @@ SNAKE_PATTERN_1 = re.compile(r"(.)([A-Z][a-z]+)")
 SNAKE_PATTERN_2 = re.compile(r"([a-z0-9])([A-Z])")
 GIT_STATUS_REGEXP: re.Pattern[str] = re.compile(r"^[ A-Z?!]{2} ")
 ERR_MSG_STRING_LIMIT: int = 256
+TRIM_CHARS: str = " ... "
 
 
 def get_python_version_from_version_string(version: str) -> str:
@@ -84,16 +85,22 @@ def str_to_snake_case(s: str) -> str:
 
 
 def trim_values(s: str, /) -> str:
-    """Trim a string to a maximum length.
+    """Trims a given string if its length exceeds a defined limit and appends ellipses.
+
+    The function is designed to enforce an upper length constraint for strings.
 
     Args:
-        s: the string to trim
+        s: The input string to be trimmed if it exceeds the defined length limit.
 
     Returns:
-        The trimmed string
+        The trimmed string if the length of the input string exceeds the limit,
+        otherwise the original string is returned.
 
     """
-    if len(s) > ERR_MSG_STRING_LIMIT:
-        return f"{s[: ERR_MSG_STRING_LIMIT - 3]}...{s[len(s) - 1 :]}"
+    padding: int = len(TRIM_CHARS)
+    if len(s) > ERR_MSG_STRING_LIMIT + padding:
+        return (
+            f"{s[: ERR_MSG_STRING_LIMIT - padding]}{TRIM_CHARS}{s[len(s) - padding :]}"
+        )
 
     return s

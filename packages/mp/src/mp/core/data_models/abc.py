@@ -288,7 +288,7 @@ class ScriptMetadata(BuildableScript[_BT, _NBT], abc.ABC, Generic[_BT, _NBT]):
             metadata_json: _BT = json.loads(built_content)
             built: Self = cls.from_built(metadata_path.stem, metadata_json)
         except (ValueError, json.JSONDecodeError) as e:
-            msg: str = f"Failed to load json from {metadata_path}: {built_content}"
+            msg: str = f"Failed to load json from {metadata_path}\n{built_content}"
             raise ValueError(mp.core.utils.trim_values(msg)) from e
         else:
             return built
@@ -315,7 +315,7 @@ class ScriptMetadata(BuildableScript[_BT, _NBT], abc.ABC, Generic[_BT, _NBT]):
                 metadata_json,
             )
         except (ValueError, yaml.YAMLError) as e:
-            msg: str = f"Failed to load yaml from {metadata_path}: {non_built_content}"
+            msg: str = f"Failed to load yaml from {metadata_path}\n{non_built_content}"
             raise ValueError(mp.core.utils.trim_values(msg)) from e
         else:
             return non_built
