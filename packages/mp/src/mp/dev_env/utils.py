@@ -1,7 +1,7 @@
 # Copyright (c) 2024, Your Company or Name
 import json
 import os
-import subprocess
+import subprocess  # noqa: S404
 import zipfile
 from pathlib import Path
 from typing import Any
@@ -60,9 +60,8 @@ def build_integration(integration: str) -> None:
         typer.Exit: If the build fails.
 
     """
-    # nosec: B603, B607 - trusted input from CLI
-    result = subprocess.run(
-        ["mp", "build", "--integration", integration, "--quiet"],
+    result = subprocess.run(  # noqa: S603
+        ["mp", "build", "--integration", integration, "--quiet"],  # noqa: S607
         check=False,
         capture_output=True,
         text=True,
@@ -96,7 +95,7 @@ def get_integration_identifier(source_path: Path) -> str:
 
 
 def find_built_integration_dir(_: Path, identifier: str) -> Path:
-    """Find the built integration directory in out/integrations/COMMERCIAL|third_party/<Identifier>.
+    """Find the built integration directory.
 
     Args:
         _: Unused source path argument.
