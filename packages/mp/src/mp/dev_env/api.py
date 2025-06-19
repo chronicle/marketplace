@@ -1,10 +1,10 @@
 # Copyright (c) 2024, Your Company or Name
 import base64
+import warnings
 from pathlib import Path
 from typing import Any
 
 import requests
-import warnings
 from urllib3.exceptions import InsecureRequestWarning
 
 # Suppress only the InsecureRequestWarning from urllib3

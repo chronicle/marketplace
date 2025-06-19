@@ -1,6 +1,7 @@
 # Copyright (c) 2024, Your Company or Name
 import json
 from pathlib import Path
+from typing import Annotated
 
 import typer
 
@@ -19,9 +20,26 @@ app = typer.Typer(
 )
 
 
-@app.command()
-def login(no_verify: bool = typer.Option(False, "--no-verify", help="Skip credential verification after saving.")) -> None:
-    """Authenticate to the dev environment (playground)."""
+@app.command(name="login", help="Authenticate to the dev environment.")
+def login(
+    *,
+    no_verify: Annotated[
+        bool,
+        typer.Option(
+            "--no-verify",
+            help="Skip credential verification after saving.",
+        ),
+    ] = False,
+) -> None:
+    """Authenticate to the dev environment (playground).
+
+    Args:
+        no_verify: Skip credential verification after saving.
+
+    Raises:
+        typer.Exit: If the credential verification fails.
+
+    """
     api_root = typer.prompt("API root (e.g. https://playground.example.com)")
     username = typer.prompt("Username")
     password = typer.prompt("Password", hide_input=True)
@@ -34,14 +52,19 @@ def login(no_verify: bool = typer.Option(False, "--no-verify", help="Skip creden
         try:
             api = BackendAPI(api_root, username, password)
             api.login()
-            typer.secho("[dev-env] ✅ Credentials verified successfully.", fg=typer.colors.GREEN)
+            typer.secho(
+                "[dev-env] ✅ Credentials verified successfully.", fg=typer.colors.GREEN
+            )
         except Exception as e:
             CONFIG_PATH.unlink(missing_ok=True)
-            typer.echo(f"[dev-env] Credential verification failed: {e}\nCredentials file removed.")
-            raise typer.Exit(1)
+            typer.echo(
+                f"[dev-env] Credential verification failed: {e}\n"
+                "Credentials file removed."
+            )
+            raise typer.Exit(1) from e
 
 
-@app.command()
+@app.command(name="deploy", help="Build and deploy an integration.")
 def deploy(integration: str) -> None:
     """Build and deploy an integration to the dev environment (playground).
 
@@ -79,7 +102,9 @@ def deploy(integration: str) -> None:
         integration_id = details["identifier"]
         result = api.upload_integration(zip_path, integration_id)
         typer.echo(f"[dev-env] Upload result: {result}")
-        typer.secho("[dev-env] ✅ Integration deployed successfully.", fg=typer.colors.GREEN)
+        typer.secho(
+            "[dev-env] ✅ Integration deployed successfully.", fg=typer.colors.GREEN
+        )
     except Exception as e:
         typer.echo(f"[dev-env] Upload failed: {e}")
         raise typer.Exit(1) from e
