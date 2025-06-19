@@ -4,6 +4,11 @@ from pathlib import Path
 from typing import Any
 
 import requests
+import warnings
+from urllib3.exceptions import InsecureRequestWarning
+
+# Suppress only the InsecureRequestWarning from urllib3
+warnings.filterwarnings("ignore", category=InsecureRequestWarning)
 
 
 class BackendAPI:

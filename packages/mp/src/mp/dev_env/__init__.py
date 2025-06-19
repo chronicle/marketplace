@@ -20,7 +20,7 @@ app = typer.Typer(
 
 
 @app.command()
-def login() -> None:
+def login(no_verify: bool = typer.Option(False, "--no-verify", help="Skip credential verification after saving.")) -> None:
     """Authenticate to the dev environment (playground)."""
     api_root = typer.prompt("API root (e.g. https://playground.example.com)")
     username = typer.prompt("Username")
@@ -29,6 +29,16 @@ def login() -> None:
     with CONFIG_PATH.open("w", encoding="utf-8") as f:
         json.dump(config, f)
     typer.echo(f"[dev-env] Credentials saved to {CONFIG_PATH}")
+
+    if not no_verify:
+        try:
+            api = BackendAPI(api_root, username, password)
+            api.login()
+            typer.secho("[dev-env] ✅ Credentials verified successfully.", fg=typer.colors.GREEN)
+        except Exception as e:
+            CONFIG_PATH.unlink(missing_ok=True)
+            typer.echo(f"[dev-env] Credential verification failed: {e}\nCredentials file removed.")
+            raise typer.Exit(1)
 
 
 @app.command()
@@ -69,6 +79,7 @@ def deploy(integration: str) -> None:
         integration_id = details["identifier"]
         result = api.upload_integration(zip_path, integration_id)
         typer.echo(f"[dev-env] Upload result: {result}")
+        typer.secho("[dev-env] ✅ Integration deployed successfully.", fg=typer.colors.GREEN)
     except Exception as e:
         typer.echo(f"[dev-env] Upload failed: {e}")
         raise typer.Exit(1) from e
