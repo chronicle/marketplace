@@ -1,6 +1,6 @@
 [project]
 name = "GitSync"
-version = "29.0"
+version = "30.0"
 description = "Sync Google SecOps integrations, playbooks, and settings with a GitHub, BitBucket or GitLab instance"
 requires-python = ">=3.11"
 dependencies = [

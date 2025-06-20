@@ -510,3 +510,59 @@ class SiemplifyApiClient:
         res = self.session.post("attackssimulator/ImportCustomCase", json=case)
         self.validate_response(res)
         return True
+
+    def get_integration_instance_name(
+        self,
+        integration_name: str,
+        instance_id: str,
+    ) -> str:
+        """Gets the integration instance name.
+
+        Args:
+            integration_name (str): Integration name.
+            instance_id (str): Integration instance id.
+
+        Returns:
+            str: Returns display name of the integration instance.
+        """
+        api_root = self.api_root.replace("/external/v1/", "/1p/external/v1.0/")
+        session = BaseUrlSession(base_url=api_root)
+        session.headers = {"AppKey": self.api_key}
+        session.verify = self.session.verify
+        res = session.get(
+            f"integrations/{integration_name}/integrationInstances/{instance_id}",
+        )
+        self.validate_response(res)
+        return res.json()["displayName"]
+
+    def get_integration_instance_id_by_name(
+        self,
+        integration_name: str,
+        display_name: str,
+    ) -> str | None:
+        """Gets the integration instance id by name.
+
+        Args:
+            integration_name (str): Integration name.
+            display_name (str): Display name of the integration instance.
+
+        Returns:
+            str | None: Returns integration instance id.
+        """
+        if display_name is None:
+            return None
+        api_root = self.api_root.replace("/external/v1/", "/1p/external/v1.0/")
+        session = BaseUrlSession(base_url=api_root)
+        session.headers = {"AppKey": self.api_key}
+        session.verify = self.session.verify
+        params = {"filter": f'displayName="{display_name}"'}
+        res = session.get(
+            f"integrations/{integration_name}/integrationInstances",
+            params=params,
+        )
+        self.validate_response(res)
+        try:
+            return res.json()["items"][0]["identifier"]
+
+        except ValueError:
+            return None

@@ -81,7 +81,9 @@ def main():
             for playbook in gitsync.api.get_playbooks():
                 siemplify.LOGGER.info(f"Pushing {playbook['name']}")
                 playbook = gitsync.api.get_playbook(playbook["identifier"])
-                gitsync.content.push_playbook(Workflow(playbook))
+                workflow = Workflow(playbook)
+                workflow.update_instance_name_to_steps(gitsync.api)
+                gitsync.content.push_playbook(workflow)
 
         # Jobs
         if features["Jobs"]:

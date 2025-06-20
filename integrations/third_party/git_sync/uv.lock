@@ -477,7 +477,7 @@ wheels = [
 
 [[package]]
 name = "gitsync"
-version = "29.0"
+version = "30.0"
 source = { virtual = "." }
 dependencies = [
     { name = "dulwich" },
