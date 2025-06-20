@@ -17,6 +17,7 @@ from __future__ import annotations
 import base64
 import json
 from typing import TYPE_CHECKING, Any
+import uuid
 from zipfile import ZipFile
 
 from jinja2 import Environment as JinjaEnvironment
@@ -440,6 +441,37 @@ class Workflow(Content):
 
     def get_involved_blocks(self):
         return [x for x in self.steps if x.get("type") == 5]
+
+    def update_instance_name_to_steps(self, api: SiemplifyApiClient) -> None:
+        """Updates name of instances in the steps.
+
+        Args:
+            api (SiemplifyApiClient): SiemplifyApiClient object.
+        """
+        for step in self.steps:
+            if step.get("type") == 0 and step.get("actionProvider") == "Scripts":
+                for param in step.get("parameters", []):
+                    if param["name"] in [
+                        "IntegrationInstance",
+                        "FallbackIntegrationInstance",
+                    ] and self._is_valid_instance_id(param["value"]):
+                        display_name = api.get_integration_instance_name(
+                            step["integration"], param["value"]
+                        )
+                        if param["name"] == "IntegrationInstance":
+                            param["InstanceDisplayName"] = display_name
+                        if param["name"] == "FallbackIntegrationInstance":
+                            param["FallbackInstanceDisplayName"] = display_name
+
+
+    def _is_valid_instance_id(self, instance_id: str) -> bool:
+        try:
+            val = uuid.UUID(instance_id, version=4)
+
+        except (TypeError, ValueError):
+            return False
+
+        return str(val) == instance_id and val.version == 4
 
 
 class Job(Content):

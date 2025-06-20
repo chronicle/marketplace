@@ -633,3 +633,13 @@
     regressive: false
     deprecated: false
     removed: false
+-   description: Pull Content, Push Content - Updated logic to save playbooks with instance name.
+    integration_version: 30.0
+    item_name: Pull Content, Push Content
+    item_type: Jobs
+    publish_time: 1749023892
+    ticket_number: '418743078'
+    new: false
+    regressive: false
+    deprecated: false
+    removed: false
