@@ -19,6 +19,10 @@ purpose. Use this guide to quickly find the information you need.
 - [**Linters & Formatters**](./linters_formatters.md)—Information about the linting and formatting tools we use,
   including Ruff and Mypy, along with how to run checks with the `mp` CLI tool.
 
+- **IDE Setup Guides**:—Detailed configuration instructions for popular IDEs:
+  - [**JetBrains IDEs**](./ide_setup/jetbrains.md)—PyCharm and IntelliJ IDEA configuration
+  - [**VS Code**](./ide_setup/vs_code.md)—Visual Studio Code configuration
+
 ## Integration Development
 
 The `integrations` subdirectory contains detailed guides for working with Google SecOps integrations:
@@ -41,6 +45,12 @@ Our repository includes several tools to help streamline development:
 
 - **MP CLI Tool**—A command-line utility for building, testing, and validating integrations. The `mp check` and
   `mp format` commands are particularly useful for code quality assurance.
+
+
+## IDE Configuration
+
+* A guide to configure a `Jetbrains` IDE can be found [here](./ide_setup/jetbrains.md)
+* A guide to configure `VS Code` can be found [here](./ide_setup/vs_code.md)
 
 ## Contribution Workflow
 
