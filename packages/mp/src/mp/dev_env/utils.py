@@ -15,10 +15,9 @@
 from __future__ import annotations
 
 import json
-import os
 import pathlib
+import shutil
 import subprocess  # noqa: S404
-import zipfile
 
 import rich
 import typer
@@ -40,15 +39,9 @@ def zip_integration_dir(integration_dir: pathlib.Path) -> pathlib.Path:
         Path: The path to the created zip file.
 
     """
-    zip_path = integration_dir.with_suffix(".zip")
-    with zipfile.ZipFile(zip_path, "w", zipfile.ZIP_DEFLATED) as zipf:
-        for root, _, files in os.walk(integration_dir):
-            root_path = pathlib.Path(root)
-            for file in files:
-                file_path = root_path / file
-                arcname = file_path.relative_to(integration_dir)
-                zipf.write(file_path, arcname)
-    return zip_path
+    return pathlib.Path(
+        shutil.make_archive(str(integration_dir), "zip", integration_dir)
+    )
 
 
 def load_dev_env_config() -> dict[str, str]:
