@@ -1,5 +1,6 @@
 name: Run integration_testing tests
-
+permissions:
+  contents: read
 on:
   push:
     branches:

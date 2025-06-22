@@ -1,5 +1,6 @@
 name: Build marketpalce integrations
-
+permissions:
+  contents: read
 on:
   push:
     branches:

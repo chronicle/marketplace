@@ -1,5 +1,6 @@
 name: Run mp tests
-
+permissions:
+  contents: read
 on:
   push:
     branches:
