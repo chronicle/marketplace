@@ -7,7 +7,7 @@ parameters:
         is_mandatory: true
         integration_identifier: Imgbb
     -   name: Verify SSL
-        default_value: 'true'
+        default_value: true
         type: boolean
         description: Verify Proxy
         is_mandatory: false

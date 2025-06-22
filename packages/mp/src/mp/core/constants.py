@@ -88,10 +88,108 @@ EXCLUDED_INTEGRATIONS_IDS_WITHOUT_PING: set[str] = {
     "Lacework",
     "PagerDuty",
 }
+EXCLUDED_NAMES_WITHOUT_VERIFY_SSL: set[str] = {
+    "Docker Hub",
+    "Lacework Connector",
+    "PagerDuty",
+    "PagerDutyConnector",
+    "Google Drive",
+    "Hibob",
+    "AWS - EC2",
+    "Google Docs",
+    "Google Safe Browsing",
+    "Webhook",
+    "AirTable",
+    "AirTable Connector",
+    "Telegram",
+    "Telegram Connector",
+    "Zoom",
+    "SendGrid",
+    "IPQS Fraud and Risk Scoring",
+    "DUO",
+    "DUO - Trust Monitor Connector",
+    "PhilipsHUE",
+    "Vectra RUX",
+    "Vectra RUX - Entities Connector",
+    "Azure DevOps",
+    "Asana",
+    "Full Contact",
+    "DataDog",
+    "DataDog Connector",
+    "Logzio",
+    "LOGZIO fetch-security-events",
+    "VanillaForums",
+    "MicrosoftGraphSecurityTools",
+    "MS365 MFA Alert",
+    "MS SecureScore Alert",
+    "PhishTank",
+    "WHOIS XML API",
+    "Marketo",
+    "Vorlon",
+    "Vorlon Connector",
+    "Flashpoint",
+    "Flashpoint - Compromised Credential Connector",
+    "Google Sheets",
+    "Sheet Connector",
+    "PerimeterX",
+    "Slack Connector For Code Defender",
+    "Cybersixgill Actionable Alerts",
+    "Cybersixgill Darkfeed",
+    "Cybersixgill - Darkfeed Connector",
+    "Cybersixgill Darkfeed Enrichment",
+    "Cybersixgill DVE Enrichment",
+    "Cybersixgill DVE Feed",
+    "Cybersixgill - DVE Connector",
+    "Cron Scheduled Connector",
+    "Scheduled Connector",
+    "Luminar IOCs and Leaked Credentials",
+    "XMCyber",
+    "NucleonCyber",
+    "DoppelVision",
+    "GreyNoise",
+    "Generate Alert from GreyNoise GNQL",
+    "beSECURE",
+    "Pull reports",
+}
+EXCLUDED_NAMES_WHERE_SSL_DEFAULT_IS_NOT_TRUE: set[str] = {
+    "Bitdefender GravityZone",
+    "FileUtilities",
+    "Enrichment",
+    "TeamCymruScout",
+    "Workflow Tools",
+    "ArcannaAI",
+    "Luminar IOCs and Leaked Credentials  Connector",
+    "Recorded Future - Playbook Alerts Connector",
+    "Recorded Future - Playbook Alerts Tracking Connector",
+    "Recorded Future - Classic Alerts Connector",
+    "SupernaZeroTrust",
+}
+EXCLUDED_INTEGRATIONS_WITHOUT_SVG_IMAGE: set[str] = {
+    "PagerDuty",
+    "ChronicleSupportTools",
+}
+VALID_SSL_PARAM_NAMES: set[str] = {
+    "Verify SSL",
+    "Verify SSL Certificate",
+    "SSL Verification",
+    "Verify SSL ",
+    "Git Verify SSL",
+    "Siemplify Verify SSL",
+}
+EXCLUDED_PARAM_NAMES_WITH_TOO_MANY_WORDS: set[str] = {
+    "Country(For multiple countries, provide comma-separated values)",
+    "Filter - Depth - All Items Recursively",
+    "Save JSON as Case Wall File",
+    "Use Alert ID as ID in Arcanna",
+    "Use case ID as ID in Arcanna",
+    "Use document ID as ID in Arcanna",
+}
 LONG_DESCRIPTION_MAX_LENGTH: int = 2_200
 SHORT_DESCRIPTION_MAX_LENGTH: int = 400
 DISPLAY_NAME_MAX_LENGTH: int = 150
 MAX_PARAMETERS_LENGTH: int = 50
+PARAM_NAME_MAX_LENGTH: int = 63
+PARAM_NAME_MAX_WORDS: int = 5
 MINIMUM_SCRIPT_VERSION: float = 1.0
 # language=regexp
 SCRIPT_DISPLAY_NAME_REGEX: str = (

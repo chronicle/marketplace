@@ -21,6 +21,7 @@ import pydantic
 import mp.core.constants
 import mp.core.data_models.abc
 import mp.core.utils
+import mp.core.validators
 
 
 class ActionParamType(mp.core.data_models.abc.RepresentableEnum):
@@ -75,9 +76,10 @@ class ActionParameter(
     name: Annotated[
         str,
         pydantic.Field(
-            max_length=mp.core.constants.DISPLAY_NAME_MAX_LENGTH,
+            max_length=mp.core.constants.PARAM_NAME_MAX_LENGTH,
             pattern=mp.core.constants.PARAM_DISPLAY_NAME_REGEX,
         ),
+        pydantic.AfterValidator(mp.core.validators.validate_param_name),
     ]
     optional_values: list[str] | None
     type_: ActionParamType

@@ -14,12 +14,13 @@
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Annotated, NotRequired, Self, TypedDict
+from typing import TYPE_CHECKING, Annotated, Any, NotRequired, Self, TypedDict
 
 import pydantic
 
 import mp.core.constants
 import mp.core.data_models.abc
+import mp.core.validators
 
 from .parameter import (
     BuiltConnectorParameter,
@@ -93,6 +94,10 @@ class ConnectorMetadata(
     ]
     rules: list[ConnectorRule]
     version: float
+
+    def model_post_init(self, context: Any) -> None:  # noqa: D102, ANN401, ARG002
+        if self.parameters:
+            mp.core.validators.validate_ssl_parameter(self.name, self.parameters)
 
     @classmethod
     def from_built_integration_path(cls, path: pathlib.Path) -> list[Self]:

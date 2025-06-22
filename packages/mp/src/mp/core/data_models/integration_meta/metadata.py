@@ -16,7 +16,7 @@ from __future__ import annotations
 
 import base64
 import json
-from typing import TYPE_CHECKING, Annotated, NotRequired, Self, TypedDict
+from typing import TYPE_CHECKING, Annotated, Any, NotRequired, Self, TypedDict
 
 import pydantic
 import yaml
@@ -25,6 +25,7 @@ import mp.core.constants
 import mp.core.data_models.abc
 import mp.core.file_utils
 import mp.core.utils
+import mp.core.validators
 
 from .feature_tags import BuiltFeatureTags, FeatureTags, NonBuiltFeatureTags
 from .parameter import (
@@ -179,6 +180,10 @@ class IntegrationMetadata(
         pydantic.Field(ge=MINIMUM_SYSTEM_VERSION),
     ] = MINIMUM_SYSTEM_VERSION
 
+    def model_post_init(self, context: Any) -> None:  # noqa: D102, ANN401, ARG002
+        if self.parameters:
+            mp.core.validators.validate_ssl_parameter(self.name, self.parameters)
+
     @classmethod
     def from_built_integration_path(cls, path: pathlib.Path) -> Self:
         """Create IntegrationMetadata from a path of a "built" integration.
@@ -202,7 +207,7 @@ class IntegrationMetadata(
             metadata.is_certified = mp.core.file_utils.is_commercial_integration(path)
         except (ValueError, json.JSONDecodeError) as e:
             msg: str = f"Failed to load json from {metadata_path}\n{built}"
-            raise ValueError(msg) from e
+            raise ValueError(mp.core.utils.trim_values(msg)) from e
         else:
             return metadata
 
@@ -228,7 +233,7 @@ class IntegrationMetadata(
             metadata.is_certified = mp.core.file_utils.is_commercial_integration(path)
         except (ValueError, json.JSONDecodeError) as e:
             msg: str = f"Failed to load json from {metadata_path}\n{built}"
-            raise ValueError(msg) from e
+            raise ValueError(mp.core.utils.trim_values(msg)) from e
         else:
             return metadata
 
@@ -242,6 +247,10 @@ class IntegrationMetadata(
         image: str | bytes | None = built["ImageBase64"]
         if isinstance(image, str):
             image = image.encode()
+
+        svg: str | None = built.get("SVGImage")
+        if svg is None:
+            svg = built["SvgImage"]
 
         return cls(
             categories=built["Categories"],
@@ -257,7 +266,7 @@ class IntegrationMetadata(
                 for p in built["IntegrationProperties"]
             ],
             should_install_in_system=built["ShouldInstalledInSystem"],
-            svg_image=built.get("SVGImage", built.get("SvgImage")),
+            svg_image=svg,
             version=built["Version"],
             is_custom=built.get("IsCustom", False),
             is_available_for_community=built.get("IsAvailableForCommunity", True),
@@ -275,10 +284,15 @@ class IntegrationMetadata(
         if isinstance(image, str):
             image = image.encode()
 
+        name: str = non_built["name"]
+        svg: str | None = non_built.get("svg_image")
+        if name not in mp.core.constants.EXCLUDED_INTEGRATIONS_WITHOUT_SVG_IMAGE:
+            svg = non_built["svg_image"]
+
         return cls(
             categories=non_built["categories"],
             feature_tags=feature_tags,
-            name=non_built["name"],
+            name=name,
             identifier=non_built["identifier"],
             documentation_link=non_built.get("documentation_link"),
             image_base64=image,
@@ -287,7 +301,7 @@ class IntegrationMetadata(
             ],
             should_install_in_system=non_built.get("should_install_in_system", False),
             is_custom=non_built.get("is_custom", False),
-            svg_image=non_built.get("svg_image"),
+            svg_image=svg,
             is_available_for_community=non_built.get(
                 "is_available_for_community",
                 True,

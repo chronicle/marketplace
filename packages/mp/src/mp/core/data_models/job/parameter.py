@@ -22,6 +22,7 @@ import pydantic
 import mp.core.constants
 import mp.core.data_models.abc
 import mp.core.utils
+import mp.core.validators
 from mp.core.data_models.script.parameter import ScriptParamType
 
 
@@ -47,9 +48,10 @@ class JobParameter(
     name: Annotated[
         str,
         pydantic.Field(
-            max_length=mp.core.constants.DISPLAY_NAME_MAX_LENGTH,
+            max_length=mp.core.constants.PARAM_NAME_MAX_LENGTH,
             pattern=mp.core.constants.PARAM_DISPLAY_NAME_REGEX,
         ),
+        pydantic.AfterValidator(mp.core.validators.validate_param_name),
     ]
     description: Annotated[
         str, pydantic.Field(max_length=mp.core.constants.SHORT_DESCRIPTION_MAX_LENGTH)
