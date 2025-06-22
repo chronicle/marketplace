@@ -1,5 +1,6 @@
 name: Require Checklist
-
+permissions:
+  contents: read
 on:
   pull_request:
     types: [ opened, edited, synchronize ]

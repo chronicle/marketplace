@@ -32,13 +32,13 @@ parameters:
         is_mandatory: false
         integration_identifier: GitSync
     -   name: Siemplify Verify SSL
-        default_value: 'true'
+        default_value: true
         type: boolean
         description: Siemplify Verify SSL
         is_mandatory: true
         integration_identifier: GitSync
     -   name: Git Verify SSL
-        default_value: 'true'
+        default_value: true
         type: boolean
         description: Git Verify SSL
         is_mandatory: true
