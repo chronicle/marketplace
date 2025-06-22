@@ -80,7 +80,8 @@ Build and deploy an integration to the dev environment:
 mp dev-env deploy <integration_name>
 ```
 
-- `<integration_name>`: The name of the integration directory under `integrations/commercial` or `integrations/third_party`.
+- `<integration_name>`: The name of the integration directory under `integrations/commercial` or
+  `integrations/third_party`.
 
 ## License
 
