@@ -1,6 +1,6 @@
 # mp: Your Google SecOps Marketplace Integration Powerhouse
 
-[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](./LICENSE)
 [![Python Version](https://img.shields.io/badge/Python-3.11+-blue.svg)](https://www.python.org/downloads/)
 ![Maintenance](https://img.shields.io/maintenance/yes/2025)
 
@@ -56,7 +56,7 @@ mp config --marketplace-path . --processes 7 --display-config
 
 ## License
 
-This project is licensed under the Apache License 2.0—see the [LICENSE](LICENSE) file
+This project is licensed under the Apache License 2.0—see the [LICENSE](./LICENSE) file
 for details.
 
 * **Effortless Integration Building:** Simplify the creation of new Google SecOps
@@ -75,5 +75,5 @@ for details.
 From the repo's root directory run
 
 ```bash
-pip3 install packages/mp
+pip install packages/mp
 ```
