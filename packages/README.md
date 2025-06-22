@@ -1,4 +1,4 @@
-# Welcome to the Integrations Packages Directory!
+# Welcome to the Packages Directory!
 
 Hello there, developer! This directory is home to a collection of shared code packages (think of them as specialized toolkits) designed to assist you in building and maintaining integrations for the Google SecOps marketplace. Our goal is to simplify common development tasks, promote consistency, and help you create robust and reliable integrations.
 

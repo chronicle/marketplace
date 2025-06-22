@@ -126,15 +126,20 @@ When designing functions and methods, follow these guidelines for type annotatio
     - This helps callers understand exactly what they're getting
     - Avoid returning `Any` whenever possible
 
-Example of following this pattern:
+Example of the following pattern:
 
 ```python
 from __future__ import annotations
 
-from collections.abc import Iterable, Mapping
-from typing import Any
+import dataclasses
+from typing import Any, TYPE_CHECKING
 
 
+if TYPE_CHECKING:
+   from collections.abc import Iterable, Mapping
+
+
+@dataclasses.dataclass
 class User:
    ...
 

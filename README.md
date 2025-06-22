@@ -1,3 +1,5 @@
+![Google Security Operations](/docs/resources/google_secops_logo.png)
+
 # Welcome to the Google SecOps Marketplace Content Repository!
 
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
