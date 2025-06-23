@@ -14,11 +14,12 @@
 
 from __future__ import annotations
 
-from typing import TypedDict, Any
-
-import pydantic
+from typing import TYPE_CHECKING, Any, TypedDict
 
 import mp.core.data_models.abc
+
+if TYPE_CHECKING:
+    import pydantic
 
 
 class BuiltDynamicResultsMetadata(TypedDict):
