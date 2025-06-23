@@ -1,17 +1,17 @@
 ![Google Security Operations](/docs/resources/google_secops_logo.png)
 
-# Welcome to the Google SecOps Marketplace Content Repository!
+# Welcome to the Google SecOps Response Integration Content Repository!
 
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
 ![Maintenance](https://img.shields.io/maintenance/yes/2025)
 
 > [!WARNING]
-> Disclaimer: this repository is in Preview, and the structure might change in the future.
+> **Disclaimer:** this repository is in Preview and the structure might change in the future.
 >
-> **_Note:_** Currently only the community integrations are available in this repository
+> **Note:** Currently only the community Response integrations are available in this repository
 
 👋 Hello and welcome! This repository is the central hub for a wide array of content
-related to the Google SecOps marketplace. Whether you're looking to connect Google
+related to the Google SecOps Response Integrations. Whether you're looking to connect Google
 SecOps with other security tools, explore practical use-cases, or leverage powerful
 development packages, you've come to the right place.
 
@@ -44,28 +44,27 @@ New to the repository or Google SecOps integrations? Start here!
 
 ---
 
-### 🔗 Integrations
+### 🔗 Response Integrations
 
 Discover how to connect Google SecOps with a multitude of other security products and
 services.
 
-* **Browse Available Integrations**: Explore the [`integrations/`](./integrations) directory to see the
-  integrations we offer. Each integration typically has its own `pyproject.toml` and `definition.yaml` providing
+* **Browse Available Response Integrations**: Explore the [`integrations/`](./integrations) directory to see the
+  integrations we offer. Each Response integration typically has its own `pyproject.toml` and `definition.yaml` providing
   specific details.
-* **[Marketplace Integration Development Guide](./docs/development/README.md)**:
-  Understand how to work with marketplace integrations.
+* **[Response Integration Development Guide](./docs/development/README.md)**:
+  Understand how to work with Response integrations.
 * **How-To Guides & Examples**:
-    * **[Running & Testing Integrations](./docs/development/integrations/tests.md)**:
+    * **[Running & Testing Response Integrations](./docs/development/integrations/tests.md)**:
       Practical guides on configuring and
-      using the integrations.
+      using the Response integrations.
     * **[Code Examples](./docs/development/integrations/examples.md)**: Snippets and
-      scenarios showcasing integration capabilities.
+      scenarios showcasing Response integration capabilities.
 
-*[Building Your Own Integration](./docs/development/integrations/creating_integrations.md)
-**:
+* **[Building Your Own Response Integration](./docs/development/integrations/creating_integrations.md)**:
 Comprehensive
 instructions and guidelines on how to develop, build, and package your custom
-integrations.
+Response integrations.
 
 ---
 
@@ -91,9 +90,9 @@ smoother.
   and `EnvironmentCommon`. For detailed information, see the [`packages/README.md`](./packages/README.md).
 * **Developer Utilities (`tools/`)**: Find scripts and command-line tools to assist with
   common development and operational tasks. For more details, see the [`tools/README.md`](./tools/README.md).
-    * **Integration Zipper**: A utility to package integration versions. More details in
+    * **Response Integration Zipper**: A utility to package integration versions. More details in
       its [dedicated README](./tools/zip_integration_by_version/README.md).
-* **Marketplace CLI Tool (`mp`)**: [`packages/mp/README.md`](./packages/mp/README.md) -
+* **Response Integration CLI Tool (`mp`)**: [`packages/mp/README.md`](./packages/mp/README.md) -
   Your powerhouse for building, testing, and ensuring the quality of integrations. (Also
   linked from `packages/README.md`).
 
