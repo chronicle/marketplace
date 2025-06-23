@@ -20,7 +20,8 @@ sign a new one.
 
 ### Partners
 
-If you're already a partner or want to partner with us, you'll also need to fill the following form <https://>
+If you're already a partner or want to partner with us, to get access to the Google SecOps platform, you need to submit
+this [form](https://docs.google.com/forms/d/e/1FAIpQLSf7LYpIPhzFAYLo2NPpl5NUBX6h2zG4rDlLjWjm2Ic_U2FhZg/viewform)
 
 ### Review our Community Guidelines
 
