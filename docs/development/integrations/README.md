@@ -14,9 +14,11 @@ guidelines for creating, testing, and implementing these integrations.
 Before diving into development, we recommend familiarizing yourself with the official Google SecOps SOAR documentation:
 
 - [Using the Google SecOps Marketplace](https://cloud.google.com/chronicle/docs/soar/marketplace/using-the-marketplace)
-  —Learn how integrations are used in Google SecOps SOAR
-- [Google Cloud Chronicle Documentation](https://cloud.google.com/chronicle/docs)—Comprehensive documentation about
-  Google Cloud Chronicle
+  — Learn how integrations are used in Google SecOps SOAR
+- [Google SecOps SIEM Documentation](https://cloud.google.com/chronicle/docs) — Comprehensive documentation about
+  Google SecOps SIEM
+- [Building Custom Integration](https://cloud.google.com/chronicle/docs/soar/respond/ide/building-a-custom-integration)
+  — How to build custom integrations in Google SecOps SOAR
 
 ## Development Guides
 
