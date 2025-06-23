@@ -36,6 +36,7 @@ parameters:
 dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: true
+        # language=json
         result_example: "{\r\n\t\"Reservations\": [{\r\n\t\t\"Groups\": [{\r\n\t\t\t\"\
         GroupName\": \"string\",\r\n\t\t\t\"GroupId\": \"string\"\r\n\t\t}],\r\n\t\
         \t\"Instances\": [{\r\n\t\t\t\"AmiLaunchIndex\": 123,\r\n\t\t\t\"ImageId\"\

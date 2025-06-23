@@ -91,8 +91,20 @@ parameters:
 dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: true
-        result_example: '[{"Entity":"BMAUS.BADOO.APP","EntityResult":[{"Type":"A","Response":"1.1.1.1","DNS
-        Server":"1.1.1.1"}]}]'
+        # language=json
+        result_example: |
+            [
+                {
+                    "Entity": "BMAUS.BADOO.APP",
+                    "EntityResult": [
+                        {
+                            "Type": "A",
+                            "Response": "1.1.1.1",
+                            "DNSServer": "1.1.1.1"
+                        }
+                    ]
+                }
+            ]
 default_result_value: ''
 creator: f56aefe2-fa00-4424-b2ce-de40f122b9c4
 script_result_name: ScriptResult

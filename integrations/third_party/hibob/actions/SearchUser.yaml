@@ -10,6 +10,7 @@ parameters:
 dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: true
+        # language=json
         result_example: "{\r\n\t\"fullName\": \"Amy Miles\",\r\n\t\"creationDate\": \"\
         2020-08-18\",\r\n\t\"displayName\": \"Amy Miles\",\r\n\t\"payroll\": {\r\n\
         \t\t\"additionalPensionContribution\": null,\r\n\t\t\"nin\": null,\r\n\t\t\

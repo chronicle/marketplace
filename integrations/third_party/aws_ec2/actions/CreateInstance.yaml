@@ -40,6 +40,7 @@ parameters:
 dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: true
+        # language=json
         result_example: "{\r\n\t\"Groups\": [],\r\n\t\"Instances\": [{\r\n\t\t\t\"AmiLaunchIndex\"\
         : \"0\",\r\n\t\t\t\"ImageId\": \"ami-11\",\r\n\t\t\t\"InstanceId\": \"11111\"\
         ,\r\n\t\t\t\"InstanceType\": \"m1.small\",\r\n\t\t\t\"LaunchTime\": \"\",\r\

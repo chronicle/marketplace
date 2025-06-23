@@ -25,6 +25,7 @@ parameters:
 dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: true
+        # language=json
         result_example: "{\n    \"wallData\": [\n        {\n            \"description\"\
         : \"Alerts grouped to the case: IRC CONNECTIONS_12D5090A-21CB-4738-89D6-8EC6C8836DFC\"\
         ,\n            \"activityKind\": 6,\n            \"newValue\": null,\n   \

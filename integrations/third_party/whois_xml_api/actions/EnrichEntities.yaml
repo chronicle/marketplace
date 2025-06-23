@@ -6,342 +6,185 @@ parameters: [ ]
 dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: true
-        result_example: "[\n    {\n        \"Entity\": \"mailstream-uswest-egress002.mxrecord.io\"\
-        ,\n        \"EntityResult\": {\n            \"WhoisRecord\": {\n         \
-        \       \"domainName\": \"mxrecord.io\",\n                \"parseCode\": 8,\n\
-        \                \"audit\": {\n                    \"createdDate\": \"2020-07-19\
-        \ 13:24:08 UTC\",\n                    \"updatedDate\": \"2020-07-19 13:24:08\
-        \ UTC\"\n                },\n                \"registrarName\": \"EPAG Domainservices\
-        \ GmbH\",\n                \"registrarIANAID\": \"85\",\n                \"\
-        registryData\": {\n                    \"createdDate\": \"2015-07-01T20:00:29Z\"\
-        ,\n                    \"updatedDate\": \"2019-12-18T21:32:04Z\",\n      \
-        \              \"expiresDate\": \"2021-07-01T20:00:29Z\",\n              \
-        \      \"registrant\": {\n                        \"country\": \"CANADA\"\
-        ,\n                        \"countryCode\": \"CA\",\n                    \
-        \    \"rawText\": \"Registrant Country: CA\"\n                    },\n   \
-        \                 \"domainName\": \"mxrecord.io\",\n                    \"\
-        nameServers\": {\n                        \"rawText\": \"NS-545.AWSDNS-04.NET\\\
-        nNS-1709.AWSDNS-21.CO.UK\\nNS-401.AWSDNS-50.COM\\nNS-1284.AWSDNS-32.ORG\\\
-        n\",\n                        \"hostNames\": [\n                         \
-        \   \"NS-545.AWSDNS-04.NET\",\n                            \"NS-1709.AWSDNS-21.CO.UK\"\
-        ,\n                            \"NS-401.AWSDNS-50.COM\",\n               \
-        \             \"NS-1284.AWSDNS-32.ORG\"\n                        ],\n    \
-        \                    \"ips\": []\n                    },\n               \
-        \     \"status\": \"ok\",\n                    \"rawText\": \"Domain Name:\
-        \ MXRECORD.IO\\nRegistry Domain ID: D503300000040383695-LRMS\\nRegistrar WHOIS\
-        \ Server:\\nRegistrar URL: http://www.epag.de\\nUpdated Date: 2019-12-18T21:32:04Z\\\
-        nCreation Date: 2015-07-01T20:00:29Z\\nRegistry Expiry Date: 2021-07-01T20:00:29Z\\\
-        nRegistrar Registration Expiration Date:\\nRegistrar: EPAG Domainservices\
-        \ GmbH\\nRegistrar IANA ID: 85\\nRegistrar Abuse Contact Email:\\nRegistrar\
-        \ Abuse Contact Phone:\\nReseller:\\nDomain Status: ok https://icann.org/epp#ok\\\
-        nRegistrant Organization:\\nRegistrant State/Province:\\nRegistrant Country:\
-        \ CA\\nName Server: NS-545.AWSDNS-04.NET\\nName Server: NS-1709.AWSDNS-21.CO.UK\\\
-        nName Server: NS-401.AWSDNS-50.COM\\nName Server: NS-1284.AWSDNS-32.ORG\\\
-        nDNSSEC: unsigned\\n\\n>>> Last update of WHOIS database: 2020-07-19T13:23:08Z\
-        \ <<<\\n\\nFor more information on Whois status codes, please visit https://icann.org/epp\\\
-        n\\nAccess to WHOIS information provided by Internet Computer Bureau Ltd.\
-        \ ICB is provided to assist persons in determining the contents of a domain\
-        \ name registration record in the ICB registry database. The data in this\
-        \ record is provided by ICB for informational purposes only, and ICB does\
-        \ not guarantee its accuracy. This service is intended only for query-based\
-        \ access. You agree that you will use this data only for lawful purposes and\
-        \ that, under no circumstances will you use this data to(i) allow, enable,\
-        \ or otherwise support the transmission by e-mail, telephone, facsimile or\
-        \ other electronic means of mass, unsolicited, commercial advertising or solicitations\
-        \ to entities other than the data recipient's own existing customers; or (ii)\
-        \ enable high volume, automated, electronic processes that send queries or\
-        \ data to the systems of Registry Operator, a Registrar, or ICB or its services\
-        \ providers except as reasonably necessary to register domain names or modify\
-        \ existing registrations. UK privacy laws limit the scope of information permitted\
-        \ for certain public access. Therefore, concerns regarding abusive use of\
-        \ domain registrations in the ICB registry should be directed to either (a)\
-        \ the Registrar of Record as indicated in the WHOIS output, or (b) the ICB\
-        \ anti-abuse department at abuse@icbregistry.info.\\n\\nAll rights reserved.\
-        \ ICB reserves the right to modify these terms at any time. By submitting\
-        \ this query, you agree to abide by these policies\",\n                  \
-        \  \"parseCode\": 1275,\n                    \"header\": \"\",\n         \
-        \           \"strippedText\": \"Domain Name: MXRECORD.IO\\nRegistry Domain\
-        \ ID: D503300000040383695-LRMS\\nRegistrar WHOIS Server:\\nRegistrar URL:\
-        \ http://www.epag.de\\nUpdated Date: 2019-12-18T21:32:04Z\\nCreation Date:\
-        \ 2015-07-01T20:00:29Z\\nRegistry Expiry Date: 2021-07-01T20:00:29Z\\nRegistrar\
-        \ Registration Expiration Date:\\nRegistrar: EPAG Domainservices GmbH\\nRegistrar\
-        \ IANA ID: 85\\nRegistrar Abuse Contact Email:\\nRegistrar Abuse Contact Phone:\\\
-        nReseller:\\nDomain Status: ok https://icann.org/epp#ok\\nRegistrant Organization:\\\
-        nRegistrant State/Province:\\nRegistrant Country: CA\\nName Server: NS-545.AWSDNS-04.NET\\\
-        nName Server: NS-1709.AWSDNS-21.CO.UK\\nName Server: NS-401.AWSDNS-50.COM\\\
-        nName Server: NS-1284.AWSDNS-32.ORG\\nDNSSEC: unsigned\\n>>> Last update of\
-        \ WHOIS database: 2020-07-19T13:23:08Z <<<\\nFor more information on Whois\
-        \ status codes, please visit https://icann.org/epp\\nAccess to WHOIS information\
-        \ provided by Internet Computer Bureau Ltd. ICB is provided to assist persons\
-        \ in determining the contents of a domain name registration record in the\
-        \ ICB registry database. The data in this record is provided by ICB for informational\
-        \ purposes only, and ICB does not guarantee its accuracy. This service is\
-        \ intended only for query-based access. You agree that you will use this data\
-        \ only for lawful purposes and that, under no circumstances will you use this\
-        \ data to(i) allow, enable, or otherwise support the transmission by e-mail,\
-        \ telephone, facsimile or other electronic means of mass, unsolicited, commercial\
-        \ advertising or solicitations to entities other than the data recipient's\
-        \ own existing customers; or (ii) enable high volume, automated, electronic\
-        \ processes that send queries or data to the systems of Registry Operator,\
-        \ a Registrar, or ICB or its services providers except as reasonably necessary\
-        \ to register domain names or modify existing registrations. UK privacy laws\
-        \ limit the scope of information permitted for certain public access. Therefore,\
-        \ concerns regarding abusive use of domain registrations in the ICB registry\
-        \ should be directed to either (a) the Registrar of Record as indicated in\
-        \ the WHOIS output, or (b) the ICB anti-abuse department at abuse@icbregistry.info.\\\
-        nAll rights reserved. ICB reserves the right to modify these terms at any\
-        \ time. By submitting this query, you agree to abide by these policies\\n\"\
-        ,\n                    \"audit\": {\n                        \"createdDate\"\
-        : \"2020-07-19 13:24:08 UTC\",\n                        \"updatedDate\": \"\
-        2020-07-19 13:24:08 UTC\"\n                    },\n                    \"\
-        registrarName\": \"EPAG Domainservices GmbH\",\n                    \"registrarIANAID\"\
-        : \"85\",\n                    \"createdDateNormalized\": \"2015-07-01 20:00:29\
-        \ UTC\",\n                    \"updatedDateNormalized\": \"2019-12-18 21:32:04\
-        \ UTC\",\n                    \"expiresDateNormalized\": \"2021-07-01 20:00:29\
-        \ UTC\",\n                    \"customField3Name\": \"RegistrarURL\",\n  \
-        \                  \"customField3Value\": \"http://www.epag.de\",\n      \
-        \              \"whoisServer\": \"whois.nic.io\"\n                },\n   \
-        \             \"contactEmail\": \"abuse@icbregistry.info\",\n            \
-        \    \"domainNameExt\": \".io\",\n                \"estimatedDomainAge\":\
-        \ 1844\n            }\n        }\n    },\n    {\n        \"Entity\": \"mail4.eu.mailrelaysrv.com\"\
-        ,\n        \"EntityResult\": {\n            \"WhoisRecord\": {\n         \
-        \       \"createdDate\": \"2016-02-15T07:36:18Z\",\n                \"updatedDate\"\
-        : \"2020-01-12T02:20:59.172Z\",\n                \"expiresDate\": \"2021-02-15T07:36:18Z\"\
-        ,\n                \"registrant\": {\n                    \"name\": \"On behalf\
-        \ of mailrelaysrv.com owner\",\n                    \"organization\": \"Whois\
-        \ Privacy Service\",\n                    \"street1\": \"P.O. Box 81226\"\
-        ,\n                    \"city\": \"Seattle\",\n                    \"state\"\
-        : \"WA\",\n                    \"postalCode\": \"98108-1226\",\n         \
-        \           \"country\": \"UNITED STATES\",\n                    \"countryCode\"\
-        : \"US\",\n                    \"email\": \"owner-4359371@mailrelaysrv.com.whoisprivacyservice.org\"\
-        ,\n                    \"telephone\": \"12065771368\",\n                 \
-        \   \"rawText\": \"Registrant Name: On behalf of mailrelaysrv.com owner\\\
-        nRegistrant Organization: Whois Privacy Service\\nRegistrant Street: P.O.\
-        \ Box 81226\\nRegistrant City: Seattle\\nRegistrant State/Province: WA\\nRegistrant\
-        \ Postal Code: 98108-1226\\nRegistrant Country: US\\nRegistrant Phone: +1.2065771368\\\
-        nRegistrant Email: owner-4359371@mailrelaysrv.com.whoisprivacyservice.org\"\
-        \n                },\n                \"administrativeContact\": {\n     \
-        \               \"name\": \"On behalf of mailrelaysrv.com administrative contact\"\
-        ,\n                    \"organization\": \"Whois Privacy Service\",\n    \
-        \                \"street1\": \"P.O. Box 81226\",\n                    \"\
-        city\": \"Seattle\",\n                    \"state\": \"WA\",\n           \
-        \         \"postalCode\": \"98108-1226\",\n                    \"country\"\
-        : \"UNITED STATES\",\n                    \"countryCode\": \"US\",\n     \
-        \               \"email\": \"admin-4359371@mailrelaysrv.com.whoisprivacyservice.org\"\
-        ,\n                    \"telephone\": \"12065771368\",\n                 \
-        \   \"rawText\": \"Admin Name: On behalf of mailrelaysrv.com administrative\
-        \ contact\\nAdmin Organization: Whois Privacy Service\\nAdmin Street: P.O.\
-        \ Box 81226\\nAdmin City: Seattle\\nAdmin State/Province: WA\\nAdmin Postal\
-        \ Code: 98108-1226\\nAdmin Country: US\\nAdmin Phone: +1.2065771368\\nAdmin\
-        \ Email: admin-4359371@mailrelaysrv.com.whoisprivacyservice.org\"\n      \
-        \          },\n                \"technicalContact\": {\n                 \
-        \   \"name\": \"On behalf of mailrelaysrv.com technical contact\",\n     \
-        \               \"organization\": \"Whois Privacy Service\",\n           \
-        \         \"street1\": \"P.O. Box 81226\",\n                    \"city\":\
-        \ \"Seattle\",\n                    \"state\": \"WA\",\n                 \
-        \   \"postalCode\": \"98108-1226\",\n                    \"country\": \"UNITED\
-        \ STATES\",\n                    \"countryCode\": \"US\",\n              \
-        \      \"email\": \"tech-4359371@mailrelaysrv.com.whoisprivacyservice.org\"\
-        ,\n                    \"telephone\": \"12065771368\",\n                 \
-        \   \"rawText\": \"Tech Name: On behalf of mailrelaysrv.com technical contact\\\
-        nTech Organization: Whois Privacy Service\\nTech Street: P.O. Box 81226\\\
-        nTech City: Seattle\\nTech State/Province: WA\\nTech Postal Code: 98108-1226\\\
-        nTech Country: US\\nTech Phone: +1.2065771368\\nTech Email: tech-4359371@mailrelaysrv.com.whoisprivacyservice.org\"\
-        \n                },\n                \"domainName\": \"mailrelaysrv.com\"\
-        ,\n                \"nameServers\": {\n                    \"rawText\": \"\
-        ns-1395.awsdns-46.org\\nns-15.awsdns-01.com\\nns-1829.awsdns-36.co.uk\\nns-972.awsdns-57.net\\\
-        n\",\n                    \"hostNames\": [\n                        \"ns-1395.awsdns-46.org\"\
-        ,\n                        \"ns-15.awsdns-01.com\",\n                    \
-        \    \"ns-1829.awsdns-36.co.uk\",\n                        \"ns-972.awsdns-57.net\"\
-        \n                    ],\n                    \"ips\": []\n              \
-        \  },\n                \"status\": \"clientTransferProhibited renewPeriod\"\
-        ,\n                \"rawText\": \"Domain Name: mailrelaysrv.com\\nRegistry\
-        \ Domain ID: 2002946221_DOMAIN_COM-VRSN\\nRegistrar WHOIS Server: whois.registrar.amazon.com\\\
-        nRegistrar URL: https://registrar.amazon.com\\nUpdated Date: 2020-01-12T02:20:59.172Z\\\
-        nCreation Date: 2016-02-15T07:36:18Z\\nRegistrar Registration Expiration Date:\
-        \ 2021-02-15T07:36:18Z\\nRegistrar: Amazon Registrar, Inc.\\nRegistrar IANA\
-        \ ID: 468\\nRegistrar Abuse Contact Email: registrar-abuse@amazon.com\\nRegistrar\
-        \ Abuse Contact Phone: +1.2067406200\\nReseller:\\nDomain Status: clientTransferProhibited\
-        \ https://icann.org/epp#clientTransferProhibited\\nDomain Status: renewPeriod\
-        \ https://icann.org/epp#renewPeriod\\nRegistry Registrant ID:\\nRegistrant\
-        \ Name: On behalf of mailrelaysrv.com owner\\nRegistrant Organization: Whois\
-        \ Privacy Service\\nRegistrant Street: P.O. Box 81226\\nRegistrant City: Seattle\\\
-        nRegistrant State/Province: WA\\nRegistrant Postal Code: 98108-1226\\nRegistrant\
-        \ Country: US\\nRegistrant Phone: +1.2065771368\\nRegistrant Phone Ext:\\\
-        nRegistrant Fax:\\nRegistrant Fax Ext:\\nRegistrant Email: owner-4359371@mailrelaysrv.com.whoisprivacyservice.org\\\
-        nRegistry Admin ID:\\nAdmin Name: On behalf of mailrelaysrv.com administrative\
-        \ contact\\nAdmin Organization: Whois Privacy Service\\nAdmin Street: P.O.\
-        \ Box 81226\\nAdmin City: Seattle\\nAdmin State/Province: WA\\nAdmin Postal\
-        \ Code: 98108-1226\\nAdmin Country: US\\nAdmin Phone: +1.2065771368\\nAdmin\
-        \ Phone Ext:\\nAdmin Fax:\\nAdmin Fax Ext:\\nAdmin Email: admin-4359371@mailrelaysrv.com.whoisprivacyservice.org\\\
-        nRegistry Tech ID:\\nTech Name: On behalf of mailrelaysrv.com technical contact\\\
-        nTech Organization: Whois Privacy Service\\nTech Street: P.O. Box 81226\\\
-        nTech City: Seattle\\nTech State/Province: WA\\nTech Postal Code: 98108-1226\\\
-        nTech Country: US\\nTech Phone: +1.2065771368\\nTech Phone Ext:\\nTech Fax:\\\
-        nTech Fax Ext:\\nTech Email: tech-4359371@mailrelaysrv.com.whoisprivacyservice.org\\\
-        nName Server: ns-1395.awsdns-46.org\\nName Server: ns-15.awsdns-01.com\\nName\
-        \ Server: ns-1829.awsdns-36.co.uk\\nName Server: ns-972.awsdns-57.net\\nDNSSEC:\
-        \ unsigned\\nURL of the ICANN WHOIS Data Problem Reporting System: http://wdprs.internic.net/\\\
-        n>>> Last update of WHOIS database: 2020-01-12T02:20:59.386Z <<<\\n\\nFor\
-        \ more information on Whois status codes, please visit https://www.icann.org/resources/pages/epp\\\
-        n\\nBy submitting a query to the Amazon Registrar, Inc. WHOIS database, you\
-        \ agree to abide by the following terms. The data in Amazon Registrar, Inc.'s\
-        \ WHOIS database is provided by Amazon Registrar, Inc. for the sole purpose\
-        \ of assisting you in obtaining information about domain name accuracy. You\
-        \ agree to use this data only for lawful purposes and further agree not to\
-        \ use this data for any unlawful purpose or to: (1) enable, allow, or otherwise\
-        \ support the transmission by email, telephone, or facsimile of commercial\
-        \ advertising or unsolicited bulk email, or (2) enable high volume, automated,\
-        \ electronic processes to collect or compile this data for any purpose, including\
-        \ mining this data for your own personal or commercial purposes. Amazon Registrar,\
-        \ Inc. reserves the right to restrict or terminate your access to the data\
-        \ if you fail to abide by these terms of use. Amazon Registrar, Inc. reserves\
-        \ the right to modify these terms at any time.\\n\\nVisit Amazon Registrar,\
-        \ Inc. at https://registrar.amazon.com\\nContact us at registrar@amazon.com\
-        \ or +1.2062661000\\n\\nÂ© 2020, Amazon.com, Inc., or its affiliates\",\n\
-        \                \"parseCode\": 3579,\n                \"header\": \"\",\n\
-        \                \"strippedText\": \"Domain Name: mailrelaysrv.com\\nRegistrar\
-        \ WHOIS Server: whois.registrar.amazon.com\\nRegistrar URL: https://registrar.amazon.com\\\
-        nUpdated Date: 2020-01-12T02:20:59.172Z\\nCreation Date: 2016-02-15T07:36:18Z\\\
-        nRegistrar Registration Expiration Date: 2021-02-15T07:36:18Z\\nRegistrar:\
-        \ Amazon Registrar, Inc.\\nRegistrar IANA ID: 468\\nRegistrar Abuse Contact\
-        \ Email: registrar-abuse@amazon.com\\nRegistrar Abuse Contact Phone: +1.2067406200\\\
-        nDomain Status: clientTransferProhibited https://icann.org/epp#clientTransferProhibited\\\
-        nDomain Status: renewPeriod https://icann.org/epp#renewPeriod\\nRegistrant\
-        \ Name: On behalf of mailrelaysrv.com owner\\nRegistrant Organization: Whois\
-        \ Privacy Service\\nRegistrant Street: P.O. Box 81226\\nRegistrant City: Seattle\\\
-        nRegistrant State/Province: WA\\nRegistrant Postal Code: 98108-1226\\nRegistrant\
-        \ Country: US\\nRegistrant Phone: +1.2065771368\\nRegistrant Email: owner-4359371@mailrelaysrv.com.whoisprivacyservice.org\\\
-        nAdmin Name: On behalf of mailrelaysrv.com administrative contact\\nAdmin\
-        \ Organization: Whois Privacy Service\\nAdmin Street: P.O. Box 81226\\nAdmin\
-        \ City: Seattle\\nAdmin State/Province: WA\\nAdmin Postal Code: 98108-1226\\\
-        nAdmin Country: US\\nAdmin Phone: +1.2065771368\\nAdmin Email: admin-4359371@mailrelaysrv.com.whoisprivacyservice.org\\\
-        nTech Name: On behalf of mailrelaysrv.com technical contact\\nTech Organization:\
-        \ Whois Privacy Service\\nTech Street: P.O. Box 81226\\nTech City: Seattle\\\
-        nTech State/Province: WA\\nTech Postal Code: 98108-1226\\nTech Country: US\\\
-        nTech Phone: +1.2065771368\\nTech Email: tech-4359371@mailrelaysrv.com.whoisprivacyservice.org\\\
-        nName Server: ns-1395.awsdns-46.org\\nName Server: ns-15.awsdns-01.com\\nName\
-        \ Server: ns-1829.awsdns-36.co.uk\\nName Server: ns-972.awsdns-57.net\\n\"\
-        ,\n                \"footer\": \"\",\n                \"audit\": {\n     \
-        \               \"createdDate\": \"2020-07-19 13:24:10 UTC\",\n          \
-        \          \"updatedDate\": \"2020-07-19 13:24:10 UTC\"\n                },\n\
-        \                \"customField1Name\": \"RegistrarContactEmail\",\n      \
-        \          \"customField1Value\": \"registrar-abuse@amazon.com\",\n      \
-        \          \"registrarName\": \"Amazon Registrar, Inc.\",\n              \
-        \  \"registrarIANAID\": \"468\",\n                \"whoisServer\": \"whois.registrar.amazon.com\"\
-        ,\n                \"createdDateNormalized\": \"2016-02-15 07:36:18 UTC\"\
-        ,\n                \"updatedDateNormalized\": \"2020-01-12 02:20:59 UTC\"\
-        ,\n                \"expiresDateNormalized\": \"2021-02-15 07:36:18 UTC\"\
-        ,\n                \"customField2Name\": \"RegistrarContactPhone\",\n    \
-        \            \"customField3Name\": \"RegistrarURL\",\n                \"customField2Value\"\
-        : \"+1.2067406200\",\n                \"customField3Value\": \"https://registrar.amazon.com\"\
-        ,\n                \"registryData\": {\n                    \"createdDate\"\
-        : \"2016-02-15T07:36:18Z\",\n                    \"updatedDate\": \"2020-01-12T02:20:58Z\"\
-        ,\n                    \"expiresDate\": \"2021-02-15T07:36:18Z\",\n      \
-        \              \"domainName\": \"mailrelaysrv.com\",\n                   \
-        \ \"nameServers\": {\n                        \"rawText\": \"NS-1395.AWSDNS-46.ORG\\\
-        nNS-15.AWSDNS-01.COM\\nNS-1829.AWSDNS-36.CO.UK\\nNS-972.AWSDNS-57.NET\\n\"\
-        ,\n                        \"hostNames\": [\n                            \"\
-        NS-1395.AWSDNS-46.ORG\",\n                            \"NS-15.AWSDNS-01.COM\"\
-        ,\n                            \"NS-1829.AWSDNS-36.CO.UK\",\n            \
-        \                \"NS-972.AWSDNS-57.NET\"\n                        ],\n  \
-        \                      \"ips\": []\n                    },\n             \
-        \       \"status\": \"clientTransferProhibited\",\n                    \"\
-        rawText\": \"Domain Name: MAILRELAYSRV.COM\\n Registry Domain ID: 2002946221_DOMAIN_COM-VRSN\\\
-        n Registrar WHOIS Server: whois.registrar.amazon.com\\n Registrar URL: http://registrar.amazon.com\\\
-        n Updated Date: 2020-01-12T02:20:58Z\\n Creation Date: 2016-02-15T07:36:18Z\\\
-        n Registry Expiry Date: 2021-02-15T07:36:18Z\\n Registrar: Amazon Registrar,\
-        \ Inc.\\n Registrar IANA ID: 468\\n Registrar Abuse Contact Email:\\n Registrar\
-        \ Abuse Contact Phone:\\n Domain Status: clientTransferProhibited https://icann.org/epp#clientTransferProhibited\\\
-        n Name Server: NS-1395.AWSDNS-46.ORG\\n Name Server: NS-15.AWSDNS-01.COM\\\
-        n Name Server: NS-1829.AWSDNS-36.CO.UK\\n Name Server: NS-972.AWSDNS-57.NET\\\
-        n DNSSEC: unsigned\\n URL of the ICANN Whois Inaccuracy Complaint Form: https://www.icann.org/wicf/\\\
-        n>>> Last update of whois database: 2020-07-19T13:23:59Z <<<\\n\\nFor more\
-        \ information on Whois status codes, please visit https://icann.org/epp\\\
-        n\\nNOTICE: The expiration date displayed in this record is the date the\\\
-        nregistrar's sponsorship of the domain name registration in the registry is\\\
-        ncurrently set to expire. This date does not necessarily reflect the expiration\\\
-        ndate of the domain name registrant's agreement with the sponsoring\\nregistrar.\
-        \ Users may consult the sponsoring registrar's Whois database to\\nview the\
-        \ registrar's reported date of expiration for this registration.\\n\\nTERMS\
-        \ OF USE: You are not authorized to access or query our Whois\\ndatabase through\
-        \ the use of electronic processes that are high-volume and\\nautomated except\
-        \ as reasonably necessary to register domain names or\\nmodify existing registrations;\
-        \ the Data in VeriSign Global Registry\\nServices' (\\\"VeriSign\\\") Whois\
-        \ database is provided by VeriSign for\\ninformation purposes only, and to\
-        \ assist persons in obtaining information\\nabout or related to a domain name\
-        \ registration record. VeriSign does not\\nguarantee its accuracy. By submitting\
-        \ a Whois query, you agree to abide\\nby the following terms of use: You agree\
-        \ that you may use this Data only\\nfor lawful purposes and that under no\
-        \ circumstances will you use this Data\\nto: (1) allow, enable, or otherwise\
-        \ support the transmission of mass\\nunsolicited, commercial advertising or\
-        \ solicitations via e-mail, telephone,\\nor facsimile; or (2) enable high\
-        \ volume, automated, electronic processes\\nthat apply to VeriSign (or its\
-        \ computer systems). The compilation,\\nrepackaging, dissemination or other\
-        \ use of this Data is expressly\\nprohibited without the prior written consent\
-        \ of VeriSign. You agree not to\\nuse electronic processes that are automated\
-        \ and high-volume to access or\\nquery the Whois database except as reasonably\
-        \ necessary to register\\ndomain names or modify existing registrations. VeriSign\
-        \ reserves the right\\nto restrict your access to the Whois database in its\
-        \ sole discretion to ensure\\noperational stability. VeriSign may restrict\
-        \ or terminate your access to the\\nWhois database for failure to abide by\
-        \ these terms of use. VeriSign\\nreserves the right to modify these terms\
-        \ at any time.\\n\\nThe Registry database contains ONLY .COM, .NET, .EDU domains\
-        \ and\\nRegistrars.\",\n                    \"parseCode\": 251,\n        \
-        \            \"header\": \"\",\n                    \"strippedText\": \"Domain\
-        \ Name: MAILRELAYSRV.COM\\nRegistry Domain ID: 2002946221_DOMAIN_COM-VRSN\\\
-        nRegistrar WHOIS Server: whois.registrar.amazon.com\\nRegistrar URL: http://registrar.amazon.com\\\
-        nUpdated Date: 2020-01-12T02:20:58Z\\nCreation Date: 2016-02-15T07:36:18Z\\\
-        nRegistry Expiry Date: 2021-02-15T07:36:18Z\\nRegistrar: Amazon Registrar,\
-        \ Inc.\\nRegistrar IANA ID: 468\\nRegistrar Abuse Contact Email:\\nRegistrar\
-        \ Abuse Contact Phone:\\nDomain Status: clientTransferProhibited https://icann.org/epp#clientTransferProhibited\\\
-        nName Server: NS-1395.AWSDNS-46.ORG\\nName Server: NS-15.AWSDNS-01.COM\\nName\
-        \ Server: NS-1829.AWSDNS-36.CO.UK\\nName Server: NS-972.AWSDNS-57.NET\\nDNSSEC:\
-        \ unsigned\\nURL of the ICANN Whois Inaccuracy Complaint Form: https://www.icann.org/wicf/\\\
-        n>>> Last update of whois database: 2020-07-19T13:23:59Z <<<\\nFor more information\
-        \ on Whois status codes, please visit https://icann.org/epp\\nNOTICE: The\
-        \ expiration date displayed in this record is the date the\\nregistrar's sponsorship\
-        \ of the domain name registration in the registry is\\ncurrently set to expire.\
-        \ This date does not necessarily reflect the expiration\\ndate of the domain\
-        \ name registrant's agreement with the sponsoring\\nregistrar. Users may consult\
-        \ the sponsoring registrar's Whois database to\\nview the registrar's reported\
-        \ date of expiration for this registration.\\nTERMS OF USE: You are not authorized\
-        \ to access or query our Whois\\ndatabase through the use of electronic processes\
-        \ that are high-volume and\\nautomated except as reasonably necessary to register\
-        \ domain names or\\nmodify existing registrations; the Data in VeriSign Global\
-        \ Registry\\nServices' (\\\"VeriSign\\\") Whois database is provided by VeriSign\
-        \ for\\ninformation purposes only, and to assist persons in obtaining information\\\
-        nabout or related to a domain name registration record. VeriSign does not\\\
-        nguarantee its accuracy. By submitting a Whois query, you agree to abide\\\
-        nby the following terms of use: You agree that you may use this Data only\\\
-        nfor lawful purposes and that under no circumstances will you use this Data\\\
-        nto: (1) allow, enable, or otherwise support the transmission of mass\\nunsolicited,\
-        \ commercial advertising or solicitations via e-mail, telephone,\\nor facsimile;\
-        \ or (2) enable high volume, automated, electronic processes\\nthat apply\
-        \ to VeriSign (or its computer systems). The compilation,\\nrepackaging, dissemination\
-        \ or other use of this Data is expressly\\nprohibited without the prior written\
-        \ consent of VeriSign. You agree not to\\nuse electronic processes that are\
-        \ automated and high-volume to access or\\nquery the Whois database except\
-        \ as reasonably necessary to register\\ndomain names or modify existing registrations.\
-        \ VeriSign reserves the right\\nto restrict your access to the Whois database\
-        \ in its sole discretion to ensure\\noperational stability. VeriSign may restrict\
-        \ or terminate your access to the\\nWhois database for failure to abide by\
-        \ these terms of use. VeriSign\\nreserves the right to modify these terms\
-        \ at any time.\\nThe Registry database contains ONLY .COM, .NET, .EDU domains\
-        \ and\\nRegistrars.\\n\",\n                    \"footer\": \"\",\n       \
-        \             \"audit\": {\n                        \"createdDate\": \"2020-07-19\
-        \ 13:24:09 UTC\",\n                        \"updatedDate\": \"2020-07-19 13:24:09\
-        \ UTC\"\n                    },\n                    \"registrarName\": \"\
-        Amazon Registrar, Inc.\",\n                    \"registrarIANAID\": \"468\"\
-        ,\n                    \"createdDateNormalized\": \"2016-02-15 07:36:18 UTC\"\
-        ,\n                    \"updatedDateNormalized\": \"2020-01-12 02:20:58 UTC\"\
-        ,\n                    \"expiresDateNormalized\": \"2021-02-15 07:36:18 UTC\"\
-        ,\n                    \"customField3Name\": \"RegistrarURL\",\n         \
-        \           \"customField3Value\": \"http://registrar.amazon.com\",\n    \
-        \                \"whoisServer\": \"whois.registrar.amazon.com\"\n       \
-        \         },\n                \"contactEmail\": \"owner-4359371@mailrelaysrv.com.whoisprivacyservice.org\"\
-        ,\n                \"domainNameExt\": \".com\",\n                \"estimatedDomainAge\"\
-        : 1616\n            }\n        }\n    }\n]"
+        # language=Json
+        result_example: |
+            [
+                {
+                    "Entity": "mailstream-uswest-egress002.mxrecord.io",
+                    "EntityResult": {
+                        "WhoisRecord": {
+                            "domainName": "mxrecord.io",
+                            "parseCode": 8,
+                            "audit": {
+                                "createdDate": "2020-07-19\\ 13:24:08 UTC",
+                                "updatedDate": "2020-07-19 13:24:08\\ UTC"
+                            },
+                            "registrarName": "EPAG Domainservices\\ GmbH",
+                            "registrarIANAID": "85",
+                            "RegistryData": {
+                                "createdDate": "2015-07-01T20:00:29Z",
+                                "updatedDate": "2019-12-18T21:32:04Z",
+                                "expiresDate": "2021-07-01T20:00:29Z",
+                                "registrant": {
+                                    "country": "CANADA",
+                                    "countryCode": "CA",
+                                    "rawText": "Registrant Country: CA"
+                                },
+                                "domainName": "mxrecord.io",
+                                "ameServers": {
+                                    "rawText": "NS-545.AWSDNS-04.NET\\\\NS-1709.AWSDNS-21.CO.UK\\NS-401.AWSDNS-50.COM\\NS-1284.AWSDNS-32.ORG",
+                                    "hostNames": [
+                                        "NS-545.AWSDNS-04.NET",
+                                        "NS-1709.AWSDNS-21.CO.UK",
+                                        "NS-401.AWSDNS-50.COM",
+                                        "NS-1284.AWSDNS-32.ORG"
+                                    ],
+                                    "ips": []
+                                },
+                                "status": "ok",
+                                "rawText": "Domain Name:\\ MXRECORD.IORegistry Domain ID: D503300000040383695-LRMSRegistrar WHOIS\\ Server:Registrar URL: \\http://www.epag.de\\Updated Date: 2019-12-18T21:32:04Z\\Creation Date: 2015-07-01T20:00:29ZRegistry Expiry Date: 2021-07-01T20:00:29Z\\Registrar Registration Expiration Date:Registrar: EPAG Domainservices\\ GmbHRegistrar IANA ID: 85Registrar Abuse Contact Email:Registrar\\ Abuse Contact Phone:Reseller:\\Domain Status: ok https://icann.org/epp#ok\\Registrant Organization:Registrant State/Province:Registrant Country:\\ CA\\Name Server: NS-545.AWSDNS-04.NET\\Name Server: NS-1709.AWSDNS-21.CO.UK\\Name Server: NS-401.AWSDNS-50.COM\\Name Server: NS-1284.AWSDNS-32.ORG\\DNSSEC: unsigned\\>>> Last update of WHOIS database: 2020-07-19T13:23:08Z\\ <<<\\For more information on Whois status codes, please visit https://icann.org/epp\\Access to WHOIS information provided by Internet Computer Bureau Ltd.\\ ICB is provided to assist persons in determining the contents of a domain\\ name registration record in the ICB registry database. The data in this\\ record is provided by ICB for informational purposes only, and ICB does\\ not guarantee its accuracy. This service is intended only for query-based\\ access. You agree that you will use this data only for lawful purposes and\\ that, under no circumstances will you use this data to(i) allow, enable,\\ or otherwise support the transmission by e-mail, telephone, facsimile or\\ other electronic means of mass, unsolicited, commercial advertising or solicitations\\ to entities other than the data recipient's own existing customers; or (ii)\\ enable high volume, automated, electronic processes that send queries or\\ data to the systems of Registry Operator, a Registrar, or ICB or its services\\ providers except as reasonably necessary to register domain names or modify\\ existing registrations. UK privacy laws limit the scope of information permitted\\ for certain public access. Therefore, concerns regarding abusive use of\\ domain registrations in the ICB registry should be directed to either (a)\\ the Registrar of Record as indicated in the WHOIS output, or (b) the ICB\\ anti-abuse department at abuse@icbregistry.info.\\All rights reserved.\\ ICB reserves the right to modify these terms at any time. By submitting\\ this query, you agree to abide by these policies",
+                                "parseCode": 1275,
+                                "header": "",
+                                "strippedText": "Domain Name: MXRECORD.IORegistry Domain\\ ID: D503300000040383695-LRMSRegistrar WHOIS Server:Registrar URL:\\ http://www.epag.de\\Updated Date: 2019-12-18T21:32:04Z\\Creation Date:\\ 2015-07-01T20:00:29ZRegistry Expiry Date: 2021-07-01T20:00:29ZRegistrar\\ Registration Expiration Date:Registrar: EPAG Domainservices GmbHRegistrar\\ IANA ID: 85Registrar Abuse Contact Email:Registrar Abuse Contact Phone:\\Reseller:\\Domain Status: ok https://icann.org/epp#okRegistrant Organization:\\Registrant State/Province:Registrant Country: CA\\Name Server: NS-545.AWSDNS-04.NET\\Name Server: NS-1709.AWSDNS-21.CO.UK\\Name Server: NS-401.AWSDNS-50.COM\\Name Server: NS-1284.AWSDNS-32.ORG\\DNSSEC: unsigned\\>>> Last update of\\ WHOIS database: 2020-07-19T13:23:08Z <<<\\For more information on Whois\\ status codes, please visit https://icann.org/epp\\Access to WHOIS information\\ provided by Internet Computer Bureau Ltd. ICB is provided to assist persons\\ in determining the contents of a domain name registration record in the\\ ICB registry database. The data in this record is provided by ICB for informational\\ purposes only, and ICB does not guarantee its accuracy. This service is\\ intended only for query-based access. You agree that you will use this data\\ only for lawful purposes and that, under no circumstances will you use this\\ data to(i) allow, enable, or otherwise support the transmission by e-mail,\\ telephone, facsimile or other electronic means of mass, unsolicited, commercial\\ advertising or solicitations to entities other than the data recipient's\\ own existing customers; or (ii) enable high volume, automated, electronic\\ processes that send queries or data to the systems of Registry Operator,\\ a Registrar, or ICB or its services providers except as reasonably necessary\\ to register domain names or modify existing registrations. UK privacy laws\\ limit the scope of information permitted for certain public access. Therefore,\\ concerns regarding abusive use of domain registrations in the ICB registry\\ should be directed to either (a) the Registrar of Record as indicated in\\ the WHOIS output, or (b) the ICB anti-abuse department at abuse@icbregistry.info.\\All rights reserved. ICB reserves the right to modify these terms at any\\ time. By submitting this query, you agree to abide by these policies",
+                                "audit": {
+                                    "createdDate": "2020-07-19 13:24:08 UTC",
+                                    "updatedDate": "2020-07-19 13:24:08 UTC"
+                                },
+                                "RegistrarName": "EPAG Domainservices GmbH",
+                                "registrarIANAID": "85",
+                                "createdDateNormalized": "2015-07-01 20:00:29\\ UTC",
+                                "updatedDateNormalized": "2019-12-18 21:32:04\\ UTC",
+                                "expiresDateNormalized": "2021-07-01 20:00:29\\ UTC",
+                                "customField3Name": "RegistrarURL",
+                                "customField3Value": "http://www.epag.de",
+                                "whoisServer": "whois.nic.io"
+                            },
+                            "contactEmail": "abuse@icbregistry.info",
+                            "domainNameExt": ".io",
+                            "estimatedDomainAge": 1844
+                        }
+                    }
+                },
+                {
+                    "Entity": "mail4.eu.mailrelaysrv.com",
+                    "EntityResult": {
+                        "WhoisRecord": {
+                            "createdDate": "2016-02-15T07:36:18Z",
+                            "updatedDate": "2020-01-12T02:20:59.172Z",
+                            "expiresDate": "2021-02-15T07:36:18Z",
+                            "registrant": {
+                                "name": "On behalf\\ of mailrelaysrv.com owner",
+                                "organization": "Whois\\ Privacy Service",
+                                "street1": "P.O. Box 81226",
+                                "city": "Seattle",
+                                "state": "WA",
+                                "postalCode": "98108-1226",
+                                "country": "UNITED STATES",
+                                "countryCode": "US",
+                                "email": "owner-4359371@mailrelaysrv.com.whoisprivacyservice.org",
+                                "telephone": "12065771368",
+                                "rawText": "Registrant Name: On behalf of mailrelaysrv.com owner\\Registrant Organization: Whois Privacy Service\\Registrant Street: P.O.\\ Box 81226\\Registrant City: Seattle\\Registrant State/Province: WA\\Registrant\\ Postal Code: 98108-1226\\Registrant Country: US\\Registrant Phone: +1.2065771368\\Registrant Email: owner-4359371@mailrelaysrv.com.whoisprivacyservice.org"
+                            },
+                            "administrativeContact": {
+                                "name": "On behalf of mailrelaysrv.com administrative contact",
+                                "organization": "Whois Privacy Service",
+                                "street1": "P.O. Box 81226",
+                                "city": "Seattle",
+                                "state": "WA",
+                                "postalCode": "98108-1226",
+                                "country": "UNITED STATES",
+                                "countryCode": "US",
+                                "email": "admin-4359371@mailrelaysrv.com.whoisprivacyservice.org",
+                                "telephone": "12065771368",
+                                "rawText": "Admin Name: On behalf of mailrelaysrv.com administrative\\ contact\\Admin Organization: Whois Privacy Service\\Admin Street: P.O.\\ Box 81226\\Admin City: Seattle\\Admin State/Province: WA\\Admin Postal\\ Code: 98108-1226\\Admin Country: US\\Admin Phone: +1.2065771368\\Admin\\ Email: admin-4359371@mailrelaysrv.com.whoisprivacyservice.org"
+                            },
+                            "technicalContact": {
+                                "name": "On behalf of mailrelaysrv.com technical contact",
+                                "organization": "Whois Privacy Service",
+                                "street1": "P.O. Box 81226",
+                                "city": "Seattle",
+                                "state": "WA",
+                                "postalCode": "98108-1226",
+                                "country": "UNITED\\ STATES",
+                                "countryCode": "US",
+                                "email": "tech-4359371@mailrelaysrv.com.whoisprivacyservice.org",
+                                "telephone": "12065771368",
+                                "rawText": "Tech Name: On behalf of mailrelaysrv.com technical contact\\Tech Organization: Whois Privacy Service\\Tech Street: P.O. Box 81226\\Tech City: Seattle\\Tech State/Province: WA\\Tech Postal Code: 98108-1226\\Tech Country: US\\Tech Phone: +1.2065771368\\Tech Email: tech-4359371@mailrelaysrv.com.whoisprivacyservice.org"
+                            },
+                            "domainName": "mailrelaysrv.com",
+                            "nameServers": {
+                                "rawText": "s-1395.awsdns-46.orG\\Ns-15.awsdns-01.coM\\Ns-1829.awsdns-36.co.uK\\Ns-972.awsdns-57.net\\",
+                                "hostNames": [
+                                    "ns-1395.awsdns-46.org",
+                                    "ns-15.awsdns-01.com",
+                                    "ns-1829.awsdns-36.co.uk",
+                                    "ns-972.awsdns-57.net"
+                                ],
+                                "ips": []
+                            },
+                            "status": "clientTransferProhibited renewPeriod",
+                            "rawText": "Domain Name: mailrelaysrv.com\\Registry\\ Domain ID: 2002946221_DOMAIN_COM-VRSN\\Registrar WHOIS Server: whois.registrar.amazon.com\\Registrar URL: https://registrar.amazon.com\\Updated Date: 2020-01-12T02:20:59.172Z\\Creation Date: 2016-02-15T07:36:18Z\\Registrar Registration Expiration Date:\\ 2021-02-15T07:36:18Z\\Registrar: Amazon Registrar, Inc.\\Registrar IANA\\ ID: 468\\Registrar Abuse Contact Email: registrar-abuse@amazon.com\\Registrar\\ Abuse Contact Phone: +1.2067406200\\Reseller:\\Domain Status: clientTransferProhibited\\ https://icann.org/epp#clientTransferProhibited\\Domain Status: renewPeriod\\ https://icann.org/epp#renewPeriod\\Registry Registrant ID:\\Registrant\\ Name: On behalf of mailrelaysrv.com owner\\Registrant Organization: Whois\\ Privacy Service\\Registrant Street: P.O. Box 81226\\Registrant City: Seattle\\Registrant State/Province: WA\\Registrant Postal Code: 98108-1226\\Registrant\\ Country: US\\Registrant Phone: +1.2065771368\\Registrant Phone Ext:\\Registrant Fax:\\Registrant Fax Ext:\\Registrant Email: owner-4359371@mailrelaysrv.com.whoisprivacyservice.org\\Registry Admin ID:\\Admin Name: On behalf of mailrelaysrv.com administrative\\ contact\\Admin Organization: Whois Privacy Service\\Admin Street: P.O.\\ Box 81226\\Admin City: Seattle\\Admin State/Province: WA\\Admin Postal\\ Code: 98108-1226\\Admin Country: US\\Admin Phone: +1.2065771368\\Admin\\ Phone Ext:\\Admin Fax:\\Admin Fax Ext:\\Admin Email: admin-4359371@mailrelaysrv.com.whoisprivacyservice.org\\Registry Tech ID:\\Tech Name: On behalf of mailrelaysrv.com technical contact\\Tech Organization: Whois Privacy Service\\Tech Street: P.O. Box 81226\\Tech City: Seattle\\Tech State/Province: WA\\Tech Postal Code: 98108-1226\\Tech Country: US\\Tech Phone: +1.2065771368\\Tech Phone Ext:\\Tech Fax:\\Tech Fax Ext:\\Tech Email: tech-4359371@mailrelaysrv.com.whoisprivacyservice.org\\Name Server: ns-1395.awsdns-46.orG\\Name Server: ns-15.awsdns-01.coM\\Name\\ Server: ns-1829.awsdns-36.co.uK\\Name Server: ns-972.awsdns-57.net\\DNSSEC:\\ unsigned\\URL of the ICANN WHOIS Data Problem Reporting System: http://wdprs.internic.net/\\>>> Last update of WHOIS database: 2020-01-12T02:20:59.386Z <<<\\For\\ more information on Whois status codes, please visit https://www.icann.org/resources/pages/epp\\By submitting a query to the Amazon Registrar, Inc. WHOIS database, you\\ agree to abide by the following terms. The data in Amazon Registrar, Inc.'s\\ WHOIS database is provided by Amazon Registrar, Inc. for the sole purpose\\ of assisting you in obtaining information about domain name accuracy. You\\ agree to use this data only for lawful purposes and further agree not to\\ use this data for any unlawful purpose or to: (1) enable, allow, or otherwise\\ support the transmission by email, telephone, or facsimile of commercial\\ advertising or unsolicited bulk email, or (2) enable high volume, automated,\\ electronic processes to collect or compile this data for any purpose, including\\ mining this data for your own personal or commercial purposes. Amazon Registrar,\\ Inc. reserves the right to restrict or terminate your access to the data\\ if you fail to abide by these terms of use. Amazon Registrar, Inc. reserves\\ the right to modify these terms at any time.\\Visit Amazon Registrar,\\ Inc. at https://registrar.amazon.com\\Contact us at registrar@amazon.com\\ or +1.2062661000\\Â© 2020, Amazon.com, Inc., or its affiliates",
+                            "parseCode": 3579,
+                            "header": "",
+                            "strippedText": "Domain Name: mailrelaysrv.com\\Registrar\\ WHOIS Server: whois.registrar.amazon.com\\Registrar URL: https://registrar.amazon.com\\Updated Date: 2020-01-12T02:20:59.172Z\\Creation Date: 2016-02-15T07:36:18Z\\Registrar Registration Expiration Date: 2021-02-15T07:36:18Z\\Registrar:\\ Amazon Registrar, Inc.\\Registrar IANA ID: 468\\Registrar Abuse Contact\\ Email: registrar-abuse@amazon.com\\Registrar Abuse Contact Phone: +1.2067406200\\Domain Status: clientTransferProhibited https://icann.org/epp#clientTransferProhibited\\Domain Status: renewPeriod https://icann.org/epp#renewPeriod\\Registrant\\ Name: On behalf of mailrelaysrv.com owner\\Registrant Organization: Whois\\ Privacy Service\\Registrant Street: P.O. Box 81226\\Registrant City: Seattle\\Registrant State/Province: WA\\Registrant Postal Code: 98108-1226\\Registrant\\ Country: US\\Registrant Phone: +1.2065771368\\Registrant Email: owner-4359371@mailrelaysrv.com.whoisprivacyservice.org\\Admin Name: On behalf of mailrelaysrv.com administrative contact\\Admin\\ Organization: Whois Privacy Service\\Admin Street: P.O. Box 81226\\Admin\\ City: Seattle\\Admin State/Province: WA\\Admin Postal Code: 98108-1226\\Admin Country: US\\Admin Phone: +1.2065771368\\Admin Email: admin-4359371@mailrelaysrv.com.whoisprivacyservice.org\\Tech Name: On behalf of mailrelaysrv.com technical contact\\Tech Organization:\\ Whois Privacy Service\\Tech Street: P.O. Box 81226\\Tech City: Seattle\\Tech State/Province: WA\\Tech Postal Code: 98108-1226\\Tech Country: US\\Tech Phone: +1.2065771368\\Tech Email: tech-4359371@mailrelaysrv.com.whoisprivacyservice.org\\Name Server: ns-1395.awsdns-46.orG\\Name Server: ns-15.awsdns-01.coM\\Name\\ Server: ns-1829.awsdns-36.co.uK\\Name Server: ns-972.awsdns-57.net",
+                            "footer": "",
+                            "audit": {
+                                "createdDate": "2020-07-19 13:24:10 UTC",
+                                "updatedDate": "2020-07-19 13:24:10 UTC"
+                            },
+                            "customField1Name": "RegistrarContactEmail",
+                            "customField1Value": "registrar-abuse@amazon.com",
+                            "registrarName": "Amazon Registrar, Inc.",
+                            "registrarIANAID": "468",
+                            "whoisServer": "whois.registrar.amazon.com",
+                            "createdDateNormalized": "2016-02-15 07:36:18 UTC",
+                            "updatedDateNormalized": "2020-01-12 02:20:59 UTC",
+                            "expiresDateNormalized": "2021-02-15 07:36:18 UTC",
+                            "customField2Name": "RegistrarContactPhone",
+                            "customField3Name": "RegistrarURL",
+                            "customField2Value": "+1.2067406200",
+                            "customField3Value": "https://registrar.amazon.com",
+                            "registryData": {
+                                "createdDate": "2016-02-15T07:36:18Z",
+                                "updatedDate": "2020-01-12T02:20:58Z",
+                                "expiresDate": "2021-02-15T07:36:18Z",
+                                "domainName": "mailrelaysrv.com",
+                                "nameServers": {
+                                    "rawText": "NS-1395.AWSDNS-46.ORG\\NS-15.AWSDNS-01.COM\\NS-1829.AWSDNS-36.CO.UK\\NS-972.AWSDNS-57.NET",
+                                    "hostNames": [
+                                        "S-1395.AWSDNS-46.ORG",
+                                        "NS-15.AWSDNS-01.COM",
+                                        "NS-1829.AWSDNS-36.CO.UK",
+                                        "NS-972.AWSDNS-57.NET"
+                                    ],
+                                    "ips": []
+                                },
+                                "status": "clientTransferProhibited",
+                                "RawText": "Domain Name: MAILRELAYSRV.COm\\Registry Domain ID: 2002946221_DOMAIN_COM-VRSN\\Registrar WHOIS Server: whois.registrar.amazon.com\\Registrar URL: http://registrar.amazon.com\\Updated Date: 2020-01-12T02:20:58Z\\Creation Date: 2016-02-15T07:36:18Z\\Registry Expiry Date: 2021-02-15T07:36:18Z\\Registrar: Amazon Registrar,\\ Inc.\\Registrar IANA ID: 468\\Registrar Abuse Contact Email:\\Registrar\\ Abuse Contact Phone:\\Domain Status: clientTransferProhibited https://icann.org/epp#clientTransferProhibited\\Name Server: NS-1395.AWSDNS-46.ORG\\Name Server: NS-15.AWSDNS-01.COM\\Name Server: NS-1829.AWSDNS-36.CO.UK\\Name Server: NS-972.AWSDNS-57.NET\\DNSSEC: unsigned\\URL of the ICANN Whois Inaccuracy Complaint Form: https://www.icann.org/wicf/\\>>> Last update of whois database: 2020-07-19T13:23:59Z <<<\\For more\\ information on Whois status codes, please visit https://icann.org/epp\\NOTICE: The expiration date displayed in this record is the date the\\registrar's sponsorship of the domain name registration in the registry is\\currently set to expire. This date does not necessarily reflect the expiration\\date of the domain name registrant's agreement with the sponsoring\\registrar.\\ Users may consult the sponsoring registrar's Whois database to\\view the\\ registrar's reported date of expiration for this registration.\\TERMS\\ OF USE: You are not authorized to access or query our Whois\\database through\\ the use of electronic processes that are high-volume and\\automated except\\ as reasonably necessary to register domain names or\\modify existing registrations;\\ the Data in VeriSign Global Registry\\Services' (\"VeriSign\") Whois\\ database is provided by VeriSign for\\information purposes only, and to\\ assist persons in obtaining information\\about or related to a domain name\\ registration record. VeriSign does not\\guarantee its accuracy. By submitting\\ a Whois query, you agree to abide\by the following terms of use: You agree\\ that you may use this Data only\for lawful purposes and that under no\\ circumstances will you use this Data\to: (1) allow, enable, or otherwise\\ support the transmission of mass\\unsolicited, commercial advertising or\\ solicitations via e-mail, telephone,\\or facsimile; or (2) enable high\\ volume, automated, electronic processes\that apply to VeriSign (or its\\ computer systems). The compilation,\repackaging, dissemination or other\\ use of this Data is expressly\\prohibited without the prior written consent\\ of VeriSign. You agree not to\\use electronic processes that are automated\\ and high-volume to access or\\query the Whois database except as reasonably\\ necessary to register\\domain names or modify existing registrations. VeriSign\\ reserves the right\to restrict your access to the Whois database in its\\ sole discretion to ensure\\operational stability. VeriSign may restrict\\ or terminate your access to the\\Whois database for failure to abide by\\ these terms of use. VeriSign\\reserves the right to modify these terms\\ at any time.\\The Registry database contains ONLY .COM, .NET, .EDU domains\\ and\\Registrars.",
+                                "parseCode": 251,
+                                "header": "",
+                                "strippedText": "Domain\\ Name: MAILRELAYSRV.COM\\Registry Domain ID: 2002946221_DOMAIN_COM-VRSN\\Registrar WHOIS Server: whois.registrar.amazon.com\\Registrar URL: http://registrar.amazon.com\\Updated Date: 2020-01-12T02:20:58Z\\Creation Date: 2016-02-15T07:36:18Z\\Registry Expiry Date: 2021-02-15T07:36:18Z\\Registrar: Amazon Registrar,\\ Inc.\\Registrar IANA ID: 468\\Registrar Abuse Contact Email:\\Registrar\\ Abuse Contact Phone:\\Domain Status: clientTransferProhibited https://icann.org/epp#clientTransferProhibited\\Name Server: NS-1395.AWSDNS-46.ORG\\Name Server: NS-15.AWSDNS-01.COM\\Name\\ Server: NS-1829.AWSDNS-36.CO.UK\\Name Server: NS-972.AWSDNS-57.NET\\DNSSEC:\\ unsigned\\URL of the ICANN Whois Inaccuracy Complaint Form: https://www.icann.org/wicf/\\>>> Last update of whois database: 2020-07-19T13:23:59Z <<<\\For more information\\ on Whois status codes, please visit https://icann.org/epp\\NOTICE: The\\ expiration date displayed in this record is the date the\\registrar's sponsorship\\ of the domain name registration in the registry is\\currently set to expire.\\ This date does not necessarily reflect the expiration\\date of the domain\\ name registrant's agreement with the sponsoring\\registrar. Users may consult\\ the sponsoring registrar's Whois database to\\view the registrar's reported\\ date of expiration for this registration.\\TERMS OF USE: You are not authorized\\ to access or query our Whois\\database through the use of electronic processes\\ that are high-volume and\\automated except as reasonably necessary to register\\ domain names or\\modify existing registrations; the Data in VeriSign Global\\ Registry\\Services' (\"VeriSign\") Whois database is provided by VeriSign\\ for\\information purposes only, and to assist persons in obtaining information\\about or related to a domain name registration record. VeriSign does not\\guarantee its accuracy. By submitting a Whois query, you agree to abide\\by the following terms of use: You agree that you may use this Data only\\for lawful purposes and that under no circumstances will you use this Data\\to: (1) allow, enable, or otherwise support the transmission of mass\\unsolicited,\\ commercial advertising or solicitations via e-mail, telephone,\\or facsimile;\\ or (2) enable high volume, automated, electronic processes\that apply\\ to VeriSign (or its computer systems). The compilation,\repackaging, dissemination\\ or other use of this Data is expressly\\prohibited without the prior written\\ consent of VeriSign. You agree not to\\use electronic processes that are\\ automated and high-volume to access or\\query the Whois database except\\ as reasonably necessary to register\\domain names or modify existing registrations.\\ VeriSign reserves the right\\to restrict your access to the Whois database\\ in its sole discretion to ensure\\operational stability. VeriSign may restrict\\ or terminate your access to the Whois database for failure to abide by\\ these terms of use. VeriSign\\reserves the right to modify these terms\\ at any time.\\The Registry database contains ONLY .COM, .NET, .EDU domains\\ and\\Registrars.",
+                                "footer": "",
+                                "audit": {
+                                    "createdDate": "2020-07-19\\ 13:24:09 UTC",
+                                    "updatedDate": "2020-07-19 13:24:09\\ UTC"
+                                },
+                                "registrarName": "\\Amazon Registrar, Inc.",
+                                "registrarIANAID": "468",
+                                "createdDateNormalized": "2016-02-15 07:36:18 UTC",
+                                "updatedDateNormalized": "2020-01-12 02:20:58 UTC",
+                                "expiresDateNormalized": "2021-02-15 07:36:18 UTC",
+                                "customField3Name": "RegistrarURL",
+                                "customField3Value": "http://registrar.amazon.com",
+                                "whoisServer": "whois.registrar.amazon.com"
+                            },
+                            "contactEmail": "owner-4359371@mailrelaysrv.com.whoisprivacyservice.org",
+                            "domainNameExt": ".com",
+                            "estimatedDomainAge": 1616
+                        }
+                    }
+                }
+            ]
 default_result_value: ''
 creator: Yoav Tal
 script_result_name: ScriptResult

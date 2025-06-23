@@ -27,6 +27,7 @@ parameters:
 dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: true
+        # language=json
         result_example: "{\n\t\"results\": [{\n\t\t\"request\": \"value\",\n\t\t\"agent\"\
         : \"value\",\n\t\t\"minor\": \"value\",\n\t\t\"auth\": \"value\",\n\t\t\"\
         ident\": \"value\",\n\t\t\"os_major\": \"value\",\n\t\t\"type\": \"value\"\

@@ -26,6 +26,7 @@ parameters:
 dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: true
+        # language=json
         result_example: "{\r\n    \"matches\": [\r\n        {\r\n            \"search\"\
         : \"input\",\r\n            \"input\": \"This is the input test. I want to\
         \ find a few things.\",\r\n            \"match\": true\r\n        },\r\n \

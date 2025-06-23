@@ -12,6 +12,7 @@ parameters:
 dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: true
+        # language=json
         result_example: "{\r\n\t\"uuid\": \"gkABCDEbbbbbbbkPuA==\",\r\n\t\"id\": 68000000031879,\r\
         \n\t\"account_id\": \"EABkdslfBBBdk\",\r\n\t\"host_id\": \"z8yBXksaAAjdhfsfdfkjgg\"\
         ,\r\n\t\"topic\": \"MyTestPollMeeting\",\r\n\t\"type\": 2,\r\n\t\"start_time\"\

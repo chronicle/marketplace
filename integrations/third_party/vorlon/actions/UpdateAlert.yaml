@@ -12,6 +12,7 @@ parameters:
 dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: true
+        # language=json
         result_example: "  \n{\n  \"alert_id\": \"1234567890\",\n  \"apply_to_linked_alerts\"\
         : true,\n  \"apply_to_status\": [\n    \"[\\\"dismissed\\\"\",\n    \"\\\"\
         resolved\\\"]]\"\n  ],\n  \"new_status\": \"closed\"\n}"
