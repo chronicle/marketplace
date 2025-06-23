@@ -81,7 +81,30 @@ EXCLUDED_GLOBS: set[str] = {
     "*.pyc",
     "__pycache__",
 }
-
+EXCLUDED_INTEGRATIONS_WITH_CONNECTORS_AND_NO_MAPPING: set[str] = {
+    "VectraQUX",
+    "VectraRUX",
+    "AirTable",
+    "DUO",
+    "Cybersixgill Actionable Alerts",
+    "Cybersixgill DVE Feed",
+    "Cybersixgill Darkfeed",
+    "PerimeterX",
+    "Connectors",
+    "Vorlon",
+    "MicrosoftGraphSecurityTools",
+    "EclecticIQ",
+    "Flashpoint",
+    "beSECURE",
+    "DataDog",
+    "GreyNoise",
+    "Lacework",
+    "Logzio",
+    "Luminar IOCs and Leaked Credentials",
+    "PagerDuty",
+    "Telegram",
+    "Workflow Tools",
+}
 EXCLUDED_INTEGRATIONS_IDS_WITHOUT_PING: set[str] = {
     "ChronicleSupportTools",
     "Connectors",
