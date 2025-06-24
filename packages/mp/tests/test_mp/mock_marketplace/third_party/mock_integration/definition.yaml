@@ -35,4 +35,9 @@ parameters:
         name: Verify SSL
         type: boolean
         default_value: true
-svg_image: <?xml version="1.0" encoding="UTF-8"?><svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 25"><path d="M23.8,11.73L18.8Z" fill-rule="evenodd"/></svg>
+# language=svg
+svg_image: |
+    <?xml version="1.0" encoding="UTF-8"?>
+    <svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 25">
+        <path d="M23.8,11.73L18.8Z" fill-rule="evenodd"/>
+    </svg>

@@ -34,6 +34,7 @@ parameters:
 dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: true
+        # language=json
         result_example: "{\r\n\t\"data\": {\r\n\t\t\"gid\": \"12345\",\r\n\t\t\"resource_type\"\
         : \"task\",\r\n\t\t\"name\": \"Buy catnip\",\r\n\t\t\"approval_status\": \"\
         pending\",\r\n\t\t\"assignee_status\": \"upcoming\",\r\n\t\t\"completed\"\

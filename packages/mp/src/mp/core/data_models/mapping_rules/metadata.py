@@ -153,6 +153,10 @@ class MappingRule(
 
     @classmethod
     def _from_built(cls, built: BuiltMappingRule) -> MappingRule:
+        extract_function: int | None = built.get("ExtractionFunction")
+        if extract_function is None:
+            extract_function = ExtractionFunction.NONE.value
+
         return cls(
             source=built["Source"],
             product=built["Product"],
@@ -176,11 +180,15 @@ class MappingRule(
             ),
             is_artifact=built["IsArtifact"],
             extract_function_param=built.get("ExtractionFunctionParam"),
-            extract_function=ExtractionFunction(built["ExtractionFunction"]),
+            extract_function=ExtractionFunction(extract_function),
         )
 
     @classmethod
     def _from_non_built(cls, non_built: NonBuiltMappingRule) -> MappingRule:
+        extract_function: str | None = non_built.get("extract_function")
+        if extract_function is None:
+            extract_function = ExtractionFunction.NONE.to_string()
+
         return cls(
             source=non_built["source"],
             product=non_built.get("product"),
@@ -221,9 +229,7 @@ class MappingRule(
             ),
             is_artifact=non_built["is_artifact"],
             extract_function_param=non_built.get("extract_function_param"),
-            extract_function=ExtractionFunction.from_string(
-                non_built.get("extract_function", ExtractionFunction.NONE.to_string()),
-            ),
+            extract_function=ExtractionFunction.from_string(extract_function),
             transformation_function_param=non_built.get(
                 "transformation_function_param",
             ),

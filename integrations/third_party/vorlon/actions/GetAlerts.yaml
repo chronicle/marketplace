@@ -44,6 +44,7 @@ parameters:
 dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: true
+        # language=json
         result_example: "[\n  {\n    \"created\": 1686562760,\n    \"description\": \"\
         Vorlon detected traffic from salesforce to a new endpoint on asana that may\
         \ contain sensitive data.\",\n    \"id\": \"string\",\n    \"remediation_steps\"\

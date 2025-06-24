@@ -25,6 +25,7 @@ parameters:
 dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: true
+        # language=json
         result_example: "[\n  {\n    \"Entity\": \"https://regex101.com/\",\n    \"EntityResult\"\
         : {\n      \"domain\": \"regex101.com\"\n    }\n  },\n  {\n    \"Entity\"\
         : \"https://pay.ebay.com/rxo?action=view&sessionid=1353028532011\",\n    \"\

@@ -17,6 +17,7 @@ parameters:
 dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: true
+        # language=json
         result_example: "{\r\n\t\"Task name: task 1\": {\r\n\t\t\"data\": {\r\n\t\t\t\"\
         gid\": \"11111111\",\r\n\t\t\t\"assignee\": {\r\n\t\t\t\t\"gid\": \"123456\"\
         ,\r\n\t\t\t\t\"name\": \"Firstname Lastname\",\r\n\t\t\t\t\"resource_type\"\

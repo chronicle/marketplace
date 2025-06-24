@@ -13,6 +13,7 @@ parameters:
 dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: true
+        # language=json
         result_example: "{\n  \"input_string\": \"STRING\",\n  \"total_words\": 112,\n\
         \  \"total_misspelled_words\": 5,\n  \"misspelled_words\": [\n    {\n    \
         \  \"misspelled_word\": \"worda\",\n      \"correction\": \"word\"\n    },\n\
