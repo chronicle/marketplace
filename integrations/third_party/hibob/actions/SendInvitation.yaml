@@ -18,6 +18,7 @@ parameters:
 dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: true
+        # language=json
         result_example: "{\r\n\t\"exists\": \"True\",\r\n\t\"invitationWasSent\": \"False\"\
         ,\r\n\t\"wizardName\": \"Welcome!\",\r\n\t\"wizardId\": \"954554\"\r\n}"
 default_result_value: ''

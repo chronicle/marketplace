@@ -17,6 +17,7 @@ parameters:
 dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: true
+        # language=json
         result_example: "{\r\n\t\"data\": {\r\n\t\t\"gid\": \"12345\",\r\n\t\t\"resource_type\"\
         : \"user\",\r\n\t\t\"name\": \"Greg Sanchez\",\r\n\t\t\"email\": \"gsanchez@example.com\"\
         ,\r\n\t\t\"photo\": {\r\n\t\t\t\"image_128x128\": \"https://...\",\r\n\t\t\

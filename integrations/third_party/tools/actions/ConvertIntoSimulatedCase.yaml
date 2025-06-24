@@ -24,6 +24,7 @@ parameters:
 dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: true
+        # language=json
         result_example: "{\n  \"Cases\": [\n    {\n      \"Events\": [\n        {\n  \
         \        \"_fields\": {\n            \"BaseEventIds\": \"[]\",\n         \
         \   \"ParentEventId\": -1,\n            \"deviceEventClassId\": \"Email check\"\

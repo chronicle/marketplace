@@ -37,6 +37,7 @@ parameters:
 dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: true
+        # language=json
         result_example: "[\n  {\n    \"count\": 100,\n    \"requesting_instance\": \"\
         my-salesforce\",\n    \"requesting_service\": \"my-salesforce\",\n    \"responding_instance\"\
         : \"my.salesforce.com\",\n    \"responding_service\": \"salesforce\"\n  }\n\

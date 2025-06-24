@@ -12,10 +12,23 @@ parameters:
 dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: true
-        result_example: "{\n  \"list\": [\n    {\n      \"key\": \"PhishingBodyAnalysisUnmatchedDomains\"\
-        ,\n      \"value\": \"onlineservicetech.websit\"\n    },\n    {\n      \"\
-        key\": \"PhishingBodyAnalysisSpellingMistakes\",\n      \"value\": \"perfomance\"\
-        \n    }\n  ],\n  \"dict\": {},\n  \"data\": \"Just some string\"\n}"
+        # language=json
+        result_example: |
+            {
+                "list": [
+                    {
+                        "key": "PhishingBodyAnalysisUnmatchedDomains",
+                        "value": "onlineservicetech.websit"
+                    },
+                    {
+                        "key": "PhishingBodyAnalysisSpellingMistakes",
+                        "value": "perfomance"
+                    }
+                ],
+                "dict": {},
+                "data": "Just some string"
+            }
+
 default_result_value: ''
 creator: Robert
 script_result_name: ScriptResult

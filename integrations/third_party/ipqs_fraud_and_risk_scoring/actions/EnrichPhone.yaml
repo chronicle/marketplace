@@ -19,7 +19,7 @@ parameters:
             checks may provide a higher false-positive rate.
         is_mandatory: true
     -   name: Country(For multiple countries, provide comma-separated values)
-        default_value: None
+        default_value: null
         type: string
         description: You can optionally provide us with the default country or countries(comma
             separated) this phone number is suspected to be associated with.

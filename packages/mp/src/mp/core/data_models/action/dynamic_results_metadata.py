@@ -14,7 +14,9 @@
 
 from __future__ import annotations
 
-from typing import TypedDict
+from typing import Any, TypedDict
+
+import pydantic  # noqa: TC002
 
 import mp.core.data_models.abc
 
@@ -37,7 +39,7 @@ class DynamicResultsMetadata(
         NonBuiltDynamicResultsMetadata,
     ],
 ):
-    result_example: str | None
+    result_example: pydantic.Json[Any] | None
     result_name: str
     show_result: bool
 
