@@ -1,6 +1,6 @@
 # mp: Your Google SecOps Marketplace Integration Powerhouse
 
-[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](./LICENSE)
 [![Python Version](https://img.shields.io/badge/Python-3.11+-blue.svg)](https://www.python.org/downloads/)
 ![Maintenance](https://img.shields.io/maintenance/yes/2025)
 
@@ -24,5 +24,23 @@ testing, and ensuring the quality of their integrations.
 
 ### Installation
 
+First, change your current directory to the directory of the integration you want to support integration_testing
+
 ```bash
-pip install google_secops_marketplace
+cd /path/to/integration
+```
+
+Then, if you haven't created a virtual environment, run
+
+```bash
+uv sync --dev
+```
+
+And finally add the dependency
+
+```bash
+uv add ../../packages/integration_testing --dev
+```
+
+To read more about how to write integration tests, check
+out [integration tests](/docs/development/integrations/tests.md)

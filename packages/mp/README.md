@@ -1,6 +1,6 @@
 # mp: Your Google SecOps Marketplace Integration Powerhouse
 
-[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](./LICENSE)
 [![Python Version](https://img.shields.io/badge/Python-3.11+-blue.svg)](https://www.python.org/downloads/)
 ![Maintenance](https://img.shields.io/maintenance/yes/2025)
 
@@ -54,9 +54,37 @@ mp test --verbose --integration my_integration
 mp config --marketplace-path . --processes 7 --display-config
 ```
 
+## Development Environment Commands
+
+The `dev-env` subcommands help you interact with the development playground environment.
+
+### Login to Dev Environment
+
+Authenticate and verify credentials (default):
+
+```bash
+mp dev-env login
+```
+
+Skip credential verification:
+
+```bash
+mp dev-env login --no-verify
+```
+
+### Deploy an Integration to Dev Environment
+
+Build and deploy an integration to the dev environment:
+
+```bash
+mp dev-env deploy <integration_name>
+```
+
+- `<integration_name>`: The name of the integration directory under `integrations/commercial` or `integrations/third_party`.
+
 ## License
 
-This project is licensed under the Apache License 2.0—see the [LICENSE](LICENSE) file
+This project is licensed under the Apache License 2.0—see the [LICENSE](./LICENSE) file
 for details.
 
 * **Effortless Integration Building:** Simplify the creation of new Google SecOps
@@ -75,5 +103,5 @@ for details.
 From the repo's root directory run
 
 ```bash
-pip3 install packages/mp
+pip install packages/mp
 ```

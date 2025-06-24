@@ -106,3 +106,29 @@ mp build --repository COMMERCIAL
 ```bash
 mp build --integration my_integration --deconstruct
 ```
+
+## Development Environment Commands
+
+### Login to Dev Environment
+
+Authenticate and verify credentials (default):
+
+```bash
+mp dev-env login
+```
+
+Skip credential verification:
+
+```bash
+mp dev-env login --no-verify
+```
+
+### Deploy an Integration to Dev Environment
+
+Build and deploy an integration to the dev environment:
+
+```bash
+mp dev-env deploy <integration_name>
+```
+
+- `<integration_name>`: The name of the integration directory under `integrations/commercial` or `integrations/third_party`.
