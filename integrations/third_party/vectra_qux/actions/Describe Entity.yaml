@@ -18,6 +18,7 @@ parameters:
 dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: true
+        # language=json
         result_example: "{\n    \"id\": 38970,\n    \"name\": \"IP-1.1.1.1\",\n    \"\
         active_traffic\": false,\n    \"has_active_traffic\": false,\n    \"t_score\"\
         : 30,\n    \"threat\": 30,\n    \"c_score\": 68,\n    \"certainty\": 68,\n\

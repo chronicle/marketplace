@@ -16,6 +16,7 @@ parameters:
 dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: true
+        # language=json
         result_example: "[{\"@odata.type\": \"#microsoft.graph.fileAttachment\", \"@odata.mediaContentType\"\
         : \"image/png\", \r\n\"id\": \"AAMkADY4OWJiOTY5LWZiODItNDNjMy05MjA4LTA2ZTNiMzNkZTg1NQBGAAAAAADi_cDVGMwvSY14bTcuE30PBwBq0FWx2eMAQJKh8wSyz13FAAAAAAEMAABq0FWx2eMAQJKh8wSyz13FAAHfMNGJAAABEgAQAE7nqquOvxZAnwi-XELc2aw=\"\
         , \"lastModifiedDateTime\": \"2020-11-04T13:57:31Z\", \"name\": \"banner.png\"\

@@ -15,6 +15,7 @@ parameters:
 dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: true
+        # language=json
         result_example: "[\n  {\n    \"evidenceName\": \"Siemplify Picture\",\n    \"\
         description\": \"Original email attachment\",\n    \"evidenceThumbnailBase64\"\
         : \"\",\n    \"evidenceId\": 4,\n    \"fileType\": \".png\",\n    \"creatorUserId\"\

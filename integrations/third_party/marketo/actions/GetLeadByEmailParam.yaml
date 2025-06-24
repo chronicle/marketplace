@@ -10,6 +10,7 @@ parameters:
 dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: true
+        # language=json
         result_example: "[{\r\n\t\"id\": 11111,\r\n\t\"firstName\": \"firstName\",\r\n\
         \t\"lastName\": \"lastName\",\r\n\t\"email\": \"email@siemplify.co\",\r\n\t\
         \"updatedAt\": \"2021-07-28T15:42:59Z\",\r\n\t\"createdAt\": \"2020-08-10T13:36:59Z\"\

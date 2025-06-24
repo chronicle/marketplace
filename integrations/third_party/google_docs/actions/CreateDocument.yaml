@@ -29,6 +29,7 @@ parameters:
 dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: true
+        # language=json
         result_example: "{\n  \"kind\": \"drive#file\",\n  \"id\": \"1bVDM43X43X4Ogfzzvb_PmPRobMmRdAsmOOgk\"\
         ,\n  \"name\": \"test.png\",\n  \"mimeType\": \"image/png\",\n  \"starred\"\
         : false,\n  \"trashed\": false,\n  \"explicitlyTrashed\": false,\n  \"parents\"\

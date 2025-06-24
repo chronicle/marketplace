@@ -15,6 +15,7 @@ parameters:
 dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: true
+        # language=json
         result_example: '{"status": "OK", "error_message": ""}'
 default_result_value: ''
 creator: 57861f63-e407-4200-90d4-a03bed1eb07e

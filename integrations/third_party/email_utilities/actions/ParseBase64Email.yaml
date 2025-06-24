@@ -24,6 +24,7 @@ parameters:
 dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: true
+        # language=json
         result_example: "{\n    \"attached_emails\": [\n        {\n            \"email\"\
         : {\n                \"body\": [\n                    {\n                \
         \        \"content\": \"string\",\n                        \"content_header\"\

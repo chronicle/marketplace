@@ -42,6 +42,7 @@ parameters:
 dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: true
+        # language=json
         result_example: "[\n    {\n        \"id\": 554,\n        \"assigned_by\": {\n\
         \            \"id\": 22231,\n            \"username\": \"crest.phantom@crestdata.ai\"\
         \n        },\n        \"date_assigned\": \"2024-11-20T09:48:55Z\",\n     \

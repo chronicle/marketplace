@@ -31,6 +31,7 @@ parameters:
 dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: true
+        # language=json
         result_example: "{\n    \"incident\": {\n        \"incident_number\": 5,\n   \
         \     \"title\": \"TEST TEST 3\",\n        \"description\": \"TEST TEST 3\"\
         ,\n        \"created_at\": \"2023-04-03T09:42:54Z\",\n        \"status\":\

@@ -76,6 +76,7 @@ parameters:
 dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: true
+        # language=json
         result_example: "{\r\n    \"items\": [\r\n        {\r\n            \"id\": \"\
         5d3968e0f23f730ecb0f68c2\",\r\n\"quarantinedOn\": \"2019-07-28T11:31:28\"\
         ,\r\n\"actionStatus\": 1,\r\n\"companyId\": \"55896b87b7894d0f367b23c6\",\r\

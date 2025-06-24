@@ -9,6 +9,7 @@ parameters:
 dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: true
+        # language=json
         result_example: "[\n    {\n        \"id\": 1,\n        \"builtin\": true,\n  \
         \      \"user_selectable\": true,\n        \"title\": \"Benign True Positive\"\
         ,\n        \"category\": \"benign_true_positive\"\n    }\n]"

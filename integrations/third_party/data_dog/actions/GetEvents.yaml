@@ -48,6 +48,7 @@ parameters:
 dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: true
+        # language=json
         result_example: "{\r\n\t\"events\": [{\r\n\t\t\"date_happened\": 1610487676,\r\
         \n\t\t\"alert_type\": \"error\",\r\n\t\t\"is_aggregate\": false,\r\n\t\t\"\
         title\": \"[Triggered on {host:i-123456}] Node filesystem used in Percent\

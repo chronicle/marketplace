@@ -62,6 +62,7 @@ parameters:
 dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: true
+        # language=json
         result_example: "{\r\n    \"items\": [\r\n        {\r\n            \"id\" : \"\
         21a295eeb1a43d8b497b23b7\",\r\n            \"name\" : \"Endpoint 1\",\r\n\
         \            \"label\" : \"endpoint 1\",\r\n            \"fqdn\": \"endpoint1.local\"\

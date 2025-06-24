@@ -59,6 +59,7 @@ parameters:
 dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: true
+        # language=json
         result_example: '{}'
 default_result_value: ''
 creator: af7283aa-f6b7-4c8f-bbe6-e76a38778387

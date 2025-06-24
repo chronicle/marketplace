@@ -5,6 +5,7 @@ parameters: [ ]
 dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: true
+        # language=json
         result_example: '{"results": [{"Entity": "8.8.8.8", "EntityResult": {"ip": "8.8.8.8",
         "noise": false, "riot": true, "classification": "benign", "name": "Google
         Public DNS", "link": "https://viz.greynoise.io/riot/8.8.8.8", "last_seen":

@@ -10,6 +10,7 @@ parameters:
 dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: true
+        # language=json
         result_example: "{\n    \"notes\": [],\n    \"filtered_by_user\": false,\n   \
         \ \"is_targeting_key_asset\": false,\n    \"detection_type\": \"Kerberoasting:\
         \ Weak Cipher Request\",\n    \"detection\": \"Kerberoasting: Weak Cipher\

@@ -6,6 +6,7 @@ parameters: [ ]
 dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: true
+        # language=json
         result_example: "[\r\n  {\r\n    \"entityIdentifier\": \"https://rapidgator.net/file/46dcb60949bd324e948ce2b35a876e2b/y0y1u.The.Ultimate.Swagger.Tools.Course.Build.OpenAPI.with.Ease.part1.rar.html\"\
         ,\r\n    \"entityResult\": [\r\n      {\r\n        \"created\": \"2021-06-22T09:15:45.634Z\"\
         ,\r\n        \"description\": \"Malware available for download from file-sharing\

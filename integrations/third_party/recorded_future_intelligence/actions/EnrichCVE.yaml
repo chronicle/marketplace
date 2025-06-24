@@ -23,6 +23,7 @@ parameters:
 dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: true
+        # language=json
         result_example: '[{"Entity": "CVE-2014-0160", "EntityResult": [{"entity": {"id":
         "K5GW38", "name": "CVE-2014-0160", "type": "CyberVulnerability", "description":
         "The (1) TLS and (2) DTLS implementations in OpenSSL 1.0.1 before 1.0.1g do

@@ -10,6 +10,7 @@ parameters:
 dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: true
+        # language=json
         result_example: '{"result": {"id": "5121da426803fa2d0e000017", "name": "Default
         policy", "createdBy": "root+us@bitdefender.com", "createDate": "None", "lastModifyDate":
         "2015-10-29T12:27:57", "settings": {"antimalware": {"onAccess": {"onAccessScanning":

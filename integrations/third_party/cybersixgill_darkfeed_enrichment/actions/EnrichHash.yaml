@@ -7,6 +7,7 @@ parameters: [ ]
 dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: true
+        # language=json
         result_example: "[\r\n  {\r\n    \"entityIdentifier\": \"6A416565A80DF7955C2729CC36C3760C\"\
         ,\r\n    \"entityResult\": [\r\n      {\r\n        \"created\": \"2020-07-31T04:47:01.788Z\"\
         ,\r\n        \"description\": \"Virustotal link that appeared on a dark web\

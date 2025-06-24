@@ -15,6 +15,7 @@ parameters:
 dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: true
+        # language=json
         result_example: "{\n    \"event_id\": \" 32072928741742\",\n    \"ingest_timestamp\"\
         : \"2024-05-30T07:21:46.292874Z\",\n    \"status\": \"OK\",\n    \"arcanna_event\"\
         : {\n        \"id\": \"32072928741742\",\n        \"metadata\": {\n      \

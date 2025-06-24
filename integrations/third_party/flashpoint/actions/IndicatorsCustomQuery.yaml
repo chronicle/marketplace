@@ -70,6 +70,7 @@ parameters:
 dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: true
+        # language=json
         result_example: "[\r\n  {\r\n    \"Attribute\": [\r\n      {\r\n        \"category\"\
         : \"string\",\r\n        \"comment\": \"string\",\r\n        \"fpid\": {},\r\
         \n        \"href\": {},\r\n        \"timestamp\": 0,\r\n        \"type\":\

@@ -21,6 +21,7 @@ parameters:
 dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: true
+        # language=json
         result_example: "[\n    {\n        \"id\": 30,\n        \"last_login_timestamp\"\
         : \"2023-09-29T07:15:30Z\",\n        \"email\": \"jhon.deo@example.com\",\n\
         \        \"role\": \"security_analyst\",\n        \"name\": \"jhon.deo\",\n\

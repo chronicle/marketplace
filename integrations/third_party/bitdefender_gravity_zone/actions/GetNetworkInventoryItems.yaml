@@ -76,6 +76,7 @@ parameters:
 dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: true
+        # language=json
         result_example: "{\r\n    \"result\": {\r\n        \"id\" : \"21a295eeb1a43d8b497b24b7\"\
         ,\r\n        \"name\" : \"Computer\",\r\n        \"type\" : 5,\r\n       \
         \ \"parentId\": \"21a295eeb1a43d8b497b24b7\",\r\n        \"companyId\": \"\

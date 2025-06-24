@@ -23,6 +23,7 @@ parameters:
 dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: true
+        # language=json
         result_example: '{"results": [{"Entity": "1.1.1.1", "EntityResult": {"ip": {"ip":
         "1.1.1.1", "actor": "unknown", "classification": "malicious", "first_seen":
         "2019-04-30", "last_seen": "2023-08-15", "asn": "AS9808", "city": "Chengdu",

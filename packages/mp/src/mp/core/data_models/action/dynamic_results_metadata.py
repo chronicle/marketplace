@@ -14,6 +14,7 @@
 
 from __future__ import annotations
 
+import json
 from typing import Any, TypedDict
 
 import pydantic  # noqa: TC002
@@ -87,8 +88,12 @@ class DynamicResultsMetadata(
             A built version of the dynamic results metadata dict
 
         """
+        example: str | None = None
+        if self.result_example is not None:
+            example = json.dumps(self.result_example)
+
         return BuiltDynamicResultsMetadata(
-            ResultExample=self.result_example,
+            ResultExample=example,
             ResultName=self.result_name,
             ShowResult=self.show_result,
         )
@@ -100,8 +105,12 @@ class DynamicResultsMetadata(
             A non-built version of the dynamic results metadata dict
 
         """
+        example: str | None = None
+        if self.result_example is not None:
+            example = json.dumps(self.result_example)
+
         return NonBuiltDynamicResultsMetadata(
+            result_example=example,
             result_name=self.result_name,
             show_result=self.show_result,
-            result_example=self.result_example,
         )

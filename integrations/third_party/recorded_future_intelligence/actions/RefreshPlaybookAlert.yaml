@@ -19,6 +19,7 @@ parameters:
 dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: true
+        # language=json
         result_example: '{"playbook_alert_id": "task:1ce58e62-de8a-471b-81d4-c98743376937",
         "panel_status": {"status": "New", "priority": "Moderate", "created": "2024-11-05T15:33:25.392Z",
         "updated": "2024-11-05T15:34:40.652Z", "case_rule_id": "report:oT8Yal", "case_rule_label":

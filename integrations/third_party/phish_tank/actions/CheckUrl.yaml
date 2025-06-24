@@ -6,6 +6,7 @@ parameters: [ ]
 dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: true
+        # language=json
         result_example: "[\n  {\n    \"EntityResult\": {\n      \"url0\": {\n        \"\
         url\": \"https://babules.su/\",\n        \"in_database\": \"true\",\n    \
         \    \"phish_id\": \"6605240\",\n        \"phish_detail_page\": \"http://www.phishtank.com/phish_detail.php?phish_id=6605240\"\

@@ -10,6 +10,7 @@ parameters:
 dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: true
+        # language=json
         result_example: "{\r\n\t\"banned\": 0,\r\n\t\"bypassSpam\": false,\r\n\t\"email\"\
         : \"mail@mail.com\",\r\n\t\"emailConfirmed\": true,\r\n\t\"dateInserted\"\
         : \"2021-08-01T11:46:39+00:00\",\r\n\t\"dateLastActive\": \"2021-08-01T11:46:39+00:00\"\

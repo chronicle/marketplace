@@ -16,6 +16,7 @@ parameters:
 dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: true
+        # language=json
         result_example: "[\r\n    {\r\n        \"ip\": \"1.1.1.1\",\r\n        \"country_code\"\
         : \"US\",\r\n        \"as_info\": [\r\n            {\r\n                \"\
         asn\": 13335,\r\n                \"as_name\": \"CLOUDFLARENET, US\"\r\n  \

@@ -32,6 +32,7 @@ parameters:
 dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: true
+        # language=json
         result_example: "{\n  \"results\": [\n    {\n      \"Entity\": \"1.1.1.1\",\n\
         \      \"EntityResult\": {\n        \"iid\": 178,\n        \"type\": \"ip\"\
         ,\n        \"indicator\": \"1.1.1.1\",\n        \"risk\": \"low\",\n     \

@@ -132,6 +132,7 @@ parameters:
 dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: true
+        # language=json
         result_example: "[\n    {\n        \"summary\": {\n            \"accounts\": [\n\
         \                \"\"\n            ],\n            \"function_uuids\": [\n\
         \                \"wkssvc\",\n                \"srvsvc\"\n            ],\n\

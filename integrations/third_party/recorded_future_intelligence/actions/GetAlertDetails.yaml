@@ -12,6 +12,7 @@ parameters:
 dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: true
+        # language=json
         result_example: '{"data":{"review":{"assignee":null,"noteAuthor":null,"note":null,"status":"no-action","noteDate":null},"entities":[{"entity":{"id":"idn:gmaxx.com.xxxsepehlxxx.com","name":"gmaxx.com.xxxsepehlexxx.com","type":"InternetDomainName"},"risk":{"criticalityLabel":"Suspicious","score":null,"documents":[{"references":[{"fragment":"A
         certificate for the domain gmail.com.sabsepehlelic.com has been registered","entities":[{"id":"idn:gmaxx.com.xxxsepehlxxx.com","name":"gmaxx.com.xxxsepehlexxx.com","type":"InternetDomainName"}],"language":"eng"}],"source":{"id":"xxx_4-","name":"New
         Certificate Registrations","type":"Source"},"url":null,"title":"Certificate

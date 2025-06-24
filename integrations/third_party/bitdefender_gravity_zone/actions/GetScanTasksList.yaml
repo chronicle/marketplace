@@ -20,6 +20,7 @@ parameters:
 dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: true
+        # language=json
         result_example: "{\r\n    \"result\": [\r\n        {\r\n            \"id\" : \"\
         21a295eeb1a43d8b497b23b7\",\r\n            \"name\" : \"task 1\",\r\n    \
         \        \"status\": 1,\r\n            \"startDate\": \"2015-08-21T23:48:16\"\
