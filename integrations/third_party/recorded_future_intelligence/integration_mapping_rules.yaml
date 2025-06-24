@@ -7,7 +7,7 @@
     raw_data_secondary_field_comparison_type: equal
     raw_data_third_field_comparison_type: equal
     is_artifact: false
-    extract_function: none
+    extract_function: null
 -   source: RecordedFutureIntelligence
     product: Recorded Future Classic Alert
     security_event_file_name: DestinationDomain
@@ -83,7 +83,7 @@
     raw_data_secondary_field_comparison_type: equal
     raw_data_third_field_comparison_type: equal
     is_artifact: false
-    extract_function: none
+    extract_function: null
 -   source: RecordedFutureIntelligence
     product: Recorded Future Classic Alert
     security_event_file_name: Message
@@ -93,4 +93,4 @@
     raw_data_secondary_field_comparison_type: equal
     raw_data_third_field_comparison_type: equal
     is_artifact: false
-    extract_function: none
+    extract_function: null

@@ -3,7 +3,7 @@ description: Updates a alert in the system with certain parameters.
 integration_identifier: DoppelVision
 parameters:
     -   name: Alert_ID
-        default_value: None
+        default_value: null
         type: string
         description: Unique identity for each specific alert in Doppel tenant
         is_mandatory: false

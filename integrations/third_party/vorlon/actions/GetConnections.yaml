@@ -33,6 +33,7 @@ parameters:
 dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: true
+        # language=json
         result_example: "[\n  {\n    \"exposures\": [\n      \"[\\\"clientid\\\"\",\n\
         \      \"\\\"publickey\\\"]\"\n    ],\n    \"id\": 1234,\n    \"intent\":\
         \ \"GET_CONTACTS\",\n    \"method\": \"/api/v1/contacts\",\n    \"requesting_host\"\

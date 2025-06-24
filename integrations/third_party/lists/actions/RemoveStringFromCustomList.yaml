@@ -15,6 +15,7 @@ parameters:
 dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: true
+        # language=json
         result_example: "[\n    {\n        \"Entity\": \"1.2.3.4\",\n        \"EntityResult\"\
         : false\n    },\n    {\n        \"Entity\": \"google.com\",\n        \"EntityResult\"\
         : true\n    },\n    {\n        \"Entity\": \"yahoo.co.uk\",\n        \"EntityResult\"\

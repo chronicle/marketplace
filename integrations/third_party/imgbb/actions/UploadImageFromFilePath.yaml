@@ -10,6 +10,7 @@ parameters:
 dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: true
+        # language=json
         result_example: "{\r\n\t\"data\": {\r\n\t\t\"id\": \"TgSJ5m1\",\r\n\t\t\"title\"\
         : \"08cdb41c98bf\",\r\n\t\t\"url_viewer\": \"https://ibb.co/Tg5m1\",\r\n\t\
         \t\"url\": \"https://i.ibb.co/1m5Bx8M/08c41c98bf.jpg\",\r\n\t\t\"display_url\"\
