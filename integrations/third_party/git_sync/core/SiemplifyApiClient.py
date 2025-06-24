@@ -538,13 +538,13 @@ class SiemplifyApiClient:
     def get_integration_instance_id_by_name(
         self,
         integration_name: str,
-        display_name: str,
+        display_name: str | None,
     ) -> str | None:
         """Gets the integration instance id by name.
 
         Args:
             integration_name (str): Integration name.
-            display_name (str): Display name of the integration instance.
+            display_name (str | None): Display name of the integration instance.
 
         Returns:
             str | None: Returns integration instance id.

@@ -778,20 +778,17 @@ class WorkflowInstaller:
             )
             return
 
-        instance_display_name = self._get_step_parameter_by_name(
+        instance_display_name = self._get_instance_display_name(
             step,
             "IntegrationInstance",
+            "InstanceDisplayName",
         )
-        if instance_display_name is not None:
-            instance_display_name = instance_display_name.get("InstanceDisplayName")
-        fallback_instance_display_name = self._get_step_parameter_by_name(
+
+        fallback_instance_display_name = self._get_instance_display_name(
             step,
             "FallbackIntegrationInstance",
+            "FallbackInstanceDisplayName",
         )
-        if fallback_instance_display_name is not None:
-            fallback_instance_display_name = fallback_instance_display_name.get(
-                "FallbackInstanceDisplayName"
-            )
 
         instance_id = self.api.get_integration_instance_id_by_name(
             step.get("integration"),
@@ -804,14 +801,6 @@ class WorkflowInstaller:
         # If the playbook is for one specific environment, choose the first integration instance from that environment
         # Otherwise, set the step to dynamic mode and set the first shared integration instance as fallback
         if len(environments) == 1 and environments[0] != ALL_ENVIRONMENTS_IDENTIFIER:
-            instance = self._get_step_parameter_by_name(
-                step,
-                "IntegrationInstance",
-            ).get("value")
-            fallback = self._get_step_parameter_by_name(
-                step,
-                "FallbackIntegrationInstance",
-            ).get("value")
             integration_instances = self._find_integration_instances_for_step(
                 step.get("integration"),
                 environments[0],
@@ -849,6 +838,20 @@ class WorkflowInstaller:
                     "FallbackIntegrationInstance",
                     fallback_instance_id,
                 )
+
+    def _get_instance_display_name(
+        self,
+        step: dict,
+        parameter_name: str,
+        display_name_key: str,
+    ) -> str | None:
+        """Helper to get the display name of an integration instance parameter."""
+        param_json = self._get_step_parameter_by_name(step, parameter_name)
+
+        if param_json is not None:
+            return param_json.get(display_name_key)
+
+        return None
 
     def _find_integration_instances_for_step(
         self,

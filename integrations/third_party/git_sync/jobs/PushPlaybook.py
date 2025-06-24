@@ -78,12 +78,13 @@ def main():
                         readme_addon,
                     )
 
-                playbook = Workflow(
-                    gitsync.api.get_playbook(playbook.get("identifier")),
-                )
-                gitsync.content.push_playbook(playbook)
+                playbook = gitsync.api.get_playbook(playbook.get("identifier"))
+                workflow = Workflow(playbook)
+                workflow.update_instance_name_in_steps(gitsync.api)
+                gitsync.content.push_playbook(workflow)
+
                 if include_blocks:
-                    for block in playbook.get_involved_blocks():
+                    for block in workflow.get_involved_blocks():
                         installed_block = next(
                             (
                                 x
@@ -103,7 +104,7 @@ def main():
                         gitsync.content.push_playbook(block)
             else:
                 siemplify.LOGGER.warn(
-                    f"Playbook {playbook.get('name')} not found, Skipping",
+                    f"Playbook {workflow.get('name')} not found, Skipping",
                 )
 
         gitsync.update_readme(create_root_readme(gitsync), "Playbooks")

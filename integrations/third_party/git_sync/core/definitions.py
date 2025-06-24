@@ -442,27 +442,44 @@ class Workflow(Content):
     def get_involved_blocks(self):
         return [x for x in self.steps if x.get("type") == 5]
 
-    def update_instance_name_to_steps(self, api: SiemplifyApiClient) -> None:
-        """Updates name of instances in the steps.
-
-        Args:
-            api (SiemplifyApiClient): SiemplifyApiClient object.
-        """
+    def update_instance_name_in_steps(self, api: SiemplifyApiClient) -> None:
+        """Updates name of instances in the steps."""
         for step in self.steps:
             if step.get("type") == 0 and step.get("actionProvider") == "Scripts":
-                for param in step.get("parameters", []):
-                    if param["name"] in [
-                        "IntegrationInstance",
-                        "FallbackIntegrationInstance",
-                    ] and self._is_valid_instance_id(param["value"]):
-                        display_name = api.get_integration_instance_name(
-                            step["integration"], param["value"]
-                        )
-                        if param["name"] == "IntegrationInstance":
-                            param["InstanceDisplayName"] = display_name
-                        if param["name"] == "FallbackIntegrationInstance":
-                            param["FallbackInstanceDisplayName"] = display_name
+                self._update_instance_display_names_for_step(step, api)
 
+    def _update_instance_display_names_for_step(
+        self,
+        step: dict,
+        api: SiemplifyApiClient,
+    ) -> None:
+        """Updates display names for integration instance parameters in a step.
+        
+        Args:
+            step (dict): The workflow step dictionary to process.
+            api (SiemplifyApiClient): An API client instance used to fetch
+                integration instance names.
+        """
+        for param in step.get("parameters", []):
+            param_name = param.get("name")
+            param_value = param.get("value")
+
+            if param_name not in (
+                "IntegrationInstance",
+                "FallbackIntegrationInstance",
+            ) or not self._is_valid_instance_id(param_value):
+                continue
+
+            display_name = api.get_integration_instance_name(
+                step["integration"],
+                param_value,
+            )
+
+            match param_name:
+                case "IntegrationInstance":
+                    param["InstanceDisplayName"] = display_name
+                case "FallbackIntegrationInstance":
+                    param["FallbackInstanceDisplayName"] = display_name
 
     def _is_valid_instance_id(self, instance_id: str) -> bool:
         try:
