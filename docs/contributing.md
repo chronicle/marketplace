@@ -1,7 +1,5 @@
 # How to Contribute
 
-We would love to accept your patches and contributions to this project.
-
 ## Before you begin
 
 ### Sign our Contributor License Agreement
@@ -18,10 +16,12 @@ was for a different project), you probably don't need to do it again.
 Visit <https://cla.developers.google.com/> to see your current agreements or to
 sign a new one.
 
-### Partners
+### How to get access to Google SecOps for development purposes
 
-If you're already a partner or want to partner with us, to get access to the Google SecOps platform, you need to submit
-this [form](https://docs.google.com/forms/d/e/1FAIpQLSf7LYpIPhzFAYLo2NPpl5NUBX6h2zG4rDlLjWjm2Ic_U2FhZg/viewform)
+In order to get access to the Google SecOps platform, you need to submit
+this [form](https://docs.google.com/forms/d/e/1FAIpQLSf7LYpIPhzFAYLo2NPpl5NUBX6h2zG4rDlLjWjm2Ic_U2FhZg/viewform). The form will be triaged by our Partner Management team. We might reach out to get more details. If everything is resolved, you will receive a Development License and access to Google SecOps. 
+
+If you already have access to Google SecOps through mutual customers/partners, then you can skip this step and start contributing.
 
 ### Review our Community Guidelines
 
