@@ -19,6 +19,7 @@ parameters:
         is_mandatory: false
         integration_identifier: ArcannaAI
 categories: [ ]
+# language=svg
 svg_image: "<svg width=\"48\" height=\"48\" viewBox=\"0 0 48 48\" fill=\"none\" xmlns=\"\
     http://www.w3.org/2000/svg\">\r\n<path fill-rule=\"evenodd\" clip-rule=\"evenodd\"\
     \ d=\"M11.52 0C5.15768 0 0 5.15768 0 11.52V36.48C0 42.8423 5.15768 48 11.52 48H36.48C42.8423\

@@ -10,6 +10,7 @@ parameters:
 dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: true
+        # language=json
         result_example: "{\r\n  \"SAN\": [\r\n    \"*.badssl.com\",\r\n    \"badssl.com\"\
         ],\r\n  \"commonName\": \"*.badssl.com\",\r\n  \"days_to_expiration\": 160,\r\
         \n  \"hostname\": \"self-signed.badssl.com\",\r\n  \"ip\": \"1.1.1.1\",\r\n\

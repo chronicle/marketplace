@@ -39,6 +39,7 @@ parameters:
 dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: true
+        # language=json
         result_example: "[\r\n    {\r\n        \"category\": \"Users\",\r\n        \"\
         category_score\": 1,\r\n        \"score_data\": [\r\n            {\r\n   \
         \             \"description\": \"A description.\",\r\n                \"score\"\

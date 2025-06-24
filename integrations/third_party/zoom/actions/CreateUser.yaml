@@ -31,6 +31,7 @@ parameters:
 dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: true
+        # language=json
         result_example: "{\r\n\t\"id\": \"k&KdKr6TLWuxdDtk0hjSzL\",\r\n\t\"meta\": {\r\
         \n\t\t\"resourceType\": \"User\",\r\n\t\t\"location\": \"https://api.zoom.us/scim2/Users/k&KdKr6TLWuxdDtk0hjSzL\"\
         ,\r\n\t\t\"version\": \"1.0.0\"\r\n\t},\r\n\t\"schemas\": [\r\n\t\t\"urn:ietf:params:scim:schemas:core:2.0:User\"\

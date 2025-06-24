@@ -22,6 +22,10 @@ PROJECT_FILE: str = "pyproject.toml"
 INTEGRATIONS_DIR_NAME: str = "integrations"
 COMMUNITY_DIR_NAME: str = "third_party"
 COMMERCIAL_DIR_NAME: str = "commercial"
+INTEGRATIONS_TYPES: tuple[str, ...] = (
+    COMMUNITY_DIR_NAME,
+    COMMERCIAL_DIR_NAME,
+)
 OUT_INTEGRATIONS_DIR_NAME: str = "integrations"
 OUT_DIR_NAME: str = "out"
 REQUIREMENTS_FILE: str = "requirements.txt"
@@ -73,6 +77,34 @@ PYTHON_VERSION_FILE: str = ".python-version"
 
 MS_IN_SEC: int = 1_000
 
+EXCLUDED_GLOBS: set[str] = {
+    "*.pyc",
+    "__pycache__",
+}
+EXCLUDED_INTEGRATIONS_WITH_CONNECTORS_AND_NO_MAPPING: set[str] = {
+    "VectraQUX",
+    "VectraRUX",
+    "AirTable",
+    "DUO",
+    "Cybersixgill Actionable Alerts",
+    "Cybersixgill DVE Feed",
+    "Cybersixgill Darkfeed",
+    "PerimeterX",
+    "Connectors",
+    "Vorlon",
+    "MicrosoftGraphSecurityTools",
+    "EclecticIQ",
+    "Flashpoint",
+    "beSECURE",
+    "DataDog",
+    "GreyNoise",
+    "Lacework",
+    "Logzio",
+    "Luminar IOCs and Leaked Credentials",
+    "PagerDuty",
+    "Telegram",
+    "Workflow Tools",
+}
 EXCLUDED_INTEGRATIONS_IDS_WITHOUT_PING: set[str] = {
     "ChronicleSupportTools",
     "Connectors",

@@ -34,6 +34,7 @@ parameters:
 dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: true
+        # language=json
         result_example: "{\r\n\t\"Return\": \"True\",\r\n\t\"UnknownIpPermissions\": [{\r\
         \n\t\t\"FromPort\": 123,\r\n\t\t\"IpProtocol\": \"string\",\r\n\t\t\"IpRanges\"\
         : [{\r\n\t\t\t\"CidrIp\": \"string\",\r\n\t\t\t\"Description\": \"string\"\

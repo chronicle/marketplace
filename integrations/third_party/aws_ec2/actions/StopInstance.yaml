@@ -22,6 +22,7 @@ parameters:
 dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: true
+        # language=json
         result_example: "{\r\n\t\"i-1111\": {\r\n\t\t\"StoppingInstances\": [{\r\n\t\t\
         \t\"CurrentState\": {\r\n\t\t\t\t\"Code\": 80,\r\n\t\t\t\t\"Name\": \"stopped\"\
         \r\n\t\t\t},\r\n\t\t\t\"InstanceId\": \"i-1111\",\r\n\t\t\t\"PreviousState\"\

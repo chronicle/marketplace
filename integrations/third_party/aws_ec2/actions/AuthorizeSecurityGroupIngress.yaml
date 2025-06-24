@@ -30,6 +30,7 @@ parameters:
 dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: true
+        # language=json
         result_example: "{\r\n\t\"ResponseMetadata\": {\r\n\t\t\"RequestId\": \"123456\"\
         ,\r\n\t\t\"HTTPStatusCode\": 200,\r\n\t\t\"HTTPHeaders\": {\r\n\t\t\t\"x-amzn-requestid\"\
         : \"1111\",\r\n\t\t\t\"content-type\": \"text/xml;charset=UTF-8\",\r\n\t\t\

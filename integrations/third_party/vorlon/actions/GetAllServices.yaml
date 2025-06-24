@@ -5,6 +5,7 @@ parameters: [ ]
 dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: true
+        # language=json
         result_example: "[\n  {\n    \"description\": \"Salesforce CRM\",\n    \"detected_instances\"\
         : [\n      \"my-salesforce\"\n    ],\n    \"last_collected\": 1686562760,\n\
         \    \"name\": \"Salesforce\",\n    \"observed_instances\": [\n      \"my.salesforce.com\"\
