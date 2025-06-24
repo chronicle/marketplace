@@ -6,6 +6,7 @@ parameters: [ ]
 dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: true
+        # language=json
         result_example: "{\r\n  \"entity_id_1\": {\r\n    \"Choke Point Score\": 200.0,\r\
         \n    \"Is Critical Asset\": true,\r\n    \"AD Admins And DCs\": false,\r\n\
         \    \"Is External\": true,\r\n    \"User without MFA\": true,\r\n    \"Tenant\

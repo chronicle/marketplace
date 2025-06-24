@@ -108,6 +108,7 @@ parameters:
 dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: true
+        # language=json
         result_example: "[\n    {\n        \"id\": 64512,\n        \"name\": \"deltics-2\"\
         ,\n        \"breadth_contrib\": 0,\n        \"importance\": 1,\n        \"\
         type\": \"host\",\n        \"is_prioritized\": false,\n        \"severity\"\

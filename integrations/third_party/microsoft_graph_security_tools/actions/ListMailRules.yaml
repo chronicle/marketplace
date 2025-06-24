@@ -12,6 +12,7 @@ parameters:
 dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: true
+        # language=json
         result_example: "[\r\n    {\r\n        \"id\": \"BQCBAcc7hg4=\",\r\n        \"\
         displayName\": \"IBM XForce\",\r\n        \"sequence\": 1,\r\n        \"isEnabled\"\
         : \"True\",\r\n        \"hasError\": \"False\",\r\n        \"isReadOnly\"\

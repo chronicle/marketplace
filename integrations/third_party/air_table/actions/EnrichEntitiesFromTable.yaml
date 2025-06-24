@@ -38,6 +38,7 @@ parameters:
 dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: true
+        # language=json
         result_example: "[\n  {\n    \"id\": \"recCc2V3tpfStq4kh\",\n    \"fields\": {\n\
         \      \"Field_Name_1\": \"Field_Value_1\",\n      \"Field_Name_2\": \"Field_Value_2\"\
         ,\n      \"Field_Name_3\": \"Field_Value_3\"\n    },\n    \"createdTime\"\

@@ -14,6 +14,7 @@ parameters:
 dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: true
+        # language=json
         result_example: "{\n  \"archives\": [\n    {\n      \"success\": true,\n     \
         \ \"archive\": \"testarchive.zip\",\n      \"folder\": \"/opt/siemplify/siemplify_server/Scripting/FileUtilities/Extract/testarchive\"\
         ,\n      \"files_with_path\": [\n        \"/opt/siemplify/siemplify_server/Scripting/FileUtilities/Extract/testarchive/Archives/testarchive.zip\"\

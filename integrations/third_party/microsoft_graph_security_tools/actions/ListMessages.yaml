@@ -19,6 +19,7 @@ parameters:
 dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: true
+        # language=json
         result_example: "[\r\n    {\r\n        \"@odata.etag\": \"W/\\\"CQAAABYAAADHcgC8Hl9tRZ/hc1wEUs1TAAAwR4Hg\\\
         \"\",\r\n        \"id\": \"AAMkAGUAAAwTW09AAA=\",\r\n        \"subject\":\
         \ \"You have late tasks!\",\r\n        \"sender\": {\r\n            \"emailAddress\"\

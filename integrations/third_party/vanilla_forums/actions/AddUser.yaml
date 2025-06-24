@@ -59,6 +59,7 @@ parameters:
 dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: true
+        # language=json
         result_example: "{\r\n\t\"user_details\": {\r\n\t\t\"countDiscussions\": 0,\r\n\
         \t\t\"dateInserted\": \"2021-01-28T08:39:03+00:00\",\r\n\t\t\"name\": \"FirstName\
         \ LastName\",\r\n\t\t\"roles\": [{\r\n\t\t\t\"roleID\": 35,\r\n\t\t\t\"name\"\

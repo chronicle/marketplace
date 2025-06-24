@@ -67,6 +67,7 @@ parameters:
 dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: true
+        # language=json
         result_example: "[\n    {\n        \"id\": 1,\n        \"name\": \"Cognito - Box\"\
         ,\n        \"description\": \"Domains used by the Box service\",\n       \
         \ \"last_modified\": \"2023-08-29T21:39:50Z\",\n        \"last_modified_by\"\

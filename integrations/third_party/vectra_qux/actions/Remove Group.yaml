@@ -17,6 +17,7 @@ parameters:
 dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: true
+        # language=json
         result_example: "{\n    \"id\": 3851,\n    \"type\": \"domain\",\n    \"name\"\
         : \"Test group test domain 1\",\n    \"description\": \"created during API\
         \ testing\",\n    \"cognito_managed\": false,\n    \"importance\": null,\n\

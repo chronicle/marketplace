@@ -13,6 +13,7 @@ parameters:
 dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: true
+        # language=json
         result_example: "{\r\n    \"ARCVerify\": {\r\n        \"details\": [],\r\n   \
         \     \"reason\": \"Message is not ARC signed\",\r\n        \"result\": \"\
         none\"\r\n    },\r\n    \"DKIMVerify\": false,\r\n    \"DMARC\": {\r\n   \

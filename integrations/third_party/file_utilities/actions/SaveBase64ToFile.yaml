@@ -22,6 +22,7 @@ parameters:
 dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: true
+        # language=json
         result_example: "{\n  \"files\": [\n    {\n      \"file_name\": \"ABCDE.COM\"\
         ,\n      \"file_path\": \"/opt/siemplify/siemplify_server/Scripting/downloads/HTTPSACCOUNT.LIVE.COMSECURITYNOTIFICATIONSUPDATE\"\
         ,\n      \"extension\": \".COM\"\n    },\n    {\n      \"file_name\": \"archive1.zip\"\

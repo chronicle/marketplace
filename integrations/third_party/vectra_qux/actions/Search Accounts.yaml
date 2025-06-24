@@ -110,6 +110,7 @@ parameters:
 dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: true
+        # language=json
         result_example: "[\n    {\n        \"associated_accounts\": [\n            \"\
         johnh@lab.tme.local\"\n        ],\n        \"subaccounts\": [\n          \
         \  \"johnh@lab.tme.local\"\n        ],\n        \"id\": 93,\n        \"url\"\

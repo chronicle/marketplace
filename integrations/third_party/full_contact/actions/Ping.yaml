@@ -5,56 +5,44 @@ parameters: [ ]
 dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: false
-        result_example: "{\n    \"FullContact_CompanyName\": \"Gmail\",\n    \"FullContact_CompanyType\"\
-        : \"Data Processing and Preparation\",\n    \"FullContact_FoundedYear\": null,\n\
-        \    \"FullContact_CompanyEmployees\": 50000,\n    \"FullContact_CompanyWebSite\"\
-        : \"http://www.gmail.com\",\n    \"FullContact_CompanyCountry\": \"United\
-        \ States\",\n    \"FullContact_CompanyCity\": \"Caledonia\",\n    \"FullContact_Person_Linkedin\"\
-        : \"\",\n    \"FullContact_Person_Title\": \"\",\n    \"FullContact_Person_Gender\"\
-        : \"\",\n    \"raw\": {\n        \"name\": \"Gmail\",\n        \"location\"\
-        : \"6619 Leisure Way Dr. SE Caledonia Michigan, 49316 United States\",\n \
-        \       \"twitter\": null,\n        \"linkedin\": null,\n        \"facebook\"\
-        : null,\n        \"bio\": \"Consumer Email Domain\",\n        \"logo\": \"\
-        \",\n        \"website\": \"http://www.gmail.com\",\n        \"founded\":\
-        \ null,\n        \"employees\": 50000,\n        \"locale\": \"en\",\n    \
-        \    \"category\": \"Email Provider\",\n        \"details\": {\n         \
-        \   \"locales\": [\n                {\n                    \"code\": \"en\"\
-        ,\n                    \"name\": \"English\"\n                }\n        \
-        \    ],\n            \"categories\": [\n                {\n              \
-        \      \"code\": \"EMAIL_PROVIDER\",\n                    \"name\": \"Email\
-        \ Provider\"\n                }\n            ],\n            \"industries\"\
-        : [\n                {\n                    \"type\": \"SIC\",\n         \
-        \           \"name\": \"Data Processing and Preparation\",\n             \
-        \       \"code\": \"7374\"\n                }\n            ],\n          \
-        \  \"emails\": [],\n            \"phones\": [],\n            \"profiles\"\
-        : {},\n            \"locations\": [\n                {\n                 \
-        \   \"label\": \"work\",\n                    \"addressLine1\": \"6619 Leisure\
-        \ Way Dr. SE\",\n                    \"city\": \"Caledonia\",\n          \
-        \          \"region\": \"Michigan\",\n                    \"regionCode\":\
-        \ \"MI\",\n                    \"postalCode\": \"49316\",\n              \
-        \      \"country\": \"United States\",\n                    \"countryCode\"\
-        : \"US\",\n                    \"formatted\": \"6619 Leisure Way Dr. SE Caledonia\
-        \ Michigan, 49316 United States\"\n                }\n            ],\n   \
-        \         \"images\": [],\n            \"urls\": [\n                {\n  \
-        \                  \"value\": \"http://www.gmail.com\",\n                \
-        \    \"label\": \"website\"\n                }\n            ],\n         \
-        \   \"keywords\": [],\n            \"keyPeople\": [],\n            \"traffic\"\
-        : {\n                \"countryRank\": {\n                    \"global\": {\n\
-        \                        \"rank\": 3676,\n                        \"name\"\
-        : \"Global\"\n                    }\n                },\n                \"\
-        localeRank\": {\n                    \"br\": {\n                        \"\
-        rank\": 491,\n                        \"name\": \"Brazil\"\n             \
-        \       },\n                    \"mx\": {\n                        \"rank\"\
-        : 359,\n                        \"name\": \"Mexico\"\n                   \
-        \ },\n                    \"es\": {\n                        \"rank\": 828,\n\
-        \                        \"name\": \"Spain\"\n                    }\n    \
-        \            }\n            }\n        },\n        \"dataAddOns\": [\n   \
-        \         {\n                \"id\": \"keypeople\",\n                \"name\"\
-        : \"Key People\",\n                \"enabled\": false,\n                \"\
-        applied\": false,\n                \"description\": \"Displays information\
-        \ about people of interest at this company.\",\n                \"docLink\"\
-        : \"http://docs.fullcontact.com/api/#key-people\"\n            }\n       \
-        \ ],\n        \"updated\": \"2020-05-03\"\n    }\n}"
+        # language=json
+        result_example: |
+            {
+                "data": {
+                    "id": "Ln3jtww",
+                    "title": "80e65c37e8d2",
+                    "url_viewer": "https://ibb.co/Ln3tww",
+                    "url": "https://i.ibb.co/2qMWcc/80e65c37e8d2.png",
+                    "display_url": "https://i.ibb.co/MMmwTT/80e6c37e8d2.png",
+                    "size": 52056,
+                    "time": "1600338508",
+                    "expiration": "600",
+                    "image": {
+                        "filename": "80e65ce8d2.png",
+                        "name": "80e65c37e8d2",
+                        "mime": "image/png",
+                        "extension": "png",
+                        "url": "https://i.ibb.co/72qWcc/80e657e8d2.png"
+                    },
+                    "thumb": {
+                        "filename": "80e65c37e8d2.png",
+                        "name": "80e65c37e8d2",
+                        "mime": "image/png",
+                        "extension": "png",
+                        "url": "https://i.ib.co/Ln3jtww/80ec37ed2.png"
+                    },
+                    "medium": {
+                        "filename": "80e637e8d2.png",
+                        "name": "80e65c38d2",
+                        "mime": "image/png",
+                        "extension": "png",
+                        "url": "https://i.ibb.co/MMwVTT/80ec37e8d2.png"
+                    },
+                    "delete_url": "https://ibb.co/Ln3jw/ef3fed8a0e9b987a04a25e86ef8bd9"
+                },
+                "success": true,
+                "status": 200
+            }
 default_result_value: ''
 creator: Yoav
 script_result_name: ScriptResult

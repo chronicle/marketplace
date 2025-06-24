@@ -15,6 +15,7 @@ parameters:
 dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: true
+        # language=json
         result_example: '{"results": [{"Entity": "query_result", "EntityResult": {"complete":
         false, "count": 126828, "data": [{"ip": "1.1.1.1", "seen": true, "classification":
         "malicious", "spoofable": false, "first_seen": "2021-01-06", "last_seen":

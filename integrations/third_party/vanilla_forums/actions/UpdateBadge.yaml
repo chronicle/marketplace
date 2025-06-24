@@ -15,6 +15,7 @@ parameters:
 dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: true
+        # language=json
         result_example: "{\r\n\t\"userID\": 1111,\r\n\t\"user\": {\r\n\t\t\"userID\":\
         \ 1111,\r\n\t\t\"name\": \"User Name\",\r\n\t\t\"url\": \"UserURL\",\r\n\t\
         \t\"photoUrl\": \"https://us.v-cdn.JPG\",\r\n\t\t\"dateLastActive\": \"2021-03-09T09:43:29+00:00\"\

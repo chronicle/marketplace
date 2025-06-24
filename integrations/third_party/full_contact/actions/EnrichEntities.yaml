@@ -5,6 +5,7 @@ parameters: [ ]
 dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: true
+        # language=json
         result_example: "[\n    {\n        \"Entity\": \"F.ATTACKER4@GMAIL.COM\",\n  \
         \      \"EntityResult\": {\n            \"FullContact_CompanyName\": \"Gmail\"\
         ,\n            \"FullContact_CompanyType\": \"Data Processing and Preparation\"\

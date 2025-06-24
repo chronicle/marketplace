@@ -11,6 +11,7 @@ parameters:
 dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: true
+        # language=json
         result_example: "{\r\n    \"items\": [\r\n        {\r\n            \"id\" : \"\
         5582c385b1a43deb7f7b23c6\",\r\n            \"name\" : \"myGroup1\"\r\n   \
         \         },\r\n            {\r\n            \"id\" : \"5582d3b3b1a43d897f7b23c8\"\

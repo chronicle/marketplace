@@ -33,6 +33,7 @@ parameters:
 dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: true
+        # language=json
         result_example: "[{\r\n\t\"board\": \"top-discussion-starters\",\r\n\t\"board_details\"\
         : [{\r\n\t\t\"recordID\": 1111,\r\n\t\t\"recordType\": \"user\",\r\n\t\t\"\
         id\": 1111,\r\n\t\t\"position\": 1,\r\n\t\t\"positionChange\": \"New\",\r\n\

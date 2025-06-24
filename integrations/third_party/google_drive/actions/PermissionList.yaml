@@ -11,6 +11,7 @@ parameters:
 dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: true
+        # language=json
         result_example: "[\n  {\n    \"kind\": \"drive#permission\",\n    \"id\": \"077125055792436618120\"\
         ,\n    \"type\": \"user\",\n    \"emailAddress\": \"user_1@gmail.com\",\n\
         \    \"role\": \"writer\",\n    \"displayName\": \"User 1\",\n    \"photoLink\"\

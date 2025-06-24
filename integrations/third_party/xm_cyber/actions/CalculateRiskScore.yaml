@@ -6,6 +6,7 @@ parameters: [ ]
 dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: true
+        # language=json
         result_example: "{\r\n  \"base_risk_score\": 45,\r\n  \"risk_score\": 99,\r\n\
         \  \"is_critical_asset\": true,\r\n  \"is_highly_privileged\": true,\r\n \
         \ \"is_predefined_admin\": true,\r\n  \"user_without_mfa\": true,\r\n  \"\

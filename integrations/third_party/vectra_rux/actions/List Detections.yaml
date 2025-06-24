@@ -95,6 +95,7 @@ parameters:
 dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: true
+        # language=json
         result_example: "[\n    {\n        \"summary\": {\n            \"artifact\": [\n\
         \                \"atc0003.admin.vectra.ai\",\n                \"atc0003.dyn.vectra.ai\"\
         \n            ],\n            \"last_timestamp\": \"2024-12-30T22:03:39Z\"\

@@ -12,6 +12,7 @@ parameters:
 dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: true
+        # language=json
         result_example: "{\n  \"user label\": \"SiemplifyTest\",\n  \"user email\": \"\
         siemplifytest@siemplify.co\"\n}"
 default_result_value: ''

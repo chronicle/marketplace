@@ -30,6 +30,7 @@ parameters:
 dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: true
+        # language=json
         result_example: '{"raw": {"ok": true, "result": [{"update_id": 115324421, "poll":
         {"id": "5958708562703155223", "question": "BISMILLAH no?", "options": [{"text":
         "NO", "voter_count": 0}, {"text": "YES", "voter_count": 1}], "total_voter_count":

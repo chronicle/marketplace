@@ -11,6 +11,7 @@ parameters:
 dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: true
+        # language=json
         result_example: "{\r\n    \"result\": {\r\n        \"id\": \"54a28b41b1a43d89367b23fd\"\
         ,\r\n        \"name\": \"WIN-TGQDU499RS4\",\r\n        \"companyId\": \"5575a235d2172c65038b454e\"\
         ,\r\n        \"operatingSystem\": \"Windows Server 2008 R2 Datacenter\",\r\

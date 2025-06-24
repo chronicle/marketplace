@@ -20,6 +20,7 @@ parameters:
 dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: true
+        # language=json
         result_example: '[{"Entity": "F.ATTACKER4@GMAIL.COM", "EntityResult": {}}, {"Entity":
         "VICKIE.B@SIEMPLIFY.CO", "EntityResult": {}}, {"Entity": "HTTP://MARKOSSOLOMON.COM/F1Q7QX.PHP",
         "EntityResult": {"VT3_id": "057e8630c8880da8778b4f99e048933efb7cee9abdcf57fad89a7e7a2c7eae04",

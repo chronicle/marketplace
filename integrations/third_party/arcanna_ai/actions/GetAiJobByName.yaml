@@ -10,6 +10,7 @@ parameters:
 dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: true
+        # language=json
         result_example: "{\n    \"job_id\": 3207,\n    \"title\": \"Arcanna Accenture\
         \ Demo Calin Exposer\",\n    \"status\": \"ENABLED\",\n    \"retrain_state\"\
         : \"RETRAIN_FINISHED\",\n    \"retrain_msg\": \"Retraining finished successfully\"\

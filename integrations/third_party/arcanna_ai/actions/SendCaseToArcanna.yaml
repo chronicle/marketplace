@@ -22,7 +22,8 @@ parameters:
         is_mandatory: true
 dynamic_results_metadata:
     -   result_name: JsonResult
-        show_result: true
+        show_result: false
+        # language=json
         result_example: '{"event_id": "12223273231449", "job_id": 1222, "ingest_timestamp":
         "2024-08-07T14:38:43.327323Z", "status": "pending_inference", "error_message":
         ""}'

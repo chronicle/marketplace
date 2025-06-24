@@ -11,6 +11,7 @@ parameters:
 dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: true
+        # language=json
         result_example: "[\n  {\n    \"Entity\": \"=?utf-8?q?Please_join_Zoom_meeting_in_progress?=\"\
         ,\n    \"EntityResult\": {\n      \"base64_blob\": \"gxMjU0NjUwNDE3NTU4Nz09LS0K\"\
         ,\n      \"headers\": [\n        [\n          \"Delivered-To\",\n        \

@@ -7,6 +7,7 @@ parameters: [ ]
 dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: true
+        # language=json
         result_example: "[\r\n  {\r\n    \"entityIdentifier\": \"neodiy.com\",\r\n   \
         \ \"entityResult\": [\r\n      {\r\n        \"created\": \"2021-02-04T10:28:42.957Z\"\
         ,\r\n        \"description\": \"This domain is being sold on the dark web\

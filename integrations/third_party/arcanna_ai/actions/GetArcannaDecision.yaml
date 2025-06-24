@@ -25,6 +25,7 @@ parameters:
 dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: true
+        # language=json
         result_example: "{\n    \"event_id\": \"3207204311332\",\n    \"ingest_timestamp\"\
         : \"2024-05-30T07:06:02.020431Z\",\n    \"status\": \"OK\",\n    \"result\"\
         : \"class_1\",\n    \"result_label\": \"Escalate\",\n    \"error_message\"\

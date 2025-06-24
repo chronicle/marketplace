@@ -24,6 +24,7 @@ parameters:
 dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: true
+        # language=json
         result_example: "{\n    \"id\": 9118,\n    \"date_created\": \"2024-11-26T06:37:32.043936Z\"\
         ,\n    \"date_modified\": null,\n    \"created_by\": \"api_client_25cb417aab214139ae8c7394e2b1a3db\"\
         ,\n    \"modified_by\": null,\n    \"note\": \"This is test note\"\n}"

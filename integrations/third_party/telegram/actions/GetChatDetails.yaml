@@ -10,6 +10,7 @@ parameters:
 dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: true
+        # language=json
         result_example: "{\r\n\t\"id\": -1111111,\r\n\t\"title\": \"Test\",\r\n\t\"type\"\
         : \"supergroup\",\r\n\t\"invite_link\": \"https://t.me/joinchat/abcd\",\r\n\
         \t\"permissions\": {\r\n\t\t\"can_send_messages\": \"False\",\r\n\t\t\"can_send_media_messages\"\

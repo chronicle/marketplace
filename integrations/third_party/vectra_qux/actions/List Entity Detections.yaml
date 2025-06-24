@@ -31,6 +31,7 @@ parameters:
 dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: true
+        # language=json
         result_example: "[\n    {\n        \"id\": 7153,\n        \"category\": \"EXFILTRATION\"\
         ,\n        \"detection\": \"Data Smuggler\",\n        \"detection_category\"\
         : \"EXFILTRATION\",\n        \"detection_type\": \"Data Smuggler\",\n    \

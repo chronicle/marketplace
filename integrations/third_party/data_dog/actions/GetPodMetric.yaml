@@ -24,6 +24,7 @@ parameters:
 dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: true
+        # language=json
         result_example: "{\r\n\t\"pod_name_X\": {\r\n\t\t\"pod_CPU\": {\r\n\t\t\t\"status\"\
         : \"ok\",\r\n\t\t\t\"res_type\": \"time_series\",\r\n\t\t\t\"from_date\":\
         \ 1507040000000,\r\n\t\t\t\"series\": [{\r\n\t\t\t\t\"end\": 1610668799000,\r\

@@ -46,6 +46,7 @@ parameters:
 dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: true
+        # language=json
         result_example: '{}'
 default_result_value: ''
 creator: Anuj Yadav

@@ -22,6 +22,7 @@ parameters:
 dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: true
+        # language=json
         result_example: "{\r\n\t\"NameSpace: kube-system\": {\r\n\t\t\"status\": \"done\"\
         ,\r\n\t\t\"nextLogId\": \"1111111\",\r\n\t\t\"logs\": [{\r\n\t\t\t\"content\"\
         : {\r\n\t\t\t\t\"timestamp\": \"2021-01-01T02:02:01.894Z\",\r\n\t\t\t\t\"\

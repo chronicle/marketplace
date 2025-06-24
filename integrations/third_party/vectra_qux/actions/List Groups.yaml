@@ -67,6 +67,7 @@ parameters:
 dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: true
+        # language=json
         result_example: "[\n    {\n        \"id\": 1,\n        \"name\": \"Cognito - Zoom\"\
         ,\n        \"description\": \"IPs used by the Zoom service\",\n        \"\
         last_modified\": \"2023-11-20T22:57:11Z\",\n        \"last_modified_by\":\

@@ -11,6 +11,7 @@ parameters:
 dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: true
+        # language=json
         result_example: '[{"Address": "2.2.2.2", "IPType": "IPV4"}, {"Address": "2001:db8:3333:4444:CCCC:DDDD:EEEE:FFFF",
         "IPType": "IPV6"}, {"IPType": "IPV4", "Address": "1.1.1.1"}]'
 default_result_value: ''

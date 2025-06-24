@@ -24,6 +24,7 @@ parameters:
 dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: true
+        # language=json
         result_example: "{\n \"id\":123456,\n \"status\":\"created\"\n}\n"
 default_result_value: ''
 creator: Admin

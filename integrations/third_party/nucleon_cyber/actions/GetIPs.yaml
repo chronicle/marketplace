@@ -11,6 +11,7 @@ parameters:
 dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: true
+        # language=json
         result_example: "{\r\n    \"status\": 1,\r\n    \"timeStamp\": 1617629217,\r\n\
         \    \"summary\": {\r\n        \"total\": 7618,\r\n        \"localCountry\"\
         : \"ZA\",\r\n        \"localRegion\": \"AF\",\r\n        \"filters\": [\r\n\

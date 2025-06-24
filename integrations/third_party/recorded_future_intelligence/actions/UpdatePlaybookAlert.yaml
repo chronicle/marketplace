@@ -50,5 +50,6 @@ parameters:
 dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: true
+        # language=json
         result_example: '{"result": "ADD SOMETHING HERE"}'
 creator: admin
