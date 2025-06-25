@@ -1,0 +1,8 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Marketplace Integration checks" type="CompoundRunConfigurationType">
+    <toRun name="mp build integration" type="PythonConfigurationType" />
+    <toRun name="mp check path" type="PythonConfigurationType" />
+    <toRun name="mp test integration" type="PythonConfigurationType" />
+    <method v="2" />
+  </configuration>
+</component>
