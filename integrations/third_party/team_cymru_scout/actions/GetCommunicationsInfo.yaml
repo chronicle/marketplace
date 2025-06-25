@@ -40,6 +40,7 @@ parameters:
 dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: true
+        # language=json
         result_example: "{\r\n    \"1.1.1.1\": {\r\n        \"request_id\": \"92ea698e-ea15-54e4-a6c8-3c8703fcc3ea\"\
         ,\r\n        \"ip\": \"1.1.1.1\",\r\n        \"size\": 20,\r\n        \"start_date\"\
         : \"2024-07-30\",\r\n        \"end_date\": \"2024-08-20\",\r\n        \"sections\"\

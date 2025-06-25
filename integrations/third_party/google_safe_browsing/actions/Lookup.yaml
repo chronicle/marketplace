@@ -10,10 +10,20 @@ parameters:
 dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: true
-        result_example: "{\n  \"http://malware.testing.google.test/testing/malware/\"\
-        : {\n    \"malicious\": true,\n    \"platforms\": [\n      \"ANY_PLATFORM\"\
-        \n    ],\n    \"threats\": [\n      \"MALWARE\"\n    ],\n    \"cache\": \"\
-        300s\"\n  }\n}"
+        # language=json
+        result_example: |
+            {
+                "http://malware.testing.google.test/testing/malware/": {
+                    "malicious": true,
+                    "platforms": [
+                        "ANY_PLATFORM"
+                    ],
+                    "threats": [
+                        "MALWARE"
+                    ],
+                    "cache": "300s"
+                }
+            }
 default_result_value: ''
 creator: Admin
 script_result_name: ScriptResult

@@ -16,6 +16,7 @@ parameters:
 dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: true
+        # language=json
         result_example: '{"build_status":"success","build_result":"result","cloud_customer_id":"customerA","build_id":"351"}'
 default_result_value: ''
 creator: community-automation

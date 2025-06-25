@@ -33,6 +33,7 @@ parameters:
 dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: true
+        # language=json
         result_example: "{\n  \"assignment\": {\n    \"id\": 256,\n    \"assigned_by\"\
         : {\n      \"id\": 58,\n      \"username\": \"cds-gaurang\"\n    },\n    \"\
         date_assigned\": \"2024-12-03T12:24:40Z\",\n    \"date_resolved\": \"2024-12-04T06:07:34Z\"\

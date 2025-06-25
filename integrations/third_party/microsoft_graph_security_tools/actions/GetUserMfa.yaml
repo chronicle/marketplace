@@ -18,6 +18,7 @@ parameters:
 dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: true
+        # language=json
         result_example: '[{"id": "75as5323-a3b6-1234-f86b-30dc4bfb56e1", "userPrincipalName":
         "john.smith@email.com", "userDisplayName": "John Smith", "isRegistered": "True",
         "isEnabled": "False", "isCapable": "False", "isMfaRegistered": "True", "authMethods":

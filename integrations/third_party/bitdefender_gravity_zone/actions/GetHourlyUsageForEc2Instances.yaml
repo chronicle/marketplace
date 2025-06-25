@@ -12,6 +12,7 @@ parameters:
 dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: true
+        # language=json
         result_example: "{\r\n    \"result\": {\r\n        \"micro\": 11,\r\n        \"\
         medium\": 157\r\n    }\r\n}"
 default_result_value: ''

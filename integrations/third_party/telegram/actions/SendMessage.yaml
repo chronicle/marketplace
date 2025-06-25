@@ -15,6 +15,7 @@ parameters:
 dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: true
+        # language=json
         result_example: "{\r\n\t\"ok\": true,\r\n\t\"result\": {\r\n\t\t\"message_id\"\
         : 24,\r\n\t\t\"sender_chat\": {\r\n\t\t\t\"id\": -1111111,\r\n\t\t\t\"title\"\
         : \"test_test\",\r\n\t\t\t\"username\": \"test_test\",\r\n\t\t\t\"type\":\

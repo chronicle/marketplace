@@ -28,6 +28,7 @@ parameters:
 dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: true
+        # language=json
         result_example: "{\r\n\t\"founded_db_instance_identifier\": {\r\n\t\t\"db_instance_identifier:\
         \ db_instance\": {\r\n\t\t\t\"db_CPU\": {\r\n\t\t\t\t\"status\": \"ok\",\r\
         \n\t\t\t\t\"res_type\": \"time_series\",\r\n\t\t\t\t\"from_date\": 1507040000000,\r\

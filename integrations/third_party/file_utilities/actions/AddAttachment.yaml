@@ -30,6 +30,7 @@ parameters:
 dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: true
+        # language=json
         result_example: "{\n  \"evidenceName\": \"Description\",\n  \"description\": \"\
         Name\",\n  \"evidenceThumbnailBase64\": \"\",\n  \"evidenceId\": 30,\n  \"\
         fileType\": \".txt\",\n  \"creatorUserId\": \"No user context\",\n  \"id\"\

@@ -35,6 +35,7 @@ parameters:
 dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: true
+        # language=json
         result_example: "{\r\n  \"request_id\": \"593a8f91-57a1-521e-b8cc-57de7e3bc6ae\"\
         ,\r\n  \"total\": 594,\r\n  \"query\": \"fingerprints.hash = \\\"40d1db40d00040d1dc43d1db1db43d5ecfbe778b06e32b538bd51f24eb7398\\\
         \"\",\r\n  \"size\": 3,\r\n  \"start_date\": \"2024-09-18\",\r\n  \"end_date\"\

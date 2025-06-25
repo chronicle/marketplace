@@ -37,6 +37,7 @@ parameters:
 dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: true
+        # language=json
         result_example: "{\n  \"requests_type\": \"all\",\n  \"data\": [\n    {\n    \
         \  \"uuid\": \"6ddee14c-24fb-4d0b-9935-4f98ba6e1154\",\n      \"type\": \"\
         web\",\n      \"token_id\": \"9ed2d078-a4c5-43e1-b4df-a13216b28880\",\n  \

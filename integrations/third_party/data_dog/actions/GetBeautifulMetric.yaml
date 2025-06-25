@@ -10,6 +10,7 @@ parameters:
 dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: true
+        # language=json
         result_example: "{\r\n\t\"unit\": \"cpu\",\r\n\t\"aggregation_by\": \"avg\",\r\
         \n\t\"start_time\": 1607040000000,\r\n\t\"end_time\": 1610668799000,\r\n\t\
         \"full_timeseries_points_list\": [\r\n\t\t[1607040000000.0, 0.008314899947867048],\r\

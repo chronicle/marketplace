@@ -16,6 +16,7 @@ parameters:
 dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: true
+        # language=json
         result_example: "{\n  \"name\": \"image.png\",\n  \"type\": \"image/png\",\n \
         \ \"size\": \"208349\",\n  \"saved_to\": \"/temp/image.png\"\n}"
 default_result_value: ''

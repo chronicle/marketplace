@@ -17,6 +17,7 @@ parameters:
 dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: true
+        # language=json
         result_example: '{"status_code":"204","result":"success","output_message":"Deletion
         request completed successfully"}'
 default_result_value: ''

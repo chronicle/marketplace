@@ -5,6 +5,7 @@ parameters: [ ]
 dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: true
+        # language=json
         result_example: "{\r\n\t\"entites\": [{\r\n\t\t\"Entity\": \"email@siemplify.co\"\
         ,\r\n\t\t\"EntityResult\": {\r\n\t\t\t\"Marketo_firstName\": \"Marketo_firstName\"\
         ,\r\n\t\t\t\"Marketo_lastName\": \"Marketo_lastName\",\r\n\t\t\t\"Marketo_email\"\

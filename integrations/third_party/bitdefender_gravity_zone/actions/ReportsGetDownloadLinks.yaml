@@ -17,6 +17,7 @@ parameters:
 dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: true
+        # language=json
         result_example: "{\r\n    \"result\": {\r\n        \"readyForDownload\": true,\r\
         \n        \"allInstancesUrl\":\r\n        \"https://gravityzone.bitdefender.com/api/v1.0/http/downloadReportZip?reportId=5645cba6f12a9a8c5e8b4748&allInstances=1&serviceType=1\"\
         ,\r\n        \"lastInstanceUrl\": \"https://gravityzone.bitdefender.com/api/v1.0/http/downloadReportZip?reportId=5645cba6f12a9a8c5e8b4748&allInstances=0&serviceType=1\"\

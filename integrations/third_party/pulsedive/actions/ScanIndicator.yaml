@@ -43,6 +43,7 @@ parameters:
 dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: true
+        # language=json
         result_example: "{\n  \"results\": [\n    {\n      \"Entity\": \"pulsedive.com\"\
         ,\n      \"EntityResult\": {\n        \"iid\": 53929,\n        \"type\": \"\
         domain\",\n        \"indicator\": \"pulsedive.com\",\n        \"risk\": \"\

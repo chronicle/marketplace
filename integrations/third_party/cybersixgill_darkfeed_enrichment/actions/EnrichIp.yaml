@@ -7,6 +7,7 @@ parameters: [ ]
 dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: true
+        # language=json
         result_example: "[\r\n  {\r\n    \"entityIdentifier\": \"1.1.1.1\",\r\n    \"\
         entityResult\": [\r\n      {\r\n        \"created\": \"2021-05-22T00:35:14.615Z\"\
         ,\r\n        \"description\": \"IP address was listed as a C2 server for a\

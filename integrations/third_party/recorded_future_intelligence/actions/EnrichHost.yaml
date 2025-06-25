@@ -23,6 +23,7 @@ parameters:
 dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: true
+        # language=json
         result_example: '[{"Entity": "ntrshvquunyzxevkucs.com", "EntityResult": [{"entity":
         {"id": "idn:ntrshvquunyzxevkucs.com", "name": "ntrshvquunyzxevkucs.com", "type":
         "InternetDomainName"}, "intelCard": "https://app.recordedfuture.com/live/sc/entity/idn%3Antrshvquunyzxevkucs.com",

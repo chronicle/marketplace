@@ -10,6 +10,7 @@ parameters:
 dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: true
+        # language=json
         result_example: "[\n  {\n    \"Entity\": \"sentinelone\",\n    \"EntityResult\"\
         : [\n      \"sentinelone\"\n    ]\n  },\n  {\n    \"Entity\": \"iscustom\"\
         ,\n    \"EntityResult\": [\n      \"accustom\",\n      \"custom\"\n    ]\n\

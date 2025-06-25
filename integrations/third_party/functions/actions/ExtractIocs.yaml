@@ -10,6 +10,7 @@ parameters:
 dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: true
+        # language=json
         result_example: '{"domains":["google.com"],"ips":["1.1.1.1"],"urls":["www.google.com"],"emails":["user@user.com"]}'
 default_result_value: ''
 creator: 34edc1ea-17ec-4fc7-bbd0-f8743e42c83c

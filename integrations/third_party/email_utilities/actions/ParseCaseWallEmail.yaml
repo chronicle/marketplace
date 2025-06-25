@@ -57,6 +57,7 @@ parameters:
 dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: true
+        # language=json
         result_example: "{\r\n    \"parsed_emails\": [\r\n        {\r\n            \"\
         attached_emails\": [\r\n                {\r\n                    \"attachments\"\
         : [\r\n                        {\r\n                            \"extension\"\

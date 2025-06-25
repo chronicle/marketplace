@@ -25,6 +25,7 @@ parameters:
 dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: true
+        # language=json
         result_example: '[{"Entity Id": "103", "Entity Type": "account", "Status": "success",
         "Tags": ["tast-tag:-:", "1", "xsoar1"]}]'
 default_result_value: ''

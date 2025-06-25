@@ -23,6 +23,7 @@ parameters:
 dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: true
+        # language=json
         result_example: '[{"Entity": "https://send.exploit.in/", "EntityResult": [{"entity":
         {"id": "url:https://send.exploit.in/", "name": "https://send.exploit.in/",
         "type": "URL"}, "intelCard": "https://app.recordedfuture.com/live/sc/entity/url%3Ahttps%3A%2F%2Fsend.exploit.in%2F",

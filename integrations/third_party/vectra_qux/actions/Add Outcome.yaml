@@ -20,6 +20,7 @@ parameters:
 dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: true
+        # language=json
         result_example: "{\n    \"id\": 29,\n    \"builtin\": false,\n    \"user_selectable\"\
         : true,\n    \"title\": \"JS Custom Example\",\n    \"category\": \"benign_true_positive\"\
         \n}"

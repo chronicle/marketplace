@@ -10,6 +10,7 @@ parameters:
 dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: true
+        # language=json
         result_example: '{"_meta": {"level": "Success", "message": "Successfully marked
         detections"}}'
 default_result_value: ''

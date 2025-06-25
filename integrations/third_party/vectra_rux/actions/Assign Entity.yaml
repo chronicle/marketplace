@@ -24,6 +24,7 @@ parameters:
 dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: true
+        # language=json
         result_example: "{\n    \"id\": 559,\n    \"assigned_by\": {\n        \"id\":\
         \ 22237,\n        \"username\": \"api_client_25cb417aab214139ae8c7394e2b1a3db\"\
         \n    },\n    \"date_assigned\": \"2024-11-21T08:26:26.766207Z\",\n    \"\

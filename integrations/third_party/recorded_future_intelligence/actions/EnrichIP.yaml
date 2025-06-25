@@ -23,6 +23,7 @@ parameters:
 dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: true
+        # language=json
         result_example: '[{"Entity": "1.1.1.1", "EntityResult": [{"entity": {"id": "ip:1.1.1.1",
         "name": "1.1.1.1", "type": "IpAddress"}, "intelCard": "https://app.recordedfuture.com/live/sc/entity/ip%3A1.1.1.1",
         "location": {"organization": "Huawei Cloud Service data center", "cidr": {"id":

@@ -18,6 +18,7 @@ parameters:
 dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: true
+        # language=json
         result_example: "[\r\n\t{\r\n\t\t\"Entity\": \"outlook.com\",\r\n\t\t\"EntityResult\"\
         : {\r\n\t\t\t\"id\": [\r\n\t\t\t\t\"2019401_DOMAIN_COM-VRSN\"\r\n\t\t\t],\r\
         \n\t\t\t\"status\": [\r\n\t\t\t\t\"clientDeleteProhibited https://icann.org/epp#clientDeleteProhibited\"\

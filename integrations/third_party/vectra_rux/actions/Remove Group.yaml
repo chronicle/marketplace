@@ -15,6 +15,7 @@ parameters:
 dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: true
+        # language=json
         result_example: "{\n    \"id\": 73,\n    \"name\": \"New Group test domain\",\n\
         \    \"description\": \"Group description\",\n    \"last_modified\": \"2024-11-29T11:02:42Z\"\
         ,\n    \"last_modified_by\": \"API Client 25cb417a\",\n    \"type\": \"domain\"\

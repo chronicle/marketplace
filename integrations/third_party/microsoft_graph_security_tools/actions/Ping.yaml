@@ -5,6 +5,7 @@ parameters: [ ]
 dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: false
+        # language=json
         result_example: null
 creator: daniel.harvey
 script_result_name: is_connected

@@ -30,6 +30,7 @@ parameters:
 dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: true
+        # language=json
         result_example: "{\n    \"success\": true,\n    \"archive\": \"/opt/siemplify/siemplify_server/Scripting/FileUtilities/Archives/testarchive.zip\"\
         \n}"
 default_result_value: ''

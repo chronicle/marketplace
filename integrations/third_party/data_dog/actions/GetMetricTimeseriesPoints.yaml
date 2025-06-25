@@ -24,6 +24,7 @@ parameters:
 dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: true
+        # language=json
         result_example: "{\r\n  \"from_date\": \"integer\",\r\n  \"group_by\": [],\r\n\
         \  \"message\": \"string\",\r\n  \"query\": \"string\",\r\n  \"res_type\"\
         : \"time_series\",\r\n  \"series\": [\r\n    {\r\n      \"aggr\": \"avg\"\

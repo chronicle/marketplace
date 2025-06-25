@@ -24,6 +24,7 @@ parameters:
 dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: true
+        # language=json
         result_example: "{\r\n  \"graph_def\": \"string\",\r\n  \"metric_query\": \"string\"\
         ,\r\n  \"snapshot_url\": \"https://app.datadoghq.com/s/f12345678/aaa-bbb-ccc\"\
         \r\n}"

@@ -5,6 +5,7 @@ parameters: [ ]
 dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: true
+        # language=json
         result_example: "{\r\n\t\"ok\": true,\r\n\t\"result\": {\r\n\t\t\"id\": 11111111,\r\
         \n\t\t\"is_bot\": true,\r\n\t\t\"first_name\": \"bot_name_telegram\",\r\n\t\
         \t\"username\": \"bot_username\",\r\n\t\t\"can_join_groups\": true,\r\n\t\t\

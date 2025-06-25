@@ -22,6 +22,7 @@ parameters:
 dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: true
+        # language=json
         result_example: '[{"Entity": "07c70968c66c93b6d6c9a90255e1c81a3b385632c83f53f69534b3f55212ced9",
         "EntityResult": [{"entity": {"id": "hash:07c70968c66c93b6d6c9a90255e1c81a3b385632c83f53f69534b3f55212ced9",
         "name": "07c70968c66c93b6d6c9a90255e1c81a3b385632c83f53f69534b3f55212ced9",
