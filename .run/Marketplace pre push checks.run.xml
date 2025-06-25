@@ -1,0 +1,8 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Marketplace pre push checks" type="CompoundRunConfigurationType">
+    <toRun name="mp build repo" type="PythonConfigurationType" />
+    <toRun name="mp check changed files" type="PythonConfigurationType" />
+    <toRun name="mp test repo" type="PythonConfigurationType" />
+    <method v="2" />
+  </configuration>
+</component>

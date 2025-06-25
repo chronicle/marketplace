@@ -28,6 +28,7 @@ import typing
 import urllib
 import uuid
 from collections import Counter
+from email.message import Message
 from email.utils import parseaddr
 from html import unescape
 from json import JSONEncoder
@@ -43,6 +44,7 @@ import olefile
 from html2text import HTML2Text
 from msg_parser import MsOxMessage
 from soar_sdk.SiemplifyDataModel import EntityTypes
+from soar_sdk.SiemplifyLogger import SiemplifyLogger
 from soar_sdk.SiemplifyUtils import dict_to_flat
 from tld import get_fld
 from urlextract import URLExtract
@@ -1005,10 +1007,15 @@ class MSGParser:
 
 
 class EMLParser:
-    def __init__(self, msg, email_utils=None, logger=None):
-        self.msg = msg
-        self.email_utils = email_utils
-        self.logger = logger
+    def __init__(
+        self,
+        msg: Message,
+        email_utils: EmailUtils | None = None,
+        logger: SiemplifyLogger | None = None,
+    ) -> None:
+        self.msg: Message = msg
+        self.email_utils: EmailUtils | None = email_utils
+        self.logger: SiemplifyLogger | None = logger
 
     def parse_headers(self):
         # parse and decode subject
@@ -1037,21 +1044,21 @@ class EMLParser:
                 self.header_email_list("reply-to")[0],
             )[1]
         except Exception as e:
-            self.logger.warning(f"Error parsing field reply-to due to {e}")
+            self.logger.warn(f"Error parsing field reply-to due to {e}")
 
         try:
             headers.in_reply_to = email.utils.parseaddr(
                 self.header_email_list("in-reply-to")[0],
             )[1]
         except Exception as e:
-            self.logger.warning(f"Error parsing field in-reply-to due to {e}")
+            self.logger.warn(f"Error parsing field in-reply-to due to {e}")
 
         try:
             headers.return_path = email.utils.parseaddr(
                 self.header_email_list("return-path")[0],
             )[1]
         except Exception as e:
-            self.logger.warning(f"Error parsing field return-path due to {e}")
+            self.logger.warn(f"Error parsing field return-path due to {e}")
 
         # parse and decode delivered-to
         headers.delivered_to = self.header_email_list("delivered-to")
