@@ -338,7 +338,7 @@ wheels = [
 [[package]]
 name = "environmentcommon"
 version = "1.0.2"
-source = { path = "../../../packages/EnvironmentCommon-1.0.2/EnvironmentCommon-1.0.2-py2.py3-none-any.whl" }
+source = { path = "../../../packages/envcommon/EnvironmentCommon-1.0.2/EnvironmentCommon-1.0.2-py2.py3-none-any.whl" }
 wheels = [
     { filename = "environmentcommon-1.0.2-py2.py3-none-any.whl", hash = "sha256:a31d611ddf539fb081cfe9423a8d506d198fb5aefdb225c5534904ef9d80aaaa" },
 ]
@@ -569,7 +569,7 @@ wheels = [
 
 [[package]]
 name = "integration-testing"
-version = "1.0.6"
+version = "1.0.7"
 source = { directory = "../../../packages/integration_testing" }
 dependencies = [
     { name = "aiohttp" },
@@ -584,11 +584,11 @@ dependencies = [
 [package.metadata]
 requires-dist = [
     { name = "aiohttp", specifier = ">=3.12.13" },
-    { name = "environmentcommon", path = "../../../packages/EnvironmentCommon-1.0.2/EnvironmentCommon-1.0.2-py2.py3-none-any.whl" },
+    { name = "environmentcommon", path = "../../../packages/envcommon/EnvironmentCommon-1.0.2/EnvironmentCommon-1.0.2-py2.py3-none-any.whl" },
     { name = "pyyaml", specifier = ">=6.0.2" },
     { name = "requests", specifier = ">=2.32.3" },
     { name = "soar-sdk", git = "https://github.com/chronicle/soar-sdk.git" },
-    { name = "tipcommon", path = "../../../packages/TIPCommon-2.0.6/TIPCommon-2.0.6-py2.py3-none-any.whl" },
+    { name = "tipcommon", path = "../../../packages/tipcommon/TIPCommon-2.0.6/TIPCommon-2.0.6-py2.py3-none-any.whl" },
     { name = "yarl", specifier = ">=1.20.1" },
 ]
 
@@ -1177,7 +1177,7 @@ dependencies = [
 [[package]]
 name = "tipcommon"
 version = "2.0.6"
-source = { path = "../../../packages/TIPCommon-2.0.6/TIPCommon-2.0.6-py2.py3-none-any.whl" }
+source = { path = "../../../packages/tipcommon/TIPCommon-2.0.6/TIPCommon-2.0.6-py2.py3-none-any.whl" }
 dependencies = [
     { name = "google-api-python-client" },
     { name = "google-auth" },
@@ -1243,13 +1243,13 @@ dev = [
 requires-dist = [
     { name = "croniter", specifier = "==6.0.0" },
     { name = "dnspython", specifier = "==2.7.0" },
-    { name = "environmentcommon", path = "../../../packages/EnvironmentCommon-1.0.2/EnvironmentCommon-1.0.2-py2.py3-none-any.whl" },
+    { name = "environmentcommon", path = "../../../packages/envcommon/EnvironmentCommon-1.0.2/EnvironmentCommon-1.0.2-py2.py3-none-any.whl" },
     { name = "nltk", specifier = "==3.9.1" },
     { name = "psycopg2-binary", specifier = "==2.9.10" },
     { name = "pyopenssl", specifier = ">=24.3.0" },
     { name = "pyspellchecker", specifier = "==0.8.2" },
     { name = "requests", specifier = ">=2.32.3" },
-    { name = "tipcommon", path = "../../../packages/TIPCommon-2.0.6/TIPCommon-2.0.6-py2.py3-none-any.whl" },
+    { name = "tipcommon", path = "../../../packages/tipcommon/TIPCommon-2.0.6/TIPCommon-2.0.6-py2.py3-none-any.whl" },
     { name = "tldextract", specifier = "==5.1.3" },
 ]
 
