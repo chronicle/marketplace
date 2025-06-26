@@ -782,3 +782,13 @@
     regressive: false
     deprecated: false
     removed: false
+-   description: Set Context Value, Get Context Value - Fix issues with parameters DDL values.
+    integration_version: 66.0
+    item_name: Set Context Value, Get Context Value
+    item_type: Action
+    publish_time: 1750927205
+    ticket_number: '426240792'
+    new: false
+    regressive: false
+    deprecated: false
+    removed: false
