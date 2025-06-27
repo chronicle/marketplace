@@ -5,6 +5,7 @@ description = "Sync Google SecOps integrations, playbooks, and settings with a G
 requires-python = ">=3.11"
 dependencies = [
     "dulwich>=0.22.7",
+    "environmentcommon",
     "jinja2>=3.1.5",
     "packaging>=24.2",
     "paramiko>=3.5.0",
@@ -23,3 +24,4 @@ dev = [
 soar-sdk = { git = "https://github.com/chronicle/soar-sdk.git" }
 integration-testing = { path = "../../../packages/integration_testing" }
 tipcommon = { path = "../../../packages/tipcommon/TIPCommon-2.2.5/TIPCommon-2.2.5-py2.py3-none-any.whl" }
+environmentcommon = { path = "../../../packages/envcommon/EnvironmentCommon-1.0.2/EnvironmentCommon-1.0.2-py2.py3-none-any.whl" }

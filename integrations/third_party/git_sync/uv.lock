@@ -481,6 +481,7 @@ version = "30.0"
 source = { virtual = "." }
 dependencies = [
     { name = "dulwich" },
+    { name = "environmentcommon" },
     { name = "jinja2" },
     { name = "packaging" },
     { name = "paramiko" },
@@ -498,6 +499,7 @@ dev = [
 [package.metadata]
 requires-dist = [
     { name = "dulwich", specifier = ">=0.22.7" },
+    { name = "environmentcommon", path = "../../../packages/envcommon/EnvironmentCommon-1.0.2/EnvironmentCommon-1.0.2-py2.py3-none-any.whl" },
     { name = "jinja2", specifier = ">=3.1.5" },
     { name = "packaging", specifier = ">=24.2" },
     { name = "paramiko", specifier = ">=3.5.0" },
