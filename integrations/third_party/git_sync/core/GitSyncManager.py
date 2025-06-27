@@ -42,6 +42,7 @@ if TYPE_CHECKING:
     from soar_sdk.SiemplifyAction import SiemplifyAction
     from soar_sdk.SiemplifyJob import SiemplifyJob
     from soar_sdk.SiemplifyLogger import SiemplifyLogger
+    from TIPCommon.types import ChronicleSOAR
 
 
 class MergeConflictError(Exception):
@@ -331,7 +332,12 @@ class GitSyncManager:
         workflows = list(set(workflows))
         siemplify_context: Context = get_context_factory(self._siemplify)
         cache: Cache[str, int] = Cache(siemplify_context)
-        playbook_installer = WorkflowInstaller(self.api, self.logger, cache)
+        playbook_installer = WorkflowInstaller(
+            self._siemplify,
+            self.api,
+            self.logger,
+            cache
+        )
         blocks, playbooks = [], []
         for workflow in workflows:
             if workflow.type == WorkflowTypes.BLOCK:
@@ -546,10 +552,12 @@ class WorkflowInstaller:
 
     def __init__(
         self,
+        chronicle_soar: ChronicleSOAR,
         api: SiemplifyApiClient,
         logger: SiemplifyLogger,
         mod_time_cache: Cache[str, int],
     ) -> None:
+        self.chronicle_soar = chronicle_soar
         self.api: SiemplifyApiClient = api
         self.logger: SiemplifyLogger = logger
         self._mod_time_cache: Cache[str, int] = mod_time_cache
@@ -790,12 +798,10 @@ class WorkflowInstaller:
             "FallbackInstanceDisplayName",
         )
 
-        instance_id = self.api.get_integration_instance_id_by_name(
-            step.get("integration"),
-            display_name=instance_display_name,
-        )
         fallback_instance_id = self.api.get_integration_instance_id_by_name(
+            self.chronicle_soar,
             step.get("integration"),
+            environments=environments,
             display_name=fallback_instance_display_name,
         )
         # If the playbook is for one specific environment, choose the first integration instance from that environment
@@ -806,6 +812,12 @@ class WorkflowInstaller:
                 environments[0],
             )
             if integration_instances:
+                instance_id = self.api.get_integration_instance_id_by_name(
+                    self.chronicle_soar,
+                    step.get("integration"),
+                    environments=environments,
+                    display_name=instance_display_name,
+                )
                 self._set_step_parameter_by_name(
                     step,
                     "IntegrationInstance",

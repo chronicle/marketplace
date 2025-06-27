@@ -82,7 +82,7 @@ def main():
                 siemplify.LOGGER.info(f"Pushing {playbook['name']}")
                 playbook = gitsync.api.get_playbook(playbook["identifier"])
                 workflow = Workflow(playbook)
-                workflow.update_instance_name_in_steps(gitsync.api)
+                workflow.update_instance_name_in_steps(gitsync.api, siemplify)
                 gitsync.content.push_playbook(workflow)
 
         # Jobs

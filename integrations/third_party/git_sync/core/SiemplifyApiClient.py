@@ -19,6 +19,12 @@ from urllib.parse import urljoin
 import requests
 from packaging import version
 
+from TIPCommon.rest.soar_api import (
+    get_integration_instance_details_by_id,
+    get_integration_instance_details_by_name
+)
+
+
 VERSION_6117 = version.parse("6.1.17")
 VERSION_6138 = version.parse("6.1.38.77")
 
@@ -513,9 +519,11 @@ class SiemplifyApiClient:
 
     def get_integration_instance_name(
         self,
+        chronicle_soar,
         integration_name: str,
         instance_id: str,
-    ) -> str:
+        environments,
+    ) -> str | None:
         """Gets the integration instance name.
 
         Args:
@@ -525,19 +533,23 @@ class SiemplifyApiClient:
         Returns:
             str: Returns display name of the integration instance.
         """
-        api_root = self.api_root.replace("/external/v1/", "/1p/external/v1.0/")
-        session = BaseUrlSession(base_url=api_root)
-        session.headers = {"AppKey": self.api_key}
-        session.verify = self.session.verify
-        res = session.get(
-            f"integrations/{integration_name}/integrationInstances/{instance_id}",
+        res = get_integration_instance_details_by_id(
+            chronicle_soar=chronicle_soar,
+            integration_identifier=integration_name,
+            instance_id=instance_id,
+            environments=environments,
         )
-        self.validate_response(res)
-        return res.json()["displayName"]
+        if res is None:
+            return None
+
+        return res.get("displayName") or res.get("instanceName")
+
 
     def get_integration_instance_id_by_name(
         self,
+        chronicle_soar,
         integration_name: str,
+        environments,
         display_name: str | None,
     ) -> str | None:
         """Gets the integration instance id by name.
@@ -551,18 +563,12 @@ class SiemplifyApiClient:
         """
         if display_name is None:
             return None
-        api_root = self.api_root.replace("/external/v1/", "/1p/external/v1.0/")
-        session = BaseUrlSession(base_url=api_root)
-        session.headers = {"AppKey": self.api_key}
-        session.verify = self.session.verify
-        params = {"filter": f'displayName="{display_name}"'}
-        res = session.get(
-            f"integrations/{integration_name}/integrationInstances",
-            params=params,
-        )
-        self.validate_response(res)
-        try:
-            return res.json()["items"][0]["identifier"]
 
-        except ValueError:
-            return None
+        res = get_integration_instance_details_by_name(
+            chronicle_soar=chronicle_soar,
+            integration_identifier=integration_name,
+            instance_display_name=display_name,
+            environments=environments
+        )
+
+        return res.get("identifier")
