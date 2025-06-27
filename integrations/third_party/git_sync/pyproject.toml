@@ -9,6 +9,7 @@ dependencies = [
     "packaging>=24.2",
     "paramiko>=3.5.0",
     "requests>=2.32.3",
+    "tipcommon",
 ]
 
 [dependency-groups]
@@ -21,3 +22,4 @@ dev = [
 [tool.uv.sources]
 soar-sdk = { git = "https://github.com/chronicle/soar-sdk.git" }
 integration-testing = { path = "../../../packages/integration_testing" }
+tipcommon = { path = "../../../packages/tipcommon/TIPCommon-2.2.5/TIPCommon-2.2.5-py2.py3-none-any.whl" }

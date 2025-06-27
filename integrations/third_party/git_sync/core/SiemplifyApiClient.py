@@ -544,7 +544,6 @@ class SiemplifyApiClient:
 
         return res.get("displayName") or res.get("instanceName")
 
-
     def get_integration_instance_id_by_name(
         self,
         chronicle_soar,
