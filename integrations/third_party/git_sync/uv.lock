@@ -504,7 +504,7 @@ requires-dist = [
     { name = "packaging", specifier = ">=24.2" },
     { name = "paramiko", specifier = ">=3.5.0" },
     { name = "requests", specifier = ">=2.32.3" },
-    { name = "tipcommon", path = "../../../packages/tipcommon/TIPCommon-2.2.5/TIPCommon-2.2.5-py2.py3-none-any.whl" },
+    { name = "tipcommon", path = "../../../packages/tipcommon/TIPCommon-2.2.6/TIPCommon-2.2.6-py2.py3-none-any.whl" },
 ]
 
 [package.metadata.requires-dev]
@@ -673,7 +673,7 @@ requires-dist = [
     { name = "pyyaml", specifier = ">=6.0.2" },
     { name = "requests", specifier = ">=2.32.3" },
     { name = "soar-sdk", git = "https://github.com/chronicle/soar-sdk.git" },
-    { name = "tipcommon", path = "../../../packages/tipcommon/TIPCommon-2.2.5/TIPCommon-2.2.5-py2.py3-none-any.whl" },
+    { name = "tipcommon", path = "../../../packages/tipcommon/TIPCommon-2.2.6/TIPCommon-2.2.6-py2.py3-none-any.whl" },
     { name = "yarl", specifier = ">=1.20.1" },
 ]
 
@@ -1214,8 +1214,8 @@ dependencies = [
 
 [[package]]
 name = "tipcommon"
-version = "2.2.5"
-source = { path = "../../../packages/tipcommon/TIPCommon-2.2.5/TIPCommon-2.2.5-py2.py3-none-any.whl" }
+version = "2.2.6"
+source = { path = "../../../packages/tipcommon/TIPCommon-2.2.6/TIPCommon-2.2.6-py2.py3-none-any.whl" }
 dependencies = [
     { name = "google-api-python-client" },
     { name = "google-auth" },
@@ -1225,7 +1225,7 @@ dependencies = [
     { name = "requests" },
 ]
 wheels = [
-    { filename = "tipcommon-2.2.5-py2.py3-none-any.whl", hash = "sha256:4f3ca2117a65ea8814b1e41945f5969613e69428fa45d25e71f4063fead3ef4e" },
+    { filename = "tipcommon-2.2.6-py2.py3-none-any.whl", hash = "sha256:44ebe098f6e9ada692a236d3f85cd854f587daaf7a5773938043bb9422884913" },
 ]
 
 [package.metadata]

@@ -27,4 +27,4 @@ dev = [
 environmentcommon = { path = "../../../packages/envcommon/EnvironmentCommon-1.0.2/EnvironmentCommon-1.0.2-py2.py3-none-any.whl" }
 integration-testing = { path = "../../../packages/integration_testing" }
 soar-sdk = { git = "https://github.com/chronicle/soar-sdk.git" }
-tipcommon = { path = "../../../packages/tipcommon/TIPCommon-2.2.5/TIPCommon-2.2.5-py2.py3-none-any.whl" }
+tipcommon = { path = "../../../packages/tipcommon/TIPCommon-2.2.6/TIPCommon-2.2.6-py2.py3-none-any.whl" }
