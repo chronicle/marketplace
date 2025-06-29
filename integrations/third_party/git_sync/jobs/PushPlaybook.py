@@ -104,7 +104,7 @@ def main():
                         gitsync.content.push_playbook(block)
             else:
                 siemplify.LOGGER.warn(
-                    f"Playbook {workflow.get('name')} not found, Skipping",
+                    f"Playbook {playbook.get('name')} not found, Skipping",
                 )
 
         gitsync.update_readme(create_root_readme(gitsync), "Playbooks")

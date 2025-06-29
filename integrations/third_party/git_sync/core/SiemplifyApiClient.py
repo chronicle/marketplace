@@ -569,5 +569,7 @@ class SiemplifyApiClient:
             instance_display_name=display_name,
             environments=environments
         )
+        if res is None:
+            return None
 
         return res.get("identifier")
