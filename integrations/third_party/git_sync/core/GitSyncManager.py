@@ -42,6 +42,7 @@ if TYPE_CHECKING:
     from soar_sdk.SiemplifyAction import SiemplifyAction
     from soar_sdk.SiemplifyJob import SiemplifyJob
     from soar_sdk.SiemplifyLogger import SiemplifyLogger
+    from TIPCommon.types import ChronicleSOAR
 
 
 class MergeConflictError(Exception):
@@ -331,7 +332,12 @@ class GitSyncManager:
         workflows = list(set(workflows))
         siemplify_context: Context = get_context_factory(self._siemplify)
         cache: Cache[str, int] = Cache(siemplify_context)
-        playbook_installer = WorkflowInstaller(self.api, self.logger, cache)
+        playbook_installer = WorkflowInstaller(
+            self._siemplify,
+            self.api,
+            self.logger,
+            cache
+        )
         blocks, playbooks = [], []
         for workflow in workflows:
             if workflow.type == WorkflowTypes.BLOCK:
@@ -546,10 +552,12 @@ class WorkflowInstaller:
 
     def __init__(
         self,
+        chronicle_soar: ChronicleSOAR,
         api: SiemplifyApiClient,
         logger: SiemplifyLogger,
         mod_time_cache: Cache[str, int],
     ) -> None:
+        self.chronicle_soar = chronicle_soar
         self.api: SiemplifyApiClient = api
         self.logger: SiemplifyLogger = logger
         self._mod_time_cache: Cache[str, int] = mod_time_cache
@@ -777,6 +785,25 @@ class WorkflowInstaller:
                 fallback,
             )
             return
+
+        instance_display_name = self._get_instance_display_name(
+            step,
+            "IntegrationInstance",
+            "InstanceDisplayName",
+        )
+
+        fallback_instance_display_name = self._get_instance_display_name(
+            step,
+            "FallbackIntegrationInstance",
+            "FallbackInstanceDisplayName",
+        )
+
+        fallback_instance_id = self.api.get_integration_instance_id_by_name(
+            self.chronicle_soar,
+            step.get("integration"),
+            environments=environments,
+            display_name=fallback_instance_display_name,
+        )
         # If the playbook is for one specific environment, choose the first integration instance from that environment
         # Otherwise, set the step to dynamic mode and set the first shared integration instance as fallback
         if len(environments) == 1 and environments[0] != ALL_ENVIRONMENTS_IDENTIFIER:
@@ -785,15 +812,21 @@ class WorkflowInstaller:
                 environments[0],
             )
             if integration_instances:
+                instance_id = self.api.get_integration_instance_id_by_name(
+                    self.chronicle_soar,
+                    step.get("integration"),
+                    environments=environments,
+                    display_name=instance_display_name,
+                )
                 self._set_step_parameter_by_name(
                     step,
                     "IntegrationInstance",
-                    integration_instances[0].get("identifier"),
+                    instance_id or integration_instances[0].get("identifier"),
                 )
                 self._set_step_parameter_by_name(
                     step,
                     "FallbackIntegrationInstance",
-                    None,
+                    fallback_instance_id,
                 )
         else:
             integration_instances = self._find_integration_instances_for_step(
@@ -809,14 +842,28 @@ class WorkflowInstaller:
                 self._set_step_parameter_by_name(
                     step,
                     "FallbackIntegrationInstance",
-                    integration_instances[0].get("identifier"),
+                    fallback_instance_id or integration_instances[0].get("identifier"),
                 )
             else:
                 self._set_step_parameter_by_name(
                     step,
                     "FallbackIntegrationInstance",
-                    None,
+                    fallback_instance_id,
                 )
+
+    def _get_instance_display_name(
+        self,
+        step: dict,
+        parameter_name: str,
+        display_name_key: str,
+    ) -> str | None:
+        """Helper to get the display name of an integration instance parameter."""
+        param_json = self._get_step_parameter_by_name(step, parameter_name)
+
+        if param_json is not None:
+            return param_json.get(display_name_key)
+
+        return None
 
     def _find_integration_instances_for_step(
         self,

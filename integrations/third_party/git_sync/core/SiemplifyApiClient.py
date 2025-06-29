@@ -19,6 +19,12 @@ from urllib.parse import urljoin
 import requests
 from packaging import version
 
+from TIPCommon.rest.soar_api import (
+    get_integration_instance_details_by_id,
+    get_integration_instance_details_by_name
+)
+
+
 VERSION_6117 = version.parse("6.1.17")
 VERSION_6138 = version.parse("6.1.38.77")
 
@@ -510,3 +516,60 @@ class SiemplifyApiClient:
         res = self.session.post("attackssimulator/ImportCustomCase", json=case)
         self.validate_response(res)
         return True
+
+    def get_integration_instance_name(
+        self,
+        chronicle_soar,
+        integration_name: str,
+        instance_id: str,
+        environments,
+    ) -> str | None:
+        """Gets the integration instance name.
+
+        Args:
+            integration_name (str): Integration name.
+            instance_id (str): Integration instance id.
+
+        Returns:
+            str: Returns display name of the integration instance.
+        """
+        res = get_integration_instance_details_by_id(
+            chronicle_soar=chronicle_soar,
+            integration_identifier=integration_name,
+            instance_id=instance_id,
+            environments=environments,
+        )
+        if res is None:
+            return None
+
+        return res.get("displayName") or res.get("instanceName")
+
+    def get_integration_instance_id_by_name(
+        self,
+        chronicle_soar,
+        integration_name: str,
+        environments,
+        display_name: str | None,
+    ) -> str | None:
+        """Gets the integration instance id by name.
+
+        Args:
+            integration_name (str): Integration name.
+            display_name (str | None): Display name of the integration instance.
+
+        Returns:
+            str | None: Returns integration instance id.
+        """
+        if display_name is None:
+            return None
+
+        res = get_integration_instance_details_by_name(
+            chronicle_soar=chronicle_soar,
+            integration_identifier=integration_name,
+            instance_display_name=display_name,
+            environments=environments
+        )
+        if res is None:
+            return None
+
+        return res.get("identifier")

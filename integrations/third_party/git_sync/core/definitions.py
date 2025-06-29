@@ -17,6 +17,7 @@ from __future__ import annotations
 import base64
 import json
 from typing import TYPE_CHECKING, Any
+import uuid
 from zipfile import ZipFile
 
 from jinja2 import Environment as JinjaEnvironment
@@ -36,12 +37,14 @@ from .constants import (
     VISUAL_FAMILY_README,
     ScriptType,
     WorkflowTypes,
+    STEP_TYPE
 )
 
 if TYPE_CHECKING:
     from collections.abc import Iterator
 
     from .SiemplifyApiClient import SiemplifyApiClient
+    from TIPCommon.types import ChronicleSOAR
 
 
 class File:
@@ -440,6 +443,74 @@ class Workflow(Content):
 
     def get_involved_blocks(self):
         return [x for x in self.steps if x.get("type") == 5]
+
+    def update_instance_name_in_steps(
+        self,
+        api: SiemplifyApiClient,
+        chronicle_soar: ChronicleSOAR,
+    ) -> None:
+        """Updates name of instances in the steps."""
+        for step in self.steps:
+            if (
+                step.get("type") == STEP_TYPE
+                and step.get("actionProvider") == "Scripts"
+            ):
+                self._update_instance_display_names_for_step(step, api, chronicle_soar)
+
+    def _is_integration_instance_param(
+        self,
+        param_name: str | None,
+        param_value: str | None,
+    ) -> bool:
+        """Checks if a parameter is a valid integration instance parameter."""
+        return param_name in (
+            "IntegrationInstance",
+            "FallbackIntegrationInstance",
+        ) and self._is_valid_instance_id(param_value)
+
+    def _update_instance_display_names_for_step(
+        self,
+        step: dict,
+        api: SiemplifyApiClient,
+        chronicle_soar: ChronicleSOAR,
+    ) -> None:
+        """Updates display names for integration instance parameters in a step.
+
+        Args:
+            step (dict): The workflow step dictionary to process.
+            api (SiemplifyApiClient): An API client instance used to fetch
+                integration instance names.
+        """
+        integration_name = step["integration"]
+
+        for param in step.get("parameters", []):
+            param_name = param.get("name")
+            param_value = param.get("value")
+
+            if not self._is_integration_instance_param(param_name, param_value):
+                continue
+
+            display_name = api.get_integration_instance_name(
+                chronicle_soar,
+                integration_name,
+                param_value,
+                self.environments,
+            )
+
+            match param_name:
+                case "IntegrationInstance":
+                    param["InstanceDisplayName"] = display_name
+                case "FallbackIntegrationInstance":
+                    param["FallbackInstanceDisplayName"] = display_name
+
+    def _is_valid_instance_id(self, instance_id: str) -> bool:
+        try:
+            val = uuid.UUID(instance_id, version=4)
+
+        except (TypeError, ValueError):
+            return False
+
+        return str(val) == instance_id and val.version == 4
 
 
 class Job(Content):
