@@ -101,6 +101,7 @@ def main():
                         block = Workflow(
                             gitsync.api.get_playbook(installed_block.get("identifier")),
                         )
+                        block.update_instance_name_in_steps(gitsync.api, siemplify)
                         gitsync.content.push_playbook(block)
             else:
                 siemplify.LOGGER.warn(
