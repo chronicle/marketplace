@@ -1,6 +1,6 @@
 [project]
 name = "integration-testing"
-version = "1.0.7"
+version = "1.0.8"
 description = "Blackbox testing infrastructure to test and run marketplace integration scripts locally using mocks."
 readme = "README.md"
 authors = [
