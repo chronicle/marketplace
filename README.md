@@ -51,6 +51,8 @@ For more detailed information, use these guides as a reference while you build.
 ```
 ├── README.md
 ├── contributing.md
+├── code_of_conduct.md
+├── navigation.md
 ├── LICENSE
 └── docs/
     ├── response_integrations
