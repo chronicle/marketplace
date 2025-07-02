@@ -61,7 +61,7 @@ For more detailed information, use these guides as a reference while you build.
     │   ├── tipcommon_and_envcommon
     │   └──soar_sdk
     │
-    ├── getting-started
+    ├── getting_started
     │   ├── setup_your_environment
     │   └── core_concepts
     │
