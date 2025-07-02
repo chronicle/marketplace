@@ -22,7 +22,7 @@ from .request import HttpMethod
 if TYPE_CHECKING:
     from collections.abc import Callable, Iterable, MutableMapping
 
-    from .requests.session import RouteFunction, UrlPath
+    from .custom_types import RouteFunction, UrlPath
 
 
 def add_routes(

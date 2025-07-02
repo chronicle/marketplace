@@ -33,9 +33,7 @@ class NonBuiltFeatureTags(TypedDict):
     integration_visibility_properties: list[NonBuiltIntegrationVisibilityProperty]
 
 
-class FeatureTags(
-    mp.core.data_models.abc.Buildable[BuiltFeatureTags, NonBuiltFeatureTags],
-):
+class FeatureTags(mp.core.data_models.abc.Buildable[BuiltFeatureTags, NonBuiltFeatureTags]):
     integration_visibility_properties: list[IntegrationVisibilityProperty]
 
     @classmethod

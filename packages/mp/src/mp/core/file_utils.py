@@ -74,11 +74,7 @@ def get_out_integrations_path() -> pathlib.Path:
         The out/integrations' directory path
 
     """
-    return (
-        config.get_marketplace_path()
-        / constants.OUT_DIR_NAME
-        / constants.INTEGRATIONS_DIR_NAME
-    )
+    return config.get_marketplace_path() / constants.OUT_DIR_NAME / constants.INTEGRATIONS_DIR_NAME
 
 
 def discover_core_modules(path: pathlib.Path) -> list[ManagerName]:
@@ -268,9 +264,7 @@ def is_built(integration: pathlib.Path) -> bool:
 
     """
     pyproject: pathlib.Path = integration / constants.PROJECT_FILE
-    def_file: pathlib.Path = integration / constants.INTEGRATION_DEF_FILE.format(
-        integration.name,
-    )
+    def_file: pathlib.Path = integration / constants.INTEGRATION_DEF_FILE.format(integration.name)
     definition_file: pathlib.Path = integration / constants.DEFINITION_FILE
     return not pyproject.exists() and def_file.exists() and not definition_file.exists()
 
@@ -283,9 +277,7 @@ def is_half_built(integration: pathlib.Path) -> bool:
 
     """
     pyproject: pathlib.Path = integration / constants.PROJECT_FILE
-    def_file: pathlib.Path = integration / constants.INTEGRATION_DEF_FILE.format(
-        integration.name,
-    )
+    def_file: pathlib.Path = integration / constants.INTEGRATION_DEF_FILE.format(integration.name)
     return pyproject.exists() and def_file.exists()
 
 
@@ -297,9 +289,7 @@ def is_non_built(integration: pathlib.Path) -> bool:
 
     """
     pyproject: pathlib.Path = integration / constants.PROJECT_FILE
-    def_file: pathlib.Path = integration / constants.INTEGRATION_DEF_FILE.format(
-        integration.name,
-    )
+    def_file: pathlib.Path = integration / constants.INTEGRATION_DEF_FILE.format(integration.name)
     definition_file: pathlib.Path = integration / constants.DEFINITION_FILE
     return pyproject.exists() and definition_file.exists() and not def_file.exists()
 
@@ -331,10 +321,7 @@ def flatten_dir(path: pathlib.Path, dest: pathlib.Path) -> None:
             flatten_dir(child, dest)
 
 
-def write_yaml_to_file(
-    content: Mapping[str, Any] | Sequence[Any],
-    path: pathlib.Path,
-) -> None:
+def write_yaml_to_file(content: Mapping[str, Any] | Sequence[Any], path: pathlib.Path) -> None:
     """Write content into a YAML file.
 
     Args:

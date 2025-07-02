@@ -54,9 +54,7 @@ class TestVerifySSLParameterValidations:
         assert len(param.name) == mp.core.constants.PARAM_NAME_MAX_LENGTH
 
     def test_param_name_max_words_validation(self) -> None:
-        too_many_words = " ".join(
-            ["word"] * (mp.core.constants.PARAM_NAME_MAX_WORDS + 1)
-        )
+        too_many_words = " ".join(["word"] * (mp.core.constants.PARAM_NAME_MAX_WORDS + 1))
 
         with pytest.raises(ValueError, match="exceeds maximum number of words"):
             validate_param_name(too_many_words)
@@ -122,9 +120,7 @@ class TestVerifySSLParameterValidations:
             validate_ssl_parameter(script_name, parameters)
 
     def test_ssl_parameter_excluded_from_default_value_check(self) -> None:
-        for (
-            script_name
-        ) in mp.core.constants.EXCLUDED_NAMES_WHERE_SSL_DEFAULT_IS_NOT_TRUE:
+        for script_name in mp.core.constants.EXCLUDED_NAMES_WHERE_SSL_DEFAULT_IS_NOT_TRUE:
             parameters = [
                 IntegrationParameter(
                     name="Verify SSL",

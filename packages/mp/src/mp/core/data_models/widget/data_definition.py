@@ -65,10 +65,7 @@ class NonBuiltWidgetDataDefinition(TypedDict):
 
 
 class WidgetDataDefinition(
-    mp.core.data_models.abc.Buildable[
-        BuiltWidgetDataDefinition,
-        NonBuiltWidgetDataDefinition,
-    ],
+    mp.core.data_models.abc.Buildable[BuiltWidgetDataDefinition, NonBuiltWidgetDataDefinition]
 ):
     html_height: int
     safe_rendering: bool
@@ -87,10 +84,7 @@ class WidgetDataDefinition(
         )
 
     @classmethod
-    def _from_non_built(
-        cls,
-        non_built: NonBuiltWidgetDataDefinition,
-    ) -> WidgetDataDefinition:
+    def _from_non_built(cls, non_built: NonBuiltWidgetDataDefinition) -> WidgetDataDefinition:
         return cls(
             html_height=non_built["html_height"],
             safe_rendering=non_built["safe_rendering"],

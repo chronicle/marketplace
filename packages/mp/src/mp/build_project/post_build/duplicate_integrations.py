@@ -86,9 +86,7 @@ def _get_marketplace_integrations(mp_json_path: pathlib.Path) -> set[str]:
 
     if duplicates:
         ids: str = ", ".join(duplicates)
-        msg: str = (
-            f"Found multiple integrations with the same identifier: {', '.join(ids)}"
-        )
+        msg: str = f"Found multiple integrations with the same identifier: {', '.join(ids)}"
         raise IntegrationExistsError(msg)
 
     return results

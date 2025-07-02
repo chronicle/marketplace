@@ -69,7 +69,7 @@ class NonBuiltWidgetMetadata(TypedDict):
 
 
 class WidgetMetadata(
-    mp.core.data_models.abc.ScriptMetadata[BuiltWidgetMetadata, NonBuiltWidgetMetadata],
+    mp.core.data_models.abc.ScriptMetadata[BuiltWidgetMetadata, NonBuiltWidgetMetadata]
 ):
     file_name: str
     title: Annotated[
@@ -89,7 +89,8 @@ class WidgetMetadata(
         ),
     ]
     description: Annotated[
-        str, pydantic.Field(max_length=mp.core.constants.LONG_DESCRIPTION_MAX_LENGTH)
+        str,
+        pydantic.Field(max_length=mp.core.constants.LONG_DESCRIPTION_MAX_LENGTH),
     ]
     data_definition: WidgetDataDefinition
     condition_group: ConditionGroup

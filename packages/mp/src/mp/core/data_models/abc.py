@@ -310,10 +310,7 @@ class ScriptMetadata(BuildableScript[_BT, _NBT], abc.ABC, Generic[_BT, _NBT]):
         non_built_content: str = metadata_path.read_text(encoding="utf-8")
         try:
             metadata_json: _NBT = yaml.safe_load(non_built_content)
-            non_built: Self = cls.from_non_built(
-                metadata_path.stem,
-                metadata_json,
-            )
+            non_built: Self = cls.from_non_built(metadata_path.stem, metadata_json)
         except (ValueError, yaml.YAMLError) as e:
             msg: str = f"Failed to load yaml from {metadata_path}\n{non_built_content}"
             raise ValueError(mp.core.utils.trim_values(msg)) from e

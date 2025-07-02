@@ -45,7 +45,7 @@ class NonBuiltCustomFamily(TypedDict):
 
 
 class CustomFamily(
-    mp.core.data_models.abc.SequentialMetadata[BuiltCustomFamily, NonBuiltCustomFamily],
+    mp.core.data_models.abc.SequentialMetadata[BuiltCustomFamily, NonBuiltCustomFamily]
 ):
     family: str
     description: Annotated[
@@ -111,9 +111,7 @@ class CustomFamily(
             description=non_built["description"],
             image_base64=non_built["image_base64"],
             is_custom=non_built.get("is_custom", False),
-            rules=[
-                CustomFamilyRule.from_non_built(rule) for rule in non_built["rules"]
-            ],
+            rules=[CustomFamilyRule.from_non_built(rule) for rule in non_built["rules"]],
         )
 
     def to_built(self) -> BuiltCustomFamily:

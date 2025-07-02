@@ -61,8 +61,7 @@ def _restructure_connector_params(
 ) -> list[SingleJson]:
     if isinstance(connector_params, dict):
         return [
-            {"param_name": name, "param_value": value}
-            for name, value in connector_params.items()
+            {"param_name": name, "param_value": value} for name, value in connector_params.items()
         ]
 
     if isinstance(connector_params, list):

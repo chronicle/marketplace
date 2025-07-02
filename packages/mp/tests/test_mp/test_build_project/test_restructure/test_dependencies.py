@@ -54,7 +54,5 @@ def test_restructure(tmp_path: pathlib.Path) -> None:
 
     dependencies.restructure()
 
-    deps_path: pathlib.Path = (
-        dependencies.out_path / mp.core.constants.OUT_DEPENDENCIES_DIR
-    )
+    deps_path: pathlib.Path = dependencies.out_path / mp.core.constants.OUT_DEPENDENCIES_DIR
     assert list(deps_path.iterdir())

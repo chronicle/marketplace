@@ -98,17 +98,12 @@ def write_marketplace_json(dst: pathlib.Path) -> None:
         def_files.append(def_file)
 
     if duplicates:
-        names: str = "\n".join(
-            f"Identifier: {d[0]}, DisplayName: {d[1]}" for d in duplicates
-        )
+        names: str = "\n".join(f"Identifier: {d[0]}, DisplayName: {d[1]}" for d in duplicates)
         msg: str = f"The following integrations have duplicates: {names}"
         raise DuplicateIntegrationIdentifierInMarketplaceError(msg)
 
     marketplace_json: pathlib.Path = dst / mp.core.constants.MARKETPLACE_JSON_NAME
-    marketplace_json.write_text(
-        json.dumps(def_files, sort_keys=True, indent=4),
-        encoding="UTF-8",
-    )
+    marketplace_json.write_text(json.dumps(def_files, sort_keys=True, indent=4), encoding="UTF-8")
 
 
 @dataclasses.dataclass(slots=True, frozen=True)
@@ -129,7 +124,7 @@ class MarketplaceJsonDefinition:
 
         """
         metadata: BuiltFullDetailsIntegrationMetadata = json.loads(
-            def_file_path.read_text(encoding="utf-8"),
+            def_file_path.read_text(encoding="utf-8")
         )
         self._update_full_details_with_extra_attrs(metadata)
         return metadata
@@ -176,7 +171,7 @@ class MarketplaceJsonDefinition:
         supported_action: list[BuiltSupportedAction] = []
         for action_meta_path in actions_definitions.iterdir():
             action_meta: BuiltActionMetadata = json.loads(
-                action_meta_path.read_text(encoding="utf-8"),
+                action_meta_path.read_text(encoding="utf-8")
             )
             supported_action.append(
                 {

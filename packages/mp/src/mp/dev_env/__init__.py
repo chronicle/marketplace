@@ -24,9 +24,7 @@ import typer
 
 from . import api, utils
 
-app = typer.Typer(
-    help="Commands for interacting with the development environment (playground)"
-)
+app = typer.Typer(help="Commands for interacting with the development environment (playground)")
 
 
 class DevEnvParams(NamedTuple):
@@ -35,14 +33,13 @@ class DevEnvParams(NamedTuple):
     api_root: str
 
 
-@app.command()
+@app.command(name="dev-env", help="Push code from the repo to the IDE of a SOAR instance")
 def login(
     api_root: Annotated[
         str | None,
         typer.Option(
             "--api-root",
-            help="API root (e.g. https://playground.example.com). "
-            "If not provided, will prompt.",
+            help="API root (e.g. https://playground.example.com). If not provided, will prompt.",
         ),
     ] = None,
     username: Annotated[
@@ -109,17 +106,12 @@ def login(
 
     if not no_verify:
         try:
-            backend_api = api.BackendAPI(
-                params.api_root, params.username, params.password
-            )
+            backend_api = api.BackendAPI(params.api_root, params.username, params.password)
             backend_api.login()
             rich.print("[green]✅ Credentials verified successfully.[/green]")
         except Exception as e:
             utils.CONFIG_PATH.unlink(missing_ok=True)
-            rich.print(
-                f"[red]Credential verification failed: {e}\n"
-                "Credentials file removed.[/red]"
-            )
+            rich.print(f"[red]Credential verification failed: {e}\nCredentials file removed.[/red]")
             raise typer.Exit(1) from e
 
 
@@ -160,9 +152,7 @@ def deploy(
     rich.print(f"Zipped built integration at {zip_path}")
 
     try:
-        backend_api = api.BackendAPI(
-            config["api_root"], config["username"], config["password"]
-        )
+        backend_api = api.BackendAPI(config["api_root"], config["username"], config["password"])
         backend_api.login()
         details = backend_api.get_integration_details(zip_path)
         integration_id = details["identifier"]

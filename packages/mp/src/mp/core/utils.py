@@ -99,10 +99,6 @@ def trim_values(s: str, /) -> str:
     """
     padding: int = len(TRIM_CHARS)
     if len(s) > ERR_MSG_STRING_LIMIT:
-        return (
-            f"{s[: ERR_MSG_STRING_LIMIT - padding * 2]}"
-            f"{TRIM_CHARS}"
-            f"{s[len(s) - padding :]}"
-        )
+        return f"{s[: ERR_MSG_STRING_LIMIT - padding * 2]}{TRIM_CHARS}{s[len(s) - padding :]}"
 
     return s

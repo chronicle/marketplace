@@ -25,9 +25,7 @@ from mp.core.data_models.integration import Integration
 from mp.core.data_models.integration_meta.metadata import PythonVersion
 
 if TYPE_CHECKING:
-    from mp.core.data_models.integration_meta.metadata import (
-        IntegrationMetadata,
-    )
+    from mp.core.data_models.integration_meta.metadata import IntegrationMetadata
 
 
 class TestNoPingAction:

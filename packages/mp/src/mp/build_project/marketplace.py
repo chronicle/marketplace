@@ -35,11 +35,7 @@ import mp.core.constants
 import mp.core.file_utils
 import mp.core.unix
 import mp.core.utils
-from mp.core.data_models.integration import (
-    BuiltFullDetails,
-    BuiltIntegration,
-    Integration,
-)
+from mp.core.data_models.integration import BuiltFullDetails, BuiltIntegration, Integration
 
 from .post_build.full_details_json import write_full_details
 from .post_build.marketplace_json import write_marketplace_json
@@ -69,9 +65,7 @@ class Marketplace:
         out_path: pathlib.Path = mp_path / mp.core.constants.OUT_DIR_NAME
         out_path.mkdir(exist_ok=True)
 
-        self.out_path: pathlib.Path = (
-            out_path / mp.core.constants.OUT_INTEGRATIONS_DIR_NAME
-        )
+        self.out_path: pathlib.Path = out_path / mp.core.constants.OUT_INTEGRATIONS_DIR_NAME
         self.out_path.mkdir(exist_ok=True)
 
         self.out_path /= integrations_dir.name
@@ -124,9 +118,7 @@ class Marketplace:
 
         """
         paths: Iterator[pathlib.Path] = (
-            p
-            for p in integration_paths
-            if p.exists() and mp.core.file_utils.is_integration(p)
+            p for p in integration_paths if p.exists() and mp.core.file_utils.is_integration(p)
         )
         processes: int = mp.core.config.get_processes_number()
         with multiprocessing.Pool(processes=processes) as pool:
@@ -161,10 +153,7 @@ class Marketplace:
         mp.core.file_utils.recreate_dir(self.out_path / integration.identifier)
         return integration
 
-    def _prepare_built_integration_for_build(
-        self,
-        integration_path: pathlib.Path,
-    ) -> None:
+    def _prepare_built_integration_for_build(self, integration_path: pathlib.Path) -> None:
         integration_out_path: pathlib.Path = self.out_path / integration_path.name
         mp.core.file_utils.recreate_dir(integration_out_path)
         shutil.copytree(integration_path, integration_out_path, dirs_exist_ok=True)
@@ -192,15 +181,11 @@ class Marketplace:
             integration / mp.core.constants.TESTS_DIR,
             integration / mp.core.constants.PROJECT_FILE,
             integration / mp.core.constants.LOCK_FILE,
-            integration
-            / mp.core.constants.OUT_ACTION_SCRIPTS_DIR
-            / mp.core.constants.PACKAGE_FILE,
+            integration / mp.core.constants.OUT_ACTION_SCRIPTS_DIR / mp.core.constants.PACKAGE_FILE,
             integration
             / mp.core.constants.OUT_CONNECTOR_SCRIPTS_DIR
             / mp.core.constants.PACKAGE_FILE,
-            integration
-            / mp.core.constants.OUT_JOB_SCRIPTS_DIR
-            / mp.core.constants.PACKAGE_FILE,
+            integration / mp.core.constants.OUT_JOB_SCRIPTS_DIR / mp.core.constants.PACKAGE_FILE,
             integration
             / mp.core.constants.OUT_MANAGERS_SCRIPTS_DIR
             / mp.core.constants.PACKAGE_FILE,
@@ -210,10 +195,7 @@ class Marketplace:
             root=integration,
         )
 
-    def deconstruct_integrations(
-        self,
-        integration_paths: Iterable[pathlib.Path],
-    ) -> None:
+    def deconstruct_integrations(self, integration_paths: Iterable[pathlib.Path]) -> None:
         """Deconstruct all integrations provided by `integration_paths`.
 
         Args:
@@ -221,9 +203,7 @@ class Marketplace:
 
         """
         paths: Iterator[pathlib.Path] = (
-            p
-            for p in integration_paths
-            if p.exists() and mp.core.file_utils.is_integration(p)
+            p for p in integration_paths if p.exists() and mp.core.file_utils.is_integration(p)
         )
         processes: int = mp.core.config.get_processes_number()
         with multiprocessing.Pool(processes=processes) as pool:
@@ -273,8 +253,8 @@ class Marketplace:
         self._init_integration_project(di)
 
     def _init_integration_project(self, di: DeconstructIntegration) -> None:
-        integration_out_path: pathlib.Path = (
-            self.out_path / mp.core.utils.str_to_snake_case(di.path.name)
+        integration_out_path: pathlib.Path = self.out_path / mp.core.utils.str_to_snake_case(
+            di.path.name
         )
         proj: pathlib.Path = di.path / mp.core.constants.PROJECT_FILE
         if proj.exists():

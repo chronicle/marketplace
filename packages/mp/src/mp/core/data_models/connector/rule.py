@@ -37,9 +37,7 @@ class NonBuiltConnectorRule(TypedDict):
     rule_type: str
 
 
-class ConnectorRule(
-    mp.core.data_models.abc.Buildable[BuiltConnectorRule, NonBuiltConnectorRule],
-):
+class ConnectorRule(mp.core.data_models.abc.Buildable[BuiltConnectorRule, NonBuiltConnectorRule]):
     rule_name: Annotated[
         str,
         pydantic.Field(

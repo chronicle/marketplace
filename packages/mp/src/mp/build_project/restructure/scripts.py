@@ -79,14 +79,10 @@ class Scripts(Restructurable):
         )
 
     def _restructure_group_scripts(self) -> None:
-        script_dir: pathlib.Path = (
-            self.path.parent / mp.core.constants.COMMON_SCRIPTS_DIR
-        )
+        script_dir: pathlib.Path = self.path.parent / mp.core.constants.COMMON_SCRIPTS_DIR
         if not script_dir.exists():
             return
-        out_dir: pathlib.Path = (
-            self.out_path / mp.core.constants.OUT_MANAGERS_SCRIPTS_DIR
-        )
+        out_dir: pathlib.Path = self.out_path / mp.core.constants.OUT_MANAGERS_SCRIPTS_DIR
         mp.core.file_utils.flatten_dir(script_dir, out_dir)
 
     def _copy_script_from_dir(self, dir_name: str, out_dir_name: str) -> None:

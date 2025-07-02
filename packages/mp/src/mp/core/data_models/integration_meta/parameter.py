@@ -45,10 +45,7 @@ class NonBuiltIntegrationParameter(TypedDict):
 
 
 class IntegrationParameter(
-    mp.core.data_models.abc.Buildable[
-        BuiltIntegrationParameter,
-        NonBuiltIntegrationParameter,
-    ],
+    mp.core.data_models.abc.Buildable[BuiltIntegrationParameter, NonBuiltIntegrationParameter]
 ):
     name: Annotated[
         str,

@@ -18,25 +18,13 @@ import dataclasses
 import re
 import urllib.parse
 from collections import UserList
-from typing import (
-    TYPE_CHECKING,
-    Any,
-    Generic,
-    SupportsIndex,
-    TypeVar,
-)
+from typing import TYPE_CHECKING, Any, Generic, SupportsIndex, TypeVar
 
 import aiohttp
 from TIPCommon.base.utils import is_native, nativemethod
 
 from integration_testing.aiohttp.response import MockClientResponse
-from integration_testing.custom_types import (
-    NO_RESPONSE,
-    Product,
-    Request,
-    RouteFunction,
-    UrlPath,
-)
+from integration_testing.custom_types import NO_RESPONSE, Product, Request, RouteFunction, UrlPath
 from integration_testing.request import HttpMethod, MockRequest
 
 if TYPE_CHECKING:
@@ -83,18 +71,11 @@ class HistoryRecordsList(UserList[HistoryRecord[Request, Response]]):
         stop: int = -1,
     ) -> None:
         """Assert that all history records path matches given regex."""
-        if not all(
-            re.search(regex_pattern, hr.request.url.path) for hr in self[start:stop]
-        ):
+        if not all(re.search(regex_pattern, hr.request.url.path) for hr in self[start:stop]):
             msg: str = "Not all history records have the expected path regex."
             raise RuntimeError(msg)
 
-    def assert_headers(
-        self,
-        headers: dict[str, str],
-        start: int = 0,
-        stop: int = -1,
-    ) -> None:
+    def assert_headers(self, headers: dict[str, str], start: int = 0, stop: int = -1) -> None:
         """Assert that all history records have specific headers set."""
         for key, value in headers.items():
             if not all(hr.request.headers.get(key) == value for hr in self[start:stop]):
@@ -102,10 +83,7 @@ class HistoryRecordsList(UserList[HistoryRecord[Request, Response]]):
                 raise RuntimeError(msg)
 
 
-class MockClientSession(
-    aiohttp.ClientSession,
-    Generic[Request, Response, Product],
-):
+class MockClientSession(aiohttp.ClientSession, Generic[Request, Response, Product]):
     def __init__(
         self,
         *args: Any,  # noqa: ANN401
@@ -186,12 +164,7 @@ class MockClientSession(
         self._validate_response(response, method, path)
         return response
 
-    def _validate_response(
-        self,
-        response: Response,
-        method: str,
-        path: str,
-    ) -> None:
+    def _validate_response(self, response: Response, method: str, path: str) -> None:
         msg: str
         if response is None:
             msg = (
