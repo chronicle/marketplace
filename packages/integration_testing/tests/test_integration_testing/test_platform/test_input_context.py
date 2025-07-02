@@ -60,9 +60,7 @@ def test_parameters_and_params_provided_no_override_happens() -> None:
 
     assert context["connector_info"]["params"] != context["parameters"]
     assert context["parameters"] == context_json["parameters"]
-    assert (
-        context["connector_info"]["params"] == context_json["connector_info"]["params"]
-    )
+    assert context["connector_info"]["params"] == context_json["connector_info"]["params"]
 
 
 def test_parameters_provided_without_params_so_values_are_copied() -> None:

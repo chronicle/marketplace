@@ -53,7 +53,7 @@ class NonBuiltReleaseNote(TypedDict):
 
 
 class ReleaseNote(
-    mp.core.data_models.abc.SequentialMetadata[BuiltReleaseNote, NonBuiltReleaseNote],
+    mp.core.data_models.abc.SequentialMetadata[BuiltReleaseNote, NonBuiltReleaseNote]
 ):
     description: Annotated[
         str,

@@ -79,9 +79,7 @@ class BuildParams:
         params: list[Iterable[str] | Iterable[RepositoryType]] = self._as_list()
         msg: str
         if not any(params):
-            msg = (
-                "At least one of --repository, --groups, or --integration must be used."
-            )
+            msg = "At least one of --repository, --groups, or --integration must be used."
             raise typer.BadParameter(msg)
 
         if sum(map(bool, params)) != 1:

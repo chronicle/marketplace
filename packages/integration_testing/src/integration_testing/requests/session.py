@@ -24,13 +24,7 @@ import requests
 from TIPCommon.base.interfaces import Session
 from TIPCommon.base.utils import is_native, nativemethod
 
-from integration_testing.custom_types import (
-    NO_RESPONSE,
-    Product,
-    Request,
-    RouteFunction,
-    UrlPath,
-)
+from integration_testing.custom_types import NO_RESPONSE, Product, Request, RouteFunction, UrlPath
 from integration_testing.request import HttpMethod, MockRequest
 
 from .response import MockResponse
@@ -51,11 +45,7 @@ class HistoryRecord(Generic[Request, Response]):
     response: Response
 
 
-class MockSession(
-    requests.Session,
-    Session[Response],
-    Generic[Request, Response, Product],
-):
+class MockSession(requests.Session, Session[Response], Generic[Request, Response, Product]):
     def __init__(self, mock_product: Product | None = None) -> None:
         """Initialize the session."""
         super().__init__()

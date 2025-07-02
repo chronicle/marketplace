@@ -88,8 +88,7 @@ class TestPrepareConnectorParam:
             params=expected_parameter,
         )
         assert (
-            results[0].name == "PythonProcessTimeout"
-            or results[1].name == "PythonProcessTimeout"
+            results[0].name == "PythonProcessTimeout" or results[1].name == "PythonProcessTimeout"
         )
         for parameter in results:
             if parameter.name == "PythonProcessTimeout":

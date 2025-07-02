@@ -69,10 +69,7 @@ def validate_ssl_parameter(
         return
 
     if ssl_param.default_value is not True:
-        msg = (
-            f"The default value of the 'Verify SSL' param in {script_name}"
-            " must be a boolean true"
-        )
+        msg = f"The default value of the 'Verify SSL' param in {script_name} must be a boolean true"
         raise ValueError(msg)
 
 

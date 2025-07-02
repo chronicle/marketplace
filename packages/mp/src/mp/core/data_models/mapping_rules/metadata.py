@@ -95,7 +95,7 @@ class NonBuiltMappingRule(TypedDict):
 
 
 class MappingRule(
-    mp.core.data_models.abc.SequentialMetadata[BuiltMappingRule, NonBuiltMappingRule],
+    mp.core.data_models.abc.SequentialMetadata[BuiltMappingRule, NonBuiltMappingRule]
 ):
     source: str
     product: str | None
@@ -218,9 +218,7 @@ class MappingRule(
                     ComparisonType.EQUAL.to_string(),
                 ),
             ),
-            raw_data_third_field_match_term=(
-                non_built.get("raw_data_third_field_match_term", "")
-            ),
+            raw_data_third_field_match_term=(non_built.get("raw_data_third_field_match_term", "")),
             raw_data_third_field_comparison_type=ComparisonType.from_string(
                 non_built.get(
                     "raw_data_third_field_comparison_type",
@@ -250,17 +248,13 @@ class MappingRule(
             TransformationFunction=self.transformation_function.value,
             TransformationFunctionParam=self.transformation_function_param,
             RawDataPrimaryFieldMatchTerm=self.raw_data_primary_field_match_term,
-            RawDataPrimaryFieldComparisonType=(
-                self.raw_data_primary_field_comparison_type.value
-            ),
+            RawDataPrimaryFieldComparisonType=(self.raw_data_primary_field_comparison_type.value),
             RawDataSecondaryFieldMatchTerm=self.raw_data_secondary_field_match_term,
             RawDataSecondaryFieldComparisonType=(
                 self.raw_data_secondary_field_comparison_type.value
             ),
             RawDataThirdFieldMatchTerm=self.raw_data_third_field_match_term,
-            RawDataThirdFieldComparisonType=(
-                self.raw_data_third_field_comparison_type.value
-            ),
+            RawDataThirdFieldComparisonType=(self.raw_data_third_field_comparison_type.value),
             IsArtifact=self.is_artifact,
             ExtractionFunctionParam=self.extract_function_param,
             ExtractionFunction=self.extract_function.value,
@@ -284,9 +278,7 @@ class MappingRule(
             raw_data_primary_field_comparison_type=(
                 self.raw_data_primary_field_comparison_type.to_string()
             ),
-            raw_data_secondary_field_match_term=(
-                self.raw_data_secondary_field_match_term
-            ),
+            raw_data_secondary_field_match_term=(self.raw_data_secondary_field_match_term),
             raw_data_secondary_field_comparison_type=(
                 self.raw_data_secondary_field_comparison_type.to_string()
             ),

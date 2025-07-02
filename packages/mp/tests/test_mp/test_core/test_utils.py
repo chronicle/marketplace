@@ -58,14 +58,8 @@ def test_str_to_snake_case(input_string: str, expected_output: str) -> None:
         (">3.7, <2.7", "2.7"),
     ],
 )
-def test_get_python_version_from_string(
-    input_string: str,
-    expected_output: str,
-) -> None:
-    assert (
-        mp.core.utils.get_python_version_from_version_string(input_string)
-        == expected_output
-    )
+def test_get_python_version_from_string(input_string: str, expected_output: str) -> None:
+    assert mp.core.utils.get_python_version_from_version_string(input_string) == expected_output
 
 
 class TestTrimValues:
@@ -121,9 +115,7 @@ class TestTrimValues:
         assert len(result) < len(mixed_str)
 
     def test_just_over_limit(self) -> None:
-        input_str = "x" * (
-            mp.core.utils.ERR_MSG_STRING_LIMIT + len(mp.core.utils.TRIM_CHARS) + 1
-        )
+        input_str = "x" * (mp.core.utils.ERR_MSG_STRING_LIMIT + len(mp.core.utils.TRIM_CHARS) + 1)
         result = mp.core.utils.trim_values(input_str)
         assert mp.core.utils.TRIM_CHARS in result
         assert len(result) < len(input_str)

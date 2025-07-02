@@ -110,8 +110,7 @@ class ActionParameter(
     def _validate_default_value_is_in_optional_values(self) -> None:
         if not self._is_default_value_in_optional_values():
             msg: str = (
-                "The default value of a multiple options parameter must be one of"
-                " the options"
+                "The default value of a multiple options parameter must be one of the options"
             )
             raise ValueError(msg)
 

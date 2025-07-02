@@ -31,9 +31,7 @@ def test_discover_managers_built(tmp_path: pathlib.Path) -> None:
     (tmp_path / "manager0.py").touch()
     (tmp_path / "manager1.json").touch()
 
-    out_managers_dir: pathlib.Path = (
-        tmp_path / mp.core.constants.OUT_MANAGERS_SCRIPTS_DIR
-    )
+    out_managers_dir: pathlib.Path = tmp_path / mp.core.constants.OUT_MANAGERS_SCRIPTS_DIR
     out_managers_dir.mkdir(parents=True)
     (out_managers_dir / "manager1.py").touch()
     (out_managers_dir / "manager2.py").touch()
@@ -63,9 +61,7 @@ def test_get_integrations_and_groups_from_paths(tmp_path: pathlib.Path) -> None:
     (commercial_dir / "integration1" / mp.core.constants.PROJECT_FILE).touch()
     (commercial_dir / "group1").mkdir()
     (commercial_dir / "group1" / "integration2").mkdir()
-    (
-        commercial_dir / "group1" / "integration2" / mp.core.constants.PROJECT_FILE
-    ).touch()
+    (commercial_dir / "group1" / "integration2" / mp.core.constants.PROJECT_FILE).touch()
 
     community_dir: pathlib.Path = tmp_path / mp.core.constants.COMMUNITY_DIR_NAME
     community_dir.mkdir()
@@ -76,9 +72,7 @@ def test_get_integrations_and_groups_from_paths(tmp_path: pathlib.Path) -> None:
     (community_dir / "group2" / "integration4" / mp.core.constants.PROJECT_FILE).touch()
 
     products: Products[set[pathlib.Path]] = (
-        mp.core.file_utils.get_integrations_and_groups_from_paths(
-            commercial_dir, community_dir
-        )
+        mp.core.file_utils.get_integrations_and_groups_from_paths(commercial_dir, community_dir)
     )
 
     assert products.integrations == {
@@ -223,10 +217,7 @@ def test_is_half_built(tmp_path: pathlib.Path) -> None:
     assert not mp.core.file_utils.is_half_built(tmp_path)
 
 
-def test_remove_and_create_dir(
-    tmp_path: pathlib.Path,
-    mock_get_marketplace_path: str,
-) -> None:
+def test_remove_and_create_dir(tmp_path: pathlib.Path, mock_get_marketplace_path: str) -> None:
     with unittest.mock.patch(mock_get_marketplace_path, return_value=tmp_path):
         test_dir: pathlib.Path = tmp_path / "test"
         test_dir.mkdir()

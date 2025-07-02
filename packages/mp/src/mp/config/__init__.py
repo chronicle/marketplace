@@ -102,8 +102,4 @@ def _set_processes_number(processes: int) -> None:
 
 
 def _is_processes_in_range(processes: int) -> bool:
-    return (
-        mp.core.config.PROCESSES_MIN_VALUE
-        <= processes
-        <= mp.core.config.PROCESSES_MAX_VALUE
-    )
+    return mp.core.config.PROCESSES_MIN_VALUE <= processes <= mp.core.config.PROCESSES_MAX_VALUE

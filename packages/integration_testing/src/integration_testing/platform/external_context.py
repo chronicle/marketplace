@@ -138,8 +138,7 @@ class MockExternalContext(Generic[_T]):
 
         if key not in self._rows:
             msg: str = (
-                "Could not find a value in the external context using the provided "
-                "parameters"
+                "Could not find a value in the external context using the provided parameters"
             )
             raise ValueError(msg)
 
@@ -216,11 +215,7 @@ class MockExternalContext(Generic[_T]):
         return self
 
 
-def _create_key(
-    context_type: int | DatabaseContextType,
-    identifier: str,
-    property_key: str,
-) -> str:
+def _create_key(context_type: int | DatabaseContextType, identifier: str, property_key: str) -> str:
     if isinstance(context_type, DatabaseContextType):
         context_type: int = context_type.value
 
