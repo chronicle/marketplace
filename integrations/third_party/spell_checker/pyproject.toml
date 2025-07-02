@@ -2,7 +2,7 @@
 name = "Spell-Checker"
 version = "7.0"
 description = "Pyspellchecker provides a library for determining if a word is misspelled and what the likely correct spelling would be based on word frequency."
-requires-python = ">=3.11"
+requires-python = ">=3.11,<3.12"
 dependencies = [
     "pyspellchecker==0.8.2",
 ]

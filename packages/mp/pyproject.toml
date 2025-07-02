@@ -7,7 +7,7 @@ authors = [
     { name = "Tal Shapir", email = "talshapir@google.com" },
     { name = "Iddo Arie", email = "iddoa@google.com" },
 ]
-requires-python = ">=3.11"
+requires-python = ">=3.11,<3.12"
 keywords = [
     "mp",
     "google",

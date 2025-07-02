@@ -2,7 +2,7 @@
 name = "DUO"
 version = "3.0"
 description = "Cisco's MFA Solution. Duo is engineered to provide a simple, streamlined login experience for every user and application, and as a cloud-based solution, it integrates easily with your existing technology."
-requires-python = ">=3.11"
+requires-python = ">=3.11,<3.12"
 dependencies = [
     "duo-client==5.3.0",
 ]

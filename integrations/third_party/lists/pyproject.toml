@@ -2,7 +2,7 @@
 name = "Lists"
 version = "7.0"
 description = "A set of tools to facilitate managing custom lists within Google SecOps."
-requires-python = ">=3.11"
+requires-python = ">=3.11,<3.12"
 dependencies = []
 
 [dependency-groups]
