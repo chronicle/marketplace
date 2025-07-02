@@ -23,12 +23,11 @@ contribute to the Google SecOps ecosystem.
 Ready to build? We've designed a straightforward path to get you from setup to a finished
 integration. Follow these steps in order.
 
-1. [**Set Up Your Environment**](/docs/response_integrations/getting_started/setup_your_environment.md)  
-   Install the necessary tools and configure your local environment for development.
-2. [**Understand the Core Concepts**](/docs/response_integrations/getting_started/core_concepts.md)  
-   Learn about the different content types you can build.
-3. [**Contribute to the Project**](/docs/contributing.md)
-   Understand the requirements to be able to contribute to our repository.
+1. [**Set Up Your Environment**](/docs/response_integrations/getting_started/setup_your_environment.md)—Install the necessary tools and configure your local environment for development.
+2. [**Understand the Core Concepts**](/docs/response_integrations/getting_started/core_concepts.md)—Learn about the different content types you can build.
+3. [**Contribute to the Project**](/docs/contributing.md)—Understand the requirements to be able to contribute to our repository.
+4. [**Code of Conduct**](/docs/code_of_conduct.md)—Learn about the repository's code of conduct.
+5. [**Navigation**](/docs/navigation.md)—Understand the structure of the repository in high level.
 
 ## **Documentation**
 
@@ -41,7 +40,7 @@ For more detailed information, use these guides as a reference while you build.
     * [Connectors](docs/response_integrations/content_deep_dive/connectors.md)
     * [Jobs](docs/response_integrations/content_deep_dive/jobs.md)
 * **Tooling and TIPCommon Library**
-    * [CLI Tool (mp)](docs/response_integrations/tools_and_sdk/mp_tools.md)
+    * [CLI Tool (mp)](docs/response_integrations/tools_and_sdk/mp.md)
     * [Google SecOps SOAR SDK Reference](/docs/response_integrations/tools_and_sdk/soar_sdk.md)
     * [TIPCommon Reference](/docs/response_integrations/tools_and_sdk/tipcommon_and_envcommon.md)
 
