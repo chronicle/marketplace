@@ -88,8 +88,4 @@ def full_details(built_integration: pathlib.Path) -> pathlib.Path:
 @pytest.fixture
 def marketplace_json(mock_marketplace: pathlib.Path) -> pathlib.Path:
     """Path to a mock `marketplace.json` file."""
-    return (
-        mock_marketplace
-        / BUILT_INTEGRATION_DIR_NAME
-        / mp.core.constants.MARKETPLACE_JSON_NAME
-    )
+    return mock_marketplace / BUILT_INTEGRATION_DIR_NAME / mp.core.constants.MARKETPLACE_JSON_NAME

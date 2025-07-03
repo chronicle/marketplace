@@ -61,7 +61,5 @@ class Dependencies(Restructurable):
                 requirements_path=requirements,
                 dst_path=deps,
             )
-            out_deps: pathlib.Path = (
-                self.out_path / mp.core.constants.OUT_DEPENDENCIES_DIR
-            )
+            out_deps: pathlib.Path = self.out_path / mp.core.constants.OUT_DEPENDENCIES_DIR
             shutil.copytree(deps, out_deps)

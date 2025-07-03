@@ -29,7 +29,7 @@ Please provide a detailed description of your changes. This helps reviewers unde
 
 ## Labels and assignee
 
-- [ ] I have labed the pull request
+- [ ] I have labeled the pull request
 - [ ] I have assigned the relevant assignees
 
 ---
@@ -41,7 +41,7 @@ This helps us review your contribution faster and more efficiently.
 
 ### General Checks:
 
-- [ ] I have read and followed the project's [CONTRIBUTING.md](link-to-your-contributing-guide) guide.
+- [ ] I have read and followed the project's [contributing.md](/docs/contributing.md) guide.
 - [ ] My code follows the project's coding style guidelines.
 - [ ] I have performed a self-review of my own code.
 - [ ] My changes do not introduce any new warnings.

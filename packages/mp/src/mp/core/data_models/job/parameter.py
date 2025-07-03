@@ -42,9 +42,7 @@ class NonBuiltJobParameter(TypedDict):
     default_value: NotRequired[str | float | bool | int | None]
 
 
-class JobParameter(
-    mp.core.data_models.abc.Buildable[BuiltJobParameter, NonBuiltJobParameter],
-):
+class JobParameter(mp.core.data_models.abc.Buildable[BuiltJobParameter, NonBuiltJobParameter]):
     name: Annotated[
         str,
         pydantic.Field(

@@ -19,9 +19,7 @@ import pytest
 from mp.core.data_models.action.parameter import ActionParameter, ActionParamType
 
 NO_OPT_VALUES_MSG: str = "Multiple options parameters must have optional values"
-OPT_VALUES_WRONG_TYPE_MSG: str = (
-    "Non-multiple options parameters must not have optional values"
-)
+OPT_VALUES_WRONG_TYPE_MSG: str = "Non-multiple options parameters must not have optional values"
 DEFAULT_VALUE_NOT_IN_OPTIONS: str = (
     "The default value of a multiple options parameter must be one of the options"
 )

@@ -33,9 +33,7 @@ class TestDescriptionLengthValidations:
 
     def test_connector_description_too_long(self) -> None:
         """Test that a connector with too long a description fails validation."""
-        too_long_description: str = "a" * (
-            mp.core.constants.LONG_DESCRIPTION_MAX_LENGTH + 1
-        )
+        too_long_description: str = "a" * (mp.core.constants.LONG_DESCRIPTION_MAX_LENGTH + 1)
 
         with pytest.raises(pydantic.ValidationError) as exc_info:
             ConnectorMetadata(
@@ -60,9 +58,7 @@ class TestDescriptionLengthValidations:
 
     def test_connector_description_exact_length(self) -> None:
         """Test that a connector with exactly the max length description passes."""
-        exact_length_description: str = (
-            "a" * mp.core.constants.LONG_DESCRIPTION_MAX_LENGTH
-        )
+        exact_length_description: str = "a" * mp.core.constants.LONG_DESCRIPTION_MAX_LENGTH
 
         # Should not raise an exception
         connector: ConnectorMetadata = ConnectorMetadata(

@@ -116,10 +116,7 @@ dependencies = []
         ),
     ],
 )
-def test_get_flags_to_command(
-    flags: Mapping[str, str | bool],
-    expected: list[str],
-) -> None:
+def test_get_flags_to_command(flags: Mapping[str, str | bool], expected: list[str]) -> None:
     assert mp.core.unix.get_flags_to_command(**flags) == expected
 
 

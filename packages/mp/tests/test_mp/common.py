@@ -81,10 +81,7 @@ def get_json_content(
     return a, e
 
 
-def compare_dependencies(
-    expected: pathlib.Path,
-    actual: pathlib.Path,
-) -> tuple[set[str], set[str]]:
+def compare_dependencies(expected: pathlib.Path, actual: pathlib.Path) -> tuple[set[str], set[str]]:
     """Compare two dependencies directories.
 
     Args:

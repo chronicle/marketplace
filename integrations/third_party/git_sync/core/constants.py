@@ -413,3 +413,5 @@ ROOT_README = """# GitSync
 {% endif -%}
 
 """
+
+STEP_TYPE: int = 0

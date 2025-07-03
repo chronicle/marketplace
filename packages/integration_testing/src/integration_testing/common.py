@@ -56,9 +56,7 @@ INGEST_ALERT_AS_OVERFLOW_SETTINGS: ExternalContextRow[str] = ExternalContextRow(
     context_type=DatabaseContextType.CONNECTOR,
     identifier=OverflowManager.OVERFLOW_SETTINGS_IDENTIFIER,
     property_key=OverflowManager.OVERFLOW_SETTINGS_KEY,
-    property_value=json.dumps(
-        vars(OverflowManagerSettings(max_alerts_in_time_period=0)),
-    ),
+    property_value=json.dumps(vars(OverflowManagerSettings(max_alerts_in_time_period=0))),
 )
 DEFAULT_OVERFLOW_SETTINGS: ExternalContextRow[str] = ExternalContextRow(
     context_type=DatabaseContextType.CONNECTOR,
@@ -118,9 +116,7 @@ def create_case_comment(  # noqa: PLR0913, PLR0917
             else now
         ),
         creation_time_unix_time_in_ms=(
-            creation_time_unix_time_in_ms
-            if creation_time_unix_time_in_ms is not None
-            else now
+            creation_time_unix_time_in_ms if creation_time_unix_time_in_ms is not None else now
         ),
         creator_full_name=creator_full_name,
         is_deleted=is_deleted,
@@ -177,14 +173,10 @@ def create_case_details(  # noqa: PLR0913, PLR0917
         id_=id_,
         name=name,
         creation_time_unix_time_ms=(
-            creation_time_unix_time_ms
-            if creation_time_unix_time_ms is not None
-            else now
+            creation_time_unix_time_ms if creation_time_unix_time_ms is not None else now
         ),
         modification_time_unix_time_ms=(
-            modification_time_unix_time_ms
-            if modification_time_unix_time_ms is not None
-            else now
+            modification_time_unix_time_ms if modification_time_unix_time_ms is not None else now
         ),
         priority=priority,
         is_important=is_important,
@@ -192,9 +184,7 @@ def create_case_details(  # noqa: PLR0913, PLR0917
         start_time_unix_time_ms=(
             start_time_unix_time_ms if start_time_unix_time_ms is not None else now
         ),
-        end_time_unix_time_ms=(
-            end_time_unix_time_ms if end_time_unix_time_ms is not None else now
-        ),
+        end_time_unix_time_ms=(end_time_unix_time_ms if end_time_unix_time_ms is not None else now),
         assigned_user=assigned_user,
         description=description,
         is_test_case=is_test_case,

@@ -53,18 +53,14 @@ class BackendAPI:
             dict: The integration details as returned by the backend.
 
         """
-        details_url = (
-            f"{self.api_root}/api/external/v1/ide/GetPackageDetails?format=camel"
-        )
+        details_url = f"{self.api_root}/api/external/v1/ide/GetPackageDetails?format=camel"
         data = base64.b64encode(zip_path.read_bytes()).decode()
         details_payload = {"data": data}
         resp = self.session.post(details_url, json=details_payload)
         resp.raise_for_status()
         return resp.json()
 
-    def upload_integration(
-        self, zip_path: pathlib.Path, integration_id: str
-    ) -> dict[str, Any]:
+    def upload_integration(self, zip_path: pathlib.Path, integration_id: str) -> dict[str, Any]:
         """Upload a zipped integration package to the backend.
 
         Args:

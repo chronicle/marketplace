@@ -37,13 +37,7 @@ if TYPE_CHECKING:
     import pathlib
     from collections.abc import Mapping, Sequence
 
-    from mp.core.custom_types import (
-        ActionName,
-        ConnectorName,
-        JobName,
-        ManagerName,
-        WidgetName,
-    )
+    from mp.core.custom_types import ActionName, ConnectorName, JobName, ManagerName, WidgetName
 
     from .action.metadata import BuiltActionMetadata, NonBuiltActionMetadata
     from .connector.metadata import BuiltConnectorMetadata, NonBuiltConnectorMetadata
@@ -152,12 +146,10 @@ class Integration:
 
         """
         try:
-            integration_meta: IntegrationMetadata = (
-                IntegrationMetadata.from_built_integration_path(path)
+            integration_meta: IntegrationMetadata = IntegrationMetadata.from_built_integration_path(
+                path
             )
-            python_version_file: pathlib.Path = (
-                path / mp.core.constants.PYTHON_VERSION_FILE
-            )
+            python_version_file: pathlib.Path = path / mp.core.constants.PYTHON_VERSION_FILE
             python_version: str = ""
             if python_version_file.exists():
                 python_version = python_version_file.read_text(encoding="utf-8")
@@ -171,20 +163,16 @@ class Integration:
                 mapping_rules=MappingRule.from_built_integration_path(path),
                 common_modules=mp.core.file_utils.discover_core_modules(path),
                 actions_metadata={
-                    a.file_name: a
-                    for a in ActionMetadata.from_built_integration_path(path)
+                    a.file_name: a for a in ActionMetadata.from_built_integration_path(path)
                 },
                 connectors_metadata={
-                    c.file_name: c
-                    for c in ConnectorMetadata.from_built_integration_path(path)
+                    c.file_name: c for c in ConnectorMetadata.from_built_integration_path(path)
                 },
                 jobs_metadata={
-                    j.file_name: j
-                    for j in JobMetadata.from_built_integration_path(path)
+                    j.file_name: j for j in JobMetadata.from_built_integration_path(path)
                 },
                 widgets_metadata={
-                    w.file_name: w
-                    for w in WidgetMetadata.from_built_integration_path(path)
+                    w.file_name: w for w in WidgetMetadata.from_built_integration_path(path)
                 },
             )
         except ValueError as e:
@@ -216,9 +204,7 @@ class Integration:
                 pyproject_toml_file=pyproject_toml,
                 integration_meta=integration_meta,
             )
-            python_version_file: pathlib.Path = (
-                path / mp.core.constants.PYTHON_VERSION_FILE
-            )
+            python_version_file: pathlib.Path = path / mp.core.constants.PYTHON_VERSION_FILE
             python_version: str = ""
             if python_version_file.exists():
                 python_version = python_version_file.read_text(encoding="utf-8")
@@ -232,20 +218,16 @@ class Integration:
                 mapping_rules=MappingRule.from_non_built_integration_path(path),
                 common_modules=mp.core.file_utils.discover_core_modules(path),
                 actions_metadata={
-                    a.file_name: a
-                    for a in ActionMetadata.from_non_built_integration_path(path)
+                    a.file_name: a for a in ActionMetadata.from_non_built_integration_path(path)
                 },
                 connectors_metadata={
-                    c.file_name: c
-                    for c in ConnectorMetadata.from_non_built_integration_path(path)
+                    c.file_name: c for c in ConnectorMetadata.from_non_built_integration_path(path)
                 },
                 jobs_metadata={
-                    j.file_name: j
-                    for j in JobMetadata.from_non_built_integration_path(path)
+                    j.file_name: j for j in JobMetadata.from_non_built_integration_path(path)
                 },
                 widgets_metadata={
-                    w.file_name: w
-                    for w in WidgetMetadata.from_non_built_integration_path(path)
+                    w.file_name: w for w in WidgetMetadata.from_non_built_integration_path(path)
                 },
             )
 
@@ -269,10 +251,7 @@ class Integration:
             return
 
         if self.connectors_metadata and not self.mapping_rules:
-            msg: str = (
-                f"{self.identifier} has connectors but doesn't have"
-                " default mapping rules"
-            )
+            msg: str = f"{self.identifier} has connectors but doesn't have default mapping rules"
             raise RuntimeError(msg)
 
     def has_ping_action(self) -> bool:
@@ -294,18 +273,14 @@ class Integration:
         """
         msg: str
         if not self.python_version:
-            msg = (
-                f"Missing {mp.core.constants.PYTHON_VERSION_FILE}"
-                " file or the file is empty"
-            )
+            msg = f"Missing {mp.core.constants.PYTHON_VERSION_FILE} file or the file is empty"
             raise ValueError(msg)
 
         metadata_version: str = self.metadata.python_version.to_string()
         if self.python_version != metadata_version:
             msg = (
-                f"Make sure the version in the {mp.core.constants.PYTHON_VERSION_FILE}"
-                " matches the lowest supported version configured in"
-                f" {mp.core.constants.PROJECT_FILE}"
+                f"Make sure the version in the {mp.core.constants.PYTHON_VERSION_FILE} matches"
+                f" the lowest supported version configured in {mp.core.constants.PROJECT_FILE}"
             )
             raise ValueError(msg)
 
@@ -366,9 +341,7 @@ class Integration:
 
         """
         return (
-            self._has_disabled_actions
-            or self._has_disabled_connectors
-            or self._has_disabled_jobs
+            self._has_disabled_actions or self._has_disabled_connectors or self._has_disabled_jobs
         )
 
     @property
@@ -504,22 +477,12 @@ class Integration:
             custom_families=[cf.to_built() for cf in self.custom_families],
             mapping_rules=[mr.to_built() for mr in self.mapping_rules],
             common_modules=self.common_modules,
-            actions={
-                name: metadata.to_built()
-                for name, metadata in self.actions_metadata.items()
-            },
+            actions={name: metadata.to_built() for name, metadata in self.actions_metadata.items()},
             connectors={
-                name: metadata.to_built()
-                for name, metadata in self.connectors_metadata.items()
+                name: metadata.to_built() for name, metadata in self.connectors_metadata.items()
             },
-            jobs={
-                name: metadata.to_built()
-                for name, metadata in self.jobs_metadata.items()
-            },
-            widgets={
-                name: metadata.to_built()
-                for name, metadata in self.widgets_metadata.items()
-            },
+            jobs={name: metadata.to_built() for name, metadata in self.jobs_metadata.items()},
+            widgets={name: metadata.to_built() for name, metadata in self.widgets_metadata.items()},
         )
 
     def to_non_built(self) -> NonBuiltIntegration:
@@ -536,20 +499,14 @@ class Integration:
             mapping_rules=[mr.to_non_built() for mr in self.mapping_rules],
             common_modules=self.common_modules,
             actions={
-                name: metadata.to_non_built()
-                for name, metadata in self.actions_metadata.items()
+                name: metadata.to_non_built() for name, metadata in self.actions_metadata.items()
             },
             connectors={
-                name: metadata.to_non_built()
-                for name, metadata in self.connectors_metadata.items()
+                name: metadata.to_non_built() for name, metadata in self.connectors_metadata.items()
             },
-            jobs={
-                name: metadata.to_non_built()
-                for name, metadata in self.jobs_metadata.items()
-            },
+            jobs={name: metadata.to_non_built() for name, metadata in self.jobs_metadata.items()},
             widgets={
-                name: metadata.to_non_built()
-                for name, metadata in self.widgets_metadata.items()
+                name: metadata.to_non_built() for name, metadata in self.widgets_metadata.items()
             },
         )
 

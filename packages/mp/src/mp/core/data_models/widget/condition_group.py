@@ -37,7 +37,7 @@ class NonBuiltConditionGroup(TypedDict):
 
 
 class ConditionGroup(
-    mp.core.data_models.abc.Buildable[BuiltConditionGroup, NonBuiltConditionGroup],
+    mp.core.data_models.abc.Buildable[BuiltConditionGroup, NonBuiltConditionGroup]
 ):
     conditions: list[Condition]
     logical_operator: LogicalOperator
@@ -45,9 +45,7 @@ class ConditionGroup(
     @classmethod
     def _from_built(cls, built: BuiltConditionGroup) -> ConditionGroup:
         return cls(
-            conditions=[
-                Condition.from_built(condition) for condition in built["conditions"]
-            ],
+            conditions=[Condition.from_built(condition) for condition in built["conditions"]],
             logical_operator=LogicalOperator(built["logicalOperator"]),
         )
 
@@ -55,8 +53,7 @@ class ConditionGroup(
     def _from_non_built(cls, non_built: NonBuiltConditionGroup) -> ConditionGroup:
         return cls(
             conditions=[
-                Condition.from_non_built(condition)
-                for condition in non_built["conditions"]
+                Condition.from_non_built(condition) for condition in non_built["conditions"]
             ],
             logical_operator=LogicalOperator.from_string(non_built["logical_operator"]),
         )

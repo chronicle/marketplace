@@ -73,7 +73,7 @@ class NonBuiltActionMetadata(TypedDict):
 
 
 class ActionMetadata(
-    mp.core.data_models.abc.ScriptMetadata[BuiltActionMetadata, NonBuiltActionMetadata],
+    mp.core.data_models.abc.ScriptMetadata[BuiltActionMetadata, NonBuiltActionMetadata]
 ):
     file_name: str
     description: Annotated[
@@ -184,11 +184,7 @@ class ActionMetadata(
         )
 
     @classmethod
-    def _from_non_built(
-        cls,
-        file_name: str,
-        non_built: NonBuiltActionMetadata,
-    ) -> ActionMetadata:
+    def _from_non_built(cls, file_name: str, non_built: NonBuiltActionMetadata) -> ActionMetadata:
         """Create the obj from a non-built action metadata dict.
 
         Args:
@@ -212,9 +208,7 @@ class ActionMetadata(
             is_custom=non_built.get("is_custom", False),
             is_enabled=non_built.get("is_enabled", True),
             name=non_built["name"],
-            parameters=[
-                ActionParameter.from_non_built(p) for p in non_built["parameters"]
-            ],
+            parameters=[ActionParameter.from_non_built(p) for p in non_built["parameters"]],
             script_result_name=non_built.get("script_result_name", "is_success"),
             simulation_data_json=non_built.get(
                 "simulation_data_json",
@@ -234,9 +228,7 @@ class ActionMetadata(
         built: BuiltActionMetadata = BuiltActionMetadata(
             Creator=self.creator,
             Description=self.description,
-            DynamicResultsMetadata=[
-                m.to_built() for m in self.dynamic_results_metadata
-            ],
+            DynamicResultsMetadata=[m.to_built() for m in self.dynamic_results_metadata],
             IntegrationIdentifier=self.integration_identifier,
             IsAsync=self.is_async,
             IsCustom=self.is_custom,
@@ -263,9 +255,7 @@ class ActionMetadata(
             description=self.description,
             integration_identifier=self.integration_identifier,
             parameters=[p.to_non_built() for p in self.parameters],
-            dynamic_results_metadata=[
-                m.to_non_built() for m in self.dynamic_results_metadata
-            ],
+            dynamic_results_metadata=[m.to_non_built() for m in self.dynamic_results_metadata],
             default_result_value=self.default_result_value,
             creator=self.creator,
         )

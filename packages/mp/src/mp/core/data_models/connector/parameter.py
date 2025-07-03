@@ -51,10 +51,7 @@ class NonBuiltConnectorParameter(TypedDict):
 
 
 class ConnectorParameter(
-    mp.core.data_models.abc.Buildable[
-        BuiltConnectorParameter,
-        NonBuiltConnectorParameter,
-    ],
+    mp.core.data_models.abc.Buildable[BuiltConnectorParameter, NonBuiltConnectorParameter],
 ):
     name: Annotated[
         str,

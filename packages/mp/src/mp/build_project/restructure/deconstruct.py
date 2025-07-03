@@ -36,10 +36,7 @@ import mp.core.file_utils
 import mp.core.unix
 from mp.core.data_models.action.metadata import ActionMetadata
 from mp.core.data_models.connector.metadata import ConnectorMetadata
-from mp.core.data_models.integration_meta.metadata import (
-    IntegrationMetadata,
-    PythonVersion,
-)
+from mp.core.data_models.integration_meta.metadata import IntegrationMetadata, PythonVersion
 from mp.core.data_models.job.metadata import JobMetadata
 from mp.core.data_models.widget.metadata import WidgetMetadata
 
@@ -51,9 +48,7 @@ if TYPE_CHECKING:
     from mp.core.data_models.integration import Integration
     from mp.core.data_models.mapping_rules.metadata import NonBuiltMappingRule
 
-_ValidMetadata: TypeAlias = (
-    ActionMetadata | ConnectorMetadata | JobMetadata | WidgetMetadata
-)
+_ValidMetadata: TypeAlias = ActionMetadata | ConnectorMetadata | JobMetadata | WidgetMetadata
 
 
 def _update_pyproject_from_integration_meta(

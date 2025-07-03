@@ -1,12 +1,12 @@
 [project]
 name = "integration-testing"
-version = "1.0.7"
+version = "1.1.1"
 description = "Blackbox testing infrastructure to test and run marketplace integration scripts locally using mocks."
 readme = "README.md"
 authors = [
     { name = "talshapir", email = "talshapir@google.com" }
 ]
-requires-python = ">=3.11"
+requires-python = ">=3.11,<3.12"
 dependencies = [
     "aiohttp>=3.12.13",
     "environmentcommon",

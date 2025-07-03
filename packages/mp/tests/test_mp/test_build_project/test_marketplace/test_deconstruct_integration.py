@@ -84,9 +84,7 @@ def assert_deconstruct_integration(
         integration: pathlib.Path = commercial / integration_path.name
         py_version: pathlib.Path = integration / mp.core.constants.PYTHON_VERSION_FILE
         if integration.exists():
-            requirements: pathlib.Path = (
-                integration / mp.core.constants.REQUIREMENTS_FILE
-            )
+            requirements: pathlib.Path = integration / mp.core.constants.REQUIREMENTS_FILE
             requirements.write_text("requests==2.32.4\n", encoding="utf-8")
             py_version.write_text("3.11", encoding="utf-8")
 
@@ -94,9 +92,7 @@ def assert_deconstruct_integration(
         marketplace.deconstruct_integration(integration)
 
         out_integration: pathlib.Path = marketplace.out_path / integration.name
-        out_py_version: pathlib.Path = (
-            out_integration / mp.core.constants.PYTHON_VERSION_FILE
-        )
+        out_py_version: pathlib.Path = out_integration / mp.core.constants.PYTHON_VERSION_FILE
         out_py_version.unlink(missing_ok=True)
         actual_files: set[str] = {p.name for p in out_integration.rglob("*.*")}
         expected_files: set[str] = {p.name for p in non_built_integration.rglob("*.*")}

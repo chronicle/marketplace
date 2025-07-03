@@ -38,18 +38,12 @@ def test_create_full_details_json(
     integration_path: pathlib.Path = base_dir / built_integration.name
     py_version: pathlib.Path = integration_path / mp.core.constants.PYTHON_VERSION_FILE
     py_version.write_text("3.11", encoding="utf-8")
-    integration: Integration = (
-        mp.core.data_models.integration.Integration.from_built_path(integration_path)
+    integration: Integration = mp.core.data_models.integration.Integration.from_built_path(
+        integration_path
     )
 
     actual_full_details: BuiltFullDetails = integration.to_built_full_details()
-    mp.build_project.post_build.full_details_json.write_full_details(
-        full_details=actual_full_details,
-        destination=tmp_path,
-    )
+    mp.build_project.post_build.full_details_json.write_full_details(actual_full_details, tmp_path)
 
-    actual, expected = test_mp.common.get_json_content(
-        actual=tmp_path / full_details.name,
-        expected=full_details,
-    )
+    actual, expected = test_mp.common.get_json_content(tmp_path / full_details.name, full_details)
     assert actual == expected
