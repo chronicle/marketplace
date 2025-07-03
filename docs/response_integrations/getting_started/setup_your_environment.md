@@ -137,7 +137,9 @@ As for IDE configurations, if you want, you can configure the following:
 *Configuring Line Length*
 
 * Go to `File > Settings > Editor > Code Style`:
-    * Set the Right margin (columns) to 88 (to match Black/Ruff default)
+    * Set the Right margin (columns) to 88 (to match Black/Ruff default) or 100 if you follow our
+      recommendations to use type hints for variables as well, to have more space to write types in
+      a row
 
 *Python Integrated Tools*
 
