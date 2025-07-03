@@ -32,8 +32,8 @@ these steps:
    numbers:
 
    ```shell
-   uv add ../../packages/TIPCommon-x.x.x/TIPCommon-x.x.x-py2.py3-none-any.whl
-   uv add ../../packages/EnvironmentCommon-x.x.x/EnvironmentCommon-x.x.x-py2.py3-none-any.whl
+   uv add ../../packages/tipcommon/TIPCommon-x.x.x/TIPCommon-x.x.x-py2.py3-none-any.whl
+   uv add ../../packages/envcommon/EnvironmentCommon-x.x.x/EnvironmentCommon-x.x.x-py2.py3-none-any.whl
    ```
 
 3. This will update your integration's `pyproject.toml` file to include these dependencies. It should look something
@@ -54,8 +54,8 @@ these steps:
 
    [tool.uv.sources]
    # ... other sources ...
-   environmentcommon = { path = "../../../packages/EnvironmentCommon-x.x.x/EnvironmentCommon-x.x.x-py2.py3-none-any.whl" }
-   tipcommon = { path = "../../../packages/TIPCommon-x.x.x/TIPCommon-x.x.x-py2.py3-none-any.whl" }
+   environmentcommon = { path = "../../../packages/envcommon/EnvironmentCommon-x.x.x/EnvironmentCommon-x.x.x-py2.py3-none-any.whl" }
+   tipcommon = { path = "../../../packages/tipcommon/TIPCommon-x.x.x/TIPCommon-x.x.x-py2.py3-none-any.whl" }
    # ...
    ```
    *(Remember to replace `x.x.x` with the correct version numbers you used in the `uv add` command.)*

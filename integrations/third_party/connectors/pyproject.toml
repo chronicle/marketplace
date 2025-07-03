@@ -2,7 +2,7 @@
 name = "Connectors"
 version = "5.0"
 description = "A set of custom connectors created for Google SecOps Community to power up automation capabilities."
-requires-python = ">=3.11"
+requires-python = ">=3.11,<3.12"
 dependencies = [
     "cronex",
     "psycopg2-binary==2.9.10",

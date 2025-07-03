@@ -23,11 +23,7 @@ from typing import TYPE_CHECKING, Any
 from TIPCommon.types import Entity, GeneralFunction, SingleJson, Supplier
 from TIPCommon.utils import none_to_default_value
 
-from .common import (
-    get_def_file_content,
-    prepare_connector_params,
-    prepare_job_params,
-)
+from .common import get_def_file_content, prepare_connector_params, prepare_job_params
 from .platform.external_context import MockExternalContext
 from .platform.input_context import get_mock_input_context
 
@@ -142,9 +138,7 @@ def _get_json_context_patch_path_and_fn(
     return context_path, mock_get_context
 
 
-def _get_entities_path_and_fn(
-    entities: list[Entity] | None,
-) -> tuple[str, list[Entity] | None]:
+def _get_entities_path_and_fn(entities: list[Entity] | None) -> tuple[str, list[Entity] | None]:
     path: str = "SiemplifyAction.SiemplifyAction.target_entities"
     return path, entities
 
@@ -159,10 +153,7 @@ def _get_integration_config_path_and_fn(
         return integration_config
 
     if not integration_config:
-        mock_get_configuration = functools.partial(
-            get_def_file_content,
-            def_file_path=file_path,
-        )
+        mock_get_configuration = functools.partial(get_def_file_content, def_file_path=file_path)
 
     return path, lambda *_: mock_get_configuration()
 

@@ -28,11 +28,7 @@ import mp.core.utils
 import mp.core.validators
 
 from .feature_tags import BuiltFeatureTags, FeatureTags, NonBuiltFeatureTags
-from .parameter import (
-    BuiltIntegrationParameter,
-    IntegrationParameter,
-    NonBuiltIntegrationParameter,
-)
+from .parameter import BuiltIntegrationParameter, IntegrationParameter, NonBuiltIntegrationParameter
 
 if TYPE_CHECKING:
     import pathlib
@@ -133,10 +129,7 @@ class NonBuiltIntegrationMetadata(TypedDict):
 
 
 class IntegrationMetadata(
-    mp.core.data_models.abc.Buildable[
-        BuiltIntegrationMetadata,
-        NonBuiltIntegrationMetadata,
-    ]
+    mp.core.data_models.abc.Buildable[BuiltIntegrationMetadata, NonBuiltIntegrationMetadata]
 ):
     categories: list[str]
     feature_tags: FeatureTags | None
@@ -261,10 +254,7 @@ class IntegrationMetadata(
             python_version=PythonVersion(built["PythonVersion"]),
             documentation_link=built["DocumentationLink"],
             image_base64=image,
-            parameters=[
-                IntegrationParameter.from_built(p)
-                for p in built["IntegrationProperties"]
-            ],
+            parameters=[IntegrationParameter.from_built(p) for p in built["IntegrationProperties"]],
             should_install_in_system=built["ShouldInstalledInSystem"],
             svg_image=svg,
             version=built["Version"],
@@ -296,9 +286,7 @@ class IntegrationMetadata(
             identifier=non_built["identifier"],
             documentation_link=non_built.get("documentation_link"),
             image_base64=image,
-            parameters=[
-                IntegrationParameter.from_non_built(p) for p in non_built["parameters"]
-            ],
+            parameters=[IntegrationParameter.from_non_built(p) for p in non_built["parameters"]],
             should_install_in_system=non_built.get("should_install_in_system", False),
             is_custom=non_built.get("is_custom", False),
             svg_image=svg,
@@ -325,9 +313,7 @@ class IntegrationMetadata(
                 if self.documentation_link is not None
                 else None
             ),
-            FeatureTags=(
-                self.feature_tags.to_built() if self.feature_tags is not None else None
-            ),
+            FeatureTags=(self.feature_tags.to_built() if self.feature_tags is not None else None),
             Identifier=self.identifier,
             ImageBase64=(
                 base64.b64encode(self.image_base64).decode()
@@ -361,9 +347,7 @@ class IntegrationMetadata(
             name=self.name,
             parameters=[p.to_non_built() for p in self.parameters],
             documentation_link=(
-                str(self.documentation_link)
-                if self.documentation_link is not None
-                else None
+                str(self.documentation_link) if self.documentation_link is not None else None
             ),
             categories=self.categories,
             svg_image=self.svg_image,

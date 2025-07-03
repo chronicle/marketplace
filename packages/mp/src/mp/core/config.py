@@ -42,9 +42,7 @@ PROCESSES_MAX_VALUE: int = 10
 DEFAULT_PROCESSES_NUMBER: int = 5
 DEFAULT_QUIET_VALUE: str = "no"
 DEFAULT_VERBOSE_VALUE: str = "no"
-DEFAULT_MARKETPLACE_PATH: pathlib.Path = (
-    pathlib.Path.home() / mp.core.constants.REPO_NAME
-)
+DEFAULT_MARKETPLACE_PATH: pathlib.Path = pathlib.Path.home() / mp.core.constants.REPO_NAME
 
 
 def get_marketplace_path() -> pathlib.Path:

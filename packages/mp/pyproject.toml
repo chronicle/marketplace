@@ -1,13 +1,14 @@
 [project]
 name = "mp"
-version = "0.4.4"
+version = "1.0.1"
 description = "General Purpose CLI tool for Google SecOps Marketplace"
 readme = "README.md"
 authors = [
     { name = "Tal Shapir", email = "talshapir@google.com" },
     { name = "Iddo Arie", email = "iddoa@google.com" },
+    { name = "Dori Aviram", email = "doriaviram@google.com" },
 ]
-requires-python = ">=3.11"
+requires-python = ">=3.11,<3.12"
 keywords = [
     "mp",
     "google",

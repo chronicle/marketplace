@@ -46,7 +46,7 @@ class NonBuiltCustomFamilyRule(TypedDict):
 
 
 class CustomFamilyRule(
-    mp.core.data_models.abc.Buildable[BuiltCustomFamilyRule, NonBuiltCustomFamilyRule],
+    mp.core.data_models.abc.Buildable[BuiltCustomFamilyRule, NonBuiltCustomFamilyRule]
 ):
     primary_source: str
     secondary_source: str | None

@@ -92,9 +92,7 @@ def assert_build_integration(
         marketplace.build_integration(integration)
 
         out_integration: pathlib.Path = marketplace.out_path / integration.name
-        out_py_version: pathlib.Path = (
-            out_integration / mp.core.constants.PYTHON_VERSION_FILE
-        )
+        out_py_version: pathlib.Path = out_integration / mp.core.constants.PYTHON_VERSION_FILE
         out_py_version.unlink(missing_ok=True)
         expected_file_names: set[str] = {
             p.name for p in built_integration.rglob("*.*") if ".venv" not in p.parts

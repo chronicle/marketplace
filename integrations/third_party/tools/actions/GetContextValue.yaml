@@ -8,6 +8,7 @@ parameters:
         optional_values:
             - Case
             - Alert
+            - Global
         description: Alert or Case or Global
         is_mandatory: true
     -   name: Key

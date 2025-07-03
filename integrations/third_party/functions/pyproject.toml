@@ -2,7 +2,7 @@
 name = "Functions"
 version = "28.0"
 description = "A set of math and data manipulation actions created for Google SecOps Community to power up playbook capabilities."
-requires-python = ">=3.11"
+requires-python = ">=3.11,<3.12"
 dependencies = [
     "bleach==6.2.0",
     "hashid==3.1.4",

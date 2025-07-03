@@ -48,10 +48,7 @@ class TestWarning(RuntimeWarning):
     """Failed tests."""
 
 
-def run_script_on_paths(
-    script_path: pathlib.Path,
-    paths: Iterable[pathlib.Path],
-) -> None:
+def run_script_on_paths(script_path: pathlib.Path, paths: Iterable[pathlib.Path]) -> None:
     """Run prebuilt integration tests."""
     paths = [p for p in paths if p.is_dir()]
     status_code: int = unix.run_script_on_paths(script_path, paths)
@@ -72,8 +69,7 @@ def lint_python_files(paths: Iterable[pathlib.Path], params: RuffParams) -> None
     if status_code != 0:
         msg: str = (
             "Found linting issues. Consider running `mp check --fix` "
-            "and/or `mp check --fix --unsafe-fixes` to try and resolve them"
-            " automatically."
+            "and/or `mp check --fix --unsafe-fixes` to try and resolve them automatically."
         )
         warnings.warn(msg, LinterWarning, stacklevel=1)
 

@@ -69,8 +69,8 @@ class JobMetadata(
             pattern=mp.core.constants.SCRIPT_IDENTIFIER_REGEX,
         ),
     ]
-    is_custom: Annotated[bool, pydantic.Field(default=False)]
-    is_enabled: Annotated[bool, pydantic.Field(default=True)]
+    is_custom: bool = False
+    is_enabled: bool = True
     name: Annotated[
         str,
         pydantic.Field(
@@ -138,19 +138,13 @@ class JobMetadata(
             is_custom=built.get("IsCustom", False),
             is_enabled=built.get("IsEnabled", True),
             name=built["Name"],
-            parameters=[
-                JobParameter.from_built(param) for param in built["Parameters"]
-            ],
+            parameters=[JobParameter.from_built(param) for param in built["Parameters"]],
             run_interval_in_seconds=built["RunIntervalInSeconds"],
             version=built.get("Version", mp.core.constants.MINIMUM_SCRIPT_VERSION),
         )
 
     @classmethod
-    def _from_non_built(
-        cls,
-        file_name: str,
-        non_built: NonBuiltJobMetadata,
-    ) -> JobMetadata:
+    def _from_non_built(cls, file_name: str, non_built: NonBuiltJobMetadata) -> JobMetadata:
         return cls(
             file_name=file_name,
             creator=non_built["creator"],
@@ -159,9 +153,7 @@ class JobMetadata(
             is_custom=non_built.get("is_custom", False),
             is_enabled=non_built.get("is_enabled", True),
             name=non_built["name"],
-            parameters=[
-                JobParameter.from_non_built(param) for param in non_built["parameters"]
-            ],
+            parameters=[JobParameter.from_non_built(param) for param in non_built["parameters"]],
             run_interval_in_seconds=non_built.get(
                 "run_interval_in_seconds",
                 DEFAULT_RUNTIME_INTERVAL,

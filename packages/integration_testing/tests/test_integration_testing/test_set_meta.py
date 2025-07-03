@@ -247,10 +247,7 @@ class TestJob:
             input_context: SingleJson = job.get_input_context()
 
             assert input_context["parameters"] == expected_input_context["parameters"]
-            assert (
-                input_context["unique_identifier"]
-                == expected_input_context["unique_identifier"]
-            )
+            assert input_context["unique_identifier"] == expected_input_context["unique_identifier"]
             assert input_context["job_api_key"] == expected_input_context["job_api_key"]
 
         do_test()
@@ -379,10 +376,7 @@ class TestConnector:
             input_context: ConnectorContext = connector.get_input_context()
 
             assert input_context.vault_settings == expected_context.environment_api_key
-            assert (
-                input_context.connector_info.params
-                == expected_context.connector_info.params
-            )
+            assert input_context.connector_info.params == expected_context.connector_info.params
             assert (
                 input_context.connector_info.description
                 == expected_context.connector_info.description

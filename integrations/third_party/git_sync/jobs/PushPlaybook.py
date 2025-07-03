@@ -78,12 +78,13 @@ def main():
                         readme_addon,
                     )
 
-                playbook = Workflow(
-                    gitsync.api.get_playbook(playbook.get("identifier")),
-                )
-                gitsync.content.push_playbook(playbook)
+                playbook = gitsync.api.get_playbook(playbook.get("identifier"))
+                workflow = Workflow(playbook)
+                workflow.update_instance_name_in_steps(gitsync.api, siemplify)
+                gitsync.content.push_playbook(workflow)
+
                 if include_blocks:
-                    for block in playbook.get_involved_blocks():
+                    for block in workflow.get_involved_blocks():
                         installed_block = next(
                             (
                                 x
@@ -100,6 +101,7 @@ def main():
                         block = Workflow(
                             gitsync.api.get_playbook(installed_block.get("identifier")),
                         )
+                        block.update_instance_name_in_steps(gitsync.api, siemplify)
                         gitsync.content.push_playbook(block)
             else:
                 siemplify.LOGGER.warn(

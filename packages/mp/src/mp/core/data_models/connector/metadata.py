@@ -65,10 +65,7 @@ class NonBuiltConnectorMetadata(TypedDict):
 
 
 class ConnectorMetadata(
-    mp.core.data_models.abc.ScriptMetadata[
-        BuiltConnectorMetadata,
-        NonBuiltConnectorMetadata,
-    ],
+    mp.core.data_models.abc.ScriptMetadata[BuiltConnectorMetadata, NonBuiltConnectorMetadata]
 ):
     file_name: str
     creator: str
@@ -155,9 +152,7 @@ class ConnectorMetadata(
             is_custom=built["IsCustom"],
             is_enabled=built["IsEnabled"],
             name=built["Name"],
-            parameters=[
-                ConnectorParameter.from_built(param) for param in built["Parameters"]
-            ],
+            parameters=[ConnectorParameter.from_built(param) for param in built["Parameters"]],
             rules=[ConnectorRule.from_built(rule) for rule in built["Rules"]],
             version=built.get("Version", 1.0),
         )
@@ -179,8 +174,7 @@ class ConnectorMetadata(
             is_enabled=non_built.get("is_enabled", True),
             name=non_built["name"],
             parameters=[
-                ConnectorParameter.from_non_built(param)
-                for param in non_built["parameters"]
+                ConnectorParameter.from_non_built(param) for param in non_built["parameters"]
             ],
             rules=[ConnectorRule.from_non_built(rule) for rule in non_built["rules"]],
             version=non_built.get("version", 1.0),

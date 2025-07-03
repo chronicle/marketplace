@@ -39,9 +39,7 @@ def zip_integration_dir(integration_dir: pathlib.Path) -> pathlib.Path:
         Path: The path to the created zip file.
 
     """
-    return pathlib.Path(
-        shutil.make_archive(str(integration_dir), "zip", integration_dir)
-    )
+    return pathlib.Path(shutil.make_archive(str(integration_dir), "zip", integration_dir))
 
 
 def load_dev_env_config() -> dict[str, str]:
@@ -126,7 +124,6 @@ def find_built_integration_dir(_: pathlib.Path, identifier: str) -> pathlib.Path
         if candidate.exists():
             return candidate
     rich.print(
-        f"[red]Built integration not found for identifier '{identifier}' "
-        "in out/integrations.[/red]"
+        f"[red]Built integration not found for identifier '{identifier}' in out/integrations.[/red]"
     )
     raise typer.Exit(1)
