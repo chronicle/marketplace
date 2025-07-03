@@ -34,7 +34,7 @@ integration. Follow these steps in order.
 For more detailed information, use these guides as a reference while you build.
 
 * **Deep Dive**
-    * Response Integration Structure
+    * [Response Integration Structure](/docs/response_integrations/content_deep_dive/response_integration_structure.md)
     * [Actions](docs/response_integrations/content_deep_dive/actions.md)
     * [Entities](docs/response_integrations/content_deep_dive/entities.md)
     * [Connectors](docs/response_integrations/content_deep_dive/connectors.md)
@@ -43,33 +43,3 @@ For more detailed information, use these guides as a reference while you build.
     * [CLI Tool (mp)](docs/response_integrations/tools_and_sdk/mp.md)
     * [Google SecOps SOAR SDK Reference](/docs/response_integrations/tools_and_sdk/soar_sdk.md)
     * [TIPCommon Reference](/docs/response_integrations/tools_and_sdk/tipcommon_and_envcommon.md)
-
----
-
-# The Structure for documentation
-
-```
-├── README.md
-├── contributing.md
-├── code_of_conduct.md
-├── navigation.md
-├── LICENSE
-└── docs/
-    ├── response_integrations
-    │   ├── tools_and_sdk
-    │   ├── mp_tool
-    │   ├── tipcommon_and_envcommon
-    │   └──soar_sdk
-    │
-    ├── getting_started
-    │   ├── setup_your_environment
-    │   └── core_concepts
-    │
-    └── content_deep_dive
-        ├── response_integration_structure
-        ├── actions
-        ├── entities
-        ├── connectors
-        ├── tests
-        └── jobs
-```
