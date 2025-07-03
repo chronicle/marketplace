@@ -48,7 +48,7 @@ soar-sdk = { git = "https://github.com/chronicle/soar-sdk.git" }
 ```
 
 Remember, if you update the `pyproject.toml` file manually, run the following command from your
-integration's root directory to install/sync the production dev dependencies:
+integration's root directory to install/sync the production and dev dependencies:
 
 ```bash
 uv sync --dev
