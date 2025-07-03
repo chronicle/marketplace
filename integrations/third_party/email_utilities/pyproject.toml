@@ -8,7 +8,7 @@ dependencies = [
     "compressed-rtf",
     "dicttoxml==1.7.16",
     "dkimpy",
-    "dnslib==0.9.25",
+    "dnslib==0.9.26",
     "dnspython==2.7.0",
     "eml-parser==2.0.0",
     "extract-msg==0.52.0",
