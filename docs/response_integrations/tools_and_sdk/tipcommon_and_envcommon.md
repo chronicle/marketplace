@@ -46,10 +46,11 @@ these steps:
    uv add ../../packages/tipcommon/TIPCommon-x.x.x/TIPCommon-x.x.x-py2.py3-none-any.whl
    uv add ../../packages/envcommon/EnvironmentCommon-x.x.x/EnvironmentCommon-x.x.x-py2.py3-none-any.whl
    ```
+   > *(Remember to replace `x.x.x` with the correct version numbers you used in the `uv add`
+   command.)*
 
 3. This will update your integration's `pyproject.toml` file to include these dependencies. It
-   should look something
-   like this:
+   should look something like this:
 
    ```toml
    [project]
@@ -58,6 +59,7 @@ these steps:
    dependencies = [
        # ... other dependencies ...
        "environmentcommon",
+       # ...
        "tipcommon",
        # ... other dependencies ...
    ]
@@ -70,8 +72,6 @@ these steps:
    tipcommon = { path = "../../../packages/tipcommon/TIPCommon-x.x.x/TIPCommon-x.x.x-py2.py3-none-any.whl" }
    # ...
    ```
-   *(Remember to replace `x.x.x` with the correct version numbers you used in the `uv add`
-   command.)*
 
 Please try to avoid using older versions unless absolutely necessary for a specific reason.
 
@@ -87,5 +87,4 @@ Please try to avoid using older versions unless absolutely necessary for a speci
 We plan to publish these dependencies in the future. This will allow you to install them more
 conveniently using `uv`
 directly from an online package repository, rather than relying on local wheel files. Stay tuned for
-updates on this
-front!
+updates on this front!
