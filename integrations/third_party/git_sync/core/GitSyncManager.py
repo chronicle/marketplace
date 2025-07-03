@@ -707,6 +707,14 @@ class WorkflowInstaller:
             if relation.get("toStep") in identifier_mappings:
                 relation["toStep"] = identifier_mappings.get(relation.get("toStep"))
 
+        for step in self._flatten_playbook_steps(workflow.raw_data.get("steps")):
+            if "startLoopStepIdentifier" in step:
+                step["startLoopStepIdentifier"] = (
+                    identifier_mappings.get(step["startLoopStepIdentifier"]) 
+                    if step["startLoopStepIdentifier"]
+                    else None
+                )
+
     def _save_workflow_mod_time_to_context(self, workflow: Workflow) -> None:
         self.refresh_cache_item("playbooks")
         new_mod_time: int = self._get_local_workflow_mod_time(workflow.name, -1)
@@ -910,7 +918,7 @@ class WorkflowInstaller:
             if step.get("actionProvider") == "ParallelActionsContainer":
                 flat_steps.extend(step.get("parallelActions"))
             flat_steps.append(step)
-        return steps
+        return flat_steps
 
     def _set_step_parameter_by_name(
         self,
