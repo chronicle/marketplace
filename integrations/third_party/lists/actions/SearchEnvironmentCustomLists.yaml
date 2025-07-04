@@ -27,6 +27,7 @@ dynamic_results_metadata:
                         "Default Environment"
                     ],
                     "id": 5,
+                    "name": "test",
                     "creationTimeUnixTimeInMs": 1673953571935,
                     "modificationTimeUnixTimeInMs": 1673953571935
                 },
@@ -38,6 +39,7 @@ dynamic_results_metadata:
                         "Default Environment"
                     ],
                     "id": 6,
+                    "name": "test",
                     "creationTimeUnixTimeInMs": 1673953584305,
                     "modificationTimeUnixTimeInMs": 1673953584305
                 }
