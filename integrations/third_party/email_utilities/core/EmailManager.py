@@ -680,17 +680,23 @@ class EmailUtils:
         return r
 
     @staticmethod
-    def render_html_body(html_body):
-        # type: (str) -> unicode
-        """Render html body to plain text plain
-        :param html_body: {str} The HTML body of the email
-        :return: {unicode} Plain text rendered HTML
-        """
+    def render_html_body(html_body: str) -> str:
+        """Render html body to plain text.
 
-        def build_html_rendered():
-            """Create a HTML2Text object
-            :return: {html2text.HTML2Text} The HTMl2Text object
-            """
+        :param html_body: The HTML body of the email as a string.
+        :return: Plain text rendered HTML as a string.
+        """
+        if html_body:
+            tags_to_remove = ["pre", "blockquote"]
+            for tag in tags_to_remove:
+                pattern = re.compile(
+                    f"<{tag}[^>]*>.*?</{tag}>",
+                    re.IGNORECASE | re.DOTALL
+                    )
+                html_body = pattern.sub("", html_body)
+
+        def build_html_rendered() -> HTML2Text:
+            """Create a HTML2Text object."""
             renderer = HTML2Text()
             renderer.ignore_tables = True
             # renderer.protect_links = True
@@ -701,17 +707,10 @@ class EmailUtils:
 
         try:
             html_renderer = build_html_rendered()
-            return html_renderer.handle(html_body)
-        except:
-            # HTML2Text is not performing well on non-ASCII str. On failure - try to decode the str to unicode
-            # using utf8 encoding. If failed - return a proper message.
-            try:
-                # HTML2Text object shouldn't be used twice - it can cause problems and errors according to google
-                # Therefore rebuild the object
-                html_renderer = build_html_rendered()
-                return html_renderer.handle(html_body)
-            except Exception as e:
-                return f"Failed rendering HTML. Error: {e}"
+            return html_renderer.handle(html_body or "")
+        except Exception as e:
+            # The html2text library can sometimes fail on complex or malformed HTML.
+            return f"Failed rendering HTML. Error: {e}"
 
 
 class ParsedEmail:
@@ -1180,18 +1179,16 @@ class EMLParser:
         else:
             multipart = True
 
-        found_txt = 0
         html_body = ""
         for raw_body in raw_bodies:
             _content_type, body_value, body_multhead = raw_body
             content_type = self.get_content_type(body_multhead, multipart)
-            if content_type == "text/plain":
-                found_txt = 1
             if content_type == "text/html":
                 html_body = body_value
 
             body.append(email_body.body(body_value, content_type))
-        if found_txt == 0:
+
+        if html_body:
             rendered_body = EmailUtils.render_html_body(html_body)
             body.append(email_body.body(rendered_body, "text/plain"))
 
