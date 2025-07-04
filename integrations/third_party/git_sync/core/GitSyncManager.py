@@ -176,11 +176,9 @@ class GitSyncManager:
 
         There are two different flows to install an integration,
         If the integration is custom, the entire zip (ide/exportPackage) is used when pushing, so we
-        import it
-        as a zip file (ide/importPackage)
+        import it as a zip file (ide/importPackage)
         if the integration is commercial, only custom items are pushed, that means we iterate the
-        items, install new
-        items and update existing ones.
+        items, install new items and update existing ones.
 
         Args:
             integration: An Integration object instance to install

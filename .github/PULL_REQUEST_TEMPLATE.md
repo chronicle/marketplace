@@ -41,7 +41,7 @@ This helps us review your contribution faster and more efficiently.
 
 ### General Checks:
 
-- [ ] I have read and followed the project's [contributing.md](/docs/contributing.md) guide.
+- [ ] I have read and followed the project's [contributing.md](https://github.com/chronicle/marketplace/blob/main/docs/contributing.md) guide.
 - [ ] My code follows the project's coding style guidelines.
 - [ ] I have performed a self-review of my own code.
 - [ ] My changes do not introduce any new warnings.

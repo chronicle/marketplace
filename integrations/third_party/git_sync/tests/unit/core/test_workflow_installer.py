@@ -1,7 +1,21 @@
+# Copyright 2025 Google LLC
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
 from __future__ import annotations
 
 import sys
-from unittest.mock import MagicMock, patch, Mock, PropertyMock
+from unittest.mock import MagicMock, patch, Mock, PropertyMock, call
 
 mock_modules = {
     'soar_sdk': Mock(),
@@ -104,6 +118,7 @@ class TestWorkflowInstaller:
                 patch.object(workflow_installer, '_filter_and_save_context') as mock_save, \
                 patch.object(workflow_installer.logger, 'info'):
             workflow_installer._update_workflow_if_needed(mock_workflow)
+
             mock_save.assert_called_once()
 
     def test_update_workflow_if_needed_processes_modified_workflow(self,
@@ -154,16 +169,23 @@ class TestWorkflowInstaller:
         }
         environments = ["Test Environment"]
 
-        with patch.object(workflow_installer, "_get_step_parameter_by_name") as mock_get, \
-                patch.object(workflow_installer, "_set_step_parameter_by_name") as mock_set:
-            mock_get.side_effect = [
-                {"value": "existing-instance"},
-                {"value": "fallback-instance"}
+        with (
+            patch.object(workflow_installer, "_get_step_parameter_by_name") as mock_get,
+            patch.object(workflow_installer, "_set_step_parameter_by_name") as mock_set,
+        ):
+            mock_get.side_effect = [{"value": "existing-instance"}, {"value": "fallback-instance"}]
+
+            workflow_installer._assign_integration_instance_to_step(
+                step, environments, existing_step
+            )
+
+            expected_calls = [
+                call(step, "IntegrationInstance", "existing-instance"),
+                call(step, "FallbackIntegrationInstance", "fallback-instance"),
             ]
-            workflow_installer._assign_integration_instance_to_step(step,
-                                                                    environments,
-                                                                    existing_step)
-            assert mock_set.call_count == 2
+
+            mock_set.assert_has_calls(expected_calls, any_order=True)
+            assert mock_set.call_count == len(expected_calls)
 
     def test_process_steps_handles_loop_step_identifier_mapping(self, workflow_installer):
         workflow_data = {
