@@ -686,6 +686,10 @@ class EmailUtils:
         :param html_body: {str} The HTML body of the email
         :return: {unicode} Plain text rendered HTML
         """
+        if html_body:
+            html_body = re.sub(
+                r"<pre.*?>.*?</pre>", "", html_body, flags=re.IGNORECASE | re.DOTALL
+            )
 
         def build_html_rendered():
             """Create a HTML2Text object
@@ -1180,18 +1184,16 @@ class EMLParser:
         else:
             multipart = True
 
-        found_txt = 0
         html_body = ""
         for raw_body in raw_bodies:
             _content_type, body_value, body_multhead = raw_body
             content_type = self.get_content_type(body_multhead, multipart)
-            if content_type == "text/plain":
-                found_txt = 1
             if content_type == "text/html":
                 html_body = body_value
 
             body.append(email_body.body(body_value, content_type))
-        if found_txt == 0:
+
+        if html_body:
             rendered_body = EmailUtils.render_html_body(html_body)
             body.append(email_body.body(rendered_body, "text/plain"))
 
