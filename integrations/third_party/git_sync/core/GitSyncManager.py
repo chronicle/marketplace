@@ -718,12 +718,15 @@ class WorkflowInstaller:
                 relation["toStep"] = identifier_mappings.get(relation.get("toStep"))
 
         for step in self._flatten_playbook_steps(workflow.raw_data.get("steps")):
-            if "startLoopStepIdentifier" in step:
-                step["startLoopStepIdentifier"] = (
-                    identifier_mappings.get(step["startLoopStepIdentifier"]) 
-                    if step["startLoopStepIdentifier"]
-                    else None
-                )
+            if "startLoopStepIdentifier" in step and step["startLoopStepIdentifier"]:
+                mapped_id = identifier_mappings.get(step["startLoopStepIdentifier"])
+                if mapped_id:
+                    step["startLoopStepIdentifier"] = mapped_id
+
+            if "endLoopStepIdentifier" in step and step["endLoopStepIdentifier"]:
+                mapped_id = identifier_mappings.get(step["endLoopStepIdentifier"])
+                if mapped_id:
+                    step["endLoopStepIdentifier"] = mapped_id
 
     def _save_workflow_mod_time_to_context(self, workflow: Workflow) -> None:
         self.refresh_cache_item("playbooks")
@@ -775,7 +778,7 @@ class WorkflowInstaller:
         """Reconfigure an integration instance of a workflow step.
 
         If old_steps is supplied, It will first try to match the same step in the old playbook and
-        assignthe step to the same integration instance.
+        assign the step to the same integration instance.
         Otherwise, If the playbook is assigned to only one environment (and not all environments),
         it will assign the first integration instance it finds.
         If the playbook is assigned to All Environments or more than one environment, The step will
