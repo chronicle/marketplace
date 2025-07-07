@@ -131,7 +131,10 @@ ENTITY_REGEXS = {
     },
     "DestinationURL": {
         "patterns": [
-            # compile_re(r'''(?i)\b(?:(?:https?|ftps?|http?):(?:/{1,3}|[a-z0-9%])(?:[^\s()<>{}\[\]]+|\([^\s()]*?\([^\s()]+\)[^\s()]*?\)|\([^\s]+?\))+(?:[\w\-._~%!$&'()*+,;=:/?#\[\]@]+)|(?:(?<!@)[a-z0-9]+(?:[.\-][a-z0-9]+)*[.](?:\w)\b/?(?!@)))''')
+            # compile_re(r'''(?i)\b(?:(?:https?|ftps?|http?):(?:/{1,3}|[a-z0-9%])
+            # (?:[^\s()<>{}\[\]]+|\([^\s()]*?\([^\s()]+\)[^\s()]*?\)|\([^\s]+?\))+
+            # (?:[\w\-._~%!$&'()*+,;=:/?#\[\]@]+)|(?:(?<!@)[a-z0-9]+
+            # (?:[.\-][a-z0-9]+)*[.](?:\w)\b/?(?!@)))''')
             compile_re(
                 r"""(?i)\b(?:(?:https?|ftps?|http?){1}:(?:\/{2}|[a-z0-9%])(?:[^\s()<>{}\[\]]+|\([^\s()]*?\([^\s()]+\)[^\s()]*?\)|\([^\s]+?\))+(?:[\w\-._~%!$&'()*+,;=:\/?#\[\]@]+))""",
             ),
@@ -1455,7 +1458,8 @@ class EMLParser:
                             "ignore",
                         )
 
-                # In case we hit bug 27257 or any other parsing error, try to downgrade the used policy
+                # In case we hit bug 27257 or any other parsing error, try to downgrade the 
+                # used policy
                 try:
                     raw_body.append((encoding, raw_body_str, msg.items()))
                 except (AttributeError, TypeError):
