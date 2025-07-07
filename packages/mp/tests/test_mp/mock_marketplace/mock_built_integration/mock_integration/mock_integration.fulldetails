@@ -42,7 +42,7 @@
         "manager"
     ],
     "MappingRules": [
-        "Default mapping rules"
+        "Default Ontology Mapping"
     ],
     "MinimumSystemVersion": 5.3,
     "PackageName": "Mock Integration",
