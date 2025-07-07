@@ -328,3 +328,13 @@
     regressive: false
     deprecated: false
     removed: false
+-   description: Functions - minor fixes to DDL parameters.
+    integration_version: 28.0
+    item_name: Functions
+    item_type: Integration
+    publish_time: 1751877839
+    ticket_number: '426240792'
+    new: false
+    regressive: false
+    deprecated: false
+    removed: false
