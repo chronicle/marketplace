@@ -329,7 +329,7 @@
     deprecated: false
     removed: false
 -   description: Functions - minor fixes to DDL parameters.
-    integration_version: 28.0
+    integration_version: 29.0
     item_name: Functions
     item_type: Integration
     publish_time: 1751877839
