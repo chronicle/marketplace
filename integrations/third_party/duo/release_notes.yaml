@@ -1,35 +1,35 @@
--   description: NEW! DUO integration.
-    integration_version: 1.0
-    item_name: DUO
-    item_type: Integration
-    publish_time: 1631177455
-    ticket_number: xxx
-    new: false
-    regressive: false
-    deprecated: false
-    removed: false
--   description: Updated action "Get Authentication Logs for User" to account for
-        responses from DUO's Authentication Logs that may not be present in all DUO
-        tenants such as "access_device" which previously caused the action to fail
-        if the value was missing.
-    integration_version: 2.0
-    item_name: DUO
-    item_type: Integration
-    publish_time: 1635933395
-    ticket_number: xxx
-    new: false
-    regressive: false
-    deprecated: false
-    removed: false
--   description: 'Important - Updated the integration code to work with Python version
-        3.11. To ensure compatibility and avoid disruptions, follow the upgrade best
-        practices described in the following document: https://cloud.google.com/chronicle/docs/soar/respond/integrations-setup/upgrade-python-versions'
-    integration_version: 3.0
-    item_name: DUO
-    item_type: Integration
-    publish_time: 1735201872
-    ticket_number: ''
-    new: false
-    regressive: false
-    deprecated: false
-    removed: false
+- description: NEW! DUO integration.
+  integration_version: 1.0
+  item_name: DUO
+  item_type: Integration
+  publish_time: '2021-09-09T08:50:55Z'
+  ticket_number: xxx
+  new: false
+  regressive: false
+  deprecated: false
+  removed: false
+- description: Updated action "Get Authentication Logs for User" to account for responses
+    from DUO's Authentication Logs that may not be present in all DUO tenants such
+    as "access_device" which previously caused the action to fail if the value was
+    missing.
+  integration_version: 2.0
+  item_name: DUO
+  item_type: Integration
+  publish_time: '2021-11-03T09:56:35Z'
+  ticket_number: xxx
+  new: false
+  regressive: false
+  deprecated: false
+  removed: false
+- description: 'Important - Updated the integration code to work with Python version
+    3.11. To ensure compatibility and avoid disruptions, follow the upgrade best practices
+    described in the following document: https://cloud.google.com/chronicle/docs/soar/respond/integrations-setup/upgrade-python-versions'
+  integration_version: 3.0
+  item_name: DUO
+  item_type: Integration
+  publish_time: '2024-12-26T08:31:12Z'
+  ticket_number: ''
+  new: false
+  regressive: false
+  deprecated: false
+  removed: false

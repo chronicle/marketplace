@@ -1,32 +1,32 @@
--   description: NEW! IPQS Fraud and Risk Scoring
-    integration_version: 2.0
-    item_name: IPQS Fraud and Risk Scoring
-    item_type: Integration
-    publish_time: 1656595747
-    ticket_number: xxx
-    new: false
-    regressive: false
-    deprecated: false
-    removed: false
--   description: Fix is_suspicious behaviour
-    integration_version: 3.0
-    item_name: IPQS Fraud and Risk Scoring
-    item_type: Integration
-    publish_time: 1692703127
-    ticket_number: xxx
-    new: false
-    regressive: false
-    deprecated: false
-    removed: false
--   description: 'Important - Updated the integration code to work with Python version
-        3.11. To ensure compatibility and avoid disruptions, follow the upgrade best
-        practices described in the following document: https://cloud.google.com/chronicle/docs/soar/respond/integrations-setup/upgrade-python-versions'
-    integration_version: 4.0
-    item_name: IPQS Fraud and Risk Scoring
-    item_type: Integration
-    publish_time: 1735201728
-    ticket_number: ''
-    new: false
-    regressive: false
-    deprecated: false
-    removed: false
+- description: NEW! IPQS Fraud and Risk Scoring
+  integration_version: 2.0
+  item_name: IPQS Fraud and Risk Scoring
+  item_type: Integration
+  publish_time: '2022-06-30T13:29:07Z'
+  ticket_number: xxx
+  new: false
+  regressive: false
+  deprecated: false
+  removed: false
+- description: Fix is_suspicious behaviour
+  integration_version: 3.0
+  item_name: IPQS Fraud and Risk Scoring
+  item_type: Integration
+  publish_time: '2023-08-22T11:18:47Z'
+  ticket_number: xxx
+  new: false
+  regressive: false
+  deprecated: false
+  removed: false
+- description: 'Important - Updated the integration code to work with Python version
+    3.11. To ensure compatibility and avoid disruptions, follow the upgrade best practices
+    described in the following document: https://cloud.google.com/chronicle/docs/soar/respond/integrations-setup/upgrade-python-versions'
+  integration_version: 4.0
+  item_name: IPQS Fraud and Risk Scoring
+  item_type: Integration
+  publish_time: '2024-12-26T08:28:48Z'
+  ticket_number: ''
+  new: false
+  regressive: false
+  deprecated: false
+  removed: false

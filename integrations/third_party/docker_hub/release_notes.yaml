@@ -1,35 +1,35 @@
--   description: New Integration - Docker Hub.
-    integration_version: 11.0
-    item_name: Docker Hub
-    item_type: Integration
-    publish_time: 1735207398
-    ticket_number: ''
-    new: true
-    regressive: false
-    deprecated: false
-    removed: false
--   description: 'Important - Updated the integration code to work with Python version
-        3.11. To ensure compatibility and avoid disruptions, follow the upgrade best
-        practices described in the following document: https://cloud.google.com/chronicle/docs/soar/respond/integrations-setup/upgrade-python-versions'
-    integration_version: 12.0
-    item_name: Docker Hub
-    item_type: Integration
-    publish_time: 1735208065
-    ticket_number: ''
-    new: false
-    regressive: false
-    deprecated: false
-    removed: false
--   description: Integration - Regressive! All integration items were updated to comply
-        with Marketplace requirements. If you've made any custom changes to the official
-        integration items, make sure to copy them before upgrading as they will be
-        irreversible overwritten otherwise.
-    integration_version: 13.0
-    item_name: Docker Hub
-    item_type: Integration
-    publish_time: 1742832164
-    ticket_number: '405144847'
-    new: false
-    regressive: true
-    deprecated: false
-    removed: false
+- description: New Integration - Docker Hub.
+  integration_version: 11.0
+  item_name: Docker Hub
+  item_type: Integration
+  publish_time: '2024-12-26T10:03:18Z'
+  ticket_number: ''
+  new: true
+  regressive: false
+  deprecated: false
+  removed: false
+- description: 'Important - Updated the integration code to work with Python version
+    3.11. To ensure compatibility and avoid disruptions, follow the upgrade best practices
+    described in the following document: https://cloud.google.com/chronicle/docs/soar/respond/integrations-setup/upgrade-python-versions'
+  integration_version: 12.0
+  item_name: Docker Hub
+  item_type: Integration
+  publish_time: '2024-12-26T10:14:25Z'
+  ticket_number: ''
+  new: false
+  regressive: false
+  deprecated: false
+  removed: false
+- description: Integration - Regressive! All integration items were updated to comply
+    with Marketplace requirements. If you've made any custom changes to the official
+    integration items, make sure to copy them before upgrading as they will be irreversible
+    overwritten otherwise.
+  integration_version: 13.0
+  item_name: Docker Hub
+  item_type: Integration
+  publish_time: '2025-03-24T16:02:44Z'
+  ticket_number: '405144847'
+  new: false
+  regressive: true
+  deprecated: false
+  removed: false

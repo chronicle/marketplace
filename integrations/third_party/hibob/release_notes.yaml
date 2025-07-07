@@ -1,42 +1,42 @@
--   description: NEW! Hibob integration.
-    integration_version: 1.0
-    item_name: Hibob
-    item_type: Integration
-    publish_time: 1598798081
-    ticket_number: xxx
-    new: false
-    regressive: false
-    deprecated: false
-    removed: false
--   description: Fixed description for action parameters
-    integration_version: 2.0
-    item_name: Hibob
-    item_type: Integration
-    publish_time: 1598798081
-    ticket_number: xxx
-    new: false
-    regressive: false
-    deprecated: false
-    removed: false
--   description: Updated Integration SVG
-    integration_version: 3.0
-    item_name: Hibob
-    item_type: Integration
-    publish_time: 1635784683
-    ticket_number: xxx
-    new: false
-    regressive: false
-    deprecated: false
-    removed: false
--   description: 'Important - Updated the integration code to work with Python version
-        3.11. To ensure compatibility and avoid disruptions, follow the upgrade best
-        practices described in the following document: https://cloud.google.com/chronicle/docs/soar/respond/integrations-setup/upgrade-python-versions'
-    integration_version: 4.0
-    item_name: Hibob
-    item_type: Integration
-    publish_time: 1735201807
-    ticket_number: ''
-    new: false
-    regressive: false
-    deprecated: false
-    removed: false
+- description: NEW! Hibob integration.
+  integration_version: 1.0
+  item_name: Hibob
+  item_type: Integration
+  publish_time: '2020-08-30T14:34:41Z'
+  ticket_number: xxx
+  new: false
+  regressive: false
+  deprecated: false
+  removed: false
+- description: Fixed description for action parameters
+  integration_version: 2.0
+  item_name: Hibob
+  item_type: Integration
+  publish_time: '2020-08-30T14:34:41Z'
+  ticket_number: xxx
+  new: false
+  regressive: false
+  deprecated: false
+  removed: false
+- description: Updated Integration SVG
+  integration_version: 3.0
+  item_name: Hibob
+  item_type: Integration
+  publish_time: '2021-11-01T16:38:03Z'
+  ticket_number: xxx
+  new: false
+  regressive: false
+  deprecated: false
+  removed: false
+- description: 'Important - Updated the integration code to work with Python version
+    3.11. To ensure compatibility and avoid disruptions, follow the upgrade best practices
+    described in the following document: https://cloud.google.com/chronicle/docs/soar/respond/integrations-setup/upgrade-python-versions'
+  integration_version: 4.0
+  item_name: Hibob
+  item_type: Integration
+  publish_time: '2024-12-26T08:30:07Z'
+  ticket_number: ''
+  new: false
+  regressive: false
+  deprecated: false
+  removed: false

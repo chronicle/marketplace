@@ -1,42 +1,42 @@
--   description: NEW! Google Safe Browsing Integration.
-    integration_version: 1.0
-    item_name: Google Safe Browsing
-    item_type: Integration
-    publish_time: 1602150072
-    ticket_number: xxx
-    new: false
-    regressive: false
-    deprecated: false
-    removed: false
--   description: Updated SVG of Google Safe Browsing Integration.
-    integration_version: 2.0
-    item_name: Google Safe Browsing
-    item_type: Integration
-    publish_time: 1626774317
-    ticket_number: xxx
-    new: false
-    regressive: false
-    deprecated: false
-    removed: false
--   description: Updated SVG of Google Safe Browsing Integration.
-    integration_version: 3.0
-    item_name: Google Safe Browsing
-    item_type: Integration
-    publish_time: 1635784459
-    ticket_number: xxx
-    new: false
-    regressive: false
-    deprecated: false
-    removed: false
--   description: 'Important - Updated the integration code to work with Python version
-        3.11. To ensure compatibility and avoid disruptions, follow the upgrade best
-        practices described in the following document: https://cloud.google.com/chronicle/docs/soar/respond/integrations-setup/upgrade-python-versions'
-    integration_version: 4.0
-    item_name: Google Safe Browsing
-    item_type: Integration
-    publish_time: 1735201800
-    ticket_number: ''
-    new: false
-    regressive: false
-    deprecated: false
-    removed: false
+- description: NEW! Google Safe Browsing Integration.
+  integration_version: 1.0
+  item_name: Google Safe Browsing
+  item_type: Integration
+  publish_time: '2020-10-08T09:41:12Z'
+  ticket_number: xxx
+  new: false
+  regressive: false
+  deprecated: false
+  removed: false
+- description: Updated SVG of Google Safe Browsing Integration.
+  integration_version: 2.0
+  item_name: Google Safe Browsing
+  item_type: Integration
+  publish_time: '2021-07-20T09:45:17Z'
+  ticket_number: xxx
+  new: false
+  regressive: false
+  deprecated: false
+  removed: false
+- description: Updated SVG of Google Safe Browsing Integration.
+  integration_version: 3.0
+  item_name: Google Safe Browsing
+  item_type: Integration
+  publish_time: '2021-11-01T16:34:19Z'
+  ticket_number: xxx
+  new: false
+  regressive: false
+  deprecated: false
+  removed: false
+- description: 'Important - Updated the integration code to work with Python version
+    3.11. To ensure compatibility and avoid disruptions, follow the upgrade best practices
+    described in the following document: https://cloud.google.com/chronicle/docs/soar/respond/integrations-setup/upgrade-python-versions'
+  integration_version: 4.0
+  item_name: Google Safe Browsing
+  item_type: Integration
+  publish_time: '2024-12-26T08:30:00Z'
+  ticket_number: ''
+  new: false
+  regressive: false
+  deprecated: false
+  removed: false

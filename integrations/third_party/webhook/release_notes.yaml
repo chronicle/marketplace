@@ -1,62 +1,62 @@
--   description: NEW! Webhook integration.
-    integration_version: 1.0
-    item_name: Webhook
-    item_type: Integration
-    publish_time: 1631177455
-    ticket_number: xxx
-    new: false
-    regressive: false
-    deprecated: false
-    removed: false
--   description: Fixed Get Webhook Response action.
-    integration_version: 2.0
-    item_name: Webhook
-    item_type: Integration
-    publish_time: 1640179164
-    ticket_number: xxx
-    new: false
-    regressive: false
-    deprecated: false
-    removed: false
--   description: Changed Get Webhook Response action's name.
-    integration_version: 3.0
-    item_name: Webhook
-    item_type: Integration
-    publish_time: 1641139235
-    ticket_number: xxx
-    new: false
-    regressive: false
-    deprecated: false
-    removed: false
--   description: Fixed Get Webhook Response action.
-    integration_version: 4.0
-    item_name: Webhook
-    item_type: Integration
-    publish_time: 1647935111
-    ticket_number: xxx
-    new: false
-    regressive: false
-    deprecated: false
-    removed: false
--   description: JSON sample fixed.
-    integration_version: 5.0
-    item_name: Webhook
-    item_type: Integration
-    publish_time: 1667398431
-    ticket_number: xxx
-    new: false
-    regressive: false
-    deprecated: false
-    removed: false
--   description: 'Important - Updated the integration code to work with Python version
-        3.11. To ensure compatibility and avoid disruptions, follow the upgrade best
-        practices described in the following document: https://cloud.google.com/chronicle/docs/soar/respond/integrations-setup/upgrade-python-versions'
-    integration_version: 6.0
-    item_name: Webhook
-    item_type: Integration
-    publish_time: 1735201637
-    ticket_number: ''
-    new: false
-    regressive: false
-    deprecated: false
-    removed: false
+- description: NEW! Webhook integration.
+  integration_version: 1.0
+  item_name: Webhook
+  item_type: Integration
+  publish_time: '2021-09-09T08:50:55Z'
+  ticket_number: xxx
+  new: false
+  regressive: false
+  deprecated: false
+  removed: false
+- description: Fixed Get Webhook Response action.
+  integration_version: 2.0
+  item_name: Webhook
+  item_type: Integration
+  publish_time: '2021-12-22T13:19:24Z'
+  ticket_number: xxx
+  new: false
+  regressive: false
+  deprecated: false
+  removed: false
+- description: Changed Get Webhook Response action's name.
+  integration_version: 3.0
+  item_name: Webhook
+  item_type: Integration
+  publish_time: '2022-01-02T16:00:35Z'
+  ticket_number: xxx
+  new: false
+  regressive: false
+  deprecated: false
+  removed: false
+- description: Fixed Get Webhook Response action.
+  integration_version: 4.0
+  item_name: Webhook
+  item_type: Integration
+  publish_time: '2022-03-22T07:45:11Z'
+  ticket_number: xxx
+  new: false
+  regressive: false
+  deprecated: false
+  removed: false
+- description: JSON sample fixed.
+  integration_version: 5.0
+  item_name: Webhook
+  item_type: Integration
+  publish_time: '2022-11-02T14:13:51Z'
+  ticket_number: xxx
+  new: false
+  regressive: false
+  deprecated: false
+  removed: false
+- description: 'Important - Updated the integration code to work with Python version
+    3.11. To ensure compatibility and avoid disruptions, follow the upgrade best practices
+    described in the following document: https://cloud.google.com/chronicle/docs/soar/respond/integrations-setup/upgrade-python-versions'
+  integration_version: 6.0
+  item_name: Webhook
+  item_type: Integration
+  publish_time: '2024-12-26T08:27:17Z'
+  ticket_number: ''
+  new: false
+  regressive: false
+  deprecated: false
+  removed: false

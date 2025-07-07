@@ -1,53 +1,53 @@
--   description: NEW! Cybersixgill DVE Enrichment Integration.
-    integration_version: 1.0
-    item_name: Cybersixgill DVE Enrichment
-    item_type: Integration
-    publish_time: 1621942701
-    ticket_number: xxx
-    new: false
-    regressive: false
-    deprecated: false
-    removed: false
--   description: Fixed the enrichment action - Enrich CVE.
-    integration_version: 2.0
-    item_name: Cybersixgill DVE Enrichment
-    item_type: Integration
-    publish_time: 1631177455
-    ticket_number: xxx
-    new: false
-    regressive: false
-    deprecated: false
-    removed: false
--   description: Updated Integration SVG.
-    integration_version: 3.0
-    item_name: Cybersixgill DVE Enrichment
-    item_type: Integration
-    publish_time: 1635781641
-    ticket_number: xxx
-    new: false
-    regressive: false
-    deprecated: false
-    removed: false
--   description: Cybersixgill DVE Enrichment - Updated integration's descriptions
-        to reflect renaming to Google SecOps.
-    integration_version: 4.0
-    item_name: Cybersixgill DVE Enrichment
-    item_type: Integration
-    publish_time: 1714030385
-    ticket_number: '332545706'
-    new: false
-    regressive: false
-    deprecated: false
-    removed: false
--   description: 'Important - Updated the integration code to work with Python version
-        3.11. To ensure compatibility and avoid disruptions, follow the upgrade best
-        practices described in the following document: https://cloud.google.com/chronicle/docs/soar/respond/integrations-setup/upgrade-python-versions'
-    integration_version: 5.0
-    item_name: Cybersixgill DVE Enrichment
-    item_type: Integration
-    publish_time: 1735201558
-    ticket_number: ''
-    new: false
-    regressive: false
-    deprecated: false
-    removed: false
+- description: NEW! Cybersixgill DVE Enrichment Integration.
+  integration_version: 1.0
+  item_name: Cybersixgill DVE Enrichment
+  item_type: Integration
+  publish_time: '2021-05-25T11:38:21Z'
+  ticket_number: xxx
+  new: false
+  regressive: false
+  deprecated: false
+  removed: false
+- description: Fixed the enrichment action - Enrich CVE.
+  integration_version: 2.0
+  item_name: Cybersixgill DVE Enrichment
+  item_type: Integration
+  publish_time: '2021-09-09T08:50:55Z'
+  ticket_number: xxx
+  new: false
+  regressive: false
+  deprecated: false
+  removed: false
+- description: Updated Integration SVG.
+  integration_version: 3.0
+  item_name: Cybersixgill DVE Enrichment
+  item_type: Integration
+  publish_time: '2021-11-01T15:47:21Z'
+  ticket_number: xxx
+  new: false
+  regressive: false
+  deprecated: false
+  removed: false
+- description: Cybersixgill DVE Enrichment - Updated integration's descriptions to
+    reflect renaming to Google SecOps.
+  integration_version: 4.0
+  item_name: Cybersixgill DVE Enrichment
+  item_type: Integration
+  publish_time: '2024-04-25T07:33:05Z'
+  ticket_number: '332545706'
+  new: false
+  regressive: false
+  deprecated: false
+  removed: false
+- description: 'Important - Updated the integration code to work with Python version
+    3.11. To ensure compatibility and avoid disruptions, follow the upgrade best practices
+    described in the following document: https://cloud.google.com/chronicle/docs/soar/respond/integrations-setup/upgrade-python-versions'
+  integration_version: 5.0
+  item_name: Cybersixgill DVE Enrichment
+  item_type: Integration
+  publish_time: '2024-12-26T08:25:58Z'
+  ticket_number: ''
+  new: false
+  regressive: false
+  deprecated: false
+  removed: false

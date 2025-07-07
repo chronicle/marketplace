@@ -1,272 +1,272 @@
--   description: NEW! Enrichment integration to power up playbook capabilities.
-    integration_version: 1.0
-    item_name: Enrichment
-    item_type: Integration
-    ticket_number: xxx
-    new: false
-    regressive: false
-    deprecated: false
-    removed: false
--   description: Bug fix in Enrich Entity with field action.
-    integration_version: 2.0
-    item_name: Enrich Entity with field
-    item_type: Action
-    publish_time: 1608137900
-    ticket_number: xxx
-    new: false
-    regressive: false
-    deprecated: false
-    removed: false
--   description: Added support for Target Entities parameter in "Enrich Entity with
-        field" action.
-    integration_version: 3.0
-    item_name: Enrich Entity with field
-    item_type: Action
-    publish_time: 1610143964
-    ticket_number: xxx
-    new: false
-    regressive: false
-    deprecated: false
-    removed: false
--   description: Siemplify API Key was added to the integration parameter and is required
-        for "Enrich Entity from Explorer Attributes" action.
-    integration_version: 4.0
-    item_name: Enrichment
-    item_type: Integration
-    publish_time: 1610892558
-    ticket_number: xxx
-    new: false
-    regressive: false
-    deprecated: false
-    removed: false
--   description: NEW! "Enrich Entity from Explorer Attributes" action added to Enrichment.
-        Can be used to enrich an entity with historic enrichment data.
-    integration_version: 4.0
-    item_name: Enrich Entity from Explorer Attributes
-    item_type: Action
-    publish_time: 1610892558
-    ticket_number: xxx
-    new: false
-    regressive: false
-    deprecated: false
-    removed: false
--   description: Update! "Enrich Entity from JSON" bug fix with target entities.
-    integration_version: 5.0
-    item_name: Enrich Entity From Json
-    item_type: Action
-    publish_time: 1625765853
-    ticket_number: xxx
-    new: false
-    regressive: false
-    deprecated: false
-    removed: false
--   description: NEW! "Enrich FileName Entity with Path" action added to Enrichment.
-        This action will parse out path, filename, and extension from an entity.
-    integration_version: 7.0
-    item_name: Enrich FileName Entity with Path
-    item_type: Action
-    publish_time: 1628183241
-    ticket_number: xxx
-    new: true
-    regressive: false
-    deprecated: false
-    removed: false
--   description: NEW! "Enrich Entities from List with Field" action added to Enrichment.
-        This action will enrich a list of entities with a field and value.
-    integration_version: 8.0
-    item_name: Enrich FileName Entity with Path
-    item_type: Action
-    publish_time: 1635270613
-    ticket_number: xxx
-    new: true
-    regressive: false
-    deprecated: false
-    removed: false
--   description: NEW! "Mark Entity as Suspicious" action added to Enrichment. This
-        action will mark the entities in the scope as suspicious.
-    integration_version: 9.0
-    item_name: Mark Entity as Suspicious
-    item_type: Action
-    publish_time: 1635855710
-    ticket_number: xxx
-    new: true
-    regressive: false
-    deprecated: false
-    removed: false
--   description: Updated SVG.
-    integration_version: 10.0
-    item_name: Enrichment
-    item_type: Integration
-    publish_time: 1637761006
-    ticket_number: xxx
-    new: true
-    regressive: false
-    deprecated: false
-    removed: false
--   description: New Action! Enrich Source and Destinations.  This action will add
-        the source and destination links to IPs and hostnames in the alert.
-    integration_version: 11.0
-    item_name: Enrich Source and Destinations
-    item_type: Integration
-    publish_time: 1638278922
-    ticket_number: xxx
-    new: true
-    regressive: false
-    deprecated: false
-    removed: false
--   description: Update! Enrich Source and Destinations.  Supports version 6.0
-    integration_version: 12.0
-    item_name: Enrich Source and Destinations
-    item_type: Integration
-    publish_time: 1639069745
-    ticket_number: xxx
-    new: true
-    regressive: false
-    deprecated: false
-    removed: false
--   description: Update! Enrich Entities from List with Field.  Bug Fix
-    integration_version: 13.0
-    item_name: Enrich Entities from List with Field
-    item_type: Integration
-    publish_time: 1639140317
-    ticket_number: xxx
-    new: true
-    regressive: false
-    deprecated: false
-    removed: false
--   description: New Item! "Whois" - Enriches URLS, Usernames, Domains and IPs with
-        information from WHOIS servers.
-    integration_version: 14.0
-    item_name: Whois
-    item_type: Action
-    publish_time: 1640108682
-    ticket_number: xxx
-    new: true
-    regressive: false
-    deprecated: false
-    removed: false
--   description: Whois - Bugfix.
-    integration_version: 15.0
-    item_name: Whois
-    item_type: Action
-    publish_time: 1640181252
-    ticket_number: xxx
-    new: true
-    regressive: false
-    deprecated: false
-    removed: false
--   description: New Feature! "Whois" - Support for FR domains
-    integration_version: 19.0
-    item_name: Whois
-    item_type: Action
-    publish_time: 1651860717
-    ticket_number: xxx
-    new: true
-    regressive: false
-    deprecated: false
-    removed: false
--   description: New Feature! "Whois" - Now performs Geo Lookup on IP addresses
-    integration_version: 20.0
-    item_name: Whois
-    item_type: Action
-    publish_time: 1655320445
-    ticket_number: xxx
-    new: true
-    regressive: false
-    deprecated: false
-    removed: false
--   description: Fix! Whois - Syntax error.
-    integration_version: 21.0
-    item_name: Whois
-    item_type: Action
-    publish_time: 1655386578
-    ticket_number: xxx
-    new: true
-    regressive: false
-    deprecated: false
-    removed: false
--   description: 'Update! Enrich Entity from Explorer Attributes - Now supports: enriching
-        all entity fields, denylists, and multiple entities.'
-    integration_version: 22.0
-    item_name: Enrich Entity from Explorer Attributes
-    item_type: Action
-    publish_time: 1664541863
-    ticket_number: xxx
-    new: true
-    regressive: false
-    deprecated: false
-    removed: false
--   description: Fix! Whois - Support for .BE domains added.
-    integration_version: 23.0
-    item_name: Whois
-    item_type: Action
-    publish_time: 1668424148
-    ticket_number: xxx
-    new: false
-    regressive: false
-    deprecated: false
-    removed: false
--   description: Fix! Updated dependency that caused installation failures.
-    integration_version: 24.0
-    item_name: Enrichment
-    item_type: Integration
-    publish_time: 1677076642
-    ticket_number: xxx
-    new: false
-    regressive: false
-    deprecated: false
-    removed: false
--   description: Fix! Enrich Entity from Explorer Attributes - better support for
-        entities with same identifier.
-    integration_version: 25.0
-    item_name: Enrich Entity from Explorer Attributes
-    item_type: Integration
-    publish_time: 1701869412
-    ticket_number: xxx
-    new: false
-    regressive: false
-    deprecated: false
-    removed: false
--   description: Vulnerability fix - Enable server certificate validation on this
-        SSL/TLS connection.
-    integration_version: 26.0
-    item_name: Enrich Entity from Explorer Attributes
-    item_type: Action
-    publish_time: 1704448092
-    ticket_number: '318190803'
-    new: false
-    regressive: false
-    deprecated: false
-    removed: false
--   description: 'Important - Updated the integration code to work with Python version
-        3.11. To ensure compatibility and avoid disruptions, follow the upgrade best
-        practices described in the following document: https://cloud.google.com/chronicle/docs/soar/respond/integrations-setup/upgrade-python-versions'
-    integration_version: 27.0
-    item_name: Enrichment
-    item_type: Integration
-    publish_time: 1735211206
-    ticket_number: ''
-    new: false
-    regressive: false
-    deprecated: false
-    removed: false
--   description: Enrich Entity from JSON - Updated input handling logic.
-    integration_version: 28.0
-    item_name: Enrich Entity From Json
-    item_type: Action
-    publish_time: 1745382943
-    ticket_number: '405213338'
-    new: false
-    regressive: false
-    deprecated: false
-    removed: false
--   description: Integration - Refactored the code to work with updated API.
-    integration_version: 29.0
-    item_name: Enrichment
-    item_type: Integration
-    publish_time: 1752653950
-    ticket_number: '430477875'
-    new: false
-    regressive: false
-    deprecated: false
-    removed: false
+- description: NEW! Enrichment integration to power up playbook capabilities.
+  integration_version: 1.0
+  item_name: Enrichment
+  item_type: Integration
+  ticket_number: xxx
+  new: false
+  regressive: false
+  deprecated: false
+  removed: false
+- description: Bug fix in Enrich Entity with field action.
+  integration_version: 2.0
+  item_name: Enrich Entity with field
+  item_type: Action
+  publish_time: '2020-12-16T16:58:20Z'
+  ticket_number: xxx
+  new: false
+  regressive: false
+  deprecated: false
+  removed: false
+- description: Added support for Target Entities parameter in "Enrich Entity with
+    field" action.
+  integration_version: 3.0
+  item_name: Enrich Entity with field
+  item_type: Action
+  publish_time: '2021-01-08T22:12:44Z'
+  ticket_number: xxx
+  new: false
+  regressive: false
+  deprecated: false
+  removed: false
+- description: Siemplify API Key was added to the integration parameter and is required
+    for "Enrich Entity from Explorer Attributes" action.
+  integration_version: 4.0
+  item_name: Enrichment
+  item_type: Integration
+  publish_time: '2021-01-17T14:09:18Z'
+  ticket_number: xxx
+  new: false
+  regressive: false
+  deprecated: false
+  removed: false
+- description: NEW! "Enrich Entity from Explorer Attributes" action added to Enrichment.
+    Can be used to enrich an entity with historic enrichment data.
+  integration_version: 4.0
+  item_name: Enrich Entity from Explorer Attributes
+  item_type: Action
+  publish_time: '2021-01-17T14:09:18Z'
+  ticket_number: xxx
+  new: false
+  regressive: false
+  deprecated: false
+  removed: false
+- description: Update! "Enrich Entity from JSON" bug fix with target entities.
+  integration_version: 5.0
+  item_name: Enrich Entity From Json
+  item_type: Action
+  publish_time: '2021-07-08T17:37:33Z'
+  ticket_number: xxx
+  new: false
+  regressive: false
+  deprecated: false
+  removed: false
+- description: NEW! "Enrich FileName Entity with Path" action added to Enrichment.
+    This action will parse out path, filename, and extension from an entity.
+  integration_version: 7.0
+  item_name: Enrich FileName Entity with Path
+  item_type: Action
+  publish_time: '2021-08-05T17:07:21Z'
+  ticket_number: xxx
+  new: true
+  regressive: false
+  deprecated: false
+  removed: false
+- description: NEW! "Enrich Entities from List with Field" action added to Enrichment.
+    This action will enrich a list of entities with a field and value.
+  integration_version: 8.0
+  item_name: Enrich FileName Entity with Path
+  item_type: Action
+  publish_time: '2021-10-26T17:50:13Z'
+  ticket_number: xxx
+  new: true
+  regressive: false
+  deprecated: false
+  removed: false
+- description: NEW! "Mark Entity as Suspicious" action added to Enrichment. This action
+    will mark the entities in the scope as suspicious.
+  integration_version: 9.0
+  item_name: Mark Entity as Suspicious
+  item_type: Action
+  publish_time: '2021-11-02T12:21:50Z'
+  ticket_number: xxx
+  new: true
+  regressive: false
+  deprecated: false
+  removed: false
+- description: Updated SVG.
+  integration_version: 10.0
+  item_name: Enrichment
+  item_type: Integration
+  publish_time: '2021-11-24T13:36:46Z'
+  ticket_number: xxx
+  new: true
+  regressive: false
+  deprecated: false
+  removed: false
+- description: New Action! Enrich Source and Destinations.  This action will add the
+    source and destination links to IPs and hostnames in the alert.
+  integration_version: 11.0
+  item_name: Enrich Source and Destinations
+  item_type: Integration
+  publish_time: '2021-11-30T13:28:42Z'
+  ticket_number: xxx
+  new: true
+  regressive: false
+  deprecated: false
+  removed: false
+- description: Update! Enrich Source and Destinations.  Supports version 6.0
+  integration_version: 12.0
+  item_name: Enrich Source and Destinations
+  item_type: Integration
+  publish_time: '2021-12-09T17:09:05Z'
+  ticket_number: xxx
+  new: true
+  regressive: false
+  deprecated: false
+  removed: false
+- description: Update! Enrich Entities from List with Field.  Bug Fix
+  integration_version: 13.0
+  item_name: Enrich Entities from List with Field
+  item_type: Integration
+  publish_time: '2021-12-10T12:45:17Z'
+  ticket_number: xxx
+  new: true
+  regressive: false
+  deprecated: false
+  removed: false
+- description: New Item! "Whois" - Enriches URLS, Usernames, Domains and IPs with
+    information from WHOIS servers.
+  integration_version: 14.0
+  item_name: Whois
+  item_type: Action
+  publish_time: '2021-12-21T17:44:42Z'
+  ticket_number: xxx
+  new: true
+  regressive: false
+  deprecated: false
+  removed: false
+- description: Whois - Bugfix.
+  integration_version: 15.0
+  item_name: Whois
+  item_type: Action
+  publish_time: '2021-12-22T13:54:12Z'
+  ticket_number: xxx
+  new: true
+  regressive: false
+  deprecated: false
+  removed: false
+- description: New Feature! "Whois" - Support for FR domains
+  integration_version: 19.0
+  item_name: Whois
+  item_type: Action
+  publish_time: '2022-05-06T18:11:57Z'
+  ticket_number: xxx
+  new: true
+  regressive: false
+  deprecated: false
+  removed: false
+- description: New Feature! "Whois" - Now performs Geo Lookup on IP addresses
+  integration_version: 20.0
+  item_name: Whois
+  item_type: Action
+  publish_time: '2022-06-15T19:14:05Z'
+  ticket_number: xxx
+  new: true
+  regressive: false
+  deprecated: false
+  removed: false
+- description: Fix! Whois - Syntax error.
+  integration_version: 21.0
+  item_name: Whois
+  item_type: Action
+  publish_time: '2022-06-16T13:36:18Z'
+  ticket_number: xxx
+  new: true
+  regressive: false
+  deprecated: false
+  removed: false
+- description: 'Update! Enrich Entity from Explorer Attributes - Now supports: enriching
+    all entity fields, denylists, and multiple entities.'
+  integration_version: 22.0
+  item_name: Enrich Entity from Explorer Attributes
+  item_type: Action
+  publish_time: '2022-09-30T12:44:23Z'
+  ticket_number: xxx
+  new: true
+  regressive: false
+  deprecated: false
+  removed: false
+- description: Fix! Whois - Support for .BE domains added.
+  integration_version: 23.0
+  item_name: Whois
+  item_type: Action
+  publish_time: '2022-11-14T11:09:08Z'
+  ticket_number: xxx
+  new: false
+  regressive: false
+  deprecated: false
+  removed: false
+- description: Fix! Updated dependency that caused installation failures.
+  integration_version: 24.0
+  item_name: Enrichment
+  item_type: Integration
+  publish_time: '2023-02-22T14:37:22Z'
+  ticket_number: xxx
+  new: false
+  regressive: false
+  deprecated: false
+  removed: false
+- description: Fix! Enrich Entity from Explorer Attributes - better support for entities
+    with same identifier.
+  integration_version: 25.0
+  item_name: Enrich Entity from Explorer Attributes
+  item_type: Integration
+  publish_time: '2023-12-06T13:30:12Z'
+  ticket_number: xxx
+  new: false
+  regressive: false
+  deprecated: false
+  removed: false
+- description: Vulnerability fix - Enable server certificate validation on this SSL/TLS
+    connection.
+  integration_version: 26.0
+  item_name: Enrich Entity from Explorer Attributes
+  item_type: Action
+  publish_time: '2024-01-05T09:48:12Z'
+  ticket_number: '318190803'
+  new: false
+  regressive: false
+  deprecated: false
+  removed: false
+- description: 'Important - Updated the integration code to work with Python version
+    3.11. To ensure compatibility and avoid disruptions, follow the upgrade best practices
+    described in the following document: https://cloud.google.com/chronicle/docs/soar/respond/integrations-setup/upgrade-python-versions'
+  integration_version: 27.0
+  item_name: Enrichment
+  item_type: Integration
+  publish_time: '2024-12-26T11:06:46Z'
+  ticket_number: ''
+  new: false
+  regressive: false
+  deprecated: false
+  removed: false
+- description: Enrich Entity from JSON - Updated input handling logic.
+  integration_version: 28.0
+  item_name: Enrich Entity From Json
+  item_type: Action
+  publish_time: '2025-04-23T04:35:43Z'
+  ticket_number: '405213338'
+  new: false
+  regressive: false
+  deprecated: false
+  removed: false
+- description: Integration - Refactored the code to work with updated API.
+  integration_version: 29.0
+  item_name: Enrichment
+  item_type: Integration
+  publish_time: '2025-07-16T08:19:10Z'
+  ticket_number: '430477875'
+  new: false
+  regressive: false
+  deprecated: false
+  removed: false

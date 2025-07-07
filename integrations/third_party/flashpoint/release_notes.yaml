@@ -1,105 +1,105 @@
--   description: NEW! Flashpoint integratiom.
-    integration_version: 1.0
-    item_name: Flashpoint
-    item_type: Integration
-    publish_time: 1606822359
-    ticket_number: xxx
-    new: false
-    regressive: false
-    deprecated: false
-    removed: false
--   description: Bug fix in the query in the Flashpoint Connector.
-    integration_version: 2.0
-    item_name: Flashpoint - Compromised Credential Connector
-    item_type: Connector
-    publish_time: 1612265559
-    ticket_number: xxx
-    new: false
-    regressive: false
-    deprecated: false
-    removed: false
--   description: Limit result parameter has been added in the Flashpoint Connector.
-    integration_version: 3.0
-    item_name: Flashpoint - Compromised Credential Connector
-    item_type: Connector
-    publish_time: 1612956759
-    ticket_number: xxx
-    new: false
-    regressive: false
-    deprecated: false
-    removed: false
--   description: Bug fix in Event Priority in the Flashpoint Connector.
-    integration_version: 4.0
-    item_name: Flashpoint - Compromised Credential Connector
-    item_type: Connector
-    publish_time: 1612956759
-    ticket_number: xxx
-    new: false
-    regressive: false
-    deprecated: false
-    removed: false
--   description: Bug fix in script timeout error.
-    integration_version: 5.0
-    item_name: Flashpoint - Compromised Credential Connector
-    item_type: Connector
-    publish_time: 1617622608
-    ticket_number: xxx
-    new: false
-    regressive: false
-    deprecated: false
-    removed: false
--   description: Bug fix to support Proxy.
-    integration_version: 6.0
-    item_name: Flashpoint - Compromised Credential Connector
-    item_type: Connector
-    publish_time: 1621505898
-    ticket_number: xxx
-    new: false
-    regressive: false
-    deprecated: false
-    removed: false
--   description: Fixed Category
-    integration_version: 7.0
-    item_name: Flashpoint
-    item_type: Integration
-    publish_time: 1629722429
-    ticket_number: xxx
-    new: false
-    regressive: false
-    deprecated: false
-    removed: false
--   description: Fixed Category
-    integration_version: 8.0
-    item_name: Flashpoint
-    item_type: Integration
-    publish_time: 1629722429
-    ticket_number: xxx
-    new: false
-    regressive: false
-    deprecated: false
-    removed: false
--   description: 'Important - Updated the integration code to work with Python version
-        3.11. To ensure compatibility and avoid disruptions, follow the upgrade best
-        practices described in the following document: https://cloud.google.com/chronicle/docs/soar/respond/integrations-setup/upgrade-python-versions'
-    integration_version: 9.0
-    item_name: Flashpoint
-    item_type: Integration
-    publish_time: 1735202008
-    ticket_number: ''
-    new: false
-    regressive: false
-    deprecated: false
-    removed: false
--   description: Integration - Regressive! All integration items were updated to comply
-        with Marketplace requirements. If you've made any custom changes to the official
-        integration items, make sure to copy them before upgrading as they will be
-        irreversible overwritten otherwise.
-    integration_version: 10.0
-    item_name: Flashpoint
-    item_type: Integration
-    publish_time: 1742832164
-    ticket_number: '405144847'
-    new: false
-    regressive: true
-    deprecated: false
-    removed: false
+- description: NEW! Flashpoint integratiom.
+  integration_version: 1.0
+  item_name: Flashpoint
+  item_type: Integration
+  publish_time: '2020-12-01T11:32:39Z'
+  ticket_number: xxx
+  new: false
+  regressive: false
+  deprecated: false
+  removed: false
+- description: Bug fix in the query in the Flashpoint Connector.
+  integration_version: 2.0
+  item_name: Flashpoint - Compromised Credential Connector
+  item_type: Connector
+  publish_time: '2021-02-02T11:32:39Z'
+  ticket_number: xxx
+  new: false
+  regressive: false
+  deprecated: false
+  removed: false
+- description: Limit result parameter has been added in the Flashpoint Connector.
+  integration_version: 3.0
+  item_name: Flashpoint - Compromised Credential Connector
+  item_type: Connector
+  publish_time: '2021-02-10T11:32:39Z'
+  ticket_number: xxx
+  new: false
+  regressive: false
+  deprecated: false
+  removed: false
+- description: Bug fix in Event Priority in the Flashpoint Connector.
+  integration_version: 4.0
+  item_name: Flashpoint - Compromised Credential Connector
+  item_type: Connector
+  publish_time: '2021-02-10T11:32:39Z'
+  ticket_number: xxx
+  new: false
+  regressive: false
+  deprecated: false
+  removed: false
+- description: Bug fix in script timeout error.
+  integration_version: 5.0
+  item_name: Flashpoint - Compromised Credential Connector
+  item_type: Connector
+  publish_time: '2021-04-05T11:36:48Z'
+  ticket_number: xxx
+  new: false
+  regressive: false
+  deprecated: false
+  removed: false
+- description: Bug fix to support Proxy.
+  integration_version: 6.0
+  item_name: Flashpoint - Compromised Credential Connector
+  item_type: Connector
+  publish_time: '2021-05-20T10:18:18Z'
+  ticket_number: xxx
+  new: false
+  regressive: false
+  deprecated: false
+  removed: false
+- description: Fixed Category
+  integration_version: 7.0
+  item_name: Flashpoint
+  item_type: Integration
+  publish_time: '2021-08-23T12:40:29Z'
+  ticket_number: xxx
+  new: false
+  regressive: false
+  deprecated: false
+  removed: false
+- description: Fixed Category
+  integration_version: 8.0
+  item_name: Flashpoint
+  item_type: Integration
+  publish_time: '2021-08-23T12:40:29Z'
+  ticket_number: xxx
+  new: false
+  regressive: false
+  deprecated: false
+  removed: false
+- description: 'Important - Updated the integration code to work with Python version
+    3.11. To ensure compatibility and avoid disruptions, follow the upgrade best practices
+    described in the following document: https://cloud.google.com/chronicle/docs/soar/respond/integrations-setup/upgrade-python-versions'
+  integration_version: 9.0
+  item_name: Flashpoint
+  item_type: Integration
+  publish_time: '2024-12-26T08:33:28Z'
+  ticket_number: ''
+  new: false
+  regressive: false
+  deprecated: false
+  removed: false
+- description: Integration - Regressive! All integration items were updated to comply
+    with Marketplace requirements. If you've made any custom changes to the official
+    integration items, make sure to copy them before upgrading as they will be irreversible
+    overwritten otherwise.
+  integration_version: 10.0
+  item_name: Flashpoint
+  item_type: Integration
+  publish_time: '2025-03-24T16:02:44Z'
+  ticket_number: '405144847'
+  new: false
+  regressive: true
+  deprecated: false
+  removed: false

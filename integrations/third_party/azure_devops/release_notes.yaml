@@ -1,63 +1,63 @@
--   description: NEW! Azure DevOps Integration
-    integration_version: 1.0
-    item_name: Azure DevOps
-    item_type: Integration
-    publish_time: 1628012160
-    ticket_number: xxx
-    new: false
-    regressive: false
-    deprecated: false
-    removed: false
--   description: Fixed Azure DevOps Integration Actions Definitions
-    integration_version: 2.0
-    item_name: Azure DevOps
-    item_type: Integration
-    publish_time: 1628415528
-    ticket_number: xxx
-    new: false
-    regressive: false
-    deprecated: false
-    removed: false
--   description: Fixed Azure DevOps Integration Actions Definitions - IsAsync
-    integration_version: 3.0
-    item_name: Azure DevOps
-    item_type: Integration
-    publish_time: 1659434995
-    ticket_number: xxx
-    new: false
-    regressive: false
-    deprecated: false
-    removed: false
--   description: 'Security enhancements: Added request timeouts so the script wouldn''t
-        stuck in case of server-side problems, code refactoring'
-    integration_version: 4.0
-    item_name: Azure DevOps
-    item_type: Integration
-    publish_time: 1670851424
-    ticket_number: xxx
-    new: false
-    regressive: false
-    deprecated: false
-    removed: false
--   description: Updated the publisher name
-    integration_version: 5.0
-    item_name: Azure DevOps
-    item_type: Integration
-    publish_time: 1673257086
-    ticket_number: xxx
-    new: false
-    regressive: false
-    deprecated: false
-    removed: false
--   description: 'Important - Updated the integration code to work with Python version
-        3.11. To ensure compatibility and avoid disruptions, follow the upgrade best
-        practices described in the following document: https://cloud.google.com/chronicle/docs/soar/respond/integrations-setup/upgrade-python-versions'
-    integration_version: 6.0
-    item_name: Azure DevOps
-    item_type: Integration
-    publish_time: 1735211462
-    ticket_number: ''
-    new: false
-    regressive: false
-    deprecated: false
-    removed: false
+- description: NEW! Azure DevOps Integration
+  integration_version: 1.0
+  item_name: Azure DevOps
+  item_type: Integration
+  publish_time: '2021-08-03T17:36:00Z'
+  ticket_number: xxx
+  new: false
+  regressive: false
+  deprecated: false
+  removed: false
+- description: Fixed Azure DevOps Integration Actions Definitions
+  integration_version: 2.0
+  item_name: Azure DevOps
+  item_type: Integration
+  publish_time: '2021-08-08T09:38:48Z'
+  ticket_number: xxx
+  new: false
+  regressive: false
+  deprecated: false
+  removed: false
+- description: Fixed Azure DevOps Integration Actions Definitions - IsAsync
+  integration_version: 3.0
+  item_name: Azure DevOps
+  item_type: Integration
+  publish_time: '2022-08-02T10:09:55Z'
+  ticket_number: xxx
+  new: false
+  regressive: false
+  deprecated: false
+  removed: false
+- description: 'Security enhancements: Added request timeouts so the script wouldn''t
+    stuck in case of server-side problems, code refactoring'
+  integration_version: 4.0
+  item_name: Azure DevOps
+  item_type: Integration
+  publish_time: '2022-12-12T13:23:44Z'
+  ticket_number: xxx
+  new: false
+  regressive: false
+  deprecated: false
+  removed: false
+- description: Updated the publisher name
+  integration_version: 5.0
+  item_name: Azure DevOps
+  item_type: Integration
+  publish_time: '2023-01-09T09:38:06Z'
+  ticket_number: xxx
+  new: false
+  regressive: false
+  deprecated: false
+  removed: false
+- description: 'Important - Updated the integration code to work with Python version
+    3.11. To ensure compatibility and avoid disruptions, follow the upgrade best practices
+    described in the following document: https://cloud.google.com/chronicle/docs/soar/respond/integrations-setup/upgrade-python-versions'
+  integration_version: 6.0
+  item_name: Azure DevOps
+  item_type: Integration
+  publish_time: '2024-12-26T11:11:02Z'
+  ticket_number: ''
+  new: false
+  regressive: false
+  deprecated: false
+  removed: false

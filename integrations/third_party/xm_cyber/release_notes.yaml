@@ -1,30 +1,30 @@
--   description: NEW! XMCyber integration.
-    integration_version: 1.0
-    item_name: XMCyber
-    item_type: Integration
-    publish_time: 1743675605
-    ticket_number: ''
-    new: true
-    regressive: false
-    deprecated: false
-    removed: false
--   description: 'New action added: Calculate Risk Score.'
-    integration_version: 2.0
-    item_name: Calculate Risk Score
-    item_type: Action
-    publish_time: 1746361163
-    ticket_number: ''
-    new: true
-    regressive: false
-    deprecated: false
-    removed: false
--   description: 'New action added: Enrich Entities.'
-    integration_version: 3.0
-    item_name: Enrich Entities
-    item_type: Action
-    publish_time: 1753098371
-    ticket_number: ''
-    new: true
-    regressive: false
-    deprecated: false
-    removed: false
+- description: NEW! XMCyber integration.
+  integration_version: 1.0
+  item_name: XMCyber
+  item_type: Integration
+  publish_time: '2025-04-03T10:20:05Z'
+  ticket_number: ''
+  new: true
+  regressive: false
+  deprecated: false
+  removed: false
+- description: 'New action added: Calculate Risk Score.'
+  integration_version: 2.0
+  item_name: Calculate Risk Score
+  item_type: Action
+  publish_time: '2025-05-04T12:19:23Z'
+  ticket_number: ''
+  new: true
+  regressive: false
+  deprecated: false
+  removed: false
+- description: 'New action added: Enrich Entities.'
+  integration_version: 3.0
+  item_name: Enrich Entities
+  item_type: Action
+  publish_time: '2025-07-21T11:46:11Z'
+  ticket_number: ''
+  new: true
+  regressive: false
+  deprecated: false
+  removed: false

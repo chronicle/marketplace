@@ -1,66 +1,66 @@
--   description: NEW! Cybersixgill Darkfeed Integration.
-    integration_version: 1.0
-    item_name: Cybersixgill Darkfeed
-    item_type: Integration
-    publish_time: 1621942701
-    ticket_number: xxx
-    new: false
-    regressive: false
-    deprecated: false
-    removed: false
--   description: Updated SVG of Cybersixgill Darkfeed Integration.
-    integration_version: 2.0
-    item_name: Cybersixgill Darkfeed
-    item_type: Integration
-    publish_time: 1626774317
-    ticket_number: xxx
-    new: false
-    regressive: false
-    deprecated: false
-    removed: false
--   description: Updated SVG of Cybersixgill Darkfeed Integration.
-    integration_version: 3.0
-    item_name: Cybersixgill Darkfeed
-    item_type: Integration
-    publish_time: 1635775784
-    ticket_number: xxx
-    new: false
-    regressive: false
-    deprecated: false
-    removed: false
--   description: Cybersixgill Darkfeed - Updated integration's descriptions to reflect
-        renaming to Google SecOps.
-    integration_version: 4.0
-    item_name: Cybersixgill Darkfeed
-    item_type: Integration
-    publish_time: 1714030385
-    ticket_number: '332545706'
-    new: false
-    regressive: false
-    deprecated: false
-    removed: false
--   description: 'Important - Updated the integration code to work with Python version
-        3.11. To ensure compatibility and avoid disruptions, follow the upgrade best
-        practices described in the following document: https://cloud.google.com/chronicle/docs/soar/respond/integrations-setup/upgrade-python-versions'
-    integration_version: 5.0
-    item_name: Cybersixgill Darkfeed
-    item_type: Integration
-    publish_time: 1735201755
-    ticket_number: ''
-    new: false
-    regressive: false
-    deprecated: false
-    removed: false
--   description: Integration - Regressive! All integration items were updated to comply
-        with Marketplace requirements. If you've made any custom changes to the official
-        integration items, make sure to copy them before upgrading as they will be
-        irreversible overwritten otherwise.
-    integration_version: 6.0
-    item_name: Cybersixgill Darkfeed
-    item_type: Integration
-    publish_time: 1742832164
-    ticket_number: '405144847'
-    new: false
-    regressive: true
-    deprecated: false
-    removed: false
+- description: NEW! Cybersixgill Darkfeed Integration.
+  integration_version: 1.0
+  item_name: Cybersixgill Darkfeed
+  item_type: Integration
+  publish_time: '2021-05-25T11:38:21Z'
+  ticket_number: xxx
+  new: false
+  regressive: false
+  deprecated: false
+  removed: false
+- description: Updated SVG of Cybersixgill Darkfeed Integration.
+  integration_version: 2.0
+  item_name: Cybersixgill Darkfeed
+  item_type: Integration
+  publish_time: '2021-07-20T09:45:17Z'
+  ticket_number: xxx
+  new: false
+  regressive: false
+  deprecated: false
+  removed: false
+- description: Updated SVG of Cybersixgill Darkfeed Integration.
+  integration_version: 3.0
+  item_name: Cybersixgill Darkfeed
+  item_type: Integration
+  publish_time: '2021-11-01T14:09:44Z'
+  ticket_number: xxx
+  new: false
+  regressive: false
+  deprecated: false
+  removed: false
+- description: Cybersixgill Darkfeed - Updated integration's descriptions to reflect
+    renaming to Google SecOps.
+  integration_version: 4.0
+  item_name: Cybersixgill Darkfeed
+  item_type: Integration
+  publish_time: '2024-04-25T07:33:05Z'
+  ticket_number: '332545706'
+  new: false
+  regressive: false
+  deprecated: false
+  removed: false
+- description: 'Important - Updated the integration code to work with Python version
+    3.11. To ensure compatibility and avoid disruptions, follow the upgrade best practices
+    described in the following document: https://cloud.google.com/chronicle/docs/soar/respond/integrations-setup/upgrade-python-versions'
+  integration_version: 5.0
+  item_name: Cybersixgill Darkfeed
+  item_type: Integration
+  publish_time: '2024-12-26T08:29:15Z'
+  ticket_number: ''
+  new: false
+  regressive: false
+  deprecated: false
+  removed: false
+- description: Integration - Regressive! All integration items were updated to comply
+    with Marketplace requirements. If you've made any custom changes to the official
+    integration items, make sure to copy them before upgrading as they will be irreversible
+    overwritten otherwise.
+  integration_version: 6.0
+  item_name: Cybersixgill Darkfeed
+  item_type: Integration
+  publish_time: '2025-03-24T16:02:44Z'
+  ticket_number: '405144847'
+  new: false
+  regressive: true
+  deprecated: false
+  removed: false

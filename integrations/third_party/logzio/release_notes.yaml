@@ -1,32 +1,32 @@
--   description: NEW! Logz.io integration.
-    integration_version: 1.0
-    item_name: Logzio
-    item_type: Integration
-    publish_time: 1614766659
-    ticket_number: xxx
-    new: false
-    regressive: false
-    deprecated: false
-    removed: false
--   description: Updated the integration's categories.
-    integration_version: 2.0
-    item_name: Logzio
-    item_type: Integration
-    publish_time: 1630051933
-    ticket_number: xxx
-    new: false
-    regressive: false
-    deprecated: false
-    removed: false
--   description: 'Important - Updated the integration code to work with Python version
-        3.11. To ensure compatibility and avoid disruptions, follow the upgrade best
-        practices described in the following document: https://cloud.google.com/chronicle/docs/soar/respond/integrations-setup/upgrade-python-versions'
-    integration_version: 3.0
-    item_name: Logzio
-    item_type: Integration
-    publish_time: 1735201887
-    ticket_number: ''
-    new: false
-    regressive: false
-    deprecated: false
-    removed: false
+- description: NEW! Logz.io integration.
+  integration_version: 1.0
+  item_name: Logzio
+  item_type: Integration
+  publish_time: '2021-03-03T10:17:39Z'
+  ticket_number: xxx
+  new: false
+  regressive: false
+  deprecated: false
+  removed: false
+- description: Updated the integration's categories.
+  integration_version: 2.0
+  item_name: Logzio
+  item_type: Integration
+  publish_time: '2021-08-27T08:12:13Z'
+  ticket_number: xxx
+  new: false
+  regressive: false
+  deprecated: false
+  removed: false
+- description: 'Important - Updated the integration code to work with Python version
+    3.11. To ensure compatibility and avoid disruptions, follow the upgrade best practices
+    described in the following document: https://cloud.google.com/chronicle/docs/soar/respond/integrations-setup/upgrade-python-versions'
+  integration_version: 3.0
+  item_name: Logzio
+  item_type: Integration
+  publish_time: '2024-12-26T08:31:27Z'
+  ticket_number: ''
+  new: false
+  regressive: false
+  deprecated: false
+  removed: false

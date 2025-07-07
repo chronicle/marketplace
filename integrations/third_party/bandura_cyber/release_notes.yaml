@@ -1,55 +1,55 @@
--   description: NEW! Bandura Cyber Integration.
-    integration_version: 1.0
-    item_name: Bandura Cyber
-    item_type: Integration
-    publish_time: 1626107376
-    ticket_number: xxx
-    new: false
-    regressive: false
-    deprecated: false
-    removed: false
--   description: Update SVG Bandura Cyber Integration.
-    integration_version: 2.0
-    item_name: Bandura Cyber
-    item_type: Integration
-    publish_time: 1626774317
-    ticket_number: xxx
-    new: false
-    regressive: false
-    deprecated: false
-    removed: false
--   description: Update SVG Bandura Cyber Integration.
-    integration_version: 3.0
-    item_name: Bandura Cyber
-    item_type: Integration
-    publish_time: 1635782738
-    ticket_number: xxx
-    new: false
-    regressive: false
-    deprecated: false
-    removed: false
--   description: 'Important - Updated the integration code to work with Python version
-        3.11. To ensure compatibility and avoid disruptions, follow the upgrade best
-        practices described in the following document: https://cloud.google.com/chronicle/docs/soar/respond/integrations-setup/upgrade-python-versions'
-    integration_version: 4.0
-    item_name: Bandura Cyber
-    item_type: Integration
-    publish_time: 1735211822
-    ticket_number: ''
-    new: false
-    regressive: false
-    deprecated: false
-    removed: false
--   description: Integration - Regressive! All integration items were updated to comply
-        with Marketplace requirements. If you've made any custom changes to the official
-        integration items, make sure to copy them before upgrading as they will be
-        irreversible overwritten otherwise.
-    integration_version: 5.0
-    item_name: Bandura Cyber
-    item_type: Integration
-    publish_time: 1742832164
-    ticket_number: '405144847'
-    new: false
-    regressive: true
-    deprecated: false
-    removed: false
+- description: NEW! Bandura Cyber Integration.
+  integration_version: 1.0
+  item_name: Bandura Cyber
+  item_type: Integration
+  publish_time: '2021-07-12T16:29:36Z'
+  ticket_number: xxx
+  new: false
+  regressive: false
+  deprecated: false
+  removed: false
+- description: Update SVG Bandura Cyber Integration.
+  integration_version: 2.0
+  item_name: Bandura Cyber
+  item_type: Integration
+  publish_time: '2021-07-20T09:45:17Z'
+  ticket_number: xxx
+  new: false
+  regressive: false
+  deprecated: false
+  removed: false
+- description: Update SVG Bandura Cyber Integration.
+  integration_version: 3.0
+  item_name: Bandura Cyber
+  item_type: Integration
+  publish_time: '2021-11-01T16:05:38Z'
+  ticket_number: xxx
+  new: false
+  regressive: false
+  deprecated: false
+  removed: false
+- description: 'Important - Updated the integration code to work with Python version
+    3.11. To ensure compatibility and avoid disruptions, follow the upgrade best practices
+    described in the following document: https://cloud.google.com/chronicle/docs/soar/respond/integrations-setup/upgrade-python-versions'
+  integration_version: 4.0
+  item_name: Bandura Cyber
+  item_type: Integration
+  publish_time: '2024-12-26T11:17:02Z'
+  ticket_number: ''
+  new: false
+  regressive: false
+  deprecated: false
+  removed: false
+- description: Integration - Regressive! All integration items were updated to comply
+    with Marketplace requirements. If you've made any custom changes to the official
+    integration items, make sure to copy them before upgrading as they will be irreversible
+    overwritten otherwise.
+  integration_version: 5.0
+  item_name: Bandura Cyber
+  item_type: Integration
+  publish_time: '2025-03-24T16:02:44Z'
+  ticket_number: '405144847'
+  new: false
+  regressive: true
+  deprecated: false
+  removed: false

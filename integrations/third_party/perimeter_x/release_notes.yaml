@@ -1,75 +1,75 @@
--   description: NEW! PerimeterX Integration.
-    integration_version: 1.0
-    item_name: PerimeterX
-    item_type: Integration
-    publish_time: 1610026158
-    ticket_number: xxx
-    new: false
-    regressive: false
-    deprecated: false
-    removed: false
--   description: Updated Integration SVG.
-    integration_version: 2.0
-    item_name: PerimeterX
-    item_type: Integration
-    publish_time: 1635784902
-    ticket_number: xxx
-    new: false
-    regressive: false
-    deprecated: false
-    removed: false
--   description: Updated Integration PNG.
-    integration_version: 3.0
-    item_name: PerimeterX
-    item_type: Integration
-    publish_time: 1636273168
-    ticket_number: xxx
-    new: false
-    regressive: false
-    deprecated: false
-    removed: false
--   description: Vulnerability fix - Enable server certificate validation on this
-        SSL/TLS connection.
-    integration_version: 4.0
-    item_name: PerimeterX
-    item_type: Integration
-    publish_time: 1704448092
-    ticket_number: '318191170'
-    new: false
-    regressive: false
-    deprecated: false
-    removed: false
--   description: Fix! Slack Connector For Code Defender - fix set new timestamp when
-        no new alerts enriched.
-    integration_version: 4.0
-    item_name: Slack Connector For Code Defender
-    item_type: Connector
-    publish_time: 1704448092
-    ticket_number: '318191120'
-    new: false
-    regressive: false
-    deprecated: false
-    removed: false
--   description: PerimeterX - Updated integration's descriptions to reflect renaming
-        to Google SecOps.
-    integration_version: 5.0
-    item_name: PerimeterX
-    item_type: Integration
-    publish_time: 1714030385
-    ticket_number: '332545706'
-    new: false
-    regressive: false
-    deprecated: false
-    removed: false
--   description: 'Important - Updated the integration code to work with Python version
-        3.11. To ensure compatibility and avoid disruptions, follow the upgrade best
-        practices described in the following document: https://cloud.google.com/chronicle/docs/soar/respond/integrations-setup/upgrade-python-versions'
-    integration_version: 6.0
-    item_name: PerimeterX
-    item_type: Integration
-    publish_time: 1735201716
-    ticket_number: ''
-    new: false
-    regressive: false
-    deprecated: false
-    removed: false
+- description: NEW! PerimeterX Integration.
+  integration_version: 1.0
+  item_name: PerimeterX
+  item_type: Integration
+  publish_time: '2021-01-07T13:29:18Z'
+  ticket_number: xxx
+  new: false
+  regressive: false
+  deprecated: false
+  removed: false
+- description: Updated Integration SVG.
+  integration_version: 2.0
+  item_name: PerimeterX
+  item_type: Integration
+  publish_time: '2021-11-01T16:41:42Z'
+  ticket_number: xxx
+  new: false
+  regressive: false
+  deprecated: false
+  removed: false
+- description: Updated Integration PNG.
+  integration_version: 3.0
+  item_name: PerimeterX
+  item_type: Integration
+  publish_time: '2021-11-07T08:19:28Z'
+  ticket_number: xxx
+  new: false
+  regressive: false
+  deprecated: false
+  removed: false
+- description: Vulnerability fix - Enable server certificate validation on this SSL/TLS
+    connection.
+  integration_version: 4.0
+  item_name: PerimeterX
+  item_type: Integration
+  publish_time: '2024-01-05T09:48:12Z'
+  ticket_number: '318191170'
+  new: false
+  regressive: false
+  deprecated: false
+  removed: false
+- description: Fix! Slack Connector For Code Defender - fix set new timestamp when
+    no new alerts enriched.
+  integration_version: 4.0
+  item_name: Slack Connector For Code Defender
+  item_type: Connector
+  publish_time: '2024-01-05T09:48:12Z'
+  ticket_number: '318191120'
+  new: false
+  regressive: false
+  deprecated: false
+  removed: false
+- description: PerimeterX - Updated integration's descriptions to reflect renaming
+    to Google SecOps.
+  integration_version: 5.0
+  item_name: PerimeterX
+  item_type: Integration
+  publish_time: '2024-04-25T07:33:05Z'
+  ticket_number: '332545706'
+  new: false
+  regressive: false
+  deprecated: false
+  removed: false
+- description: 'Important - Updated the integration code to work with Python version
+    3.11. To ensure compatibility and avoid disruptions, follow the upgrade best practices
+    described in the following document: https://cloud.google.com/chronicle/docs/soar/respond/integrations-setup/upgrade-python-versions'
+  integration_version: 6.0
+  item_name: PerimeterX
+  item_type: Integration
+  publish_time: '2024-12-26T08:28:36Z'
+  ticket_number: ''
+  new: false
+  regressive: false
+  deprecated: false
+  removed: false
