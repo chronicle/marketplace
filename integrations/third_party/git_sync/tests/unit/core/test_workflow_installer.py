@@ -111,23 +111,30 @@ class TestWorkflowInstaller:
             assert workflow_installer._workflow_exists("ExistingWorkflow") is True
             assert workflow_installer._workflow_exists("NonExistentWorkflow") is False
 
-    def test_update_workflow_if_needed_skips_unmodified_workflow(self,
-                                                                 workflow_installer,
-                                                                 mock_workflow):
-        with patch.object(workflow_installer, '_workflow_was_modified', return_value=False), \
-                patch.object(workflow_installer, '_filter_and_save_context') as mock_save, \
-                patch.object(workflow_installer.logger, 'info'):
+    def test_update_workflow_if_needed_skips_unmodified_workflow(
+        self, workflow_installer, mock_workflow
+    ):
+        with (
+            patch.object(workflow_installer, "_workflow_was_modified", return_value=False),
+            patch.object(workflow_installer, "_filter_and_save_context") as mock_save,
+            patch.object(workflow_installer, "update_local_workflow") as mock_update,
+        ):
             workflow_installer._update_workflow_if_needed(mock_workflow)
 
             mock_save.assert_called_once()
+            mock_update.assert_not_called()
 
-    def test_update_workflow_if_needed_processes_modified_workflow(self,
-                                                                   workflow_installer,
-                                                                   mock_workflow):
-        with patch.object(workflow_installer, '_workflow_was_modified', return_value=True), \
-                patch.object(workflow_installer, '_log_merge_conflicts'), \
-                patch.object(workflow_installer, 'update_local_workflow') as mock_update:
+    def test_update_workflow_if_needed_processes_modified_workflow(
+        self, workflow_installer, mock_workflow
+    ):
+        with (
+            patch.object(workflow_installer, "_workflow_was_modified", return_value=True),
+            patch.object(workflow_installer, "_log_merge_conflicts") as mock_log_conflicts,
+            patch.object(workflow_installer, "update_local_workflow") as mock_update,
+        ):
             workflow_installer._update_workflow_if_needed(mock_workflow)
+
+            mock_log_conflicts.assert_called_once()  # This could be added
             mock_update.assert_called_once_with(mock_workflow)
 
     def test_process_steps_handles_regular_action_step(self, workflow_installer, mock_workflow):
