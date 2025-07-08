@@ -176,10 +176,10 @@ class GitSyncManager:
 
         There are two different flows to install an integration,
         If the integration is custom, the entire zip (ide/exportPackage) is used when pushing, so we
-         import it
+        import it
         as a zip file (ide/importPackage)
         if the integration is commercial, only custom items are pushed, that means we iterate the
-         items, install new
+        items, install new
         items and update existing ones.
 
         Args:
@@ -244,11 +244,9 @@ class GitSyncManager:
         """Installs or update a connector instance
 
         If the integration of the connector doesn't exist, will attempt to install it from the
-        marketplace or from the
-        git repository,
+        marketplace or from the git repository,
         If the connector instance integration version doesn't match the installed integration,
-        the update button on the
-        connector will forcibly activate to update the definition
+        the update button on the connector will forcibly activate to update the definition
 
         Args:
             connector: A Connector object instance to install
