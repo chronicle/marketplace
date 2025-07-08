@@ -17,6 +17,7 @@ from __future__ import annotations
 import sys
 from unittest.mock import MagicMock, patch, Mock, PropertyMock, call
 
+
 mock_modules = {
     'soar_sdk': Mock(),
     'soar_sdk.SiemplifyBase': Mock(),
@@ -48,7 +49,7 @@ sys.modules['TIPCommon.types'].SingleJson = Mock()
 sys.modules['SiemplifyConnectors'].SiemplifyConnectorExecution = Mock()
 
 import pytest  # noqa: E402
-from integrations.third_party.git_sync.core.GitSyncManager import WorkflowInstaller  # noqa: E402
+from ....core.GitSyncManager import WorkflowInstaller  # noqa: E402
 
 
 class MockWorkflow:
