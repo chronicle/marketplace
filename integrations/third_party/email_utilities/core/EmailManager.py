@@ -148,7 +148,7 @@ class URLDefenseDecoder:
         )
         URLDefenseDecoder.v1_pattern = re.compile(r"u=(?P<url>.+?)&k=")
         URLDefenseDecoder.v2_pattern = re.compile(r"u=(?P<url>.+?)&[dc]=")
-        # URLDefenseDecoder.v3_pattern = 
+        # URLDefenseDecoder.v3_pattern =
         # re.compile(r'v3/__(?P<url>.+?)__;(?P<enc_bytes>.*?)!')
         URLDefenseDecoder.v3_pattern = re.compile(
             r"v3/__(?P<url>.+?)__(;(?P<enc_bytes>.*?)!)?",
@@ -688,6 +688,24 @@ class EmailUtils:
         r["hosts"].extend(route["hosts"])
         return r
 
+    # Compile the regex once as a class attribute for efficiency.
+    _HTML_TAGS_TO_REMOVE = re.compile(
+        r"<(pre|blockquote)[^>]*>.*?</\1>",
+        re.IGNORECASE | re.DOTALL,
+    )
+
+    @staticmethod
+    def _preprocess_html_for_rendering(html_body: str) -> str:
+        """Removes specific HTML tags that can interfere with text rendering.
+
+        Args:
+            html_body: The HTML content to process.
+
+        Returns:
+            The processed HTML string.
+        """
+        return EmailUtils._HTML_TAGS_TO_REMOVE.sub("", html_body)
+
     @staticmethod
     def render_html_body(html_body: str) -> str:
         """Render html body to plain text.
@@ -695,16 +713,13 @@ class EmailUtils:
         :param html_body: The HTML body of the email as a string.
         :return: Plain text rendered HTML as a string.
         """
-        if html_body:
-            tags_to_remove = ["pre", "blockquote"]
-            for tag in tags_to_remove:
-                pattern = re.compile(
-                    f"<{tag}[^>]*>.*?</{tag}>",
-                    re.IGNORECASE | re.DOTALL
-                    )
-                html_body = pattern.sub("", html_body)
+        # Use a guard clause to handle empty input and reduce nesting.
+        if not html_body:
+            return ""
 
-        def build_html_rendered() -> HTML2Text:
+        processed_html = EmailUtils._preprocess_html_for_rendering(html_body)
+
+        def build_html_renderer() -> HTML2Text:
             """Create a HTML2Text object."""
             renderer = HTML2Text()
             renderer.ignore_tables = True
@@ -715,8 +730,8 @@ class EmailUtils:
             return renderer
 
         try:
-            html_renderer = build_html_rendered()
-            return html_renderer.handle(html_body or "")
+            html_renderer = build_html_renderer()
+            return html_renderer.handle(processed_html)
         except Exception as e:
             # The html2text library can sometimes fail on complex or malformed HTML.
             return f"Failed rendering HTML. Error: {e}"
@@ -823,7 +838,7 @@ class EmailBody:
     ) -> typing.Iterator[str]:
         """Yield a more or less constant slice of a large string.
         If we start directly a *re* findall on 500K+ body we got time and memory issues.
-        If more than the configured slice step, lets cheat, we will cut around the thing we 
+        If more than the configured slice step, lets cheat, we will cut around the thing we
         search "://, @, ." in order to reduce regex complexity.
 
         Args:
@@ -1436,7 +1451,7 @@ class EMLParser:
                             "ignore",
                         )
 
-                # In case we hit bug 27257 or any other parsing error, try to downgrade the 
+                # In case we hit bug 27257 or any other parsing error, try to downgrade the
                 # used policy
                 try:
                     raw_body.append((encoding, raw_body_str, msg.items()))
@@ -1449,7 +1464,7 @@ class EMLParser:
         return raw_body
 
     def header_email_list(self, header):
-        """Parses a given header field like to, from, cc with e-mail addresses to a list 
+        """Parses a given header field like to, from, cc with e-mail addresses to a list
         of e-mail addresses.
         """
         if self.msg is None:
@@ -1508,8 +1523,8 @@ class EmailManager:
             attachment["level"] = nested_level
 
             self.attachments.append(attachment.copy())
-            # if attachment['mime_type_short'] == 'message/rfc822' or 
-            # attachment['mime_type_short'] == 'Composite Document File V2 Document, 
+            # if attachment['mime_type_short'] == 'message/rfc822' or
+            # attachment['mime_type_short'] == 'Composite Document File V2 Document,
             # No summary info':
             decoded_data = base64.b64decode(attachment["raw"])
             p_email = self.traverse_attachments(
@@ -1915,14 +1930,14 @@ class EmailManager:
                 entity_type in create_observed_entity_types.lower()
                 or "all" in create_observed_entity_types.lower()
             ):
-                # self.siemplify.LOGGER.info(f"Creating any {ioc_type} IOCs from 
+                # self.siemplify.LOGGER.info(f"Creating any {ioc_type} IOCs from
                 # {email['header']['subject']}")
                 entities = self.build_entity_list(email, entity_type, exclude_regex)
                 self.siemplify.LOGGER.info(
                     f"Got these {entity_type} entities to create: {entities}.",
                 )
                 for entity in entities:
-                    # If the fang_entities option is set,  attempt to fang, decode url 
+                    # If the fang_entities option is set,  attempt to fang, decode url
                     # defence, and decode safelinks
                     if fang_entities:
                         entity = ioc_fanger.fang(entity)
@@ -1940,7 +1955,7 @@ class EmailManager:
                             "safelinks.protection.outlook.com" in entity.lower()
                             and entity_type == "DestinationURL"
                         ):
-                            # if the URL contains safelinks, use urlparse and parse_qs to 
+                            # if the URL contains safelinks, use urlparse and parse_qs to
                             # extract to the correct URL
                             try:
                                 entity = parse_qs(urlparse(entity.lower()).query)[
@@ -1982,7 +1997,7 @@ class EmailManager:
                 if "raw" in properties:
                     del properties["raw"]
 
-                # This is because the ETL layer removes the extension from the filename 
+                # This is because the ETL layer removes the extension from the filename
                 # when its attached.  DUMB
                 name, attachment_type = os.path.splitext(entity_identifier)
                 for a in alert_entities:
@@ -1994,7 +2009,7 @@ class EmailManager:
                     self.logger.info(
                         f"creating with relation: {entity_identifier} to {subject_entity}",
                     )
-                    # self.logger.info(f"No subject entity. Linking {entity_identifier} to 
+                    # self.logger.info(f"No subject entity. Linking {entity_identifier} to
                     # {subject_entity}  ")
                     self.create_entity_with_relation(
                         entity_identifier,
