@@ -125,6 +125,7 @@ class Marketplace:
         with multiprocessing.Pool(processes=processes) as pool:
             pool.map(self.build_integration, paths)
 
+        rich.print("GOT HERE!!!")
         self.validate_all_uv_lock_files(paths)
 
     def build_integration(self, integration_path: pathlib.Path) -> None:
@@ -289,7 +290,7 @@ class Marketplace:
         self,
         integration_path: pathlib.Path
     ) -> None:
-        rich.print(f"Validating lock file in  {integration_path}")
+        rich.print(f"Validating lock file in {integration_path}")
 
         stdout, stderr = check_lock_file(integration_path)
         if stdout:
