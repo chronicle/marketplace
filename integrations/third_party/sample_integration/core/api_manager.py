@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import datetime as dt
 from collections.abc import Iterable
 
@@ -38,7 +40,7 @@ class ApiManager:
         self,
         currencies: Iterable[str],
         start_date: dt.date,
-        end_date: dt.date = None,
+        end_date: dt.date | None = None,
     ) -> list[DailyRates]:
         """Get daily rates for a given date range and currencies.
 

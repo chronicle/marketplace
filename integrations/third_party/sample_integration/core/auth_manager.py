@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import dataclasses
 
 from TIPCommon.base.utils import CreateSession
@@ -76,7 +78,7 @@ class AuthManager:
     def __init__(
         self,
         params: AuthManagerParams,
-    ):
+    ) -> None:
         self.params = params
         self.api_root = params.api_root
 

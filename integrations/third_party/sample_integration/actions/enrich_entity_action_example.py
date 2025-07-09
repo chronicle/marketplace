@@ -33,7 +33,7 @@ class EnrichEntityActionExample(BaseAction):
             print_value=True,
         )
 
-    def _validate_params(self):
+    def _validate_params(self) -> None:
         validator = ParameterValidator(self.soar_action)
         self.params.entity_type = validator.validate_ddl(
             param_name="Entity Type",
