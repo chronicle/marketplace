@@ -713,6 +713,9 @@ class WorkflowInstaller:
             if relation.get("toStep") in identifier_mappings:
                 relation["toStep"] = identifier_mappings.get(relation.get("toStep"))
 
+        self._fix_loop_keys_and_parameters(identifier_mappings, workflow)
+
+    def _fix_loop_keys_and_parameters(self, identifier_mappings, workflow):
         for step in self._flatten_playbook_steps(workflow.raw_data.get("steps")):
             if "startLoopStepIdentifier" in step and step["startLoopStepIdentifier"]:
                 mapped_id = identifier_mappings.get(step["startLoopStepIdentifier"])
@@ -723,6 +726,17 @@ class WorkflowInstaller:
                 mapped_id = identifier_mappings.get(step["endLoopStepIdentifier"])
                 if mapped_id:
                     step["endLoopStepIdentifier"] = mapped_id
+
+            parameters = step.get("parameters", [])
+            for param in parameters:
+                param_name = param.get("name")
+                param_value = param.get("value")
+
+                # Handle EndLoopStepIdentifier parameter
+                if param_name == "EndLoopStepIdentifier" and param_value:
+                    mapped_id = identifier_mappings.get(param_value)
+                    if mapped_id:
+                        param["value"] = mapped_id
 
     def _save_workflow_mod_time_to_context(self, workflow: Workflow) -> None:
         self.refresh_cache_item("playbooks")
@@ -910,7 +924,8 @@ class WorkflowInstaller:
         return [
             x
             for x in instances
-            if x.get("integrationIdentifier") == integration_name
+            if (x.get("integrationIdentifier") == integration_name
+                or x.get("integrationIdentifier") == "Shared_" + integration_name)
             and x.get("isConfigured")
         ]
 
