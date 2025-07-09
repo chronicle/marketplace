@@ -125,6 +125,8 @@ class Marketplace:
         with multiprocessing.Pool(processes=processes) as pool:
             pool.map(self.build_integration, paths)
 
+        self.validate_all_uv_lock_files(paths)
+
     def build_integration(self, integration_path: pathlib.Path) -> None:
         """Build a single integration provided by `integration_path`.
 
@@ -279,13 +281,9 @@ class Marketplace:
         integration_paths: Iterable[pathlib.Path]
     ) -> None:
 
-        paths: Iterator[pathlib.Path] = (
-            p for p in integration_paths if p.exists() and mp.core.file_utils.is_integration(p)
-        )
-
         processes: int = mp.core.config.get_processes_number()
         with multiprocessing.Pool(processes=processes) as pool:
-            pool.map(self.validate_uv_lock_file, paths)
+            pool.map(self.validate_uv_lock_file, integration_paths)
 
     def validate_uv_lock_file(
         self,
