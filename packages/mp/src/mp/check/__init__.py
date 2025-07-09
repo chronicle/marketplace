@@ -25,6 +25,8 @@ and consistency.
 from __future__ import annotations
 
 import pathlib
+import subprocess
+import sys
 import warnings
 from typing import TYPE_CHECKING, Annotated, NamedTuple
 
@@ -211,6 +213,28 @@ def _check_paths(check_params: CheckParams) -> None:
     if check_params.static_type_check:
         rich.print("Performing static type checking on files")
         mp.core.code_manipulation.static_type_check_python_files(paths)
+
+
+@app.command(name="lock", help="Check that lock files are up to date.")
+def check_lock_files() -> None:
+    """Check that lock files are up to date."""
+    integrations_path = mp.core.file_utils.get_integrations_path()
+    products = mp.core.file_utils.get_integrations_and_groups_from_paths(
+        integrations_path,
+    )
+    for integration in products.integrations:
+        rich.print(f"Checking {integration.name}...")
+        result = subprocess.run(
+            [sys.executable, "-m", "uv", "lock", "--check"],
+            cwd=integration,
+            capture_output=True,
+            text=True,
+        )
+        if result.returncode != 0:
+            rich.print(f"[bold red]Error checking lock file for {integration.name}:")
+            rich.print(result.stderr)
+            raise typer.Exit(code=1)
+    rich.print("[bold green]All lock files are up to date.")
 
 
 def _get_source_files(file_paths: list[str], *, changed_files: bool) -> list[str]:
