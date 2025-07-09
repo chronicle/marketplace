@@ -387,5 +387,66 @@ def get_flags_to_command(**flags: bool | str | list[str]) -> list[str]:
     return all_flags
 
 
+# def sync_venv(project_path: pathlib.Path) -> None:
+#
+#     python_version: str = _get_python_version()
+#
+#     command: list[str] = [
+#         sys.executable,
+#         "-m",
+#         "uv",
+#         "sync",
+#         "--project",
+#         str(project_path),
+#         "--python",
+#         python_version,
+#     ]
+#
+#     runtime_config: list[str] = _get_runtime_config()
+#     command.extend(runtime_config)
+#
+#     try:
+#         sp.run(command, cwd=project_path, check=True, text=True)
+#         if not config.is_quiet():
+#             print(
+#                 "Successfully synchronized virtual environment for project "
+#                 f"at '{project_path}'."
+#             )
+#     except sp.CalledProcessError as e:
+#         raise CommandError(COMMAND_ERR_MSG.format(e)) from e
+
+
+def check_lock_file(project_path: pathlib.Path) -> list[str]:
+    python_version: str = _get_python_version()
+
+    command: list[str] = [
+        sys.executable,
+        "-m",
+        "uv",
+        "lock",
+        "--check",
+        "--project",
+        str(project_path),
+        "--python",
+        python_version,
+    ]
+
+    runtime_config: list[str] = _get_runtime_config()
+    command.extend(runtime_config)
+
+    try:
+        result = sp.run(
+            command,
+            cwd=project_path,
+            check=True,
+            text=True,
+            capture_output=True
+        )
+        return [result.stdout, result.stderr]
+
+    except sp.CalledProcessError as e:
+        raise CommandError(COMMAND_ERR_MSG.format(e)) from e
+
+
 def _get_python_version() -> str:
     return f"{sys.version_info.major}.{sys.version_info.minor}.{sys.version_info.micro}"

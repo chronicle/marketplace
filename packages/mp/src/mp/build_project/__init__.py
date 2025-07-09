@@ -223,6 +223,8 @@ def _build_integrations(
         else:
             marketplace_.build_integrations(valid_integrations_)
 
+        marketplace_.validate_all_uv_lock_files(valid_integrations_)
+
 
 def _build_groups(groups: Iterable[str], marketplace_: Marketplace) -> None:
     valid_groups: set[pathlib.Path] = _get_marketplace_paths_from_names(
