@@ -39,6 +39,7 @@ from mp.core.data_models.integration import BuiltFullDetails, BuiltIntegration, 
 from mp.core.file_utils import is_built
 from mp.core.unix import check_lock_file
 
+from ..core.unix import CommandError, check_lock_file
 from .post_build.full_details_json import write_full_details
 from .post_build.marketplace_json import write_marketplace_json
 from .restructure.deconstruct import DeconstructIntegration
@@ -279,3 +280,34 @@ class Marketplace:
             integration / mp.core.constants.README_FILE,
             integration / mp.core.constants.INTEGRATION_VENV,
         )
+
+    def validate_all_uv_lock_files(
+        self,
+        integration_paths: Iterable[pathlib.Path]
+    ) -> None:
+
+        paths: Iterator[pathlib.Path] = (
+            p for p in integration_paths if p.exists() and mp.core.file_utils.is_integration(p)
+        )
+
+        processes: int = mp.core.config.get_processes_number()
+        with multiprocessing.Pool(processes=processes) as pool:
+            pool.map(self.validate_uv_lock_file, paths)
+
+    def validate_uv_lock_file(
+        self,
+        integration_path: pathlib.Path
+    ) -> None:
+        rich.print(f"Validating lock file in  {integration_path}")
+        try:
+            stdout, stderr = check_lock_file(integration_path)
+            if stdout:
+                rich.print(f"Standard Output: \n{stdout}")
+            if stderr:
+                rich.print(f"Standard Error (Warnings/Info):\n{stderr}")
+            if not stdout and not stderr:
+                rich.print(f"Validation successful for {integration_path}")
+
+        except CommandError as err:
+            rich.print(f"Validation failed for {integration_path}")
+            rich.print(err)
