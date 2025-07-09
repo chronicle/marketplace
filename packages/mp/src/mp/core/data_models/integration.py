@@ -534,7 +534,7 @@ class Integration:
             Connectors=[cm.name for cm in self.connectors_metadata.values()],
             Managers=self.common_modules,
             CustomFamilies=[cf.family for cf in self.custom_families],
-            MappingRules=["Default mapping rules"] if self.mapping_rules else [],
+            MappingRules=["Default Ontology Mapping"] if self.mapping_rules else [],
             Widgets=[wm.title for wm in self.widgets_metadata.values()],
             Version=float(self.metadata.version),
             IsCustom=False,
