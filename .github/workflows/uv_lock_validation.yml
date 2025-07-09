@@ -1,11 +1,11 @@
 name: Uv Lock Validation
 on:
-  pull_request:
-    branches:
-    - uv-check
   push:
     branches:
-    - uv-check
+    - '**'
+  pull_request:
+    branches:
+    - '**'
   schedule:
   - cron: '0 0 * * *'
 
