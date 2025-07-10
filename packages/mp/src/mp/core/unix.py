@@ -20,8 +20,6 @@ import subprocess as sp  # noqa: S404
 import sys
 from typing import IO, TYPE_CHECKING
 
-import rich
-
 from . import config, constants, file_utils
 
 if TYPE_CHECKING:
@@ -430,9 +428,11 @@ def check_lock_file(project_path: pathlib.Path) -> None:
 
     except sp.CalledProcessError as e:
         error_output = e.stderr.strip()
-
-        rich.print(f"[red]UV Lock Check Failed: {error_output}[/red]")
-        raise CommandError(COMMAND_ERR_MSG.format("uv lock --check")) from e
+        error_output = (
+            COMMAND_ERR_MSG.format("uv lock --check") +
+            f" UV Lock Check Failed: {error_output}"
+        )
+        raise CommandError(error_output) from e
 
 
 def _get_python_version() -> str:
