@@ -390,8 +390,7 @@ def get_flags_to_command(**flags: bool | str | list[str]) -> list[str]:
 
 
 def check_lock_file(project_path: pathlib.Path) -> None:
-    """Checks if the 'uv.lock' file is consistent with
-    the project's 'pyproject.toml' using the 'uv lock --check' command.
+    """Check if the 'uv.lock' file is consistent with 'pyproject.toml' file.
 
     Args:
         project_path: The integration path to the project directory
@@ -421,7 +420,7 @@ def check_lock_file(project_path: pathlib.Path) -> None:
     command.extend(runtime_config)
 
     try:
-        sp.run(
+        sp.run(  # noqa: S603
             command,
             cwd=project_path,
             check=True,
@@ -433,7 +432,7 @@ def check_lock_file(project_path: pathlib.Path) -> None:
         error_output = e.stderr.strip()
 
         rich.print(f"[red]UV Lock Check Failed: {error_output}[/red]")
-        raise CommandError(COMMAND_ERR_MSG.format("uv lock --check"))
+        raise CommandError(COMMAND_ERR_MSG.format("uv lock --check")) from e
 
 
 def _get_python_version() -> str:
