@@ -22,6 +22,7 @@ import re
 import sys
 import time
 
+from netaddr import IPAddress, AddrFormatError
 import dnslib
 
 # only needed for arc
@@ -2246,3 +2247,26 @@ def fix_malformed_eml_content(content_bytes: bytes) -> bytes:
         content_bytes = content_bytes.replace(text_content_type, next_content_type, 1)
 
     return content_bytes
+
+
+def extract_valid_ips_from_body(body: str) -> list[str]:
+    """Extract valid IPs from body.
+
+    Args:
+        body (str): string to extract valid ips.
+
+    Retruns:
+        list[str]: list of valid ips.
+    """
+    candidates = re.findall(r"\b[0-9a-fA-F:.]+\b", body)
+    valid_ips = []
+
+    for candidate in candidates:
+        try:
+            ip = IPAddress(candidate)
+            valid_ips.append(str(ip))
+
+        except AddrFormatError:
+            pass
+
+    return valid_ips
