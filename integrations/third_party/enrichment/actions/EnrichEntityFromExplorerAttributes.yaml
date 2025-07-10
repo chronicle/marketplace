@@ -1,6 +1,5 @@
 name: Enrich Entity from Explorer Attributes
-description: Enriches entities with historic enrichment data using the entity explorer.  Requires
-    API key to be configured for the integration.
+description: Enriches entities with historic enrichment data using the entity explorer.
 integration_identifier: Enrichment
 parameters:
     -   name: Field Name

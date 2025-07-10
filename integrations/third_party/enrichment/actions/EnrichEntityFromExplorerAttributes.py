@@ -14,17 +14,15 @@
 
 from __future__ import annotations
 
-import copy
 import json
 
 import requests
 from soar_sdk.ScriptResult import EXECUTION_STATE_COMPLETED
 from soar_sdk.SiemplifyAction import SiemplifyAction
 from soar_sdk.SiemplifyUtils import convert_dict_to_json_result_dict, output_handler
+from TIPCommon.rest.soar_api import get_entity_data
 
-GET_ENTITY_URL = "{}/external/v1/entities/GetEntityData?format=camel"
 
-HEADERS = {"Content-Type": "application/json", "Accept": "*/*"}
 SCRIPT_NAME = "Enrich Entity from Explorer"
 SYSTEM_FIELDS = [
     "Type",
@@ -66,19 +64,12 @@ def main():
     status = EXECUTION_STATE_COMPLETED
     output_message = "output message : "
     json_results = {}
-    # Set our headers var
-    headers = copy.deepcopy(HEADERS)
     siemplify = SiemplifyAction()
     siemplify.script_name = SCRIPT_NAME
 
     try:
         # Get our bearer token
         entities_to_update = []
-        conf = siemplify.get_configuration("Enrichment")
-        api_key = conf.get("API Key")
-        verify_ssl = (
-            True if conf.get("Verify SSL", "False").casefold() == "true" else False
-        )
         allowlist = (
             siemplify.extract_action_param(
                 "Use Field Name as Whitelist",
@@ -94,30 +85,20 @@ def main():
             )
         else:
             entity_fields = []
-
-        headers["AppKey"] = api_key
         # Loop through all targeted entities
         for entity in siemplify.target_entities:
-            json_payload = {
-                "entityIdentifier": entity.identifier,
-                "entityEnvironment": siemplify._environment,
-                "entityType": entity.entity_type,
-                "lastCaseType": 0,
-                "caseDistributationType": 0,
-            }
-            res = requests.post(
-                GET_ENTITY_URL.format(siemplify.API_ROOT),
-                json=json_payload,
-                headers=headers,
-                verify=verify_ssl,
+            res = get_entity_data(
+                chronicle_soar=siemplify,
+                entity_identifier=entity.identifier,
+                entity_type=entity.entity_type,
+                entity_environment=siemplify._environment,
             )
-            res.raise_for_status()
-            entity_data = res.json()["entity"]
+            entity_data = res["entity"]
             entity_data_items = enumerate(entity_data["fields"][0]["items"])
             property_value = None
             updated_fields = {}
 
-            for indice, field in entity_data_items:
+            for _, field in entity_data_items:
                 entity_field = None
 
                 # Does the entity have the field we're looking for?
@@ -148,7 +129,10 @@ def main():
                         entity.additional_properties[entity_field] = property_value
                     updated_fields[entity_field] = property_value
             if updated_fields:
-                output_message += f"The properties: {', '.join(list(updated_fields.keys()))} was changed for entity: {entity.identifier}.\n"
+                output_message += (
+                    f"The properties: {', '.join(list(updated_fields.keys()))} "
+                    f"was changed for entity: {entity.identifier}.\n"
+                )
                 entities_to_update.append(entity)
 
             # Prepare the json results for Siemplify
