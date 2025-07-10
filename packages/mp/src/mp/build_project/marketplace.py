@@ -37,7 +37,6 @@ import mp.core.unix
 import mp.core.utils
 from mp.core.data_models.integration import BuiltFullDetails, BuiltIntegration, Integration
 
-from ..core.unix import CommandError
 from ..core.unix import check_lock_file
 from .post_build.full_details_json import write_full_details
 from .post_build.marketplace_json import write_marketplace_json
@@ -287,8 +286,4 @@ class Marketplace:
             "Validating lock file in "
             f"----> {str(integration_path).split('/')[-1]} <----"
         )
-        try:
-            check_lock_file(integration_path)
-
-        except CommandError as ce:
-            rich.print(ce)
+        check_lock_file(integration_path)

@@ -432,11 +432,8 @@ def check_lock_file(project_path: pathlib.Path) -> None:
     except sp.CalledProcessError as e:
         error_output = e.stderr.strip()
 
-        rich.print(
-            "[bold red]UV Lock Check Failed:[/bold red] "
-            f"[red]{error_output}[/red]"
-        )
-        raise CommandError(COMMAND_ERR_MSG.format(error_output=error_output)) from e
+        rich.print(f"[red]UV Lock Check Failed: {error_output}[/red]")
+        raise CommandError(COMMAND_ERR_MSG.format("uv lock --check"))
 
 
 def _get_python_version() -> str:
