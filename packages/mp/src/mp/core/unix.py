@@ -20,6 +20,8 @@ import subprocess as sp  # noqa: S404
 import sys
 from typing import IO, TYPE_CHECKING
 
+import rich
+
 from . import config, constants, file_utils
 
 if TYPE_CHECKING:
@@ -387,36 +389,20 @@ def get_flags_to_command(**flags: bool | str | list[str]) -> list[str]:
     return all_flags
 
 
-# def sync_venv(project_path: pathlib.Path) -> None:
-#
-#     python_version: str = _get_python_version()
-#
-#     command: list[str] = [
-#         sys.executable,
-#         "-m",
-#         "uv",
-#         "sync",
-#         "--project",
-#         str(project_path),
-#         "--python",
-#         python_version,
-#     ]
-#
-#     runtime_config: list[str] = _get_runtime_config()
-#     command.extend(runtime_config)
-#
-#     try:
-#         sp.run(command, cwd=project_path, check=True, text=True)
-#         if not config.is_quiet():
-#             print(
-#                 "Successfully synchronized virtual environment for project "
-#                 f"at '{project_path}'."
-#             )
-#     except sp.CalledProcessError as e:
-#         raise CommandError(COMMAND_ERR_MSG.format(e)) from e
+def check_lock_file(project_path: pathlib.Path) -> None:
+    """Checks if the 'uv.lock' file is consistent with
+    the project's 'pyproject.toml' using the 'uv lock --check' command.
 
+    Args:
+        project_path: The integration path to the project directory
+                      that contains 'pyproject.toml' and 'uv.lock' files.
 
-def check_lock_file(project_path: pathlib.Path) -> list[str]:
+    Raises:
+        CommandError: If the 'uv lock --check' command indicates that the
+                      'uv.lock' file is out of sync or if another error
+                      occurs during the check.
+
+    """
     python_version: str = _get_python_version()
 
     command: list[str] = [
@@ -435,17 +421,22 @@ def check_lock_file(project_path: pathlib.Path) -> list[str]:
     command.extend(runtime_config)
 
     try:
-        result = sp.run(
+        sp.run(
             command,
             cwd=project_path,
             check=True,
             text=True,
             capture_output=True
         )
-        return [result.stdout, result.stderr]
 
     except sp.CalledProcessError as e:
-        raise CommandError(COMMAND_ERR_MSG.format(e)) from e
+        error_output = e.stderr.strip()
+
+        rich.print(
+            "[bold red]UV Lock Check Failed:[/bold red] "
+            f"[red]{error_output}[/red]"
+        )
+        raise CommandError(COMMAND_ERR_MSG.format(error_output=error_output)) from e
 
 
 def _get_python_version() -> str:

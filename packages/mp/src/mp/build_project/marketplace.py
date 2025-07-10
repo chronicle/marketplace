@@ -37,6 +37,7 @@ import mp.core.unix
 import mp.core.utils
 from mp.core.data_models.integration import BuiltFullDetails, BuiltIntegration, Integration
 
+from ..core.unix import CommandError
 from ..core.unix import check_lock_file
 from .post_build.full_details_json import write_full_details
 from .post_build.marketplace_json import write_marketplace_json
@@ -125,9 +126,6 @@ class Marketplace:
         with multiprocessing.Pool(processes=processes) as pool:
             pool.map(self.build_integration, paths)
 
-        rich.print("GOT HERE!!!")
-        self.validate_all_uv_lock_files(paths)
-
     def build_integration(self, integration_path: pathlib.Path) -> None:
         """Build a single integration provided by `integration_path`.
 
@@ -168,6 +166,9 @@ class Marketplace:
         integration_path: pathlib.Path,
     ) -> None:
         rich.print(f"---------- Building {integration_path.stem} ----------")
+
+        self._validate_uv_lock_file(integration_path)
+
         integration_out_path: pathlib.Path = self.out_path / integration.identifier
         integration_out_path.mkdir(exist_ok=True)
 
@@ -277,25 +278,17 @@ class Marketplace:
             integration / mp.core.constants.INTEGRATION_VENV,
         )
 
-    def validate_all_uv_lock_files(
-        self,
-        integration_paths: Iterable[pathlib.Path]
-    ) -> None:
-
-        processes: int = mp.core.config.get_processes_number()
-        with multiprocessing.Pool(processes=processes) as pool:
-            pool.map(self.validate_uv_lock_file, integration_paths)
-
-    def validate_uv_lock_file(
+    def _validate_uv_lock_file(
         self,
         integration_path: pathlib.Path
     ) -> None:
-        rich.print(f"Validating lock file in {integration_path}")
 
-        stdout, stderr = check_lock_file(integration_path)
-        if stdout:
-            rich.print(f"Standard Output: \n{stdout}")
-        if stderr:
-            rich.print(f"Standard Error (Warnings/Info):\n{stderr}")
-        if not stdout and not stderr:
-            rich.print(f"Validation successful for {integration_path}")
+        rich.print(
+            "Validating lock file in "
+            f"----> {str(integration_path).split('/')[-1]} <----"
+        )
+        try:
+            check_lock_file(integration_path)
+
+        except CommandError as ce:
+            rich.print(ce)
