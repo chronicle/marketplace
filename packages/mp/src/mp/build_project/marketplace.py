@@ -37,6 +37,7 @@ import mp.core.unix
 import mp.core.utils
 from mp.core.data_models.integration import BuiltFullDetails, BuiltIntegration, Integration
 
+from ..core.file_utils import is_built
 from ..core.unix import check_lock_file
 from .post_build.full_details_json import write_full_details
 from .post_build.marketplace_json import write_marketplace_json
@@ -166,7 +167,8 @@ class Marketplace:
     ) -> None:
         rich.print(f"---------- Building {integration_path.stem} ----------")
 
-        self._validate_uv_lock_file(integration_path)
+        if not is_built(integration_path):
+            self._validate_uv_lock_file(integration_path)
 
         integration_out_path: pathlib.Path = self.out_path / integration.identifier
         integration_out_path.mkdir(exist_ok=True)
