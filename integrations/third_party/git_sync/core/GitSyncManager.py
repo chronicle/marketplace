@@ -31,6 +31,7 @@ from .constants import (
     INTEGRATION_NAME,
     ROOT_README,
     ScriptType,
+    SHARED_ENV_CACHE_KEY,
     WorkflowTypes,
 )
 from .definitions import Connector, File, Integration, Job, Mapping, Workflow
@@ -58,7 +59,7 @@ class GitSyncManager:
         git_client: A Git instance for handling all git operations
         api: A SiemplifyApiClient instance for communicating with Siemplify
         content: A GitContentManager instance for reading or writing objects from the repository to
-        a define structure
+        define structure
         logger: A logger instance
 
     """
@@ -257,8 +258,8 @@ class GitSyncManager:
             self.logger.info(
                 f"Connector {connector.name} integration ({connector.integration}) not installed",
             )
-            # Integration not installed - try installing from repo, and if not install
-            # from marketplace
+            # Integration is not installed - try installing from repo,
+            # and if not install from the marketplace
             integration = self.content.get_integration(connector.integration)
             if integration and integration.isCustom:
                 self.logger.info("Custom integration found in repo, installing")
@@ -532,7 +533,7 @@ class GitSyncManager:
             return False
 
     def get_installed_integration_version(self, integration_name: str) -> float:
-        """Get currently installed integration version
+        """Get the currently installed integration version
 
         If the integration is not installed, 0.0 will be returned
 
@@ -628,7 +629,7 @@ class WorkflowInstaller:
         self._process_steps(workflow, local_playbook)
 
     def install_new_workflow(self, workflow: Workflow) -> None:
-        """Install a new workflow in the platform."""
+        """Install a new workflow to the platform."""
         self.logger.info(f"Installing new workflow '{workflow.name}'")
         self._define_workflow_as_new(workflow)
         self._process_steps(workflow)
@@ -713,9 +714,9 @@ class WorkflowInstaller:
             if relation.get("toStep") in identifier_mappings:
                 relation["toStep"] = identifier_mappings.get(relation.get("toStep"))
 
-        self._fix_loop_keys_and_parameters(identifier_mappings, workflow)
+        self._adjust_loop_keys_and_parameters(identifier_mappings, workflow)
 
-    def _fix_loop_keys_and_parameters(self, identifier_mappings, workflow):
+    def _adjust_loop_keys_and_parameters(self, identifier_mappings, workflow):
         for step in self._flatten_playbook_steps(workflow.raw_data.get("steps")):
             if "startLoopStepIdentifier" in step and step["startLoopStepIdentifier"]:
                 mapped_id = identifier_mappings.get(step["startLoopStepIdentifier"])
@@ -732,8 +733,9 @@ class WorkflowInstaller:
                 param_name = param.get("name")
                 param_value = param.get("value")
 
-                # Handle EndLoopStepIdentifier parameter
-                if param_name == "EndLoopStepIdentifier" and param_value:
+                # Handle Start/EndLoopStepIdentifier parameter
+                if (param_name == "StartLoopStepIdentifier" or
+                    param_name == "EndLoopStepIdentifier") and param_value:
                     mapped_id = identifier_mappings.get(param_value)
                     if mapped_id:
                         param["value"] = mapped_id
@@ -792,8 +794,8 @@ class WorkflowInstaller:
         Otherwise, If the playbook is assigned to only one environment (and not all environments),
         it will assign the first integration instance it finds.
         If the playbook is assigned to All Environments or more than one environment, The step will
-        be set to dynamic mode, and assigned to the first shared instance, or None if it
-        doesn't exist.
+        be set to dynamic mode and assigned to the first shared instance, or None if it doesn't
+        exist.
 
         Args:
             step: The step to reconfigure
@@ -803,19 +805,22 @@ class WorkflowInstaller:
 
         """
         if existing_step:
-            instance = self._get_step_parameter_by_name(
+            instance_param = self._get_step_parameter_by_name(
                 existing_step,
                 "IntegrationInstance",
-            ).get("value")
-            self._set_step_parameter_by_name(step, "IntegrationInstance", instance)
-            fallback = self._get_step_parameter_by_name(
+            )
+            instance_id = instance_param.get("value") if instance_param else None
+            self._set_step_parameter_by_name(step, "IntegrationInstance", instance_id)
+            
+            fallback_param = self._get_step_parameter_by_name(
                 existing_step,
                 "FallbackIntegrationInstance",
-            ).get("value")
+            )
+            fallback_id = fallback_param.get("value") if fallback_param else None
             self._set_step_parameter_by_name(
                 step,
                 "FallbackIntegrationInstance",
-                fallback,
+                fallback_id,
             )
             return
 
@@ -838,52 +843,52 @@ class WorkflowInstaller:
             display_name=fallback_instance_display_name,
         )
         # If the playbook is for one specific environment, choose the first integration instance
-        # from that environment, Otherwise, set the step to dynamic mode and set the first shared
+        # from that environment. Otherwise, set the step to dynamic mode and set the first shared
         # integration instance as fallback
         if len(environments) == 1 and environments[0] != ALL_ENVIRONMENTS_IDENTIFIER:
-            integration_instances = self._find_integration_instances_for_step(
+            # First try to find the instance in the specific environment only (no shared instances)
+            env_only_instances = self._find_integration_instances_for_step(
                 step.get("integration"),
                 environments[0],
+                include_shared_environments=False,
             )
-            if integration_instances:
+            
+            instance_id = self._find_instance_id_by_display_name(
+                env_only_instances,
+                instance_display_name,
+            )
+            
+            # If not found in environment-specific instances, fall back to find using the API method
+            if instance_id is None:
                 instance_id = self.api.get_integration_instance_id_by_name(
                     self.chronicle_soar,
                     step.get("integration"),
                     environments=environments,
                     display_name=instance_display_name,
                 )
-                self._set_step_parameter_by_name(
-                    step,
-                    "IntegrationInstance",
-                    instance_id or integration_instances[0].get("identifier"),
-                )
-                self._set_step_parameter_by_name(
-                    step,
-                    "FallbackIntegrationInstance",
-                    fallback_instance_id,
-                )
-        else:
-            integration_instances = self._find_integration_instances_for_step(
-                step.get("integration"),
-                ALL_ENVIRONMENTS_IDENTIFIER,
+            
+            self._set_step_parameter_by_name(
+                step,
+                "IntegrationInstance",
+                instance_id,
             )
+            self._set_step_parameter_by_name(
+                step,
+                "FallbackIntegrationInstance",
+                fallback_instance_id,
+            )
+        else:
             self._set_step_parameter_by_name(
                 step,
                 "IntegrationInstance",
                 "AutomaticEnvironment",
             )
-            if integration_instances:
-                self._set_step_parameter_by_name(
-                    step,
-                    "FallbackIntegrationInstance",
-                    fallback_instance_id or integration_instances[0].get("identifier"),
-                )
-            else:
-                self._set_step_parameter_by_name(
-                    step,
-                    "FallbackIntegrationInstance",
-                    fallback_instance_id,
-                )
+            
+            self._set_step_parameter_by_name(
+                step,
+                "FallbackIntegrationInstance",
+                fallback_instance_id,  # TODO: search for most suitable instance
+            )
 
     def _get_instance_display_name(
         self,
@@ -903,31 +908,67 @@ class WorkflowInstaller:
         self,
         integration_name: str,
         environment: str,
+        include_shared_environments: bool = True,
     ) -> list[dict]:
         """Find integration instances available for integration per environment
 
         Args:
             integration_name: The integration name to look for
             environment: The environment to fetch the integration instances
+            include_shared_environments: Whether to include shared environment instances
 
         Returns:
             A list of configured integration instances
 
         """
-        cache_key = f"integration_instances_{environment}"
-        if cache_key not in self._cache:
-            self._cache[cache_key] = self.api.get_integrations_instances(environment)
-
-        instances = self._cache.get(cache_key)
-        instances.sort(key=lambda x: x.get("instanceName"))
+        # Get environment-specific instances
+        env_cache_key = f"integration_instances_{environment}"
+        if env_cache_key not in self._cache:
+            env_instances = self.api.get_integrations_instances(environment)
+            self._cache[env_cache_key] = sorted(env_instances, key=lambda x: x.get("instanceName"))
+        
+        all_instances = list(self._cache.get(env_cache_key, []))
+        
+        # Get shared environment instances if requested
+        if include_shared_environments:
+            if SHARED_ENV_CACHE_KEY not in self._cache:
+                shared_instances = self.api.get_integrations_instances(ALL_ENVIRONMENTS_IDENTIFIER)
+                self._cache[SHARED_ENV_CACHE_KEY] = (
+                    sorted(shared_instances, key=lambda x: x.get("instanceName")))
+            
+            all_instances.extend(self._cache.get(SHARED_ENV_CACHE_KEY, []))
 
         return [
             x
-            for x in instances
-            if (x.get("integrationIdentifier") == integration_name
-                or x.get("integrationIdentifier") == "Shared_" + integration_name)
+            for x in all_instances
+            if x.get("integrationIdentifier") == integration_name
             and x.get("isConfigured")
         ]
+
+    def _find_instance_id_by_display_name(
+        self,
+        instances: list[dict],
+        display_name: str | None,
+    ) -> str | None:
+        """Find instance ID by display name within a specific list of instances
+
+        Args:
+            instances: List of integration instances to search
+            display_name: The display name to search for
+
+        Returns:
+            The instance ID if found, None otherwise
+
+        """
+        if display_name is None:
+            return None
+            
+        for instance in instances:
+            if (instance.get("displayName") == display_name or 
+                instance.get("instanceName") == display_name):
+                return instance.get("identifier")
+        
+        return None
 
     @staticmethod
     def _flatten_playbook_steps(steps: list) -> list[dict]:
@@ -945,7 +986,7 @@ class WorkflowInstaller:
             if step.get("actionProvider") == "ParallelActionsContainer":
                 flat_steps.extend(step.get("parallelActions"))
             flat_steps.append(step)
-        return flat_steps
+        return steps
 
     def _set_step_parameter_by_name(
         self,
@@ -984,7 +1025,7 @@ class WorkflowInstaller:
 
     @staticmethod
     def _copy_ids_from_existing_workflow(workflow: Workflow, other: dict) -> None:
-        """Reconfigure a workflow used another workflow ids
+        """Reconfigure 'workflow' values according to 'other' workflow
 
         Args:
             workflow: The workflow to copy the ids to
