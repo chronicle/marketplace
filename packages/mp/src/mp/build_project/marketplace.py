@@ -280,12 +280,6 @@ class Marketplace:
         )
 
     @staticmethod
-    def __validate_uv_lock_file(
-        integration_path: pathlib.Path
-    ) -> None:
-
-        rich.print(
-            "Validating lock file in "
-            f"----> {str(integration_path).split('/')[-1]} <----"
-        )
+    def __validate_uv_lock_file(integration_path: pathlib.Path) -> None:
+        rich.print(f"Validating lock file in ----> {str(integration_path).split('/')[-1]} <----")
         check_lock_file(integration_path)

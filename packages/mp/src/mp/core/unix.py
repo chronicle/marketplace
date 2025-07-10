@@ -419,18 +419,13 @@ def check_lock_file(project_path: pathlib.Path) -> None:
 
     try:
         sp.run(  # noqa: S603
-            command,
-            cwd=project_path,
-            check=True,
-            text=True,
-            capture_output=True
+            command, cwd=project_path, check=True, text=True, capture_output=True
         )
 
     except sp.CalledProcessError as e:
         error_output = e.stderr.strip()
         error_output = (
-            COMMAND_ERR_MSG.format("uv lock --check") +
-            f" UV Lock Check Failed: {error_output}"
+            COMMAND_ERR_MSG.format("uv lock --check") + f" UV Lock Check Failed: {error_output}"
         )
         raise CommandError(error_output) from e
 
