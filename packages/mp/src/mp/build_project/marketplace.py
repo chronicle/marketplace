@@ -36,6 +36,8 @@ import mp.core.file_utils
 import mp.core.unix
 import mp.core.utils
 from mp.core.data_models.integration import BuiltFullDetails, BuiltIntegration, Integration
+from mp.core.file_utils import is_built
+from mp.core.unix import check_lock_file
 
 from .post_build.full_details_json import write_full_details
 from .post_build.marketplace_json import write_marketplace_json
@@ -164,6 +166,10 @@ class Marketplace:
         integration_path: pathlib.Path,
     ) -> None:
         rich.print(f"---------- Building {integration_path.stem} ----------")
+
+        if not is_built(integration_path):
+            self.__validate_uv_lock_file(integration_path)
+
         integration_out_path: pathlib.Path = self.out_path / integration.identifier
         integration_out_path.mkdir(exist_ok=True)
 
@@ -272,3 +278,8 @@ class Marketplace:
             integration / mp.core.constants.README_FILE,
             integration / mp.core.constants.INTEGRATION_VENV,
         )
+
+    @staticmethod
+    def __validate_uv_lock_file(integration_path: pathlib.Path) -> None:
+        rich.print(f"Validating lock file in ----> {str(integration_path).split('/')[-1]} <----")
+        check_lock_file(integration_path)

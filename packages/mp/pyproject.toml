@@ -7,6 +7,7 @@ authors = [
     { name = "Tal Shapir", email = "talshapir@google.com" },
     { name = "Iddo Arie", email = "iddoa@google.com" },
     { name = "Dori Aviram", email = "doriaviram@google.com" },
+    { name = "Amit Joseph", email = "amitjoseph@google.com" },
 ]
 requires-python = ">=3.11,<3.12"
 keywords = [
