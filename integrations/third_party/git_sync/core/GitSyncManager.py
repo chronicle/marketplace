@@ -811,7 +811,7 @@ class WorkflowInstaller:
             )
             instance_id = instance_param.get("value") if instance_param else None
             self._set_step_parameter_by_name(step, "IntegrationInstance", instance_id)
-            
+
             fallback_param = self._get_step_parameter_by_name(
                 existing_step,
                 "FallbackIntegrationInstance",
@@ -852,12 +852,12 @@ class WorkflowInstaller:
                 environments[0],
                 include_shared_environments=False,
             )
-            
+
             instance_id = self._find_instance_id_by_display_name(
                 env_only_instances,
                 instance_display_name,
             )
-            
+
             # If not found in environment-specific instances, fall back to find using the API method
             if instance_id is None:
                 instance_id = self.api.get_integration_instance_id_by_name(
@@ -866,7 +866,7 @@ class WorkflowInstaller:
                     environments=environments,
                     display_name=instance_display_name,
                 )
-            
+
             self._set_step_parameter_by_name(
                 step,
                 "IntegrationInstance",
@@ -883,7 +883,7 @@ class WorkflowInstaller:
                 "IntegrationInstance",
                 "AutomaticEnvironment",
             )
-            
+
             self._set_step_parameter_by_name(
                 step,
                 "FallbackIntegrationInstance",
@@ -926,16 +926,16 @@ class WorkflowInstaller:
         if env_cache_key not in self._cache:
             env_instances = self.api.get_integrations_instances(environment)
             self._cache[env_cache_key] = sorted(env_instances, key=lambda x: x.get("instanceName"))
-        
+
         all_instances = list(self._cache.get(env_cache_key, []))
-        
-        # Get shared environment instances if requested
+
+        # Add shared environment instances if requested
         if include_shared_environments:
             if SHARED_ENV_CACHE_KEY not in self._cache:
                 shared_instances = self.api.get_integrations_instances(ALL_ENVIRONMENTS_IDENTIFIER)
                 self._cache[SHARED_ENV_CACHE_KEY] = (
                     sorted(shared_instances, key=lambda x: x.get("instanceName")))
-            
+
             all_instances.extend(self._cache.get(SHARED_ENV_CACHE_KEY, []))
 
         return [
@@ -962,12 +962,12 @@ class WorkflowInstaller:
         """
         if display_name is None:
             return None
-            
+
         for instance in instances:
-            if (instance.get("displayName") == display_name or 
+            if (instance.get("displayName") == display_name or
                 instance.get("instanceName") == display_name):
                 return instance.get("identifier")
-        
+
         return None
 
     @staticmethod
