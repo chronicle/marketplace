@@ -986,7 +986,7 @@ class WorkflowInstaller:
             if step.get("actionProvider") == "ParallelActionsContainer":
                 flat_steps.extend(step.get("parallelActions"))
             flat_steps.append(step)
-        return steps
+        return flat_steps
 
     def _set_step_parameter_by_name(
         self,

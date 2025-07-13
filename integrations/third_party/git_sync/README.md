@@ -12,19 +12,18 @@ The Git Sync integration provides bidirectional synchronization between SecOps a
 4. [Available Jobs](#available-jobs)
 5. [Integration Instance Selection Logic](#integration-instance-selection-logic)
 6. [Supported Content Types](#supported-content-types)
-7. [Git Repository Structure](#git-repository-structure)
-8. [Configuration Parameters](#configuration-parameters)
-9. [Usage Examples](#usage-examples)
-10. [Troubleshooting](#troubleshooting)
-11. [Best Practices](#best-practices)
+7. [Configuration Parameters](#configuration-parameters)
+8. [Usage Examples](#usage-examples)
+9. [Troubleshooting](#troubleshooting)
+10. [Best Practices](#best-practices)
 
 ## Features
 
+- **Platform Versioning**: Version control for SecOps platforms configurations.
 - **Bidirectional Sync**: Push content from SecOps to Git and pull content from Git to SecOps
 - **Multiple Git Providers**: Support for GitHub, GitLab, BitBucket, and other Git providers
-- **Comprehensive Content Support**: Sync integrations, playbooks, jobs, connectors, mappings, and system settings
+- **Content Support**: Sync integrations, playbooks, jobs, connectors, mappings, and system settings
 - **Environment Management**: Handle multiple environments with intelligent instance mapping
-- **Automatic README Generation**: Generate documentation for synced content
 - **Conflict Detection**: Identify and handle merge conflicts during synchronization
 - **Caching**: Optimize performance with intelligent caching mechanisms
 
@@ -85,7 +84,7 @@ The Git Sync integration provides bidirectional synchronization between SecOps a
 
 ### Overview
 
-When pulling playbooks from Git, the integration automatically assigns integration instances to playbook steps. This process is critical for ensuring playbooks function correctly in the target environment. The selection logic follows a hierarchical approach based on environment configuration and instance availability.
+When pulling playbooks from Git, the integration automatically assigns integration instances to playbook steps. This process is critical for ensuring playbooks function correctly in the target environment. The selection logic follows a hierarchical approach based on environment configuration and instance availability. There are limitations to the matching, especially when using the integration to sync between different server instances.
 
 ### Selection Process Flow
 
@@ -113,9 +112,8 @@ environments = ["Production"]
 ```
 
 **Selection Logic:**
-1. **Primary Instance**: Search for instances in the specified environment
-2. **Instance Selection**: Use the first available configured instance
-3. **Display Name Matching**: If a display name is stored, try to find an instance with that exact name
+1. **Primary Instance**: Search for instance with similar 'display name' configured in the environment
+3. **Display Name Matching**: In the case there was not match, look for similar display name in the shared environment ("*")
 4. **Fallback**: If no instance found, leave unassigned
 
 **Configuration Result:**
@@ -254,55 +252,9 @@ The system stores and attempts to resolve instance display names:
 | **Playbooks** | ✅ | ✅ | Workflows and automation blocks |
 | **Jobs** | ✅ | ✅ | Scheduled jobs and automation |
 | **Connectors** | ✅ | ✅ | Data ingestion connectors |
-| **Integration Instances** | ✅ | ✅ | Integration configurations |
 | **Visual Families** | ✅ | ✅ | Custom entity families |
 | **Mappings** | ✅ | ✅ | Field mapping rules |
-| **Environments** | ✅ | ✅ | Environment configurations |
-| **Dynamic Parameters** | ✅ | ✅ | Environment-specific parameters |
 | **Simulated Cases** | ✅ | ✅ | Test cases for playbooks |
-
-## Git Repository Structure
-
-```
-repository/
-├── README.md                          # Auto-generated repository overview
-├── GitSync.json                       # Metadata and configuration
-├── Integrations/
-│   ├── README.md                      # Integrations overview
-│   └── IntegrationName/
-│       ├── README.md                  # Integration documentation
-│       ├── definition.json            # Integration definition
-│       ├── Actions/                   # Action scripts
-│       ├── Connectors/               # Connector scripts
-│       └── Jobs/                     # Job scripts
-├── Playbooks/
-│   ├── README.md                      # Playbooks overview
-│   └── CategoryName/
-│       └── PlaybookName/
-│           ├── README.md              # Playbook documentation
-│           └── PlaybookName.json      # Playbook definition
-├── Jobs/
-│   ├── README.md                      # Jobs overview
-│   └── JobName/
-│       ├── README.md                  # Job documentation
-│       └── JobName.json               # Job definition
-├── Connectors/
-│   ├── README.md                      # Connectors overview
-│   └── ConnectorName/
-│       ├── README.md                  # Connector documentation
-│       └── ConnectorName.json         # Connector configuration
-├── Mappings/
-│   ├── README.md                      # Mappings overview
-│   └── IntegrationName/
-│       ├── README.md                  # Mapping documentation
-│       ├── records.json               # Mapping records
-│       └── rules.json                 # Mapping rules
-└── Settings/
-    ├── Environments/                  # Environment configurations
-    ├── IntegrationInstances/          # Instance configurations
-    ├── VisualFamilies/               # Custom entity families
-    └── DynamicParameters/            # Environment parameters
-```
 
 ## Usage Examples
 
@@ -370,14 +322,13 @@ Shared: "Shared_VirusTotal" (for cross-env playbooks)
 
 ### Common Issues
 
-| Issue | Cause | Solution |
-|-------|-------|----------|
-| Authentication Failed | Invalid credentials | Verify Git credentials and permissions |
-| Integration Instance Not Found | Missing instance in target environment | Create and configure integration instance |
-| Playbook Import Failed | Missing dependencies | Ensure all required integrations are installed |
-| Merge Conflicts | Concurrent modifications | Resolve conflicts manually in Git |
-| SSL Certificate Error | Certificate validation issues | Check SSL settings and certificates |
+| Issue | Cause                                               | Solution |
+|-------|-----------------------------------------------------|----------|
+| Authentication Failed | Invalid credentials                                 | Verify Git credentials and permissions |
+| Integration Instance Not Found | Missing instance in target environment (white list) | Create and configure integration instance |
+| Playbook Import Failed | Missing dependencies                                | Ensure all required integrations are installed |
+| SSL Certificate Error | Certificate validation issues                       | Check SSL settings and certificates |
 
 
-**Version**: 34.0  
-**Last Updated**: January 2025  
+**Version**: 32.0  
+**Last Updated**: July 2025  
