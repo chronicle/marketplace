@@ -16,7 +16,7 @@
 import dataclasses
 import pathlib
 
-from mp.common.exceptions import NonFatalException
+from mp.common.exceptions import NonFatalExceptionError
 from mp.core.file_utils import is_built
 from mp.core.unix import check_lock_file
 
@@ -47,7 +47,7 @@ class PreBuildValidations:
         for func in function_validation_list:
             try:
                 func()
-            except NonFatalException as e:
+            except NonFatalExceptionError as e:
                 self.logs.append(f"[red]{e.message}[/red]")
 
         self.logs.append(

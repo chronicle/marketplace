@@ -20,7 +20,7 @@ import subprocess as sp  # noqa: S404
 import sys
 from typing import IO, TYPE_CHECKING
 
-from mp.common.exceptions import CommandErrors
+from mp.common.exceptions import CommandvError
 
 from . import config, constants, file_utils
 
@@ -397,7 +397,7 @@ def check_lock_file(project_path: pathlib.Path) -> None:
                       that contains 'pyproject.toml' and 'uv.lock' files.
 
     Raises:
-        CommandError: If the 'uv lock --check' command indicates that the
+        CommandvError: If the 'uv lock --check' command indicates that the
                       'uv.lock' file is out of sync or if another error
                       occurs during the check.
 
@@ -429,7 +429,7 @@ def check_lock_file(project_path: pathlib.Path) -> None:
         error_output = (
             COMMAND_ERR_MSG.format("uv lock --check") + f" UV Lock Check Failed: {error_output}"
         )
-        raise CommandErrors(error_output) from e
+        raise CommandvError(error_output) from e
 
 
 def _get_python_version() -> str:

@@ -278,11 +278,11 @@ def _pre_build_validation(integration_paths: Iterable[pathlib.Path]) -> None:
     )
 
     processes: int = mp.core.config.get_processes_number()
-    logs_array = []
+    logs_array: list[list[str]] = []
     with multiprocessing.Pool(processes=processes) as pool:
         results = pool.imap_unordered(_run_pre_build_validations, paths)
         for msg_list in results:
-            logs_array.extend(msg_list.copy())
+            logs_array.append(msg_list.copy())  # noqa: PERF401
 
     for logger in logs_array:
         for msg in logger:
