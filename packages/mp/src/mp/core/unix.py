@@ -392,12 +392,12 @@ def check_lock_file(project_path: pathlib.Path) -> None:
 
     Args:
         project_path: The integration path to the project directory
-                      that contains 'pyproject.toml' and 'uv.lock' files.
+            that contains 'pyproject.toml' and 'uv.lock' files.
 
     Raises:
         CommandError: If the 'uv lock --check' command indicates that the
-                      'uv.lock' file is out of sync or if another error
-                      occurs during the check.
+            'uv.lock' file is out of sync or if another error
+            occurs during the check.
 
     """
     python_version: str = _get_python_version()
@@ -425,7 +425,7 @@ def check_lock_file(project_path: pathlib.Path) -> None:
     except sp.CalledProcessError as e:
         error_output = e.stderr.strip()
         error_output = (
-            COMMAND_ERR_MSG.format("uv lock --check") + f" UV Lock Check Failed: {error_output}"
+             f"{COMMAND_ERR_MSG.format('uv lock --check')} UV Lock Check Failed: {error_output}"
         )
         raise CommandError(error_output) from e
 

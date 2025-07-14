@@ -168,7 +168,8 @@ class Marketplace:
         rich.print(f"---------- Building {integration_path.stem} ----------")
 
         if not is_built(integration_path):
-            self.__validate_uv_lock_file(integration_path)
+            rich.print(f"Validating lock file in ----> {integration_path.name} <----")
+            check_lock_file(integration_path)
 
         integration_out_path: pathlib.Path = self.out_path / integration.identifier
         integration_out_path.mkdir(exist_ok=True)
@@ -278,8 +279,3 @@ class Marketplace:
             integration / mp.core.constants.README_FILE,
             integration / mp.core.constants.INTEGRATION_VENV,
         )
-
-    @staticmethod
-    def __validate_uv_lock_file(integration_path: pathlib.Path) -> None:
-        rich.print(f"Validating lock file in ----> {integration_path.name} <----")
-        check_lock_file(integration_path)
