@@ -35,7 +35,7 @@ __all__: list[str] = [
     "format_app",
     "main",
     "run_pre_build_tests",
-    "validate_project"
+    "validate_project",
 ]
 
 

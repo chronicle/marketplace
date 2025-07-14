@@ -19,8 +19,7 @@ import pathlib
 import rich
 
 from mp.core.file_utils import is_built
-
-from ..core.unix import check_lock_file
+from mp.core.unix import check_lock_file
 
 
 @dataclasses.dataclass(slots=True, frozen=True)
@@ -35,6 +34,7 @@ class PreBuildValidations:
         if not is_built(self.integration_path):
             check_lock_file(self.integration_path)
 
-    def run_pre_build_validation(self):
+    def run_pre_build_validation(self) -> None:
+        """Run all the pre-build validations."""
         rich.print(f"[green] Running pre build validation on {self.integration_path.name} [/green]")
         self.__uv_lock_validation()
