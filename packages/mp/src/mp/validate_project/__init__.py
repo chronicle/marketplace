@@ -281,18 +281,19 @@ def _pre_build_validation(integration_paths: Iterable[pathlib.Path]) -> None:
     logs_array: list[list[str]] = []
     with multiprocessing.Pool(processes=processes) as pool:
         results = pool.imap_unordered(_run_pre_build_validations, paths)
-        for msg_list in results:
-            logs_array.append(msg_list.copy())  # noqa: PERF401
+        for msg_list, is_all_validation_passed in results:
+            if not is_all_validation_passed:
+                logs_array.append(msg_list.copy())
 
     for logger in logs_array:
         for msg in logger:
             rich.print(msg)
 
 
-def _run_pre_build_validations(integration_path: pathlib.Path) -> list[str]:
+def _run_pre_build_validations(integration_path: pathlib.Path) -> tuple[list[str], bool]:
     validation_object: PreBuildValidations = PreBuildValidations(integration_path)
     validation_object.run_pre_build_validation()
-    return validation_object.get_logs()
+    return validation_object.get_logs(), validation_object.is_all_validation_passed()
 
 
 def _post_build_validation(integration_paths: Iterable[pathlib.Path]) -> None:
