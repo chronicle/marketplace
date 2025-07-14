@@ -27,20 +27,20 @@ from typing import TYPE_CHECKING, Annotated
 import rich
 import typer
 
-import mp.core.config as mp
+import mp.core.config
 import mp.core.file_utils
+from mp.build_project.marketplace import Marketplace
+from mp.build_project.post_build.duplicate_integrations import (
+    raise_errors_for_duplicate_integrations,
+)
 from mp.core.config import RuntimeParams
 from mp.core.custom_types import RepositoryType
 
-from ..build_project.marketplace import Marketplace
-from ..build_project.post_build.duplicate_integrations import (
-    raise_errors_for_duplicate_integrations,
-)
 from .pre_build_validation import PreBuildValidations
 
 if TYPE_CHECKING:
     import pathlib
-    from collections.abc import Iterable, Iterator, Sequence
+    from collections.abc import Iterable, Iterator
 
     from mp.core.custom_types import Products
 
@@ -121,7 +121,10 @@ def validate_command(  # noqa: PLR0913
     only_pre_build_validations: Annotated[
         bool,
         typer.Option(
-            help="Execute only pre-build validation checks on the integrations, skipping the full build process.",
+            help=(
+                "Execute only pre-build validation "
+                "checks on the integrations, skipping the full build process."
+            ),
         ),
     ] = False,
     quiet: Annotated[
@@ -191,15 +194,23 @@ def validate_command(  # noqa: PLR0913
             rich.print("Done third party integrations validations.")
 
 
-def _validate_repo(marketplace: Marketplace, only_pre_build_validations: bool):
+def _validate_repo(marketplace: Marketplace, *, only_pre_build_validations: bool) -> None:
     products: Products[set[pathlib.Path]] = (
         mp.core.file_utils.get_integrations_and_groups_from_paths(marketplace.path)
     )
 
     _validate_integrations(
-        set(products.integrations), only_pre_build_validations, pass_integration_by_path=True
+        set(products.integrations),
+        marketplace,
+        only_pre_build_validations=only_pre_build_validations,
+        pass_integration_by_path=True
     )
-    _validate_groups(set(products.groups), only_pre_build_validations, pass_group_by_path=True)
+    _validate_groups(
+        set(products.groups),
+        marketplace,
+        only_pre_build_validations=only_pre_build_validations,
+        pass_group_by_path=True
+    )
 
 
 def _validate_integrations(
@@ -209,7 +220,7 @@ def _validate_integrations(
     only_pre_build_validations: bool,
     pass_integration_by_path: bool = False,
 ) -> None:
-    """Validates a list of integration names within a specific marketplace scope."""
+    """Validate a list of integration names within a specific marketplace scope."""
     if not pass_integration_by_path:
         valid_integrations_paths: set[pathlib.Path] = _get_marketplace_paths_from_names(
             integrations,
@@ -218,13 +229,6 @@ def _validate_integrations(
     else:
         valid_integrations_paths: set[pathlib.Path] = integrations
 
-    valid_integration_names: set[str] = {i.name for i in valid_integrations_paths}
-    not_found: set[str] = set(integrations).difference(valid_integration_names)
-    if not_found:
-        rich.print(
-            "[yellow]The following integrations could not be found in"
-            f" the {marketplace_.path.name} marketplace: {', '.join(not_found)}[/yellow]",
-        )
     if valid_integrations_paths:
         _pre_build_validation(valid_integrations_paths)
 
@@ -236,10 +240,11 @@ def _validate_integrations(
 def _validate_groups(
     groups: Iterable[str] | Iterable[pathlib.Path],
     marketplace_: Marketplace,
+    *,
     only_pre_build_validations: bool,
     pass_group_by_path: bool = False,
 ) -> None:
-    """Validates a list of integration group names within a specific marketplace scope."""
+    """Validate a list of integration group names within a specific marketplace scope."""
     if not pass_group_by_path:
         valid_groups_paths: set[pathlib.Path] = _get_marketplace_paths_from_names(
             names=groups,
@@ -247,13 +252,6 @@ def _validate_groups(
         )
     else:
         valid_groups_paths: set[pathlib.Path] = set(groups)
-    valid_group_names: set[str] = {g.name for g in valid_groups_paths}
-    not_found: set[str] = set(groups).difference(valid_group_names)
-    if not_found:
-        rich.print(
-            "[yellow]The following groups could not be found: "
-            f"{', '.join(not_found)}[/yellow]"
-        )
 
     if valid_groups_paths:
         _process_groups_for_validation(valid_groups_paths)
@@ -264,16 +262,18 @@ def _validate_groups(
 
 
 def _process_groups_for_validation(groups: Iterable[pathlib.Path]) -> None:
-    """Iterates through each group directory and performs pre-build validation
+    """Iterate through each group directory and performs pre-build validation.
+
     on all integration subdirectories found within them.
-    """  # noqa: D205
+
+    """
     for group_dir in groups:
         if group_dir.is_dir() and group_dir.exists():
             _pre_build_validation(group_dir.iterdir())
 
 
 def _pre_build_validation(integration_paths: Iterable[pathlib.Path]) -> None:
-    """Executes pre-build validation checks on a list of integration paths."""
+    """Execute pre-build validation checks on a list of integration paths."""
     paths: Iterator[pathlib.Path] = (
         p for p in integration_paths if p.exists() and mp.core.file_utils.is_integration(p)
     )
@@ -288,7 +288,17 @@ def _run_pre_build_validations(integration_path: pathlib.Path) -> None:
 
 
 def _get_marketplace_paths_from_names(
-    names: Iterable[str],
+    names: Iterable[str] | Iterable[pathlib.Path],
     marketplace_path: pathlib.Path,
 ) -> set[pathlib.Path]:
-    return {p for n in names if (p := marketplace_path / n).exists()}
+    result: set[pathlib.Path] = set()
+    for n in names:
+        p = marketplace_path / n
+        if p.exists():
+            result.add(p)
+        else:
+            rich.print(
+                f"[yello] the integration: {n} "
+                f"has not been found in {marketplace_path.name}"
+            )
+    return result
