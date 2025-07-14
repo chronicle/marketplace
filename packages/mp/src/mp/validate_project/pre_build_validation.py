@@ -15,6 +15,7 @@
 
 import dataclasses
 import pathlib
+from collections.abc import Callable
 
 from mp.common.exceptions import NonFatalExceptionError
 from mp.core.file_utils import is_built
@@ -35,16 +36,23 @@ class PreBuildValidations:
         """
         return self.logs
 
+    def is_all_validation_passed(self) -> bool:
+        """Check if all validation has passed.
+
+        Returns:
+            bool: True if all validation passed, False otherwise.
+
+        """
+        return len(self.logs) == (len(self._get_validation_functions()) + 2)
+
     def run_pre_build_validation(self) -> None:
         """Run all the pre-build validations."""
-        function_validation_list = [self._uv_lock_validation, self._version_bump_validation]
-
         self.logs.append(
             "[bold green]Running pre build validation on "
             f"---- {self.integration_path.name} ---- [/bold green]"
         )
 
-        for func in function_validation_list:
+        for func in self._get_validation_functions():
             try:
                 func()
             except NonFatalExceptionError as e:
@@ -55,8 +63,10 @@ class PreBuildValidations:
             f"---- {self.integration_path.name} ---- [/bold green]"
         )
 
-    def _version_bump_validation(self) -> None:
-        pass
+    def _get_validation_functions(self) -> list[Callable]:
+        return [
+            self._uv_lock_validation,
+        ]
 
     def _uv_lock_validation(self) -> None:
         self.logs.append("[yellow]Running uv lock validation [/yellow]")
