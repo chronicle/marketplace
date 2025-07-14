@@ -387,5 +387,48 @@ def get_flags_to_command(**flags: bool | str | list[str]) -> list[str]:
     return all_flags
 
 
+def check_lock_file(project_path: pathlib.Path) -> None:
+    """Check if the 'uv.lock' file is consistent with 'pyproject.toml' file.
+
+    Args:
+        project_path: The integration path to the project directory
+                      that contains 'pyproject.toml' and 'uv.lock' files.
+
+    Raises:
+        CommandError: If the 'uv lock --check' command indicates that the
+                      'uv.lock' file is out of sync or if another error
+                      occurs during the check.
+
+    """
+    python_version: str = _get_python_version()
+
+    command: list[str] = [
+        sys.executable,
+        "-m",
+        "uv",
+        "lock",
+        "--check",
+        "--project",
+        str(project_path),
+        "--python",
+        python_version,
+    ]
+
+    runtime_config: list[str] = _get_runtime_config()
+    command.extend(runtime_config)
+
+    try:
+        sp.run(  # noqa: S603
+            command, cwd=project_path, check=True, text=True, capture_output=True
+        )
+
+    except sp.CalledProcessError as e:
+        error_output = e.stderr.strip()
+        error_output = (
+            COMMAND_ERR_MSG.format("uv lock --check") + f" UV Lock Check Failed: {error_output}"
+        )
+        raise CommandError(error_output) from e
+
+
 def _get_python_version() -> str:
     return f"{sys.version_info.major}.{sys.version_info.minor}.{sys.version_info.micro}"

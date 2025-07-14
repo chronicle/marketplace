@@ -1,0 +1,294 @@
+"""Package for validate integration projects.
+
+This package provides the 'validate' CLI command for processing integration
+repositories, groups, or individual integrations and run pre build and post build validations.
+"""
+
+# Copyright 2025 Google LLC
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+from __future__ import annotations
+
+import dataclasses
+import multiprocessing
+from typing import TYPE_CHECKING, Annotated
+
+import rich
+import typer
+
+import mp.core.config as mp
+import mp.core.file_utils
+from mp.core.config import RuntimeParams
+from mp.core.custom_types import RepositoryType
+
+from ..build_project.marketplace import Marketplace
+from ..build_project.post_build.duplicate_integrations import (
+    raise_errors_for_duplicate_integrations,
+)
+from .pre_build_validation import PreBuildValidations
+
+if TYPE_CHECKING:
+    import pathlib
+    from collections.abc import Iterable, Iterator, Sequence
+
+    from mp.core.custom_types import Products
+
+
+__all__: list[str] = [
+    "Marketplace",
+    "PreBuildValidations",
+    "RuntimeParams",
+    "app",
+    "mp",
+    "raise_errors_for_duplicate_integrations",
+]
+app: typer.Typer = typer.Typer()
+
+
+@dataclasses.dataclass(slots=True, frozen=True)
+class BuildParams:
+    repository: Iterable[RepositoryType]
+    integrations: Iterable[str]
+    groups: Iterable[str]
+    only_pre_build: bool | None
+
+    def validate(self) -> None:
+        """Validate the parameters.
+
+        Validates the provided parameters
+        to ensure proper usage of mutually exclusive
+        options and constraints.
+        Handles error messages and raises exceptions if validation fails.
+
+        Raises:
+            typer.BadParameter:
+                If none of the required options (--repository, --groups, or
+                --integration) are provided.
+            typer.BadParameter:
+                If more than one of the options (--repository, --groups,
+                or --integration) is used at the same time.
+
+        """
+        params: list[Iterable[str] | Iterable[RepositoryType]] = self._as_list()
+        msg: str
+        if not any(params):
+            msg = "At least one of --repository, --groups, or --integration must be used."
+            raise typer.BadParameter(msg)
+
+        if sum(map(bool, params)) != 1:
+            msg = "Only one of --repository, --groups, or --integration shall be used."
+            raise typer.BadParameter(msg)
+
+    def _as_list(self) -> list[Iterable[RepositoryType] | Iterable[str]]:
+        return [self.repository, self.integrations, self.groups]
+
+
+@app.command(name="validate", help="Validate the marketplace")
+def validate_command(  # noqa: PLR0913
+    repository: Annotated[
+        list[RepositoryType],
+        typer.Option(
+            help="Run validation on all integrations in specified integration repositories",
+            default_factory=list,
+        ),
+    ],
+    integration: Annotated[
+        list[str],
+        typer.Option(
+            help="Run validation on a specified integrations.",
+            default_factory=list,
+        ),
+    ],
+    group: Annotated[
+        list[str],
+        typer.Option(
+            help="Run validation on all integrations belonging to a specified integration group.",
+            default_factory=list,
+        ),
+    ],
+    *,
+    only_pre_build_validations: Annotated[
+        bool,
+        typer.Option(
+            help="Execute only pre-build validation checks on the integrations, skipping the full build process.",
+        ),
+    ] = False,
+    quiet: Annotated[
+        bool,
+        typer.Option(
+            help="Suppress most logging output during runtime, showing only essential information.",
+        ),
+    ] = False,
+    verbose: Annotated[
+        bool,
+        typer.Option(
+            help="Enable verbose logging output during runtime for detailed debugging information.",
+        ),
+    ] = False,
+) -> None:
+    """Run the mp validate command.
+    Validate integrations within the marketplace based on specified criteria.
+
+    Args:
+        repository: A list of repository types on which to run validation.
+                    Validation will be performed on all integrations found
+                    within these repositories.
+        integration: A list of specific integration to validate.
+        group: A list of integration groups. Validation will apply to all
+               integrations associated with these groups.
+        only_pre_build_validations: If set to True, only pre-build validation checks are
+                        performed.
+        quiet: quiet log options
+        verbose: Verbose log options
+
+    """  # noqa: D205
+    run_params: RuntimeParams = mp.core.config.RuntimeParams(quiet, verbose)
+    run_params.set_in_config()
+
+    params: BuildParams = BuildParams(repository, integration, group, only_pre_build_validations)
+    params.validate()
+
+    commercial_mp: Marketplace = Marketplace(mp.core.file_utils.get_commercial_path())
+    community_mp: Marketplace = Marketplace(mp.core.file_utils.get_community_path())
+
+    if integration:
+        _validate_integrations(
+            set(integration), commercial_mp, only_pre_build_validations=only_pre_build_validations
+        )
+        _validate_integrations(
+            set(integration), community_mp, only_pre_build_validations=only_pre_build_validations
+        )
+
+    elif group:
+        _validate_groups(
+            set(group), commercial_mp, only_pre_build_validations=only_pre_build_validations
+        )
+        _validate_groups(
+            set(group), community_mp, only_pre_build_validations=only_pre_build_validations
+        )
+
+    elif repository:
+        repos: set[RepositoryType] = set(repository)
+        if RepositoryType.COMMERCIAL in repos:
+            rich.print("Validating all integrations and groups in commercial repo...")
+            _validate_repo(commercial_mp, only_pre_build_validations=only_pre_build_validations)
+            rich.print("Done Commercial integrations validations.")
+
+        if RepositoryType.COMMUNITY in repos:
+            rich.print("Validating all integrations and groups in third party repo...")
+            _validate_repo(community_mp, only_pre_build_validations=only_pre_build_validations)
+            rich.print("Done third party integrations validations.")
+
+
+def _validate_repo(marketplace: Marketplace, only_pre_build_validations: bool):
+    products: Products[set[pathlib.Path]] = (
+        mp.core.file_utils.get_integrations_and_groups_from_paths(marketplace.path)
+    )
+
+    _validate_integrations(
+        set(products.integrations), only_pre_build_validations, pass_integration_by_path=True
+    )
+    _validate_groups(set(products.groups), only_pre_build_validations, pass_group_by_path=True)
+
+
+def _validate_integrations(
+    integrations: Iterable[str] | Iterable[pathlib.Path],
+    marketplace_: Marketplace,
+    *,
+    only_pre_build_validations: bool,
+    pass_integration_by_path: bool = False,
+) -> None:
+    """Validates a list of integration names within a specific marketplace scope."""
+    if not pass_integration_by_path:
+        valid_integrations_paths: set[pathlib.Path] = _get_marketplace_paths_from_names(
+            integrations,
+            marketplace_.path,
+        )
+    else:
+        valid_integrations_paths: set[pathlib.Path] = integrations
+
+    valid_integration_names: set[str] = {i.name for i in valid_integrations_paths}
+    not_found: set[str] = set(integrations).difference(valid_integration_names)
+    if not_found:
+        rich.print(
+            "[yellow]The following integrations could not be found in"
+            f" the {marketplace_.path.name} marketplace: {', '.join(not_found)}[/yellow]",
+        )
+    if valid_integrations_paths:
+        _pre_build_validation(valid_integrations_paths)
+
+        if not only_pre_build_validations:
+            marketplace_.build_integrations(valid_integrations_paths)
+            # Place holder for post build validations
+
+
+def _validate_groups(
+    groups: Iterable[str] | Iterable[pathlib.Path],
+    marketplace_: Marketplace,
+    only_pre_build_validations: bool,
+    pass_group_by_path: bool = False,
+) -> None:
+    """Validates a list of integration group names within a specific marketplace scope."""
+    if not pass_group_by_path:
+        valid_groups_paths: set[pathlib.Path] = _get_marketplace_paths_from_names(
+            names=groups,
+            marketplace_path=marketplace_.path,
+        )
+    else:
+        valid_groups_paths: set[pathlib.Path] = set(groups)
+    valid_group_names: set[str] = {g.name for g in valid_groups_paths}
+    not_found: set[str] = set(groups).difference(valid_group_names)
+    if not_found:
+        rich.print(
+            "[yellow]The following groups could not be found: "
+            f"{', '.join(not_found)}[/yellow]"
+        )
+
+    if valid_groups_paths:
+        _process_groups_for_validation(valid_groups_paths)
+
+        if not only_pre_build_validations:
+            marketplace_.build_groups(valid_groups_paths)
+            # Place holder for post build validations
+
+
+def _process_groups_for_validation(groups: Iterable[pathlib.Path]) -> None:
+    """Iterates through each group directory and performs pre-build validation
+    on all integration subdirectories found within them.
+    """  # noqa: D205
+    for group_dir in groups:
+        if group_dir.is_dir() and group_dir.exists():
+            _pre_build_validation(group_dir.iterdir())
+
+
+def _pre_build_validation(integration_paths: Iterable[pathlib.Path]) -> None:
+    """Executes pre-build validation checks on a list of integration paths."""
+    paths: Iterator[pathlib.Path] = (
+        p for p in integration_paths if p.exists() and mp.core.file_utils.is_integration(p)
+    )
+
+    processes: int = mp.core.config.get_processes_number()
+    with multiprocessing.Pool(processes=processes) as pool:
+        pool.map(_run_pre_build_validations, paths)
+
+
+def _run_pre_build_validations(integration_path: pathlib.Path) -> None:
+    PreBuildValidations(integration_path).run_pre_build_validation()
+
+
+def _get_marketplace_paths_from_names(
+    names: Iterable[str],
+    marketplace_path: pathlib.Path,
+) -> set[pathlib.Path]:
+    return {p for n in names if (p := marketplace_path / n).exists()}
