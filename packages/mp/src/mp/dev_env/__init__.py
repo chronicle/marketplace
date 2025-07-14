@@ -33,7 +33,12 @@ class DevEnvParams(NamedTuple):
     api_root: str
 
 
-@app.command(name="dev-env", help="Push code from the repo to the IDE of a SOAR instance")
+@app.command(
+    help=(
+        "Set the login parameters for the SOAR environment you want to push response integrations"
+        " to"
+    )
+)
 def login(
     api_root: Annotated[
         str | None,
@@ -115,10 +120,8 @@ def login(
             raise typer.Exit(1) from e
 
 
-@app.command()
-def deploy(
-    integration: str = typer.Argument(..., help="Integration to build and deploy."),
-) -> None:
+@app.command(help="Deploy an integration to the SOAR environment configured by the login command.")
+def deploy(integration: str = typer.Argument(..., help="Integration to build and deploy.")) -> None:
     """Build and deploy an integration to the dev environment (playground).
 
     Args:

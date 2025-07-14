@@ -15,6 +15,7 @@
 from __future__ import annotations
 
 import base64
+import binascii
 import datetime
 import email.errors
 import email.header
@@ -27,6 +28,7 @@ import string
 import typing
 import urllib
 import uuid
+from base64 import urlsafe_b64decode
 from collections import Counter
 from email.message import Message
 from email.utils import parseaddr
@@ -51,6 +53,7 @@ from urlextract import URLExtract
 
 from . import EmailParserRouting, OleId
 from .EmailUtilitiesManager import fix_malformed_eml_content
+from soar_sdk.SiemplifyDataModel import Attachment
 
 if typing.TYPE_CHECKING:
     from collections.abc import Iterable
@@ -106,7 +109,10 @@ ENTITY_REGEXS = {
     },
     "DestinationURL": {
         "patterns": [
-            # compile_re(r'''(?i)\b(?:(?:https?|ftps?|http?):(?:/{1,3}|[a-z0-9%])(?:[^\s()<>{}\[\]]+|\([^\s()]*?\([^\s()]+\)[^\s()]*?\)|\([^\s]+?\))+(?:[\w\-._~%!$&'()*+,;=:/?#\[\]@]+)|(?:(?<!@)[a-z0-9]+(?:[.\-][a-z0-9]+)*[.](?:\w)\b/?(?!@)))''')
+            # compile_re(r'''(?i)\b(?:(?:https?|ftps?|http?):(?:/{1,3}|[a-z0-9%])
+            # (?:[^\s()<>{}\[\]]+|\([^\s()]*?\([^\s()]+\)[^\s()]*?\)|\([^\s]+?\))+
+            # (?:[\w\-._~%!$&'()*+,;=:/?#\[\]@]+)|(?:(?<!@)[a-z0-9]+
+            # (?:[.\-][a-z0-9]+)*[.](?:\w)\b/?(?!@)))''')
             compile_re(
                 r"""(?i)\b(?:(?:https?|ftps?|http?){1}:(?:\/{2}|[a-z0-9%])(?:[^\s()<>{}\[\]]+|\([^\s()]*?\([^\s()]+\)[^\s()]*?\)|\([^\s]+?\))+(?:[\w\-._~%!$&'()*+,;=:\/?#\[\]@]+))""",
             ),
@@ -142,7 +148,8 @@ class URLDefenseDecoder:
         )
         URLDefenseDecoder.v1_pattern = re.compile(r"u=(?P<url>.+?)&k=")
         URLDefenseDecoder.v2_pattern = re.compile(r"u=(?P<url>.+?)&[dc]=")
-        # URLDefenseDecoder.v3_pattern = re.compile(r'v3/__(?P<url>.+?)__;(?P<enc_bytes>.*?)!')
+        # URLDefenseDecoder.v3_pattern =
+        # re.compile(r'v3/__(?P<url>.+?)__;(?P<enc_bytes>.*?)!')
         URLDefenseDecoder.v3_pattern = re.compile(
             r"v3/__(?P<url>.+?)__(;(?P<enc_bytes>.*?)!)?",
         )
@@ -358,8 +365,8 @@ class EmailUtils:
 
     @staticmethod
     def get_file_hash(data):
-        """Generate hashes of various types (``MD5``, ``SHA-1``, ``SHA-256``, ``SHA-512``)\
-        for the provided data.
+        """Generate hashes of various types (MD5, SHA-1, SHA-256, SHA-512) for the
+        provided data.
 
         Args:
           data (bytes): The data to calculate the hashes on.
@@ -475,8 +482,10 @@ class EmailUtils:
             data: Binary data.
 
         Returns:
-            typing.Tuple[str, str]: Identified mime information and mime-type. If **magic** is not available, returns *None, None*.
-                                    E.g. *"ELF 64-bit LSB shared object, x86-64, version 1 (SYSV)", "application/x-sharedlib"*
+            typing.Tuple[str, str]: Identified mime information and mime-type.
+                If **magic** is not available, returns *None, None*.
+                E.g. *"ELF 64-bit LSB shared object, x86-64, version 1 (SYSV)",
+                "application/x-sharedlib"*
 
         """
         if magic is None:
@@ -578,7 +587,7 @@ class EmailUtils:
                 # sense, thus skip it
                 continue
             try:
-                ipaddress_match = ipaddress.ip_address(found_url)
+                ipaddress.ip_address(found_url)
                 # we want to skip any IP addresses we find in the body.  These will be
                 # added when via the extract_ips method.
                 continue
@@ -679,18 +688,39 @@ class EmailUtils:
         r["hosts"].extend(route["hosts"])
         return r
 
-    @staticmethod
-    def render_html_body(html_body):
-        # type: (str) -> unicode
-        """Render html body to plain text plain
-        :param html_body: {str} The HTML body of the email
-        :return: {unicode} Plain text rendered HTML
-        """
+    # Compile the regex once as a class attribute for efficiency.
+    _HTML_TAGS_TO_REMOVE = re.compile(
+        r"<(pre|blockquote)[^>]*>.*?</\1>",
+        re.IGNORECASE | re.DOTALL,
+    )
 
-        def build_html_rendered():
-            """Create a HTML2Text object
-            :return: {html2text.HTML2Text} The HTMl2Text object
-            """
+    @staticmethod
+    def _preprocess_html_for_rendering(html_body: str) -> str:
+        """Removes specific HTML tags that can interfere with text rendering.
+
+        Args:
+            html_body: The HTML content to process.
+
+        Returns:
+            The processed HTML string.
+        """
+        return EmailUtils._HTML_TAGS_TO_REMOVE.sub("", html_body)
+
+    @staticmethod
+    def render_html_body(html_body: str) -> str:
+        """Render html body to plain text.
+
+        :param html_body: The HTML body of the email as a string.
+        :return: Plain text rendered HTML as a string.
+        """
+        # Use a guard clause to handle empty input and reduce nesting.
+        if not html_body:
+            return ""
+
+        processed_html = EmailUtils._preprocess_html_for_rendering(html_body)
+
+        def build_html_renderer() -> HTML2Text:
+            """Create a HTML2Text object."""
             renderer = HTML2Text()
             renderer.ignore_tables = True
             # renderer.protect_links = True
@@ -700,18 +730,11 @@ class EmailUtils:
             return renderer
 
         try:
-            html_renderer = build_html_rendered()
-            return html_renderer.handle(html_body)
-        except:
-            # HTML2Text is not performing well on non-ASCII str. On failure - try to decode the str to unicode
-            # using utf8 encoding. If failed - return a proper message.
-            try:
-                # HTML2Text object shouldn't be used twice - it can cause problems and errors according to google
-                # Therefore rebuild the object
-                html_renderer = build_html_rendered()
-                return html_renderer.handle(html_body)
-            except Exception as e:
-                return f"Failed rendering HTML. Error: {e}"
+            html_renderer = build_html_renderer()
+            return html_renderer.handle(processed_html)
+        except Exception as e:
+            # The html2text library can sometimes fail on complex or malformed HTML.
+            return f"Failed rendering HTML. Error: {e}"
 
 
 class ParsedEmail:
@@ -815,8 +838,8 @@ class EmailBody:
     ) -> typing.Iterator[str]:
         """Yield a more or less constant slice of a large string.
         If we start directly a *re* findall on 500K+ body we got time and memory issues.
-        If more than the configured slice step, lets cheat, we will cut around the thing we search "://, @, ."
-        in order to reduce regex complexity.
+        If more than the configured slice step, lets cheat, we will cut around the thing we
+        search "://, @, ." in order to reduce regex complexity.
 
         Args:
             body: Body to slice into smaller pieces.
@@ -854,7 +877,6 @@ class MSGParser:
 
     def parse_headers(self):
         _headers = {}
-        transport = []
         transport_stopped = False
 
         headers = Headers()
@@ -966,12 +988,11 @@ class MSGParser:
                 parsed_msg["body"].append(
                     email_body.body(self.msg_extractor.htmlBody.decode(), "text/html"),
                 )
-            except:
+            except Exception:
                 parsed_msg["body"].append(
                     email_body.body(self.msg_extractor.htmlBody, "text/html"),
                 )
 
-        attachments = []
         for _attachment in self.msg_extractor.attachments:
             msox_obj = None
 
@@ -1130,7 +1151,7 @@ class EMLParser:
                 if self.msg.policy == email.policy.compat32:  # type: ignore
                     new_policy = None
                 else:
-                    new_policy = msg.policy  # type: ignore
+                    new_policy = self.msg.policy  # type: ignore
 
                 self.msg.policy = email.policy.compat32  # type: ignore
 
@@ -1180,18 +1201,16 @@ class EMLParser:
         else:
             multipart = True
 
-        found_txt = 0
         html_body = ""
         for raw_body in raw_bodies:
             _content_type, body_value, body_multhead = raw_body
             content_type = self.get_content_type(body_multhead, multipart)
-            if content_type == "text/plain":
-                found_txt = 1
             if content_type == "text/html":
                 html_body = body_value
 
             body.append(email_body.body(body_value, content_type))
-        if found_txt == 0:
+
+        if html_body:
             rendered_body = EmailUtils.render_html_body(html_body)
             body.append(email_body.body(rendered_body, "text/plain"))
 
@@ -1205,7 +1224,8 @@ class EMLParser:
         return {"header": headers.__dict__, "body": body, "attachments": attachments}
 
     def traverse_multipart(self, msg, counter):
-        """Recursively traverses all e-mail message multi-part elements and returns in a parsed form as a dict.
+        """Recursively traverses all e-mail message multi-part elements and returns
+        in a parsed form as a dict.
 
         Args:
             msg (email.message.Message): An e-mail message object.
@@ -1213,8 +1233,8 @@ class EMLParser:
                 file-names in case there are none found in the header. Default = 0.
 
         Returns:
-            dict: Returns a dict with all original multi-part headers as well as generated hash check-sums,
-                date size, file extension, real mime-type.
+            dict: Returns a dict with all original multi-part headers as well as
+                generated hash check-sums, date size, file extension, real mime-type.
 
         """
         attachments = []
@@ -1243,8 +1263,8 @@ class EMLParser:
                 file-names in case there are none found in the header. Default = 0.
 
         Returns:
-            dict: Returns a dict with original multi-part headers as well as generated hash check-sums,
-                date size, file extension, real mime-type.
+            dict: Returns a dict with original multi-part headers as well as
+                generated hash check-sums, date size, file extension, real mime-type.
 
         """
         attachment = {}
@@ -1271,7 +1291,8 @@ class EMLParser:
                 payload = msg.get_payload()
                 if len(payload) > 1:
                     self.logger.info(
-                        'More than one payload for "message/rfc822" part detected. This is not supported, please report!',
+                        'More than one payload for "message/rfc822" part detected. '
+                        "This is not supported, please report!",
                     )
 
                 try:
@@ -1281,7 +1302,6 @@ class EMLParser:
 
                 file_size = len(data)
             else:
-                data2 = msg.get_payload(decode=False)
                 data = msg.get_payload(decode=True)
                 file_size = len(data)
 
@@ -1367,13 +1387,15 @@ class EMLParser:
 
     def get_raw_body_text(self, msg):
         # TODO: This might cause some dupe bodys due to the multiparty .html stuff.
-        """This method recursively retrieves all e-mail body parts and returns them as a list.
+        """This method recursively retrieves all e-mail body parts and returns them
+        as a list.
 
         Args:
             msg (email.message.Message): The actual e-mail message or sub-message.
 
         Returns:
-            list: Returns a list of sets which are in the form of "set(encoding, raw_body_string, message field headers)"
+            list: Returns a list of sets which are in the form of
+                "set(encoding, raw_body_string, message field headers)"
 
         """
         raw_body = []
@@ -1390,7 +1412,8 @@ class EMLParser:
                 filename = msg.get_filename("").lower()
             except (binascii.Error, AssertionError):
                 print(
-                    "Exception occurred while trying to parse the content-disposition header. Collected data will not be complete.",
+                    "Exception occurred while trying to parse the "
+                    "content-disposition header. Collected data will not be complete.",
                 )
                 filename = ""
 
@@ -1428,7 +1451,8 @@ class EMLParser:
                             "ignore",
                         )
 
-                # In case we hit bug 27257 or any other parsing error, try to downgrade the used policy
+                # In case we hit bug 27257 or any other parsing error, try to downgrade the
+                # used policy
                 try:
                     raw_body.append((encoding, raw_body_str, msg.items()))
                 except (AttributeError, TypeError):
@@ -1440,7 +1464,9 @@ class EMLParser:
         return raw_body
 
     def header_email_list(self, header):
-        """Parses a given header field like to, from, cc with e-mail addresses to a list of e-mail addresses."""
+        """Parses a given header field like to, from, cc with e-mail addresses to a list
+        of e-mail addresses.
+        """
         if self.msg is None:
             raise ValueError("msg is not set.")
 
@@ -1497,7 +1523,9 @@ class EmailManager:
             attachment["level"] = nested_level
 
             self.attachments.append(attachment.copy())
-            # if attachment['mime_type_short'] == 'message/rfc822' or attachment['mime_type_short'] == 'Composite Document File V2 Document, No summary info':
+            # if attachment['mime_type_short'] == 'message/rfc822' or
+            # attachment['mime_type_short'] == 'Composite Document File V2 Document,
+            # No summary info':
             decoded_data = base64.b64decode(attachment["raw"])
             p_email = self.traverse_attachments(
                 attachment["filename"],
@@ -1660,7 +1688,6 @@ class EmailManager:
             "entityToConnectRegEx": f"{re.escape(linked_entity)}$",
             "entityIdentifier": new_entity,
         }
-        payload = json_payload.copy()
         if exclude_regex and re.search(exclude_regex, new_entity):
             self.logger.info(
                 f"Exclude pattern found. skipping entity {new_entity} creation.",
@@ -1676,7 +1703,6 @@ class EmailManager:
             created_entity.raise_for_status()
 
     def build_entity_list(self, email, entity_type, exclude_regex=None):
-        entities = []
         entities_list = []
         _found_entities = {}
         current_entities = self.get_alert_entity_identifiers_with_entity_type()
@@ -1818,7 +1844,7 @@ class EmailManager:
                             {},
                             exclude_regex=exclude_regex,
                         )
-            elif email["header"]["cc"] != "" and email["header"]["cc"] != None:
+            elif email["header"]["cc"] != "" and email["header"]["cc"] is not None:
                 self.create_entity_with_relation(
                     email["header"]["from"],
                     email["header"]["cc"],
@@ -1872,7 +1898,7 @@ class EmailManager:
                             {},
                             exclude_regex=exclude_regex,
                         )
-            elif email["header"]["bcc"] != "" and email["header"]["bcc"] != None:
+            elif email["header"]["bcc"] != "" and email["header"]["bcc"] is not None:
                 self.create_entity_with_relation(
                     email["header"]["from"],
                     email["header"]["bcc"],
@@ -1904,13 +1930,15 @@ class EmailManager:
                 entity_type in create_observed_entity_types.lower()
                 or "all" in create_observed_entity_types.lower()
             ):
-                # self.siemplify.LOGGER.info(f"Creating any {ioc_type} IOCs from {email['header']['subject']}")
+                # self.siemplify.LOGGER.info(f"Creating any {ioc_type} IOCs from
+                # {email['header']['subject']}")
                 entities = self.build_entity_list(email, entity_type, exclude_regex)
                 self.siemplify.LOGGER.info(
                     f"Got these {entity_type} entities to create: {entities}.",
                 )
                 for entity in entities:
-                    # If the fang_entities option is set,  attempt to fang, decode url defence, and decode safelinks
+                    # If the fang_entities option is set,  attempt to fang, decode url
+                    # defence, and decode safelinks
                     if fang_entities:
                         entity = ioc_fanger.fang(entity)
                         if (
@@ -1921,18 +1949,19 @@ class EmailManager:
                             urldefense_decoder = URLDefenseDecoder()
                             try:
                                 entity = urldefense_decoder.decode(entity)
-                            except:
+                            except Exception:
                                 pass
                         if (
                             "safelinks.protection.outlook.com" in entity.lower()
                             and entity_type == "DestinationURL"
                         ):
-                            # if the URL contains safelinks, use urlparse and parse_qs to extract to the correct URL
+                            # if the URL contains safelinks, use urlparse and parse_qs to
+                            # extract to the correct URL
                             try:
                                 entity = parse_qs(urlparse(entity.lower()).query)[
                                     "url"
                                 ][0]
-                            except:
+                            except Exception:
                                 pass
 
                     self.create_entity_with_relation(
@@ -1968,7 +1997,8 @@ class EmailManager:
                 if "raw" in properties:
                     del properties["raw"]
 
-                # This is because the ETL layer removes the extension from the filename when its attached.  DUMB
+                # This is because the ETL layer removes the extension from the filename
+                # when its attached.  DUMB
                 name, attachment_type = os.path.splitext(entity_identifier)
                 for a in alert_entities:
                     if a.identifier == name and a.entity_type == "FILENAME":
@@ -1979,7 +2009,8 @@ class EmailManager:
                     self.logger.info(
                         f"creating with relation: {entity_identifier} to {subject_entity}",
                     )
-                    # self.logger.info(f"No subject entity. Linking {entity_identifier} to {subject_entity}  ")
+                    # self.logger.info(f"No subject entity. Linking {entity_identifier} to
+                    # {subject_entity}  ")
                     self.create_entity_with_relation(
                         entity_identifier,
                         subject_entity,
@@ -2060,6 +2091,11 @@ class EmailManager:
             self.siemplify.validate_siemplify_error(response)
         except Exception as e:
             if "Attachment size" in e:
+                error_message = (
+                    "Attachment size should be < 5MB. "
+                    f"Original file size: {attachment.orig_size}. "
+                    f"Size after encoding: {attachment.size}."
+                )
                 raise Exception(
-                    f"Attachment size should be < 5MB. Original file size: {attachment.orig_size}. Size after encoding: {attachment.size}.",
+                    error_message,
                 )

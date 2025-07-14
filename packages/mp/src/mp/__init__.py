@@ -46,7 +46,7 @@ def main() -> None:
     app.add_typer(config.app)
     app.add_typer(format_app.app)
     app.add_typer(run_pre_build_tests.app)
-    app.add_typer(dev_env.app)
+    app.add_typer(dev_env.app, name="dev-env")
     app()
 
 
