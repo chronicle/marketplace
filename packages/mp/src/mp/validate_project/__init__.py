@@ -50,7 +50,6 @@ __all__: list[str] = [
     "PreBuildValidations",
     "RuntimeParams",
     "app",
-    "mp",
     "raise_errors_for_duplicate_integrations",
 ]
 app: typer.Typer = typer.Typer()
@@ -203,13 +202,13 @@ def _validate_repo(marketplace: Marketplace, *, only_pre_build_validations: bool
         set(products.integrations),
         marketplace,
         only_pre_build_validations=only_pre_build_validations,
-        pass_integration_by_path=True
+        pass_integration_by_path=True,
     )
     _validate_groups(
         set(products.groups),
         marketplace,
         only_pre_build_validations=only_pre_build_validations,
-        pass_group_by_path=True
+        pass_group_by_path=True,
     )
 
 
@@ -279,12 +278,29 @@ def _pre_build_validation(integration_paths: Iterable[pathlib.Path]) -> None:
     )
 
     processes: int = mp.core.config.get_processes_number()
+    logs_array = []
     with multiprocessing.Pool(processes=processes) as pool:
-        pool.map(_run_pre_build_validations, paths)
+        results = pool.imap_unordered(_run_pre_build_validations, paths)
+        for msg_list in results:
+            logs_array.extend(msg_list.copy())
+
+    for logger in logs_array:
+        for msg in logger:
+            rich.print(msg)
 
 
-def _run_pre_build_validations(integration_path: pathlib.Path) -> None:
-    PreBuildValidations(integration_path).run_pre_build_validation()
+def _run_pre_build_validations(integration_path: pathlib.Path) -> list[str]:
+    validation_object: PreBuildValidations = PreBuildValidations(integration_path)
+    validation_object.run_pre_build_validation()
+    return validation_object.get_logs()
+
+
+def _post_build_validation(integration_paths: Iterable[pathlib.Path]) -> None:
+    pass
+
+
+def run_post_build_validation(integration_path: pathlib.Path) -> None:
+    pass
 
 
 def _get_marketplace_paths_from_names(
@@ -298,7 +314,7 @@ def _get_marketplace_paths_from_names(
             result.add(p)
         else:
             rich.print(
-                f"[yello] the integration: {n} "
-                f"has not been found in {marketplace_path.name}"
+                "[yellow] the integration: "
+                f"{n} has not been found in {marketplace_path.name} [yellow]"
             )
     return result

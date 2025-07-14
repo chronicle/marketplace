@@ -16,8 +16,7 @@
 import dataclasses
 import pathlib
 
-import rich
-
+from mp.common.exceptions import NonFatalException
 from mp.core.file_utils import is_built
 from mp.core.unix import check_lock_file
 
@@ -25,16 +24,41 @@ from mp.core.unix import check_lock_file
 @dataclasses.dataclass(slots=True, frozen=True)
 class PreBuildValidations:
     integration_path: pathlib.Path
+    logs: list[str] = dataclasses.field(default_factory=list)
 
-    def __version_bump_validation(self) -> None:
-        pass
+    def get_logs(self) -> list[str]:
+        """Return the log object that stores all the logs inside it.
 
-    def __uv_lock_validation(self) -> None:
-        rich.print("[yellow] Running uv lock validation [/yellow]")
-        if not is_built(self.integration_path):
-            check_lock_file(self.integration_path)
+        Returns:
+            list[str]: A list containing all the logs.
+
+        """
+        return self.logs
 
     def run_pre_build_validation(self) -> None:
         """Run all the pre-build validations."""
-        rich.print(f"[green] Running pre build validation on {self.integration_path.name} [/green]")
-        self.__uv_lock_validation()
+        function_validation_list = [self._uv_lock_validation, self._version_bump_validation]
+
+        self.logs.append(
+            "[bold green]Running pre build validation on "
+            f"---- {self.integration_path.name} ---- [/bold green]"
+        )
+
+        for func in function_validation_list:
+            try:
+                func()
+            except NonFatalException as e:
+                self.logs.append(f"[red]{e.message}[/red]")
+
+        self.logs.append(
+            "[bold green]Completed pre build validation on "
+            f"---- {self.integration_path.name} ---- [/bold green]"
+        )
+
+    def _version_bump_validation(self) -> None:
+        pass
+
+    def _uv_lock_validation(self) -> None:
+        self.logs.append("[yellow]Running uv lock validation [/yellow]")
+        if not is_built(self.integration_path):
+            check_lock_file(self.integration_path)
