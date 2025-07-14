@@ -25,7 +25,7 @@ from __future__ import annotations
 
 import typer
 
-from . import build_project, check, config, dev_env, run_pre_build_tests
+from . import build_project, check, config, dev_env, run_pre_build_tests, validate_project
 from . import format as format_app
 
 __all__: list[str] = [
@@ -35,6 +35,7 @@ __all__: list[str] = [
     "format_app",
     "main",
     "run_pre_build_tests",
+    "validate_project"
 ]
 
 
@@ -47,6 +48,7 @@ def main() -> None:
     app.add_typer(format_app.app)
     app.add_typer(run_pre_build_tests.app)
     app.add_typer(dev_env.app, name="dev-env")
+    app.add_typer(validate_project.app)
     app()
 
 
