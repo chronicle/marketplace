@@ -304,7 +304,7 @@ def _pre_build_validation(integration_paths: Iterable[pathlib.Path]) -> bool:
     )
     all_validation_passed: bool = True
 
-    rich.print("[bold green]Starting pre-build validation [bold green]\n")
+    rich.print("[bold green]Starting pre-build validations [bold green]\n")
 
     processes: int = mp.core.config.get_processes_number()
     logs_array: list[list[str]] = []
@@ -319,7 +319,7 @@ def _pre_build_validation(integration_paths: Iterable[pathlib.Path]) -> bool:
         for msg in logger:
             rich.print(msg)
 
-    rich.print("[bold green]Completed pre-build validation [bold green]")
+    rich.print("[bold green]Completed pre-build validations [bold green]")
 
     return all_validation_passed
 
