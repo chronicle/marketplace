@@ -219,7 +219,12 @@ def _validate_integrations(
     only_pre_build_validations: bool,
     pass_integration_by_path: bool = False,
 ) -> None:
-    """Validate a list of integration names within a specific marketplace scope."""
+    """Validate a list of integration names within a specific marketplace scope.
+
+    Raises:
+        typer.Exit: If any pre-build validation fails.
+
+    """
     if not pass_integration_by_path:
         valid_integrations_paths: set[pathlib.Path] = _get_marketplace_paths_from_names(
             integrations,
@@ -229,11 +234,14 @@ def _validate_integrations(
         valid_integrations_paths: set[pathlib.Path] = integrations
 
     if valid_integrations_paths:
-        _pre_build_validation(valid_integrations_paths)
+        validations_passed: bool = _pre_build_validation(valid_integrations_paths)
 
         if not only_pre_build_validations:
             marketplace_.build_integrations(valid_integrations_paths)
             # Place holder for post build validations
+
+        if not validations_passed:
+            raise typer.Exit(code=1)
 
 
 def _validate_groups(
@@ -243,7 +251,12 @@ def _validate_groups(
     only_pre_build_validations: bool,
     pass_group_by_path: bool = False,
 ) -> None:
-    """Validate a list of integration group names within a specific marketplace scope."""
+    """Validate a list of integration group names within a specific marketplace scope.
+
+    Raises:
+        typer.Exit: If any pre-build validation fails within the groups.
+
+    """
     if not pass_group_by_path:
         valid_groups_paths: set[pathlib.Path] = _get_marketplace_paths_from_names(
             names=groups,
@@ -253,29 +266,43 @@ def _validate_groups(
         valid_groups_paths: set[pathlib.Path] = set(groups)
 
     if valid_groups_paths:
-        _process_groups_for_validation(valid_groups_paths)
+        validations_passed: bool = _process_groups_for_validation(valid_groups_paths)
 
         if not only_pre_build_validations:
             marketplace_.build_groups(valid_groups_paths)
             # Place holder for post build validations
 
+        if not validations_passed:
+            raise typer.Exit(code=1)
 
-def _process_groups_for_validation(groups: Iterable[pathlib.Path]) -> None:
-    """Iterate through each group directory and performs pre-build validation.
 
-    on all integration subdirectories found within them.
+def _process_groups_for_validation(groups: Iterable[pathlib.Path]) -> bool:
+    """Iterate through groups and perform pre-build validation on their integrations.
+
+    Returns:
+        bool: True if all validations passed, False otherwise.
 
     """
+    all_validation_passed: bool = True
     for group_dir in groups:
         if group_dir.is_dir() and group_dir.exists():
-            _pre_build_validation(group_dir.iterdir())
+            group_passed_validations = _pre_build_validation(group_dir.iterdir())
+            all_validation_passed = all_validation_passed and group_passed_validations
+
+    return all_validation_passed
 
 
-def _pre_build_validation(integration_paths: Iterable[pathlib.Path]) -> None:
-    """Execute pre-build validation checks on a list of integration paths."""
+def _pre_build_validation(integration_paths: Iterable[pathlib.Path]) -> bool:
+    """Execute pre-build validation checks on a list of integration paths.
+
+    Returns:
+        bool: True if all validations passed for the given paths, False otherwise.
+
+    """
     paths: Iterator[pathlib.Path] = (
         p for p in integration_paths if p.exists() and mp.core.file_utils.is_integration(p)
     )
+    all_validation_passed: bool = True
 
     processes: int = mp.core.config.get_processes_number()
     logs_array: list[list[str]] = []
@@ -283,11 +310,14 @@ def _pre_build_validation(integration_paths: Iterable[pathlib.Path]) -> None:
         results = pool.imap_unordered(_run_pre_build_validations, paths)
         for msg_list, is_all_validation_passed in results:
             if not is_all_validation_passed:
+                all_validation_passed = False
                 logs_array.append(msg_list.copy())
 
     for logger in logs_array:
         for msg in logger:
             rich.print(msg)
+
+    return all_validation_passed
 
 
 def _run_pre_build_validations(integration_path: pathlib.Path) -> tuple[list[str], bool]:
