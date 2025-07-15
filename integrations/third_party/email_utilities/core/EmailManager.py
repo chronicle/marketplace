@@ -516,13 +516,17 @@ class EmailUtils:
         """
         ips: typing.Counter[str] = Counter()
         for ip in extract_valid_ips_from_body(body):
-            ipaddress_match = ipaddress.ip_address(ip)
+            try:
+                ipaddress_match = ipaddress.ip_address(ip)
 
-            if not (ipaddress_match.is_private) or (
-                include_internal and ip != "::"
-            ):
-                ips[ip] = 1
+            except ValueError:
+                continue
 
+            else:
+                if not (ipaddress_match.is_private) or (
+                    include_internal and ip != "::"
+                ):
+                    ips[ip] = 1
         ips = list(ips)
 
         return ips
