@@ -16,6 +16,7 @@ from __future__ import annotations
 
 import base64
 import json
+import re
 from typing import TYPE_CHECKING, Any
 import uuid
 from zipfile import ZipFile
@@ -504,8 +505,24 @@ class Workflow(Content):
                         param["InstanceDisplayName"] = display_name
                     case "FallbackIntegrationInstance":
                         param["FallbackInstanceDisplayName"] = display_name
-            except HTTPError:
-                pass
+            except HTTPError as e:
+                # ignoring 404 errors as they expected in migrations between instances.
+                if e.response is not None and hasattr(e.response, 'status_code'):
+                    status_code = e.response.status_code
+                    if status_code != 404:
+                        raise e
+                else:
+                    # TIPCommon is re-raising HTTPError without response object
+                    # Try to extract status code from the error message itself
+                    error_msg = str(e)
+                    status_code_match = re.search(r'(\d{3})\s+Client Error', error_msg)
+                    if status_code_match:
+                        status_code = int(status_code_match.group(1))
+                        if status_code != 404:
+                            raise e
+                    else:
+                        # can't determine the status code
+                        raise e
 
     def _is_valid_instance_id(self, instance_id: str) -> bool:
         try:
