@@ -231,7 +231,7 @@ def _validate_integrations(
             marketplace_.path,
         )
     else:
-        valid_integrations_paths: set[pathlib.Path] = integrations
+        valid_integrations_paths: set[pathlib.Path] = set(integrations)
 
     if valid_integrations_paths:
         validations_passed: bool = _pre_build_validation(valid_integrations_paths)
@@ -304,6 +304,8 @@ def _pre_build_validation(integration_paths: Iterable[pathlib.Path]) -> bool:
     )
     all_validation_passed: bool = True
 
+    rich.print("[bold green] Starting pre-build validation [bold green]")
+
     processes: int = mp.core.config.get_processes_number()
     logs_array: list[list[str]] = []
     with multiprocessing.Pool(processes=processes) as pool:
@@ -316,6 +318,8 @@ def _pre_build_validation(integration_paths: Iterable[pathlib.Path]) -> bool:
     for logger in logs_array:
         for msg in logger:
             rich.print(msg)
+
+    rich.print("[bold green] Completed pre-build validation [bold green]")
 
     return all_validation_passed
 
