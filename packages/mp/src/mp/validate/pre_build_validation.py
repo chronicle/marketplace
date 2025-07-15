@@ -12,6 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+from __future__ import annotations
 
 import dataclasses
 import pathlib
@@ -19,7 +20,7 @@ from collections.abc import Callable
 
 import mp.core.file_utils
 import mp.core.unix
-from mp.common.exceptions import NonFatalExceptionError
+from mp.core.exceptions.exceptions import NonFatalValidationError
 
 
 @dataclasses.dataclass(slots=True, frozen=True)
@@ -27,17 +28,9 @@ class PreBuildValidations:
     integration_path: pathlib.Path
     logs: list[str] = dataclasses.field(default_factory=list)
 
-    def get_logs(self) -> list[str]:
-        """Return the log object that stores all the logs inside it.
-
-        Returns:
-            list[str]: A list containing all the logs.
-
-        """
-        return self.logs
-
+    @property
     def is_all_validation_passed(self) -> bool:
-        """Check if all validation has passed.
+        """Check if all validations passed.
 
         Returns:
             bool: True if all validation passed, False otherwise.
@@ -55,8 +48,8 @@ class PreBuildValidations:
         for func in self._get_validation_functions():
             try:
                 func()
-            except NonFatalExceptionError as e:
-                self.logs.append(f"[red]{e.message}[/red]\n")
+            except NonFatalValidationError as e:
+                self.logs.append(f"[red]{e.__str__()}[/red]\n")
 
         self.logs.append(
             "[bold green]Completed pre build validation on "

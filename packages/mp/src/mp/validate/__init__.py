@@ -30,13 +30,11 @@ import typer
 import mp.core.config
 import mp.core.file_utils
 from mp.build_project.marketplace import Marketplace
-from mp.build_project.post_build.duplicate_integrations import (
-    raise_errors_for_duplicate_integrations,
-)
 from mp.core.config import RuntimeParams
 from mp.core.custom_types import RepositoryType
 
 from .pre_build_validation import PreBuildValidations
+from .utils import get_marketplace_paths_from_names
 
 if TYPE_CHECKING:
     import pathlib
@@ -46,21 +44,17 @@ if TYPE_CHECKING:
 
 
 __all__: list[str] = [
-    "Marketplace",
-    "PreBuildValidations",
-    "RuntimeParams",
-    "app",
-    "raise_errors_for_duplicate_integrations",
+    "app"
 ]
 app: typer.Typer = typer.Typer()
 
 
 @dataclasses.dataclass(slots=True, frozen=True)
-class BuildParams:
+class ValidateParams:
     repository: Iterable[RepositoryType]
     integrations: Iterable[str]
     groups: Iterable[str]
-    only_pre_build: bool | None
+    only_pre_build: bool
 
     def validate(self) -> None:
         """Validate the parameters.
@@ -79,22 +73,23 @@ class BuildParams:
                 or --integration) is used at the same time.
 
         """
-        params: list[Iterable[str] | Iterable[RepositoryType]] = self._as_list()
+        mutually_exclusive_options = [self.repository, self.integrations, self.groups]
         msg: str
-        if not any(params):
+
+        if not any(mutually_exclusive_options):
             msg = "At least one of --repository, --groups, or --integration must be used."
             raise typer.BadParameter(msg)
 
-        if sum(map(bool, params)) != 1:
+        if sum(map(bool, mutually_exclusive_options)) != 1:
             msg = "Only one of --repository, --groups, or --integration shall be used."
             raise typer.BadParameter(msg)
 
     def _as_list(self) -> list[Iterable[RepositoryType] | Iterable[str]]:
-        return [self.repository, self.integrations, self.groups]
+        return [self.repository, self.integrations, self.groups, self.only_pre_build]
 
 
 @app.command(name="validate", help="Validate the marketplace")
-def validate_command(  # noqa: PLR0913
+def validate(  # noqa: PLR0913
     repository: Annotated[
         list[RepositoryType],
         typer.Option(
@@ -140,6 +135,7 @@ def validate_command(  # noqa: PLR0913
     ] = False,
 ) -> None:
     """Run the mp validate command.
+
     Validate integrations within the marketplace based on specified criteria.
 
     Args:
@@ -154,11 +150,11 @@ def validate_command(  # noqa: PLR0913
         quiet: quiet log options
         verbose: Verbose log options
 
-    """  # noqa: D205
+    """
     run_params: RuntimeParams = mp.core.config.RuntimeParams(quiet, verbose)
     run_params.set_in_config()
 
-    params: BuildParams = BuildParams(repository, integration, group, only_pre_build_validations)
+    params: ValidateParams = ValidateParams(repository, integration, group, only_pre_build_validations)
     params.validate()
 
     commercial_mp: Marketplace = Marketplace(mp.core.file_utils.get_commercial_path())
@@ -212,38 +208,6 @@ def _validate_repo(marketplace: Marketplace, *, only_pre_build_validations: bool
     )
 
 
-def _validate_integrations(
-    integrations: Iterable[str] | Iterable[pathlib.Path],
-    marketplace_: Marketplace,
-    *,
-    only_pre_build_validations: bool,
-    pass_integration_by_path: bool = False,
-) -> None:
-    """Validate a list of integration names within a specific marketplace scope.
-
-    Raises:
-        typer.Exit: If any pre-build validation fails.
-
-    """
-    if not pass_integration_by_path:
-        valid_integrations_paths: set[pathlib.Path] = _get_marketplace_paths_from_names(
-            integrations,
-            marketplace_.path,
-        )
-    else:
-        valid_integrations_paths: set[pathlib.Path] = set(integrations)
-
-    if valid_integrations_paths:
-        validations_passed: bool = _pre_build_validation(valid_integrations_paths)
-
-        if not only_pre_build_validations:
-            marketplace_.build_integrations(valid_integrations_paths)
-            # Place holder for post build validations
-
-        if not validations_passed:
-            raise typer.Exit(code=1)
-
-
 def _validate_groups(
     groups: Iterable[str] | Iterable[pathlib.Path],
     marketplace_: Marketplace,
@@ -258,7 +222,7 @@ def _validate_groups(
 
     """
     if not pass_group_by_path:
-        valid_groups_paths: set[pathlib.Path] = _get_marketplace_paths_from_names(
+        valid_groups_paths: set[pathlib.Path] = get_marketplace_paths_from_names(
             names=groups,
             marketplace_path=marketplace_.path,
         )
@@ -270,7 +234,6 @@ def _validate_groups(
 
         if not only_pre_build_validations:
             marketplace_.build_groups(valid_groups_paths)
-            # Place holder for post build validations
 
         if not validations_passed:
             raise typer.Exit(code=1)
@@ -292,7 +255,37 @@ def _process_groups_for_validation(groups: Iterable[pathlib.Path]) -> bool:
     return all_validation_passed
 
 
-def _pre_build_validation(integration_paths: Iterable[pathlib.Path]) -> bool:
+def _validate_integrations(
+    integrations: Iterable[str] | Iterable[pathlib.Path],
+    marketplace_: Marketplace,
+    *,
+    only_pre_build_validations: bool,
+    pass_integration_by_path: bool = False,
+) -> None:
+    """Validate a list of integration names within a specific marketplace scope.
+
+    Raises:
+        typer.Exit: If any pre-build validation fails.
+
+    """
+    valid_integrations_paths: set[pathlib.Path] = set(integrations)
+    if not pass_integration_by_path:
+        valid_integrations_paths = get_marketplace_paths_from_names(
+            integrations,
+            marketplace_.path,
+        )
+
+    if valid_integrations_paths:
+        validations_passed: bool = _pre_build_validation(valid_integrations_paths)
+
+        if not only_pre_build_validations:
+            marketplace_.build_integrations(valid_integrations_paths)
+
+        if not validations_passed:
+            raise typer.Exit(code=1)
+
+
+def _pre_build_validation(integration: Iterable[pathlib.Path]) -> bool:
     """Execute pre-build validation checks on a list of integration paths.
 
     Returns:
@@ -300,25 +293,22 @@ def _pre_build_validation(integration_paths: Iterable[pathlib.Path]) -> bool:
 
     """
     paths: Iterator[pathlib.Path] = (
-        p for p in integration_paths if p.exists() and mp.core.file_utils.is_integration(p)
+        p for p in integration if p.exists() and mp.core.file_utils.is_integration(p)
     )
     all_validation_passed: bool = True
 
     rich.print("[bold green]Starting pre-build validations [bold green]\n")
 
     processes: int = mp.core.config.get_processes_number()
-    logs_array: list[list[str]] = []
+    logs: list[str] = []
     with multiprocessing.Pool(processes=processes) as pool:
         results = pool.imap_unordered(_run_pre_build_validations, paths)
         for msg_list, is_all_validation_passed in results:
             if not is_all_validation_passed:
                 all_validation_passed = False
-                logs_array.append(msg_list.copy())
+                logs.extend(msg_list)
 
-    for logger in logs_array:
-        for msg in logger:
-            rich.print(msg)
-
+    _display_logs(logs)
     rich.print("[bold green]Completed pre-build validations [bold green]")
 
     return all_validation_passed
@@ -327,29 +317,9 @@ def _pre_build_validation(integration_paths: Iterable[pathlib.Path]) -> bool:
 def _run_pre_build_validations(integration_path: pathlib.Path) -> tuple[list[str], bool]:
     validation_object: PreBuildValidations = PreBuildValidations(integration_path)
     validation_object.run_pre_build_validation()
-    return validation_object.get_logs(), validation_object.is_all_validation_passed()
+    return validation_object.logs, validation_object.is_all_validation_passed
 
 
-def _post_build_validation(integration_paths: Iterable[pathlib.Path]) -> None:
-    pass
-
-
-def run_post_build_validation(integration_path: pathlib.Path) -> None:
-    pass
-
-
-def _get_marketplace_paths_from_names(
-    names: Iterable[str] | Iterable[pathlib.Path],
-    marketplace_path: pathlib.Path,
-) -> set[pathlib.Path]:
-    result: set[pathlib.Path] = set()
-    for n in names:
-        p = marketplace_path / n
-        if p.exists():
-            result.add(p)
-        else:
-            rich.print(
-                "[yellow] the integration: "
-                f"{n} has not been found in {marketplace_path.name} [yellow]"
-            )
-    return result
+def _display_logs(logs: list[str]) -> None:
+    for log in logs:
+        rich.print(log)
