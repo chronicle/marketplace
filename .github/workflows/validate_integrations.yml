@@ -1,4 +1,4 @@
-name: Validate marketpalce integrations
+name: Validate marketplace integrations
 permissions:
   contents: read
 on:
