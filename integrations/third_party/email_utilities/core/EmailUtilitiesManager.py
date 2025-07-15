@@ -764,6 +764,9 @@ class DomainSigner:
         else:
             self.set_message(message)
 
+        if logger is None:
+            logger = logging.getLogger(__name__)
+
         self.logger = logger
         self.info_content = (
             info_content and logger is not None and logger.isEnabledFor(logging.info)
