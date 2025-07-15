@@ -15,12 +15,15 @@
 from __future__ import annotations
 
 import dataclasses
-import pathlib
-from collections.abc import Callable
+from typing import TYPE_CHECKING
 
 import mp.core.file_utils
 import mp.core.unix
 from mp.core.exceptions.exceptions import NonFatalValidationError
+
+if TYPE_CHECKING:
+    import pathlib
+    from collections.abc import Callable
 
 
 @dataclasses.dataclass(slots=True, frozen=True)
@@ -49,7 +52,7 @@ class PreBuildValidations:
             try:
                 func()
             except NonFatalValidationError as e:
-                self.logs.append(f"[red]{e.__str__()}[/red]\n")
+                self.logs.append(f"[red]{e!s}[/red]\n")
 
         self.logs.append(
             "[bold green]Completed pre build validation on "

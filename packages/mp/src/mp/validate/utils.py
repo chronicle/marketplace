@@ -14,17 +14,20 @@
 
 from __future__ import annotations
 
-import pathlib
-from collections.abc import Iterable
+from typing import TYPE_CHECKING
 
 import rich
+
+if TYPE_CHECKING:
+    import pathlib
+    from collections.abc import Iterable
 
 
 def get_marketplace_paths_from_names(
     names: Iterable[str],
     marketplace_path: pathlib.Path,
 ) -> set[pathlib.Path]:
-    """Retrieves existing marketplace paths from a list of names.
+    """Retrieve existing marketplace paths from a list of names.
 
     Args:
         names: An iterable of names, where each name can be a string

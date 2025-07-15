@@ -30,7 +30,6 @@ import typer
 import mp.core.config
 import mp.core.file_utils
 from mp.build_project.marketplace import Marketplace
-from mp.core.config import RuntimeParams
 from mp.core.custom_types import RepositoryType
 
 from .pre_build_validation import PreBuildValidations
@@ -40,6 +39,7 @@ if TYPE_CHECKING:
     import pathlib
     from collections.abc import Iterable, Iterator
 
+    from mp.core.config import RuntimeParams
     from mp.core.custom_types import Products
 
 
@@ -154,7 +154,12 @@ def validate(  # noqa: PLR0913
     run_params: RuntimeParams = mp.core.config.RuntimeParams(quiet, verbose)
     run_params.set_in_config()
 
-    params: ValidateParams = ValidateParams(repository, integration, group, only_pre_build_validations)
+    params: ValidateParams = ValidateParams(
+        repository,
+        integration,
+        group,
+        only_pre_build_validations
+    )
     params.validate()
 
     commercial_mp: Marketplace = Marketplace(mp.core.file_utils.get_commercial_path())

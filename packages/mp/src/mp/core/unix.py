@@ -397,7 +397,7 @@ def check_lock_file(project_path: pathlib.Path) -> None:
                       that contains 'pyproject.toml' and 'uv.lock' files.
 
     Raises:
-        CommandvError: If the 'uv lock --check' command indicates that the
+        NonFatalCommandError: If the 'uv lock --check' command indicates that the
                       'uv.lock' file is out of sync or if another error
                       occurs during the check.
 
