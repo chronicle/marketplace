@@ -717,12 +717,12 @@ class WorkflowInstaller:
 
     def _adjust_loop_keys_and_parameters(self, identifier_mappings, workflow):
         for step in self._flatten_playbook_steps(workflow.raw_data.get("steps")):
-            if "startLoopStepIdentifier" in step and step["startLoopStepIdentifier"]:
+            if step.get("startLoopStepIdentifier"):
                 mapped_id = identifier_mappings.get(step["startLoopStepIdentifier"])
                 if mapped_id:
                     step["startLoopStepIdentifier"] = mapped_id
 
-            if "endLoopStepIdentifier" in step and step["endLoopStepIdentifier"]:
+            if step.get("endLoopStepIdentifier"):
                 mapped_id = identifier_mappings.get(step["endLoopStepIdentifier"])
                 if mapped_id:
                     step["endLoopStepIdentifier"] = mapped_id
@@ -733,8 +733,8 @@ class WorkflowInstaller:
                 param_value = param.get("value")
 
                 # Handle Start/EndLoopStepIdentifier parameter
-                if (param_name == "StartLoopStepIdentifier" or
-                    param_name == "EndLoopStepIdentifier") and param_value:
+                if (param_name in {"StartLoopStepIdentifier", "EndLoopStepIdentifier"} and
+                        param_value):
                     mapped_id = identifier_mappings.get(param_value)
                     if mapped_id:
                         param["value"] = mapped_id
