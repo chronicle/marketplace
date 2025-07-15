@@ -55,11 +55,13 @@ def get_current_alert(alerts, current_alert):
             return alert
 
 
-def get_sources_and_dest(alert: SingleJson) -> tuple[list[str], list[str]]:
+def get_sources_and_dest(
+    alert: SingleJson | list[SingleJson],
+) -> tuple[list[str], list[str]]:
     """Get sources and destinations from alert.
 
     Args:
-        alert (SingleJson): Chronicle alert.
+        alert (SingleJson | list[SingleJson]): Chronicle alert.
 
     Returns:
         tuple[list[str], list[str]]: Tuple containing list of sources and destinations.
