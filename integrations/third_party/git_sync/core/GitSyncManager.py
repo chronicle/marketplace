@@ -31,7 +31,6 @@ from .constants import (
     INTEGRATION_NAME,
     ROOT_README,
     ScriptType,
-    SHARED_ENV_CACHE_KEY,
     WorkflowTypes,
 )
 from .definitions import Connector, File, Integration, Job, Mapping, Workflow
@@ -805,22 +804,19 @@ class WorkflowInstaller:
 
         """
         if existing_step:
-            instance_param = self._get_step_parameter_by_name(
+            instance = self._get_step_parameter_by_name(
                 existing_step,
                 "IntegrationInstance",
-            )
-            instance_id = instance_param.get("value") if instance_param else None
-            self._set_step_parameter_by_name(step, "IntegrationInstance", instance_id)
-
-            fallback_param = self._get_step_parameter_by_name(
+            ).get("value")
+            self._set_step_parameter_by_name(step, "IntegrationInstance", instance)
+            fallback = self._get_step_parameter_by_name(
                 existing_step,
                 "FallbackIntegrationInstance",
-            )
-            fallback_id = fallback_param.get("value") if fallback_param else None
+            ).get("value")
             self._set_step_parameter_by_name(
                 step,
                 "FallbackIntegrationInstance",
-                fallback_id,
+                fallback,
             )
             return
 
@@ -846,49 +842,49 @@ class WorkflowInstaller:
         # from that environment. Otherwise, set the step to dynamic mode and set the first shared
         # integration instance as fallback
         if len(environments) == 1 and environments[0] != ALL_ENVIRONMENTS_IDENTIFIER:
-            # First try to find the instance in the specific environment only (no shared instances)
-            env_only_instances = self._find_integration_instances_for_step(
+            integration_instances = self._find_integration_instances_for_step(
                 step.get("integration"),
                 environments[0],
-                include_shared_environments=False,
             )
-
-            instance_id = self._find_instance_id_by_display_name(
-                env_only_instances,
-                instance_display_name,
-            )
-
-            # If not found in environment-specific instances, fall back to find using the API method
-            if instance_id is None:
+            if integration_instances:
                 instance_id = self.api.get_integration_instance_id_by_name(
                     self.chronicle_soar,
                     step.get("integration"),
                     environments=environments,
                     display_name=instance_display_name,
                 )
-
-            self._set_step_parameter_by_name(
-                step,
-                "IntegrationInstance",
-                instance_id,
-            )
-            self._set_step_parameter_by_name(
-                step,
-                "FallbackIntegrationInstance",
-                fallback_instance_id,
-            )
+                self._set_step_parameter_by_name(
+                    step,
+                    "IntegrationInstance",
+                    instance_id or integration_instances[0].get("identifier"),
+                )
+                self._set_step_parameter_by_name(
+                    step,
+                    "FallbackIntegrationInstance",
+                    fallback_instance_id,
+                )
         else:
+            integration_instances = self._find_integration_instances_for_step(
+                step.get("integration"),
+                ALL_ENVIRONMENTS_IDENTIFIER,
+            )
             self._set_step_parameter_by_name(
                 step,
                 "IntegrationInstance",
                 "AutomaticEnvironment",
             )
-
-            self._set_step_parameter_by_name(
-                step,
-                "FallbackIntegrationInstance",
-                fallback_instance_id,  # TODO: search for most suitable instance
-            )
+            if integration_instances:
+                self._set_step_parameter_by_name(
+                    step,
+                    "FallbackIntegrationInstance",
+                    fallback_instance_id or integration_instances[0].get("identifier"),
+                )
+            else:
+                self._set_step_parameter_by_name(
+                    step,
+                    "FallbackIntegrationInstance",
+                    fallback_instance_id,
+                )
 
     def _get_instance_display_name(
         self,
@@ -908,67 +904,30 @@ class WorkflowInstaller:
         self,
         integration_name: str,
         environment: str,
-        include_shared_environments: bool = True,
     ) -> list[dict]:
         """Find integration instances available for integration per environment
 
         Args:
             integration_name: The integration name to look for
             environment: The environment to fetch the integration instances
-            include_shared_environments: Whether to include shared environment instances
 
         Returns:
             A list of configured integration instances
 
         """
-        # Get environment-specific instances
-        env_cache_key = f"integration_instances_{environment}"
-        if env_cache_key not in self._cache:
-            env_instances = self.api.get_integrations_instances(environment)
-            self._cache[env_cache_key] = sorted(env_instances, key=lambda x: x.get("instanceName"))
+        cache_key = f"integration_instances_{environment}"
+        if cache_key not in self._cache:
+            self._cache[cache_key] = self.api.get_integrations_instances(environment)
 
-        all_instances = list(self._cache.get(env_cache_key, []))
-
-        # Add shared environment instances if requested
-        if include_shared_environments:
-            if SHARED_ENV_CACHE_KEY not in self._cache:
-                shared_instances = self.api.get_integrations_instances(ALL_ENVIRONMENTS_IDENTIFIER)
-                self._cache[SHARED_ENV_CACHE_KEY] = (
-                    sorted(shared_instances, key=lambda x: x.get("instanceName")))
-
-            all_instances.extend(self._cache.get(SHARED_ENV_CACHE_KEY, []))
+        instances = self._cache.get(cache_key)
+        instances.sort(key=lambda x: x.get("instanceName"))
 
         return [
             x
-            for x in all_instances
+            for x in instances
             if x.get("integrationIdentifier") == integration_name
             and x.get("isConfigured")
         ]
-
-    def _find_instance_id_by_display_name(
-        self,
-        instances: list[dict],
-        display_name: str | None,
-    ) -> str | None:
-        """Find instance ID by display name within a specific list of instances
-
-        Args:
-            instances: List of integration instances to search
-            display_name: The display name to search for
-
-        Returns:
-            The instance ID if found, None otherwise
-
-        """
-        if display_name is None:
-            return None
-
-        for instance in instances:
-            if (instance.get("displayName") == display_name or
-                instance.get("instanceName") == display_name):
-                return instance.get("identifier")
-
-        return None
 
     @staticmethod
     def _flatten_playbook_steps(steps: list) -> list[dict]:

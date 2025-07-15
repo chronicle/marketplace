@@ -61,7 +61,6 @@ AVAILABLE_CONTENT = [
 ]
 
 ALL_ENVIRONMENTS_IDENTIFIER = "*"
-SHARED_ENV_CACHE_KEY = "shared_env_instances_cache_key"
 
 
 #############
@@ -188,8 +187,7 @@ PLAYBOOK_README_TEMPLATE = """# {{ playbook.name }}
 {% macro describeSteps(steps) -%}
 {% for step in steps -%}
 {% if step.actionProvider not in ["Flow", "ParallelActionsContainer"] -%}
-|{{ step.instanceName }}|{{ step.description|replace('\n', '') }}|\
-{{ step.integration }}|{{ step.actionName|split_action_name }}|
+|{{ step.instanceName }}|{{ step.description|replace('\n', '') }}|{{ step.integration }}|{{ step.actionName|split_action_name }}|
 {% elif step.actionProvider == "ParallelActionsContainer" -%}
 {{ describeSteps(step.parallelActions) -}}
 {% endif -%}
@@ -221,8 +219,7 @@ Python Version - {{ integration.definition.PythonVersion }}
 |Name|Description|IsMandatory|Type|DefaultValue|
 |----|-----------|-----------|----|------------|
 {% for param in integration.definition.IntegrationProperties -%}
-|{{ param.PropertyDisplayName }}|{{ param.PropertyDescription|replace('\n', '') }}|\
-{{ param.IsMandatory }}|{{ param.PropertyType|base_param_type }}|{{ param.Value }}|
+|{{ param.PropertyDisplayName }}|{{ param.PropertyDescription|replace('\n', '') }}|{{ param.IsMandatory }}|{{ param.PropertyType|base_param_type }}|{{ param.Value }}|
 {% endfor -%}
 {% endif %}
 {% if integration.dependencies %}
@@ -243,8 +240,7 @@ Timeout - {{ action.TimeoutSeconds }} Seconds\n
 |Name|Description|IsMandatory|Type|DefaultValue|
 |----|-----------|-----------|----|------------|
 {% for param in action.Parameters -%}
-|{{ param.Name }}|{{ param.Description|replace('\n', '') }}|\
-{{ param.IsMandatory }}|{{ param.Type|action_param_type }}|{{ param.Value }}|
+|{{ param.Name }}|{{ param.Description|replace('\n', '') }}|{{ param.IsMandatory }}|{{ param.Type|action_param_type }}|{{ param.Value }}|
 {% endfor %}
 {% endif %}
 {% if action.DynamicResultsMetadata %}
@@ -284,8 +280,7 @@ Timeout - {{ action.TimeoutSeconds }} Seconds\n
 |Name|Description|IsMandatory|Type|DefaultValue|
 |----|-----------|-----------|----|------------|
 {% for param in connector.Parameters -%}
-|{{ param.Name }}|{{ param.Description|replace('\n', '') }}|\
-{{ param.IsMandatory }}|{{ param.Type|base_param_type }}|{{ param.DefaultValue }}|
+|{{ param.Name }}|{{ param.Description|replace('\n', '') }}|{{ param.IsMandatory }}|{{ param.Type|base_param_type }}|{{ param.DefaultValue }}|
 {% endfor -%}
 {% endif %}
 {% if connector.Rules %}
@@ -311,14 +306,10 @@ VISUAL_FAMILY_README = """<p align="center">
 {{ visual_family.description }}
 
 ### Rules
-|Primary Source|Secondary Source|Third Source|Forth Source|Type|\
-Primary Destination|Secondary Destination|Third Destination|Forth Destination|
-|--------------|----------------|------------|------------|----|-------------------|\
----------------------|-----------------|-----------------|
+|Primary Source|Secondary Source|Third Source|Forth Source|Type|Primary Destination|Secondary Destination|Third Destination|Forth Destination|
+|--------------|----------------|------------|------------|----|-------------------|---------------------|-----------------|-----------------|
 {% for rule in visual_family.rules -%}
-|{{ rule.primarySource }}|{{ rule.secondarySource }}|{{ rule.thirdSource }}|{{ rule.forthSource }}|\
-{{ rule.relationType }}|{{ rule.primaryDestination }}|{{ rule.secondaryDestination }}|\
-{{ rule.thirdDestination }}|{{ rule.forthDestination }}|
+|{{ rule.primarySource }}|{{ rule.secondarySource }}|{{ rule.thirdSource }}|{{ rule.forthSource }}|{{ rule.relationType }}|{{ rule.primaryDestination }}|{{ rule.secondaryDestination }}|{{ rule.thirdDestination }}|{{ rule.forthDestination }}|
 {% endfor -%}
 
 """

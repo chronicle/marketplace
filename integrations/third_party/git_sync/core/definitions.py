@@ -22,6 +22,7 @@ from zipfile import ZipFile
 
 from jinja2 import Environment as JinjaEnvironment
 from jinja2 import Template
+from requests.exceptions import HTTPError
 
 from .constants import (
     ACTION_PARAMETER_TYPES,
@@ -310,7 +311,8 @@ class Integration(Content):
         """Iterates all files in integration.
 
         If the integration is custom, it will only return custom and mandatory files.
-        if not, it will iterate all the files in the exported zip. It yields tuples of (relative_path, data)
+        if not, it will iterate all the files in the exported zip. It yields tuples of
+        (relative_path, data)
 
         Args:
             api: SiemplifyApiClient object - to diff between custom and commercial scripts
@@ -486,22 +488,24 @@ class Workflow(Content):
         for param in step.get("parameters", []):
             param_name = param.get("name")
             param_value = param.get("value")
+            try:
+                if not self._is_integration_instance_param(param_name, param_value):
+                    continue
 
-            if not self._is_integration_instance_param(param_name, param_value):
-                continue
+                display_name = api.get_integration_instance_name(
+                    chronicle_soar,
+                    integration_name,
+                    param_value,
+                    self.environments,
+                )
 
-            display_name = api.get_integration_instance_name(
-                chronicle_soar,
-                integration_name,
-                param_value,
-                self.environments,
-            )
-
-            match param_name:
-                case "IntegrationInstance":
-                    param["InstanceDisplayName"] = display_name
-                case "FallbackIntegrationInstance":
-                    param["FallbackInstanceDisplayName"] = display_name
+                match param_name:
+                    case "IntegrationInstance":
+                        param["InstanceDisplayName"] = display_name
+                    case "FallbackIntegrationInstance":
+                        param["FallbackInstanceDisplayName"] = display_name
+            except HTTPError:
+                pass
 
     def _is_valid_instance_id(self, instance_id: str) -> bool:
         try:
