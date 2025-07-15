@@ -10,7 +10,7 @@ on:
     - '**'
 
 jobs:
-  mp_build:
+  mp_validates:
     runs-on: ubuntu-latest
 
     steps:
