@@ -37,7 +37,6 @@ import mp.core.unix
 import mp.core.utils
 from mp.core.data_models.integration import BuiltFullDetails, BuiltIntegration, Integration
 from mp.core.file_utils import is_built
-from mp.core.unix import check_lock_file
 
 from ..core.unix import CommandError, check_lock_file
 from .post_build.full_details_json import write_full_details
@@ -170,7 +169,7 @@ class Marketplace:
 
         if not is_built(integration_path):
             rich.print(f"Validating lock file in ----> {integration_path.name} <----")
-            check_lock_file(integration_path)
+            mp.core.unix.check_lock_file(integration_path)
 
         integration_out_path: pathlib.Path = self.out_path / integration.identifier
         integration_out_path.mkdir(exist_ok=True)
