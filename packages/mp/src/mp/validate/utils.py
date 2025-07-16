@@ -25,7 +25,6 @@ if TYPE_CHECKING:
 
 class Configurations(NamedTuple):
     only_pre_build_validations: bool
-    pass_integration_by_path: bool
 
 
 def get_marketplace_paths_from_names(

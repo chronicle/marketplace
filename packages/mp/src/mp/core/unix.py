@@ -426,9 +426,7 @@ def check_lock_file(project_path: pathlib.Path) -> None:
 
     except sp.CalledProcessError as e:
         error_output = e.stderr.strip()
-        error_output = (
-            f"{COMMAND_ERR_MSG.format('uv lock --check')}: {error_output}"
-        )
+        error_output = f"{COMMAND_ERR_MSG.format('uv lock --check')}: {error_output}"
         raise NonFatalCommandError(error_output) from e
 
 

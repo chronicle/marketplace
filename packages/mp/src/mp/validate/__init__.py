@@ -22,7 +22,9 @@ from __future__ import annotations
 
 import dataclasses
 import multiprocessing
-from typing import TYPE_CHECKING, Annotated
+import pathlib
+from collections.abc import Callable
+from typing import TYPE_CHECKING, Annotated, TypeAlias
 
 import rich
 import typer
@@ -36,17 +38,16 @@ from .pre_build_validation import PreBuildValidations
 from .utils import Configurations, get_marketplace_paths_from_names
 
 if TYPE_CHECKING:
-    import pathlib
-    from collections.abc import Callable, Iterable, Iterator
+    from collections.abc import Iterable, Iterator
 
     from mp.core.config import RuntimeParams
     from mp.core.custom_types import Products
 
+ValidationResults: TypeAlias = tuple[list[str], bool]
+ValidationFn: TypeAlias = Callable[[pathlib.Path], ValidationResults]
 
-__all__: list[str] = [
-    "Configurations",
-    "app"
-]
+
+__all__: list[str] = ["Configurations", "app"]
 app: typer.Typer = typer.Typer()
 
 
@@ -84,9 +85,6 @@ class ValidateParams:
         if sum(map(bool, mutually_exclusive_options)) != 1:
             msg = "Only one of --repository, --groups, or --integration shall be used."
             raise typer.BadParameter(msg)
-
-    def _as_list(self) -> list[Iterable[RepositoryType] | Iterable[str]]:
-        return [self.repository, self.integrations, self.groups, self.only_pre_build]
 
 
 @app.command(help="Validate the marketplace")
@@ -156,10 +154,7 @@ def validate(  # noqa: PLR0913
     run_params.set_in_config()
 
     params: ValidateParams = ValidateParams(
-        repository,
-        integration,
-        group,
-        only_pre_build_validations
+        repository, integration, group, only_pre_build_validations
     )
     params.validate()
 
@@ -167,17 +162,33 @@ def validate(  # noqa: PLR0913
     community_mp: Marketplace = Marketplace(mp.core.file_utils.get_community_path())
 
     run_configurations: Configurations = Configurations(
-        only_pre_build_validations=only_pre_build_validations,
-        pass_integration_by_path=bool(repository)
+        only_pre_build_validations=only_pre_build_validations
     )
 
     if integration:
-        _validate_integrations(set(integration), commercial_mp, run_configurations)
-        _validate_integrations(set(integration), community_mp, run_configurations)
+        rich.print(integration)
+        _validate_integrations(
+            get_marketplace_paths_from_names(integration, commercial_mp.path),
+            commercial_mp,
+            run_configurations,
+        )
+        _validate_integrations(
+            get_marketplace_paths_from_names(integration, community_mp.path),
+            community_mp,
+            run_configurations,
+        )
 
     elif group:
-        _validate_groups(set(group), commercial_mp, run_configurations)
-        _validate_groups(set(group), community_mp, run_configurations)
+        _validate_groups(
+            get_marketplace_paths_from_names(group, commercial_mp.path),
+            commercial_mp,
+            run_configurations,
+        )
+        _validate_groups(
+            get_marketplace_paths_from_names(group, community_mp.path),
+            community_mp,
+            run_configurations,
+        )
 
     elif repository:
         repos: set[RepositoryType] = set(repository)
@@ -197,14 +208,15 @@ def _validate_repo(marketplace: Marketplace, configurations: Configurations) -> 
     products: Products[set[pathlib.Path]] = (
         mp.core.file_utils.get_integrations_and_groups_from_paths(marketplace.path)
     )
-
-    _validate_integrations(set(products.integrations), marketplace, configurations)
-    _validate_groups(set(products.groups), marketplace, configurations)
+    rich.print(products.integrations)
+    rich.print(products.groups)
+    _validate_integrations(products.integrations, marketplace, configurations)
+    _validate_groups(products.groups, marketplace, configurations)
 
 
 def _validate_groups(
-    groups: Iterable[str] | Iterable[pathlib.Path],
-    marketplace_: Marketplace,
+    groups: Iterable[pathlib.Path],
+    marketplace: Marketplace,
     configurations: Configurations,
 ) -> None:
     """Validate a list of integration group names within a specific marketplace scope.
@@ -213,21 +225,13 @@ def _validate_groups(
         typer.Exit: If any pre-build validation fails within the groups.
 
     """
-    valid_groups_paths: set[pathlib.Path] = set(groups)
-    if not configurations.pass_integration_by_path:
-        valid_groups_paths = get_marketplace_paths_from_names(
-            names=groups,
-            marketplace_path=marketplace_.path,
-        )
-
-    if valid_groups_paths:
+    if groups:
         validations_passed: bool = _process_groups_for_validation(
-            valid_groups_paths,
-            _run_pre_build_validations
+            groups, _run_pre_build_validations
         )
 
         if not configurations.only_pre_build_validations:
-            marketplace_.build_groups(valid_groups_paths)
+            marketplace.build_groups(groups)
 
         if not validations_passed:
             raise typer.Exit(code=1)
@@ -235,7 +239,7 @@ def _validate_groups(
 
 def _process_groups_for_validation(
     groups: Iterable[pathlib.Path],
-    validation_function: Callable
+    validation_function: ValidationFn,
 ) -> bool:
     """Iterate through groups and perform pre-build validation on their integrations.
 
@@ -253,8 +257,8 @@ def _process_groups_for_validation(
 
 
 def _validate_integrations(
-    integrations: Iterable[str] | Iterable[pathlib.Path],
-    marketplace_: Marketplace,
+    integrations: Iterable[pathlib.Path],
+    marketplace: Marketplace,
     configurations: Configurations,
 ) -> None:
     """Validate a list of integration names within a specific marketplace scope.
@@ -263,24 +267,19 @@ def _validate_integrations(
         typer.Exit: If any pre-build validation fails.
 
     """
-    valid_integrations_paths: set[pathlib.Path] = set(integrations)
-    if not configurations.pass_integration_by_path:
-        valid_integrations_paths = get_marketplace_paths_from_names(integrations, marketplace_.path)
-
-    if valid_integrations_paths:
-        validations_passed: bool = _run_validations(
-            valid_integrations_paths,
-            _run_pre_build_validations
-        )
+    if integrations:
+        validations_passed: bool = _run_validations(integrations, _run_pre_build_validations)
 
         if not configurations.only_pre_build_validations:
-            marketplace_.build_integrations(valid_integrations_paths)
+            marketplace.build_integrations(integrations)
 
         if not validations_passed:
             raise typer.Exit(code=1)
 
 
-def _run_validations(integration: Iterable[pathlib.Path], validation_function: Callable) -> bool:
+def _run_validations(
+    integration: Iterable[pathlib.Path], validation_function: ValidationFn
+) -> bool:
     """Execute pre-build validation checks on a list of integration paths.
 
     Returns:
@@ -306,7 +305,7 @@ def _run_validations(integration: Iterable[pathlib.Path], validation_function: C
     return all_validation_passed
 
 
-def _run_pre_build_validations(integration_path: pathlib.Path) -> tuple[list[str], bool]:
+def _run_pre_build_validations(integration_path: pathlib.Path) -> ValidationResults:
     validation_object: PreBuildValidations = PreBuildValidations(integration_path)
     validation_object.run_pre_build_validation()
     return validation_object.logs, validation_object.is_all_validation_passed
