@@ -57,7 +57,8 @@ class GitSyncManager:
     Attributes:
         git_client: A Git instance for handling all git operations
         api: A SiemplifyApiClient instance for communicating with Siemplify
-        content: A GitContentManager instance for reading or writing objects from the repository to a define structure
+        content: A GitContentManager instance for reading or writing objects from the repository to
+        define structure
         logger: A logger instance
 
     """
@@ -174,10 +175,10 @@ class GitSyncManager:
         """Install or update a custom or commercial integration.
 
         There are two different flows to install an integration,
-        If the integration is custom, the entire zip (ide/exportPackage) is used when pushing, so we import it
-        as a zip file (ide/importPackage)
-        if the integration is commercial, only custom items are pushed, that means we iterate the items, install new
-        items and update existing ones.
+        If the integration is custom, the entire zip (ide/exportPackage) is used when pushing, so we
+        import it as a zip file (ide/importPackage)
+        if the integration is commercial, only custom items are pushed, that means we iterate the
+        items, install new items and update existing ones.
 
         Args:
             integration: An Integration object instance to install
@@ -204,7 +205,8 @@ class GitSyncManager:
                 )
                 if not self.install_marketplace_integration(integration.identifier):
                     self.logger.warn(
-                        f"Couldn't install integration {integration.identifier} from the marketplace",
+                        f"Couldn't install integration {integration.identifier} "
+                        "from the marketplace",
                     )
                     return
             integration_cards = next(
@@ -239,10 +241,10 @@ class GitSyncManager:
     def install_connector(self, connector: Connector) -> None:
         """Installs or update a connector instance
 
-        If the integration of the connector doesn't exist, will attempt to install it from the marketplace or from the
-        git repository,
-        If the connector instance integration version doesn't match the installed integration, the update button on the
-        connector will forcibly activate to update the definition
+        If the integration of the connector doesn't exist, will attempt to install it from the
+        marketplace or from the git repository,
+        If the connector instance integration version doesn't match the installed integration,
+        the update button on the connector will forcibly activate to update the definition
 
         Args:
             connector: A Connector object instance to install
@@ -255,7 +257,8 @@ class GitSyncManager:
             self.logger.info(
                 f"Connector {connector.name} integration ({connector.integration}) not installed",
             )
-            # Integration not installed - try installing from repo, and if not install from marketplace
+            # Integration is not installed - try installing from repo,
+            # and if not install from the marketplace
             integration = self.content.get_integration(connector.integration)
             if integration and integration.isCustom:
                 self.logger.info("Custom integration found in repo, installing")
@@ -275,14 +278,14 @@ class GitSyncManager:
                 )
         if connector.integration_version != installed_version:
             self.logger.warn(
-                "Installed integration version doesn't match the connector integration version. Please upgrade the "
-                "connector.",
+                "Installed integration version doesn't match the connector integration version. "
+                "Please upgrade the connector.",
             )
             connector.raw_data["isUpdateAvailable"] = True
         if connector.environment not in self.api.get_environment_names():
             self.logger.warn(
-                f"Connector is set to non-existing environment {connector.environment}. Using Default Environment "
-                f"instead",
+                f"Connector is set to non-existing environment {connector.environment}. "
+                f"Using Default Environment instead",
             )
         self.api.update_connector(connector.raw_data)
 
@@ -325,7 +328,8 @@ class GitSyncManager:
         for p in workflows:
             if not all(x in environments for x in p.environments):
                 raise Exception(
-                    f"Playbook {p.name} is assigned to environment that doesn't exist - {p.environments[0]}",
+                    f"Playbook {p.name} is assigned to environment that doesn't exist - "
+                    f"{p.environments[0]}",
                 )
 
         # Remove duplicates and split by type
@@ -364,7 +368,8 @@ class GitSyncManager:
         """
         if not self.get_installed_integration_version(job.integration):
             self.logger.warn(
-                f"Error installing job {job.name} - Job integration ({job.integration}) is not installed",
+                f"Error installing job {job.name} - Job integration ({job.integration}) "
+                "is not installed",
             )
             return
         # Try to find and fix the jobDefinitionId field
@@ -527,7 +532,7 @@ class GitSyncManager:
             return False
 
     def get_installed_integration_version(self, integration_name: str) -> float:
-        """Get currently installed integration version
+        """Get the currently installed integration version
 
         If the integration is not installed, 0.0 will be returned
 
@@ -623,7 +628,7 @@ class WorkflowInstaller:
         self._process_steps(workflow, local_playbook)
 
     def install_new_workflow(self, workflow: Workflow) -> None:
-        """Install a new workflow in the platform."""
+        """Install a new workflow to the platform."""
         self.logger.info(f"Installing new workflow '{workflow.name}'")
         self._define_workflow_as_new(workflow)
         self._process_steps(workflow)
@@ -636,7 +641,8 @@ class WorkflowInstaller:
         workflow: Workflow,
         installed_workflow: dict = None,
     ) -> None:
-        """Iterate the playbook steps and assign the correct integration instances and block identifiers
+        """Iterate the playbook steps and assign the correct integration instances and block
+        identifiers
 
         Args:
             workflow: Workflow to iterate steps
@@ -707,6 +713,32 @@ class WorkflowInstaller:
             if relation.get("toStep") in identifier_mappings:
                 relation["toStep"] = identifier_mappings.get(relation.get("toStep"))
 
+        self._adjust_loop_keys_and_parameters(identifier_mappings, workflow)
+
+    def _adjust_loop_keys_and_parameters(self, identifier_mappings, workflow):
+        for step in self._flatten_playbook_steps(workflow.raw_data.get("steps")):
+            if step.get("startLoopStepIdentifier"):
+                mapped_id = identifier_mappings.get(step["startLoopStepIdentifier"])
+                if mapped_id:
+                    step["startLoopStepIdentifier"] = mapped_id
+
+            if step.get("endLoopStepIdentifier"):
+                mapped_id = identifier_mappings.get(step["endLoopStepIdentifier"])
+                if mapped_id:
+                    step["endLoopStepIdentifier"] = mapped_id
+
+            parameters = step.get("parameters", [])
+            for param in parameters:
+                param_name = param.get("name")
+                param_value = param.get("value")
+
+                # Handle Start/EndLoopStepIdentifier parameter
+                if (param_name in {"StartLoopStepIdentifier", "EndLoopStepIdentifier"} and
+                        param_value):
+                    mapped_id = identifier_mappings.get(param_value)
+                    if mapped_id:
+                        param["value"] = mapped_id
+
     def _save_workflow_mod_time_to_context(self, workflow: Workflow) -> None:
         self.refresh_cache_item("playbooks")
         new_mod_time: int = self._get_local_workflow_mod_time(workflow.name, -1)
@@ -756,17 +788,19 @@ class WorkflowInstaller:
     ) -> None:
         """Reconfigure an integration instance of a workflow step.
 
-        If old_steps is supplied, It will first try to match the same step in the old playbook and assign
-        the step to the same integration instance.
-        Otherwise, If the playbook is assigned to only one environment (and not all environments), it will assign the
-        first integration instance it finds.
-        If the playbook is assigned to All Environments or more than one environment, The step will be set to
-        dynamic mode, and assigned to the first shared instance, or None if it doesn't exist.
+        If old_steps is supplied, It will first try to match the same step in the old playbook and
+        assign the step to the same integration instance.
+        Otherwise, If the playbook is assigned to only one environment (and not all environments),
+        it will assign the first integration instance it finds.
+        If the playbook is assigned to All Environments or more than one environment, The step will
+        be set to dynamic mode and assigned to the first shared instance, or None if it doesn't
+        exist.
 
         Args:
             step: The step to reconfigure
             environments: Playbook assigned environments, for searching integration instances
-            existing_step: Optional - if the step is already defined, take the integration instance from it instead
+            existing_step: Optional - if the step is already defined, take the integration instance
+            from it instead
 
         """
         if existing_step:
@@ -804,8 +838,9 @@ class WorkflowInstaller:
             environments=environments,
             display_name=fallback_instance_display_name,
         )
-        # If the playbook is for one specific environment, choose the first integration instance from that environment
-        # Otherwise, set the step to dynamic mode and set the first shared integration instance as fallback
+        # If the playbook is for one specific environment, choose the first integration instance
+        # from that environment. Otherwise, set the step to dynamic mode and set the first shared
+        # integration instance as fallback
         if len(environments) == 1 and environments[0] != ALL_ENVIRONMENTS_IDENTIFIER:
             integration_instances = self._find_integration_instances_for_step(
                 step.get("integration"),
@@ -910,7 +945,7 @@ class WorkflowInstaller:
             if step.get("actionProvider") == "ParallelActionsContainer":
                 flat_steps.extend(step.get("parallelActions"))
             flat_steps.append(step)
-        return steps
+        return flat_steps
 
     def _set_step_parameter_by_name(
         self,
@@ -949,7 +984,7 @@ class WorkflowInstaller:
 
     @staticmethod
     def _copy_ids_from_existing_workflow(workflow: Workflow, other: dict) -> None:
-        """Reconfigure a workflow used another workflow ids
+        """Reconfigure 'workflow' values according to 'other' workflow
 
         Args:
             workflow: The workflow to copy the ids to
