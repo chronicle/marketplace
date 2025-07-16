@@ -14,36 +14,38 @@
 
 from __future__ import annotations
 
-import dataclasses
 from typing import TYPE_CHECKING
+
+import rich
+import typer
 
 import mp.core.file_utils
 import mp.core.unix
-from mp.core.exceptions import NonFatalValidationError
+from mp.core.exceptions import FatalValidationError, NonFatalValidationError
+
+from .validation_results import ValidationResults, ValidationTypes
 
 if TYPE_CHECKING:
     import pathlib
     from collections.abc import Callable
 
 
-@dataclasses.dataclass(slots=True, frozen=True)
 class PreBuildValidations:
-    integration_path: pathlib.Path
-    logs: list[str] = dataclasses.field(default_factory=list)
-
-    @property
-    def is_all_validation_passed(self) -> bool:
-        """Check if all validations passed.
-
-        Returns:
-            bool: True if all validation passed, False otherwise.
-
-        """
-        return len(self.logs) == (len(self._get_validation_functions()) + 2)
+    def __init__(self, integration_path: pathlib.Path) -> None:
+        self.integration_path: pathlib.Path = integration_path
+        self.results: ValidationResults = ValidationResults(
+            integration_path.name, ValidationTypes.PRE_BUILD
+        )
 
     def run_pre_build_validation(self) -> None:
-        """Run all the pre-build validations."""
-        self.logs.append(
+        """Run all the pre-build validations.
+
+        Raises:
+            typer.Exit: If a `FatalValidationError` is encountered during any
+                of the validation checks.
+
+        """
+        self.results.errors.append(
             "[bold green]Running pre build validation on "
             f"---- {self.integration_path.name} ---- \n[/bold green]"
         )
@@ -52,11 +54,19 @@ class PreBuildValidations:
             try:
                 func()
             except NonFatalValidationError as e:
-                self.logs.append(f"[red]{e!s}[/red]\n")
+                self.results.errors.append(f"[red]{e}[/red]\n")
 
-        self.logs.append(
+            except FatalValidationError as error:
+                rich.print(f"[bold red]{error}[/bold red]")
+                raise typer.Exit(code=1) from error
+
+        self.results.errors.append(
             "[bold green]Completed pre build validation on "
             f"---- {self.integration_path.name} ---- \n[/bold green]"
+        )
+
+        self.results.is_success = len(self.results.errors) == (
+            len(self._get_validation_functions()) + 2
         )
 
     def _get_validation_functions(self) -> list[Callable]:
@@ -65,6 +75,6 @@ class PreBuildValidations:
         ]
 
     def _uv_lock_validation(self) -> None:
-        self.logs.append("[yellow]Running uv lock validation [/yellow]")
+        self.results.errors.append("[yellow]Running uv lock validation [/yellow]")
         if not mp.core.file_utils.is_built(self.integration_path):
             mp.core.unix.check_lock_file(self.integration_path)

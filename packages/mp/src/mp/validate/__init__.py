@@ -36,6 +36,7 @@ from mp.core.custom_types import RepositoryType
 
 from .pre_build_validation import PreBuildValidations
 from .utils import Configurations, get_marketplace_paths_from_names
+from .validation_results import ValidationResults
 
 if TYPE_CHECKING:
     from collections.abc import Iterable, Iterator
@@ -43,7 +44,7 @@ if TYPE_CHECKING:
     from mp.core.config import RuntimeParams
     from mp.core.custom_types import Products
 
-ValidationResults: TypeAlias = tuple[list[str], bool]
+
 ValidationFn: TypeAlias = Callable[[pathlib.Path], ValidationResults]
 
 
@@ -56,7 +57,6 @@ class ValidateParams:
     repository: Iterable[RepositoryType]
     integrations: Iterable[str]
     groups: Iterable[str]
-    only_pre_build: bool
 
     def validate(self) -> None:
         """Validate the parameters.
@@ -149,13 +149,14 @@ def validate(  # noqa: PLR0913
         quiet: quiet log options
         verbose: Verbose log options
 
+    Raises:
+            typer.Exit: If one of the validations during the run failed.
+
     """
     run_params: RuntimeParams = mp.core.config.RuntimeParams(quiet, verbose)
     run_params.set_in_config()
 
-    params: ValidateParams = ValidateParams(
-        repository, integration, group, only_pre_build_validations
-    )
+    params: ValidateParams = ValidateParams(repository, integration, group)
     params.validate()
 
     commercial_mp: Marketplace = Marketplace(mp.core.file_utils.get_commercial_path())
@@ -165,149 +166,176 @@ def validate(  # noqa: PLR0913
         only_pre_build_validations=only_pre_build_validations
     )
 
+    validations_output: list[ValidationResults] = []
+
     if integration:
-        _validate_integrations(
-            get_marketplace_paths_from_names(integration, commercial_mp.path),
-            commercial_mp,
-            run_configurations,
+        validations_output.extend(
+            _validate_integrations(
+                get_marketplace_paths_from_names(integration, commercial_mp.path),
+                commercial_mp,
+                run_configurations,
+            )
         )
-        _validate_integrations(
-            get_marketplace_paths_from_names(integration, community_mp.path),
-            community_mp,
-            run_configurations,
+        validations_output.extend(
+            _validate_integrations(
+                get_marketplace_paths_from_names(integration, community_mp.path),
+                community_mp,
+                run_configurations,
+            )
         )
 
     elif group:
-        _validate_groups(
-            get_marketplace_paths_from_names(group, commercial_mp.path),
-            commercial_mp,
-            run_configurations,
+        validations_output.extend(
+            _validate_groups(
+                get_marketplace_paths_from_names(group, commercial_mp.path),
+                commercial_mp,
+                run_configurations,
+            )
         )
-        _validate_groups(
-            get_marketplace_paths_from_names(group, community_mp.path),
-            community_mp,
-            run_configurations,
+        validations_output.extend(
+            _validate_groups(
+                get_marketplace_paths_from_names(group, community_mp.path),
+                community_mp,
+                run_configurations,
+            )
         )
 
     elif repository:
         repos: set[RepositoryType] = set(repository)
 
         if RepositoryType.COMMERCIAL in repos:
-            rich.print("Validating all integrations and groups in commercial repo...")
-            _validate_repo(commercial_mp, run_configurations)
-            rich.print("Done Commercial integrations validations.")
+            validations_output.extend(_validate_repo(commercial_mp, run_configurations))
 
         if RepositoryType.COMMUNITY in repos:
-            rich.print("Validating all integrations and groups in third party repo...")
-            _validate_repo(community_mp, run_configurations)
-            rich.print("Done third party integrations validations.")
+            validations_output.extend(_validate_repo(community_mp, run_configurations))
+
+    _display_output(validations_output)
+
+    if validations_output:
+        raise typer.Exit(code=1)
 
 
-def _validate_repo(marketplace: Marketplace, configurations: Configurations) -> None:
+def _validate_repo(
+    marketplace: Marketplace, configurations: Configurations
+) -> list[ValidationResults]:
     products: Products[set[pathlib.Path]] = (
         mp.core.file_utils.get_integrations_and_groups_from_paths(marketplace.path)
     )
-    _validate_integrations(products.integrations, marketplace, configurations)
-    _validate_groups(products.groups, marketplace, configurations)
+
+    validation_outputs: list[ValidationResults] = []
+
+    integrations_outputs: list[ValidationResults] = _validate_integrations(
+        products.integrations, marketplace, configurations
+    )
+    groups_output: list[ValidationResults] = _validate_groups(
+        products.groups, marketplace, configurations
+    )
+
+    validation_outputs.extend(integrations_outputs)
+    validation_outputs.extend(groups_output)
+    return validation_outputs
 
 
 def _validate_groups(
     groups: Iterable[pathlib.Path],
     marketplace: Marketplace,
     configurations: Configurations,
-) -> None:
+) -> list[ValidationResults]:
     """Validate a list of integration group names within a specific marketplace scope.
 
-    Raises:
-        typer.Exit: If any pre-build validation fails within the groups.
+    Returns:
+        list[ValidationResults]: List contains the Validation results object
 
     """
+    validation_outputs: list[ValidationResults] = []
     if groups:
-        validations_passed: bool = _process_groups_for_validation(
+        pre_build_output: list[ValidationResults] = _process_groups_for_validation(
             groups, _run_pre_build_validations
         )
+        validation_outputs.extend(pre_build_output)
 
         if not configurations.only_pre_build_validations:
             marketplace.build_groups(groups)
 
-        if not validations_passed:
-            raise typer.Exit(code=1)
+    return validation_outputs
 
 
 def _process_groups_for_validation(
     groups: Iterable[pathlib.Path],
     validation_function: ValidationFn,
-) -> bool:
+) -> list[ValidationResults]:
     """Iterate through groups and perform pre-build validation on their integrations.
 
     Returns:
-        bool: True if all validations passed, False otherwise.
+        list[ValidationResults]: List contains the Validation results object
 
     """
-    all_validation_passed: bool = True
+    validation_outputs: list[ValidationResults] = []
     for group_dir in groups:
         if group_dir.is_dir() and group_dir.exists():
-            group_passed_validations = _run_validations(group_dir.iterdir(), validation_function)
-            all_validation_passed = all_validation_passed and group_passed_validations
+            group_output: list[ValidationResults] = _run_validations(
+                group_dir.iterdir(), validation_function
+            )
+            validation_outputs.extend(group_output)
 
-    return all_validation_passed
+    return validation_outputs
 
 
 def _validate_integrations(
     integrations: Iterable[pathlib.Path],
     marketplace: Marketplace,
     configurations: Configurations,
-) -> None:
+) -> list[ValidationResults]:
     """Validate a list of integration names within a specific marketplace scope.
 
-    Raises:
-        typer.Exit: If any pre-build validation fails.
+    Returns:
+        list[ValidationResults]: List contains the Validation results object
 
     """
+    validation_outputs: list[ValidationResults] = []
     if integrations:
-        validations_passed: bool = _run_validations(integrations, _run_pre_build_validations)
+        pre_build_output: list[ValidationResults] = _run_validations(
+            integrations, _run_pre_build_validations
+        )
+        validation_outputs.extend(pre_build_output)
 
         if not configurations.only_pre_build_validations:
             marketplace.build_integrations(integrations)
 
-        if not validations_passed:
-            raise typer.Exit(code=1)
+    return validation_outputs
 
 
 def _run_validations(
     integration: Iterable[pathlib.Path], validation_function: ValidationFn
-) -> bool:
+) -> list[ValidationResults]:
     """Execute pre-build validation checks on a list of integration paths.
 
     Returns:
-        bool: True if all validations passed for the given paths, False otherwise.
+        list[ValidationResults]: List contains the Validation results object
 
     """
     paths: Iterator[pathlib.Path] = (
         p for p in integration if p.exists() and mp.core.file_utils.is_integration(p)
     )
-    all_validation_passed: bool = True
-
-    rich.print("[bold green]Starting pre-build validations [bold green]\n")
+    validation_outputs: list[ValidationResults] = []
 
     processes: int = mp.core.config.get_processes_number()
     with multiprocessing.Pool(processes=processes) as pool:
         results = pool.imap_unordered(validation_function, paths)
-        for msg_list, is_all_validation_passed in results:
-            if not is_all_validation_passed:
-                all_validation_passed = False
-                _display_logs(msg_list)
+        for res in results:
+            if not res.is_success:
+                validation_outputs.append(res)  # noqa: PERF401
 
-    rich.print("[bold green]Completed pre-build validations [bold green]")
-    return all_validation_passed
+    return validation_outputs
 
 
 def _run_pre_build_validations(integration_path: pathlib.Path) -> ValidationResults:
     validation_object: PreBuildValidations = PreBuildValidations(integration_path)
     validation_object.run_pre_build_validation()
-    return validation_object.logs, validation_object.is_all_validation_passed
+    return validation_object.results
 
 
-def _display_logs(logs: list[str]) -> None:
-    for log in logs:
-        rich.print(log)
+def _display_output(validation_results: list[ValidationResults]) -> None:
+    for res in validation_results:
+        for msg in res.errors:
+            rich.print(msg)
