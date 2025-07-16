@@ -69,32 +69,40 @@ def get_sources_and_dest(
     sources = []
     destinations = []
 
-    if "securityEventCards" in alert:
-        for event_card in alert["securityEventCards"]:
-            sources.extend(event_card.get("sources", []))
-            destinations.extend(event_card.get("destinations", []))
+    if isinstance(alert, dict) and "securityEventCards" in alert:
+        target_lists = {
+            "sources": sources,
+            "destinations": destinations,
+        }
 
-        if sources and isinstance(sources[0], dict):
-            sources = [x.get("identifier") for x in sources]
-        if destinations and isinstance(destinations[0], dict):
-            destinations = [x.get("identifier") for x in destinations]
+        for event_card in alert["securityEventCards"]:
+            for key in target_lists:
+                target_lists[key].extend(event_card.get(key, []))
+
+        for key in target_lists:
+            lst = target_lists[key]
+            if lst and isinstance(lst[0], dict):
+                target_lists[key] = [
+                    x.get("identifier") for x in lst if isinstance(x, dict)
+                ]
+
+        sources = target_lists["sources"]
+        destinations = target_lists["destinations"]
 
     else:
-        for event_card in alert:
-            fields = event_card.get("fields", [])
-            for group in fields:
-                group_name = group.get("groupName", "").lower()
-                if group_name not in {"source", "destination"}:
-                    continue
+        target_lists = {
+            "source": sources,
+            "destination": destinations,
+        }
 
-                for item in group.get("items", []):
-                    value = item.get("value")
-                    if not value:
-                        continue
-                    if group_name == "source":
-                        sources.append(value)
-                    else:
-                        destinations.append(value)
+        for event_card in alert:
+            for group in event_card.get("fields", []):
+                group_name = group.get("groupName", "").lower()
+                if group_name in target_lists:
+                    target_list = target_lists[group_name]
+                    for item in group.get("items", []):
+                        if value := item.get("value"):
+                            target_list.append(value)
 
     return sources, destinations
 
