@@ -22,7 +22,6 @@ from __future__ import annotations
 
 import dataclasses
 import multiprocessing
-from collections.abc import Callable
 from typing import TYPE_CHECKING, Annotated
 
 import rich
@@ -38,7 +37,7 @@ from .utils import Configurations, get_marketplace_paths_from_names
 
 if TYPE_CHECKING:
     import pathlib
-    from collections.abc import Iterable, Iterator
+    from collections.abc import Callable, Iterable, Iterator
 
     from mp.core.config import RuntimeParams
     from mp.core.custom_types import Products
@@ -169,7 +168,7 @@ def validate(  # noqa: PLR0913
 
     run_configurations: Configurations = Configurations(
         only_pre_build_validations=only_pre_build_validations,
-        pass_integration_by_path=True if repository else False
+        pass_integration_by_path=bool(repository)
     )
 
     if integration:
@@ -214,16 +213,18 @@ def _validate_groups(
         typer.Exit: If any pre-build validation fails within the groups.
 
     """
+    valid_groups_paths: set[pathlib.Path] = set(groups)
     if not configurations.pass_integration_by_path:
-        valid_groups_paths: set[pathlib.Path] = get_marketplace_paths_from_names(
+        valid_groups_paths = get_marketplace_paths_from_names(
             names=groups,
             marketplace_path=marketplace_.path,
         )
-    else:
-        valid_groups_paths: set[pathlib.Path] = set(groups)
 
     if valid_groups_paths:
-        validations_passed: bool = _process_groups_for_validation(valid_groups_paths)
+        validations_passed: bool = _process_groups_for_validation(
+            valid_groups_paths,
+            _run_pre_build_validations
+        )
 
         if not configurations.only_pre_build_validations:
             marketplace_.build_groups(valid_groups_paths)
