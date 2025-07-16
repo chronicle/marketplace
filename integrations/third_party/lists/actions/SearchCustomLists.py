@@ -18,15 +18,7 @@ from soar_sdk.ScriptResult import EXECUTION_STATE_COMPLETED, EXECUTION_STATE_FAI
 from soar_sdk.SiemplifyAction import SiemplifyAction
 from soar_sdk.SiemplifyUtils import output_handler
 
-CUSTOM_LIST_ENDPOINT = "{}/external/v1/settings/GetTrackingListRecords"
-
-
-def get_custom_list_records(siemplify):
-    url = CUSTOM_LIST_ENDPOINT.format(siemplify.API_ROOT)
-    records = siemplify.session.get(url)
-    siemplify.validate_siemplify_error(records)
-
-    return records.json()
+from TIPCommon.rest.soar_api import get_traking_list_record
 
 
 @output_handler
@@ -57,7 +49,11 @@ def main():
 
     try:
         siemplify.LOGGER.info("Getting custom list records")
-        records = get_custom_list_records(siemplify)
+        records = get_traking_list_record(siemplify)
+        records = (
+            records.get("custom_lists", [])
+            if isinstance(records, dict) else records
+        )
 
         siemplify.LOGGER.info("Searching records for match criteria")
         if list_categories:

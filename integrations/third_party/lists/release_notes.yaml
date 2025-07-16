@@ -93,3 +93,13 @@
     regressive: false
     deprecated: false
     removed: false
+-   description: Integration - Refactored the code to work with updated API.
+    integration_version: 8.0
+    item_name: Lists
+    item_type: Integration
+    publish_time: 1752653950
+    ticket_number: '430251231'
+    new: false
+    regressive: false
+    deprecated: false
+    removed: false
