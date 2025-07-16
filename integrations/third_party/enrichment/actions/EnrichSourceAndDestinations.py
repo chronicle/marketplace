@@ -98,7 +98,6 @@ def get_sources_and_dest(
     return target_lists["sources"], target_lists["destinations"]
 
 
-
 @output_handler
 def main():
     siemplify = SiemplifyAction()
