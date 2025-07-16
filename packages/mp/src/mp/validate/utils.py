@@ -14,13 +14,18 @@
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, NamedTuple
 
 import rich
 
 if TYPE_CHECKING:
     import pathlib
     from collections.abc import Iterable
+
+
+class Configurations(NamedTuple):
+    only_pre_build_validations: bool
+    pass_integration_by_path: bool
 
 
 def get_marketplace_paths_from_names(

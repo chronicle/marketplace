@@ -20,7 +20,7 @@ import subprocess as sp  # noqa: S404
 import sys
 from typing import IO, TYPE_CHECKING
 
-from mp.core.exceptions.exceptions import NonFatalCommandError
+from mp.core.exceptions import NonFatalCommandError
 
 from . import config, constants, file_utils
 
@@ -427,7 +427,7 @@ def check_lock_file(project_path: pathlib.Path) -> None:
     except sp.CalledProcessError as e:
         error_output = e.stderr.strip()
         error_output = (
-            f"{COMMAND_ERR_MSG.format('uv lock --check')} UV Lock Check Failed: {error_output}"
+            f"{COMMAND_ERR_MSG.format('uv lock --check')}: {error_output}"
         )
         raise NonFatalCommandError(error_output) from e
 

@@ -19,7 +19,7 @@ from typing import TYPE_CHECKING
 
 import mp.core.file_utils
 import mp.core.unix
-from mp.core.exceptions.exceptions import NonFatalValidationError
+from mp.core.exceptions import NonFatalValidationError
 
 if TYPE_CHECKING:
     import pathlib
