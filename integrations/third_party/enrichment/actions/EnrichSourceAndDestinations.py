@@ -81,15 +81,19 @@ def get_sources_and_dest(
 
     else:
         for event_card in alert:
-            for group in event_card.get("fields", []):
+            fields = event_card.get("fields", [])
+            for group in fields:
                 group_name = group.get("groupName", "").lower()
+                if group_name not in {"source", "destination"}:
+                    continue
+
                 for item in group.get("items", []):
                     value = item.get("value")
                     if not value:
                         continue
                     if group_name == "source":
                         sources.append(value)
-                    elif group_name == "destination":
+                    else:
                         destinations.append(value)
 
     return sources, destinations
