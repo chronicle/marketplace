@@ -166,7 +166,6 @@ def validate(  # noqa: PLR0913
     )
 
     if integration:
-        rich.print(integration)
         _validate_integrations(
             get_marketplace_paths_from_names(integration, commercial_mp.path),
             commercial_mp,
@@ -208,8 +207,6 @@ def _validate_repo(marketplace: Marketplace, configurations: Configurations) -> 
     products: Products[set[pathlib.Path]] = (
         mp.core.file_utils.get_integrations_and_groups_from_paths(marketplace.path)
     )
-    rich.print(products.integrations)
-    rich.print(products.groups)
     _validate_integrations(products.integrations, marketplace, configurations)
     _validate_groups(products.groups, marketplace, configurations)
 
