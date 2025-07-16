@@ -1,7 +1,7 @@
-"""Package for validate integration projects.
+"""Package for validates integration projects.
 
 This package provides the 'validate' CLI command for processing integration
-repositories, groups, or individual integrations and run pre build and post build validations.
+repositories, groups, or individual integrations and run pre-build and post-build validations.
 """
 
 # Copyright 2025 Google LLC
@@ -92,30 +92,30 @@ def validate(  # noqa: PLR0913
     repository: Annotated[
         list[RepositoryType],
         typer.Option(
-            help="Run validation on all integrations in specified integration repositories",
+            help="Run validations on all integrations in specified integration repositories",
             default_factory=list,
         ),
     ],
     integration: Annotated[
         list[str],
         typer.Option(
-            help="Run validation on a specified integrations.",
+            help="Run validations on a specified integrations.",
             default_factory=list,
         ),
     ],
     group: Annotated[
         list[str],
         typer.Option(
-            help="Run validation on all integrations belonging to a specified integration group.",
+            help="Run validations on all integrations belonging to a specified integration group.",
             default_factory=list,
         ),
     ],
     *,
-    only_pre_build_validations: Annotated[
+    only_pre_build: Annotated[
         bool,
         typer.Option(
             help=(
-                "Execute only pre-build validation "
+                "Execute only pre-build validations "
                 "checks on the integrations, skipping the full build process."
             ),
         ),
@@ -144,13 +144,13 @@ def validate(  # noqa: PLR0913
         integration: A list of specific integration to validate.
         group: A list of integration groups. Validation will apply to all
                integrations associated with these groups.
-        only_pre_build_validations: If set to True, only pre-build validation checks are
+        only_pre_build: If set to True, only pre-build validation checks are
                         performed.
         quiet: quiet log options
         verbose: Verbose log options
 
     Raises:
-            typer.Exit: If one of the validations during the run failed.
+            typer.Exit: If one of the validations during the run failed
 
     """
     run_params: RuntimeParams = mp.core.config.RuntimeParams(quiet, verbose)
@@ -162,9 +162,7 @@ def validate(  # noqa: PLR0913
     commercial_mp: Marketplace = Marketplace(mp.core.file_utils.get_commercial_path())
     community_mp: Marketplace = Marketplace(mp.core.file_utils.get_community_path())
 
-    run_configurations: Configurations = Configurations(
-        only_pre_build_validations=only_pre_build_validations
-    )
+    run_configurations: Configurations = Configurations(only_pre_build=only_pre_build)
 
     validations_output: list[ValidationResults] = []
 
@@ -254,7 +252,7 @@ def _validate_groups(
         )
         validation_outputs.extend(pre_build_output)
 
-        if not configurations.only_pre_build_validations:
+        if not configurations.only_pre_build:
             marketplace.build_groups(groups)
 
     return validation_outputs
@@ -293,14 +291,16 @@ def _validate_integrations(
 
     """
     validation_outputs: list[ValidationResults] = []
-    if integrations:
-        pre_build_output: list[ValidationResults] = _run_validations(
-            integrations, _run_pre_build_validations
-        )
-        validation_outputs.extend(pre_build_output)
+    if not integrations:
+        return validation_outputs
 
-        if not configurations.only_pre_build_validations:
-            marketplace.build_integrations(integrations)
+    pre_build_output: list[ValidationResults] = _run_validations(
+        integrations, _run_pre_build_validations
+    )
+    validation_outputs.extend(pre_build_output)
+
+    if not configurations.only_pre_build:
+        marketplace.build_integrations(integrations)
 
     return validation_outputs
 
@@ -315,16 +315,13 @@ def _run_validations(
 
     """
     paths: Iterator[pathlib.Path] = (
-        p for p in integration if p.exists() and mp.core.file_utils.is_integration(p)
+        i for i in integration if i.exists() and mp.core.file_utils.is_integration(i)
     )
-    validation_outputs: list[ValidationResults] = []
 
     processes: int = mp.core.config.get_processes_number()
     with multiprocessing.Pool(processes=processes) as pool:
         results = pool.imap_unordered(validation_function, paths)
-        for res in results:
-            if not res.is_success:
-                validation_outputs.append(res)  # noqa: PERF401
+        validation_outputs: list[ValidationResults] = [r for r in results if not r.is_success]
 
     return validation_outputs
 

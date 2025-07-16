@@ -24,7 +24,7 @@ if TYPE_CHECKING:
 
 
 class Configurations(NamedTuple):
-    only_pre_build_validations: bool
+    only_pre_build: bool
 
 
 def get_marketplace_paths_from_names(
@@ -51,6 +51,6 @@ def get_marketplace_paths_from_names(
         else:
             rich.print(
                 "[yellow] the integration: "
-                f"{n} has not been found in {marketplace_path.name} [yellow]"
+                f"{n} has not been found in {marketplace_path.name} [/yellow]"
             )
     return result

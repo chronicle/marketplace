@@ -20,7 +20,7 @@ import subprocess as sp  # noqa: S404
 import sys
 from typing import IO, TYPE_CHECKING
 
-from mp.core.exceptions import NonFatalCommandError
+from mp.core.exceptions import FatalValidationError, NonFatalValidationError
 
 from . import config, constants, file_utils
 
@@ -31,8 +31,12 @@ if TYPE_CHECKING:
 COMMAND_ERR_MSG: str = "Error happened while executing a command: {0}"
 
 
-class CommandError(Exception):
-    """Error that happens during commands."""
+class FatalCommandError(FatalValidationError):
+    """Fatal error that happens during commands."""
+
+
+class NonFatalCommandError(NonFatalValidationError):
+    """Non-fatal error that happens during shell commands."""
 
 
 def compile_core_integration_dependencies(
@@ -47,7 +51,7 @@ def compile_core_integration_dependencies(
         requirements_path: the path to the requirements' file to write the contents into
 
     Raises:
-        CommandError: if a project is already initialized
+        FatalCommandError: if a project is already initialized
 
     """
     python_version: str = (
@@ -73,7 +77,7 @@ def compile_core_integration_dependencies(
     try:
         sp.run(command, cwd=project_path, check=True, text=True)  # noqa: S603
     except sp.CalledProcessError as e:
-        raise CommandError(COMMAND_ERR_MSG.format(e)) from e
+        raise FatalCommandError(COMMAND_ERR_MSG.format(e)) from e
 
 
 def download_wheels_from_requirements(
@@ -87,7 +91,7 @@ def download_wheels_from_requirements(
         dst_path: the path to install the `.whl` files into
 
     Raises:
-        CommandError: if a project is already initialized
+        FatalCommandError: if a project is already initialized
 
     """
     python_version: str = _get_python_version()
@@ -116,7 +120,7 @@ def download_wheels_from_requirements(
     try:
         sp.run(command, cwd=requirements_path.parent, check=True, text=True)  # noqa: S603
     except sp.CalledProcessError as e:
-        raise CommandError(COMMAND_ERR_MSG.format(e)) from e
+        raise FatalCommandError(COMMAND_ERR_MSG.format(e)) from e
 
 
 def add_dependencies_to_toml(
@@ -130,7 +134,7 @@ def add_dependencies_to_toml(
         requirements_path: the path to the requirements to add
 
     Raises:
-        CommandError: if a project is already initialized
+        FatalCommandError: if a project is already initialized
 
     """
     python_version: str = _get_python_version()
@@ -150,7 +154,7 @@ def add_dependencies_to_toml(
     try:
         sp.run(command, cwd=project_path, check=True, text=True)  # noqa: S603
     except sp.CalledProcessError as e:
-        raise CommandError(COMMAND_ERR_MSG.format(e)) from e
+        raise FatalCommandError(COMMAND_ERR_MSG.format(e)) from e
 
 
 def init_python_project_if_not_exists(project_path: pathlib.Path) -> None:
@@ -186,7 +190,7 @@ def init_python_project(project_path: pathlib.Path) -> None:
         project_path: the path to initialize the project
 
     Raises:
-        CommandError: if a project is already initialized
+        FatalCommandError: if a project is already initialized
 
     """
     python_version: str = _get_python_version()
@@ -207,7 +211,7 @@ def init_python_project(project_path: pathlib.Path) -> None:
     try:
         sp.run(command, cwd=project_path, check=True, text=True)  # noqa: S603
     except sp.CalledProcessError as e:
-        raise CommandError(COMMAND_ERR_MSG.format(e)) from e
+        raise FatalCommandError(COMMAND_ERR_MSG.format(e)) from e
 
 
 def ruff_check(paths: Iterable[pathlib.Path], /, **flags: bool | str) -> int:
@@ -276,7 +280,7 @@ def execute_command_and_get_output(
         The status code of the process
 
     Raises:
-        CommandError: if a project is already initialized
+        FatalCommandError: if a project is already initialized
 
     """
     command.extend(str(path) for path in paths)
@@ -295,7 +299,7 @@ def execute_command_and_get_output(
         return process.wait()
 
     except sp.CalledProcessError as e:
-        raise CommandError(COMMAND_ERR_MSG.format(e)) from e
+        raise FatalCommandError(COMMAND_ERR_MSG.format(e)) from e
 
 
 def _stream_process_output(process: sp.Popen[bytes]) -> Iterator[bytes]:
@@ -319,7 +323,7 @@ def get_changed_files() -> list[str]:
         A list of file names that were changed since the last commit.
 
     Raises:
-        CommandError: The command failed to be executed
+        FatalCommandError: The command failed to be executed
 
     """
     command: list[str] = [
@@ -340,7 +344,7 @@ def get_changed_files() -> list[str]:
         return result.stdout.split()
 
     except sp.CalledProcessError as e:
-        raise CommandError(COMMAND_ERR_MSG.format(e)) from e
+        raise FatalCommandError(COMMAND_ERR_MSG.format(e)) from e
 
 
 def _get_runtime_config() -> list[str]:

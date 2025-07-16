@@ -19,7 +19,3 @@ class FatalValidationError(Exception):
 
 class NonFatalValidationError(Exception):
     """Base class for exceptions that should not cause the program to crash."""
-
-
-class NonFatalCommandError(NonFatalValidationError):
-    """Error that happens during shell commands."""
