@@ -66,45 +66,37 @@ def get_sources_and_dest(
     Returns:
         tuple[list[str], list[str]]: Tuple containing list of sources and destinations.
     """
-    sources = []
-    destinations = []
+    target_lists = {
+        "sources": [],
+        "destinations": [],
+    }
 
     if isinstance(alert, dict) and "securityEventCards" in alert:
-        target_lists = {
-            "sources": sources,
-            "destinations": destinations,
-        }
-
         for event_card in alert["securityEventCards"]:
             for key in target_lists:
                 target_lists[key].extend(event_card.get(key, []))
 
-        for key in target_lists:
-            lst = target_lists[key]
+        for key, lst in target_lists.items():
             if lst and isinstance(lst[0], dict):
                 target_lists[key] = [
                     x.get("identifier") for x in lst if isinstance(x, dict)
                 ]
 
-        sources = target_lists["sources"]
-        destinations = target_lists["destinations"]
-
     else:
-        target_lists = {
-            "source": sources,
-            "destination": destinations,
-        }
-
+        key_map = {"source": "sources", "destination": "destinations"}
         for event_card in alert:
             for group in event_card.get("fields", []):
                 group_name = group.get("groupName", "").lower()
-                if group_name in target_lists:
-                    target_list = target_lists[group_name]
-                    for item in group.get("items", []):
-                        if value := item.get("value"):
-                            target_list.append(value)
+                mapped_key = key_map.get(group_name)
+                if not mapped_key:
+                    continue
 
-    return sources, destinations
+                for item in group.get("items", []):
+                    if value := item.get("value"):
+                        target_lists[mapped_key].append(value)
+
+    return target_lists["sources"], target_lists["destinations"]
+
 
 
 @output_handler
