@@ -69,5 +69,5 @@ def load_to_release_note_object(text: str) -> list[ReleaseNote]:
 
 
 def load_to_pyproject_toml_object(text: str) -> PyProjectToml:
-    pyproject_data: PyProjectTomlFile = toml.load(text)
+    pyproject_data: PyProjectTomlFile = toml.loads(text)
     return PyProjectToml.model_load(pyproject_data)
