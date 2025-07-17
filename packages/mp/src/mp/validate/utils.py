@@ -19,8 +19,9 @@ from typing import TYPE_CHECKING, NamedTuple
 import rich
 import toml
 import yaml
-from packages.mp.src.mp.core.data_models.pyproject_toml import PyProjectToml, PyProjectTomlFile
-from packages.mp.src.mp.core.data_models.release_notes.metadata import ReleaseNote
+
+from mp.core.data_models.pyproject_toml import PyProjectToml, PyProjectTomlFile
+from mp.core.data_models.release_notes.metadata import ReleaseNote
 
 if TYPE_CHECKING:
     import pathlib
