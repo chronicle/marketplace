@@ -16,6 +16,7 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
+import os
 import rich
 import typer
 
@@ -78,3 +79,19 @@ class PreBuildValidations:
         self.results.errors.append("[yellow]Running uv lock validation [/yellow]")
         if not mp.core.file_utils.is_built(self.integration_path):
             mp.core.unix.check_lock_file(self.integration_path)
+
+
+    def _version_bump_validation(self) -> None:
+        self.results.errors.append("[yellow]Running  version bump validation [/yellow]")
+
+        if os.environ.get("GITHUB_EVENT_NAME") != "pull_request":
+            return
+
+        base = os.environ.get("GITHUB_BASE_REF")
+        head_sha = os.environ.get("GITHUB_SHA")
+        if not base or not head_sha or base != "main":
+            raise NonFatalValidationError("The base branch or head sha couldn't be found")
+
+        changed_files: list[str] = mp.core.unix.get_changed_files_from_main(base, head_sha)
+        if not changed_files:
+            return

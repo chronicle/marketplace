@@ -434,5 +434,43 @@ def check_lock_file(project_path: pathlib.Path) -> None:
         raise NonFatalCommandError(error_output) from e
 
 
+def get_changed_files_from_main(base: str, head_sha: str) -> list[str]:
+    """Get a list of file names changed in a pull request.
+
+    Args:
+        base: The base branch of the PR.
+        head_sha: The head commit SHA of the PR.
+
+    Returns:
+        A list of changed file paths.
+
+    Raises:
+        NonFatalCommandError: If the git command fails.
+
+    """
+    command: list[str] = [
+        "/usr/bin/git",
+        "diff",
+        f"origin/{base}...{head_sha}",
+        "--name-only",
+        "--diff-filter=ACMRTUXB"
+    ]
+    try:
+        results: sp.CompletedProcess[str] = sp.run(  # noqa: S603
+            command,
+            check=True,
+            text=True,
+            capture_output=True
+        )
+        return [path for path in results.stdout.split("\n") if path]
+
+    except sp.CalledProcessError as error:
+        error_output = error.stderr.strip()
+        error_output = (
+            f"{COMMAND_ERR_MSG.format('git diff')}: {error_output}"
+        )
+        raise NonFatalCommandError(error_output) from error
+
+
 def _get_python_version() -> str:
     return f"{sys.version_info.major}.{sys.version_info.minor}.{sys.version_info.micro}"
