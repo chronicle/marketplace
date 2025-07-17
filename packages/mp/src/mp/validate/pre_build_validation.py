@@ -90,13 +90,10 @@ class PreBuildValidations:
         # if os.environ.get("GITHUB_EVENT_NAME") != "pull_request":
         #     return
 
-        base = os.environ.get("GITHUB_BASE_REF")
-        head_sha = os.environ.get("GITHUB_SHA")
-        self.results.errors.append(base)
-        self.results.errors.append(head_sha)
-        self.results.errors.append(os.environ.get("GITHUB_EVENT_NAME"))
         base = "main"
-        if not base or not head_sha or base != "main":
+        head_sha = os.environ.get("GITHUB_SHA")
+
+        if not head_sha:
             raise NonFatalValidationError("The base branch or head sha couldn't be found")
 
         changed_files: list[pathlib.Path] = mp.core.unix.get_changed_files_from_main(
