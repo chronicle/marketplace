@@ -105,6 +105,7 @@ class PreBuildValidations:
         relevant_files: list[pathlib.Path] = [
             p for p in changed_files if p.name in ("pyproject.toml", "release_notes.yaml")
         ]
+        rich.print(relevant_files)
         if not relevant_files or len(relevant_files) != 2:
             self.results.errors.append(
                 "[red]project.toml or/and release_notes.yml files must be updated before PR[/red]"
