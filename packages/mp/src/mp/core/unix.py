@@ -16,6 +16,7 @@
 
 from __future__ import annotations
 
+import pathlib
 import subprocess as sp  # noqa: S404
 import sys
 from typing import IO, TYPE_CHECKING
@@ -25,7 +26,6 @@ from mp.core.exceptions import FatalValidationError, NonFatalValidationError
 from . import config, constants, file_utils
 
 if TYPE_CHECKING:
-    import pathlib
     from collections.abc import Iterable, Iterator
 
 COMMAND_ERR_MSG: str = "Error happened while executing a command: {0}"
