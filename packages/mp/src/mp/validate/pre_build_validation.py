@@ -87,12 +87,12 @@ class PreBuildValidations:
     def _version_bump_validation(self) -> None:
         self.results.errors.append("[yellow]Running version bump validation [/yellow]")
 
-        # if os.environ.get("GITHUB_EVENT_NAME") != "pull_request":
-        #     return
+        if os.environ.get("GITHUB_EVENT_NAME") != "pull_request":
+            return
 
         base = os.environ.get("GITHUB_BASE_REF")
         head_sha = os.environ.get("GITHUB_SHA")
-        if not base or not head_sha:
+        if not base or not head_sha or base != "main":
             raise NonFatalValidationError("The base branch or head sha couldn't be found")
 
         changed_files: list[pathlib.Path] = mp.core.unix.get_changed_files_from_main(
