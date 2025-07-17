@@ -87,8 +87,8 @@ class PreBuildValidations:
     def _version_bump_validation(self) -> None:
         self.results.errors.append("[yellow]Running version bump validation [/yellow]")
 
-        if os.environ.get("GITHUB_EVENT_NAME") != "pull_request":
-            return
+        # if os.environ.get("GITHUB_EVENT_NAME") != "pull_request":
+        #     return
 
         base = os.environ.get("GITHUB_BASE_REF")
         head_sha = os.environ.get("GITHUB_SHA")
