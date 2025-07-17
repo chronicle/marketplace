@@ -435,7 +435,7 @@ def check_lock_file(project_path: pathlib.Path) -> None:
 
 
 def get_changed_files_from_main(
-    base: str, head_sha: str, integration_path: str
+    base: str, head_sha: str, integration_path: pathlib.Path
 ) -> list[pathlib.Path]:
     """Get a list of file names changed in a pull request.
 
@@ -456,7 +456,7 @@ def get_changed_files_from_main(
         f"origin/{base}...{head_sha}",
         "--name-only",
         "--diff-filter=ACMRTUXB",
-        integration_path + "/",
+        str(integration_path) + "/",
     ]
     try:
         results: sp.CompletedProcess[str] = sp.run(  # noqa: S603
