@@ -35,7 +35,7 @@
 -   description: 'Important - Updated the integration code to work with Python version
         3.11. To ensure compatibility and avoid disruptions, follow the upgrade best
         practices described in the following document: https://cloud.google.com/chronicle/docs/soar/respond/integrations-setup/upgrade-python-versions'
-    integration_version: 4.0
+    integration_version: 8.0
     item_name: AbuseIPDB
     item_type: Integration
     publish_time: 1735201802
