@@ -137,7 +137,7 @@ mp dev-env deploy <integration_name>
 
 ### Validate Integrations
 
-Run pre-build and post-build validation on the integrations:
+Run pre and post build validation on the integrations:
 
 ```bash
 mp validate
