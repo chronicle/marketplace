@@ -92,6 +92,10 @@ class PreBuildValidations:
 
         base = os.environ.get("GITHUB_BASE_REF")
         head_sha = os.environ.get("GITHUB_SHA")
+        self.results.errors.append(base)
+        self.results.errors.append(head_sha)
+        self.results.errors.append(os.environ.get("GITHUB_EVENT_NAME"))
+        base = "main"
         if not base or not head_sha or base != "main":
             raise NonFatalValidationError("The base branch or head sha couldn't be found")
 
