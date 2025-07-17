@@ -17,6 +17,10 @@ from __future__ import annotations
 from typing import TYPE_CHECKING, NamedTuple
 
 import rich
+import toml
+import yaml
+from packages.mp.src.mp.core.data_models.pyproject_toml import PyProjectToml, PyProjectTomlFile
+from packages.mp.src.mp.core.data_models.release_notes.metadata import ReleaseNote
 
 if TYPE_CHECKING:
     import pathlib
@@ -54,3 +58,15 @@ def get_marketplace_paths_from_names(
                 f"{n} has not been found in {marketplace_path.name} [/yellow]"
             )
     return result
+
+
+def load_to_release_note_object(text: str) -> list[ReleaseNote]:
+    rn_data: list = yaml.safe_load(text)
+    if not rn_data:
+        return []
+    return [ReleaseNote._from_non_built(data) for data in rn_data]
+
+
+def load_to_pyproject_toml_object(text: str) -> PyProjectToml:
+    pyproject_data: PyProjectTomlFile = toml.load(text)
+    return PyProjectToml.model_load(pyproject_data)

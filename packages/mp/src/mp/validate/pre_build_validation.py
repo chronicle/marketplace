@@ -14,16 +14,19 @@
 
 from __future__ import annotations
 
+import os
 from typing import TYPE_CHECKING
 
-import os
 import rich
 import typer
 
 import mp.core.file_utils
 import mp.core.unix
+from mp.core.data_models.release_notes.metadata import ReleaseNote
 from mp.core.exceptions import FatalValidationError, NonFatalValidationError
 
+from ..core.data_models.pyproject_toml import PyProjectToml
+from .utils import load_to_pyproject_toml_object, load_to_release_note_object
 from .validation_results import ValidationResults, ValidationTypes
 
 if TYPE_CHECKING:
@@ -73,6 +76,7 @@ class PreBuildValidations:
     def _get_validation_functions(self) -> list[Callable]:
         return [
             self._uv_lock_validation,
+            self._version_bump_validation
         ]
 
     def _uv_lock_validation(self) -> None:
@@ -80,9 +84,8 @@ class PreBuildValidations:
         if not mp.core.file_utils.is_built(self.integration_path):
             mp.core.unix.check_lock_file(self.integration_path)
 
-
     def _version_bump_validation(self) -> None:
-        self.results.errors.append("[yellow]Running  version bump validation [/yellow]")
+        self.results.errors.append("[yellow]Running version bump validation [/yellow]")
 
         if os.environ.get("GITHUB_EVENT_NAME") != "pull_request":
             return
@@ -92,6 +95,72 @@ class PreBuildValidations:
         if not base or not head_sha or base != "main":
             raise NonFatalValidationError("The base branch or head sha couldn't be found")
 
-        changed_files: list[str] = mp.core.unix.get_changed_files_from_main(base, head_sha)
+        changed_files: list[pathlib.Path] = mp.core.unix.get_changed_files_from_main(
+            base, head_sha, self.integration_path
+        )
         if not changed_files:
             return
+
+        relevant_files: list[pathlib.Path] = [
+            p for p in changed_files if p.name in ("pyproject.toml", "release_notes.yaml")
+        ]
+        if not relevant_files or len(relevant_files) != 2:
+            self.results.errors.append(
+                "[red]project.toml or/and release_notes.yml files must be updated before PR[/red]"
+            )
+            return
+
+        existing_files, new_files = PreBuildValidations._create_data_for_version_bump_validation(
+            relevant_files
+        )
+
+        if existing_files.get("toml") and existing_files.get("rn"):
+            new_version = existing_files["toml"]["new"].project.version
+            old_version = existing_files["toml"]["old"].project.version
+            if new_version != old_version + 1.0:
+                self.results.errors.append(
+                    "[red]Version must be incremented by exactly 1.0 in project.toml.[/red]"
+                )
+            else:
+                new_rn = existing_files["rn"].get("new")
+                if not new_rn or new_rn.version != new_version:
+                    self.results.errors.append("[red]The last release note's version must match the new version of the project.toml.[/red]")
+
+        elif new_files.get("toml"):
+            toml_version = new_files["toml"].project.version
+            if toml_version != 1.0:
+                self.results.errors.append("[red]New integration version must be 1.0.[/red]")
+            else:
+                new_rn = new_files.get("rn")
+                if not new_rn or new_rn.version != 1.0:
+                    self.results.errors.append("[red]New integration is missing a release note for version 1.0 or its version is incorrect.[/red]")
+
+    @staticmethod
+    def _create_data_for_version_bump_validation(
+        relevant_files: list[pathlib.Path],
+    ) -> tuple[dict, dict]:
+
+        existing_files: dict[str, dict[str, PyProjectToml | ReleaseNote]] = {"toml": {}, "rn": {}}
+        new_files: dict[str, PyProjectToml | ReleaseNote] = {}
+
+        pyproject_path = next(p for p in relevant_files if p.name == "pyproject.toml")
+        rn_path = next(p for p in relevant_files if p.name == "release_notes.yaml")
+
+        def get_last_note(content: str) -> ReleaseNote | None:
+            notes = load_to_release_note_object(content)
+            return notes[-1] if notes else None
+
+        try:
+            existing_files["toml"]["new"] = load_to_pyproject_toml_object(pyproject_path.read_text())
+            old_toml_content = mp.core.unix.get_file_content_from_main(pyproject_path)
+            existing_files["toml"]["old"] = load_to_pyproject_toml_object(old_toml_content)
+
+            existing_files["rn"]["new"] = get_last_note(rn_path.read_text())
+            old_rn_content = mp.core.unix.get_file_content_from_main(rn_path)
+            existing_files["rn"]["old"] = get_last_note(old_rn_content)
+
+        except mp.core.unix.NonFatalCommandError:
+            new_files["toml"] = load_to_pyproject_toml_object(pyproject_path.read_text())
+            new_files["rn"] = get_last_note(rn_path.read_text())
+
+        return existing_files, new_files

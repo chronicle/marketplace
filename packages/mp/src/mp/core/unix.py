@@ -434,7 +434,9 @@ def check_lock_file(project_path: pathlib.Path) -> None:
         raise NonFatalCommandError(error_output) from e
 
 
-def get_changed_files_from_main(base: str, head_sha: str) -> list[str]:
+def get_changed_files_from_main(
+    base: str, head_sha: str, integration_path: str
+) -> list[pathlib.Path]:
     """Get a list of file names changed in a pull request.
 
     Args:
@@ -453,22 +455,46 @@ def get_changed_files_from_main(base: str, head_sha: str) -> list[str]:
         "diff",
         f"origin/{base}...{head_sha}",
         "--name-only",
-        "--diff-filter=ACMRTUXB"
+        "--diff-filter=ACMRTUXB",
+        integration_path + "/",
     ]
     try:
         results: sp.CompletedProcess[str] = sp.run(  # noqa: S603
-            command,
-            check=True,
-            text=True,
-            capture_output=True
+            command, check=True, text=True, capture_output=True
         )
-        return [path for path in results.stdout.split("\n") if path]
+        return [pathlib.Path(path) for path in results.stdout.split("\n") if path]
 
     except sp.CalledProcessError as error:
         error_output = error.stderr.strip()
-        error_output = (
-            f"{COMMAND_ERR_MSG.format('git diff')}: {error_output}"
+        error_output = f"{COMMAND_ERR_MSG.format('git diff')}: {error_output}"
+        raise NonFatalCommandError(error_output) from error
+
+
+def get_file_content_from_main(file_path: pathlib.Path) -> str:
+    """Gets the content of a specific file from the 'main' branch.
+
+    Args:
+        file_path: The path to the file.
+
+    Returns:
+        The content of the file as a string.
+
+    Raises:
+        NonFatalCommandError: If the git command fails (e.g., file not found on main).
+
+    """
+    git_path_arg = f"origin/main:{file_path!s}"
+    command: list[str] = ["/usr/bin/git", "show", git_path_arg]
+
+    try:
+        results: sp.CompletedProcess[str] = sp.run(  # noqa: S603
+            command, check=True, text=True, capture_output=True
         )
+        return results.stdout
+
+    except sp.CalledProcessError as error:
+        error_output = error.stderr.strip()
+        error_output = f"Failed to get content of '{file_path}' from main branch: {error_output}"
         raise NonFatalCommandError(error_output) from error
 
 
