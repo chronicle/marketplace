@@ -663,3 +663,13 @@
     regressive: false
     deprecated: false
     removed: false
+-   description: Minor dependency fixes
+    integration_version: 33.0
+    item_name: GitSync
+    item_type: Jobs
+    publish_time: 1752998252
+    ticket_number: '432139863'
+    new: false
+    regressive: false
+    deprecated: false
+    removed: false
