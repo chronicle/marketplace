@@ -118,7 +118,7 @@ class NonBuiltIntegrationMetadata(TypedDict):
     identifier: str
     python_version: NotRequired[str]
     documentation_link: NotRequired[str | None]
-    image_base64: str | None
+    image: str | None
     parameters: list[NonBuiltIntegrationParameter]
     should_install_in_system: NotRequired[bool]
     svg_image: str | None
@@ -177,6 +177,19 @@ class IntegrationMetadata(
         if self.parameters:
             mp.core.validators.validate_ssl_parameter(self.name, self.parameters)
 
+    @staticmethod
+    def _read_image_files(
+        metadata_content: NonBuiltIntegrationMetadata, path: pathlib.Path
+    ) -> None:
+        """Read image files and update the metadata dictionary in place."""
+        if image_path_str := metadata_content.get("image"):
+            full_path = path / image_path_str
+            metadata_content["image"] = mp.core.file_utils.png_path_to_bytes(full_path)
+
+        if svg_path_str := metadata_content.get("svg_image"):
+            full_path = path / svg_path_str
+            metadata_content["svg_image"] = mp.core.file_utils.svg_path_to_text(full_path)
+
     @classmethod
     def from_built_integration_path(cls, path: pathlib.Path) -> Self:
         """Create IntegrationMetadata from a path of a "built" integration.
@@ -222,6 +235,7 @@ class IntegrationMetadata(
         built: str = metadata_path.read_text(encoding="utf-8")
         try:
             metadata_content: NonBuiltIntegrationMetadata = yaml.safe_load(built)
+            cls._read_image_files(metadata_content, path)
             metadata: Self = cls.from_non_built(metadata_content)
             metadata.is_certified = mp.core.file_utils.is_commercial_integration(path)
         except (ValueError, json.JSONDecodeError) as e:
@@ -270,10 +284,6 @@ class IntegrationMetadata(
         if raw_feature_tags is not None:
             feature_tags = FeatureTags.from_non_built(raw_feature_tags)
 
-        image: str | bytes | None = non_built["image_base64"]
-        if isinstance(image, str):
-            image = image.encode()
-
         name: str = non_built["name"]
         svg: str | None = non_built.get("svg_image")
         if name not in mp.core.constants.EXCLUDED_INTEGRATIONS_WITHOUT_SVG_IMAGE:
@@ -285,7 +295,7 @@ class IntegrationMetadata(
             name=name,
             identifier=non_built["identifier"],
             documentation_link=non_built.get("documentation_link"),
-            image_base64=image,
+            image_base64=non_built["image"],
             parameters=[IntegrationParameter.from_non_built(p) for p in non_built["parameters"]],
             should_install_in_system=non_built.get("should_install_in_system", False),
             is_custom=non_built.get("is_custom", False),
@@ -350,12 +360,8 @@ class IntegrationMetadata(
                 str(self.documentation_link) if self.documentation_link is not None else None
             ),
             categories=self.categories,
-            svg_image=self.svg_image,
-            image_base64=(
-                base64.b64encode(self.image_base64).decode()
-                if self.image_base64 is not None
-                else None
-            ),
+            svg_image="./resources/integration.svg" if self.svg_image is not None else None,
+            image="./resources/image.png" if self.image_base64 is not None else None,
         )
 
         if self.feature_tags is not None:

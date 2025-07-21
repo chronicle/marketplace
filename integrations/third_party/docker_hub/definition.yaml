@@ -1,36 +1,18 @@
 identifier: Docker Hub
 name: Docker Hub
 parameters:
-    -   name: Username
-        type: string
-        description: Docker hub username
-        is_mandatory: false
-        integration_identifier: Docker Hub
-    -   name: Password
-        type: password
-        description: Docker Hub password
-        is_mandatory: false
-        integration_identifier: Docker Hub
+- name: Username
+  type: string
+  description: Docker hub username
+  is_mandatory: false
+  integration_identifier: Docker Hub
+- name: Password
+  type: password
+  description: Docker Hub password
+  is_mandatory: false
+  integration_identifier: Docker Hub
 categories:
-    - IT & Infrastructure
-    - Free to use
-# language=svg
-svg_image: "<?xml version=\"1.0\" encoding=\"utf-8\"?><!-- Generator: Adobe Illustrator\
-    \ 24.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  --><svg version=\"\
-    1.1\" id=\"Layer_1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\"\
-    \ x=\"0px\" y=\"0px\"\t viewBox=\"0 0 25 25\" style=\"enable-background:new 0\
-    \ 0 25 25;\" xml:space=\"preserve\"><g>\t<g>\t\t<path d=\"M22.8,11.3c-0.1,0-0.6-0.4-1.7-0.4c-0.3,0-0.6,0-0.9,0.1c-0.2-1.4-1.5-2.1-1.5-2.1l-0.3-0.2L18.2,9\t\
-    \t\tc-0.2,0.4-0.4,0.8-0.5,1.2c-0.2,0.8-0.1,1.5,0.4,2.2c-0.5,0.3-1.4,0.3-1.5,0.3H2.7c-0.4,0-0.7,0.3-0.7,0.6c0,1.1,0.2,2.2,0.6,3.3\t\
-    \t\tc0.5,1.2,1.2,2,2.1,2.5c1,0.6,2.7,0.9,4.6,0.9c0.9,0,1.7-0.1,2.6-0.2c1.2-0.2,2.3-0.6,3.4-1.1c0.9-0.5,1.6-1,2.3-1.7\t\
-    \t\tc1.1-1.1,1.8-2.4,2.2-3.6h0.2c1.2,0,1.9-0.4,2.3-0.8c0.3-0.2,0.5-0.5,0.6-0.9l0.1-0.2L22.8,11.3z\
-    \ M3.9,12.3h1.9\t\t\tc0.1,0,0.2-0.1,0.2-0.2v-1.5c0-0.1-0.1-0.2-0.2-0.2H3.9c-0.1,0-0.2,0.1-0.2,0.2v1.5C3.8,12.2,3.9,12.3,3.9,12.3z\
-    \ M6.5,12.3h1.9\t\t\tc0.1,0,0.2-0.1,0.2-0.2v-1.5c0-0.1-0.1-0.2-0.2-0.2H6.5c-0.1,0-0.2,0.1-0.2,0.2v1.5C6.3,12.2,6.4,12.3,6.5,12.3z\
-    \ M9.1,12.3h1.9\t\t\tc0.1,0,0.2-0.1,0.2-0.2v-1.5c0-0.1-0.1-0.2-0.2-0.2H9.1c-0.1,0-0.2,0.1-0.2,0.2v1.5C8.9,12.2,9,12.3,9.1,12.3z\
-    \ M11.7,12.3h1.9\t\t\tc0.1,0,0.2-0.1,0.2-0.2v-1.5c0-0.1-0.1-0.2-0.2-0.2h-1.9c-0.1,0-0.2,0.1-0.2,0.2v1.5C11.5,12.2,11.6,12.3,11.7,12.3z\
-    \ M6.5,10.1\t\t\th1.9c0.1,0,0.2-0.1,0.2-0.2V8.4c0-0.1-0.1-0.2-0.2-0.2H6.5c-0.1,0-0.2,0.1-0.2,0.2v1.5C6.3,10,6.4,10.1,6.5,10.1z\
-    \ M9.1,10.1h1.9\t\t\tc0.1,0,0.2-0.1,0.2-0.2V8.4c0-0.1-0.1-0.2-0.2-0.2H9.1C9,8.2,8.9,8.3,8.9,8.4v1.5C8.9,10,9,10.1,9.1,10.1z\
-    \ M11.7,10.1h1.9\t\t\tc0.1,0,0.2-0.1,0.2-0.2V8.4c0-0.1-0.1-0.2-0.2-0.2h-1.9c-0.1,0-0.2,0.1-0.2,0.2v1.5C11.5,10,11.6,10.1,11.7,10.1z\
-    \ M11.7,7.8h1.9\t\t\tc0.1,0,0.2-0.1,0.2-0.2V6.2c0-0.1-0.1-0.2-0.2-0.2h-1.9c-0.1,0-0.2,0.1-0.2,0.2v1.5C11.5,7.8,11.6,7.8,11.7,7.8z\
-    \ M14.2,12.3h1.9\t\t\tc0.1,0,0.2-0.1,0.2-0.2v-1.5c0-0.1-0.1-0.2-0.2-0.2h-1.9c-0.1,0-0.2,0.1-0.2,0.2v1.5C14.1,12.2,14.1,12.3,14.2,12.3z\"\
-    />\t</g></g></svg>"
-image_base64: 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
+- IT & Infrastructure
+- Free to use
+svg_image: ./resources/integration.svg
+image: ./resources/image.png

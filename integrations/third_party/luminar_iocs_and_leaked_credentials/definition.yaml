@@ -1,39 +1,28 @@
 identifier: Luminar IOCs and Leaked Credentials
 name: Luminar IOCs and Leaked Credentials
 parameters:
-    -   name: Luminar Base URL
-        default_value: https://demo.cyberluminar.com
-        type: string
-        description: Please enter valid Luminar Base URL
-        is_mandatory: true
-        integration_identifier: Luminar IOCs and Leaked Credentials
-    -   name: Luminar API Account ID
-        type: password
-        description: Please enter valid Luminar API Account ID
-        is_mandatory: true
-        integration_identifier: Luminar IOCs and Leaked Credentials
-    -   name: Luminar API Client ID
-        type: password
-        description: Please enter valid Luminar API Client ID
-        is_mandatory: true
-        integration_identifier: Luminar IOCs and Leaked Credentials
-    -   name: Luminar API Client Secret
-        type: password
-        description: Please enter valid Luminar API Client Secret
-        is_mandatory: true
-        integration_identifier: Luminar IOCs and Leaked Credentials
+- name: Luminar Base URL
+  default_value: https://demo.cyberluminar.com
+  type: string
+  description: Please enter valid Luminar Base URL
+  is_mandatory: true
+  integration_identifier: Luminar IOCs and Leaked Credentials
+- name: Luminar API Account ID
+  type: password
+  description: Please enter valid Luminar API Account ID
+  is_mandatory: true
+  integration_identifier: Luminar IOCs and Leaked Credentials
+- name: Luminar API Client ID
+  type: password
+  description: Please enter valid Luminar API Client ID
+  is_mandatory: true
+  integration_identifier: Luminar IOCs and Leaked Credentials
+- name: Luminar API Client Secret
+  type: password
+  description: Please enter valid Luminar API Client Secret
+  is_mandatory: true
+  integration_identifier: Luminar IOCs and Leaked Credentials
 categories:
-    - Threat Intelligence
-# language=svg
-svg_image: |
-    <?xml version="1.0" encoding="UTF-8"?>
-    <svg id="Layer_1" xmlns="http://www.w3.org/2000/svg"
-         viewBox="0 0 25 25">
-        <defs>
-            <style>.cls-1{fill-rule:evenodd;}</style>
-        </defs>
-        <path
-                class="cls-1"
-                d="m13.67,17.84c4.65-1.03,7.89-4.23,7.25-7.13-.65-2.9-4.94-4.42-9.59-3.38-4.65,1.04-7.89,4.23-7.25,7.13.65,2.9,4.94,4.42,9.59,3.38h0Zm-.47-2.1c2.79-.62,4.74-2.54,4.35-4.28-.39-1.74-2.96-2.65-5.75-2.03-2.79.62-4.74,2.53-4.35,4.28.39,1.74,2.96,2.65,5.75,2.03Z"/>
-    </svg>
-image_base64: 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
+- Threat Intelligence
+svg_image: ./resources/integration.svg
+image: ./resources/image.png

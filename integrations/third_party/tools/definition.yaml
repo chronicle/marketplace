@@ -3,25 +3,10 @@ name: Tools
 version: 65.0
 parameters: []
 description: 'A set of utility actions for data manipulation and common platform tasks
-    to power up playbook capabilities. '
+  to power up playbook capabilities. '
 python_version: '3.11'
 categories:
-    - Utility
-# language=svg
-svg_image: "<?xml version=\"1.0\" encoding=\"utf-8\"?><!-- Generator: Adobe Illustrator\
-    \ 24.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  --><svg version=\"\
-    1.1\" id=\"Layer_1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\"\
-    \ x=\"0px\" y=\"0px\"\t viewBox=\"0 0 25 25\" style=\"enable-background:new 0\
-    \ 0 25 25;\" xml:space=\"preserve\"><g>\t<g>\t\t<path d=\"M20.9,13.8c0.1-0.4,0.1-0.8,0.1-1.3c0-0.4,0-0.9-0.1-1.3l1.9-1.8C22.9,9.3,23,9.1,23,8.9c0-0.2,0-0.4-0.1-0.6l-1.3-2.3\t\
-    \t\tc-0.1-0.2-0.3-0.3-0.4-0.4c-0.2-0.1-0.4-0.1-0.6,0l-2.5,0.7c-0.7-0.5-1.4-1-2.2-1.3l-0.6-2.5c0-0.2-0.2-0.4-0.3-0.5S14.5,2,14.3,2\t\
-    \t\th-2.7c-0.2,0-0.4,0.1-0.5,0.2c-0.2,0.1-0.3,0.3-0.3,0.5l-0.6,2.5C9.4,5.4,8.6,5.9,7.9,6.4L5.5,5.7c-0.2-0.1-0.4,0-0.6,0\t\
-    \t\tC4.7,5.8,4.5,5.9,4.4,6.1L3.1,8.4C3,8.6,3,8.8,3,8.9c0,0.2,0.1,0.4,0.3,0.5l1.9,1.8C5.1,11.6,5,12.1,5,12.5c0,0.4,0,0.9,0.1,1.3\t\
-    \t\tl-1.9,1.8C3.1,15.7,3,15.9,3,16.1c0,0.2,0,0.4,0.1,0.6l1.3,2.3c0.1,0.1,0.2,0.2,0.3,0.3c0.1,0.1,0.3,0.1,0.4,0.1\t\
-    \t\tc0.1,0,0.2,0,0.2,0l2.5-0.7c0.7,0.5,1.4,1,2.2,1.3l0.6,2.5c0,0.2,0.2,0.4,0.3,0.5s0.3,0.2,0.5,0.2h2.7c0.2,0,0.4-0.1,0.5-0.2\t\
-    \t\tc0.2-0.1,0.3-0.3,0.3-0.5l0.6-2.5c0.8-0.3,1.6-0.7,2.2-1.3l2.5,0.7c0.1,0,0.2,0,0.2,0c0.2,0,0.3,0,0.4-0.1\t\
-    \t\tc0.1-0.1,0.2-0.2,0.3-0.3l1.3-2.3c0.1-0.2,0.1-0.4,0.1-0.6c0-0.2-0.1-0.4-0.3-0.5L20.9,13.8z\
-    \ M15.5,15c-0.7,0.7-1.6,1-2.5,1\t\t\tc-0.7,0-1.4-0.2-2-0.6c-0.6-0.4-1-0.9-1.3-1.6c-0.3-0.6-0.3-1.3-0.2-2c0.1-0.7,0.5-1.3,1-1.8s1.1-0.8,1.8-1c0.7-0.1,1.4-0.1,2,0.2\t\
-    \t\tc0.6,0.3,1.2,0.7,1.6,1.3c0.4,0.6,0.6,1.3,0.6,1.9C16.5,13.4,16.2,14.3,15.5,15z\"\
-    />\t</g></g></svg>"
-image_base64: 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
+- Utility
+svg_image: ./resources/integration.svg
 is_powerup: true
+image: ./resources/image.png

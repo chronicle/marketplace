@@ -1,31 +1,22 @@
 identifier: AirTable
 name: AirTable
 parameters:
-    -   name: Api key
-        type: password
-        description: The API key is used to create the connection with airtable
-        is_mandatory: false
-        integration_identifier: AirTable
-    -   name: Base id
-        type: string
-        description: .
-        is_mandatory: false
-        integration_identifier: AirTable
-    -   name: Table name
-        type: string
-        description: .
-        is_mandatory: false
-        integration_identifier: AirTable
+- name: Api key
+  type: password
+  description: The API key is used to create the connection with airtable
+  is_mandatory: false
+  integration_identifier: AirTable
+- name: Base id
+  type: string
+  description: .
+  is_mandatory: false
+  integration_identifier: AirTable
+- name: Table name
+  type: string
+  description: .
+  is_mandatory: false
+  integration_identifier: AirTable
 categories:
-    - IT & Infrastructure
-# language=svg
-svg_image: |
-    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
-         viewBox="0 0 25 25">
-        <path d="M21.35 8.2c.45-.15.45-.8 0-.95L13.6 4c-.7-.3-1.5-.3-2.2
-    0L3.6 7.2c-.45.2-.45.8 0 .95l7.8 3.1c.7.25 1.45.25 2.15 0l7.8-3.05zM22.2 9.1l-8.7
-    3.4c-.2.1-.35.25-.35.5v7.75c0 .35.35.6.7.5l8.7-3.4c.2-.1.35-.25.35-.5V9.6c.05-.4-.35-.65-.7-.5zM11.1
-    12.4L2.85 9.15c-.15-.05-.35-.05-.45.05-.05.05-.1.05-.15.1-.1.1-.15.2-.15.35v7.25c0
-    .4.45.65.8.45l5.45-2.6.25-.15 2.6-1.25c.35-.2.35-.75-.1-.95z"/>
-    </svg>
-image_base64: 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
+- IT & Infrastructure
+svg_image: ./resources/integration.svg
+image: ./resources/image.png

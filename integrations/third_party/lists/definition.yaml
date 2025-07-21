@@ -1,27 +1,8 @@
 identifier: Lists
 name: Lists
-parameters: [ ]
+parameters: []
 categories:
-    - Utility
-# language=svg
-svg_image: "<?xml version=\"1.0\" encoding=\"utf-8\"?><!-- Generator: Adobe Illustrator\
-    \ 24.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  --><svg version=\"\
-    1.1\" id=\"Layer_1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\"\
-    \ x=\"0px\" y=\"0px\"\t viewBox=\"0 0 25 25\" style=\"enable-background:new 0\
-    \ 0 25 25;\" xml:space=\"preserve\"><g>\t<g>\t\t<path d=\"M7.8,8.4h11.9c0.7,0,1.2-0.5,1.2-1.2c0-0.7-0.5-1.2-1.2-1.2H7.8C7.1,6,6.6,6.5,6.6,7.2C6.6,7.8,7.1,8.4,7.8,8.4z\
-    \ M3.4,6.3\t\t\tC3.1,6.6,3,6.9,3,7.2c0,0.1,0,0.2,0,0.2c0,0.1,0,0.2,0.1,0.2c0,0.1,0.1,0.1,0.1,0.2C3.2,7.9,3.3,8,3.3,8c0.1,0.1,0.1,0.1,0.2,0.1\t\
-    \t\tc0.1,0,0.1,0.1,0.2,0.1c0.1,0,0.2,0.1,0.2,0.1c0.1,0,0.2,0,0.2,0C4.5,8.4,4.8,8.2,5,8C5.1,8,5.1,7.9,5.2,7.8\t\
-    \t\tc0-0.1,0.1-0.1,0.1-0.2c0-0.1,0.1-0.1,0.1-0.2c0-0.1,0-0.2,0-0.2c0-0.3-0.1-0.6-0.4-0.8C4.6,5.9,3.8,5.9,3.4,6.3z\
-    \ M5.2,11.8\t\t\tc0-0.1-0.1-0.1-0.1-0.2c-0.5-0.5-1.2-0.5-1.7,0C3.1,11.9,3,12.2,3,12.5c0,0.2,0,0.3,0.1,0.5c0,0.1,0.1,0.1,0.1,0.2\t\
-    \t\tc0,0.1,0.1,0.1,0.2,0.2c0.1,0.1,0.1,0.1,0.2,0.1c0.1,0,0.1,0.1,0.2,0.1c0.1,0,0.1,0.1,0.2,0.1c0.1,0,0.2,0,0.2,0\t\
-    \t\tc0.1,0,0.2,0,0.2,0c0.1,0,0.1,0,0.2-0.1c0.1,0,0.1-0.1,0.2-0.1c0.1,0,0.1-0.1,0.2-0.1c0.1-0.1,0.1-0.1,0.1-0.2\t\
-    \t\tc0-0.1,0.1-0.1,0.1-0.2c0-0.1,0.1-0.2,0.1-0.2c0-0.1,0-0.2,0-0.2c0-0.1,0-0.2,0-0.2c0-0.1-0.1-0.1-0.1-0.2\t\
-    \t\tC5.3,12,5.2,11.9,5.2,11.8z M5.2,17.2C5.1,17.1,5.1,17,5,17c-0.5-0.5-1.2-0.5-1.7,0c-0.1,0.1-0.1,0.1-0.1,0.2\t\
-    \t\tc0,0.1-0.1,0.1-0.1,0.2c0,0.1-0.1,0.1-0.1,0.2c0,0.1,0,0.2,0,0.2c0,0.3,0.1,0.6,0.4,0.8c0.1,0.1,0.1,0.1,0.2,0.1\t\
-    \t\tc0.1,0,0.1,0.1,0.2,0.1C3.8,18.9,3.9,19,4,19c0.1,0,0.2,0,0.2,0c0.1,0,0.2,0,0.2,0c0.1,0,0.1,0,0.2-0.1c0.1,0,0.1-0.1,0.2-0.1\t\
-    \t\tc0.1,0,0.1-0.1,0.2-0.1c0.1-0.1,0.1-0.1,0.1-0.2c0-0.1,0.1-0.1,0.1-0.2c0-0.1,0.1-0.2,0.1-0.2c0-0.1,0-0.2,0-0.2\t\
-    \t\tc0-0.1,0-0.2,0-0.2c0-0.1-0.1-0.2-0.1-0.2C5.3,17.3,5.2,17.2,5.2,17.2z M20.8,11.3H7.8c-0.7,0-1.2,0.5-1.2,1.2s0.5,1.2,1.2,1.2\t\
-    \t\th13.1c0.7,0,1.2-0.5,1.2-1.2S21.5,11.3,20.8,11.3z M15.5,16.6H7.8c-0.7,0-1.2,0.5-1.2,1.2c0,0.7,0.5,1.2,1.2,1.2h7.7\t\
-    \t\tc0.7,0,1.2-0.5,1.2-1.2C16.7,17.2,16.1,16.6,15.5,16.6z\"/>\t</g></g></svg>"
-image_base64: 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
+- Utility
+svg_image: ./resources/integration.svg
 is_powerup: true
+image: ./resources/image.png

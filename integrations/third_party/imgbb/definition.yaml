@@ -1,35 +1,19 @@
 identifier: Imgbb
 name: Imgbb
 parameters:
-    -   name: API Key
-        type: password
-        description: API Key
-        is_mandatory: true
-        integration_identifier: Imgbb
-    -   name: Verify SSL
-        default_value: true
-        type: boolean
-        description: Verify Proxy
-        is_mandatory: false
-        integration_identifier: Imgbb
+- name: API Key
+  type: password
+  description: API Key
+  is_mandatory: true
+  integration_identifier: Imgbb
+- name: Verify SSL
+  default_value: true
+  type: boolean
+  description: Verify Proxy
+  is_mandatory: false
+  integration_identifier: Imgbb
 categories:
-    - Free to use
-    - IT & Infrastructure
-# language=svg
-svg_image: "<?xml version=\"1.0\" encoding=\"utf-8\"?><!-- Generator: Adobe Illustrator\
-    \ 24.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  --><svg version=\"\
-    1.1\" id=\"Layer_1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\"\
-    \ x=\"0px\" y=\"0px\"\t viewBox=\"0 0 25 25\" style=\"enable-background:new 0\
-    \ 0 25 25;\" xml:space=\"preserve\"><g>\t<g>\t\t<path d=\"M11.6,10.3c-0.1,0-0.2,0.1-0.4,0.1C11.5,9.2,11.7,8.1,12,7c-0.7,0.1-1.3,0.2-2,0.2c-0.4,0-0.6,0.2-0.7,0.6\t\
-    \t\tc-0.5,2.3-1,4.6-1.6,6.9C7.6,15.2,7.3,15.6,7,16c-0.2,0.2-0.6,0.4-0.9,0.4c-0.5,0.1-0.7-0.2-0.7-0.6c0-0.2,0-0.4,0.1-0.6\t\
-    \t\tc0.4-1.6,0.7-3.2,1.1-4.8c0.1-0.3,0-0.4-0.3-0.4c-0.6,0-1.1,0-1.7,0c-0.3,0-0.4,0.1-0.5,0.4c-0.3,1.5-0.7,3-1,4.5\t\
-    \t\tC3,15.6,3,16.2,3,16.8C3.1,17.5,3.8,18,4.6,18c1,0,1.9-0.3,2.6-1c0.1-0.1,0.2-0.2,0.3-0.4c0.5,0.9,0.9,1.2,1.7,1.3\t\
-    \t\tc1.5,0.2,2.9-0.2,3.9-1.3c1.3-1.5,1.7-3.2,1.3-5.1C14.1,10.3,12.9,9.7,11.6,10.3z\
-    \ M11.8,15.9c-0.3,0.4-0.6,0.6-1.2,0.5\t\t\tc-0.4-0.1-0.6-0.3-0.6-0.6c0-0.2,0-0.5,0.1-0.7c0.2-1.1,0.5-2.2,0.8-3.3c0.1-0.4,0.2-0.5,0.7-0.6c0.5-0.1,0.8,0,0.9,0.4\t\
-    \t\tc0.2,0.4,0.2,0.8,0.3,1.2C12.7,14,12.4,15,11.8,15.9z M21.9,11.6c-0.3-1.3-1.4-1.8-2.8-1.3c-0.1,0-0.2,0.1-0.4,0.1\t\
-    \t\tc0.3-1.1,0.5-2.2,0.8-3.4c-0.7,0.1-1.4,0.2-2,0.2c-0.4,0-0.6,0.2-0.6,0.5c-0.4,1.8-0.8,3.6-1.2,5.3c-0.2,0.9-0.4,1.8-0.6,2.7\t\
-    \t\tc-0.2,1.1,0.5,2,1.6,2.1c1.5,0.2,2.9-0.1,3.9-1.3C21.8,15.2,22.3,13.4,21.9,11.6z\
-    \ M19.2,15.9c-0.3,0.4-0.7,0.6-1.2,0.5\t\t\tc-0.4-0.1-0.6-0.3-0.6-0.6c0-0.2,0-0.4,0.1-0.6c0.3-1.2,0.5-2.3,0.8-3.5c0.1-0.4,0.2-0.5,0.8-0.6c0.5-0.1,0.8,0,0.9,0.4\t\
-    \t\tc0.2,0.4,0.2,0.8,0.3,1.2C20.2,14,19.9,15,19.2,15.9z M5.7,9.6c0.8,0,1.4-0.6,1.4-1.3S6.5,7,5.7,7C4.9,7,4.3,7.6,4.3,8.3\t\
-    \t\tS4.9,9.6,5.7,9.6z\"/>\t</g></g></svg>"
-image_base64: iVBORw0KGgoAAAANSUhEUgAAAJ4AAABSCAYAAAClr220AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAhkSURBVHgB7Z1ZbFRVGMe/6TYtdJ122qEUFSiWpS0URGSJsj0IMQYjaDRiVPRFxUBifHBjSXzBByUKb0QDiZLQuLwIiZIAylITGMomVUQKNN07pQudmdKp57szt9w795w7MxngnEm+X9LQzj3fnTP3/ud/vvOdM4NjlAEE8YBJA4KQAAmPkAIJj5ACCY+QAgmPkAIJj5ACCY+QAgmPkAIJj5ACCY+QAgmPkAIJj5ACCY+QAgmPkAIJj5ACCY+QAgmPkAIJj5ACCY+QAgmPkAIJj5ACCY+QAgmPkAIJj5ACCY+QQgakAG8e64AjrUOmxxaWOmHfMg+kKtvP9MDef/otj3++oBieeyT3vsfLRnnH6wmMWESHnOwIQNvtO5CqnO7ycx+vdTnhQcTLRnnhBUfEX+3iH0nNr30Jhkbhcu+w5fHcTAdMyc+87/EqoLzwPOMyYFaR9WJW5mfAw3mpcZGjudgTBN57pqYoCxyxw5OOV4GUmFzsXOjWhKaDv+9aXJoyFzmas90B7uN1JdnwIOJVQPnJhbcrAN0sz9tUXQT/9oWHl6lsOHFnp3PbRVPJ2p5nDtHlDx8rYXGLPdngcobjMU882x3UcsnSnHSoZq6BLhsPl3uD8Bf76Q2EtPPOdzvhgi9oaZeXmQYLSu+K4oKPL5zASAi+u9Kvta8rdkJFLr8fycargPLC23iiE9qGrIL6c01FzHYOGAVnWhr4Q+ZxKTvNAV8uKoGDNwbh5+bblmNvTM+HzTWFQkdt6PDDdm8PNHHyLB6rJo0zCc/bFeS229PUb+r7+mn58Mlcl6UfycargNLCQxfiie6h8RljjmXXbpRd8mjRIfjYO8c7uXkSHtt96RYUZaXB61X5luPoKFtOd2vnjpe5xU5TX68Pxp6N4/mxXDKJvVZjP5KNVwWlc7wzXfwhZZYrK652dsSaENdfG7A89kfbEGxj9bNo0aG7eHLSheeaYxAeDvuJsKepz/R3svGqoLTwzgkustFB7Noh6I52iATTcdvsoJgLbj7ZZREsDs37V0yA35+t0H6PJt1hfqOIJgbrJo+HAys8MK/E/NrQya/1D9+zeFVQWnheUZE0Sni8duhCSyfkwOFnJmrDJo+Xp+ZpgsH6VzSYoBvZeaEXfMGQpd2HdUXazW5mN5c3rE8vzIQsgyBFjrV2Sh6blTrhlco8y7GbhqE12XhVUFp4vCKp5iBFdx1kVNAO2coS6wCzqL5hq2DQnTbVFAgzNbfBCdHtfrg2aGmDbvpS5EZ7BU4022UucTRy2uFrqom4YgXHoQeGR+9ZvCooKzwcHngOU1mQCdnpd+XSLGg3k4kTywkXffxi6xNl4ZIKiop3Y4zi/ubvPu451k/LGxOuyInqSrJiviajK4Y458jJcNyTeJVQVngiB5lXnB1XO91pzgmO6w6BNTy748ivN4e4bZaV54z9Hs/aqUicRlfs5MzO8yPDfrLxKqGs8OJxkHjanREIT59perv5gpkfWQVAR+SVLzBvfCSyZBfv2qlXuOKQZWhj7g/mqjMi7ptsvEooW8drFFzkGYXhi4h5PN7wE+18N9KdxisotdRFhHeqwyo8nOnqVf+mW/z80SioWGun2E/sb0On37YvSLS7Psper55aiK5JvPEqoaTw8CbxVgVwQlAVEd5XF3vZzy1uvO40dgXofOZYIqeqi5Qk8PiGYx3c5yg1TD5irZ2u+62V5Zp8AaNz6psdcEUk2l1XV4zX/kVd865JvPGqoeRQe32AX5rAehi+d/tYgn3g6oAwXncaUWFZH5qusrVfnlNNLwgfr7d5Dh3s5k/N/Ha1rL+4nisSnfZcbGLgiJxnR6PPdAyN6vnJYeG0syFfVK6JJ141lHS87kCI+7ifLYIfbR3SlrR4TqajO42osFxdFHa0ds45MCe62h+EH9nKxY5zPm48tjnV7tf6Uv/fgFBYc5lzftDQDXa0DI5oKyL4fI1R/X2R1eb0DQu9wVBS8aqhZK/GC6b/eINFQ5+R2siMVFSA1icWvNQHl8Nw40D05oHoNljWsOsL5onfXxkY2z2NGwUO3rCeE4fG1452cOPfry0c+7tQUASPN141lBxqMT/jLT8ZwdxGlDPj1iYclM5ztigZl7BmakOyfXG1ig1ls12Jzwo7/SPwBVvtQHD/4GePFZv2FNqBOeruJW4tD9VB50omXjWU7FlWZGuSCHw3f73YzfKaUe4xvElYWOYVho3FViwgr52ca/s8uxa5Ycs8V8w3QjR67ogTmW+fKtNE8HGdC2JNMLH9/uUe7mcnko1XCWXfErgfbuOsAtMNR5fbUJUHvzxdDsMsm+ZtTdJnpPEuYW1jTvT2zALTei7eXBwa61d6tFod3sR9y8oScj7st9bXVeVjedYSTw7sXVpm2cqProvn/mhOERxaXc7eHPznSTZeJRyq/0fJ+IGeFpbHYN5Xxm7g/apI4UVoGbgDASZo3N0sGqZusjavHmm33ROHQmhYM8m0ZzAaLPX42CTKyQRawpw10VpbsvGyUV54KoFlnBcOt8KVPvvdHpiLHVo1EQgx9E0CCbDrUu+Y6HDSgUM0j8fdOUDYQ8JLAONy1Kcs0T/exl+ue3JC6nzaSxYp8RUWqhA0rBy8e7yTu0UJZ8LLy8cBYQ85XgIYZ4s+wUrCVlZ6SUutPF8KJLwEeK+6QFjPw5ksljNWTiS3iwea1SYIfqh8N5tk4GdbW9jCPW6yxN3Mb7GCd6p8YY4KkPAIKdBQS0iBhEdIgYRHSIGER0iBhEdIgYRHSIGER0iBhEdIgYRHSIGER0iBhEdIgYRHSIGER0iBhEdIgYRHSIGER0iBhEdIgYRHSIGER0iBhEdIgYRHSIGER0iBhEdIgYRHSOF/EmmErItay68AAAAASUVORK5CYII=
+- Free to use
+- IT & Infrastructure
+svg_image: ./resources/integration.svg
+image: ./resources/image.png

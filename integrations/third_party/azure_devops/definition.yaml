@@ -1,39 +1,32 @@
 identifier: Azure DevOps
 name: Azure DevOps
 parameters:
-    -   name: Project
-        default_value: project_name
-        type: string
-        description: The project name
-        is_mandatory: true
-        integration_identifier: Azure DevOps
-    -   name: Organization
-        default_value: organization_name
-        type: string
-        description: The organization name
-        is_mandatory: true
-        integration_identifier: Azure DevOps
-    -   name: Personal Access Token
-        type: password
-        description: ''
-        is_mandatory: true
-        integration_identifier: Azure DevOps
-    -   name: Base URL
-        default_value: https://dev.azure
-        type: string
-        description: "For exmaple: \nhttps://dev.azure"
-        is_mandatory: true
-        integration_identifier: Azure DevOps
+- name: Project
+  default_value: project_name
+  type: string
+  description: The project name
+  is_mandatory: true
+  integration_identifier: Azure DevOps
+- name: Organization
+  default_value: organization_name
+  type: string
+  description: The organization name
+  is_mandatory: true
+  integration_identifier: Azure DevOps
+- name: Personal Access Token
+  type: password
+  description: ''
+  is_mandatory: true
+  integration_identifier: Azure DevOps
+- name: Base URL
+  default_value: https://dev.azure
+  type: string
+  description: "For exmaple: \nhttps://dev.azure"
+  is_mandatory: true
+  integration_identifier: Azure DevOps
 categories:
-    - Operational
-    - Development Tools
-    - Cloud
-# language=svg
-svg_image: "<?xml version=\"1.0\" encoding=\"utf-8\"?><!-- Generator: Adobe Illustrator\
-    \ 25.2.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  --><svg version=\"\
-    1.1\" id=\"Layer_1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\"\
-    \ x=\"0px\" y=\"0px\"\t viewBox=\"0 0 25 25\" style=\"enable-background:new 0\
-    \ 0 25 25;\" xml:space=\"preserve\"><g>\t<g>\t\t<path d=\"M17.8,6.7v11.5L4.4,16.4L9.9,23v-2.7l8,2.7l5.1-4.3l0.1-13L17.8,6.7z\
-    \ M11.2,2v2.2L4.1,7L2,9.7v5.8l2.2,0.7v-7l13.4-2.5\t\t\tC16.6,6,11.2,2,11.2,2z\"\
-    />\t</g></g></svg>"
-image_base64: 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
+- Operational
+- Development Tools
+- Cloud
+svg_image: ./resources/integration.svg
+image: ./resources/image.png

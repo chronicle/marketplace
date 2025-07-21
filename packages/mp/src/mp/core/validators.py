@@ -16,12 +16,16 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
+import defusedxml.ElementTree as SafeElementTree
+from PIL import Image, UnidentifiedImageError
+
 import mp.core.constants
 
 from . import constants
 from .data_models.script.parameter import ScriptParamType
 
 if TYPE_CHECKING:
+    import pathlib
     from collections.abc import Collection
 
     from .data_models.connector.parameter import ConnectorParameter
@@ -98,3 +102,68 @@ def validate_param_name(name: str) -> str:
         raise ValueError(msg)
 
     return name
+
+
+def validate_svg_content(path: pathlib.Path) -> str:
+    """Read and validate an SVG file.
+
+    Args:
+        path: The path to the SVG file.
+
+    Returns:
+        The text content of the SVG file.
+
+    Raises:
+        ValueError: If the file is not found, empty, or not a valid SVG.
+
+    """
+    try:
+        content = path.read_text(encoding="utf-8")
+        if not content.strip():
+            msg = f"SVG file is empty: {path}"
+            raise ValueError(msg)  # noqa: TRY301
+
+        # Attempt to parse the content as XML to check for well-formedness
+        tree = SafeElementTree.fromstring(content)
+
+        if "svg" not in tree.tag.lower():
+            msg = f"File is not a valid SVG (missing <svg> root tag): {path}"
+            raise ValueError(msg)  # noqa: TRY301
+
+        return content  # noqa: TRY300
+    except SafeElementTree.ParseError as e:
+        msg = f"Invalid XML syntax in SVG file: {path}"
+        raise ValueError(msg) from e
+    except Exception as e:
+        msg = f"Failed to read or validate SVG file: {path}"
+        raise ValueError(msg) from e
+
+
+def validate_png_content(path: pathlib.Path) -> bytes:
+    """Read and validate a PNG file.
+
+    Args:
+        path: The path to the PNG file.
+
+    Returns:
+        The raw byte content of the PNG file.
+
+    Raises:
+        ValueError: If the file is not found, corrupted, or not a valid PNG.
+
+    """
+    try:
+        with Image.open(path) as img:
+            img.verify()
+
+            if img.format != "PNG":
+                msg = f"File is not a valid PNG image: {path}"
+                raise ValueError(msg)  # noqa: TRY301
+
+        return path.read_bytes()
+    except UnidentifiedImageError as e:
+        msg = f"File is not a valid image or is corrupted: {path}"
+        raise ValueError(msg) from e
+    except Exception as e:
+        msg = f"Failed to read or validate PNG file: {path}"
+        raise ValueError(msg) from e

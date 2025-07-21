@@ -1,32 +1,26 @@
 identifier: Marketo
 name: Marketo
 parameters:
-    -   name: Client Secret
-        default_value: Client Secret
-        type: string
-        description: ' The client secret of the Marketo account'
-        is_mandatory: true
-        integration_identifier: Marketo
-    -   name: Client Id
-        default_value: Client Id
-        type: string
-        description: ' The client id of the Marketo account'
-        is_mandatory: true
-        integration_identifier: Marketo
-    -   name: Munchkin Id
-        default_value: Munchkin Id
-        type: string
-        description: '  The Munchkin Id of the Marketo account'
-        is_mandatory: true
-        integration_identifier: Marketo
+- name: Client Secret
+  default_value: Client Secret
+  type: string
+  description: ' The client secret of the Marketo account'
+  is_mandatory: true
+  integration_identifier: Marketo
+- name: Client Id
+  default_value: Client Id
+  type: string
+  description: ' The client id of the Marketo account'
+  is_mandatory: true
+  integration_identifier: Marketo
+- name: Munchkin Id
+  default_value: Munchkin Id
+  type: string
+  description: '  The Munchkin Id of the Marketo account'
+  is_mandatory: true
+  integration_identifier: Marketo
 categories:
-    - Productivity
-    - Cloud
-# language=svg
-svg_image: |
-    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
-         viewBox="0 0 25 25">
-        <path d="M16.35 1.4v22.2L22 19.05V4.5l-5.65-3.1zM9.1 20.75l4.6-2V4.7L9.1
-    3.3v17.45zM3 18.25l3.5-.9V6.2L3 5.65v12.6z"/>
-    </svg>
-image_base64: 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
+- Productivity
+- Cloud
+svg_image: ./resources/integration.svg
+image: ./resources/image.png

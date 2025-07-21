@@ -1,23 +1,14 @@
 identifier: FileUtilities
 name: FileUtilities
 parameters:
-    -   name: Verify SSL
-        default_value: false
-        type: boolean
-        description: Verify SSL Certificates when executing requests to Chronicle SOAR
-            instance.
-        is_mandatory: false
-        integration_identifier: FileUtilities
+- name: Verify SSL
+  default_value: false
+  type: boolean
+  description: Verify SSL Certificates when executing requests to Chronicle SOAR instance.
+  is_mandatory: false
+  integration_identifier: FileUtilities
 categories:
-    - Utility
-# language=svg
-svg_image: "<?xml version=\"1.0\" encoding=\"utf-8\"?><!-- Generator: Adobe Illustrator\
-    \ 24.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  --><svg version=\"\
-    1.1\" id=\"Layer_1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\"\
-    \ x=\"0px\" y=\"0px\"\t viewBox=\"0 0 25 25\" style=\"enable-background:new 0\
-    \ 0 25 25;\" xml:space=\"preserve\"><g>\t<g>\t\t<path d=\"M15,9c-0.2,0-0.4-0.1-0.6-0.3c-0.2-0.2-0.2-0.4-0.2-0.6V2H4.8C4.6,2,4.4,2.1,4.2,2.3C4.1,2.4,4,2.6,4,2.9v19.3\t\
-    \t\tc0,0.2,0.1,0.5,0.2,0.6C4.4,22.9,4.6,23,4.8,23h15.3c0.2,0,0.4-0.1,0.6-0.3c0.2-0.2,0.2-0.4,0.2-0.6V9H15z\
-    \ M6.5,8.1h5.1v1.8H6.5\t\t\tV8.1z M18.5,18.6H6.5v-1.8h11.9V18.6z M18.5,14.3H6.5v-1.8h11.9V14.3z\
-    \ M15.9,2.5v4.7h4.6L15.9,2.5z\"/>\t</g></g></svg>"
-image_base64: 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
+- Utility
+svg_image: ./resources/integration.svg
 is_powerup: true
+image: ./resources/image.png

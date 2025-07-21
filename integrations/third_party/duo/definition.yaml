@@ -1,54 +1,48 @@
 identifier: DUO
 name: DUO
 parameters:
-    -   name: API Hostname
-        default_value: api-XXXXXXXX.duosecurity.com
-        type: string
-        description: 'API hostname for your tenant: api-XXXXXXXX.duosecurity.com.'
-        is_mandatory: true
-        integration_identifier: DUO
-    -   name: Admin Secret Key
-        type: password
-        description: 'The Duo Admin API provides programmatic access to the administrative
-        functionality of Duo Security''s two-factor authentication platform.
+- name: API Hostname
+  default_value: api-XXXXXXXX.duosecurity.com
+  type: string
+  description: 'API hostname for your tenant: api-XXXXXXXX.duosecurity.com.'
+  is_mandatory: true
+  integration_identifier: DUO
+- name: Admin Secret Key
+  type: password
+  description: 'The Duo Admin API provides programmatic access to the administrative
+    functionality of Duo Security''s two-factor authentication platform.
 
-        https://duo.com/docs/adminapi'
-        is_mandatory: true
-        integration_identifier: DUO
-    -   name: Admin Integration Key
-        type: password
-        description: 'The Duo Admin API provides programmatic access to the administrative
-        functionality of Duo Security''s two-factor authentication platform.
+    https://duo.com/docs/adminapi'
+  is_mandatory: true
+  integration_identifier: DUO
+- name: Admin Integration Key
+  type: password
+  description: 'The Duo Admin API provides programmatic access to the administrative
+    functionality of Duo Security''s two-factor authentication platform.
 
-        https://duo.com/docs/adminapi'
-        is_mandatory: true
-        integration_identifier: DUO
-    -   name: Auth Integration Key
-        type: password
-        description: 'The Duo Auth API is a low-level, RESTful API for adding strong two-factor
-        authentication to your website or application.
-
-
-        https://duo.com/docs/authapi'
-        is_mandatory: true
-        integration_identifier: DUO
-    -   name: Auth Secret Key
-        type: password
-        description: 'The Duo Auth API is a low-level, RESTful API for adding strong two-factor
-        authentication to your website or application.
+    https://duo.com/docs/adminapi'
+  is_mandatory: true
+  integration_identifier: DUO
+- name: Auth Integration Key
+  type: password
+  description: 'The Duo Auth API is a low-level, RESTful API for adding strong two-factor
+    authentication to your website or application.
 
 
-        https://duo.com/docs/authapi'
-        is_mandatory: true
-        integration_identifier: DUO
+    https://duo.com/docs/authapi'
+  is_mandatory: true
+  integration_identifier: DUO
+- name: Auth Secret Key
+  type: password
+  description: 'The Duo Auth API is a low-level, RESTful API for adding strong two-factor
+    authentication to your website or application.
+
+
+    https://duo.com/docs/authapi'
+  is_mandatory: true
+  integration_identifier: DUO
 categories:
-    - Operational
-    - Identity
-# language=svg
-svg_image: |
-    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
-         viewBox="0 0 25 25">
-        <path d="M3 3h10.094A8.906 8.906 0 0122 11.906H3V3zM3 22h10.094A8.906
-    8.906 0 0022 13.094H3V22z"/>
-    </svg>
-image_base64: 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
+- Operational
+- Identity
+svg_image: ./resources/integration.svg
+image: ./resources/image.png
