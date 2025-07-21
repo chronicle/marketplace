@@ -1,34 +1,27 @@
 identifier: Zoom
 name: Zoom
 parameters:
-    -   name: JWT Token
-        type: password
-        description: ' JWT - JSON Web Token'
-        is_mandatory: false
-        integration_identifier: Zoom
-    -   name: Account ID
-        type: string
-        description: Account ID - used for OAuth login
-        is_mandatory: false
-        integration_identifier: Zoom
-    -   name: Client ID
-        type: string
-        description: Client ID - used for OAuth login
-        is_mandatory: false
-        integration_identifier: Zoom
-    -   name: Client Secret
-        type: password
-        description: Client Secret - used for OAuth login
-        is_mandatory: false
-        integration_identifier: Zoom
+- name: JWT Token
+  type: password
+  description: ' JWT - JSON Web Token'
+  is_mandatory: false
+  integration_identifier: Zoom
+- name: Account ID
+  type: string
+  description: Account ID - used for OAuth login
+  is_mandatory: false
+  integration_identifier: Zoom
+- name: Client ID
+  type: string
+  description: Client ID - used for OAuth login
+  is_mandatory: false
+  integration_identifier: Zoom
+- name: Client Secret
+  type: password
+  description: Client Secret - used for OAuth login
+  is_mandatory: false
+  integration_identifier: Zoom
 categories:
-    - IT & Infrastructure
-# language=svg
-svg_image: "<?xml version=\"1.0\" encoding=\"utf-8\"?><!-- Generator: Adobe Illustrator\
-    \ 24.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  --><svg version=\"\
-    1.1\" id=\"Layer_1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\"\
-    \ x=\"0px\" y=\"0px\"\t viewBox=\"0 0 25 25\" style=\"enable-background:new 0\
-    \ 0 25 25;\" xml:space=\"preserve\"><g>\t<g>\t\t<path d=\"M21.9,7.2l-4.5,3.3v4.1l4.5,3.3c0.4,0.3,0.7,0.3,0.7-0.4v-10C22.6,7,22.3,6.9,21.9,7.2z\
-    \ M13.7,7H2.9\t\t\tC2.6,7,2.3,7.3,2.3,7.5V15c0,1.7,1.4,3.1,3,3h10.8c0.3,0,0.5-0.3,0.5-0.5v-7.4C16.7,8.3,15.3,7,13.7,7z\"\
-    />\t</g></g></svg>"
-image_base64: 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
+- IT & Infrastructure
+svg_image: ./resources/integration.svg
+image: ./resources/image.png

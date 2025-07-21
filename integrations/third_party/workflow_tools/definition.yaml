@@ -1,67 +1,52 @@
 identifier: Workflow Tools
 name: Workflow Tools
 parameters:
-    -   name: Siemplify API Root
-        default_value: https://localhost
-        type: string
-        description: You should only change this if your Siemplify architecture requires
-            it and you know what you are doing.
-        is_mandatory: true
-        integration_identifier: Workflow Tools
-    -   name: Slack Webhook URL
-        type: string
-        description: 'An optional slack webhook URL that we can use to send audit messages.
+- name: Siemplify API Root
+  default_value: https://localhost
+  type: string
+  description: You should only change this if your Siemplify architecture requires
+    it and you know what you are doing.
+  is_mandatory: true
+  integration_identifier: Workflow Tools
+- name: Slack Webhook URL
+  type: string
+  description: 'An optional slack webhook URL that we can use to send audit messages.
 
-        Leave empty to disable'
-        is_mandatory: false
-        integration_identifier: Workflow Tools
-    -   name: Verify SSL
-        default_value: 'false'
-        type: boolean
-        description: Whether to verify requests made to the Siemplify API
-        is_mandatory: false
-        integration_identifier: Workflow Tools
-    -   name: Siemplify API Key
-        type: password
-        description: API Key generated in Siemplify Settings
-        is_mandatory: false
-        integration_identifier: Workflow Tools
-    -   name: Approval Manager
-        default_value: '@Administrator'
-        type: string
-        description: The Siemplify username or role of a person or group of people that
-            is permitted to approve this action and allow the workflow to continue.
-        is_mandatory: true
-        integration_identifier: Workflow Tools
-    -   name: Secondary Approval Manager
-        type: string
-        description: The Siemplify username or role of a secondary person or group of
-            people that is permitted to approve this action and allow the workflow to
-            continue.
-        is_mandatory: false
-        integration_identifier: Workflow Tools
-    -   name: Siemplify Instance Hostname
-        default_value: https://siemplify.mycompany.com
-        type: string
-        description: The address/hostname of your Siemplify instance. This is used to
-            generate clickable links in slack message content so you can quickly jump
-            into a case directly from slack. This could be a domain or an IP address that
-            resolves your instance.
-        is_mandatory: true
-        integration_identifier: Workflow Tools
-categories: [ ]
-# language=svg
-svg_image: "<?xml version=\"1.0\" encoding=\"utf-8\"?><!-- Generator: Adobe Illustrator\
-    \ 25.2.3, SVG Export Plug-In . SVG Version: 6.00 Build 0)  --><svg version=\"\
-    1.1\" id=\"Layer_1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\"\
-    \ x=\"0px\" y=\"0px\"\t viewBox=\"0 0 25 25\" style=\"enable-background:new 0\
-    \ 0 25 25;\" xml:space=\"preserve\"><g>\t<g>\t\t<path d=\"M22.1,8.8c-0.6-1.3-2.2-2.8-3.4-3.4C15.6,3.9,12,4.5,9.5,6.9C8,8.5,7.1,10.7,7.2,12.8c0.1,2,1.2,3.6,3.1,4.5\t\
-    \t\tc0.8,0.4,0.9,0.4,2.2,0.4c1.2,0,1.4,0,2.2-0.4c1.2-0.6,2-1.4,2.6-2.5c0.4-0.9,0.5-1,0.5-2.1c0-1.4-0.2-1.9-1.1-2.7\t\
-    \t\tc-0.8-0.7-1.5-1-2.6-0.9c-1,0.1-1.7,0.4-2.4,1.1c-1.2,1.2-1.2,3.4-0.1,4c0.5,0.2,1.3,0.2,1.8,0c0.4-0.2,0.9-0.9,0.9-1.3\t\
-    \t\tc0-0.3-0.1-0.3-0.8-0.3c-0.8,0-0.8,0-0.8-0.3c0-0.2,0.2-0.5,0.5-0.8c0.4-0.4,0.6-0.5,1-0.5c1.1,0,1.8,0.8,1.7,1.9\t\
-    \t\tc-0.1,0.8-0.4,1.5-1,2.1c-0.7,0.7-1.3,0.9-2.4,0.9c-1.1,0-1.7-0.2-2.4-0.9c-0.7-0.7-0.9-1.3-0.9-2.5c0-1.5,0.3-2.3,1.5-3.5\t\
-    \t\tc1.2-1.2,1.9-1.5,3.6-1.5c1.1,0,1.3,0,2,0.4c1.8,0.8,2.9,2.5,3.1,4.3c0.2,3.2-2.1,6.3-5.4,7.1c-3.7,0.9-7.4-1.5-8.2-5.3\t\
-    \t\tc-0.5-2.3,0.3-5.4,2.1-7.5c2-2.4,5.6-3.8,8.5-3.4c0.5,0.1,0.8,0.1,0.9,0.1c0.1-0.1-1.1-0.6-2.1-0.8c-1.1-0.3-3-0.4-4-0.3\t\
-    \t\tC6.7,2.7,3.4,5.7,2.3,9.9c-0.4,1.4-0.4,3.7,0,5.2C3.6,19.9,7.6,23,12.5,23c1.6,0,3-0.3,4.4-0.9c3.8-1.8,6.1-5.4,6.1-9.5\t\
-    \t\tC23,11,22.8,10.2,22.1,8.8z\"/>\t</g></g></svg>"
-image_base64: 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
+    Leave empty to disable'
+  is_mandatory: false
+  integration_identifier: Workflow Tools
+- name: Verify SSL
+  default_value: 'false'
+  type: boolean
+  description: Whether to verify requests made to the Siemplify API
+  is_mandatory: false
+  integration_identifier: Workflow Tools
+- name: Siemplify API Key
+  type: password
+  description: API Key generated in Siemplify Settings
+  is_mandatory: false
+  integration_identifier: Workflow Tools
+- name: Approval Manager
+  default_value: '@Administrator'
+  type: string
+  description: The Siemplify username or role of a person or group of people that
+    is permitted to approve this action and allow the workflow to continue.
+  is_mandatory: true
+  integration_identifier: Workflow Tools
+- name: Secondary Approval Manager
+  type: string
+  description: The Siemplify username or role of a secondary person or group of people
+    that is permitted to approve this action and allow the workflow to continue.
+  is_mandatory: false
+  integration_identifier: Workflow Tools
+- name: Siemplify Instance Hostname
+  default_value: https://siemplify.mycompany.com
+  type: string
+  description: The address/hostname of your Siemplify instance. This is used to generate
+    clickable links in slack message content so you can quickly jump into a case directly
+    from slack. This could be a domain or an IP address that resolves your instance.
+  is_mandatory: true
+  integration_identifier: Workflow Tools
+categories: []
+svg_image: ./resources/integration.svg
+image: ./resources/image.png

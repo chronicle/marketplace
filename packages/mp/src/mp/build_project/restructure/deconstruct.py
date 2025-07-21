@@ -72,6 +72,23 @@ class DeconstructIntegration:
     out_path: pathlib.Path
     integration: Integration
 
+    def _create_resource_files(self) -> None:
+        """Create the image files in the resources directory."""
+        resources_dir = self.out_path / "resources"
+        resources_dir.mkdir(exist_ok=True)
+
+        # Write the PNG file
+        if self.integration.metadata.image_base64:
+            mp.core.file_utils.base64_to_png_file(
+                self.integration.metadata.image_base64, resources_dir / "image.png"
+            )
+
+        # Write the SVG file
+        if self.integration.metadata.svg_image:
+            mp.core.file_utils.text_to_svg_file(
+                self.integration.metadata.svg_image, resources_dir / "integration.svg"
+            )
+
     def initiate_project(self) -> None:
         """Initialize a new python project.
 
@@ -111,6 +128,7 @@ class DeconstructIntegration:
 
     def deconstruct_integration_files(self) -> None:
         """Deconstruct an integration's code to its "out" path."""
+        self._create_resource_files()
         self._create_definition_file()
         self._create_release_notes()
         self._create_custom_families()

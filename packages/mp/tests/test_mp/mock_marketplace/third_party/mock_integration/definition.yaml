@@ -1,43 +1,24 @@
-# Copyright 2025 Google LLC
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#     http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-
 categories:
-    - IT & Infrastructure
+- IT & Infrastructure
 documentation_link: https://cloud.google.com/chronicle/docs/soar/marketplace-integrations/mock-integration
 feature_tags:
-    integration_visibility_properties:
-        -   kind: SystemMode
-            value: Nexus
+  integration_visibility_properties:
+  - kind: SystemMode
+    value: Nexus
 identifier: mock_integration
-image_base64: iVBORw0KGgoAAAANSUhEUgAAADAAAABACAYAAABcIPRGAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEwAACxMBAJqcGAAAAzlJREFUaIHtmT1rFFEUhh+jJpuPNcZgITY2goUmxkIQK7+qGBPRxlKws/MH+Assgokkgo2VP8BGDEoQO7GSuJsUKhYWomCjJDFmLM4umb33zr1zZ2bnbmAfOMUuZ2bed/d+nDkXunTpojIBLAJrwEYjVoEFYDygLif9wBMgssQ2Yq4SSGMi/cAb7OLjsUyHmXD98qZYCKLUwAS6uBowDVQbMQPU0YdTR8yJRXTxw4a8g8hkjuc+KkmjlTVaRU1bcq+jmw3OBq2iqpbcqpK73nZ1DnqAPR75am5UoJZM9ABflO8uWfKvKJ8/F6omIwu0Dos6MmFVRtDny2xJGq2MIUtiXNgqMmGrwAHgBrr4LeBEAL1G5vHfyB4EUZpAL/CS9OKfA/uCKLXQi4zpNAZuB9KYijQG3gdTl4K0w+hqKIEu0hqoAfsDabTisxLdD6TRio+Bv8C5MDKT8d0PvgFHgyhNwNdABKwAoyHEmshiIAI+AEcC6NXIaiACvgJnypfcSh4DEfKScw8p1bNwmp2+1CYZ+lJ5DTTjHXDeQ3ilIVKtjOORqi/lEvbb08gSMAXstTyzD3jlcc9lmwnXxRcymIiAH8BT4A5wFjiMFJAADzPcL7Ev5boQZPP6meGhpthCHzYrwCQwAAwi/2BNyUnsS6UxAHAcvdlVRKwgb4EqwwYTxr5UWgMgr5zPCjYwaRLV4JqSa+xL+Rhocgv4XpCBAYuBISXX2JfKYgDgEDIZN3MaGAxloMkxZIX4k9HAlOXeM0rux3YYaDIC3AXeAv88DCQ1l0fQm8tz7TQQZxS4ibRiXiBlwi/kfWITfRmtIRN2qBEzBvHbwKmyDLhI2w2Jx3zSzUIY8O1LvUbKj44xAGJiDvt82UZ++UTxWC5ut4EmJxGRdWSZXEdWmzkMY950NuAS6XOe0HbiLx19yEbkYpadKrJjqOBXjy/RYSbUk8pcy1jZTJC9Hh8LoFfjMbr4XPV42ahHRz71eL3t6lKglr+56/Ey6UFf9ztqnXdhOie+aMm/rHz+VKiajKjnxLnr8bIZp+B6PAS7eiMDKSWWKageD0UF+SdczVVnPR6acWSHrZGiHu/SpUtY/gPyEh70ZBj4xQAAAABJRU5ErkJggg==
 name: Mock Integration
 parameters:
-    -   description: Description
-        integration_identifier: mock_integration
-        is_mandatory: true
-        name: Mock Parameter
-        type: password
-        default_value: ''
-    -   description: Verify SSL
-        integration_identifier: mock_integration
-        is_mandatory: true
-        name: Verify SSL
-        type: boolean
-        default_value: true
-# language=svg
-svg_image: |
-    <?xml version="1.0" encoding="UTF-8"?>
-    <svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 25">
-        <path d="M23.8,11.73L18.8Z" fill-rule="evenodd"/>
-    </svg>
+- description: Description
+  integration_identifier: mock_integration
+  is_mandatory: true
+  name: Mock Parameter
+  type: password
+  default_value: ''
+- description: Verify SSL
+  integration_identifier: mock_integration
+  is_mandatory: true
+  name: Verify SSL
+  type: boolean
+  default_value: true
+svg_image: ./resources/integration.svg
+image: ./resources/image.png

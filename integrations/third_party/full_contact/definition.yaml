@@ -1,25 +1,14 @@
 identifier: Full Contact
 name: Full Contact
 parameters:
-    -   name: API Key
-        type: password
-        description: API Key
-        is_mandatory: false
-        integration_identifier: Full Contact
+- name: API Key
+  type: password
+  description: API Key
+  is_mandatory: false
+  integration_identifier: Full Contact
 categories:
-    - Operational
-    - Data Enrichment
-    - Identity
-# language=svg
-svg_image: |
-    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
-         viewBox="0 0 25 25">
-        <path fill-rule="evenodd" d="M5 22.53a.438.438 0 00.43.47h14.136a.441.441
-    0 00.434-.47 9.747 9.747 0 00-.799-3.425 9.408 9.408 0 00-1.818-2.75c-.215-.225-.583-.064-.583.254v.224c0
-    1.26-.977 2.276-2.176 2.276H6.082a.437.437 0 00-.401.28 9.812 9.812 0 00-.68 3.14zM19.31
-    9.129C19.31 5.199 16.254 2 12.499 2 8.739 2 5.685 5.196 5.685 9.129c0 3.928 3.054
-    7.128 6.813 7.128 3.755 0 6.813-3.195 6.813-7.128zm-3.37-.005c0 1.987-1.542 3.602-3.442
-    3.602-1.9 0-3.443-1.615-3.443-3.602 0-1.988 1.543-3.603 3.443-3.603 1.9 0 3.443
-    1.615 3.443 3.603z" clip-rule="evenodd"/>
-    </svg>
-image_base64: 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
+- Operational
+- Data Enrichment
+- Identity
+svg_image: ./resources/integration.svg
+image: ./resources/image.png
