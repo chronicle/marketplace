@@ -108,3 +108,5 @@ ATTRIBUTE_NAME = "Google_SecOps_BP"
 
 ENTITY_ID_FIELD = "event_principal_{}_productObjectId"
 PREFIX_PARAMETER_FOR_LABELS = "event_principal_{}_attribute_labels_XM Cyber - {}"
+ENRICHMENT_PREFIX = "XMC"
+ENRICHED_ENTITY_ID_FIELD = f"{ENRICHMENT_PREFIX}_XMCyber_Identifier"
