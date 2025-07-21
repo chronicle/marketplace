@@ -48,10 +48,6 @@ testpaths = [
 ]
 
 [tool.uv.sources]
-<<<<<<< HEAD
 tipcommon = { path = "../tipcommon/TIPCommon-2.2.9/TIPCommon-2.2.9-py2.py3-none-any.whl" }
-=======
-tipcommon = { path = "../tipcommon/TIPCommon-2.2.8/TIPCommon-2.2.8-py2.py3-none-any.whl" }
->>>>>>> a271258 (1P_Update__Tools)
 environmentcommon = { path = "../envcommon/EnvironmentCommon-1.0.2/EnvironmentCommon-1.0.2-py2.py3-none-any.whl" }
 soar-sdk = { git = "https://github.com/chronicle/soar-sdk.git" }
