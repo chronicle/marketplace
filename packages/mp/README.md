@@ -63,7 +63,7 @@ The `dev-env` subcommands help you interact with the development playground envi
 The `mp dev-env` commands support two authentication methods:
 
 #### 1. Username/Password Authentication (SOAR only instance)
-Use your SecOps environment username and password for authentication.
+Use your SOAR environment username and password for authentication.
 
 #### 2. API Key Authentication (Recommended for SecOps)
 Use an API key for more secure and convenient authentication. This method is particularly useful for automated workflows and CI/CD pipelines.
