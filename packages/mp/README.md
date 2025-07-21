@@ -58,16 +58,52 @@ mp config --marketplace-path . --processes 7 --display-config
 
 The `dev-env` subcommands help you interact with the development playground environment.
 
+### Authentication Methods
+
+The `mp dev-env` commands support two authentication methods:
+
+#### 1. Username/Password Authentication (Traditional)
+Use your SecOps environment username and password for authentication.
+
+#### 2. API Key Authentication (Recommended for SecOps)
+Use an API key for more secure and convenient authentication. This method is particularly useful for automated workflows and CI/CD pipelines.
+
+### Getting Your SecOps Environment Credentials
+
+#### API Root
+To get your SecOps environment API root:
+1. Open your SecOps environment in a web browser
+2. Open the browser's Developer Console (F12)
+3. Execute: `localStorage['soar_server-addr']`
+4. Copy the returned URL - this is your API root
+
+#### API Key Creation
+To create an API key for authentication:
+1. Log into your SecOps environment
+2. Navigate to **Settings** → **SOAR Settings** → **Advanced** → **API Keys**
+3. Click **Create**
+4. Set **Permission Groups** to `Admins`
+5. Copy the generated API key
+
 ### Login to Dev Environment
 
-Authenticate and verify credentials (default):
+#### Using API Key (Recommended)
+```bash
+mp dev-env login --api-root https://xx.siemplify-soar.com --api-key your-api-key
+```
 
+#### Using Username/Password
+```bash
+mp dev-env login --api-root https://xx.siemplify-soar.com --username your-username --password your-password
+```
+
+#### Interactive Mode
 ```bash
 mp dev-env login
 ```
+This will prompt you for credentials interactively.
 
-Skip credential verification:
-
+#### Skip Credential Verification
 ```bash
 mp dev-env login --no-verify
 ```
