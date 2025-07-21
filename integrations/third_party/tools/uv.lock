@@ -453,13 +453,8 @@ requires-dist = [
     { name = "environmentcommon" },
     { name = "pyyaml", specifier = ">=6.0.2" },
     { name = "requests", specifier = ">=2.32.3" },
-<<<<<<< HEAD
     { name = "soar-sdk" },
     { name = "tipcommon" },
-=======
-    { name = "soar-sdk", git = "https://github.com/chronicle/soar-sdk.git" },
-    { name = "tipcommon", path = "../../../packages/tipcommon/TIPCommon-2.2.8/TIPCommon-2.2.8-py2.py3-none-any.whl" },
->>>>>>> a271258 (1P_Update__Tools)
     { name = "yarl", specifier = ">=1.20.1" },
 ]
 
@@ -957,7 +952,7 @@ requires-dist = [
     { name = "pyopenssl", specifier = ">=24.3.0" },
     { name = "pyspellchecker", specifier = "==0.8.2" },
     { name = "requests", specifier = ">=2.32.3" },
-    { name = "tipcommon", path = "../../../packages/tipcommon/TIPCommon-2.2.8/TIPCommon-2.2.8-py2.py3-none-any.whl" },
+    { name = "tipcommon"},
     { name = "tldextract", specifier = "==5.1.3" },
 ]
 
