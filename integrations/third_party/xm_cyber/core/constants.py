@@ -1,16 +1,17 @@
 """Define the constants used in the integration."""
 
 from __future__ import annotations
+from soar_sdk.SiemplifyDataModel import EntityTypes
 
 INTEGRATION_NAME = "XM Cyber"
-
+SUPPORTED_ENTITY_TYPES = [EntityTypes.USER, EntityTypes.HOSTNAME]
 # Action Names
 PING_SCRIPT_NAME = f"{INTEGRATION_NAME} - Ping"
 
 # Endpoints
 PING_ENDPOINT = "/api/auth/"
-ENTITY_ENDPOINT = "/api/entityInventory/entities/"
 PUSH_BREACH_POINT_ENDPOINT = "/api/entityInventory/applyImportedLabelsOnEntities"
+ENRICH_ENTITIES_ENDPOINT = "/api/secopsPublisher/entities"
 
 # Errors
 ERRORS = {
@@ -21,21 +22,40 @@ ERRORS = {
     },
     "VALIDATIONS": {
         "EMPTY_VALUE": "Value field cannot be empty.",
-        "INCORRECT_PARAMETER": "Parameter: {} not present in the current possible set of parameters.",
+        "INCORRECT_PARAMETER": (
+            "Parameter: {} not present in the current possible set of parameters."
+        ),
         "INCORRECT_OPERATOR": "Operator: {} not allowed.",
-        "ENTITY_ID_INCORRECT_OPERATOR": "For entityID parameter, operator must always be 'Equals' or 'Not equal to'",
-        "CONTAINS_INCORRECT_PARAMETER": "For {} parameter, operator must be 'Contains' or 'Not Contains'",
-        "CONTAINS_INCORRECT_OPERATOR": "For {} parameter, operator cannot be 'Contains' or 'Not Contains'",
+        "ENTITY_ID_INCORRECT_OPERATOR": (
+            "For entityID parameter, operator must always be 'Equals' or 'Not equal to'"
+        ),
+        "CONTAINS_INCORRECT_PARAMETER": (
+            "For {} parameter, operator must be 'Contains' or 'Not Contains'"
+        ),
+        "CONTAINS_INCORRECT_OPERATOR": (
+            "For {} parameter, operator cannot be 'Contains' or 'Not Contains'"
+        ),
         "INCORRECT_VALUE_FOR_LIST": "For {} parameter, value must be one of {}",
-        "INVALID_DATE_FORMAT": "Value: {} is not a valid date format. Example date: Sat Mar 15 2025 14:55:48 GMT+0000",
-        "INCORRECT_VALUE_TYPE": "For boolean and string values, operator must always be 'Equals' or 'Not equal to'",
+        "INVALID_DATE_FORMAT": (
+            "Value: {} is not a valid date format. Example date: Sat Mar 15 2025 14:55:48 GMT+0000"
+        ),
+        "INCORRECT_VALUE_TYPE": (
+            "For boolean and string values, operator must always be 'Equals' or 'Not equal to'"
+        ),
     },
     "PUSH_BREACH_POINT": {
-        "MISSING_ENTITY_ID": "Event: {} does not have {} or {} field that stores the entity ID. Skipping...\n",
+        "MISSING_ENTITY_ID": (
+            "Event: {} does not have {} or {} field that stores the entity ID. Skipping...\n"
+        ),
         "MISSING_PARAMETER": "Event: {} does not have parameter: {} . Skipping...\n",
-        "TYPE_MISMATCH": "Type mismatch found between values for event: {}. Actual value: {}, Expected value: {}. "
+        "TYPE_MISMATCH": (
+            "Type mismatch found between values for event: {}. Actual value: {}, "
+            "Expected value: {}. "
+        )
         + "Skipping...\n",
-        "CRITERIA_MISMATCH": "Event: {} does not match the criteria. Current value: ({}). Skipping...\n",
+        "CRITERIA_MISMATCH": (
+            "Event: {} does not match the criteria. Current value: ({}). Skipping...\n"
+        ),
         "FAILED": f"Failed to push attributes to the {INTEGRATION_NAME} server! Error:",
     },
     "ACTION": {

@@ -26,7 +26,8 @@ def make_aware(dt):
 
 
 def normalize_js_date(date_str):
-    """Convert a JS-style (Sat Mar 15 2025 14:55:48 GMT+0000 (Coordinated Universal Time)) date to a datetime object."""
+    """Convert a JS-style (Sat Mar 15 2025 14:55:48 GMT+0000 (Coordinated Universal Time))
+    date to a datetime object."""
     pattern = r"(\w{3}) (\w{3}) (\d{1,2}) (\d{4}) (\d{2}:\d{2}:\d{2}) (?:GMT|UTC)?([+-]\d{4})?"
     match = re.search(pattern, date_str)
 
@@ -129,7 +130,8 @@ def validate_push_breach_point_inputs(
         value (bool|int|str|float): Value.
 
     Returns:
-        str: tuple: Boolean indicating validity, and error message, if invalid, or, converted value, if valid.
+        str: tuple: Boolean indicating validity, and error message, if invalid, or,
+            converted value, if valid.
 
     """
     if not value:
@@ -152,10 +154,7 @@ def validate_push_breach_point_inputs(
             parameter,
         )
 
-    if (
-        operator in {"Contains", "Not Contains"}
-        and parameter not in STRINGIFIED_LIST_PARAMETERS
-    ):
+    if operator in {"Contains", "Not Contains"} and parameter not in STRINGIFIED_LIST_PARAMETERS:
         return False, ERRORS["VALIDATIONS"]["CONTAINS_INCORRECT_OPERATOR"].format(
             parameter,
         )
@@ -178,8 +177,7 @@ def validate_push_breach_point_inputs(
     value_input = convert_string(value)
 
     if parameter not in STRINGIFIED_LIST_PARAMETERS and (
-        isinstance(value_input, (str, bool))
-        and operator not in {"Equals", "Not equal to"}
+        isinstance(value_input, (str, bool)) and operator not in {"Equals", "Not equal to"}
     ):
         return False, ERRORS["VALIDATIONS"]["INCORRECT_VALUE_TYPE"]
 
