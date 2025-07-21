@@ -96,12 +96,10 @@ def login(
     if api_root is None:
         api_root = typer.prompt("API root (e.g. https://playground.example.com)")
 
-    # If API key is provided, use API key authentication
     if api_key is not None:
         username = None
         password = None
     else:
-        # Use username/password authentication
         if username is None:
             username = typer.prompt("Username")
         if password is None:
