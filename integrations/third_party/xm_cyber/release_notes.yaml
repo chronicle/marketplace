@@ -18,3 +18,13 @@
     regressive: false
     deprecated: false
     removed: false
+-   description: 'New action added: Enrich Entities.'
+    integration_version: 3.0
+    item_name: Enrich Entities
+    item_type: Action
+    publish_time: 1753098371
+    ticket_number: ''
+    new: true
+    regressive: false
+    deprecated: false
+    removed: false
