@@ -299,7 +299,7 @@ def calculate_risk_score_for_entity(entity_properties, configured_params):
         ),
     ]
 
-    impact_score = calculate_score(entity_properties, impact_score_components, configured_params)
+    impact_score = calculate_score(entity_properties, impact_score_components)
     impact_score += choke_point_score_value
     impact_score = min(impact_score, 1.7)
 
@@ -309,9 +309,7 @@ def calculate_risk_score_for_entity(entity_properties, configured_params):
             SCORE_MAPPINGS["User without MFA"][configured_params.get("user_without_mfa")],
         )
     ]
-    probability_score = calculate_score(
-        entity_properties, probability_score_components, configured_params
-    )
+    probability_score = calculate_score(entity_properties, probability_score_components)
     probability_score += compromise_risk_score_value
 
     calculated_risk_score = base_risk_score * probability_score * impact_score
@@ -495,8 +493,7 @@ def collect_action_parameters(siemplify):
         "compromise_risk_score": compromise_risk_score,
     }
 
-    print(f"Configured Params: {configured_params}")
-
+    siemplify.LOGGER.info(f"Configured Params: {configured_params}")
     return configured_params
 
 

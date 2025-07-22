@@ -163,7 +163,7 @@ def get_entities_to_push(
             error_message += ERRORS["PUSH_BREACH_POINT"]["MISSING_ENTITY_ID"].format(
                 "Event",
                 event.identifier,
-                ENTITY_ID_FIELD.format("asset") + "or" + ENTITY_ID_FIELD.format("user"),
+                ENTITY_ID_FIELD.format("asset") + " or " + ENTITY_ID_FIELD.format("user"),
             )
             continue
 
@@ -252,7 +252,7 @@ def main():
         if entities_to_push:
             if not attribute_name:
                 attribute_name = ATTRIBUTE_NAME
-                print(
+                siemplify.LOGGER.info(
                     f"Attribute name is found blank. Hence, using default value: {ATTRIBUTE_NAME}"
                 )
 

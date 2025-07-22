@@ -167,7 +167,7 @@ def is_entity_already_enriched(entity, logger):
             return False, output_message
 
         current_time = convert_unixtime_to_datetime(unix_now())
-        print(f"Current time: {current_time}, Last enrichment time: {last_enrichment_time}")
+        logger.info(f"Current time: {current_time}, Last enrichment time: {last_enrichment_time}")
         delta = current_time - last_enrichment_time
 
         # Entity already enriched
