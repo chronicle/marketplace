@@ -156,21 +156,41 @@ def is_entity_already_enriched(entity, logger):
     output_message = ""
     last_enrichment_time = entity.additional_properties.get(f"{ENRICHMENT_PREFIX}_last_enriched")
     if last_enrichment_time:
-        try:
-            last_enrichment_time = datetime.strptime(last_enrichment_time, "%Y-%m-%d %H:%M:%S.%f%z")
-        except ValueError:
+        # Try multiple datetime formats to handle timezone offset with/without colon
+        datetime_formats = [
+            "%Y-%m-%d %H:%M:%S.%f%z",  # Format without colon in timezone (e.g., +0000)
+            "%Y-%m-%d %H:%M:%S%z",     # Format without microseconds
+        ]
+        
+        parsed_time = None
+        for fmt in datetime_formats:
+            try:
+                # Handle timezone offset with colon by removing it before parsing
+                time_str = last_enrichment_time
+                if '+' in time_str or time_str.count('-') > 2:  # Has timezone
+                    # Remove colon from timezone offset (e.g., +05:30 -> +0530)
+                    import re
+                    time_str = re.sub(r'([+-]\d{2}):(\d{2})$', r'\1\2', time_str)
+                
+                parsed_time = datetime.strptime(time_str, fmt)
+                break
+            except ValueError:
+                continue
+        
+        if parsed_time is None:
             logger.info(
                 f"The value of {ENRICHMENT_PREFIX}_last_enriched' field: {last_enrichment_time} "
-                f"is not in expected format: '%Y-%m-%d %H:%M:%S.%f%z'. Hence, enriching the "
+                f"could not be parsed with any expected format. Hence, enriching the "
                 f"entity: {entity.identifier} again...\n"
             )
             output_message = (
                 f"The value of {ENRICHMENT_PREFIX}_last_enriched' field: {last_enrichment_time} "
-                f"is not in expected format: '%Y-%m-%d %H:%M:%S.%f%z'. Hence, enriching the "
+                f"could not be parsed with any expected format. Hence, enriching the "
                 f"entity: {entity.identifier} again...\n"
             )
-
             return False, output_message
+        
+        last_enrichment_time = parsed_time
 
         current_time = convert_unixtime_to_datetime(unix_now())
         logger.info(f"Current time: {current_time}, Last enrichment time: {last_enrichment_time}")

@@ -156,7 +156,7 @@ class ApiManager:
         for label in labels:
             key = label.get("key")
             value = label.get("value")
-            if key.startswith("XM Cyber - "):
+            if key and key.startswith("XM Cyber - "):
                 label_key = key.replace("XM Cyber - ", "")
                 processed_response[label_key] = value
 
