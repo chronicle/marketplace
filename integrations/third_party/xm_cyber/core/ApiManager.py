@@ -170,26 +170,28 @@ class ApiManager:
             entity_id = entity.get("asset", {}).get("hostname") or entity.get("user", {}).get(
                 "userid"
             )
-            if not entity_id:
+            if not entity_id or not isinstance(entity_id, str):
                 self.logger.info(
-                    f"hostname/userid field not found in the received entity: {entity} "
+                    f"hostname/userid field not found or empty in the received entity: {entity} "
                     f"\n Skipping..."
                 )
                 continue
 
+            entity_id_lower = entity_id.lower()
+
             # Extracting asset details
             if "asset" in entity:
                 asset = entity["asset"]
-                expected_response[entity_id.lower()] = {"hostname": asset.get("hostname")}
+                expected_response[entity_id_lower] = {"hostname": asset.get("hostname")}
                 processed_asset = self._process_entity_response(asset)
-                expected_response[entity_id.lower()].update(processed_asset)
+                expected_response[entity_id_lower].update(processed_asset)
 
             # Extracting user details
             elif "user" in entity:
                 user = entity["user"]
-                expected_response[entity_id.lower()] = {"userid": user.get("userid")}
+                expected_response[entity_id_lower] = {"userid": user.get("userid")}
                 processed_user = self._process_entity_response(user)
-                expected_response[entity_id.lower()].update(processed_user)
+                expected_response[entity_id_lower].update(processed_user)
 
         return expected_response
 
