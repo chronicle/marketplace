@@ -18,9 +18,13 @@
 
 from __future__ import annotations
 
+import json
+import sys
+from typing import NoReturn
+
 from soar_sdk.ScriptResult import EXECUTION_STATE_COMPLETED, EXECUTION_STATE_FAILED
 from soar_sdk.SiemplifyAction import SiemplifyAction
-from soar_sdk.SiemplifyUtils import output_handler
+from soar_sdk.SiemplifyUtils import output_handler, resume_stdout
 from TIPCommon.extraction import extract_action_param, extract_configuration_param
 
 from ..core.constants import (
@@ -34,6 +38,15 @@ from ..core.RecordedFutureManager import RecordedFutureManager
 @output_handler
 def main():
     siemplify = SiemplifyAction()
+
+    def end_script() -> NoReturn:
+        output_object = siemplify._build_output_object()
+        resume_stdout()
+        sys.stdout.write(json.dumps(output_object))
+        sys.exit()
+
+    siemplify.end_script = end_script
+
     siemplify.script_name = UPDATE_PBA_SCRIPT_NAME
 
     api_url = extract_configuration_param(
@@ -60,6 +73,14 @@ def main():
         is_mandatory=True,
         print_value=True,
     )
+
+    category = extract_action_param(
+        siemplify,
+        param_name='Playbook Alert Category',
+        is_mandatory=True,
+        print_value=True,
+    )
+
     assign_to = extract_action_param(
         siemplify,
         param_name="Assign To",
@@ -127,6 +148,7 @@ def main():
         )
         updated_alert = manager.update_playbook_alert(
             alert_id=alert_id,
+            category=category,
             status=pba_status,
             assignee=assign_to,
             log_entry=log_entry,

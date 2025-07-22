@@ -37,7 +37,6 @@ from TIPCommon.utils import is_overflowed
 from TIPCommon.validation import ParameterValidator
 
 from ..core.constants import (
-    ALERT_STATUS_MAP,
     CLASSIC_ALERT_DEFAULT_STATUSES,
     CLASSIC_ALERT_STATUSES,
     CONNECTOR_NAME,
@@ -176,7 +175,7 @@ def main(is_test_run):
             verify_ssl=verify_ssl,
             siemplify=siemplify,
         )
-        fetch_statuses = [ALERT_STATUS_MAP.get(param) for param in fetch_statuses_param]
+        fetch_statuses = fetch_statuses_param
         fetched_alerts = []
         rules_to_fetch = None
         if siemplify.whitelist and not allowlist_as_a_denylist:
