@@ -45,16 +45,16 @@ ERRORS = {
     },
     "PUSH_BREACH_POINT": {
         "MISSING_ENTITY_ID": (
-            "Event: {} does not have {} or {} field that stores the entity ID. Skipping...\n"
+            "{}: {} does not have {} field that stores the entity ID. Skipping...\n"
         ),
-        "MISSING_PARAMETER": "Event: {} does not have parameter: {} . Skipping...\n",
+        "MISSING_PARAMETER": "{}: {} does not have parameter: {} . Skipping...\n",
         "TYPE_MISMATCH": (
             "Type mismatch found between values for event: {}. Actual value: {}, "
             "Expected value: {}. "
         )
         + "Skipping...\n",
         "CRITERIA_MISMATCH": (
-            "Event: {} does not match the criteria. Current value: ({}). Skipping...\n"
+            "{}: {} does not match the criteria. Current value: ({}). Skipping...\n"
         ),
         "FAILED": f"Failed to push attributes to the {INTEGRATION_NAME} server! Error:",
     },

@@ -104,10 +104,11 @@ def filter_entities(siemplify_action):
     event_entities = get_entities_from_the_event(events)
 
     entities = [entity for entity in entities if entity.entity_type in SUPPORTED_ENTITY_TYPES]
+    entities_to_skip = [] 
     for entity, event_id in event_entities:
         for _entity in entities:
             if _entity.identifier.lower() == entity.lower():
-                entities.remove(_entity)
+                entities_to_skip.append(_entity)
                 logger.info(
                     f"Entity {_entity.identifier} found in the event {event_id}. "
                     f"Skipping from the enrichment.\n"
@@ -116,6 +117,8 @@ def filter_entities(siemplify_action):
                     f"Entity {_entity.identifier} found in the event {event_id}. "
                     f"Skipping from the enrichment.\n"
                 )
+    for _entity in entities_to_skip:
+        entities.remove(_entity)
 
     entities_to_enrich = []
     for entity in entities:
