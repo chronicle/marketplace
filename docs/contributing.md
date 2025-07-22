@@ -32,7 +32,8 @@ Guidelines](https://opensource.google/conduct/).
 
 ### Cloning
 Please fork the repository to work on it. When your changes are ready you can open a Pull Request with your changes to the main repository's main branch.
-Read more about forking: [Fork a repo](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo)
+* Read more about [forking](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo)
+* Read about the [Fork & Pull Request Workflow](https://gist.github.com/Chaser324/ce0505fbed06b947d962)
 
 ### Code Reviews
 
