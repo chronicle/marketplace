@@ -22,5 +22,5 @@ parameters:
 categories:
 - Cloud
 - IT & Infrastructure
-svg_image: ./resources/integration.svg
-image: ./resources/image.png
+image: resources/image.png
+svg_logo: resources/logo.svg

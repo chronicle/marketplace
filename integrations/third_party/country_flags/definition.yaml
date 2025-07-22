@@ -4,5 +4,5 @@ parameters: []
 categories:
 - Operational
 - Data Enrichment
-svg_image: ./resources/integration.svg
-image: ./resources/image.png
+image: resources/image.png
+svg_logo: resources/logo.svg

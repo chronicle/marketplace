@@ -24,6 +24,6 @@ parameters:
   is_mandatory: false
   integration_identifier: NetenrichConnect
 categories: []
-svg_image: ./resources/integration.svg
 is_available_for_community: false
-image: ./resources/image.png
+image: resources/image.png
+svg_logo: resources/logo.svg

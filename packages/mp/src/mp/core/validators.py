@@ -158,12 +158,9 @@ def validate_png_content(path: pathlib.Path) -> bytes:
 
             if img.format != "PNG":
                 msg = f"File is not a valid PNG image: {path}"
-                raise ValueError(msg)  # noqa: TRY301
+                raise ValueError(msg)
 
         return path.read_bytes()
     except UnidentifiedImageError as e:
         msg = f"File is not a valid image or is corrupted: {path}"
-        raise ValueError(msg) from e
-    except Exception as e:
-        msg = f"Failed to read or validate PNG file: {path}"
         raise ValueError(msg) from e
