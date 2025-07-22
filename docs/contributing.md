@@ -30,6 +30,10 @@ Guidelines](https://opensource.google/conduct/).
 
 ## Contribution process
 
+### Cloning
+Please fork the repository to work on it. When your changes are ready you can open a Pull Request with your changes to the main repository's main branch.
+Read more about forking: [Fork a repo](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo)
+
 ### Code Reviews
 
 All submissions, including submissions by project members, require review. We
