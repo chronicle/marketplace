@@ -34,6 +34,7 @@ import mp.core
 import mp.core.constants
 import mp.core.file_utils
 import mp.core.unix
+from mp.core.constants import IMAGE_FILE, LOGO_FILE, RESOURCES_DIR
 from mp.core.data_models.action.metadata import ActionMetadata
 from mp.core.data_models.connector.metadata import ConnectorMetadata
 from mp.core.data_models.integration_meta.metadata import IntegrationMetadata, PythonVersion
@@ -72,22 +73,25 @@ class DeconstructIntegration:
     out_path: pathlib.Path
     integration: Integration
 
-    def _create_resource_files(self) -> None:
-        """Create the image files in the resources directory."""
-        resources_dir = self.out_path / "resources"
-        resources_dir.mkdir(exist_ok=True)
-
-        # Write the PNG file
+    def _create_png_image(self, resources_dir: pathlib.Path) -> None:
         if self.integration.metadata.image_base64:
             mp.core.file_utils.base64_to_png_file(
-                self.integration.metadata.image_base64, resources_dir / "image.png"
+                self.integration.metadata.image_base64, resources_dir / IMAGE_FILE
             )
 
-        # Write the SVG file
-        if self.integration.metadata.svg_image:
+    def _create_svg_logo(self, resources_dir: pathlib.Path) -> None:
+        if self.integration.metadata.svg_logo:
             mp.core.file_utils.text_to_svg_file(
-                self.integration.metadata.svg_image, resources_dir / "integration.svg"
+                self.integration.metadata.svg_logo, resources_dir / LOGO_FILE
             )
+
+    def _create_resource_files(self) -> None:
+        """Create the image files in the resources directory."""
+        resources_dir: pathlib.Path = self.out_path / RESOURCES_DIR
+        resources_dir.mkdir(exist_ok=True)
+
+        self._create_png_image(resources_dir)
+        self._create_svg_logo(resources_dir)
 
     def initiate_project(self) -> None:
         """Initialize a new python project.

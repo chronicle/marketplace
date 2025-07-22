@@ -446,15 +446,8 @@ def base64_to_png_file(image_data: bytes, output_path: pathlib.Path) -> None:
         image_data: The raw byte content of the image.
         output_path: The path to save the PNG file to.
 
-    Raises:
-        OSError: If the file cannot be written.
-
     """
-    try:
-        output_path.write_bytes(image_data)
-    except OSError as e:
-        msg = f"Failed to write PNG file to {output_path}"
-        raise OSError(msg) from e
+    output_path.write_bytes(image_data)
 
 
 def text_to_svg_file(svg_text: str, output_path: pathlib.Path) -> None:

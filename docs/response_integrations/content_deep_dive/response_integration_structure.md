@@ -48,7 +48,7 @@ integration_name/
 │
 ├── resources/
 │   ├── image.png
-│   └──  integration.svg
+│   └── logo.svg
 │
 ├── tests/
 │   ├── __init__.py

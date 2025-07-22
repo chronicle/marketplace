@@ -9,6 +9,6 @@ parameters:
   integration_identifier: FileUtilities
 categories:
 - Utility
-svg_image: ./resources/integration.svg
 is_powerup: true
-image: ./resources/image.png
+image: resources/image.png
+svg_logo: resources/logo.svg

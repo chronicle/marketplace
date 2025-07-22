@@ -7,6 +7,6 @@ description: 'A set of utility actions for data manipulation and common platform
 python_version: '3.11'
 categories:
 - Utility
-svg_image: ./resources/integration.svg
 is_powerup: true
-image: ./resources/image.png
+image: resources/image.png
+svg_logo: resources/logo.svg

@@ -26,5 +26,5 @@ documentation_link: https://docs.logz.io/user-guide/cloud-siem/integration/siemp
 categories:
 - Security
 - SIEM
-svg_image: ./resources/integration.svg
-image: ./resources/image.png
+image: resources/image.png
+svg_logo: resources/logo.svg
