@@ -157,7 +157,7 @@ def validate_png_content(path: pathlib.Path) -> bytes:
             img.verify()
 
             if img.format != "PNG":
-                msg = f"File is not a valid PNG image: {path}"
+                msg = f"Invalid image format. Expected PNG but found {img.format} at {path}"
                 raise ValueError(msg)
 
         return path.read_bytes()
