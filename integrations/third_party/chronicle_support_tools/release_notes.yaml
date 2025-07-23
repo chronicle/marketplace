@@ -2,7 +2,7 @@
   integration_version: 1.0
   item_name: ChronicleSupportTools
   item_type: Integration
-  publish_time: '2024-07-16T08:21:01Z'
+  publish_time: '2024-07-16'
   ticket_number: '340223061'
   new: true
   regressive: false
@@ -12,7 +12,7 @@
   integration_version: 2.0
   item_name: ChronicleSupportTools
   item_type: Integration
-  publish_time: '2024-09-04T04:45:43Z'
+  publish_time: '2024-09-04'
   ticket_number: '356850285'
   new: false
   regressive: false
@@ -24,7 +24,7 @@
   integration_version: 3.0
   item_name: ChronicleSupportTools
   item_type: Integration
-  publish_time: '2024-12-26T08:31:56Z'
+  publish_time: '2024-12-26'
   ticket_number: ''
   new: false
   regressive: false
@@ -37,7 +37,7 @@
   integration_version: 4.0
   item_name: ChronicleSupportTools
   item_type: Integration
-  publish_time: '2025-03-24T16:02:44Z'
+  publish_time: '2025-03-24'
   ticket_number: '405144847'
   new: false
   regressive: true

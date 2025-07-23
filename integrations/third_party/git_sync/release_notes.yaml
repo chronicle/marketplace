@@ -3,7 +3,7 @@
   integration_version: 3.0
   item_name: GitSync
   item_type: Integration
-  publish_time: '2021-09-30T11:33:41Z'
+  publish_time: '2021-09-30'
   ticket_number: xxx
   new: false
   regressive: false
@@ -14,7 +14,7 @@
   integration_version: 4.0
   item_name: GitSync
   item_type: Integration
-  publish_time: '2021-11-14T16:04:48Z'
+  publish_time: '2021-11-14'
   ticket_number: xxx
   new: false
   regressive: false
@@ -24,7 +24,7 @@
   integration_version: 4.0
   item_name: GitSync
   item_type: Integration
-  publish_time: '2021-11-14T16:04:48Z'
+  publish_time: '2021-11-14'
   ticket_number: xxx
   new: false
   regressive: false
@@ -35,7 +35,7 @@
   integration_version: 4.0
   item_name: GitSync
   item_type: Integration
-  publish_time: '2021-11-14T16:04:48Z'
+  publish_time: '2021-11-14'
   ticket_number: xxx
   new: false
   regressive: false
@@ -46,7 +46,7 @@
   integration_version: 4.0
   item_name: GitSync
   item_type: Integration
-  publish_time: '2021-11-14T16:04:48Z'
+  publish_time: '2021-11-14'
   ticket_number: xxx
   new: false
   regressive: false
@@ -56,7 +56,7 @@
   integration_version: 4.0
   item_name: GitSync
   item_type: Integration
-  publish_time: '2021-11-14T16:04:48Z'
+  publish_time: '2021-11-14'
   ticket_number: xxx
   new: false
   regressive: false
@@ -66,7 +66,7 @@
   integration_version: 5.0
   item_name: GitSync
   item_type: Integration
-  publish_time: '2021-11-24T13:18:42Z'
+  publish_time: '2021-11-24'
   ticket_number: xxx
   new: false
   regressive: false
@@ -76,7 +76,7 @@
   integration_version: 6.0
   item_name: GitSync
   item_type: Integration
-  publish_time: '2021-12-26T12:11:43Z'
+  publish_time: '2021-12-26'
   ticket_number: xxx
   new: false
   regressive: false
@@ -86,7 +86,7 @@
   integration_version: 6.0
   item_name: GitSync
   item_type: Integration
-  publish_time: '2021-12-26T12:11:43Z'
+  publish_time: '2021-12-26'
   ticket_number: xxx
   new: false
   regressive: false
@@ -97,7 +97,7 @@
   integration_version: 6.0
   item_name: GitSync
   item_type: Integration
-  publish_time: '2021-12-26T12:11:43Z'
+  publish_time: '2021-12-26'
   ticket_number: xxx
   new: false
   regressive: false
@@ -107,7 +107,7 @@
   integration_version: 6.0
   item_name: GitSync
   item_type: Integration
-  publish_time: '2021-12-26T12:11:43Z'
+  publish_time: '2021-12-26'
   ticket_number: xxx
   new: false
   regressive: false
@@ -117,7 +117,7 @@
   integration_version: 6.0
   item_name: GitSync
   item_type: Integration
-  publish_time: '2021-12-26T12:11:43Z'
+  publish_time: '2021-12-26'
   ticket_number: xxx
   new: false
   regressive: false
@@ -127,7 +127,7 @@
   integration_version: 7.0
   item_name: GitSync
   item_type: Integration
-  publish_time: '2022-02-08T17:11:18Z'
+  publish_time: '2022-02-08'
   ticket_number: xxx
   new: false
   regressive: false
@@ -138,7 +138,7 @@
   integration_version: 8.0
   item_name: GitSync
   item_type: Integration
-  publish_time: '2022-05-25T12:00:53Z'
+  publish_time: '2022-05-25'
   ticket_number: xxx
   new: false
   regressive: false
@@ -148,7 +148,7 @@
   integration_version: 8.0
   item_name: GitSync
   item_type: Integration
-  publish_time: '2022-05-25T12:00:53Z'
+  publish_time: '2022-05-25'
   ticket_number: xxx
   new: false
   regressive: false
@@ -158,7 +158,7 @@
   integration_version: 8.0
   item_name: GitSync
   item_type: Integration
-  publish_time: '2022-05-25T12:00:53Z'
+  publish_time: '2022-05-25'
   ticket_number: xxx
   new: false
   regressive: false
@@ -169,7 +169,7 @@
   integration_version: 8.0
   item_name: GitSync
   item_type: Integration
-  publish_time: '2022-05-25T12:00:53Z'
+  publish_time: '2022-05-25'
   ticket_number: xxx
   new: false
   regressive: false
@@ -179,7 +179,7 @@
   integration_version: 9.0
   item_name: GitSync
   item_type: Integration
-  publish_time: '2022-10-26T14:48:39Z'
+  publish_time: '2022-10-26'
   ticket_number: xxx
   new: false
   regressive: false
@@ -190,7 +190,7 @@
   integration_version: 10.0
   item_name: GitSync
   item_type: Integration
-  publish_time: '2023-01-15T11:52:06Z'
+  publish_time: '2023-01-15'
   ticket_number: xxx
   new: false
   regressive: false
@@ -200,7 +200,7 @@
   integration_version: 10.0
   item_name: GitSync
   item_type: Integration
-  publish_time: '2023-01-15T11:52:06Z'
+  publish_time: '2023-01-15'
   ticket_number: xxx
   new: false
   regressive: false
@@ -210,7 +210,7 @@
   integration_version: 10.0
   item_name: GitSync
   item_type: Integration
-  publish_time: '2023-01-15T11:52:06Z'
+  publish_time: '2023-01-15'
   ticket_number: xxx
   new: false
   regressive: false
@@ -221,7 +221,7 @@
   integration_version: 10.0
   item_name: GitSync
   item_type: Integration
-  publish_time: '2023-01-15T11:52:06Z'
+  publish_time: '2023-01-15'
   ticket_number: xxx
   new: false
   regressive: false
@@ -232,7 +232,7 @@
   integration_version: 10.0
   item_name: GitSync
   item_type: Integration
-  publish_time: '2023-01-15T11:52:06Z'
+  publish_time: '2023-01-15'
   ticket_number: xxx
   new: false
   regressive: false
@@ -242,7 +242,7 @@
   integration_version: 10.0
   item_name: GitSync
   item_type: Integration
-  publish_time: '2023-01-15T11:52:06Z'
+  publish_time: '2023-01-15'
   ticket_number: xxx
   new: false
   regressive: false
@@ -252,7 +252,7 @@
   integration_version: 11.0
   item_name: GitSync
   item_type: Integration
-  publish_time: '2023-03-13T11:45:48Z'
+  publish_time: '2023-03-13'
   ticket_number: xxx
   new: false
   regressive: false
@@ -262,7 +262,7 @@
   integration_version: 11.0
   item_name: GitSync
   item_type: Integration
-  publish_time: '2023-03-13T11:45:48Z'
+  publish_time: '2023-03-13'
   ticket_number: xxx
   new: false
   regressive: false
@@ -272,7 +272,7 @@
   integration_version: 11.0
   item_name: GitSync
   item_type: Integration
-  publish_time: '2023-03-13T11:45:48Z'
+  publish_time: '2023-03-13'
   ticket_number: xxx
   new: false
   regressive: false
@@ -282,7 +282,7 @@
   integration_version: 11.0
   item_name: GitSync
   item_type: Integration
-  publish_time: '2023-03-13T11:45:48Z'
+  publish_time: '2023-03-13'
   ticket_number: xxx
   new: false
   regressive: false
@@ -292,7 +292,7 @@
   integration_version: 12.0
   item_name: GitSync
   item_type: Integration
-  publish_time: '2023-06-06T09:02:29Z'
+  publish_time: '2023-06-06'
   ticket_number: xxx
   new: false
   regressive: false
@@ -302,7 +302,7 @@
   integration_version: 12.0
   item_name: GitSync
   item_type: Integration
-  publish_time: '2023-06-06T09:02:29Z'
+  publish_time: '2023-06-06'
   ticket_number: xxx
   new: false
   regressive: false
@@ -312,7 +312,7 @@
   integration_version: 12.0
   item_name: GitSync
   item_type: Integration
-  publish_time: '2023-06-06T09:02:29Z'
+  publish_time: '2023-06-06'
   ticket_number: xxx
   new: false
   regressive: false
@@ -322,7 +322,7 @@
   integration_version: 12.0
   item_name: GitSync
   item_type: Integration
-  publish_time: '2023-06-06T09:02:29Z'
+  publish_time: '2023-06-06'
   ticket_number: xxx
   new: false
   regressive: false
@@ -333,7 +333,7 @@
   integration_version: 12.0
   item_name: GitSync
   item_type: Integration
-  publish_time: '2023-06-06T09:02:29Z'
+  publish_time: '2023-06-06'
   ticket_number: xxx
   new: false
   regressive: false
@@ -345,7 +345,7 @@
   integration_version: 13.0
   item_name: GitSync
   item_type: Integration
-  publish_time: '2023-07-15T13:34:20Z'
+  publish_time: '2023-07-15'
   ticket_number: xxx
   new: false
   regressive: false
@@ -355,7 +355,7 @@
   integration_version: 14.0
   item_name: GitSync
   item_type: Integration
-  publish_time: '2023-07-19T10:03:17Z'
+  publish_time: '2023-07-19'
   ticket_number: xxx
   new: false
   regressive: false
@@ -365,7 +365,7 @@
   integration_version: 15.0
   item_name: GitSync
   item_type: Integration
-  publish_time: '2023-08-15T09:09:30Z'
+  publish_time: '2023-08-15'
   ticket_number: xxx
   new: false
   regressive: false
@@ -375,7 +375,7 @@
   integration_version: 15.0
   item_name: GitSync
   item_type: Integration
-  publish_time: '2023-08-15T09:09:30Z'
+  publish_time: '2023-08-15'
   ticket_number: xxx
   new: false
   regressive: false
@@ -386,7 +386,7 @@
   integration_version: 15.0
   item_name: GitSync
   item_type: Integration
-  publish_time: '2023-08-15T09:09:30Z'
+  publish_time: '2023-08-15'
   ticket_number: xxx
   new: false
   regressive: false
@@ -396,7 +396,7 @@
   integration_version: 15.0
   item_name: GitSync
   item_type: Integration
-  publish_time: '2023-08-15T09:09:30Z'
+  publish_time: '2023-08-15'
   ticket_number: xxx
   new: false
   regressive: false
@@ -406,7 +406,7 @@
   integration_version: 15.0
   item_name: GitSync
   item_type: Integration
-  publish_time: '2023-08-15T09:09:30Z'
+  publish_time: '2023-08-15'
   ticket_number: xxx
   new: false
   regressive: false
@@ -417,7 +417,7 @@
   integration_version: 15.0
   item_name: GitSync
   item_type: Integration
-  publish_time: '2023-08-15T09:09:30Z'
+  publish_time: '2023-08-15'
   ticket_number: xxx
   new: false
   regressive: false
@@ -428,7 +428,7 @@
   integration_version: 15.0
   item_name: GitSync
   item_type: Integration
-  publish_time: '2023-08-15T09:09:30Z'
+  publish_time: '2023-08-15'
   ticket_number: xxx
   new: false
   regressive: false
@@ -438,7 +438,7 @@
   integration_version: 16.0
   item_name: GitSync
   item_type: Integration
-  publish_time: '2023-08-21T10:03:12Z'
+  publish_time: '2023-08-21'
   ticket_number: xxx
   new: false
   regressive: false
@@ -448,7 +448,7 @@
   integration_version: 17.0
   item_name: GitSync
   item_type: Integration
-  publish_time: '2023-10-25T11:21:37Z'
+  publish_time: '2023-10-25'
   ticket_number: xxx
   new: false
   regressive: false
@@ -458,7 +458,7 @@
   integration_version: 18.0
   item_name: GitSync
   item_type: Integration
-  publish_time: '2024-02-06T13:36:09Z'
+  publish_time: '2024-02-06'
   ticket_number: '321093992'
   new: false
   regressive: false
@@ -468,7 +468,7 @@
   integration_version: 18.0
   item_name: GitSync
   item_type: Integration
-  publish_time: '2024-02-06T13:36:09Z'
+  publish_time: '2024-02-06'
   ticket_number: '311180239'
   new: false
   regressive: false
@@ -478,7 +478,7 @@
   integration_version: 18.0
   item_name: GitSync
   item_type: Integration
-  publish_time: '2024-02-06T13:36:09Z'
+  publish_time: '2024-02-06'
   ticket_number: xxx
   new: false
   regressive: false
@@ -488,7 +488,7 @@
   integration_version: 18.0
   item_name: GitSync
   item_type: Integration
-  publish_time: '2024-02-06T13:36:09Z'
+  publish_time: '2024-02-06'
   ticket_number: '311180086'
   new: false
   regressive: false
@@ -498,7 +498,7 @@
   integration_version: 18.0
   item_name: GitSync
   item_type: Integration
-  publish_time: '2024-02-06T13:36:09Z'
+  publish_time: '2024-02-06'
   ticket_number: xxx
   new: false
   regressive: false
@@ -508,7 +508,7 @@
   integration_version: 19.0
   item_name: GitSync
   item_type: Integration
-  publish_time: '2024-02-12T13:53:20Z'
+  publish_time: '2024-02-12'
   ticket_number: xxx
   new: false
   regressive: false
@@ -519,7 +519,7 @@
   integration_version: 20.0
   item_name: GitSync
   item_type: Integration
-  publish_time: '2024-04-25T07:33:05Z'
+  publish_time: '2024-04-25'
   ticket_number: '332545706'
   new: false
   regressive: false
@@ -530,7 +530,7 @@
   integration_version: 21.0
   item_name: GitManager
   item_type: Manager
-  publish_time: '2024-07-07T10:10:38Z'
+  publish_time: '2024-07-07'
   ticket_number: ''
   new: false
   regressive: false
@@ -542,7 +542,7 @@
   integration_version: 22.0
   item_name: GitSync
   item_type: Integration
-  publish_time: '2024-07-07T10:10:38Z'
+  publish_time: '2024-07-07'
   ticket_number: ''
   new: false
   regressive: false
@@ -553,7 +553,7 @@
   integration_version: 23.0
   item_name: GitSync
   item_type: Integration
-  publish_time: '2024-07-07T10:10:38Z'
+  publish_time: '2024-07-07'
   ticket_number: '365514107'
   new: false
   regressive: false
@@ -563,7 +563,7 @@
   integration_version: 24.0
   item_name: GitSync
   item_type: Integration
-  publish_time: '2024-11-13T08:37:42Z'
+  publish_time: '2024-11-13'
   ticket_number: '375644653'
   new: false
   regressive: false
@@ -573,7 +573,7 @@
   integration_version: 24.0
   item_name: GitSync
   item_type: Integration
-  publish_time: '2024-11-13T08:37:42Z'
+  publish_time: '2024-11-13'
   ticket_number: '370924479'
   new: false
   regressive: false
@@ -585,7 +585,7 @@
   integration_version: 25.0
   item_name: GitSync
   item_type: Integration
-  publish_time: '2024-12-26T08:33:24Z'
+  publish_time: '2024-12-26'
   ticket_number: ''
   new: false
   regressive: false
@@ -595,7 +595,7 @@
   integration_version: 26.0
   item_name: GitSync
   item_type: Integration
-  publish_time: '2025-01-05T12:45:46Z'
+  publish_time: '2025-01-05'
   ticket_number: ''
   new: false
   regressive: false
@@ -606,7 +606,7 @@
   integration_version: 27.0
   item_name: GitSync
   item_type: Integration
-  publish_time: '2025-04-02T14:01:27Z'
+  publish_time: '2025-04-02'
   ticket_number: '401298415'
   new: false
   regressive: false
@@ -616,7 +616,7 @@
   integration_version: 28.0
   item_name: GitSync
   item_type: Integration
-  publish_time: '2025-04-16T11:50:17Z'
+  publish_time: '2025-04-16'
   ticket_number: '407526909'
   new: false
   regressive: false
@@ -626,7 +626,7 @@
   integration_version: 29.0
   item_name: GitSync
   item_type: Integration
-  publish_time: '2025-06-04T07:58:12Z'
+  publish_time: '2025-06-04'
   ticket_number: '422166168'
   new: false
   regressive: false
@@ -637,7 +637,7 @@
   integration_version: 30.0
   item_name: Pull Content, Push Content, Pull Playbook, Push Playbook
   item_type: Jobs
-  publish_time: '2025-06-30T12:49:15Z'
+  publish_time: '2025-06-30'
   ticket_number: '418743078'
   new: false
   regressive: false
@@ -647,7 +647,7 @@
   integration_version: 31.0
   item_name: GitSync
   item_type: Jobs
-  publish_time: '2025-07-08T07:44:15Z'
+  publish_time: '2025-07-08'
   ticket_number: '430005872'
   new: false
   regressive: false
@@ -657,7 +657,7 @@
   integration_version: 32.0
   item_name: GitSync
   item_type: Jobs
-  publish_time: '2025-07-16T15:52:39Z'
+  publish_time: '2025-07-16'
   ticket_number: '428703982'
   new: false
   regressive: false
@@ -667,7 +667,7 @@
   integration_version: 33.0
   item_name: GitSync
   item_type: Jobs
-  publish_time: '2025-07-20T07:57:32Z'
+  publish_time: '2025-07-20'
   ticket_number: '432139863'
   new: false
   regressive: false

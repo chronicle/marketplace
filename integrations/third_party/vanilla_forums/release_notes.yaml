@@ -2,7 +2,7 @@
   integration_version: 1.0
   item_name: VanillaForums
   item_type: Integration
-  publish_time: '2021-08-16T09:11:20Z'
+  publish_time: '2021-08-16'
   ticket_number: xxx
   new: false
   regressive: false
@@ -12,7 +12,7 @@
   integration_version: 2.0
   item_name: VanillaForums
   item_type: Integration
-  publish_time: '2021-08-19T09:55:40Z'
+  publish_time: '2021-08-19'
   ticket_number: xxx
   new: false
   regressive: false
@@ -22,7 +22,7 @@
   integration_version: 3.0
   item_name: VanillaForums
   item_type: Integration
-  publish_time: '2021-08-19T14:55:26Z'
+  publish_time: '2021-08-19'
   ticket_number: xxx
   new: false
   regressive: false
@@ -32,7 +32,7 @@
   integration_version: 4.0
   item_name: VanillaForums
   item_type: Integration
-  publish_time: '2021-08-19T14:55:26Z'
+  publish_time: '2021-08-19'
   ticket_number: xxx
   new: false
   regressive: false
@@ -42,7 +42,7 @@
   integration_version: 5.0
   item_name: VanillaForums
   item_type: Integration
-  publish_time: '2021-08-19T17:06:03Z'
+  publish_time: '2021-08-19'
   ticket_number: xxx
   new: false
   regressive: false
@@ -52,7 +52,7 @@
   integration_version: 6.0
   item_name: VanillaForums
   item_type: Integration
-  publish_time: '2021-09-05T14:47:36Z'
+  publish_time: '2021-09-05'
   ticket_number: xxx
   new: false
   regressive: false
@@ -62,7 +62,7 @@
   integration_version: 7.0
   item_name: VanillaForums
   item_type: Integration
-  publish_time: '2022-03-17T13:26:59Z'
+  publish_time: '2022-03-17'
   ticket_number: xxx
   new: false
   regressive: false
@@ -72,7 +72,7 @@
   integration_version: 8.0
   item_name: VanillaForums
   item_type: Integration
-  publish_time: '2022-03-17T15:11:14Z'
+  publish_time: '2022-03-17'
   ticket_number: xxx
   new: false
   regressive: false
@@ -84,7 +84,7 @@
   integration_version: 9.0
   item_name: VanillaForums
   item_type: Integration
-  publish_time: '2024-12-26T08:29:36Z'
+  publish_time: '2024-12-26'
   ticket_number: ''
   new: false
   regressive: false

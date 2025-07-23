@@ -2,7 +2,7 @@
   integration_version: 12.0
   item_name: PagerDuty
   item_type: Integration
-  publish_time: '2022-11-14T13:09:06Z'
+  publish_time: '2022-11-14'
   ticket_number: xxx
   new: false
   regressive: false
@@ -12,7 +12,7 @@
   integration_version: 13.0
   item_name: PagerDuty
   item_type: Integration
-  publish_time: '2022-11-16T14:36:20Z'
+  publish_time: '2022-11-16'
   ticket_number: xxx
   new: false
   regressive: false
@@ -24,7 +24,7 @@
   integration_version: 14.0
   item_name: PagerDuty
   item_type: Integration
-  publish_time: '2022-11-16T14:36:20Z'
+  publish_time: '2022-11-16'
   ticket_number: xxx
   new: false
   regressive: false
@@ -36,7 +36,7 @@
   integration_version: 15.0
   item_name: PagerDuty
   item_type: Integration
-  publish_time: '2024-12-26T11:05:53Z'
+  publish_time: '2024-12-26'
   ticket_number: ''
   new: false
   regressive: false
@@ -49,7 +49,7 @@
   integration_version: 16.0
   item_name: PagerDuty
   item_type: Integration
-  publish_time: '2025-03-24T16:02:44Z'
+  publish_time: '2025-03-24'
   ticket_number: '405144847'
   new: false
   regressive: true
@@ -59,7 +59,7 @@
   integration_version: 17.0
   item_name: PagerDuty
   item_type: Action
-  publish_time: '2025-04-16T04:11:02Z'
+  publish_time: '2025-04-16'
   ticket_number: '406216953'
   new: false
   regressive: false

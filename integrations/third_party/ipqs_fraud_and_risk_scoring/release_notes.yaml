@@ -2,7 +2,7 @@
   integration_version: 2.0
   item_name: IPQS Fraud and Risk Scoring
   item_type: Integration
-  publish_time: '2022-06-30T13:29:07Z'
+  publish_time: '2022-06-30'
   ticket_number: xxx
   new: false
   regressive: false
@@ -12,7 +12,7 @@
   integration_version: 3.0
   item_name: IPQS Fraud and Risk Scoring
   item_type: Integration
-  publish_time: '2023-08-22T11:18:47Z'
+  publish_time: '2023-08-22'
   ticket_number: xxx
   new: false
   regressive: false
@@ -24,7 +24,7 @@
   integration_version: 4.0
   item_name: IPQS Fraud and Risk Scoring
   item_type: Integration
-  publish_time: '2024-12-26T08:28:48Z'
+  publish_time: '2024-12-26'
   ticket_number: ''
   new: false
   regressive: false

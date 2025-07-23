@@ -2,7 +2,7 @@
   integration_version: 1.0
   item_name: PhilipsHUE
   item_type: Integration
-  publish_time: '2021-10-13T17:25:24Z'
+  publish_time: '2021-10-13'
   ticket_number: xxx
   new: false
   regressive: false
@@ -12,7 +12,7 @@
   integration_version: 2.0
   item_name: PhilipsHUE
   item_type: Integration
-  publish_time: '2021-10-27T13:18:12Z'
+  publish_time: '2021-10-27'
   ticket_number: xxx
   new: false
   regressive: false
@@ -22,7 +22,7 @@
   integration_version: 3.0
   item_name: PhilipsHUE
   item_type: Integration
-  publish_time: '2023-01-11T11:12:39Z'
+  publish_time: '2023-01-11'
   ticket_number: xxx
   new: false
   regressive: false
@@ -34,7 +34,7 @@
   integration_version: 4.0
   item_name: PhilipsHUE
   item_type: Integration
-  publish_time: '2024-12-26T08:32:25Z'
+  publish_time: '2024-12-26'
   ticket_number: ''
   new: false
   regressive: false

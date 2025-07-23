@@ -2,7 +2,7 @@
   integration_version: 1.0
   item_name: EclecticIQ
   item_type: Integration
-  publish_time: '2024-09-04T07:32:03Z'
+  publish_time: '2024-09-04'
   ticket_number: '357357524'
   new: true
   regressive: false
@@ -14,7 +14,7 @@
   integration_version: 2.0
   item_name: EclecticIQ
   item_type: Integration
-  publish_time: '2024-12-26T08:29:04Z'
+  publish_time: '2024-12-26'
   ticket_number: ''
   new: false
   regressive: false
@@ -27,7 +27,7 @@
   integration_version: 3.0
   item_name: EclecticIQ
   item_type: Integration
-  publish_time: '2025-03-24T16:02:44Z'
+  publish_time: '2025-03-24'
   ticket_number: '405144847'
   new: false
   regressive: true

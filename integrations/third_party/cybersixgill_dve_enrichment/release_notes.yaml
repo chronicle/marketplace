@@ -2,7 +2,7 @@
   integration_version: 1.0
   item_name: Cybersixgill DVE Enrichment
   item_type: Integration
-  publish_time: '2021-05-25T11:38:21Z'
+  publish_time: '2021-05-25'
   ticket_number: xxx
   new: false
   regressive: false
@@ -12,7 +12,7 @@
   integration_version: 2.0
   item_name: Cybersixgill DVE Enrichment
   item_type: Integration
-  publish_time: '2021-09-09T08:50:55Z'
+  publish_time: '2021-09-09'
   ticket_number: xxx
   new: false
   regressive: false
@@ -22,7 +22,7 @@
   integration_version: 3.0
   item_name: Cybersixgill DVE Enrichment
   item_type: Integration
-  publish_time: '2021-11-01T15:47:21Z'
+  publish_time: '2021-11-01'
   ticket_number: xxx
   new: false
   regressive: false
@@ -33,7 +33,7 @@
   integration_version: 4.0
   item_name: Cybersixgill DVE Enrichment
   item_type: Integration
-  publish_time: '2024-04-25T07:33:05Z'
+  publish_time: '2024-04-25'
   ticket_number: '332545706'
   new: false
   regressive: false
@@ -45,7 +45,7 @@
   integration_version: 5.0
   item_name: Cybersixgill DVE Enrichment
   item_type: Integration
-  publish_time: '2024-12-26T08:25:58Z'
+  publish_time: '2024-12-26'
   ticket_number: ''
   new: false
   regressive: false

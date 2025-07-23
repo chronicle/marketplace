@@ -2,7 +2,7 @@
   integration_version: 1.0
   item_name: Abuse IPDB
   item_type: Integration
-  publish_time: '2020-12-17T10:38:20Z'
+  publish_time: '2020-12-17'
   ticket_number: xxx
   new: false
   regressive: false
@@ -16,7 +16,7 @@
   integration_version: 2.0
   item_name: Abuse IPDB
   item_type: Integration
-  publish_time: '2021-08-27T08:12:13Z'
+  publish_time: '2021-08-27'
   ticket_number: xxx
   new: false
   regressive: false
@@ -26,7 +26,7 @@
   integration_version: 3.0
   item_name: Abuse IPDB
   item_type: Integration
-  publish_time: '2021-11-01T10:27:16Z'
+  publish_time: '2021-11-01'
   ticket_number: xxx
   new: false
   regressive: false
@@ -38,7 +38,7 @@
   integration_version: 4.0
   item_name: AbuseIPDB
   item_type: Integration
-  publish_time: '2024-12-26T08:30:02Z'
+  publish_time: '2024-12-26'
   ticket_number: ''
   new: false
   regressive: false

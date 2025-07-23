@@ -11,7 +11,7 @@
   integration_version: 2.0
   item_name: Update Case Description
   item_type: Action
-  publish_time: '2020-11-05T13:43:20Z'
+  publish_time: '2020-11-05'
   ticket_number: xxx
   new: false
   regressive: false
@@ -21,7 +21,7 @@
   integration_version: 2.0
   item_name: Get Siemplify Users
   item_type: Action
-  publish_time: '2020-11-05T13:43:20Z'
+  publish_time: '2020-11-05'
   ticket_number: xxx
   new: false
   regressive: false
@@ -31,7 +31,7 @@
   integration_version: 3.0
   item_name: Create Entities with Separator
   item_type: Action
-  publish_time: '2020-11-19T17:35:15Z'
+  publish_time: '2020-11-19'
   ticket_number: xxx
   new: false
   regressive: false
@@ -41,7 +41,7 @@
   integration_version: 4.0
   item_name: Create Entities with Separator
   item_type: Action
-  publish_time: '2020-11-19T17:35:15Z'
+  publish_time: '2020-11-19'
   ticket_number: xxx
   new: false
   regressive: false
@@ -51,7 +51,7 @@
   integration_version: 5.0
   item_name: Create Entities with Separator
   item_type: Action
-  publish_time: '2020-11-19T17:39:16Z'
+  publish_time: '2020-11-19'
   ticket_number: xxx
   new: false
   regressive: false
@@ -62,7 +62,7 @@
   integration_version: 6.0
   item_name: Lock Playbook
   item_type: Action
-  publish_time: '2021-02-03T11:30:56Z'
+  publish_time: '2021-02-03'
   ticket_number: xxx
   new: false
   regressive: false
@@ -72,7 +72,7 @@
   integration_version: 7.0
   item_name: Create Entity with Relationships
   item_type: Action
-  publish_time: '2021-02-17T19:44:03Z'
+  publish_time: '2021-02-17'
   ticket_number: xxx
   new: false
   regressive: false
@@ -82,7 +82,7 @@
   integration_version: 8.0
   item_name: Create Entity with Relationships
   item_type: Action
-  publish_time: '2021-02-21T18:27:43Z'
+  publish_time: '2021-02-21'
   ticket_number: xxx
   new: false
   regressive: false
@@ -93,7 +93,7 @@
   integration_version: 9.0
   item_name: Get Case Data
   item_type: Action
-  publish_time: '2021-02-22T16:58:16Z'
+  publish_time: '2021-02-22'
   ticket_number: xxx
   new: false
   regressive: false
@@ -103,7 +103,7 @@
   integration_version: 10.0
   item_name: Lock Playbook
   item_type: Action
-  publish_time: '2021-03-29T15:43:32Z'
+  publish_time: '2021-03-29'
   ticket_number: xxx
   new: false
   regressive: false
@@ -113,7 +113,7 @@
   integration_version: 11.0
   item_name: Create Entity Relationships
   item_type: Action
-  publish_time: '2021-04-08T10:59:55Z'
+  publish_time: '2021-04-08'
   ticket_number: xxx
   new: false
   regressive: false
@@ -123,7 +123,7 @@
   integration_version: 11.0
   item_name: Close Case Based on Search
   item_type: Job
-  publish_time: '2021-04-08T10:59:55Z'
+  publish_time: '2021-04-08'
   ticket_number: xxx
   new: false
   regressive: false
@@ -134,7 +134,7 @@
   integration_version: 12.0
   item_name: Get Email Templates
   item_type: Action
-  publish_time: '2021-05-04T03:42:23Z'
+  publish_time: '2021-05-04'
   ticket_number: xxx
   new: false
   regressive: false
@@ -145,7 +145,7 @@
   integration_version: 12.0
   item_name: Get Integration Instances
   item_type: Action
-  publish_time: '2021-05-04T03:42:23Z'
+  publish_time: '2021-05-04'
   ticket_number: xxx
   new: false
   regressive: false
@@ -156,7 +156,7 @@
   integration_version: 13.0
   item_name: Update Alert Score
   item_type: Action
-  publish_time: '2021-05-16T12:50:53Z'
+  publish_time: '2021-05-16'
   ticket_number: xxx
   new: false
   regressive: false
@@ -166,7 +166,7 @@
   integration_version: 14.0
   item_name: Create Siemplify Task
   item_type: Action
-  publish_time: '2021-05-26T12:48:58Z'
+  publish_time: '2021-05-26'
   ticket_number: xxx
   new: false
   regressive: false
@@ -176,7 +176,7 @@
   integration_version: 15.0
   item_name: Get Certificate Details
   item_type: Action
-  publish_time: '2021-07-14T08:35:59Z'
+  publish_time: '2021-07-14'
   ticket_number: xxx
   new: false
   regressive: false
@@ -186,7 +186,7 @@
   integration_version: 16.0
   item_name: 'Get Certificate Details '
   item_type: Action
-  publish_time: '2021-07-14T15:10:58Z'
+  publish_time: '2021-07-14'
   ticket_number: xxx
   new: true
   regressive: false
@@ -196,7 +196,7 @@
   integration_version: 17.0
   item_name: Get Certificate Details
   item_type: Action
-  publish_time: '2021-07-18T10:57:35Z'
+  publish_time: '2021-07-18'
   ticket_number: xxx
   new: false
   regressive: false
@@ -206,7 +206,7 @@
   integration_version: 18.0
   item_name: Tools
   item_type: Integration
-  publish_time: '2021-07-18T17:21:17Z'
+  publish_time: '2021-07-18'
   ticket_number: xxx
   new: false
   regressive: false
@@ -217,7 +217,7 @@
   integration_version: 19.0
   item_name: Create Entities with Separator
   item_type: Action
-  publish_time: '2021-10-08T11:48:58Z'
+  publish_time: '2021-10-08'
   ticket_number: xxx
   new: false
   regressive: false
@@ -227,7 +227,7 @@
   integration_version: 20.0
   item_name: Delay Playbook V2
   item_type: Action
-  publish_time: '2021-10-13T17:48:31Z'
+  publish_time: '2021-10-13'
   ticket_number: xxx
   new: true
   regressive: false
@@ -237,7 +237,7 @@
   integration_version: 21.0
   item_name: Attach Playbook to Alert
   item_type: Action
-  publish_time: '2021-10-27T13:46:08Z'
+  publish_time: '2021-10-27'
   ticket_number: xxx
   new: true
   regressive: false
@@ -248,7 +248,7 @@
   integration_version: 21.0
   item_name: Wait for Playbook to Complete
   item_type: Action
-  publish_time: '2021-10-27T13:46:08Z'
+  publish_time: '2021-10-27'
   ticket_number: xxx
   new: true
   regressive: false
@@ -258,7 +258,7 @@
   integration_version: 22.0
   item_name: Extract URL Domain
   item_type: Action
-  publish_time: '2021-10-28T19:28:54Z'
+  publish_time: '2021-10-28'
   ticket_number: xxx
   new: false
   regressive: false
@@ -268,7 +268,7 @@
   integration_version: 23.0
   item_name: Extract URL Domain
   item_type: Action
-  publish_time: '2021-10-29T12:11:37Z'
+  publish_time: '2021-10-29'
   ticket_number: xxx
   new: false
   regressive: false
@@ -278,7 +278,7 @@
   integration_version: 24.0
   item_name: Create Entity Relationships
   item_type: Action
-  publish_time: '2021-11-02T12:41:43Z'
+  publish_time: '2021-11-02'
   ticket_number: xxx
   new: false
   regressive: false
@@ -288,7 +288,7 @@
   integration_version: 25.0
   item_name: Update Alert Score
   item_type: Action
-  publish_time: '2021-11-29T14:23:32Z'
+  publish_time: '2021-11-29'
   ticket_number: xxx
   new: false
   regressive: false
@@ -298,7 +298,7 @@
   integration_version: 26.0
   item_name: Set Context Values
   item_type: Action
-  publish_time: '2021-12-14T14:37:12Z'
+  publish_time: '2021-12-14'
   ticket_number: xxx
   new: false
   regressive: false
@@ -308,7 +308,7 @@
   integration_version: 26.0
   item_name: Get Context Values
   item_type: Action
-  publish_time: '2021-12-14T14:37:12Z'
+  publish_time: '2021-12-14'
   ticket_number: xxx
   new: false
   regressive: false
@@ -318,7 +318,7 @@
   integration_version: 27.0
   item_name: Get Context Values
   item_type: Action
-  publish_time: '2021-12-22T16:56:54Z'
+  publish_time: '2021-12-22'
   ticket_number: xxx
   new: false
   regressive: false
@@ -328,7 +328,7 @@
   integration_version: 28.0
   item_name: Find First Alert
   item_type: Action
-  publish_time: '2022-01-14T13:22:34Z'
+  publish_time: '2022-01-14'
   ticket_number: xxx
   new: false
   regressive: false
@@ -339,7 +339,7 @@
   integration_version: 30.0
   item_name: Spell Check String
   item_type: Action
-  publish_time: '2022-01-25T20:26:32Z'
+  publish_time: '2022-01-25'
   ticket_number: xxx
   new: true
   regressive: false
@@ -350,7 +350,7 @@
   integration_version: 30.0
   item_name: Look-A-Like Domains
   item_type: Action
-  publish_time: '2022-01-25T20:26:32Z'
+  publish_time: '2022-01-25'
   ticket_number: xxx
   new: true
   regressive: false
@@ -361,7 +361,7 @@
   integration_version: 30.0
   item_name: Create Entity Relationships
   item_type: Action
-  publish_time: '2022-01-25T20:26:32Z'
+  publish_time: '2022-01-25'
   ticket_number: xxx
   new: false
   regressive: false
@@ -373,7 +373,7 @@
   integration_version: 31.0
   item_name: Add Alert Scoring Information
   item_type: Action
-  publish_time: '2022-02-04T14:10:19Z'
+  publish_time: '2022-02-04'
   ticket_number: xxx
   new: true
   regressive: false
@@ -385,7 +385,7 @@
   integration_version: 31.0
   item_name: Search Text
   item_type: Action
-  publish_time: '2022-02-04T14:10:19Z'
+  publish_time: '2022-02-04'
   ticket_number: xxx
   new: true
   regressive: false
@@ -396,7 +396,7 @@
   integration_version: 31.0
   item_name: Spell Check String
   item_type: Action
-  publish_time: '2022-01-25T20:26:32Z'
+  publish_time: '2022-01-25'
   ticket_number: xxx
   new: false
   regressive: false
@@ -407,7 +407,7 @@
   integration_version: 32.0
   item_name: Update Alert Score
   item_type: Action
-  publish_time: '2022-02-23T11:36:25Z'
+  publish_time: '2022-02-23'
   ticket_number: xxx
   new: false
   regressive: false
@@ -418,7 +418,7 @@
   integration_version: 33.0
   item_name: Update Alert Score
   item_type: Action
-  publish_time: '2022-02-23T11:58:56Z'
+  publish_time: '2022-02-23'
   ticket_number: xxx
   new: false
   regressive: false
@@ -428,7 +428,7 @@
   integration_version: 34.0
   item_name: Update Alert Score
   item_type: Action
-  publish_time: '2022-07-10T16:04:19Z'
+  publish_time: '2022-07-10'
   ticket_number: xxx
   new: false
   regressive: false
@@ -438,7 +438,7 @@
   integration_version: 35.0
   item_name: Close Cases Based On Search
   item_type: Job
-  publish_time: '2022-09-23T15:18:58Z'
+  publish_time: '2022-09-23'
   ticket_number: xxx
   new: false
   regressive: false
@@ -448,7 +448,7 @@
   integration_version: 36.0
   item_name: Append to Context Value
   item_type: action
-  publish_time: '2022-10-14T17:18:49Z'
+  publish_time: '2022-10-14'
   ticket_number: xxx
   new: false
   regressive: false
@@ -459,7 +459,7 @@
   integration_version: 37.0
   item_name: Delay Playbook
   item_type: action
-  publish_time: '2022-10-28T12:34:46Z'
+  publish_time: '2022-10-28'
   ticket_number: xxx
   new: false
   regressive: false
@@ -470,7 +470,7 @@
   integration_version: 38.0
   item_name: Delay Playbook
   item_type: action
-  publish_time: '2022-11-09T13:14:21Z'
+  publish_time: '2022-11-09'
   ticket_number: xxx
   new: false
   regressive: false
@@ -480,7 +480,7 @@
   integration_version: 39.0
   item_name: Attach Playbook to All Case Alerts
   item_type: action
-  publish_time: '2023-01-16T10:36:20Z'
+  publish_time: '2023-01-16'
   ticket_number: xxx
   new: false
   regressive: false
@@ -490,7 +490,7 @@
   integration_version: 40.0
   item_name: Append to Context Value
   item_type: action
-  publish_time: '2023-02-07T13:34:42Z'
+  publish_time: '2023-02-07'
   ticket_number: xxx
   new: false
   regressive: false
@@ -501,7 +501,7 @@
   integration_version: 41.0
   item_name: Change Case Name
   item_type: action
-  publish_time: '2023-02-10T14:33:23Z'
+  publish_time: '2023-02-10'
   ticket_number: xxx
   new: false
   regressive: false
@@ -511,7 +511,7 @@
   integration_version: 42.0
   item_name: Close Cases Based On Search
   item_type: job
-  publish_time: '2023-04-20T15:07:40Z'
+  publish_time: '2023-04-20'
   ticket_number: xxx
   new: false
   regressive: false
@@ -522,7 +522,7 @@
   integration_version: 43.0
   item_name: Convert into Simulated Case
   item_type: action
-  publish_time: '2023-05-16T16:45:53Z'
+  publish_time: '2023-05-16'
   ticket_number: xxx
   new: true
   regressive: false
@@ -533,7 +533,7 @@
   integration_version: 44.0
   item_name: Tag Untouched Cases
   item_type: job
-  publish_time: '2023-05-17T21:13:52Z'
+  publish_time: '2023-05-17'
   ticket_number: xxx
   new: true
   regressive: false
@@ -543,7 +543,7 @@
   integration_version: 45.0
   item_name: DNS Lookup
   item_type: action
-  publish_time: '2023-05-18T15:08:22Z'
+  publish_time: '2023-05-18'
   ticket_number: xxx
   new: false
   regressive: false
@@ -554,7 +554,7 @@
   integration_version: 46.0
   item_name: Create Entity Relationships
   item_type: action
-  publish_time: '2023-06-05T12:42:52Z'
+  publish_time: '2023-06-05'
   ticket_number: xxx
   new: false
   regressive: false
@@ -565,7 +565,7 @@
   integration_version: 47.0
   item_name: Convert Into Simulated Case
   item_type: action
-  publish_time: '2023-07-31T12:00:14Z'
+  publish_time: '2023-07-31'
   ticket_number: xxx
   new: false
   regressive: false
@@ -576,7 +576,7 @@
   integration_version: 48.0
   item_name: Find First Alert
   item_type: action
-  publish_time: '2023-08-22T14:07:09Z'
+  publish_time: '2023-08-22'
   ticket_number: xxx
   new: false
   regressive: false
@@ -587,7 +587,7 @@
   integration_version: 49.0
   item_name: Get Case SLA
   item_type: action
-  publish_time: '2023-11-26T13:38:06Z'
+  publish_time: '2023-11-26'
   ticket_number: xxx
   new: true
   regressive: false
@@ -597,7 +597,7 @@
   integration_version: 50.0
   item_name: Get Case Data
   item_type: Action
-  publish_time: '2024-01-01T13:38:06Z'
+  publish_time: '2024-01-01'
   ticket_number: '317348943'
   new: false
   regressive: false
@@ -608,7 +608,7 @@
   integration_version: 51.0
   item_name: Create Entity Relationships
   item_type: Action
-  publish_time: '2024-01-05T13:06:24Z'
+  publish_time: '2024-01-05'
   ticket_number: '318191155'
   new: false
   regressive: false
@@ -618,7 +618,7 @@
   integration_version: 52.0
   item_name: Get Case Data
   item_type: Action
-  publish_time: '2024-01-11T13:38:06Z'
+  publish_time: '2024-01-11'
   ticket_number: '317348943'
   new: false
   regressive: false
@@ -628,7 +628,7 @@
   integration_version: 53.0
   item_name: Unflatten JSON
   item_type: Action
-  publish_time: '2024-01-15T13:38:06Z'
+  publish_time: '2024-01-15'
   ticket_number: '317625892'
   new: true
   regressive: false
@@ -639,7 +639,7 @@
   integration_version: 54.0
   item_name: Append To Context Value
   item_type: Action
-  publish_time: '2024-02-29T22:09:17Z'
+  publish_time: '2024-02-29'
   ticket_number: '296349335'
   new: false
   regressive: false
@@ -649,7 +649,7 @@
   integration_version: 55.0
   item_name: Create Siemplify Task
   item_type: Action
-  publish_time: '2024-04-10T10:15:21Z'
+  publish_time: '2024-04-10'
   ticket_number: '329632417'
   new: false
   regressive: false
@@ -660,7 +660,7 @@
   integration_version: 55.0
   item_name: Create Siemplify Task
   item_type: Action
-  publish_time: '2024-04-10T10:15:21Z'
+  publish_time: '2024-04-10'
   ticket_number: '327072293'
   new: false
   regressive: false
@@ -670,7 +670,7 @@
   integration_version: 55.0
   item_name: Add Alert Scoring Information
   item_type: Action
-  publish_time: '2024-04-10T10:15:21Z'
+  publish_time: '2024-04-10'
   ticket_number: '308220041'
   new: false
   regressive: false
@@ -681,7 +681,7 @@
   integration_version: 56.0
   item_name: Create Entity Relationships
   item_type: Action
-  publish_time: '2024-06-13T08:33:48Z'
+  publish_time: '2024-06-13'
   ticket_number: '307830012'
   new: false
   regressive: true
@@ -691,7 +691,7 @@
   integration_version: 57.0
   item_name: Lock Playbook, Wait for Playbook to Complete
   item_type: Action
-  publish_time: '2024-09-25T08:54:04Z'
+  publish_time: '2024-09-25'
   ticket_number: '365940223'
   new: false
   regressive: false
@@ -703,7 +703,7 @@
   integration_version: 58.0
   item_name: Tools
   item_type: Integration
-  publish_time: '2024-12-26T08:30:58Z'
+  publish_time: '2024-12-26'
   ticket_number: ''
   new: false
   regressive: false
@@ -713,7 +713,7 @@
   integration_version: 59.0
   item_name: Delay Playbook Synchronous
   item_type: Action
-  publish_time: '2025-01-22T13:30:25Z'
+  publish_time: '2025-01-22'
   ticket_number: '389857373'
   new: true
   regressive: false
@@ -723,7 +723,7 @@
   integration_version: 60.0
   item_name: Attach Playbook to Alert
   item_type: Action
-  publish_time: '2025-02-05T06:38:10Z'
+  publish_time: '2025-02-05'
   ticket_number: '371570812'
   new: false
   regressive: false
@@ -733,7 +733,7 @@
   integration_version: 61.0
   item_name: Spell Check String
   item_type: Action
-  publish_time: '2025-02-19T11:50:31Z'
+  publish_time: '2025-02-19'
   ticket_number: '395041566'
   new: false
   regressive: false
@@ -743,7 +743,7 @@
   integration_version: 62.0
   item_name: Get Certificate Details
   item_type: Action
-  publish_time: '2025-03-19T12:39:42Z'
+  publish_time: '2025-03-19'
   ticket_number: '401032232'
   new: false
   regressive: false
@@ -756,7 +756,7 @@
   integration_version: 63.0
   item_name: Tools
   item_type: Integration
-  publish_time: '2025-03-24T16:02:44Z'
+  publish_time: '2025-03-24'
   ticket_number: '405144847'
   new: false
   regressive: true
@@ -766,7 +766,7 @@
   integration_version: 64.0
   item_name: Extract URL Domain
   item_type: Action
-  publish_time: '2025-04-16T04:11:02Z'
+  publish_time: '2025-04-16'
   ticket_number: '404951078'
   new: false
   regressive: false
@@ -776,7 +776,7 @@
   integration_version: 65.0
   item_name: Extract URL Domain
   item_type: Action
-  publish_time: '2025-06-18T14:38:17Z'
+  publish_time: '2025-06-18'
   ticket_number: '419113107'
   new: false
   regressive: false
@@ -787,7 +787,7 @@
   integration_version: 66.0
   item_name: Set Context Value, Get Context Value
   item_type: Action
-  publish_time: '2025-06-26T08:40:05Z'
+  publish_time: '2025-06-26'
   ticket_number: '426240792'
   new: false
   regressive: false

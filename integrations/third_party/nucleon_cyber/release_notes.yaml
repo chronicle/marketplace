@@ -2,7 +2,7 @@
   integration_version: 1.0
   item_name: NucleonCyber
   item_type: Integration
-  publish_time: '2021-05-04T03:24:45Z'
+  publish_time: '2021-05-04'
   ticket_number: xxx
   new: false
   regressive: false
@@ -14,7 +14,7 @@
   integration_version: 2.0
   item_name: NucleonCyber
   item_type: Integration
-  publish_time: '2021-08-27T10:16:33Z'
+  publish_time: '2021-08-27'
   ticket_number: xxx
   new: false
   regressive: false
@@ -26,7 +26,7 @@
   integration_version: 2.0
   item_name: NucleonCyber
   item_type: Integration
-  publish_time: '2021-08-29T11:25:49Z'
+  publish_time: '2021-08-29'
   ticket_number: xxx
   new: false
   regressive: false
@@ -38,7 +38,7 @@
   integration_version: 3.0
   item_name: NucleonCyber
   item_type: Integration
-  publish_time: '2021-10-19T09:58:06Z'
+  publish_time: '2021-10-19'
   ticket_number: xxx
   new: false
   regressive: false
@@ -50,7 +50,7 @@
   integration_version: 4.0
   item_name: NucleonCyber
   item_type: Integration
-  publish_time: '2024-12-26T08:29:54Z'
+  publish_time: '2024-12-26'
   ticket_number: ''
   new: false
   regressive: false

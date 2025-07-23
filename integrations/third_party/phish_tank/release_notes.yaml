@@ -2,7 +2,7 @@
   integration_version: 8.0
   item_name: PhishTank
   item_type: Integration
-  publish_time: '2024-12-26T10:03:18Z'
+  publish_time: '2024-12-26'
   ticket_number: ''
   new: true
   regressive: false
@@ -14,7 +14,7 @@
   integration_version: 9.0
   item_name: PhishTank
   item_type: Integration
-  publish_time: '2024-12-26T10:18:28Z'
+  publish_time: '2024-12-26'
   ticket_number: ''
   new: false
   regressive: false

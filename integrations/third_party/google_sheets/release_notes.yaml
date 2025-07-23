@@ -2,7 +2,7 @@
   integration_version: 1.0
   item_name: Google Sheets
   item_type: Integration
-  publish_time: '2020-10-13T09:48:50Z'
+  publish_time: '2020-10-13'
   ticket_number: xxx
   new: false
   regressive: false
@@ -12,7 +12,7 @@
   integration_version: 2.0
   item_name: Ping
   item_type: Action
-  publish_time: '2020-10-18T16:23:26Z'
+  publish_time: '2020-10-18'
   ticket_number: xxx
   new: false
   regressive: false
@@ -22,7 +22,7 @@
   integration_version: 3.0
   item_name: Add or Update Rows
   item_type: Action
-  publish_time: '2020-11-10T10:45:14Z'
+  publish_time: '2020-11-10'
   ticket_number: xxx
   new: false
   regressive: false
@@ -32,7 +32,7 @@
   integration_version: 4.0
   item_name: Update Rows
   item_type: Action
-  publish_time: '2020-11-15T15:57:58Z'
+  publish_time: '2020-11-15'
   ticket_number: xxx
   new: false
   regressive: false
@@ -42,7 +42,7 @@
   integration_version: 5.0
   item_name: Google Sheets
   item_type: Integration
-  publish_time: '2020-12-01T11:23:03Z'
+  publish_time: '2020-12-01'
   ticket_number: xxx
   new: false
   regressive: false
@@ -52,7 +52,7 @@
   integration_version: 6.0
   item_name: Google Sheet Connector
   item_type: Connector
-  publish_time: '2021-05-05T12:18:04Z'
+  publish_time: '2021-05-05'
   ticket_number: xxx
   new: false
   regressive: false
@@ -62,7 +62,7 @@
   integration_version: 7.0
   item_name: Google Sheet Connector
   item_type: Connector
-  publish_time: '2021-06-30T17:52:48Z'
+  publish_time: '2021-06-30'
   ticket_number: xxx
   new: false
   regressive: false
@@ -72,7 +72,7 @@
   integration_version: 8.0
   item_name: Google Sheet New Action 'Get All'
   item_type: Action
-  publish_time: '2021-07-08T16:56:31Z'
+  publish_time: '2021-07-08'
   ticket_number: xxx
   new: false
   regressive: false
@@ -82,7 +82,7 @@
   integration_version: 10.0
   item_name: Google Sheet New Action 'Get All'
   item_type: Action
-  publish_time: '2021-08-23T12:40:29Z'
+  publish_time: '2021-08-23'
   ticket_number: xxx
   new: false
   regressive: false
@@ -93,7 +93,7 @@
   integration_version: 11.0
   item_name: Google Sheet New Action 'Get All'
   item_type: Action
-  publish_time: '2023-02-27T11:48:52Z'
+  publish_time: '2023-02-27'
   ticket_number: xxx
   new: false
   regressive: false
@@ -103,7 +103,7 @@
   integration_version: 12.0
   item_name: Google Sheets
   item_type: Integration
-  publish_time: '2024-07-10T16:07:22Z'
+  publish_time: '2024-07-10'
   ticket_number: '345129323'
   new: false
   regressive: false
@@ -115,7 +115,7 @@
   integration_version: 13.0
   item_name: Google Sheets
   item_type: Integration
-  publish_time: '2024-12-26T08:35:09Z'
+  publish_time: '2024-12-26'
   ticket_number: ''
   new: false
   regressive: false

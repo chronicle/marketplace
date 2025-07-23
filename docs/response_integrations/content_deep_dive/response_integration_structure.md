@@ -99,7 +99,7 @@ integration_name/
     - Project metadata
 - **`release_notes.yaml`**: Documents changes for each version:
     - Version numbers
-    - Release dates
+    - Release dates (in YYYY-MM-DD format)
     - Description of changes
     - Bug fixes
     - New features

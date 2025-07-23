@@ -2,7 +2,7 @@
   integration_version: 1.0
   item_name: FileUtilities
   item_type: Integration
-  publish_time: '2020-10-07T13:10:01Z'
+  publish_time: '2020-10-07'
   ticket_number: xxx
   new: false
   regressive: false
@@ -13,7 +13,7 @@
   integration_version: 2.0
   item_name: FileUtilities
   item_type: Integration
-  publish_time: '2020-10-07T13:10:01Z'
+  publish_time: '2020-10-07'
   ticket_number: xxx
   new: false
   regressive: false
@@ -23,7 +23,7 @@
   integration_version: 3.0
   item_name: FileUtilities
   item_type: Action
-  publish_time: '2020-12-10T14:52:44Z'
+  publish_time: '2020-12-10'
   ticket_number: xxx
   new: false
   regressive: false
@@ -33,7 +33,7 @@
   integration_version: 4.0
   item_name: FileUtilities
   item_type: Action
-  publish_time: '2021-01-08T22:08:40Z'
+  publish_time: '2021-01-08'
   ticket_number: xxx
   new: false
   regressive: false
@@ -44,7 +44,7 @@
   integration_version: 4.0
   item_name: Save Base64 to File
   item_type: Action
-  publish_time: '2021-01-08T22:08:40Z'
+  publish_time: '2021-01-08'
   ticket_number: xxx
   new: false
   regressive: false
@@ -54,7 +54,7 @@
   integration_version: 5.0
   item_name: Save Base64 to File
   item_type: Action
-  publish_time: '2021-01-11T21:18:20Z'
+  publish_time: '2021-01-11'
   ticket_number: xxx
   new: false
   regressive: false
@@ -64,7 +64,7 @@
   integration_version: 6.0
   item_name: Save Base64 to File
   item_type: Action
-  publish_time: '2021-06-16T19:16:26Z'
+  publish_time: '2021-06-16'
   ticket_number: xxx
   new: false
   regressive: false
@@ -74,7 +74,7 @@
   integration_version: 7.0
   item_name: Add Entity to File
   item_type: Action
-  publish_time: '2021-07-06T14:31:43Z'
+  publish_time: '2021-07-06'
   ticket_number: xxx
   new: false
   regressive: false
@@ -84,7 +84,7 @@
   integration_version: 7.0
   item_name: Add Entity to File
   item_type: Action
-  publish_time: '2021-07-06T14:31:43Z'
+  publish_time: '2021-07-06'
   ticket_number: xxx
   new: false
   regressive: false
@@ -95,7 +95,7 @@
   integration_version: 8.0
   item_name: Get Files as Base64
   item_type: Action
-  publish_time: '2021-12-13T19:40:30Z'
+  publish_time: '2021-12-13'
   ticket_number: xxx
   new: false
   regressive: false
@@ -106,7 +106,7 @@
   integration_version: 9.0
   item_name: FileUtilities
   item_type: Integration
-  publish_time: '2022-02-18T13:08:27Z'
+  publish_time: '2022-02-18'
   ticket_number: xxx
   new: false
   regressive: false
@@ -116,7 +116,7 @@
   integration_version: 10.0
   item_name: Create Hash From Base64
   item_type: Action
-  publish_time: '2023-01-20T19:03:21Z'
+  publish_time: '2023-01-20'
   ticket_number: xxx
   new: true
   regressive: false
@@ -126,7 +126,7 @@
   integration_version: 11.0
   item_name: Get Attachment
   item_type: Action
-  publish_time: '2023-03-06T21:15:09Z'
+  publish_time: '2023-03-06'
   ticket_number: xxx
   new: true
   regressive: false
@@ -136,7 +136,7 @@
   integration_version: 12.0
   item_name: Get Files as Base64
   item_type: Action
-  publish_time: '2023-04-20T14:47:55Z'
+  publish_time: '2023-04-20'
   ticket_number: xxx
   new: true
   regressive: false
@@ -147,7 +147,7 @@
   integration_version: 13.0
   item_name: Save Base64 to File
   item_type: Action
-  publish_time: '2023-10-04T12:11:08Z'
+  publish_time: '2023-10-04'
   ticket_number: xxx
   new: true
   regressive: false
@@ -158,7 +158,7 @@
   integration_version: 14.0
   item_name: Get Attachment, Add Attachment
   item_type: Action
-  publish_time: '2024-01-05T09:48:12Z'
+  publish_time: '2024-01-05'
   ticket_number: 318190701,318191191
   new: false
   regressive: false
@@ -168,7 +168,7 @@
   integration_version: 15.0
   item_name: FileUtilities
   item_type: Integration
-  publish_time: '2024-02-08T16:34:26Z'
+  publish_time: '2024-02-08'
   ticket_number: '315941503'
   new: false
   regressive: false
@@ -179,7 +179,7 @@
   integration_version: 16.0
   item_name: FileUtilities
   item_type: Integration
-  publish_time: '2024-04-25T07:33:05Z'
+  publish_time: '2024-04-25'
   ticket_number: '332545706'
   new: false
   regressive: false
@@ -191,7 +191,7 @@
   integration_version: 17.0
   item_name: FileUtilities
   item_type: Integration
-  publish_time: '2024-12-26T08:27:47Z'
+  publish_time: '2024-12-26'
   ticket_number: ''
   new: false
   regressive: false

@@ -11,7 +11,7 @@
   integration_version: 2.0
   item_name: Parse Base64 Email
   item_type: Action
-  publish_time: '2020-11-19T17:24:13Z'
+  publish_time: '2020-11-19'
   ticket_number: xxx
   new: false
   regressive: false
@@ -24,7 +24,7 @@
   integration_version: 3.0
   item_name: Parse Base64 Email
   item_type: Action
-  publish_time: '2021-01-17T14:34:54Z'
+  publish_time: '2021-01-17'
   ticket_number: xxx
   new: false
   regressive: false
@@ -37,7 +37,7 @@
   integration_version: 3.0
   item_name: Analyze Headers
   item_type: Action
-  publish_time: '2021-01-17T14:34:54Z'
+  publish_time: '2021-01-17'
   ticket_number: xxx
   new: false
   regressive: false
@@ -49,7 +49,7 @@
   integration_version: 4.0
   item_name: Parse Base64 Email
   item_type: Action
-  publish_time: '2021-05-20T11:55:28Z'
+  publish_time: '2021-05-20'
   ticket_number: xxx
   new: false
   regressive: false
@@ -60,7 +60,7 @@
   integration_version: 5.0
   item_name: Analyze Headers
   item_type: Action
-  publish_time: '2021-10-08T12:18:51Z'
+  publish_time: '2021-10-08'
   ticket_number: xxx
   new: false
   regressive: false
@@ -70,7 +70,7 @@
   integration_version: 6.0
   item_name: Analyze Headers
   item_type: Action
-  publish_time: '2021-10-15T12:24:52Z'
+  publish_time: '2021-10-15'
   ticket_number: xxx
   new: false
   regressive: false
@@ -81,7 +81,7 @@
   integration_version: 7.0
   item_name: Parse Base64 Email
   item_type: Action
-  publish_time: '2021-12-06T17:30:01Z'
+  publish_time: '2021-12-06'
   ticket_number: xxx
   new: false
   regressive: false
@@ -92,7 +92,7 @@
   integration_version: 8.0
   item_name: Analyze Headers
   item_type: Action
-  publish_time: '2022-02-04T14:36:24Z'
+  publish_time: '2022-02-04'
   ticket_number: xxx
   new: false
   regressive: false
@@ -102,7 +102,7 @@
   integration_version: 10.0
   item_name: Analyze Headers
   item_type: Action
-  publish_time: '2022-02-11T12:32:16Z'
+  publish_time: '2022-02-11'
   ticket_number: xxx
   new: false
   regressive: false
@@ -113,7 +113,7 @@
   integration_version: 11.0
   item_name: Parse Case Wall Email
   item_type: Action
-  publish_time: '2022-02-18T19:37:15Z'
+  publish_time: '2022-02-18'
   ticket_number: xxx
   new: true
   regressive: false
@@ -124,7 +124,7 @@
   integration_version: 12.0
   item_name: Parse Case Wall Email
   item_type: Action
-  publish_time: '2022-03-30T12:57:38Z'
+  publish_time: '2022-03-30'
   ticket_number: xxx
   new: false
   regressive: false
@@ -134,7 +134,7 @@
   integration_version: 13.0
   item_name: Parse Case Wall Email
   item_type: Action
-  publish_time: '2022-03-30T15:39:50Z'
+  publish_time: '2022-03-30'
   ticket_number: xxx
   new: false
   regressive: false
@@ -145,7 +145,7 @@
   integration_version: 14.0
   item_name: Parse Case Wall Email
   item_type: Action
-  publish_time: '2022-05-24T12:24:02Z'
+  publish_time: '2022-05-24'
   ticket_number: xxx
   new: false
   regressive: false
@@ -156,7 +156,7 @@
   integration_version: 15.0
   item_name: Parse Case Wall Email
   item_type: Action
-  publish_time: '2022-06-14T16:31:25Z'
+  publish_time: '2022-06-14'
   ticket_number: xxx
   new: false
   regressive: false
@@ -167,7 +167,7 @@
   integration_version: 16.0
   item_name: Analyse Headers
   item_type: Action
-  publish_time: '2022-12-02T14:15:45Z'
+  publish_time: '2022-12-02'
   ticket_number: xxx
   new: false
   regressive: false
@@ -178,7 +178,7 @@
   integration_version: 17.0
   item_name: Parse Case Wall Email
   item_type: Action
-  publish_time: '2022-12-15T19:25:57Z'
+  publish_time: '2022-12-15'
   ticket_number: xxx
   new: false
   regressive: false
@@ -189,7 +189,7 @@
   integration_version: 18.0
   item_name: Analyze Headers
   item_type: Action
-  publish_time: '2023-01-20T14:32:45Z'
+  publish_time: '2023-01-20'
   ticket_number: xxx
   new: false
   regressive: false
@@ -199,7 +199,7 @@
   integration_version: 19.0
   item_name: EmailUtilities
   item_type: Integration
-  publish_time: '2023-02-21T17:07:37Z'
+  publish_time: '2023-02-21'
   ticket_number: xxx
   new: false
   regressive: false
@@ -209,7 +209,7 @@
   integration_version: 20.0
   item_name: EmailUtilities
   item_type: Integration
-  publish_time: '2023-02-23T16:16:33Z'
+  publish_time: '2023-02-23'
   ticket_number: xxx
   new: false
   regressive: false
@@ -219,7 +219,7 @@
   integration_version: 21.0
   item_name: Parse Case Wall Email
   item_type: Action
-  publish_time: '2023-08-21T14:27:19Z'
+  publish_time: '2023-08-21'
   ticket_number: xxx
   new: false
   regressive: false
@@ -229,7 +229,7 @@
   integration_version: 22.0
   item_name: Parse Case Wall Email
   item_type: Action
-  publish_time: '2023-11-01T12:34:45Z'
+  publish_time: '2023-11-01'
   ticket_number: xxx
   new: false
   regressive: false
@@ -240,7 +240,7 @@
   integration_version: 23.0
   item_name: Parse Case Wall Email
   item_type: Action
-  publish_time: '2024-02-21T13:52:48Z'
+  publish_time: '2024-02-21'
   ticket_number: '322127919'
   new: false
   regressive: false
@@ -251,7 +251,7 @@
   integration_version: 24.0
   item_name: Parse Case Wall Email
   item_type: Action
-  publish_time: '2024-04-04T16:08:53Z'
+  publish_time: '2024-04-04'
   ticket_number: '328665334'
   new: false
   regressive: false
@@ -262,7 +262,7 @@
   integration_version: 25.0
   item_name: Parse Case Wall Email
   item_type: Action
-  publish_time: '2024-05-15T06:16:49Z'
+  publish_time: '2024-05-15'
   ticket_number: 335715794, 338638289
   new: false
   regressive: false
@@ -273,7 +273,7 @@
   integration_version: 26.0
   item_name: Parse Case Wall Email
   item_type: Action
-  publish_time: '2024-05-29T07:28:52Z'
+  publish_time: '2024-05-29'
   ticket_number: '325014872'
   new: false
   regressive: true
@@ -284,7 +284,7 @@
   integration_version: 26.0
   item_name: Parse Case Wall Email
   item_type: Action
-  publish_time: '2024-05-29T07:28:52Z'
+  publish_time: '2024-05-29'
   ticket_number: '331692190'
   new: false
   regressive: false
@@ -295,7 +295,7 @@
   integration_version: 27.0
   item_name: Parse Case Wall Email
   item_type: Action
-  publish_time: '2024-07-31T12:52:34Z'
+  publish_time: '2024-07-31'
   ticket_number: '347007733'
   new: false
   regressive: false
@@ -305,7 +305,7 @@
   integration_version: 28.0
   item_name: Parse Case Wall Email
   item_type: Action
-  publish_time: '2024-08-21T07:38:22Z'
+  publish_time: '2024-08-21'
   ticket_number: '351365335'
   new: false
   regressive: false
@@ -315,7 +315,7 @@
   integration_version: 29.0
   item_name: Parse Case Wall Email
   item_type: Action
-  publish_time: '2024-08-26T12:00:00Z'
+  publish_time: '2024-08-26'
   ticket_number: '351365335'
   new: false
   regressive: false
@@ -325,7 +325,7 @@
   integration_version: 30.0
   item_name: Parse Case Wall Email
   item_type: Action
-  publish_time: '2024-09-04T07:28:14Z'
+  publish_time: '2024-09-04'
   ticket_number: '356792519'
   new: false
   regressive: false
@@ -335,7 +335,7 @@
   integration_version: 31.0
   item_name: Parse Case Wall Email
   item_type: Action
-  publish_time: '2024-10-16T07:01:30Z'
+  publish_time: '2024-10-16'
   ticket_number: '362364528'
   new: false
   regressive: false
@@ -346,7 +346,7 @@
   integration_version: 31.0
   item_name: Parse Case Wall Email
   item_type: Action
-  publish_time: '2024-10-16T07:01:30Z'
+  publish_time: '2024-10-16'
   ticket_number: '359822982'
   new: false
   regressive: false
@@ -356,7 +356,7 @@
   integration_version: 32.0
   item_name: Parse Case Wall Email
   item_type: Action
-  publish_time: '2024-11-27T06:18:04Z'
+  publish_time: '2024-11-27'
   ticket_number: '377660882'
   new: false
   regressive: false
@@ -368,7 +368,7 @@
   integration_version: 33.0
   item_name: EmailUtilities
   item_type: Integration
-  publish_time: '2024-12-26T11:09:38Z'
+  publish_time: '2024-12-26'
   ticket_number: ''
   new: false
   regressive: false
@@ -378,7 +378,7 @@
   integration_version: 34.0
   item_name: Parse Case Wall Email, Analyze Headers
   item_type: Action
-  publish_time: '2025-02-19T06:02:04Z'
+  publish_time: '2025-02-19'
   ticket_number: 393134934, 393611630
   new: false
   regressive: false
@@ -388,7 +388,7 @@
   integration_version: 35.0
   item_name: Parse Case Wall Email
   item_type: Action
-  publish_time: '2025-06-25T07:12:21Z'
+  publish_time: '2025-06-25'
   ticket_number: '425443762'
   new: false
   regressive: false
@@ -398,7 +398,7 @@
   integration_version: 36.0
   item_name: Parse Case Wall Email
   item_type: Action
-  publish_time: '2025-07-09T09:02:15Z'
+  publish_time: '2025-07-09'
   ticket_number: '426659486'
   new: false
   regressive: false
@@ -409,7 +409,7 @@
   integration_version: 37.0
   item_name: Parse Case Wall Email
   item_type: Action
-  publish_time: '2025-07-16T08:18:33Z'
+  publish_time: '2025-07-16'
   ticket_number: '429253906'
   new: false
   regressive: false

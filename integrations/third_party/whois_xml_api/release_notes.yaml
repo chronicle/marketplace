@@ -2,7 +2,7 @@
   integration_version: 3.0
   item_name: WHOIS XML API
   item_type: Integration
-  publish_time: '2024-12-26T10:03:18Z'
+  publish_time: '2024-12-26'
   ticket_number: ''
   new: true
   regressive: false
@@ -14,7 +14,7 @@
   integration_version: 4.0
   item_name: WHOIS XML API
   item_type: Integration
-  publish_time: '2024-12-26T10:16:58Z'
+  publish_time: '2024-12-26'
   ticket_number: ''
   new: false
   regressive: false
@@ -27,7 +27,7 @@
   integration_version: 5.0
   item_name: WHOIS XML API
   item_type: Integration
-  publish_time: '2025-03-24T16:02:44Z'
+  publish_time: '2025-03-24'
   ticket_number: '405144847'
   new: false
   regressive: true

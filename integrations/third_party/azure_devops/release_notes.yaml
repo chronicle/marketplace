@@ -2,7 +2,7 @@
   integration_version: 1.0
   item_name: Azure DevOps
   item_type: Integration
-  publish_time: '2021-08-03T17:36:00Z'
+  publish_time: '2021-08-03'
   ticket_number: xxx
   new: false
   regressive: false
@@ -12,7 +12,7 @@
   integration_version: 2.0
   item_name: Azure DevOps
   item_type: Integration
-  publish_time: '2021-08-08T09:38:48Z'
+  publish_time: '2021-08-08'
   ticket_number: xxx
   new: false
   regressive: false
@@ -22,7 +22,7 @@
   integration_version: 3.0
   item_name: Azure DevOps
   item_type: Integration
-  publish_time: '2022-08-02T10:09:55Z'
+  publish_time: '2022-08-02'
   ticket_number: xxx
   new: false
   regressive: false
@@ -33,7 +33,7 @@
   integration_version: 4.0
   item_name: Azure DevOps
   item_type: Integration
-  publish_time: '2022-12-12T13:23:44Z'
+  publish_time: '2022-12-12'
   ticket_number: xxx
   new: false
   regressive: false
@@ -43,7 +43,7 @@
   integration_version: 5.0
   item_name: Azure DevOps
   item_type: Integration
-  publish_time: '2023-01-09T09:38:06Z'
+  publish_time: '2023-01-09'
   ticket_number: xxx
   new: false
   regressive: false
@@ -55,7 +55,7 @@
   integration_version: 6.0
   item_name: Azure DevOps
   item_type: Integration
-  publish_time: '2024-12-26T11:11:02Z'
+  publish_time: '2024-12-26'
   ticket_number: ''
   new: false
   regressive: false

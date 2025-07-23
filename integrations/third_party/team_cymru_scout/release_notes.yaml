@@ -2,7 +2,7 @@
   integration_version: 1.0
   item_name: Team Cymru Scout
   item_type: Integration
-  publish_time: '2024-12-19T09:09:35Z'
+  publish_time: '2024-12-19'
   ticket_number: ''
   new: true
   regressive: false
@@ -14,7 +14,7 @@
   integration_version: 2.0
   item_name: TeamCymruScout
   item_type: Integration
-  publish_time: '2024-12-26T08:26:29Z'
+  publish_time: '2024-12-26'
   ticket_number: ''
   new: false
   regressive: false
@@ -27,7 +27,7 @@
   integration_version: 3.0
   item_name: TeamCymruScout
   item_type: Integration
-  publish_time: '2025-03-24T16:02:44Z'
+  publish_time: '2025-03-24'
   ticket_number: '405144847'
   new: false
   regressive: true

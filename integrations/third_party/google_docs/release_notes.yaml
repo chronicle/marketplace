@@ -2,7 +2,7 @@
   integration_version: 1.0
   item_name: Google Docs
   item_type: Integration
-  publish_time: '2020-10-08T11:41:20Z'
+  publish_time: '2020-10-08'
   ticket_number: xxx
   new: false
   regressive: false
@@ -12,7 +12,7 @@
   integration_version: 2.0
   item_name: Google Docs
   item_type: Manager
-  publish_time: '2021-04-29T13:33:33Z'
+  publish_time: '2021-04-29'
   ticket_number: xxx
   new: false
   regressive: false
@@ -22,7 +22,7 @@
   integration_version: 3.0
   item_name: Google Docs
   item_type: Integration
-  publish_time: '2021-08-23T12:40:29Z'
+  publish_time: '2021-08-23'
   ticket_number: xxx
   new: false
   regressive: false
@@ -32,7 +32,7 @@
   integration_version: 4.0
   item_name: Google Docs
   item_type: Integration
-  publish_time: '2021-08-29T11:25:49Z'
+  publish_time: '2021-08-29'
   ticket_number: xxx
   new: false
   regressive: false
@@ -42,7 +42,7 @@
   integration_version: 5.0
   item_name: Google Docs
   item_type: Integration
-  publish_time: '2021-11-01T16:29:37Z'
+  publish_time: '2021-11-01'
   ticket_number: xxx
   new: false
   regressive: false
@@ -54,7 +54,7 @@
   integration_version: 6.0
   item_name: Google Docs
   item_type: Integration
-  publish_time: '2024-12-26T08:34:52Z'
+  publish_time: '2024-12-26'
   ticket_number: ''
   new: false
   regressive: false

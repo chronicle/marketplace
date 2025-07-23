@@ -11,7 +11,7 @@
   integration_version: 2.0
   item_name: Is String In Custom List
   item_type: Action
-  publish_time: '2021-06-09T16:10:29Z'
+  publish_time: '2021-06-09'
   ticket_number: xxx
   new: false
   regressive: false
@@ -21,7 +21,7 @@
   integration_version: 2.0
   item_name: Remove String from Custom List
   item_type: Action
-  publish_time: '2021-06-09T16:10:29Z'
+  publish_time: '2021-06-09'
   ticket_number: xxx
   new: false
   regressive: false
@@ -31,7 +31,7 @@
   integration_version: 2.0
   item_name: Add String to Custom List
   item_type: Action
-  publish_time: '2021-06-09T16:10:29Z'
+  publish_time: '2021-06-09'
   ticket_number: xxx
   new: false
   regressive: false
@@ -42,7 +42,7 @@
   integration_version: 3.0
   item_name: Search Custom List
   item_type: Action
-  publish_time: '2023-01-25T12:04:25Z'
+  publish_time: '2023-01-25'
   ticket_number: xxx
   new: true
   regressive: false
@@ -53,7 +53,7 @@
   integration_version: 4.0
   item_name: Search Environment Custom List
   item_type: Action
-  publish_time: '2023-08-28T13:02:38Z'
+  publish_time: '2023-08-28'
   ticket_number: xxx
   new: true
   regressive: false
@@ -63,7 +63,7 @@
   integration_version: 5.0
   item_name: Lists
   item_type: Integration
-  publish_time: '2024-02-08T16:34:26Z'
+  publish_time: '2024-02-08'
   ticket_number: '315941503'
   new: false
   regressive: false
@@ -74,7 +74,7 @@
   integration_version: 6.0
   item_name: Lists
   item_type: Integration
-  publish_time: '2024-04-25T07:33:05Z'
+  publish_time: '2024-04-25'
   ticket_number: '332545706'
   new: false
   regressive: false
@@ -86,7 +86,7 @@
   integration_version: 7.0
   item_name: Lists
   item_type: Integration
-  publish_time: '2024-12-26T08:28:08Z'
+  publish_time: '2024-12-26'
   ticket_number: ''
   new: false
   regressive: false
@@ -96,7 +96,7 @@
   integration_version: 8.0
   item_name: Lists
   item_type: Integration
-  publish_time: '2025-07-16T08:19:10Z'
+  publish_time: '2025-07-16'
   ticket_number: '430251231'
   new: false
   regressive: false

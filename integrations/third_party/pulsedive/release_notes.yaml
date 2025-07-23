@@ -2,7 +2,7 @@
   integration_version: 1.0
   item_name: Pulsedive
   item_type: Integration
-  publish_time: '2021-02-24T18:33:55Z'
+  publish_time: '2021-02-24'
   ticket_number: xxx
   new: false
   regressive: false
@@ -12,7 +12,7 @@
   integration_version: 2.0
   item_name: Pulsedive
   item_type: Integration
-  publish_time: '2021-02-25T19:35:10Z'
+  publish_time: '2021-02-25'
   ticket_number: xxx
   new: false
   regressive: false
@@ -22,7 +22,7 @@
   integration_version: 3.0
   item_name: Pulsedive
   item_type: Integration
-  publish_time: '2024-01-05T13:06:24Z'
+  publish_time: '2024-01-05'
   ticket_number: '318190863'
   new: false
   regressive: false
@@ -34,7 +34,7 @@
   integration_version: 4.0
   item_name: Pulsedive
   item_type: Integration
-  publish_time: '2024-12-26T08:34:06Z'
+  publish_time: '2024-12-26'
   ticket_number: ''
   new: false
   regressive: false

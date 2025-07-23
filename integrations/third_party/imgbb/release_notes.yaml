@@ -2,7 +2,7 @@
   integration_version: 1.0
   item_name: Imgbb
   item_type: Integration
-  publish_time: '2020-10-04T14:34:41Z'
+  publish_time: '2020-10-04'
   ticket_number: xxx
   new: false
   regressive: false
@@ -12,7 +12,7 @@
   integration_version: 2.0
   item_name: Imgbb
   item_type: Integration
-  publish_time: '2020-10-04T14:34:41Z'
+  publish_time: '2020-10-04'
   ticket_number: xxx
   new: false
   regressive: false
@@ -24,7 +24,7 @@
   integration_version: 3.0
   item_name: Imgbb
   item_type: Integration
-  publish_time: '2021-08-29T11:25:49Z'
+  publish_time: '2021-08-29'
   ticket_number: xxx
   new: false
   regressive: false
@@ -36,7 +36,7 @@
   integration_version: 4.0
   item_name: Imgbb
   item_type: Integration
-  publish_time: '2024-12-26T08:28:55Z'
+  publish_time: '2024-12-26'
   ticket_number: ''
   new: false
   regressive: false

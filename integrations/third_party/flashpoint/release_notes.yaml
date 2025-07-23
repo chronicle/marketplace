@@ -2,7 +2,7 @@
   integration_version: 1.0
   item_name: Flashpoint
   item_type: Integration
-  publish_time: '2020-12-01T11:32:39Z'
+  publish_time: '2020-12-01'
   ticket_number: xxx
   new: false
   regressive: false
@@ -12,7 +12,7 @@
   integration_version: 2.0
   item_name: Flashpoint - Compromised Credential Connector
   item_type: Connector
-  publish_time: '2021-02-02T11:32:39Z'
+  publish_time: '2021-02-02'
   ticket_number: xxx
   new: false
   regressive: false
@@ -22,7 +22,7 @@
   integration_version: 3.0
   item_name: Flashpoint - Compromised Credential Connector
   item_type: Connector
-  publish_time: '2021-02-10T11:32:39Z'
+  publish_time: '2021-02-10'
   ticket_number: xxx
   new: false
   regressive: false
@@ -32,7 +32,7 @@
   integration_version: 4.0
   item_name: Flashpoint - Compromised Credential Connector
   item_type: Connector
-  publish_time: '2021-02-10T11:32:39Z'
+  publish_time: '2021-02-10'
   ticket_number: xxx
   new: false
   regressive: false
@@ -42,7 +42,7 @@
   integration_version: 5.0
   item_name: Flashpoint - Compromised Credential Connector
   item_type: Connector
-  publish_time: '2021-04-05T11:36:48Z'
+  publish_time: '2021-04-05'
   ticket_number: xxx
   new: false
   regressive: false
@@ -52,7 +52,7 @@
   integration_version: 6.0
   item_name: Flashpoint - Compromised Credential Connector
   item_type: Connector
-  publish_time: '2021-05-20T10:18:18Z'
+  publish_time: '2021-05-20'
   ticket_number: xxx
   new: false
   regressive: false
@@ -62,7 +62,7 @@
   integration_version: 7.0
   item_name: Flashpoint
   item_type: Integration
-  publish_time: '2021-08-23T12:40:29Z'
+  publish_time: '2021-08-23'
   ticket_number: xxx
   new: false
   regressive: false
@@ -72,7 +72,7 @@
   integration_version: 8.0
   item_name: Flashpoint
   item_type: Integration
-  publish_time: '2021-08-23T12:40:29Z'
+  publish_time: '2021-08-23'
   ticket_number: xxx
   new: false
   regressive: false
@@ -84,7 +84,7 @@
   integration_version: 9.0
   item_name: Flashpoint
   item_type: Integration
-  publish_time: '2024-12-26T08:33:28Z'
+  publish_time: '2024-12-26'
   ticket_number: ''
   new: false
   regressive: false
@@ -97,7 +97,7 @@
   integration_version: 10.0
   item_name: Flashpoint
   item_type: Integration
-  publish_time: '2025-03-24T16:02:44Z'
+  publish_time: '2025-03-24'
   ticket_number: '405144847'
   new: false
   regressive: true

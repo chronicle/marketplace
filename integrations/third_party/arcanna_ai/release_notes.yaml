@@ -2,7 +2,7 @@
   integration_version: 1.0
   item_name: ArcannaAI
   item_type: Integration
-  publish_time: '2022-10-10T13:33:25Z'
+  publish_time: '2022-10-10'
   ticket_number: xxx
   new: false
   regressive: false
@@ -12,7 +12,7 @@
   integration_version: 2.0
   item_name: ArcannaAI
   item_type: Integration
-  publish_time: '2022-10-14T10:13:08Z'
+  publish_time: '2022-10-14'
   ticket_number: xxx
   new: false
   regressive: false
@@ -22,7 +22,7 @@
   integration_version: 3.0
   item_name: ArcannaAI
   item_type: Integration
-  publish_time: '2024-06-23T13:55:05Z'
+  publish_time: '2024-06-23'
   ticket_number: xxx
   new: false
   regressive: true
@@ -35,7 +35,7 @@
   item_name: Export full event, Get AI Job decision set, Trigger AI Model training,
     Send event to Arcanna, Get Arcanna decision, Update alert priority
   item_type: Action
-  publish_time: '2024-06-23T13:55:05Z'
+  publish_time: '2024-06-23'
   ticket_number: xxx
   new: true
   regressive: false
@@ -46,7 +46,7 @@
   integration_version: 3.0
   item_name: Send Case To Arcanna, Await Arcanna Inference, Get Arcanna Case Response
   item_type: Action
-  publish_time: '2024-06-23T13:55:05Z'
+  publish_time: '2024-06-23'
   ticket_number: xxx
   new: false
   regressive: false
@@ -57,7 +57,7 @@
   integration_version: 4.0
   item_name: ArcannaAI
   item_type: Integration
-  publish_time: '2024-11-04T10:14:30Z'
+  publish_time: '2024-11-04'
   ticket_number: xxx
   new: false
   regressive: false
@@ -67,7 +67,7 @@
   integration_version: 4.0
   item_name: ArcannaAI
   item_type: Integration
-  publish_time: '2024-11-04T10:14:30Z'
+  publish_time: '2024-11-04'
   ticket_number: xxx
   new: false
   regressive: false
@@ -78,7 +78,7 @@
   integration_version: 4.0
   item_name: ArcannaAI
   item_type: Integration
-  publish_time: '2024-11-04T10:14:30Z'
+  publish_time: '2024-11-04'
   ticket_number: xxx
   new: false
   regressive: false
@@ -88,7 +88,7 @@
   integration_version: 4.0
   item_name: ArcannaAI
   item_type: Integration
-  publish_time: '2024-11-04T10:14:30Z'
+  publish_time: '2024-11-04'
   ticket_number: xxx
   new: false
   regressive: false
@@ -99,7 +99,7 @@
   integration_version: 4.0
   item_name: ArcannaAI
   item_type: Integration
-  publish_time: '2024-11-04T10:14:30Z'
+  publish_time: '2024-11-04'
   ticket_number: xxx
   new: false
   regressive: false
@@ -111,7 +111,7 @@
   integration_version: 5.0
   item_name: ArcannaAI
   item_type: Integration
-  publish_time: '2024-12-26T08:25:09Z'
+  publish_time: '2024-12-26'
   ticket_number: ''
   new: false
   regressive: false
@@ -124,7 +124,7 @@
   integration_version: 6.0
   item_name: ArcannaAI
   item_type: Integration
-  publish_time: '2025-03-24T16:02:44Z'
+  publish_time: '2025-03-24'
   ticket_number: '405144847'
   new: false
   regressive: true
@@ -134,7 +134,7 @@
   integration_version: 7.0
   item_name: ArcannaAI
   item_type: Integration
-  publish_time: '2025-04-09T11:20:49Z'
+  publish_time: '2025-04-09'
   ticket_number: '405144847'
   new: false
   regressive: false

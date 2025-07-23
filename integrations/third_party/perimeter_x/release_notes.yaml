@@ -2,7 +2,7 @@
   integration_version: 1.0
   item_name: PerimeterX
   item_type: Integration
-  publish_time: '2021-01-07T13:29:18Z'
+  publish_time: '2021-01-07'
   ticket_number: xxx
   new: false
   regressive: false
@@ -12,7 +12,7 @@
   integration_version: 2.0
   item_name: PerimeterX
   item_type: Integration
-  publish_time: '2021-11-01T16:41:42Z'
+  publish_time: '2021-11-01'
   ticket_number: xxx
   new: false
   regressive: false
@@ -22,7 +22,7 @@
   integration_version: 3.0
   item_name: PerimeterX
   item_type: Integration
-  publish_time: '2021-11-07T08:19:28Z'
+  publish_time: '2021-11-07'
   ticket_number: xxx
   new: false
   regressive: false
@@ -33,7 +33,7 @@
   integration_version: 4.0
   item_name: PerimeterX
   item_type: Integration
-  publish_time: '2024-01-05T09:48:12Z'
+  publish_time: '2024-01-05'
   ticket_number: '318191170'
   new: false
   regressive: false
@@ -44,7 +44,7 @@
   integration_version: 4.0
   item_name: Slack Connector For Code Defender
   item_type: Connector
-  publish_time: '2024-01-05T09:48:12Z'
+  publish_time: '2024-01-05'
   ticket_number: '318191120'
   new: false
   regressive: false
@@ -55,7 +55,7 @@
   integration_version: 5.0
   item_name: PerimeterX
   item_type: Integration
-  publish_time: '2024-04-25T07:33:05Z'
+  publish_time: '2024-04-25'
   ticket_number: '332545706'
   new: false
   regressive: false
@@ -67,7 +67,7 @@
   integration_version: 6.0
   item_name: PerimeterX
   item_type: Integration
-  publish_time: '2024-12-26T08:28:36Z'
+  publish_time: '2024-12-26'
   ticket_number: ''
   new: false
   regressive: false

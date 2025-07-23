@@ -2,7 +2,7 @@
   integration_version: 1.0
   item_name: Hibob
   item_type: Integration
-  publish_time: '2020-08-30T14:34:41Z'
+  publish_time: '2020-08-30'
   ticket_number: xxx
   new: false
   regressive: false
@@ -12,7 +12,7 @@
   integration_version: 2.0
   item_name: Hibob
   item_type: Integration
-  publish_time: '2020-08-30T14:34:41Z'
+  publish_time: '2020-08-30'
   ticket_number: xxx
   new: false
   regressive: false
@@ -22,7 +22,7 @@
   integration_version: 3.0
   item_name: Hibob
   item_type: Integration
-  publish_time: '2021-11-01T16:38:03Z'
+  publish_time: '2021-11-01'
   ticket_number: xxx
   new: false
   regressive: false
@@ -34,7 +34,7 @@
   integration_version: 4.0
   item_name: Hibob
   item_type: Integration
-  publish_time: '2024-12-26T08:30:07Z'
+  publish_time: '2024-12-26'
   ticket_number: ''
   new: false
   regressive: false

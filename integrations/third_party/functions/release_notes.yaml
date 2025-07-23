@@ -2,7 +2,7 @@
   integration_version: 1.0
   item_name: Functions
   item_type: Integration
-  publish_time: '2020-08-01T13:56:43Z'
+  publish_time: '2020-08-01'
   ticket_number: xxx
   new: false
   regressive: false
@@ -12,7 +12,7 @@
   integration_version: 2.0
   item_name: Convert Time Format
   item_type: Action
-  publish_time: '2020-10-27T13:56:43Z'
+  publish_time: '2020-10-27'
   ticket_number: xxx
   new: false
   regressive: false
@@ -22,7 +22,7 @@
   integration_version: 3.0
   item_name: EncodeBase64 and DecodeBase64
   item_type: Action
-  publish_time: '2021-01-08T18:59:26Z'
+  publish_time: '2021-01-08'
   ticket_number: xxx
   new: false
   regressive: false
@@ -34,7 +34,7 @@
   integration_version: 4.0
   item_name: Run JSONPath Query
   item_type: Action
-  publish_time: '2021-01-17T14:15:14Z'
+  publish_time: '2021-01-17'
   ticket_number: xxx
   new: false
   regressive: false
@@ -45,7 +45,7 @@
   integration_version: 4.0
   item_name: String Functions
   item_type: Action
-  publish_time: '2021-01-17T14:15:14Z'
+  publish_time: '2021-01-17'
   ticket_number: xxx
   new: false
   regressive: false
@@ -55,7 +55,7 @@
   integration_version: 5.0
   item_name: IP to Integer
   item_type: Action
-  publish_time: '2021-05-16T12:15:50Z'
+  publish_time: '2021-05-16'
   ticket_number: xxx
   new: false
   regressive: false
@@ -65,7 +65,7 @@
   integration_version: 5.0
   item_name: String Functions
   item_type: Action
-  publish_time: '2021-05-16T12:15:50Z'
+  publish_time: '2021-05-16'
   ticket_number: xxx
   new: false
   regressive: false
@@ -75,7 +75,7 @@
   integration_version: 6.0
   item_name: Run JSONPath Query
   item_type: Action
-  publish_time: '2021-05-20T11:53:01Z'
+  publish_time: '2021-05-20'
   ticket_number: xxx
   new: false
   regressive: false
@@ -86,7 +86,7 @@
   integration_version: 7.0
   item_name: Create Thumbnail
   item_type: Action
-  publish_time: '2021-06-14T11:44:59Z'
+  publish_time: '2021-06-14'
   ticket_number: xxx
   new: true
   regressive: false
@@ -96,7 +96,7 @@
   integration_version: 8.0
   item_name: Create Thumbnail
   item_type: Action
-  publish_time: '2021-06-14T17:25:23Z'
+  publish_time: '2021-06-14'
   ticket_number: xxx
   new: false
   regressive: false
@@ -108,7 +108,7 @@
   integration_version: 9.0
   item_name: Time Duration Calculator
   item_type: Action
-  publish_time: '2021-06-18T18:40:03Z'
+  publish_time: '2021-06-18'
   ticket_number: xxx
   new: true
   regressive: false
@@ -119,7 +119,7 @@
   integration_version: 10.0
   item_name: Time Duration Calculator
   item_type: Action
-  publish_time: '2021-06-23T17:36:20Z'
+  publish_time: '2021-06-23'
   ticket_number: xxx
   new: false
   regressive: false
@@ -132,7 +132,7 @@
   integration_version: 11.0
   item_name: SanitizeHTML
   item_type: Action
-  publish_time: '2021-07-13T12:26:37Z'
+  publish_time: '2021-07-13'
   ticket_number: xxx
   new: true
   regressive: false
@@ -143,7 +143,7 @@
   integration_version: 13.0
   item_name: Time Duration Calculator
   item_type: Action
-  publish_time: '2021-07-14T13:35:55Z'
+  publish_time: '2021-07-14'
   ticket_number: xxx
   new: false
   regressive: false
@@ -153,7 +153,7 @@
   integration_version: 14.0
   item_name: Time Duration Calculator
   item_type: Action
-  publish_time: '2021-07-15T16:28:01Z'
+  publish_time: '2021-07-15'
   ticket_number: xxx
   new: false
   regressive: false
@@ -163,7 +163,7 @@
   integration_version: 15.0
   item_name: Time Duration Calculator
   item_type: Action
-  publish_time: '2021-11-24T13:24:19Z'
+  publish_time: '2021-11-24'
   ticket_number: xxx
   new: false
   regressive: false
@@ -173,7 +173,7 @@
   integration_version: 16.0
   item_name: String Functions
   item_type: Action
-  publish_time: '2022-02-04T14:10:19Z'
+  publish_time: '2022-02-04'
   ticket_number: xxx
   new: false
   regressive: false
@@ -183,7 +183,7 @@
   integration_version: 17.0
   item_name: String Functions
   item_type: Action
-  publish_time: '2022-04-22T11:47:15Z'
+  publish_time: '2022-04-22'
   ticket_number: xxx
   new: false
   regressive: false
@@ -193,7 +193,7 @@
   integration_version: 18.0
   item_name: String Functions
   item_type: Action
-  publish_time: '2022-07-10T15:49:39Z'
+  publish_time: '2022-07-10'
   ticket_number: xxx
   new: false
   regressive: false
@@ -203,7 +203,7 @@
   integration_version: 18.0
   item_name: Convert Time Format
   item_type: Action
-  publish_time: '2022-07-10T15:49:39Z'
+  publish_time: '2022-07-10'
   ticket_number: xxx
   new: false
   regressive: false
@@ -213,7 +213,7 @@
   integration_version: 19.0
   item_name: XMLtoJSON
   item_type: Action
-  publish_time: '2022-10-14T17:18:49Z'
+  publish_time: '2022-10-14'
   ticket_number: xxx
   new: true
   regressive: false
@@ -224,7 +224,7 @@
   integration_version: 20.0
   item_name: Detect Hash TYpe
   item_type: Action
-  publish_time: '2023-01-20T19:16:28Z'
+  publish_time: '2023-01-20'
   ticket_number: xxx
   new: true
   regressive: false
@@ -235,7 +235,7 @@
   integration_version: 20.0
   item_name: Detect IP Type
   item_type: Action
-  publish_time: '2023-01-20T19:16:28Z'
+  publish_time: '2023-01-20'
   ticket_number: xxx
   new: true
   regressive: false
@@ -246,7 +246,7 @@
   integration_version: 21.0
   item_name: Extract IOCs
   item_type: Action
-  publish_time: '2023-09-28T13:24:00Z'
+  publish_time: '2023-09-28'
   ticket_number: xxx
   new: true
   regressive: false
@@ -257,7 +257,7 @@
   integration_version: 22.0
   item_name: Extract IOCs
   item_type: Action
-  publish_time: '2023-10-27T11:32:33Z'
+  publish_time: '2023-10-27'
   ticket_number: '308063187'
   new: false
   regressive: false
@@ -268,7 +268,7 @@
   integration_version: 23.0
   item_name: String Functions
   item_type: Action
-  publish_time: '2023-11-21T12:35:08Z'
+  publish_time: '2023-11-21'
   ticket_number: ''
   new: false
   regressive: false
@@ -279,7 +279,7 @@
   integration_version: 24.0
   item_name: Functions
   item_type: Integration
-  publish_time: '2024-04-25T07:33:05Z'
+  publish_time: '2024-04-25'
   ticket_number: '332545706'
   new: false
   regressive: false
@@ -289,7 +289,7 @@
   integration_version: 25.0
   item_name: String Functions
   item_type: Action
-  publish_time: '2024-07-24T06:58:34Z'
+  publish_time: '2024-07-24'
   ticket_number: '341602848'
   new: false
   regressive: false
@@ -301,7 +301,7 @@
   integration_version: 26.0
   item_name: Functions
   item_type: Integration
-  publish_time: '2024-12-26T08:27:14Z'
+  publish_time: '2024-12-26'
   ticket_number: ''
   new: false
   regressive: false
@@ -311,7 +311,7 @@
   integration_version: 27.0
   item_name: Sanitize HTML
   item_type: Action
-  publish_time: '2025-02-19T13:41:11Z'
+  publish_time: '2025-02-19'
   ticket_number: '393215713'
   new: false
   regressive: false
@@ -321,7 +321,7 @@
   integration_version: 28.0
   item_name: Extrac Iocs
   item_type: Action
-  publish_time: '2025-04-23T11:09:32Z'
+  publish_time: '2025-04-23'
   ticket_number: '411096892'
   new: false
   regressive: false
@@ -331,7 +331,7 @@
   integration_version: 29.0
   item_name: Functions
   item_type: Integration
-  publish_time: '2025-07-07T08:43:59Z'
+  publish_time: '2025-07-07'
   ticket_number: '426240792'
   new: false
   regressive: false

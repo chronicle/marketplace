@@ -2,7 +2,7 @@
   integration_version: 1.0
   item_name: Google Drive
   item_type: Integration
-  publish_time: '2020-10-11T13:00:20Z'
+  publish_time: '2020-10-11'
   ticket_number: xxx
   new: false
   regressive: false
@@ -12,7 +12,7 @@
   integration_version: 2.0
   item_name: Google Drive
   item_type: Integration
-  publish_time: '2020-11-30T10:06:24Z'
+  publish_time: '2020-11-30'
   ticket_number: xxx
   new: false
   regressive: false
@@ -22,7 +22,7 @@
   integration_version: 3.0
   item_name: Google Drive
   item_type: Integration
-  publish_time: '2021-03-03T18:16:20Z'
+  publish_time: '2021-03-03'
   ticket_number: xxx
   new: false
   regressive: false
@@ -32,7 +32,7 @@
   integration_version: 4.0
   item_name: Google Drive
   item_type: Integration
-  publish_time: '2021-08-23T12:40:29Z'
+  publish_time: '2021-08-23'
   ticket_number: xxx
   new: false
   regressive: false
@@ -44,7 +44,7 @@
   integration_version: 5.0
   item_name: Google Drive
   item_type: Integration
-  publish_time: '2024-12-26T08:32:23Z'
+  publish_time: '2024-12-26'
   ticket_number: ''
   new: false
   regressive: false

@@ -2,7 +2,7 @@
   integration_version: 1.0
   item_name: Cybersixgill Darkfeed Enrichment
   item_type: Integration
-  publish_time: '2021-10-21T15:10:40Z'
+  publish_time: '2021-10-21'
   ticket_number: xxx
   new: false
   regressive: false
@@ -12,7 +12,7 @@
   integration_version: 2.0
   item_name: Cybersixgill Darkfeed Enrichment
   item_type: Integration
-  publish_time: '2021-11-01T15:40:28Z'
+  publish_time: '2021-11-01'
   ticket_number: xxx
   new: false
   regressive: false
@@ -23,7 +23,7 @@
   integration_version: 3.0
   item_name: Cybersixgill Darkfeed Enrichment
   item_type: Integration
-  publish_time: '2024-04-25T07:33:05Z'
+  publish_time: '2024-04-25'
   ticket_number: '332545706'
   new: false
   regressive: false
@@ -35,7 +35,7 @@
   integration_version: 4.0
   item_name: Cybersixgill Darkfeed Enrichment
   item_type: Integration
-  publish_time: '2024-12-26T08:29:22Z'
+  publish_time: '2024-12-26'
   ticket_number: ''
   new: false
   regressive: false

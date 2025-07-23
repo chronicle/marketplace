@@ -2,7 +2,7 @@
   integration_version: 6.0
   item_name: Full Contact
   item_type: Integration
-  publish_time: '2021-07-29T14:41:36Z'
+  publish_time: '2021-07-29'
   ticket_number: xxx
   new: false
   regressive: false
@@ -13,7 +13,7 @@
   integration_version: 7.0
   item_name: Enrich Entities, Ping
   item_type: Action
-  publish_time: '2024-01-05T09:48:12Z'
+  publish_time: '2024-01-05'
   ticket_number: 318190935,318191048
   new: false
   regressive: false
@@ -25,7 +25,7 @@
   integration_version: 8.0
   item_name: Full Contact
   item_type: Integration
-  publish_time: '2024-12-26T08:34:54Z'
+  publish_time: '2024-12-26'
   ticket_number: ''
   new: false
   regressive: false
@@ -38,7 +38,7 @@
   integration_version: 9.0
   item_name: Full Contact
   item_type: Integration
-  publish_time: '2025-03-24T16:02:44Z'
+  publish_time: '2025-03-24'
   ticket_number: '405144847'
   new: false
   regressive: true

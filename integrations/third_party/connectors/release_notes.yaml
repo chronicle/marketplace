@@ -2,7 +2,7 @@
   integration_version: 1.0
   item_name: Connectors
   item_type: Integration
-  publish_time: '2020-10-26T14:49:05Z'
+  publish_time: '2020-10-26'
   ticket_number: xxx
   new: false
   regressive: false
@@ -13,7 +13,7 @@
   integration_version: 2.0
   item_name: Cron Scheduled Connector
   item_type: Connector
-  publish_time: '2021-09-20T11:18:46Z'
+  publish_time: '2021-09-20'
   ticket_number: PRS-5353
   new: true
   regressive: false
@@ -24,7 +24,7 @@
   integration_version: 3.0
   item_name: Cron Scheduled Connector
   item_type: Connector
-  publish_time: '2024-02-14T15:21:48Z'
+  publish_time: '2024-02-14'
   ticket_number: '323307492'
   new: false
   regressive: false
@@ -35,7 +35,7 @@
   integration_version: 4.0
   item_name: Connectors
   item_type: Integration
-  publish_time: '2024-04-25T07:33:05Z'
+  publish_time: '2024-04-25'
   ticket_number: '332545706'
   new: false
   regressive: false
@@ -47,7 +47,7 @@
   integration_version: 5.0
   item_name: Connectors
   item_type: Integration
-  publish_time: '2024-12-26T11:06:08Z'
+  publish_time: '2024-12-26'
   ticket_number: ''
   new: false
   regressive: false

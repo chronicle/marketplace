@@ -13,7 +13,7 @@
   item_name: Integration Name
   item_type: Integration
   new: false
-  publish_time: '2024-06-25T00:00:00Z'
+  publish_time: '2024-06-25'
   regressive: false
   removed: false
   ticket_number: some ticket
@@ -23,7 +23,7 @@
   item_name: Integration Name
   item_type: Integration
   new: false
-  publish_time: '2024-06-25T00:00:00Z'
+  publish_time: '2024-06-25'
   regressive: false
   removed: false
   ticket_number: some ticket

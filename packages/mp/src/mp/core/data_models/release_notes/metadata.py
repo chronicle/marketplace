@@ -34,28 +34,36 @@ def convert_epoch_to_iso(epoch_timestamp: int) -> str:
         epoch_timestamp: The number of seconds since 1970-01-01 00:00:00 UTC.
 
     Returns:
-        A string in the format 'YYYY-MM-DDTHH:mm:ssZ'.
+        A string in the format 'YYYY-MM-DD'.
 
     """
     dt_object: datetime = datetime.fromtimestamp(epoch_timestamp, tz=UTC)
-    return dt_object.strftime("%Y-%m-%dT%H:%M:%SZ")
+    return dt_object.strftime("%Y-%m-%d")
 
 
 def convert_iso_to_epoch(iso_timestamp: str) -> int:
-    """Convert a UTC ISO formatted string into an epoch timestamp.
+    """Convert a 'YYYY-MM-DD' formatted string into an epoch timestamp.
+
+    This represents the start of the day (00:00:00) in UTC.
 
     Args:
-        iso_timestamp : A string in the format 'YYYY-MM-DDTHH:mm:ssZ'.
+        iso_timestamp : A string in the format 'YYYY-MM-DD'.
 
     Returns:
         The epoch time
 
-    """
-    dt_object: datetime = datetime.fromisoformat(iso_timestamp)
-    if dt_object.tzinfo is None:
-        dt_object = dt_object.replace(tzinfo=UTC)
+    Raises:
+        ValueError: If the iso_timestamp is not in 'YYYY-MM-DD' format.
 
-    return int(dt_object.timestamp())
+    """
+    try:
+        dt_object: datetime = datetime.strptime(iso_timestamp, "%Y-%m-%d")  # noqa: DTZ007
+        # Make it timezone-aware (UTC) to the beginning of the day before getting the epoch time
+        dt_object = dt_object.replace(tzinfo=UTC)
+        return int(dt_object.timestamp())
+    except ValueError as e:
+        msg = f"Invalid date format for '{iso_timestamp}'. The expected format is 'YYYY-MM-DD'."
+        raise ValueError(msg) from e
 
 
 class BuiltReleaseNote(TypedDict):

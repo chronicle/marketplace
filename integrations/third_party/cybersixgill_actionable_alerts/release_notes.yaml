@@ -2,7 +2,7 @@
   integration_version: 1.0
   item_name: Cybersixgill Actionable Alerts
   item_type: Integration
-  publish_time: '2022-08-31T12:44:23Z'
+  publish_time: '2022-08-31'
   ticket_number: xxx
   new: false
   regressive: false
@@ -12,7 +12,7 @@
   integration_version: 2.0
   item_name: Cybersixgill Actionable Alerts
   item_type: Integration
-  publish_time: '2022-09-05T12:41:10Z'
+  publish_time: '2022-09-05'
   ticket_number: xxx
   new: false
   regressive: false
@@ -23,7 +23,7 @@
   integration_version: 3.0
   item_name: Cybersixgill Actionable Alerts
   item_type: Integration
-  publish_time: '2022-11-14T12:00:12Z'
+  publish_time: '2022-11-14'
   ticket_number: xxx
   new: false
   regressive: false
@@ -34,7 +34,7 @@
   integration_version: 4.0
   item_name: Cybersixgill Actionable Alerts
   item_type: Integration
-  publish_time: '2023-01-16T10:49:41Z'
+  publish_time: '2023-01-16'
   ticket_number: xxx
   new: false
   regressive: false
@@ -45,7 +45,7 @@
   integration_version: 5.0
   item_name: Cybersixgill Actionable Alerts
   item_type: Integration
-  publish_time: '2023-02-28T14:51:38Z'
+  publish_time: '2023-02-28'
   ticket_number: xxx
   new: false
   regressive: false
@@ -56,7 +56,7 @@
   integration_version: 6.0
   item_name: Cybersixgill Actionable Alerts
   item_type: Integration
-  publish_time: '2024-04-25T07:33:05Z'
+  publish_time: '2024-04-25'
   ticket_number: '332545706'
   new: false
   regressive: false
@@ -68,7 +68,7 @@
   integration_version: 7.0
   item_name: Cybersixgill Actionable Alerts
   item_type: Integration
-  publish_time: '2024-12-26T08:35:15Z'
+  publish_time: '2024-12-26'
   ticket_number: ''
   new: false
   regressive: false
