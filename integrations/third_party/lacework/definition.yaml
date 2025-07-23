@@ -2,5 +2,5 @@ identifier: Lacework
 name: Lacework
 parameters: []
 categories: []
-image: resources/image.png
-svg_logo: resources/logo.svg
+svg_logo_path: resources/logo.svg
+image_path: resources/image.png

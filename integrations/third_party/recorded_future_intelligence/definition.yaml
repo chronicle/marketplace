@@ -39,5 +39,5 @@ documentation_link: https://go.recordedfuture.com/hubfs/install-guides/google-se
 categories:
 - Threat Intelligence
 - Security
-image: resources/image.png
-svg_logo: resources/logo.svg
+svg_logo_path: resources/logo.svg
+image_path: resources/image.png

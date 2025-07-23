@@ -115,10 +115,10 @@ class NonBuiltIntegrationMetadata(TypedDict):
     identifier: str
     python_version: NotRequired[str]
     documentation_link: NotRequired[str | None]
-    image: str | None
+    image_path: str | None
     parameters: list[NonBuiltIntegrationParameter]
     should_install_in_system: NotRequired[bool]
-    svg_logo: str | None
+    svg_logo_path: str | None
     version: NotRequired[float]
     is_custom: NotRequired[bool]
     is_available_for_community: NotRequired[bool]
@@ -127,13 +127,13 @@ class NonBuiltIntegrationMetadata(TypedDict):
 
 def _read_image_files(metadata_content: NonBuiltIntegrationMetadata, path: pathlib.Path) -> None:
     """Read image files and update the metadata dictionary in place."""
-    if image_path_str := metadata_content.get("image"):
-        full_path = path / image_path_str
-        metadata_content["image"] = mp.core.file_utils.png_path_to_bytes(full_path)
+    if image_str := metadata_content.get("image_path"):
+        full_path = path / image_str
+        metadata_content["image_path"] = mp.core.file_utils.png_path_to_bytes(full_path)
 
-    if svg_path_str := metadata_content.get("svg_logo"):
+    if svg_path_str := metadata_content.get("svg_logo_path"):
         full_path = path / svg_path_str
-        metadata_content["svg_logo"] = mp.core.file_utils.svg_path_to_text(full_path)
+        metadata_content["svg_logo_path"] = mp.core.file_utils.svg_path_to_text(full_path)
 
 
 class IntegrationMetadata(
@@ -280,7 +280,7 @@ class IntegrationMetadata(
             feature_tags = FeatureTags.from_non_built(raw_feature_tags)
 
         name: str = non_built["name"]
-        svg: str | None = non_built.get("svg_logo")
+        svg: str | None = non_built.get("svg_logo_path")
 
         return cls(
             categories=non_built["categories"],
@@ -288,7 +288,7 @@ class IntegrationMetadata(
             name=name,
             identifier=non_built["identifier"],
             documentation_link=non_built.get("documentation_link"),
-            image_base64=non_built["image"],
+            image_base64=non_built["image_path"],
             parameters=[IntegrationParameter.from_non_built(p) for p in non_built["parameters"]],
             should_install_in_system=non_built.get("should_install_in_system", False),
             is_custom=non_built.get("is_custom", False),
@@ -348,7 +348,7 @@ class IntegrationMetadata(
         svg_path: pathlib.Path = pathlib.Path(
             ".", mp.core.constants.RESOURCES_DIR, mp.core.constants.LOGO_FILE
         )
-        image_path: pathlib.Path = pathlib.Path(
+        image: pathlib.Path = pathlib.Path(
             ".", mp.core.constants.RESOURCES_DIR, mp.core.constants.IMAGE_FILE
         )
 
@@ -360,8 +360,8 @@ class IntegrationMetadata(
                 str(self.documentation_link) if self.documentation_link is not None else None
             ),
             categories=self.categories,
-            svg_logo=str(svg_path) if self.svg_logo is not None else None,
-            image=str(image_path) if self.image_base64 is not None else None,
+            svg_logo_path=str(svg_path) if self.svg_logo is not None else None,
+            image_path=str(image) if self.image_base64 is not None else None,
         )
 
         if self.feature_tags is not None:
