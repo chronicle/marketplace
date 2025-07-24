@@ -1,0 +1,10 @@
+-   description: New Integration Added - Sample Integration.
+    integration_version: 1.0
+    item_name: Sample Integration
+    item_type: Integration
+    publish_time: 1727693675
+    ticket_number: 'xxxxxxx'
+    new: true
+    regressive: false
+    deprecated: false
+    removed: false
