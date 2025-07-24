@@ -168,7 +168,10 @@ def _version_bump_validation_run_checks(
             raise NonFatalValidationError(msg)
 
         new_notes = existing_files["rn"].get("new")
-        msg = "The release note's version must match the new version of the project.toml."
+        msg = (
+            "The release note's version must match the new version of the project.toml and be "
+            "consistent in all the newly added notes."
+        )
         if not _rn_is_valid(new_notes, toml_new_version):
             raise NonFatalValidationError(msg)
 
