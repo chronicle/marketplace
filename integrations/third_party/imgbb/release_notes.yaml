@@ -1,44 +1,44 @@
--   description: NEW! Imgbb integration.
-    integration_version: 1.0
-    item_name: Imgbb
-    item_type: Integration
-    publish_time: 1601822081
-    ticket_number: xxx
-    new: false
-    regressive: false
-    deprecated: false
-    removed: false
--   description: Added SSL verification.
-    integration_version: 2.0
-    item_name: Imgbb
-    item_type: Integration
-    publish_time: 1601822081
-    ticket_number: xxx
-    new: false
-    regressive: false
-    deprecated: false
-    removed: false
--   description: 'Updated the integration''s categories.
+- description: NEW! Imgbb integration.
+  integration_version: 1.0
+  item_name: Imgbb
+  item_type: Integration
+  publish_time: '2020-10-04'
+  ticket_number: xxx
+  new: false
+  regressive: false
+  deprecated: false
+  removed: false
+- description: Added SSL verification.
+  integration_version: 2.0
+  item_name: Imgbb
+  item_type: Integration
+  publish_time: '2020-10-04'
+  ticket_number: xxx
+  new: false
+  regressive: false
+  deprecated: false
+  removed: false
+- description: 'Updated the integration''s categories.
 
-        '
-    integration_version: 3.0
-    item_name: Imgbb
-    item_type: Integration
-    publish_time: 1630236349
-    ticket_number: xxx
-    new: false
-    regressive: false
-    deprecated: false
-    removed: false
--   description: 'Important - Updated the integration code to work with Python version
-        3.11. To ensure compatibility and avoid disruptions, follow the upgrade best
-        practices described in the following document: https://cloud.google.com/chronicle/docs/soar/respond/integrations-setup/upgrade-python-versions'
-    integration_version: 4.0
-    item_name: Imgbb
-    item_type: Integration
-    publish_time: 1735201735
-    ticket_number: ''
-    new: false
-    regressive: false
-    deprecated: false
-    removed: false
+    '
+  integration_version: 3.0
+  item_name: Imgbb
+  item_type: Integration
+  publish_time: '2021-08-29'
+  ticket_number: xxx
+  new: false
+  regressive: false
+  deprecated: false
+  removed: false
+- description: 'Important - Updated the integration code to work with Python version
+    3.11. To ensure compatibility and avoid disruptions, follow the upgrade best practices
+    described in the following document: https://cloud.google.com/chronicle/docs/soar/respond/integrations-setup/upgrade-python-versions'
+  integration_version: 4.0
+  item_name: Imgbb
+  item_type: Integration
+  publish_time: '2024-12-26'
+  ticket_number: ''
+  new: false
+  regressive: false
+  deprecated: false
+  removed: false

@@ -1,32 +1,32 @@
--   description: NEW! Zoom integration.
-    integration_version: 1.0
-    item_name: Zoom
-    item_type: Integration
-    publish_time: 1602076201
-    ticket_number: xxx
-    new: false
-    regressive: false
-    deprecated: false
-    removed: false
--   description: Zoom OAuth added! Update your authentication method
-    integration_version: 2.0
-    item_name: Zoom
-    item_type: Integration
-    publish_time: 1662389282
-    ticket_number: xxx
-    new: false
-    regressive: false
-    deprecated: false
-    removed: false
--   description: 'Important - Updated the integration code to work with Python version
-        3.11. To ensure compatibility and avoid disruptions, follow the upgrade best
-        practices described in the following document: https://cloud.google.com/chronicle/docs/soar/respond/integrations-setup/upgrade-python-versions'
-    integration_version: 11.0
-    item_name: Zoom
-    item_type: Integration
-    publish_time: 1735201713
-    ticket_number: ''
-    new: false
-    regressive: false
-    deprecated: false
-    removed: false
+- description: NEW! Zoom integration.
+  integration_version: 1.0
+  item_name: Zoom
+  item_type: Integration
+  publish_time: '2020-10-07'
+  ticket_number: xxx
+  new: false
+  regressive: false
+  deprecated: false
+  removed: false
+- description: Zoom OAuth added! Update your authentication method
+  integration_version: 2.0
+  item_name: Zoom
+  item_type: Integration
+  publish_time: '2022-09-05'
+  ticket_number: xxx
+  new: false
+  regressive: false
+  deprecated: false
+  removed: false
+- description: 'Important - Updated the integration code to work with Python version
+    3.11. To ensure compatibility and avoid disruptions, follow the upgrade best practices
+    described in the following document: https://cloud.google.com/chronicle/docs/soar/respond/integrations-setup/upgrade-python-versions'
+  integration_version: 11.0
+  item_name: Zoom
+  item_type: Integration
+  publish_time: '2024-12-26'
+  ticket_number: ''
+  new: false
+  regressive: false
+  deprecated: false
+  removed: false

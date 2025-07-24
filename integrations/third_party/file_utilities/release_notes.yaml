@@ -1,199 +1,199 @@
--   description: NEW! File Utilities integration to power up playbook capabilities.
-    integration_version: 1.0
-    item_name: FileUtilities
-    item_type: Integration
-    publish_time: 1602076201
-    ticket_number: xxx
-    new: false
-    regressive: false
-    deprecated: false
-    removed: false
--   description: Fixed a bug in the "Get Attachment" action where the parameters for
-        Name and Description were switched.
-    integration_version: 2.0
-    item_name: FileUtilities
-    item_type: Integration
-    publish_time: 1602076201
-    ticket_number: xxx
-    new: false
-    regressive: false
-    deprecated: false
-    removed: false
--   description: NEW! Extract and Create Archive Actions.
-    integration_version: 3.0
-    item_name: FileUtilities
-    item_type: Action
-    publish_time: 1607611964
-    ticket_number: xxx
-    new: false
-    regressive: false
-    deprecated: false
-    removed: false
--   description: NEW! Get Files as Base64 action.
-    integration_version: 4.0
-    item_name: FileUtilities
-    item_type: Action
-    publish_time: 1610143720
-    ticket_number: xxx
-    new: false
-    regressive: false
-    deprecated: false
-    removed: false
--   description: Fixed bug in "Save Base64 to File" action where the file extensions
-        parameter would not accept an empty value.
-    integration_version: 4.0
-    item_name: Save Base64 to File
-    item_type: Action
-    publish_time: 1610143720
-    ticket_number: xxx
-    new: false
-    regressive: false
-    deprecated: false
-    removed: false
--   description: Fixed bug in "Save Base64 to File" action.
-    integration_version: 5.0
-    item_name: Save Base64 to File
-    item_type: Action
-    publish_time: 1610399900
-    ticket_number: xxx
-    new: false
-    regressive: false
-    deprecated: false
-    removed: false
--   description: 'UPDATE: "Save Base64 to File" now supports saving on agents.'
-    integration_version: 6.0
-    item_name: Save Base64 to File
-    item_type: Action
-    publish_time: 1623870986
-    ticket_number: xxx
-    new: false
-    regressive: false
-    deprecated: false
-    removed: false
--   description: 'UPDATE: "Add Entity to File" bugfix, added timeout variable.'
-    integration_version: 7.0
-    item_name: Add Entity to File
-    item_type: Action
-    publish_time: 1625581903
-    ticket_number: xxx
-    new: false
-    regressive: false
-    deprecated: false
-    removed: false
--   description: 'UPDATE: "Remove Entity from File" bugfix, added timeout variable.'
-    integration_version: 7.0
-    item_name: Add Entity to File
-    item_type: Action
-    publish_time: 1625581903
-    ticket_number: xxx
-    new: false
-    regressive: false
-    deprecated: false
-    removed: false
--   description: 'UPDATE: "Get Files as Base64" Now supports files with commas in
-        the name.'
-    integration_version: 8.0
-    item_name: Get Files as Base64
-    item_type: Action
-    publish_time: 1639424430
-    ticket_number: xxx
-    new: false
-    regressive: false
-    deprecated: false
-    removed: false
--   description: 'NEW! Extract Zip Files: Extracts files from ZIP files and creates
-        entities out of extracted files.'
-    integration_version: 9.0
-    item_name: FileUtilities
-    item_type: Integration
-    publish_time: 1645189707
-    ticket_number: xxx
-    new: false
-    regressive: false
-    deprecated: false
-    removed: false
--   description: 'NEW! Create Hash From Base64: Creates hash values from base64 strings.'
-    integration_version: 10.0
-    item_name: Create Hash From Base64
-    item_type: Action
-    publish_time: 1674241401
-    ticket_number: xxx
-    new: true
-    regressive: false
-    deprecated: false
-    removed: false
--   description: FIX! Get Attachment - fixed API endpoint.
-    integration_version: 11.0
-    item_name: Get Attachment
-    item_type: Action
-    publish_time: 1678137309
-    ticket_number: xxx
-    new: true
-    regressive: false
-    deprecated: false
-    removed: false
--   description: FIX! Get Files as Base64 - Fixed emtpy script result
-    integration_version: 12.0
-    item_name: Get Files as Base64
-    item_type: Action
-    publish_time: 1682002075
-    ticket_number: xxx
-    new: true
-    regressive: false
-    deprecated: false
-    removed: false
--   description: FIX! Save Base64 to File - Added support for extensions with dot
-        (.) prefix.
-    integration_version: 13.0
-    item_name: Save Base64 to File
-    item_type: Action
-    publish_time: 1696421468
-    ticket_number: xxx
-    new: true
-    regressive: false
-    deprecated: false
-    removed: false
--   description: Vulnerability fix - Enable server certificate validation on this
-        SSL/TLS connection.
-    integration_version: 14.0
-    item_name: Get Attachment, Add Attachment
-    item_type: Action
-    publish_time: 1704448092
-    ticket_number: 318190701,318191191
-    new: false
-    regressive: false
-    deprecated: false
-    removed: false
--   description: FileUtilities - Security Enhancements.
-    integration_version: 15.0
-    item_name: FileUtilities
-    item_type: Integration
-    publish_time: 1707410066
-    ticket_number: '315941503'
-    new: false
-    regressive: false
-    deprecated: false
-    removed: false
--   description: FileUtilities - Updated integration's descriptions to reflect renaming
-        to Google SecOps.
-    integration_version: 16.0
-    item_name: FileUtilities
-    item_type: Integration
-    publish_time: 1714030385
-    ticket_number: '332545706'
-    new: false
-    regressive: false
-    deprecated: false
-    removed: false
--   description: 'Important - Updated the integration code to work with Python version
-        3.11. To ensure compatibility and avoid disruptions, follow the upgrade best
-        practices described in the following document: https://cloud.google.com/chronicle/docs/soar/respond/integrations-setup/upgrade-python-versions'
-    integration_version: 17.0
-    item_name: FileUtilities
-    item_type: Integration
-    publish_time: 1735201667
-    ticket_number: ''
-    new: false
-    regressive: false
-    deprecated: false
-    removed: false
+- description: NEW! File Utilities integration to power up playbook capabilities.
+  integration_version: 1.0
+  item_name: FileUtilities
+  item_type: Integration
+  publish_time: '2020-10-07'
+  ticket_number: xxx
+  new: false
+  regressive: false
+  deprecated: false
+  removed: false
+- description: Fixed a bug in the "Get Attachment" action where the parameters for
+    Name and Description were switched.
+  integration_version: 2.0
+  item_name: FileUtilities
+  item_type: Integration
+  publish_time: '2020-10-07'
+  ticket_number: xxx
+  new: false
+  regressive: false
+  deprecated: false
+  removed: false
+- description: NEW! Extract and Create Archive Actions.
+  integration_version: 3.0
+  item_name: FileUtilities
+  item_type: Action
+  publish_time: '2020-12-10'
+  ticket_number: xxx
+  new: false
+  regressive: false
+  deprecated: false
+  removed: false
+- description: NEW! Get Files as Base64 action.
+  integration_version: 4.0
+  item_name: FileUtilities
+  item_type: Action
+  publish_time: '2021-01-08'
+  ticket_number: xxx
+  new: false
+  regressive: false
+  deprecated: false
+  removed: false
+- description: Fixed bug in "Save Base64 to File" action where the file extensions
+    parameter would not accept an empty value.
+  integration_version: 4.0
+  item_name: Save Base64 to File
+  item_type: Action
+  publish_time: '2021-01-08'
+  ticket_number: xxx
+  new: false
+  regressive: false
+  deprecated: false
+  removed: false
+- description: Fixed bug in "Save Base64 to File" action.
+  integration_version: 5.0
+  item_name: Save Base64 to File
+  item_type: Action
+  publish_time: '2021-01-11'
+  ticket_number: xxx
+  new: false
+  regressive: false
+  deprecated: false
+  removed: false
+- description: 'UPDATE: "Save Base64 to File" now supports saving on agents.'
+  integration_version: 6.0
+  item_name: Save Base64 to File
+  item_type: Action
+  publish_time: '2021-06-16'
+  ticket_number: xxx
+  new: false
+  regressive: false
+  deprecated: false
+  removed: false
+- description: 'UPDATE: "Add Entity to File" bugfix, added timeout variable.'
+  integration_version: 7.0
+  item_name: Add Entity to File
+  item_type: Action
+  publish_time: '2021-07-06'
+  ticket_number: xxx
+  new: false
+  regressive: false
+  deprecated: false
+  removed: false
+- description: 'UPDATE: "Remove Entity from File" bugfix, added timeout variable.'
+  integration_version: 7.0
+  item_name: Add Entity to File
+  item_type: Action
+  publish_time: '2021-07-06'
+  ticket_number: xxx
+  new: false
+  regressive: false
+  deprecated: false
+  removed: false
+- description: 'UPDATE: "Get Files as Base64" Now supports files with commas in the
+    name.'
+  integration_version: 8.0
+  item_name: Get Files as Base64
+  item_type: Action
+  publish_time: '2021-12-13'
+  ticket_number: xxx
+  new: false
+  regressive: false
+  deprecated: false
+  removed: false
+- description: 'NEW! Extract Zip Files: Extracts files from ZIP files and creates
+    entities out of extracted files.'
+  integration_version: 9.0
+  item_name: FileUtilities
+  item_type: Integration
+  publish_time: '2022-02-18'
+  ticket_number: xxx
+  new: false
+  regressive: false
+  deprecated: false
+  removed: false
+- description: 'NEW! Create Hash From Base64: Creates hash values from base64 strings.'
+  integration_version: 10.0
+  item_name: Create Hash From Base64
+  item_type: Action
+  publish_time: '2023-01-20'
+  ticket_number: xxx
+  new: true
+  regressive: false
+  deprecated: false
+  removed: false
+- description: FIX! Get Attachment - fixed API endpoint.
+  integration_version: 11.0
+  item_name: Get Attachment
+  item_type: Action
+  publish_time: '2023-03-06'
+  ticket_number: xxx
+  new: true
+  regressive: false
+  deprecated: false
+  removed: false
+- description: FIX! Get Files as Base64 - Fixed emtpy script result
+  integration_version: 12.0
+  item_name: Get Files as Base64
+  item_type: Action
+  publish_time: '2023-04-20'
+  ticket_number: xxx
+  new: true
+  regressive: false
+  deprecated: false
+  removed: false
+- description: FIX! Save Base64 to File - Added support for extensions with dot (.)
+    prefix.
+  integration_version: 13.0
+  item_name: Save Base64 to File
+  item_type: Action
+  publish_time: '2023-10-04'
+  ticket_number: xxx
+  new: true
+  regressive: false
+  deprecated: false
+  removed: false
+- description: Vulnerability fix - Enable server certificate validation on this SSL/TLS
+    connection.
+  integration_version: 14.0
+  item_name: Get Attachment, Add Attachment
+  item_type: Action
+  publish_time: '2024-01-05'
+  ticket_number: 318190701,318191191
+  new: false
+  regressive: false
+  deprecated: false
+  removed: false
+- description: FileUtilities - Security Enhancements.
+  integration_version: 15.0
+  item_name: FileUtilities
+  item_type: Integration
+  publish_time: '2024-02-08'
+  ticket_number: '315941503'
+  new: false
+  regressive: false
+  deprecated: false
+  removed: false
+- description: FileUtilities - Updated integration's descriptions to reflect renaming
+    to Google SecOps.
+  integration_version: 16.0
+  item_name: FileUtilities
+  item_type: Integration
+  publish_time: '2024-04-25'
+  ticket_number: '332545706'
+  new: false
+  regressive: false
+  deprecated: false
+  removed: false
+- description: 'Important - Updated the integration code to work with Python version
+    3.11. To ensure compatibility and avoid disruptions, follow the upgrade best practices
+    described in the following document: https://cloud.google.com/chronicle/docs/soar/respond/integrations-setup/upgrade-python-versions'
+  integration_version: 17.0
+  item_name: FileUtilities
+  item_type: Integration
+  publish_time: '2024-12-26'
+  ticket_number: ''
+  new: false
+  regressive: false
+  deprecated: false
+  removed: false

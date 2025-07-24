@@ -14,6 +14,7 @@
 
 from __future__ import annotations
 
+from datetime import UTC, datetime
 from typing import TYPE_CHECKING, Annotated, NotRequired, TypedDict
 
 import pydantic
@@ -24,6 +25,45 @@ import mp.core.utils
 
 if TYPE_CHECKING:
     import pathlib
+
+
+def convert_epoch_to_iso(epoch_timestamp: int) -> str:
+    """Convert an epoch timestamp into a UTC ISO 8601 formatted string.
+
+    Args:
+        epoch_timestamp: The number of seconds since 1970-01-01 00:00:00 UTC.
+
+    Returns:
+        A string in the format 'YYYY-MM-DD'.
+
+    """
+    dt_object: datetime = datetime.fromtimestamp(epoch_timestamp, tz=UTC)
+    return dt_object.strftime("%Y-%m-%d")
+
+
+def convert_iso_to_epoch(iso_timestamp: str) -> int:
+    """Convert a 'YYYY-MM-DD' formatted string into an epoch timestamp.
+
+    This represents the start of the day (00:00:00) in UTC.
+
+    Args:
+        iso_timestamp : A string in the format 'YYYY-MM-DD'.
+
+    Returns:
+        The epoch time
+
+    Raises:
+        ValueError: If the iso_timestamp is not in 'YYYY-MM-DD' format.
+
+    """
+    try:
+        dt_object: datetime = datetime.strptime(iso_timestamp, "%Y-%m-%d")  # noqa: DTZ007
+        # Make it timezone-aware (UTC) to the beginning of the day before getting the epoch time
+        dt_object = dt_object.replace(tzinfo=UTC)
+        return int(dt_object.timestamp())
+    except ValueError as e:
+        msg = f"Invalid date format for '{iso_timestamp}'. The expected format is 'YYYY-MM-DD'."
+        raise ValueError(msg) from e
 
 
 class BuiltReleaseNote(TypedDict):
@@ -45,7 +85,7 @@ class NonBuiltReleaseNote(TypedDict):
     integration_version: float
     item_name: str
     item_type: str
-    publish_time: NotRequired[int | None]
+    publish_time: NotRequired[str | None]
     regressive: bool
     removed: bool
     ticket_number: NotRequired[str | None]
@@ -123,6 +163,8 @@ class ReleaseNote(
 
     @classmethod
     def _from_non_built(cls, non_built: NonBuiltReleaseNote) -> ReleaseNote:
+        publish_time = non_built.get("publish_time")
+
         return cls(
             description=non_built["description"],
             deprecated=non_built["deprecated"],
@@ -133,7 +175,7 @@ class ReleaseNote(
             regressive=non_built["regressive"],
             removed=non_built["removed"],
             ticket=non_built.get("ticket_number"),
-            publish_time=non_built.get("publish_time"),
+            publish_time=convert_iso_to_epoch(publish_time) if publish_time is not None else None,
         )
 
     def to_built(self) -> BuiltReleaseNote:
@@ -168,7 +210,9 @@ class ReleaseNote(
             integration_version=float(self.version),
             item_name=self.item_name,
             item_type=self.item_type,
-            publish_time=self.publish_time,
+            publish_time=convert_epoch_to_iso(self.publish_time)
+            if self.publish_time is not None
+            else None,
             ticket_number=self.ticket,
             new=self.new,
             regressive=self.regressive,
