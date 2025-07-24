@@ -168,9 +168,8 @@ def _version_bump_validation_run_checks(
         if not _rn_is_valid(new_notes, toml_new_version):
             raise NonFatalValidationError(msg)
 
-    elif new_files.get("toml") and new_files.get("rn"):
-        toml_version = new_files["toml"].project.version
-        new_notes = new_files["rn"]
+    elif (new_toml := new_files["toml"]) and (new_notes := new_files["rn"]):
+        toml_version = new_toml.project.version
         msg = (
             "New integration project.toml and release_note.yaml version must be initialize to 1.0."
         )
