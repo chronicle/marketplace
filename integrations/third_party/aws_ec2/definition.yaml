@@ -1,39 +1,26 @@
 identifier: AWS - EC2
 name: AWS - EC2
 parameters:
-    -   name: Access Key ID
-        type: password
-        description: EC2 Access Key ID
-        is_mandatory: true
-        integration_identifier: AWS - EC2
-    -   name: Default Region
-        default_value: us-east-1
-        type: string
-        description: 'Default Region.
+- name: Access Key ID
+  type: password
+  description: EC2 Access Key ID
+  is_mandatory: true
+  integration_identifier: AWS - EC2
+- name: Default Region
+  default_value: us-east-1
+  type: string
+  description: 'Default Region.
 
-        For more information: https://docs.aws.amazon.com/general/latest/gr/rande.html'
-        is_mandatory: false
-        integration_identifier: AWS - EC2
-    -   name: Secret Access Key
-        type: password
-        description: EC2 Secret Access Key
-        is_mandatory: true
-        integration_identifier: AWS - EC2
+    For more information: https://docs.aws.amazon.com/general/latest/gr/rande.html'
+  is_mandatory: false
+  integration_identifier: AWS - EC2
+- name: Secret Access Key
+  type: password
+  description: EC2 Secret Access Key
+  is_mandatory: true
+  integration_identifier: AWS - EC2
 categories:
-    - Cloud
-    - IT & Infrastructure
-# language=svg
-svg_image: |
-    <svg width="25" height="25" viewBox="0 0 25 25" fill="none"
-         xmlns="http://www.w3.org/2000/svg">
-        <path
-                d="M12.5167 1L10.6269 1.95337V23.0637L12.5167 24L22.0503 19.2502V5.76684L12.5167
-        1Z" fill="#b2b2b8"/>
-        <path d="M7.49445 21.4974L8.95855 22.2295V2.78756L7.49445
-        3.51962V21.4974Z" fill="#b2b2b8"/>
-        <path d="M5.00888 20.2546L6.18357 20.8335V4.16654L5.00888
-        4.7624V20.2546Z" fill="#b2b2b8"/>
-        <path d="M3 19.2502L3.95337 19.7269V5.29016L3
-        5.76684V19.2502Z" fill="#b2b2b8"/>
-    </svg>
-image_base64: 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
+- Cloud
+- IT & Infrastructure
+svg_logo_path: resources/logo.svg
+image_path: resources/image.png

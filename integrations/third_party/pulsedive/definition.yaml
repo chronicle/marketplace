@@ -1,32 +1,25 @@
 identifier: Pulsedive
 name: Pulsedive
 parameters:
-    -   name: API Root
-        default_value: https://pulsedive.com
-        type: string
-        description: API Root that is used to access Pulsedive API
-        is_mandatory: true
-        integration_identifier: Pulsedive
-    -   name: API Key
-        type: password
-        description: API key used to perform authenticated queries to Pulsedive
-        is_mandatory: false
-        integration_identifier: Pulsedive
-    -   name: Verify SSL
-        default_value: true
-        type: boolean
-        description: Verify SSL
-        is_mandatory: false
-        integration_identifier: Pulsedive
+- name: API Root
+  default_value: https://pulsedive.com
+  type: string
+  description: API Root that is used to access Pulsedive API
+  is_mandatory: true
+  integration_identifier: Pulsedive
+- name: API Key
+  type: password
+  description: API key used to perform authenticated queries to Pulsedive
+  is_mandatory: false
+  integration_identifier: Pulsedive
+- name: Verify SSL
+  default_value: true
+  type: boolean
+  description: Verify SSL
+  is_mandatory: false
+  integration_identifier: Pulsedive
 categories:
-    - Security
-    - Threat Intelligence
-# language=svg
-svg_image: "<?xml version=\"1.0\" encoding=\"utf-8\"?><!-- Generator: Adobe Illustrator\
-    \ 25.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  --><svg version=\"\
-    1.1\" id=\"Layer_1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\"\
-    \ x=\"0px\" y=\"0px\"\t viewBox=\"0 0 25 25\" style=\"enable-background:new 0\
-    \ 0 25 25;\" xml:space=\"preserve\"><g>\t<g>\t\t<path d=\"M18.3,3.3C15.7,3,14.5,4,12.7,5.7C11,4,9.3,2.3,5.8,3.3c-2.4,0.7-5.4,3.9-2.9,8.9h4.9l2-5.9h1l2.5,8.4l2-5.4h1l1.4,3h5\t\
-    \t\tC23.5,9.2,23.4,3.7,18.3,3.3z M16.1,12.1L13.2,19l-2.9-8.4L9,13.5H4l8.7,8.5l8.3-8.5h-4L16.1,12.1z\"\
-    />\t</g></g></svg>"
-image_base64: iVBORw0KGgoAAAANSUhEUgAAAJ4AAABSCAYAAAClr220AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAujSURBVHgB7Z0JbFTXFYZ/G294w9jGgG1sYjYTFmM2QUhYCgZEQljTRIK0TQI0RAipUERKAYFEAVWsKmJpWUQEFJSyi6VgQKyFsJuGxYABG2ODMeAV7/T9t31mxh47ZpjxLeR80sjye2/ue/PeN+eec65DXF4YQBBqGVcIggZEPEELIp6gBRFP0IKIJ2hBxBO0IOIJWhDxBC2IeIIWRDxBCyKeoAURT9CCiCdoQcQTtCDiCVoQ8QQtiHiCFkQ8QQsinqAFEU/QgognaEHEE7Qg4glaEPEELYh4ghZEPEELIp6gBRFP0IKIJ2hBxBO04AYn8ry4FI/yivDYeJHwel4I8fGAi4tLpWPzjWNTswuQXVACV+Pr0NjPC8HeHnBzdYHw9uEU8fhP7iWk52Dl2Xv498Mc5BaVqu2+Hm4Y0KIBftUhDBEBdcuPPZOShc1XUnEy+SlKyl6Aqvl7uWFIdCMMb9MIkf87Vnh7cHHGP8y48XIqVp1NRk5hic39DYyo99suEegTFYTNCQ/w3aVUFJaU2T7WiHp/HdoOTet7V3m+3Nxc9bJF3bp14efnZ0RR+7OK58+fY8mSJQgPD8fnn38OXezfvx979uzB7NmzERgYqLY9ePAAz549Q6tWrVCnTh28KTg84j19XlytdJ5ursgtLMW8Y7dx4NZjnL3/DNWZn5FfhL+dT8HM3i2N99qedletWoX4+Hib++rXr4++ffti8ODBCAkJgT2UlZUhJSUFpaWl0MmjR49w48YNFBcXl287ceIEDh48iAULFqBevXp4U3C4eHtvPKpaujqumN8/Wu2fdTgRPxjS1YR4Q1BOuZ0a276xFCIgIADjxo2z2s4HxAe1bds2nD59GsuWLYOnpyfeJt599124u7u/cZ/L4eJdy8itcl9jP0+0CvaFu1EwhPl7ISWrADWhqLQMiRl5VYpHfHx80KdPn0rb+/fvr4qZXbt24dy5c+jRowfeJtq2batebxoOb6dkFRZXua95kA9CfD0QZORtncNeSuRqiOHtXn1+kl1QDHsZNmyYyvMuXryofmdaW1hYiJIS25GZkbKqfRXhcU+ePMG9e/fw9OlTlW9xbFupM8flMWlpaepndefg9J6Tk6NyuMePH6txbU31HMNyHJ7Dciq2pKrPbXmujIwM5Ofnw9k4POIxklVFx9B6SjLjDhjiBWD71Ydqe/tGfpjWsznmHruFS2nZNt8b6m9/ZctpuGHDhurhET4ATruNGjXCqFGjKh3P5J350pQpU6od99q1a9i4caP6yYfl7e2tomtwcLAa94MPPig/lvIsWrQIt27dQl5eHry8vNCyZUuMGDECnTt3thqXUm7YsAHHjx9X43IqrapwOHr0qMrzJk2apL5cBw4cwJEjR9TvoaGhVsdmZWVh8eLFaNGiBUaPHq22Ubr169er92RmZsLNzU1dP2eKkSNHOq1gcbh43ZvUx5YraZW207dYY6pMyshCntFe6WRIyB4d2yfvRQSiRbAPRseEqfYLt1nS0NcTbUJ8YS9FRUVW0YLiMep4eHjYPJ7Ri6JWB6PcjBkzlKCffvopIiMj8fDhQxVtWAT4+r683tTUVMyaNUtV1nzgYWFhqgqnXPPmzcPSpUtVxUwYjebOnasE/fjjj9G6dWv18Hm9lOzKlStW10FZ7t+/rwQi/DLxmKtXr1YSLykpCRcuXChPSXitmzZtwt69e9GrVy90795d3RvKu27dOvUZPvzwQzgDh4vHqBZuRL372db5GwuLlsHe+O5fiXhiNJQnxbVDlNEiSczMwy+Mtgp5P7I+ejYNxOGkTKv3dgsPMNop9kc8TiF8de3aFY7i7NmzKhpNnz4dHTp0qPbYw4cPK3EYWYKCgsq3R0VFYerUqapNMmbMGLWN0TMhIQFffPEFPvvsM6txGLErilcRRlEWGhyjX79+Vvs4Nr+E5vVSxB07duDLL7/ERx99VN7Yj4mJUdFz+/btSkazdeNIHC6en6cblg9ua7RBrPOMuh51VGP4+K10PMjKx8S+bREb6o8nRu4WaUh1LDENXaNC8G2v5hgVE2713ihjv6uLfSsY7MHx5vLb3a1bNzgKM4Jy/J/i5MmT6Nixo5V0hFGOhQGjE4VgBGYB1KBBA7uvlcI0a9ZMiccoaPYvGck4dkREhEo9yKVLl1TO17NnT6vVJE7tvN59+/apNtIbIR5pYqw0hBnLY9fSn6l8jpQVleDk7RycMMTLNnp9Nx9mqSm2qPSFqnD+cuRHxN5Ox5CYSJiNAV9Pd0QG+dXonEyO+YAtb+CdO3dw5swZ1VJhNcvWg6N455131M/ly5fj7t27amxObewbMk+yhNG2U6dOKrerCPNCXjsFpnjJyclqjMaNG8NeGNGYe/K85hROwXgfOH2bsJCgVLzeitfG6Z3TPtMHZ+C0tVo+/u/P3caCgwmwLPC4fmvYiJNJ6RjZqZmxHuuO2xnZuJCcga0X7+BPe/9beQb5eGHz2L41Fi87O1sl75bwQfr7+2PChAno3bu3zTVie4mOjsbEiRNx6NAh1SdkrsTzMTeMi4vDwIED1aqJCVccmMBXhMJZNrYZmRmlXmelJTY2Flu2bMHNmzfLxTOnaMu0gFGQOeLYsWMrjcEITPle5zqqw3niGQ/5j4M6wtvDHd9u/6FSe+HYjTSM6RGNAC93bL1wB3czc9Ux+UZkDPTxxMpR7+O9Zg1rfD4+cHbvLWHlyP5eReH4++tKyPdTrgEDBqhCgw/w8uXLOH/+PFasWKG2ffXVV+XHd+nSBcOHD7c5FnMyXqejaNq0qZpSeT3mF47TLAsPVrSW8MvBPLWq+2GK62ic+tcp7kZB8bt+7fAopwCL442cw0K++OupKDEaw27GMbsT7pXvCzKk+/vYfugbHfpK5zLbAK8C2wuU/XUk5HuZu/HFxH7IkCEYP368mtZMzOqZFepPQQE5vbFwsXcJjFGekY0FEKtnXmNiYqJazzXzO/PaGWGZE9b2yofT/x6P8s0b1gVbxvUz1lpf9oTSjALj0v1MFBvy7b2SrLZ1aBKErV/HIa51mN3FRE3gDef0xjZHQUHNVk9qCiVjG8JsbxBOy9evX6+ysWsJ5U1PT1eivA7t27dXlTQLF+agrGA5BVv25Rj9mPvxmNrGqRHPhPKNiG2KjF92x+//cVpNp+TP/7yM6IYBeJxXgKgG/lj/mz5oF+74CqoiFI/Rh22OnTt3qpyMuQyTba5usG1Rkz4e+32MLmbVR4nZJ2NuZdn/YtW4cOFCrF27FoMGDbLq8ZnVsRmtKceaNWuwevVqdQ2sUpm/MoKeOnUKNaVNmzbqc7LgYjTmtVVs+/B3FjHs2bGQaN68udV+SskvqDPyvFoRj/AmfN2zNZoE+mDkyngUlpTi+/NJal9sRDDW/boX2teCdCZcVaB0vOlMxAmnXfawqmosW8Km7bRp09R7zCKCEjEp59iffPJJ+bFszlJmnmv37t2qXWHCyDh06FDVtyPs7fGPHXjsN998o46lAGyxvEpbg9M0Iy17hIRNa45hCcWePHky5syZg5kzZ6qc2BJ+GebPn1+pDeQIXGr7f5TM0604ehVTtp5RkS8q2B/bxschJtz+D8deE9sBvNGvAiMJp0C2HZgjmi0RTkvMeZj7EMrBbcSMCpSBUzUjHyUkfHBM7Pmq+BApJds7jIZ8L6EIzOl4vGXuRXhNLAh4bnNMSs3tjNZmTsZ8kMtxnKIthTbvC4seQhHNFlBFuNLC5jKX6ogZxXlNLC4qtoccQa2LR3jKfT+mGKsYN/GHgR0Q08Tx3yjh/xst4pkUGD09L/c3569mBcehVTzh54v8542CFkQ8QQsinqAFEU/QgognaEHEE7Qg4glaEPEELYh4ghZEPEELIp6gBRFP0IKIJ2hBxBO0IOIJWhDxBC2IeIIWRDxBCyKeoAURT9CCiCdoQcQTtCDiCVoQ8QQtiHiCFkQ8QQsinqAFEU/QgognaOE/QHXixXehzokAAAAASUVORK5CYII=
+- Security
+- Threat Intelligence
+svg_logo_path: resources/logo.svg
+image_path: resources/image.png
