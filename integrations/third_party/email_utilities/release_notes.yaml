@@ -406,3 +406,13 @@
     regressive: false
     deprecated: false
     removed: false
+-   description: Parse Case Wall Email - Improved entity extraction mechanism.
+    integration_version: 38.0
+    item_name: Parse Case Wall Email
+    item_type: Action
+    publish_time: 1753367119
+    ticket_number: '433043714'
+    new: false
+    regressive: false
+    deprecated: false
+    removed: false

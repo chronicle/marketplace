@@ -371,7 +371,7 @@ wheels = [
 
 [[package]]
 name = "emailutilities"
-version = "35.0"
+version = "38.0"
 source = { virtual = "." }
 dependencies = [
     { name = "checkdmarc" },
