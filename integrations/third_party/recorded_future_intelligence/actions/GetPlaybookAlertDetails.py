@@ -1,4 +1,4 @@
-############################## TERMS OF USE ###################################
+############################## TERMS OF USE ################################### # noqa: E266
 # The following code is provided for demonstration purposes only, and should  #
 # not be used without independent verification. Recorded Future makes no      #
 # representations or warranties, express, implied, statutory, or otherwise,   #
@@ -92,7 +92,10 @@ def main():
 
         is_success = True
         status = EXECUTION_STATE_COMPLETED
-        output_message = f"Successfully fetched the following Alert ID details from Recorded Future: \n{alert_id}"
+        output_message = (
+            "Successfully fetched the following Alert ID details "
+            f"from Recorded Future: \n{alert_id}"
+        )
 
     except RecordedFutureUnauthorizedError as e:
         output_message = (
