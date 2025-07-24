@@ -23,5 +23,5 @@ dev = [
 [tool.uv.sources]
 soar-sdk = { git = "https://github.com/chronicle/soar-sdk.git" }
 integration-testing = { path = "../../../packages/integration_testing" }
-tipcommon = { path = "../../../packages/tipcommon/TIPCommon-2.2.7/TIPCommon-2.2.7-py2.py3-none-any.whl" }
+tipcommon = { path = "../../../packages/tipcommon/TIPCommon-2.2.10/TIPCommon-2.2.10-py2.py3-none-any.whl" }
 environmentcommon = { path = "../../../packages/envcommon/EnvironmentCommon-1.0.2/EnvironmentCommon-1.0.2-py2.py3-none-any.whl" }

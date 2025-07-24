@@ -870,7 +870,7 @@ dependencies = [
     { name = "requests" },
 ]
 wheels = [
-    { filename = "tipcommon-2.2.10-py2.py3-none-any.whl", hash = "sha256:5d244df7b9c622542be409806e10efc586d853f046f4ff75a7dc407d2ff819d1" },
+    { filename = "tipcommon-2.2.10-py2.py3-none-any.whl", hash = "sha256:3d5c4160dcbb5d528636363712f0feca69d180161929bbb6af150cb5765df62e" },
 ]
 
 [package.metadata]
@@ -900,7 +900,7 @@ wheels = [
 
 [[package]]
 name = "tools"
-version = "68.2"
+version = "67.0"
 source = { virtual = "." }
 dependencies = [
     { name = "croniter" },
