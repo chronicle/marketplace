@@ -183,6 +183,6 @@ def _version_bump_validation_run_checks(
 
 
 def _rn_is_valid(new_notes: list[ReleaseNote] | None, version_to_compare: float = 1.0) -> bool:
-    if new_notes is None:
-        return False
-    return all(new_note.version == version_to_compare for new_note in new_notes)
+    return new_notes is not None and all(
+        new_note.version == version_to_compare for new_note in new_notes
+    )
