@@ -95,7 +95,7 @@ def main():
         raise RecordedFutureInvalidCaseTypeError(
             (
                 f"Label {siemplify.current_alert.rule_generator} is not "
-                f"one of accepted types: {LABEL_MAP.keys()!s}",
+                f"one of accepted types: {LABEL_MAP.keys()!s}"
             )
         )
 
