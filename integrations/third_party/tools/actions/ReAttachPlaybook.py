@@ -92,8 +92,8 @@ class ConnectToDb:
 def get_integration_instance(siemplify, integration_name, environment, instance_name):
     filtered = get_integration_instance_details_by_name(
         chronicle_soar=siemplify,
-        integration_identifier=instance_name,
-        instance_display_name=integration_name,
+        integration_identifier=integration_name,
+        instance_display_name=instance_name,
         environments=[environment],
     )
     return filtered[0] if filtered else {"identifier": "N/A"}

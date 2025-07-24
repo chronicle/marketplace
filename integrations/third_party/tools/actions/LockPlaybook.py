@@ -34,11 +34,10 @@ WF_STATUS_TERMINATED = 5
 def main():
     siemplify = SiemplifyAction()
     siemplify.script_name = "Lock Playbook"
-    res = get_case_overview_details(
+    case = get_case_overview_details(
         chronicle_soar=siemplify,
         case_id=siemplify.case_id,
-    )
-    case = res.json()
+    ).json()
     current_alert_index = None
     alerts = sorted(
         case["alertCards"],

@@ -1,6 +1,6 @@
 ![Google Security Operations](/docs/resources/response_integrations/google_secops_logo.png)
 
-# Welcome to the Google SecOps Response Integration Content Repository!
+# Welcome to the Google SecOps Content Repository!
 
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
 ![Maintenance](https://img.shields.io/maintenance/yes/2025)

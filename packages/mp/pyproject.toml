@@ -1,6 +1,6 @@
 [project]
 name = "mp"
-version = "1.1.0"
+version = "1.2.0"
 description = "General Purpose CLI tool for Google SecOps Marketplace"
 readme = "README.md"
 authors = [

@@ -19,7 +19,7 @@ from soar_sdk.SiemplifyUtils import output_handler
 from TIPCommon.rest.soar_api import assign_case_to_user
 
 ACTION_NAME = "AssignCaseToUser"
-
+TRUE = "true
 
 @output_handler
 def main():
@@ -39,7 +39,7 @@ def main():
 
     siemplify.LOGGER.info(add_task)
 
-    siemplify.end("true", True)
+    siemplify.end(TRUE, True)
 
 
 if __name__ == "__main__":

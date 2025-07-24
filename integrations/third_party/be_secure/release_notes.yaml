@@ -1,24 +1,24 @@
--   description: 'Updated the integration''s categories.
+- description: 'Updated the integration''s categories.
 
-        '
-    integration_version: 8.0
-    item_name: beSECURE
-    item_type: Integration
-    publish_time: 1630059393
-    ticket_number: xxx
-    new: false
-    regressive: false
-    deprecated: false
-    removed: false
--   description: 'Important - Updated the integration code to work with Python version
-        3.11. To ensure compatibility and avoid disruptions, follow the upgrade best
-        practices described in the following document: https://cloud.google.com/chronicle/docs/soar/respond/integrations-setup/upgrade-python-versions'
-    integration_version: 9.0
-    item_name: beSECURE
-    item_type: Integration
-    publish_time: 1735201890
-    ticket_number: ''
-    new: false
-    regressive: false
-    deprecated: false
-    removed: false
+    '
+  integration_version: 8.0
+  item_name: beSECURE
+  item_type: Integration
+  publish_time: '2021-08-27'
+  ticket_number: xxx
+  new: false
+  regressive: false
+  deprecated: false
+  removed: false
+- description: 'Important - Updated the integration code to work with Python version
+    3.11. To ensure compatibility and avoid disruptions, follow the upgrade best practices
+    described in the following document: https://cloud.google.com/chronicle/docs/soar/respond/integrations-setup/upgrade-python-versions'
+  integration_version: 9.0
+  item_name: beSECURE
+  item_type: Integration
+  publish_time: '2024-12-26'
+  ticket_number: ''
+  new: false
+  regressive: false
+  deprecated: false
+  removed: false
