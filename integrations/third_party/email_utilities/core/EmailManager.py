@@ -596,9 +596,12 @@ class EmailUtils:
             matched_urls = EmailUtils.find_urls_regex(body)
 
         for found_url in matched_urls:
+            item = found_url.split("/")
             if "." not in found_url:
                 # if we found a URL like e.g. http://afafasasfasfas; that makes no
                 # sense, thus skip it
+                continue
+            if IPV4_REGEX.match(item[0]) or IPV6_REGEX.match(item[0]):
                 continue
             try:
                 ipaddress.ip_address(found_url)
