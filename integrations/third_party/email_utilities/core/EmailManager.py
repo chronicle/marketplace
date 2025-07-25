@@ -600,8 +600,19 @@ class EmailUtils:
                 # if we found a URL like e.g. http://afafasasfasfas; that makes no
                 # sense, thus skip it
                 continue
+            
+            # Extract hostname from URL to check if it's an IP address
+            # Handle URLs with protocols (e.g., 'http://1.2.3.4/path')
+            hostname = found_url
+            if "://" in found_url:
+                # Split by protocol and get the part after it
+                hostname = found_url.split("://", 1)[1]
+            
+            # Get just the hostname part (before any path, port, or query)
+            hostname = hostname.split("/")[0].split(":")[0].split("?")[0]
+            
             try:
-                ipaddress.ip_address(found_url)
+                ipaddress.ip_address(hostname)
                 # we want to skip any IP addresses we find in the body.  These will be
                 # added when via the extract_ips method.
                 continue
