@@ -1,6 +1,7 @@
 name: Push Breach Point Data
-description: This action will add the breach point label to all entities or selected
-    entities based on the defined criteria inputs and push these labels to XM Cyber.
+description: This action will add the breach point label to all entities or selected 
+    entities from the events and SecOps entities based on the defined criteria inputs 
+    and push these labels to XM Cyber.
 integration_identifier: XMCyber
 parameters:
     -   name: Attribute Name

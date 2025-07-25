@@ -39,11 +39,11 @@ def main():
     try:
         gitsync = GitSyncManager.from_siemplify_object(siemplify)
 
-        for job in job_names:
-            siemplify.LOGGER.info(f"Pulling {job}")
-            job = gitsync.content.get_job(job)
-            gitsync.install_job(job)
-            siemplify.LOGGER.info(f"Successfully pulled Job {job.name}")
+        for job_name in job_names:
+            siemplify.LOGGER.info(f"Pulling {job_name}")
+            job_obj = gitsync.content.get_job(job_name)
+            gitsync.install_job(job_obj)
+            siemplify.LOGGER.info(f"Successfully pulled Job {job_obj.name}")
 
     except Exception as e:
         siemplify.LOGGER.error(f"General error performing Job {SCRIPT_NAME}")

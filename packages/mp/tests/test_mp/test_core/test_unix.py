@@ -199,7 +199,7 @@ def test_init_python_project(tmp_path: pathlib.Path) -> None:
     mp.core.unix.init_python_project(tmp_path)
     assert pyproject_toml.exists()
 
-    with pytest.raises(mp.core.unix.CommandError):
+    with pytest.raises(mp.core.unix.FatalCommandError):
         mp.core.unix.init_python_project(tmp_path)
 
 

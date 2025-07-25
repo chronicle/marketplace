@@ -132,3 +132,25 @@ mp dev-env deploy <integration_name>
 ```
 
 - `<integration_name>`: The name of the integration directory under `integrations/commercial` or `integrations/third_party`.
+
+## Integration Validation Command
+
+### Validate Integrations
+
+Run pre and post build validation on the integrations:
+
+```bash
+mp validate
+```
+
+You must specify one of the following options:
+
+- `--repository [REPOSITORY_TYPES...]`: Validate all integrations in specified repositories
+- `--integration [INTEGRATION_NAMES...]`: Validate specific integration(s)
+- `--group [GROUP_NAMES...]`: Validate all integrations in specified group(s)
+
+Additional options:
+
+- `--only-pre-build`: Run only pre-build validation checks, skipping the full build process
+- `--quiet`: Reduce output verbosity
+- `--verbose`: Increase output verbosity
