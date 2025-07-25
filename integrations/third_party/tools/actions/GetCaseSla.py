@@ -46,15 +46,15 @@ def main():
         case_data = response.to_json()
 
         case_sla = int(
-            case_data["sla"]["slaExpirationTime"]
-            or case_data["stageSla"]["slaExpirationTime"]
+            case_data.get("sla", {}).get("slaExpirationTime")
+            or case_data.get("stageSla", {}).get("slaExpirationTime")
         )
         dt_case_sla = convert_unixtime_to_datetime(case_sla).strftime(dt_format)
         siemplify.LOGGER.info(f"stage SLA: {dt_case_sla}")
 
         case_critical_sla = int(
-            case_data["sla"]["criticalExpirationTime"]
-            or case_data["stageSla"]["criticalExpirationTime"]
+            case_data.get("sla", {}).get("criticalExpirationTime")
+            or case_data.get("stageSla", {}).get("criticalExpirationTime")
         )
         dt_case_critical_sla = convert_unixtime_to_datetime(case_critical_sla).strftime(
             dt_format,
