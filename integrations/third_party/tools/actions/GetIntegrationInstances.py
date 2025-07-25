@@ -16,8 +16,9 @@ from __future__ import annotations
 
 from soar_sdk.SiemplifyAction import SiemplifyAction
 from soar_sdk.SiemplifyUtils import output_handler
+from TIPCommon.rest.soar_api import get_installed_integrations_of_environment
 
-GET_INTEGRATIONS = "{}/external/v1/integrations/GetEnvironmentInstalledIntegrations"
+INTEGRATION_IDENTIFIER = "-"
 
 
 @output_handler
@@ -26,16 +27,17 @@ def main():
     siemplify.script_name = "GetIntegrationInstances"
 
     env_search = [siemplify._environment, "*"]
-    json_payload = {"name": "*"}
     instances = []
     for env in env_search:
-        json_payload = {"name": env}
-        siemplify_integrations = siemplify.session.post(
-            GET_INTEGRATIONS.format(siemplify.API_ROOT),
-            json=json_payload,
+        siemplify_integrations = get_installed_integrations_of_environment(
+            chronicle_soar=siemplify,
+            environment=env,
+            integration_identifier=INTEGRATION_IDENTIFIER,
         )
-        siemplify_integrations.raise_for_status()
-        instances.extend(siemplify_integrations.json()["instances"])
+        instances.extend(
+            [integration.to_json() for integration in siemplify_integrations]
+        )
+
 
     siemplify.result.add_result_json({"instances": instances})
     output_message = "Returned Instances."
