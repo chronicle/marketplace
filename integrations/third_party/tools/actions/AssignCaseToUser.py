@@ -19,7 +19,7 @@ from soar_sdk.SiemplifyUtils import output_handler
 from TIPCommon.rest.soar_api import assign_case_to_user
 
 ACTION_NAME = "AssignCaseToUser"
-TRUE = "true
+TRUE = "true"
 
 @output_handler
 def main():
