@@ -602,9 +602,13 @@ class EmailUtils:
                 # sense, thus skip it
                 continue
             if IPV4_REGEX.match(item[0]) or IPV6_REGEX.match(item[0]):
+                ip_only = True
                 for i in item[1:]:
-                    if i.match(IPV4_REGEX) or i.match(IPV6_REGEX):
-                        continue
+                    if not (IPV4_REGEX.match(i) or IPV6_REGEX.match(i)):
+                        ip_only = False
+                        break
+                if ip_only:
+                    continue
             
             try:
                 ipaddress.ip_address(found_url)
