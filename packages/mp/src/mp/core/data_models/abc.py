@@ -379,16 +379,29 @@ class SequentialMetadata(Buildable[_BT, _NBT], abc.ABC, Generic[_BT, _NBT]):
         Returns:
             A metadata object
 
-        Raises:
-            ValueError: when the non-built YAML failed to be loaded
-
         """
         non_built: str = meta_path.read_text(encoding="utf-8")
+        return cls.from_non_built_str(non_built)
+
+    @classmethod
+    def from_non_built_str(cls, raw_text: str) -> list[Self]:
+        """Create the script's metadata object from the non-built integration's raw text.
+
+        Args:
+            raw_text: The path to the built metadata component
+
+        Returns:
+            A metadata object
+
+        Raises:
+            ValueError: when the built JSON failed to be loaded
+
+        """
         try:
-            content: list[_NBT] = yaml.safe_load(non_built)
+            content: list[_NBT] = yaml.safe_load(raw_text)
             results: list[Self] = [cls.from_non_built(c) for c in content]
         except (ValueError, yaml.YAMLError) as e:
-            msg: str = f"Failed to load yaml from {meta_path}\n{non_built}"
+            msg: str = "Failed to load yaml."
             raise ValueError(mp.core.utils.trim_values(msg)) from e
         else:
             return results

@@ -16,6 +16,7 @@
 
 from __future__ import annotations
 
+import pathlib
 import subprocess as sp  # noqa: S404
 import sys
 from typing import IO, TYPE_CHECKING
@@ -25,7 +26,6 @@ from mp.core.exceptions import FatalValidationError, NonFatalValidationError
 from . import config, constants, file_utils
 
 if TYPE_CHECKING:
-    import pathlib
     from collections.abc import Iterable, Iterator
 
 COMMAND_ERR_MSG: str = "Error happened while executing a command: {0}"
@@ -432,6 +432,77 @@ def check_lock_file(project_path: pathlib.Path) -> None:
         error_output = e.stderr.strip()
         error_output = f"{COMMAND_ERR_MSG.format('uv lock --check')}: {error_output}"
         raise NonFatalCommandError(error_output) from e
+
+
+def get_files_unmerged_to_main_branch(
+    base: str, head_sha: str, integration_path: pathlib.Path
+) -> list[pathlib.Path]:
+    """Return a list of file names changed in a pull request compared to the main branch.
+
+    Args:
+        base: The base branch of the PR.
+        head_sha: The head commit SHA of the PR.
+        integration_path: The path to the integration directory.
+
+    Returns:
+        A list of changed file paths.
+
+    Raises:
+        NonFatalCommandError: If the git command fails.
+
+    """
+    command: list[str] = [
+        "git",
+        "diff",
+        f"origin/{base}...{head_sha}",
+        "--name-only",
+        "--diff-filter=ACMRTUXB",
+        str(integration_path),
+    ]
+    try:
+        results: sp.CompletedProcess[str] = sp.run(  # noqa: S603
+            command, check=True, text=True, capture_output=True
+        )
+        return [
+            p
+            for path in results.stdout.strip().splitlines()
+            if path and (p := pathlib.Path(path)).exists()
+        ]
+
+    except sp.CalledProcessError as error:
+        error_output: str = f"{COMMAND_ERR_MSG.format('git diff')}: {error.stderr.strip()}"
+        raise NonFatalCommandError(error_output) from error
+
+
+def get_file_content_from_main_branch(file_path: pathlib.Path) -> str:
+    """Return the content of a specific file from the 'main' branch.
+
+    Args:
+        file_path: The path to the file.
+
+    Returns:
+        The content of the file as a string.
+
+    Raises:
+        NonFatalCommandError: If the git command fails (e.g., file not found on main).
+
+    """
+    git_path_arg: str = f"origin/main:{file_path!s}"
+    command: list[str] = ["git", "show", git_path_arg]
+
+    try:
+        results: sp.CompletedProcess[str] = sp.run(  # noqa: S603
+            command, check=True, text=True, capture_output=True
+        )
+
+    except sp.CalledProcessError as error:
+        error_output: str = (
+            f"Failed to get content of '{file_path}' from main branch: {error.stderr.strip()}"
+        )
+        raise NonFatalCommandError(error_output) from error
+
+    else:
+        return results.stdout
 
 
 def _get_python_version() -> str:

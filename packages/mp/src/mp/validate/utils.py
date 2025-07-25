@@ -16,8 +16,6 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING, NamedTuple
 
-import rich
-
 if TYPE_CHECKING:
     import pathlib
     from collections.abc import Iterable
@@ -48,9 +46,4 @@ def get_marketplace_paths_from_names(
     for n in names:
         if (p := marketplace_path / n).exists():
             result.add(p)
-        else:
-            rich.print(
-                "[yellow] the integration: "
-                f"{n} has not been found in {marketplace_path.name} [/yellow]"
-            )
     return result
