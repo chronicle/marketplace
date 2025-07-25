@@ -303,14 +303,18 @@ class EmailUtils:
             )
             url = re.sub(r"[^\w\s:/?.=&%-]", "", url).rstrip(" .]")
             url = urllib.parse.urlparse(url).geturl()
-
+            no_schema = "noscheme://"
             if ":/" in url[:10]:
                 scheme_url = re.sub(r":/{1,3}", "://", url, count=1)
             else:
-                scheme_url = "noscheme://" + url
+                scheme_url = f"{no_schema}{url}"
 
             parsed_url = urllib.parse.urlparse(scheme_url)
-            if parsed_url.hostname is None:
+            if (
+                parsed_url.hostname is None
+                or no_schema in scheme_url
+                and extract_valid_ips_from_body(parsed_url.hostname)
+            ):
                 return None
 
             tld = parsed_url.hostname.rstrip(".").rsplit(".", 1)[-1].lower()
@@ -596,12 +600,9 @@ class EmailUtils:
             matched_urls = EmailUtils.find_urls_regex(body)
 
         for found_url in matched_urls:
-            item = found_url.split("/")
             if "." not in found_url:
                 # if we found a URL like e.g. http://afafasasfasfas; that makes no
                 # sense, thus skip it
-                continue
-            if IPV4_REGEX.match(item[0]) or IPV6_REGEX.match(item[0]):
                 continue
             try:
                 ipaddress.ip_address(found_url)
