@@ -66,7 +66,7 @@ integration_name/
 │
 ├── __init__.py
 ├── .python-version
-├── integration_mapping_rules.yaml
+├── ontology_mapping.yaml
 ├── definition.yaml
 ├── pyproject.toml
 ├── release_notes.yaml
@@ -80,7 +80,7 @@ integration_name/
 - **`__init__.py`**: Empty file that marks the directory as a Python package.
 - **`.python-version`**: Specifies the Python version required for the integration (typically
   3.11).
-- **`integration_mapping_rules`**: Specifies the default mapping rules of events to SOAR entities. A
+- **`ontology_mapping.yaml`**: Specifies the default mapping rules of events to SOAR entities. A
   default configuration must exist if the integration has at least one connector.
 - **`definition.yaml`**: Contains metadata about the integration, including:
     - API version
@@ -99,7 +99,7 @@ integration_name/
     - Project metadata
 - **`release_notes.yaml`**: Documents changes for each version:
     - Version numbers
-    - Release dates
+    - Release dates (in YYYY-MM-DD format)
     - Description of changes
     - Bug fixes
     - New features

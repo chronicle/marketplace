@@ -52,9 +52,12 @@ from tld import get_fld
 from urlextract import URLExtract
 
 from . import EmailParserRouting, OleId
-from .EmailUtilitiesManager import fix_malformed_eml_content
 from soar_sdk.SiemplifyDataModel import Attachment
 
+from .EmailUtilitiesManager import (
+    extract_valid_ips_from_body,
+    fix_malformed_eml_content,
+)
 if typing.TYPE_CHECKING:
     from collections.abc import Iterable
 
@@ -502,20 +505,31 @@ class EmailUtils:
             return False
 
     @staticmethod
-    def extract_ips(body, include_internal=False):
+    def extract_ips(body, include_internal=False) -> list[str]:
+        """extract ips from email body.
+
+        Args:
+            include_internal (bool): include internal ips.
+
+        Returns:
+            list[str] : list of valid ips.
+        """
         ips: typing.Counter[str] = Counter()
-        for ip_type in [IPV4_REGEX, IPV6_REGEX]:
-            for match in ip_type.findall(body):
-                try:
-                    ipaddress_match = ipaddress.ip_address(match)
-                except ValueError:
-                    continue
-                else:
-                    if not (ipaddress_match.is_private) or (
-                        include_internal and match != "::"
-                    ):
-                        ips[match] = 1
-        return list(ips)
+        for ip in extract_valid_ips_from_body(body):
+            try:
+                ipaddress_match = ipaddress.ip_address(ip)
+
+            except ValueError:
+                continue
+
+            else:
+                if not (ipaddress_match.is_private) or (
+                    include_internal and ip != "::"
+                ):
+                    ips[ip] = 1
+        ips = list(ips)
+
+        return ips
 
     @staticmethod
     def extract_domains_from_urls(urls):
@@ -588,7 +602,9 @@ class EmailUtils:
                 # sense, thus skip it
                 continue
             if IPV4_REGEX.match(item[0]) or IPV6_REGEX.match(item[0]):
-                continue
+                for i in item[1:]:
+                    if i.match(IPV4_REGEX) or i.match(IPV6_REGEX):
+                        continue
             
             try:
                 ipaddress.ip_address(found_url)
@@ -647,6 +663,11 @@ class EmailUtils:
                                 entity["identifier"] = EmailUtils.clean_found_url(
                                     m.group(0),
                                 )
+                            elif (
+                                entity_type == "ADDRESS"
+                                and not extract_valid_ips_from_body(m.group(0))
+                            ):
+                                continue
                             else:
                                 entity["identifier"] = m.group(0)
 

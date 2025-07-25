@@ -18,6 +18,8 @@ import base64
 from typing import TYPE_CHECKING, Any
 
 import requests
+import rich
+import typer
 
 if TYPE_CHECKING:
     import pathlib
@@ -26,22 +28,55 @@ if TYPE_CHECKING:
 class BackendAPI:
     """Handles backend API operations for the dev environment."""
 
-    def __init__(self, api_root: str, username: str, password: str) -> None:
-        """Initialize the BackendAPI with credentials and API root."""
+    def __init__(
+        self,
+        api_root: str,
+        username: str | None = None,
+        password: str | None = None,
+        api_key: str | None = None,
+    ) -> None:
+        """Initialize the BackendAPI with credentials and API root.
+
+        Args:
+            api_root: The API root URL.
+            username: The username for authentication (required if using username/password auth).
+            password: The password for authentication (required if using username/password auth).
+            api_key: The API key for authentication (required if using API key auth).
+
+        Raises:
+            typer.Exit: Validations error.
+
+        """
         self.api_root = api_root.rstrip("/")
         self.username = username
         self.password = password
+        self.api_key = api_key
         self.session = requests.Session()
         self.token = None
 
+        if api_key is not None:
+            if username is not None or password is not None:
+                rich.print("[red]Cannot use both API key and username/password[/red]")
+                raise typer.Exit(1)
+
+        elif username is None or password is None:
+            rich.print("[red]You must provide username and password or api key[/red]")
+            raise typer.Exit(1)
+
     def login(self) -> None:
-        """Authenticate and store the session token."""
-        login_url = f"{self.api_root}/api/external/v1/accounts/Login?format=camel"
-        login_payload = {"userName": self.username, "password": self.password}
-        resp = self.session.post(login_url, json=login_payload)
-        resp.raise_for_status()
-        self.token = resp.json()["token"]
-        self.session.headers.update({"Authorization": f"Bearer {self.token}"})
+        """Authenticate and store the session token or API key header."""
+        if self.api_key is not None:
+            self.session.headers.update({"AppKey": self.api_key})
+            verify_url = f"{self.api_root}/api/external/v1/settings/GetSourceRepositorySettings"
+            resp = self.session.get(verify_url)
+            resp.raise_for_status()
+        else:
+            login_url = f"{self.api_root}/api/external/v1/accounts/Login?format=camel"
+            login_payload = {"userName": self.username, "password": self.password}
+            resp = self.session.post(login_url, json=login_payload)
+            resp.raise_for_status()
+            self.token = resp.json()["token"]
+            self.session.headers.update({"Authorization": f"Bearer {self.token}"})
 
     def get_integration_details(self, zip_path: pathlib.Path) -> dict[str, Any]:
         """Get integration details from a zipped package.

@@ -16,21 +16,27 @@
 
 from __future__ import annotations
 
+import pathlib
 import subprocess as sp  # noqa: S404
 import sys
 from typing import IO, TYPE_CHECKING
 
+from mp.core.exceptions import FatalValidationError, NonFatalValidationError
+
 from . import config, constants, file_utils
 
 if TYPE_CHECKING:
-    import pathlib
     from collections.abc import Iterable, Iterator
 
 COMMAND_ERR_MSG: str = "Error happened while executing a command: {0}"
 
 
-class CommandError(Exception):
-    """Error that happens during commands."""
+class FatalCommandError(FatalValidationError):
+    """Fatal error that happens during commands."""
+
+
+class NonFatalCommandError(NonFatalValidationError):
+    """Non-fatal error that happens during shell commands."""
 
 
 def compile_core_integration_dependencies(
@@ -45,7 +51,7 @@ def compile_core_integration_dependencies(
         requirements_path: the path to the requirements' file to write the contents into
 
     Raises:
-        CommandError: if a project is already initialized
+        FatalCommandError: if a project is already initialized
 
     """
     python_version: str = (
@@ -71,7 +77,7 @@ def compile_core_integration_dependencies(
     try:
         sp.run(command, cwd=project_path, check=True, text=True)  # noqa: S603
     except sp.CalledProcessError as e:
-        raise CommandError(COMMAND_ERR_MSG.format(e)) from e
+        raise FatalCommandError(COMMAND_ERR_MSG.format(e)) from e
 
 
 def download_wheels_from_requirements(
@@ -85,7 +91,7 @@ def download_wheels_from_requirements(
         dst_path: the path to install the `.whl` files into
 
     Raises:
-        CommandError: if a project is already initialized
+        FatalCommandError: if a project is already initialized
 
     """
     python_version: str = _get_python_version()
@@ -114,7 +120,7 @@ def download_wheels_from_requirements(
     try:
         sp.run(command, cwd=requirements_path.parent, check=True, text=True)  # noqa: S603
     except sp.CalledProcessError as e:
-        raise CommandError(COMMAND_ERR_MSG.format(e)) from e
+        raise FatalCommandError(COMMAND_ERR_MSG.format(e)) from e
 
 
 def add_dependencies_to_toml(
@@ -128,7 +134,7 @@ def add_dependencies_to_toml(
         requirements_path: the path to the requirements to add
 
     Raises:
-        CommandError: if a project is already initialized
+        FatalCommandError: if a project is already initialized
 
     """
     python_version: str = _get_python_version()
@@ -148,7 +154,7 @@ def add_dependencies_to_toml(
     try:
         sp.run(command, cwd=project_path, check=True, text=True)  # noqa: S603
     except sp.CalledProcessError as e:
-        raise CommandError(COMMAND_ERR_MSG.format(e)) from e
+        raise FatalCommandError(COMMAND_ERR_MSG.format(e)) from e
 
 
 def init_python_project_if_not_exists(project_path: pathlib.Path) -> None:
@@ -184,7 +190,7 @@ def init_python_project(project_path: pathlib.Path) -> None:
         project_path: the path to initialize the project
 
     Raises:
-        CommandError: if a project is already initialized
+        FatalCommandError: if a project is already initialized
 
     """
     python_version: str = _get_python_version()
@@ -205,7 +211,7 @@ def init_python_project(project_path: pathlib.Path) -> None:
     try:
         sp.run(command, cwd=project_path, check=True, text=True)  # noqa: S603
     except sp.CalledProcessError as e:
-        raise CommandError(COMMAND_ERR_MSG.format(e)) from e
+        raise FatalCommandError(COMMAND_ERR_MSG.format(e)) from e
 
 
 def ruff_check(paths: Iterable[pathlib.Path], /, **flags: bool | str) -> int:
@@ -274,7 +280,7 @@ def execute_command_and_get_output(
         The status code of the process
 
     Raises:
-        CommandError: if a project is already initialized
+        FatalCommandError: if a project is already initialized
 
     """
     command.extend(str(path) for path in paths)
@@ -293,7 +299,7 @@ def execute_command_and_get_output(
         return process.wait()
 
     except sp.CalledProcessError as e:
-        raise CommandError(COMMAND_ERR_MSG.format(e)) from e
+        raise FatalCommandError(COMMAND_ERR_MSG.format(e)) from e
 
 
 def _stream_process_output(process: sp.Popen[bytes]) -> Iterator[bytes]:
@@ -317,7 +323,7 @@ def get_changed_files() -> list[str]:
         A list of file names that were changed since the last commit.
 
     Raises:
-        CommandError: The command failed to be executed
+        FatalCommandError: The command failed to be executed
 
     """
     command: list[str] = [
@@ -338,7 +344,7 @@ def get_changed_files() -> list[str]:
         return result.stdout.split()
 
     except sp.CalledProcessError as e:
-        raise CommandError(COMMAND_ERR_MSG.format(e)) from e
+        raise FatalCommandError(COMMAND_ERR_MSG.format(e)) from e
 
 
 def _get_runtime_config() -> list[str]:
@@ -385,6 +391,118 @@ def get_flags_to_command(**flags: bool | str | list[str]) -> list[str]:
             all_flags.append(value)
 
     return all_flags
+
+
+def check_lock_file(project_path: pathlib.Path) -> None:
+    """Check if the 'uv.lock' file is consistent with 'pyproject.toml' file.
+
+    Args:
+        project_path: The integration path to the project directory
+                      that contains 'pyproject.toml' and 'uv.lock' files.
+
+    Raises:
+        NonFatalCommandError: If the 'uv lock --check' command indicates that the
+                      'uv.lock' file is out of sync or if another error
+                      occurs during the check.
+
+    """
+    python_version: str = _get_python_version()
+
+    command: list[str] = [
+        sys.executable,
+        "-m",
+        "uv",
+        "lock",
+        "--check",
+        "--project",
+        str(project_path),
+        "--python",
+        python_version,
+    ]
+
+    runtime_config: list[str] = _get_runtime_config()
+    command.extend(runtime_config)
+
+    try:
+        sp.run(  # noqa: S603
+            command, cwd=project_path, check=True, text=True, capture_output=True
+        )
+
+    except sp.CalledProcessError as e:
+        error_output = e.stderr.strip()
+        error_output = f"{COMMAND_ERR_MSG.format('uv lock --check')}: {error_output}"
+        raise NonFatalCommandError(error_output) from e
+
+
+def get_files_unmerged_to_main_branch(
+    base: str, head_sha: str, integration_path: pathlib.Path
+) -> list[pathlib.Path]:
+    """Return a list of file names changed in a pull request compared to the main branch.
+
+    Args:
+        base: The base branch of the PR.
+        head_sha: The head commit SHA of the PR.
+        integration_path: The path to the integration directory.
+
+    Returns:
+        A list of changed file paths.
+
+    Raises:
+        NonFatalCommandError: If the git command fails.
+
+    """
+    command: list[str] = [
+        "git",
+        "diff",
+        f"origin/{base}...{head_sha}",
+        "--name-only",
+        "--diff-filter=ACMRTUXB",
+        str(integration_path),
+    ]
+    try:
+        results: sp.CompletedProcess[str] = sp.run(  # noqa: S603
+            command, check=True, text=True, capture_output=True
+        )
+        return [
+            p
+            for path in results.stdout.strip().splitlines()
+            if path and (p := pathlib.Path(path)).exists()
+        ]
+
+    except sp.CalledProcessError as error:
+        error_output: str = f"{COMMAND_ERR_MSG.format('git diff')}: {error.stderr.strip()}"
+        raise NonFatalCommandError(error_output) from error
+
+
+def get_file_content_from_main_branch(file_path: pathlib.Path) -> str:
+    """Return the content of a specific file from the 'main' branch.
+
+    Args:
+        file_path: The path to the file.
+
+    Returns:
+        The content of the file as a string.
+
+    Raises:
+        NonFatalCommandError: If the git command fails (e.g., file not found on main).
+
+    """
+    git_path_arg: str = f"origin/main:{file_path!s}"
+    command: list[str] = ["git", "show", git_path_arg]
+
+    try:
+        results: sp.CompletedProcess[str] = sp.run(  # noqa: S603
+            command, check=True, text=True, capture_output=True
+        )
+
+    except sp.CalledProcessError as error:
+        error_output: str = (
+            f"Failed to get content of '{file_path}' from main branch: {error.stderr.strip()}"
+        )
+        raise NonFatalCommandError(error_output) from error
+
+    else:
+        return results.stdout
 
 
 def _get_python_version() -> str:
