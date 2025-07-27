@@ -60,7 +60,7 @@ VersionBumpValidationData: TypeAlias = tuple[ExistingIntegrationFiles, NewIntegr
 
 
 class VersionBumpValidation:
-    validation_init_msg: str = "[yellow]Running version bump validation [/yellow]"
+    name: str = "Version Bump Validation"
 
     def run(self, integration_path: pathlib.Path) -> None:  # noqa: PLR6301
         """Validate that `project.toml` and `release_notes.yml` files are correctly versioned.

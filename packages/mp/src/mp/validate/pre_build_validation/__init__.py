@@ -16,7 +16,6 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING, Protocol
 
-import rich
 import typer
 
 from mp.core.exceptions import FatalValidationError, NonFatalValidationError
@@ -30,7 +29,7 @@ if TYPE_CHECKING:
 
 
 class Validator(Protocol):
-    validation_init_msg: str
+    name: str
 
     def run(self, validation_path: pathlib.Path) -> None:
         """Execute the validation process on the specified path.
@@ -57,29 +56,16 @@ class PreBuildValidations:
                 of the validation checks.
 
         """
-        self.results.errors.append(
-            "[bold green]Running pre build validation on"
-            f" ---- {self.integration_path.name} ---- \n[/bold green]"
-        )
-
         for validator in self._get_validation():
             try:
-                self.results.errors.append(validator.validation_init_msg)
                 validator.run(self.integration_path)
 
             except NonFatalValidationError as e:
-                self.results.errors.append(f"[red]{e}\n[/red]")
+                self.results.validation_report.add_non_fatal_validation(validator.name, str(e))
+                self.results.is_success = False
 
             except FatalValidationError as error:
-                rich.print(f"[bold red]{error}[/bold red]")
                 raise typer.Exit(code=1) from error
-
-        self.results.errors.append(
-            "[bold green]Completed pre build validation on "
-            f"---- {self.integration_path.name} ---- \n[/bold green]"
-        )
-
-        self.results.is_success = len(self.results.errors) == (len(self._get_validation()) + 2)
 
     @classmethod
     def _get_validation(cls) -> list[Validator]:
