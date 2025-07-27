@@ -27,6 +27,7 @@ jobs:
     - name: Install mp package
       run: |
         pip install --upgrade pip
+        # This installs your local 'mp' tool so it can be used in the command line
         pip install -e ./packages/mp
 
     - name: Validates all integrations
@@ -34,3 +35,11 @@ jobs:
       run: |
         mp config --marketplace-path . --processes 10 --display-config
         mp validate --repository third_party --only-pre-build
+
+    - name: Upload Report Artifact
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: validation-report
+        path: ./artifacts/validation-report.html
+        retention-days: 2
