@@ -19,10 +19,10 @@ class HtmlDisplay:
         self.validation_results = validation_results
 
     def display(self) -> None:
-        """Generate an HTML report with dual behavior:
-
+        """Generates an HTML report with dual behavior:
         - Locally: Saves to a temp file and opens in a browser.
-        - In GitHub Actions: Saves to a predictable path for artifact upload.
+        - In GitHub Actions: Saves to a predictable path and prints a link to the run summary.
+        
         """
         try:
             html_content = self._generate_validation_report_html()
@@ -43,13 +43,22 @@ class HtmlDisplay:
 
             resolved_path = report_path.resolve()
             console.print("✅ Report successfully generated.")
-            console.print(f"📂 Report available at: {resolved_path.as_uri()}")
 
             if not is_github_actions:
+                console.print(f"📂 Report available at: {resolved_path.as_uri()}")
                 console.print("🚀 Opening report in your default web browser...")
                 webbrowser.open(resolved_path.as_uri())
             else:
-                console.print(f"Artifact path for CI: {resolved_path}")
+                server_url = os.getenv("GITHUB_SERVER_URL")
+                repository = os.getenv("GITHUB_REPOSITORY")
+                run_id = os.getenv("GITHUB_RUN_ID")
+
+                if server_url and repository and run_id:
+                    artifact_url = f"{server_url}/{repository}/actions/runs/{run_id}"
+                    console.print("\n[bold cyan]View Report Artifacts:[/bold cyan]")
+                    console.print(f"👉 {artifact_url}\n")
+                else:
+                    console.print(f"Artifact path for CI: {resolved_path}")
 
         except Exception as e:
             console.print(f"❌ Error generating report: {e}")
