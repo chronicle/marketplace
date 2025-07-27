@@ -39,7 +39,7 @@ class CliDisplay:
             if not category_validation_result:
                 continue
             console.print(f"[bold underline green]{category} Validations\n[/bold underline green]")
-            for integration_result in self.validation_results.get(category):
+            for integration_result in category_validation_result:
                 console.print(
                     "[bold red]🛑 Few issues were detected in "
                     f"---- {integration_result.integration_name} ----\n[/bold red]"

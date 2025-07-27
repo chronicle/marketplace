@@ -33,7 +33,7 @@ import mp.core.file_utils
 from mp.build_project.marketplace import Marketplace
 from mp.core.custom_types import RepositoryType
 
-from .display.cli import CliDisplay
+from .display.cli import CliDisplay, console
 from .display.html.html import HtmlDisplay
 from .pre_build_validation import PreBuildValidations
 from .utils import Configurations, get_marketplace_paths_from_names
@@ -49,7 +49,7 @@ if TYPE_CHECKING:
 ValidationFn: TypeAlias = Callable[[pathlib.Path], ValidationResults]
 
 
-__all__: list[str] = ["Configurations", "app"]
+__all__: list[str] = ["Configurations", "app", "console"]
 app: typer.Typer = typer.Typer()
 
 
@@ -212,7 +212,7 @@ def validate(  # noqa: PLR0913
 
     _display_output(validations_output)
 
-    if validations_output:
+    if _detrmine_exit_code(validations_output) == 1:
         raise typer.Exit(code=1)
 
 
@@ -362,3 +362,10 @@ def _combine_results(
             combined_output[key] = combined_list
 
     return combined_output
+
+
+def _detrmine_exit_code(validations_output: dict[str, list[ValidationResults]]) -> int:
+    for category in validations_output:
+        if validations_output[category]:
+            return 1
+    return 0
