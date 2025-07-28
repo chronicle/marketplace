@@ -64,10 +64,7 @@ def main():
 
         infoblox_manager = APIManager(api_root, api_key, verify_ssl, siemplify)
         response = infoblox_manager.get_dhcp_lease_lookup(
-            dhcp_lease_filter=dhcp_lease_filter,
-            offset=offset,
-            limit=limit,
-            order_by=order_by
+            dhcp_lease_filter=dhcp_lease_filter, offset=offset, limit=limit, order_by=order_by
         )
 
         siemplify.result.add_result_json(response)
@@ -75,9 +72,7 @@ def main():
         if not results_data:
             output_message = "No DHCP lease records found."
         else:
-            leases = [
-                DHCPLease(lease).to_csv() for lease in results_data[:MAX_TABLE_RECORDS]
-            ]
+            leases = [DHCPLease(lease).to_csv() for lease in results_data[:MAX_TABLE_RECORDS]]
             siemplify.result.add_data_table("DHCP Leases", construct_csv(leases))
             output_message = (
                 f"Successfully retrieved {len(results_data)} DHCP lease record(s). "
@@ -92,9 +87,7 @@ def main():
         siemplify.LOGGER.exception(e)
     except Exception as e:
         status = EXECUTION_STATE_FAILED
-        output_message = COMMON_ACTION_ERROR_MESSAGE.format(
-            DHCP_LEASE_LOOKUP_SCRIPT_NAME, e
-        )
+        output_message = COMMON_ACTION_ERROR_MESSAGE.format(DHCP_LEASE_LOOKUP_SCRIPT_NAME, e)
         result_value = RESULT_VALUE_FALSE
         siemplify.LOGGER.error(output_message)
         siemplify.LOGGER.exception(e)

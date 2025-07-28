@@ -12,7 +12,7 @@ from ..core.constants import (
     UPDATE_NETWORK_LIST_SCRIPT_NAME,
     RESULT_VALUE_TRUE,
     RESULT_VALUE_FALSE,
-    COMMON_ACTION_ERROR_MESSAGE
+    COMMON_ACTION_ERROR_MESSAGE,
 )
 from ..core.utils import get_integration_params, string_to_list, validate_integer_param
 
@@ -28,29 +28,18 @@ def main():
 
     # Action Parameters
     network_list_id = extract_action_param(
-        siemplify,
-        param_name="Network List ID",
-        input_type=str,
-        is_mandatory=True
+        siemplify, param_name="Network List ID", input_type=str, is_mandatory=True
     )
-    name = extract_action_param(
-        siemplify,
-        param_name="Name",
-        input_type=str,
-        is_mandatory=False
-    )
+    name = extract_action_param(siemplify, param_name="Name", input_type=str, is_mandatory=False)
     items_str = extract_action_param(
-        siemplify,
-        param_name="Items",
-        input_type=str,
-        is_mandatory=False
+        siemplify, param_name="Items", input_type=str, is_mandatory=False
     )
     description = extract_action_param(
         siemplify,
         param_name="Description",
         input_type=str,
         is_mandatory=False,
-        remove_whitespaces=True
+        remove_whitespaces=True,
     )
 
     output_message = ""
@@ -60,8 +49,9 @@ def main():
     siemplify.LOGGER.info("----------------- Main - Started -----------------")
     try:
         # Validate required parameters
-        network_list_id = validate_integer_param(network_list_id, "Network List ID", zero_allowed=False,
-                                                 allow_negative=False)
+        network_list_id = validate_integer_param(
+            network_list_id, "Network List ID", zero_allowed=False, allow_negative=False
+        )
 
         items = None
         if items_str is not None:
@@ -69,16 +59,12 @@ def main():
 
         api_manager = APIManager(api_root, api_key, verify_ssl=verify_ssl, siemplify=siemplify)
         response = api_manager.update_network_list(
-            network_list_id=network_list_id,
-            name=name,
-            items=items,
-            description=description
+            network_list_id=network_list_id, name=name, items=items, description=description
         )
         network_list = NetworkList(response.get("results"))
         siemplify.result.add_result_json(json.dumps(response.get("results"), indent=4))
         siemplify.result.add_data_table(
-            "Network List Details",
-            construct_csv([network_list.to_csv()])
+            "Network List Details", construct_csv([network_list.to_csv()])
         )
         output_message = f"Successfully updated network list with ID '{network_list_id}'."
 

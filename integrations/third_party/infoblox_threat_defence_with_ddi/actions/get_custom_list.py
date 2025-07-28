@@ -19,7 +19,7 @@ from ..core.constants import (
     COMMON_ACTION_ERROR_MESSAGE,
     DEFAULT_OFFSET,
     DEFAULT_LIMIT,
-    MAX_TABLE_RECORDS
+    MAX_TABLE_RECORDS,
 )
 from ..core.utils import validate_integer_param, get_integration_params
 
@@ -88,8 +88,9 @@ def main():
         offset = validate_integer_param(offset, "Offset", zero_allowed=True, allow_negative=False)
         limit = validate_integer_param(limit, "Limit", zero_allowed=False, allow_negative=False)
         if custom_list_id is not None:
-            custom_list_id = validate_integer_param(custom_list_id, "Custom List ID", zero_allowed=True,
-                                                    allow_negative=False)
+            custom_list_id = validate_integer_param(
+                custom_list_id, "Custom List ID", zero_allowed=True, allow_negative=False
+            )
 
         api_manager = APIManager(api_root, api_key, verify_ssl=verify_ssl, siemplify=siemplify)
         response = api_manager.get_custom_list(
@@ -99,13 +100,13 @@ def main():
             tag_filter=tag_filter,
             tag_sort_filter=tag_sort_filter,
             offset=offset,
-            limit=limit
+            limit=limit,
         )
         results = response.get("results", response)
         table_results = []
         if isinstance(results, dict):
             results = [results]
-            response['results'] = results
+            response["results"] = results
         for item in results[:MAX_TABLE_RECORDS]:
             model = CustomList(item)
             table_results.append(model.to_csv())
@@ -113,8 +114,7 @@ def main():
         # Table view (using datamodel)
         if table_results:
             siemplify.result.add_data_table(
-                title="Custom List Details",
-                data_table=construct_csv(table_results)
+                title="Custom List Details", data_table=construct_csv(table_results)
             )
             output_message = (
                 f"Successfully retrieved {len(results)} custom list(s). "

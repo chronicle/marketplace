@@ -75,16 +75,10 @@ def main():
                 zero_allowed=False,
                 allow_negative=False,
             )
-        offset = validate_integer_param(
-            offset, "Offset", zero_allowed=True, allow_negative=False
-        )
-        limit = validate_integer_param(
-            limit, "Limit", zero_allowed=False, allow_negative=False
-        )
+        offset = validate_integer_param(offset, "Offset", zero_allowed=True, allow_negative=False)
+        limit = validate_integer_param(limit, "Limit", zero_allowed=False, allow_negative=False)
 
-        infoblox_manager = APIManager(
-            api_root, api_key, verify_ssl=verify_ssl, siemplify=siemplify
-        )
+        infoblox_manager = APIManager(api_root, api_key, verify_ssl=verify_ssl, siemplify=siemplify)
         response = infoblox_manager.get_network_list(
             network_list_id=network_list_id,
             network_filter=security_network_filter,
@@ -99,8 +93,7 @@ def main():
         # Prepare table output for SOAR (using datamodel)
         if response.get("results", []):
             table_data = [
-                NetworkList(r).to_csv()
-                for r in response.get("results", [])[:MAX_TABLE_RECORDS]
+                NetworkList(r).to_csv() for r in response.get("results", [])[:MAX_TABLE_RECORDS]
             ]
             siemplify.result.add_data_table("Network List", construct_csv(table_data))
             output_message = (
@@ -118,9 +111,7 @@ def main():
         siemplify.LOGGER.exception(e)
     except Exception as e:
         status = EXECUTION_STATE_FAILED
-        output_message = COMMON_ACTION_ERROR_MESSAGE.format(
-            GET_NETWORK_LIST_SCRIPT_NAME, e
-        )
+        output_message = COMMON_ACTION_ERROR_MESSAGE.format(GET_NETWORK_LIST_SCRIPT_NAME, e)
         result_value = RESULT_VALUE_FALSE
         siemplify.LOGGER.error(output_message)
         siemplify.LOGGER.exception(e)

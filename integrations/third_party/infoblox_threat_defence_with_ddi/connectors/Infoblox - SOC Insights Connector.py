@@ -13,7 +13,11 @@ from TIPCommon import (
     is_overflowed,
     is_approaching_timeout,
 )
-from ..core.constants import ALLOWED_STATUS_VALUES, ALLOWED_PRIORITY_VALUES, SOC_INSIGHTS_CONNECTOR_NAME
+from ..core.constants import (
+    ALLOWED_STATUS_VALUES,
+    ALLOWED_PRIORITY_VALUES,
+    SOC_INSIGHTS_CONNECTOR_NAME,
+)
 from ..core.utils import validate_enum
 
 # ==============================================================================
@@ -27,11 +31,11 @@ connector_starting_time = unix_now()
 def validate_input_params(status, priority):
     """
     Validate input parameters for the connector.
-    
+
     Args:
         status (str): Filter insights by status (e.g., "Active", "Closed")
         priority (str): Filter insights by priority level
-        
+
     Returns:
         tuple: Validated parameters
     """
@@ -58,11 +62,7 @@ def main(is_test_run):
 
     # Configuration Parameters
     api_root = extract_connector_param(
-        siemplify,
-        param_name="API Root",
-        input_type=str,
-        is_mandatory=True,
-        print_value=True
+        siemplify, param_name="API Root", input_type=str, is_mandatory=True, print_value=True
     )
     api_key = extract_connector_param(
         siemplify,
@@ -70,7 +70,7 @@ def main(is_test_run):
         input_type=str,
         is_mandatory=True,
         print_value=False,
-        remove_whitespaces=False
+        remove_whitespaces=False,
     )
     verify_ssl = extract_connector_param(
         siemplify,
@@ -78,30 +78,18 @@ def main(is_test_run):
         default_value=True,
         input_type=bool,
         is_mandatory=True,
-        print_value=True
+        print_value=True,
     )
 
     # Filter Parameters
     status = extract_connector_param(
-        siemplify,
-        param_name="Status",
-        input_type=str,
-        is_mandatory=False,
-        print_value=True
+        siemplify, param_name="Status", input_type=str, is_mandatory=False, print_value=True
     )
     threat_type = extract_connector_param(
-        siemplify,
-        param_name="Threat Type",
-        input_type=str,
-        is_mandatory=False,
-        print_value=True
+        siemplify, param_name="Threat Type", input_type=str, is_mandatory=False, print_value=True
     )
     priority = extract_connector_param(
-        siemplify,
-        param_name="Priority",
-        input_type=str,
-        is_mandatory=False,
-        print_value=True
+        siemplify, param_name="Priority", input_type=str, is_mandatory=False, print_value=True
     )
 
     # Environment Parameters
@@ -110,13 +98,10 @@ def main(is_test_run):
         param_name="Environment Field Name",
         default_value="Default Environment",
         input_type=str,
-        print_value=True
+        print_value=True,
     )
     environment_regex_pattern = extract_connector_param(
-        siemplify,
-        param_name="Environment Regex Pattern",
-        input_type=str,
-        print_value=True
+        siemplify, param_name="Environment Regex Pattern", input_type=str, print_value=True
     )
 
     python_process_timeout = extract_connector_param(
@@ -127,9 +112,7 @@ def main(is_test_run):
         print_value=True,
     )
     device_product_field = extract_connector_param(
-        siemplify,
-        "DeviceProductField",
-        is_mandatory=True
+        siemplify, "DeviceProductField", is_mandatory=True
     )
 
     siemplify.LOGGER.info("------------------- Main - Started -------------------")
@@ -146,10 +129,7 @@ def main(is_test_run):
 
         # Fetch SOC Insights
         insights = manager.get_soc_insights(
-            existing_ids=existing_ids,
-            status=status,
-            threat_type=threat_type,
-            priority=priority
+            existing_ids=existing_ids, status=status, threat_type=threat_type, priority=priority
         )
 
         if is_test_run:
@@ -165,9 +145,7 @@ def main(is_test_run):
             try:
                 # Check for timeout
                 if is_approaching_timeout(connector_starting_time, python_process_timeout):
-                    siemplify.LOGGER.info(
-                        "Timeout is approaching. Connector will gracefully exit"
-                    )
+                    siemplify.LOGGER.info("Timeout is approaching. Connector will gracefully exit")
                     break
 
                 # Create environment manager
@@ -176,7 +154,9 @@ def main(is_test_run):
                 )
 
                 # Convert insight to AlertInfo using the datamodel method
-                alert_info = soc_insight.get_alert_info(AlertInfo(), environment_common, device_product_field)
+                alert_info = soc_insight.get_alert_info(
+                    AlertInfo(), environment_common, device_product_field
+                )
 
                 # Update existing ids
                 existing_ids.append(alert_info.ticket_id)
@@ -225,5 +205,5 @@ def main(is_test_run):
 
 if __name__ == "__main__":
     # Connectors are run in iterations. The interval is configurable from the ConnectorsScreen UI.
-    is_test_run = not (len(sys.argv) < 2 or sys.argv[1] == 'True')
+    is_test_run = not (len(sys.argv) < 2 or sys.argv[1] == "True")
     main(is_test_run)

@@ -14,7 +14,12 @@ from ..core.constants import (
     COMMON_ACTION_ERROR_MESSAGE,
     UPDATE_CUSTOM_LIST_SCRIPT_NAME,
 )
-from ..core.utils import validate_integer_param, get_integration_params, parse_tags, get_nullable_field
+from ..core.utils import (
+    validate_integer_param,
+    get_integration_params,
+    parse_tags,
+    get_nullable_field,
+)
 
 
 @output_handler
@@ -47,7 +52,7 @@ def main():
         input_type=str,
         is_mandatory=False,
         print_value=True,
-        remove_whitespaces=True
+        remove_whitespaces=True,
     )
     confidence_level = extract_action_param(
         siemplify,
@@ -69,7 +74,7 @@ def main():
         input_type=str,
         is_mandatory=False,
         print_value=True,
-        remove_whitespaces=True
+        remove_whitespaces=True,
     )
 
     status = EXECUTION_STATE_COMPLETED
@@ -77,8 +82,9 @@ def main():
     output_message = ""
     siemplify.LOGGER.info("----------------- Main - Started -----------------")
     try:
-        custom_list_id = validate_integer_param(custom_list_id, "Custom List ID", zero_allowed=False,
-                                                allow_negative=False)
+        custom_list_id = validate_integer_param(
+            custom_list_id, "Custom List ID", zero_allowed=False, allow_negative=False
+        )
         api_manager = APIManager(api_root, api_key, verify_ssl=verify_ssl, siemplify=siemplify)
 
         # Fetch existing custom list to inherit fields if not provided
@@ -88,15 +94,17 @@ def main():
             "name": name if name else existing.get("name"),
             "description": get_nullable_field(description, existing.get("description", "")),
             "confidence_level": (
-                existing.get("confidence_level") if not confidence_level or str(confidence_level) == "None"
+                existing.get("confidence_level")
+                if not confidence_level or str(confidence_level) == "None"
                 else confidence_level.upper()
             ),
             "threat_level": (
-                existing.get("threat_level") if not threat_level or str(threat_level) == "None"
+                existing.get("threat_level")
+                if not threat_level or str(threat_level) == "None"
                 else threat_level.upper()
             ),
             "items": existing.get("items", []),
-            "tags": get_nullable_field(tags_str, existing.get("tags", {}), parser=parse_tags)
+            "tags": get_nullable_field(tags_str, existing.get("tags", {}), parser=parse_tags),
         }
 
         response = api_manager.update_custom_list(custom_list_id, payload)
@@ -107,8 +115,7 @@ def main():
         # Table view (using datamodel)
         custom_list = CustomList(result)
         siemplify.result.add_data_table(
-            "Custom List Details",
-            construct_csv([custom_list.to_csv()])
+            "Custom List Details", construct_csv([custom_list.to_csv()])
         )
     except (InfobloxException, ValueError) as e:
         status = EXECUTION_STATE_FAILED

@@ -53,9 +53,7 @@ def main():
         is_mandatory=False,
         input_type=str,
     )
-    user = extract_action_param(
-        siemplify, param_name="User", is_mandatory=False, input_type=str
-    )
+    user = extract_action_param(siemplify, param_name="User", is_mandatory=False, input_type=str)
 
     limit = extract_action_param(
         siemplify,
@@ -93,10 +91,7 @@ def main():
         if not assets_data:
             output_message = f"No assets found for Insight ID: {insight_id}."
         else:
-            assets = [
-                SOCInsightAsset(asset).to_csv()
-                for asset in assets_data[:MAX_TABLE_RECORDS]
-            ]
+            assets = [SOCInsightAsset(asset).to_csv() for asset in assets_data[:MAX_TABLE_RECORDS]]
             siemplify.result.add_data_table("Assets", construct_csv(assets))
             output_message = (
                 f"Successfully retrieved {len(assets_data)} asset(s) for Insight ID: {insight_id}. "
@@ -111,9 +106,7 @@ def main():
         siemplify.LOGGER.exception(e)
     except Exception as e:
         status = EXECUTION_STATE_FAILED
-        output_message = COMMON_ACTION_ERROR_MESSAGE.format(
-            GET_SOC_INSIGHTS_ASSETS_SCRIPT_NAME, e
-        )
+        output_message = COMMON_ACTION_ERROR_MESSAGE.format(GET_SOC_INSIGHTS_ASSETS_SCRIPT_NAME, e)
         result_value = RESULT_VALUE_FALSE
         siemplify.LOGGER.error(output_message)
         siemplify.LOGGER.exception(e)

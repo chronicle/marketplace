@@ -14,7 +14,7 @@ from ..core.constants import (
     RESULT_VALUE_FALSE,
     COMMON_ACTION_ERROR_MESSAGE,
     MAX_TABLE_RECORDS,
-    DEFAULT_LIMIT
+    DEFAULT_LIMIT,
 )
 from ..core.utils import get_integration_params, validate_required_string, validate_integer_param
 
@@ -30,53 +30,28 @@ def main():
 
     # Action Parameters
     insight_id = extract_action_param(
-        siemplify,
-        param_name="Insight ID",
-        input_type=str,
-        is_mandatory=True
+        siemplify, param_name="Insight ID", input_type=str, is_mandatory=True
     )
     confidence = extract_action_param(
-        siemplify,
-        param_name="Confidence",
-        input_type=str,
-        is_mandatory=False
+        siemplify, param_name="Confidence", input_type=str, is_mandatory=False
     )
     indicator = extract_action_param(
-        siemplify,
-        param_name="Indicator",
-        input_type=str,
-        is_mandatory=False
+        siemplify, param_name="Indicator", input_type=str, is_mandatory=False
     )
-    actor = extract_action_param(
-        siemplify,
-        param_name="Actor",
-        input_type=str,
-        is_mandatory=False
-    )
+    actor = extract_action_param(siemplify, param_name="Actor", input_type=str, is_mandatory=False)
     from_time = extract_action_param(
-        siemplify,
-        param_name="From",
-        input_type=str,
-        is_mandatory=False
+        siemplify, param_name="From", input_type=str, is_mandatory=False
     )
-    to_time = extract_action_param(
-        siemplify,
-        param_name="To",
-        input_type=str,
-        is_mandatory=False
-    )
+    to_time = extract_action_param(siemplify, param_name="To", input_type=str, is_mandatory=False)
     action_param = extract_action_param(
-        siemplify,
-        param_name="Action",
-        input_type=str,
-        is_mandatory=False
+        siemplify, param_name="Action", input_type=str, is_mandatory=False
     )
     limit = extract_action_param(
         siemplify,
         param_name="Limit",
         input_type=str,
         is_mandatory=False,
-        default_value=DEFAULT_LIMIT
+        default_value=DEFAULT_LIMIT,
     )
 
     output_message = ""
@@ -96,20 +71,17 @@ def main():
             action=action_param,
             from_time=from_time,
             to_time=to_time,
-            limit=limit
+            limit=limit,
         )
         indicators = response.get("indicators", [])
         if not indicators:
             output_message = f"No indicators found for Insight ID '{insight_id}'."
         else:
             table = [SOCInsightIndicator(item).to_csv() for item in indicators[:MAX_TABLE_RECORDS]]
-            siemplify.result.add_data_table(
-                "SOC Insight Indicators",
-                construct_csv(table)
-            )
+            siemplify.result.add_data_table("SOC Insight Indicators", construct_csv(table))
             output_message = (
-                f"Successfully retrieved {len(indicators)} indicator(s) for Insight ID '{insight_id}'. "
-                f"Showing up to {MAX_TABLE_RECORDS} in table."
+                f"Successfully retrieved {len(indicators)} indicator(s) for Insight ID "
+                f"'{insight_id}'. Showing up to {MAX_TABLE_RECORDS} in table."
             )
         siemplify.result.add_result_json(json.dumps(response, indent=4))
     except (InfobloxException, ValueError) as e:
@@ -120,7 +92,9 @@ def main():
         siemplify.LOGGER.exception(e)
     except Exception as e:
         status = EXECUTION_STATE_FAILED
-        output_message = COMMON_ACTION_ERROR_MESSAGE.format(GET_SOC_INSIGHTS_INDICATORS_SCRIPT_NAME, e)
+        output_message = COMMON_ACTION_ERROR_MESSAGE.format(
+            GET_SOC_INSIGHTS_INDICATORS_SCRIPT_NAME, e
+        )
         result_value = RESULT_VALUE_FALSE
         siemplify.LOGGER.error(output_message)
         siemplify.LOGGER.exception(e)

@@ -10,13 +10,9 @@ from ..core.constants import (
     REMOVE_SECURITY_POLICY_SCRIPT_NAME,
     RESULT_VALUE_TRUE,
     RESULT_VALUE_FALSE,
-    COMMON_ACTION_ERROR_MESSAGE
+    COMMON_ACTION_ERROR_MESSAGE,
 )
-from ..core.utils import (
-    get_integration_params,
-    validate_required_string,
-    validate_integer_param
-)
+from ..core.utils import get_integration_params, validate_required_string, validate_integer_param
 
 
 @output_handler
@@ -30,10 +26,7 @@ def main():
 
     # Action Parameters
     security_policy_id = extract_action_param(
-        siemplify,
-        param_name="Security Policy ID",
-        input_type=str,
-        is_mandatory=True
+        siemplify, param_name="Security Policy ID", input_type=str, is_mandatory=True
     )
 
     status = EXECUTION_STATE_COMPLETED
@@ -42,8 +35,9 @@ def main():
     siemplify.LOGGER.info("----------------- Main - Started -----------------")
     try:
         validate_required_string(security_policy_id, "Security Policy ID")
-        security_policy_id = validate_integer_param(security_policy_id, "Security Policy ID", zero_allowed=False,
-                                                    allow_negative=False)
+        security_policy_id = validate_integer_param(
+            security_policy_id, "Security Policy ID", zero_allowed=False, allow_negative=False
+        )
         api_manager = APIManager(api_root, api_key, verify_ssl=verify_ssl, siemplify=siemplify)
         api_manager.remove_security_policy(security_policy_id)
         output_message = f"Successfully removed security policy with ID '{security_policy_id}'."
@@ -55,7 +49,9 @@ def main():
         siemplify.LOGGER.exception(e)
     except Exception as e:
         status = EXECUTION_STATE_FAILED
-        output_message = COMMON_ACTION_ERROR_MESSAGE.format(REMOVE_SECURITY_POLICY_SCRIPT_NAME, str(e))
+        output_message = COMMON_ACTION_ERROR_MESSAGE.format(
+            REMOVE_SECURITY_POLICY_SCRIPT_NAME, str(e)
+        )
         result_value = RESULT_VALUE_FALSE
         siemplify.LOGGER.error(output_message)
         siemplify.LOGGER.exception(e)

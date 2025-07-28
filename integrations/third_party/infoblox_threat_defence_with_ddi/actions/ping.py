@@ -19,9 +19,7 @@ def main():
     siemplify.LOGGER.info("----------------- Main - Started -----------------")
     status = EXECUTION_STATE_COMPLETED
     try:
-        infoblox_manager = APIManager(
-            api_root, api_key, verify_ssl=verify_ssl, siemplify=siemplify
-        )
+        infoblox_manager = APIManager(api_root, api_key, verify_ssl=verify_ssl, siemplify=siemplify)
         infoblox_manager.test_connectivity()
         output_message = "Successfully connected to the Infoblox server!"
         connectivity_result = True

@@ -14,7 +14,7 @@ from ..core.constants import (
     RESULT_VALUE_FALSE,
     COMMON_ACTION_ERROR_MESSAGE,
     MAX_TABLE_RECORDS,
-    DEFAULT_LIMIT
+    DEFAULT_LIMIT,
 )
 from ..core.utils import get_integration_params, validate_required_string, validate_integer_param
 
@@ -30,72 +30,38 @@ def main():
 
     # Action Parameters
     insight_id = extract_action_param(
-        siemplify,
-        param_name="Insight ID",
-        input_type=str,
-        is_mandatory=True
+        siemplify, param_name="Insight ID", input_type=str, is_mandatory=True
     )
     device_ip = extract_action_param(
-        siemplify,
-        param_name="Device IP",
-        input_type=str,
-        is_mandatory=False
+        siemplify, param_name="Device IP", input_type=str, is_mandatory=False
     )
-    query = extract_action_param(
-        siemplify,
-        param_name="Query",
-        input_type=str,
-        is_mandatory=False
-    )
+    query = extract_action_param(siemplify, param_name="Query", input_type=str, is_mandatory=False)
     query_type = extract_action_param(
-        siemplify,
-        param_name="Query Type",
-        input_type=str,
-        is_mandatory=False
+        siemplify, param_name="Query Type", input_type=str, is_mandatory=False
     )
     source = extract_action_param(
-        siemplify,
-        param_name="Source",
-        input_type=str,
-        is_mandatory=False
+        siemplify, param_name="Source", input_type=str, is_mandatory=False
     )
     indicator = extract_action_param(
-        siemplify,
-        param_name="Indicator",
-        input_type=str,
-        is_mandatory=False
+        siemplify, param_name="Indicator", input_type=str, is_mandatory=False
     )
     threat_level = extract_action_param(
-        siemplify,
-        param_name="Threat Level",
-        input_type=str,
-        is_mandatory=False
+        siemplify, param_name="Threat Level", input_type=str, is_mandatory=False
     )
     confidence_level = extract_action_param(
-        siemplify,
-        param_name="Confidence Level",
-        input_type=str,
-        is_mandatory=False
+        siemplify, param_name="Confidence Level", input_type=str, is_mandatory=False
     )
     limit = extract_action_param(
         siemplify,
         param_name="Limit",
         input_type=str,
         is_mandatory=False,
-        default_value=DEFAULT_LIMIT
+        default_value=DEFAULT_LIMIT,
     )
     from_time = extract_action_param(
-        siemplify,
-        param_name="From",
-        input_type=str,
-        is_mandatory=False
+        siemplify, param_name="From", input_type=str, is_mandatory=False
     )
-    to_time = extract_action_param(
-        siemplify,
-        param_name="To",
-        input_type=str,
-        is_mandatory=False
-    )
+    to_time = extract_action_param(siemplify, param_name="To", input_type=str, is_mandatory=False)
 
     output_message = ""
     result_value = RESULT_VALUE_TRUE
@@ -118,17 +84,14 @@ def main():
             confidence_level=confidence_level,
             limit=limit,
             from_time=from_time,
-            to_time=to_time
+            to_time=to_time,
         )
         events = response.get("events", [])
         if not events:
             output_message = f"No events found for Insight ID '{insight_id}'."
         else:
             table = [SOCInsightEvent(item).to_csv() for item in events[:MAX_TABLE_RECORDS]]
-            siemplify.result.add_data_table(
-                "SOC Insight Events",
-                construct_csv(table)
-            )
+            siemplify.result.add_data_table("SOC Insight Events", construct_csv(table))
             output_message = (
                 f"Successfully retrieved {len(events)} event(s) for Insight ID '{insight_id}'. "
                 f"Showing up to {MAX_TABLE_RECORDS} in table."

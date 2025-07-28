@@ -13,7 +13,7 @@ from ..core.constants import (
     CREATE_SECURITY_POLICY_SCRIPT_NAME,
     RESULT_VALUE_TRUE,
     RESULT_VALUE_FALSE,
-    COMMON_ACTION_ERROR_MESSAGE
+    COMMON_ACTION_ERROR_MESSAGE,
 )
 from ..core.utils import (
     get_integration_params,
@@ -21,12 +21,22 @@ from ..core.utils import (
     parse_tags,
     parse_and_validate_int_list,
     add_additional_params_to_payload,
-    parse_rules_param
+    parse_rules_param,
 )
 
 
-def create_payload_security_policy(policy_name, description, block_dns_rebinding, safe_search, network_lists, dfps,
-                                   roaming_device_groups, rules, tags, additional_params):
+def create_payload_security_policy(
+    policy_name,
+    description,
+    block_dns_rebinding,
+    safe_search,
+    network_lists,
+    dfps,
+    roaming_device_groups,
+    rules,
+    tags,
+    additional_params,
+):
     payload = {
         "name": policy_name,
         "description": description,
@@ -34,9 +44,11 @@ def create_payload_security_policy(policy_name, description, block_dns_rebinding
         "safe_search": safe_search.lower() == "true",
         "network_lists": parse_and_validate_int_list(network_lists, "Network Lists"),
         "dfps": parse_and_validate_int_list(dfps, "DFPS"),
-        "roaming_device_groups": parse_and_validate_int_list(roaming_device_groups, "Roaming Device Groups"),
+        "roaming_device_groups": parse_and_validate_int_list(
+            roaming_device_groups, "Roaming Device Groups"
+        ),
         "tags": parse_tags(tags),
-        "rules": parse_rules_param(rules)
+        "rules": parse_rules_param(rules),
     }
 
     add_additional_params_to_payload(payload, additional_params)
@@ -54,66 +66,36 @@ def main():
 
     # Action Parameters
     policy_name = extract_action_param(
-        siemplify,
-        param_name="Policy Name",
-        input_type=str,
-        is_mandatory=True
+        siemplify, param_name="Policy Name", input_type=str, is_mandatory=True
     )
     description = extract_action_param(
-        siemplify,
-        param_name="Description",
-        input_type=str,
-        is_mandatory=False
+        siemplify, param_name="Description", input_type=str, is_mandatory=False
     )
-    rules = extract_action_param(
-        siemplify,
-        param_name="Rules",
-        input_type=str,
-        is_mandatory=False
-    )
+    rules = extract_action_param(siemplify, param_name="Rules", input_type=str, is_mandatory=False)
     network_lists = extract_action_param(
-        siemplify,
-        param_name="Network Lists",
-        input_type=str,
-        is_mandatory=False
+        siemplify, param_name="Network Lists", input_type=str, is_mandatory=False
     )
-    dfps = extract_action_param(
-        siemplify,
-        param_name="DFPS",
-        input_type=str,
-        is_mandatory=False
-    )
+    dfps = extract_action_param(siemplify, param_name="DFPS", input_type=str, is_mandatory=False)
     roaming_device_groups = extract_action_param(
-        siemplify,
-        param_name="Roaming Device Groups",
-        input_type=str,
-        is_mandatory=False
+        siemplify, param_name="Roaming Device Groups", input_type=str, is_mandatory=False
     )
     block_dns_rebinding = extract_action_param(
         siemplify,
         param_name="Block DNS Rebinding",
         input_type=str,
         default_value="false",
-        is_mandatory=False
+        is_mandatory=False,
     )
     safe_search = extract_action_param(
         siemplify,
         param_name="Safe Search",
         input_type=str,
         default_value="false",
-        is_mandatory=False
+        is_mandatory=False,
     )
-    tags = extract_action_param(
-        siemplify,
-        param_name="Tags",
-        input_type=str,
-        is_mandatory=False
-    )
+    tags = extract_action_param(siemplify, param_name="Tags", input_type=str, is_mandatory=False)
     additional_params = extract_action_param(
-        siemplify,
-        param_name="Additional Parameters",
-        input_type=str,
-        is_mandatory=False
+        siemplify, param_name="Additional Parameters", input_type=str, is_mandatory=False
     )
 
     status = EXECUTION_STATE_COMPLETED
@@ -135,7 +117,7 @@ def main():
             roaming_device_groups,
             rules,
             tags,
-            additional_params
+            additional_params,
         )
 
         api_manager = APIManager(api_root, api_key, verify_ssl=verify_ssl, siemplify=siemplify)
@@ -146,10 +128,7 @@ def main():
 
         # Table view
         policy = SecurityPolicy(result)
-        siemplify.result.add_data_table(
-            "Security Policy Details",
-            construct_csv([policy.to_csv()])
-        )
+        siemplify.result.add_data_table("Security Policy Details", construct_csv([policy.to_csv()]))
     except (InfobloxException, ValueError) as e:
         status = EXECUTION_STATE_FAILED
         output_message = str(e)
@@ -158,7 +137,9 @@ def main():
         siemplify.LOGGER.exception(e)
     except Exception as e:
         status = EXECUTION_STATE_FAILED
-        output_message = COMMON_ACTION_ERROR_MESSAGE.format(CREATE_SECURITY_POLICY_SCRIPT_NAME, str(e))
+        output_message = COMMON_ACTION_ERROR_MESSAGE.format(
+            CREATE_SECURITY_POLICY_SCRIPT_NAME, str(e)
+        )
         result_value = RESULT_VALUE_FALSE
         siemplify.LOGGER.error(output_message)
         siemplify.LOGGER.exception(e)

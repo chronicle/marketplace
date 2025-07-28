@@ -66,21 +66,15 @@ def main():
     result_value = RESULT_VALUE_TRUE
     output_message = ""
     try:
-        offset = validate_integer_param(
-            offset, "Offset", zero_allowed=True, allow_negative=False
-        )
-        limit = validate_integer_param(
-            limit, "Limit", zero_allowed=False, allow_negative=False
-        )
-        api_manager = APIManager(
-            api_root, api_key, verify_ssl=verify_ssl, siemplify=siemplify
-        )
+        offset = validate_integer_param(offset, "Offset", zero_allowed=True, allow_negative=False)
+        limit = validate_integer_param(limit, "Limit", zero_allowed=False, allow_negative=False)
+        api_manager = APIManager(api_root, api_key, verify_ssl=verify_ssl, siemplify=siemplify)
         response = api_manager.dns_record_lookup(
             dns_record_filter=dns_record_filter,
             tag_filter=tag_filter,
             offset=offset,
             limit=limit,
-            order_by=order_by
+            order_by=order_by,
         )
         results = response.get("results", response)
 
@@ -108,9 +102,7 @@ def main():
         siemplify.LOGGER.exception(e)
     except Exception as e:
         status = EXECUTION_STATE_FAILED
-        output_message = COMMON_ACTION_ERROR_MESSAGE.format(
-            DNS_RECORD_LOOKUP_SCRIPT_NAME, e
-        )
+        output_message = COMMON_ACTION_ERROR_MESSAGE.format(DNS_RECORD_LOOKUP_SCRIPT_NAME, e)
         result_value = RESULT_VALUE_FALSE
         siemplify.LOGGER.error(output_message)
         siemplify.LOGGER.exception(e)

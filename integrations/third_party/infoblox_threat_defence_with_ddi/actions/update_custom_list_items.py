@@ -14,9 +14,14 @@ from ..core.constants import (
     RESULT_VALUE_FALSE,
     RESULT_VALUE_TRUE,
     COMMON_ACTION_ERROR_MESSAGE,
-    UPDATE_CUSTOM_LIST_ITEMS_SCRIPT_NAME
+    UPDATE_CUSTOM_LIST_ITEMS_SCRIPT_NAME,
 )
-from ..core.utils import validate_integer_param, validate_indicators, string_to_list, get_integration_params
+from ..core.utils import (
+    validate_integer_param,
+    validate_indicators,
+    string_to_list,
+    get_integration_params,
+)
 
 
 @output_handler
@@ -56,8 +61,9 @@ def main():
     siemplify.LOGGER.info("----------------- Main - Started -----------------")
 
     try:
-        custom_list_id = validate_integer_param(custom_list_id, "Custom List ID", zero_allowed=False,
-                                                allow_negative=False)
+        custom_list_id = validate_integer_param(
+            custom_list_id, "Custom List ID", zero_allowed=False, allow_negative=False
+        )
         items = string_to_list(items_str)
         if not items:
             raise InfobloxException("Items list must not be empty.")
@@ -68,7 +74,9 @@ def main():
         added = response.get("inserted_items", [])
         removed = response.get("deleted_items", [])
         updated = response.get("updated_items", [])
-        output_message = f"Action '{action}' executed successfully on Custom List ID {custom_list_id}."
+        output_message = (
+            f"Action '{action}' executed successfully on Custom List ID {custom_list_id}."
+        )
         if added:
             output_message += f" Added: {len(added)}."
         if removed:

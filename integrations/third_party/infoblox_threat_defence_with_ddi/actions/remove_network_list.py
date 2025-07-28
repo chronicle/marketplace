@@ -10,7 +10,7 @@ from ..core.constants import (
     REMOVE_NETWORK_LIST_SCRIPT_NAME,
     RESULT_VALUE_TRUE,
     RESULT_VALUE_FALSE,
-    COMMON_ACTION_ERROR_MESSAGE
+    COMMON_ACTION_ERROR_MESSAGE,
 )
 from ..core.utils import get_integration_params, validate_integer_param
 
@@ -26,10 +26,7 @@ def main():
 
     # Action Parameters
     network_list_id = extract_action_param(
-        siemplify,
-        param_name="Network List ID",
-        input_type=str,
-        is_mandatory=True
+        siemplify, param_name="Network List ID", input_type=str, is_mandatory=True
     )
 
     output_message = ""
@@ -39,8 +36,9 @@ def main():
     siemplify.LOGGER.info("----------------- Main - Started -----------------")
     try:
 
-        network_list_id = validate_integer_param(network_list_id, "Network List ID", zero_allowed=False,
-                                                 allow_negative=False)
+        network_list_id = validate_integer_param(
+            network_list_id, "Network List ID", zero_allowed=False, allow_negative=False
+        )
         api_manager = APIManager(api_root, api_key, verify_ssl=verify_ssl, siemplify=siemplify)
         api_manager.remove_network_list(network_list_id)
         output_message = f"Successfully removed network list with ID '{network_list_id}'."

@@ -14,7 +14,7 @@ from ..core.constants import (
     RESULT_VALUE_TRUE,
     RESULT_VALUE_FALSE,
     COMMON_ACTION_ERROR_MESSAGE,
-    MAX_TABLE_RECORDS
+    MAX_TABLE_RECORDS,
 )
 from ..core.utils import get_integration_params, validate_required_string
 
@@ -30,23 +30,12 @@ def main():
 
     # Action Parameters
     insight_id = extract_action_param(
-        siemplify,
-        param_name="Insight ID",
-        input_type=str,
-        is_mandatory=True
+        siemplify, param_name="Insight ID", input_type=str, is_mandatory=True
     )
     from_time = extract_action_param(
-        siemplify,
-        param_name="From",
-        input_type=str,
-        is_mandatory=False
+        siemplify, param_name="From", input_type=str, is_mandatory=False
     )
-    to_time = extract_action_param(
-        siemplify,
-        param_name="To",
-        input_type=str,
-        is_mandatory=False
-    )
+    to_time = extract_action_param(siemplify, param_name="To", input_type=str, is_mandatory=False)
 
     output_message = ""
     result_value = RESULT_VALUE_TRUE
@@ -58,9 +47,7 @@ def main():
 
         api_manager = APIManager(api_root, api_key, verify_ssl=verify_ssl, siemplify=siemplify)
         response = api_manager.get_soc_insights_comments(
-            insight_id=insight_id,
-            from_time=from_time,
-            to_time=to_time
+            insight_id=insight_id, from_time=from_time, to_time=to_time
         )
         comments = response.get("comments", [])
 
@@ -68,10 +55,7 @@ def main():
             output_message = f"No comments found for Insight ID '{insight_id}'."
         else:
             table = [SOCInsightComment(item).to_csv() for item in comments[:MAX_TABLE_RECORDS]]
-            siemplify.result.add_data_table(
-                "SOC Insight Comments",
-                construct_csv(table)
-            )
+            siemplify.result.add_data_table("SOC Insight Comments", construct_csv(table))
             output_message = (
                 f"Successfully retrieved {len(comments)} comment(s) for Insight ID '{insight_id}'. "
                 f"Showing up to {MAX_TABLE_RECORDS} in table."
@@ -87,7 +71,9 @@ def main():
         siemplify.LOGGER.exception(e)
     except Exception as e:
         status = EXECUTION_STATE_FAILED
-        output_message = COMMON_ACTION_ERROR_MESSAGE.format(GET_SOC_INSIGHTS_COMMENTS_SCRIPT_NAME, e)
+        output_message = COMMON_ACTION_ERROR_MESSAGE.format(
+            GET_SOC_INSIGHTS_COMMENTS_SCRIPT_NAME, e
+        )
         result_value = RESULT_VALUE_FALSE
         siemplify.LOGGER.error(output_message)
         siemplify.LOGGER.exception(e)

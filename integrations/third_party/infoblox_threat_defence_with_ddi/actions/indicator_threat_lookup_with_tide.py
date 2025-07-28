@@ -78,11 +78,7 @@ def main():
         print_value=True,
     )
     limit = extract_action_param(
-        siemplify,
-        param_name="Limit",
-        input_type=str,
-        is_mandatory=False,
-        default_value=TIDE_RLIMIT
+        siemplify, param_name="Limit", input_type=str, is_mandatory=False, default_value=TIDE_RLIMIT
     )
 
     status = EXECUTION_STATE_COMPLETED
@@ -92,9 +88,7 @@ def main():
     siemplify.LOGGER.info("----------------- Main - Started -----------------")
     try:
         # --- API Manager ---
-        limit = validate_integer_param(
-            limit, "Limit", zero_allowed=False, allow_negative=False
-        )
+        limit = validate_integer_param(limit, "Limit", zero_allowed=False, allow_negative=False)
         api_manager = APIManager(api_root, api_key, verify_ssl, siemplify)
         response = api_manager.indicator_threat_lookup_with_tide(
             indicator_type=indicator_type,

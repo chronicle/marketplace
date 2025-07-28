@@ -41,8 +41,9 @@ def main():
     siemplify.LOGGER.info("----------------- Main - Started -----------------")
 
     try:
-        custom_list_id = validate_integer_param(custom_list_id, "Custom List ID", zero_allowed=False,
-                                                allow_negative=False)
+        custom_list_id = validate_integer_param(
+            custom_list_id, "Custom List ID", zero_allowed=False, allow_negative=False
+        )
         api_manager = APIManager(api_root, api_key, verify_ssl, siemplify)
         api_manager.remove_custom_list(custom_list_id)
         output_message = f"Successfully removed the custom list with ID {custom_list_id}."

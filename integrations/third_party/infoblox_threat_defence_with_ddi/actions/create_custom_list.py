@@ -16,10 +16,16 @@ from ..core.constants import (
     RESULT_VALUE_FALSE,
     RESULT_VALUE_TRUE,
     COMMON_ACTION_ERROR_MESSAGE,
-    CREATE_CUSTOM_LIST_SCRIPT_NAME
+    CREATE_CUSTOM_LIST_SCRIPT_NAME,
 )
-from ..core.utils import validate_required_string, validate_indicators, string_to_list, parse_tags, get_integration_params, \
-    clean_params
+from ..core.utils import (
+    validate_required_string,
+    validate_indicators,
+    string_to_list,
+    parse_tags,
+    get_integration_params,
+    clean_params,
+)
 
 
 @output_handler
@@ -99,7 +105,7 @@ def main():
             "description": description,
             "confidence_level": confidence_level,
             "threat_level": threat_level,
-            "tags": tags
+            "tags": tags,
         }
         payload.update(clean_params(optional_fields))
         response = api_manager.create_custom_list(payload)
@@ -110,8 +116,7 @@ def main():
         # Table view (using datamodel)
         custom_list = CustomList(result)
         siemplify.result.add_data_table(
-            "Custom List Details",
-            construct_csv([custom_list.to_csv()])
+            "Custom List Details", construct_csv([custom_list.to_csv()])
         )
 
     except (InfobloxException, ValueError) as e:

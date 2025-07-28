@@ -101,7 +101,7 @@ def main():
             tag_filter=tag_filter,
             offset=offset,
             limit=limit,
-            order_by=order_by
+            order_by=order_by,
         )
         results = response.get("results", [])
         table_results = []

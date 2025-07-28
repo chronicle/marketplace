@@ -97,9 +97,7 @@ def main():
             # Table: Job ID, Status
             job_id = response.get("job_id")
             status_val = response.get("status")
-            model = DossierJobResult(
-                {"job_id": job_id, "status": status_val}
-            )
+            model = DossierJobResult({"job_id": job_id, "status": status_val})
             table_results.append(model.to_csv())
             output_message = "Dossier lookup initiated. Job ID and status returned."
 

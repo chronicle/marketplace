@@ -19,7 +19,7 @@ from ..core.constants import (
     COMMON_ACTION_ERROR_MESSAGE,
     MAX_TABLE_RECORDS,
     DEFAULT_OFFSET,
-    DEFAULT_LIMIT
+    DEFAULT_LIMIT,
 )
 from ..core.utils import validate_integer_param, get_integration_params
 
@@ -86,7 +86,7 @@ def main():
             tag_filter=tag_filter,
             tag_sort_filter=tag_sort_filter,
             offset=offset,
-            limit=limit
+            limit=limit,
         )
         results = response.get("results", response)
         table_results = []
@@ -98,8 +98,7 @@ def main():
         siemplify.result.add_result_json(json.dumps(response, indent=4))
         if table_results:
             siemplify.result.add_data_table(
-                title="Security Policies",
-                data_table=construct_csv(table_results)
+                title="Security Policies", data_table=construct_csv(table_results)
             )
             output_message = (
                 f"Successfully retrieved {len(results)} security policy(ies). "
@@ -116,7 +115,9 @@ def main():
         siemplify.LOGGER.exception(e)
     except Exception as e:
         status = EXECUTION_STATE_FAILED
-        output_message = COMMON_ACTION_ERROR_MESSAGE.format(GET_SECURITY_POLICIES_SCRIPT_NAME, str(e))
+        output_message = COMMON_ACTION_ERROR_MESSAGE.format(
+            GET_SECURITY_POLICIES_SCRIPT_NAME, str(e)
+        )
         result_value = RESULT_VALUE_FALSE
         siemplify.LOGGER.error(output_message)
         siemplify.LOGGER.exception(e)

@@ -16,7 +16,7 @@ from ..core.constants import (
     CREATE_NETWORK_LIST_SCRIPT_NAME,
     RESULT_VALUE_TRUE,
     RESULT_VALUE_FALSE,
-    COMMON_ACTION_ERROR_MESSAGE
+    COMMON_ACTION_ERROR_MESSAGE,
 )
 from ..core.utils import get_integration_params, validate_required_string, string_to_list
 
@@ -31,23 +31,12 @@ def main():
     api_root, api_key, verify_ssl = get_integration_params(siemplify)
 
     # Action Parameters
-    name = extract_action_param(
-        siemplify,
-        param_name="Name",
-        input_type=str,
-        is_mandatory=True
-    )
+    name = extract_action_param(siemplify, param_name="Name", input_type=str, is_mandatory=True)
     items_str = extract_action_param(
-        siemplify,
-        param_name="Items",
-        input_type=str,
-        is_mandatory=True
+        siemplify, param_name="Items", input_type=str, is_mandatory=True
     )
     description = extract_action_param(
-        siemplify,
-        param_name="Description",
-        input_type=str,
-        is_mandatory=False
+        siemplify, param_name="Description", input_type=str, is_mandatory=False
     )
 
     output_message = ""
@@ -62,16 +51,11 @@ def main():
         items = string_to_list(items_str)
 
         api_manager = APIManager(api_root, api_key, verify_ssl=verify_ssl, siemplify=siemplify)
-        response = api_manager.create_network_list(
-            name=name,
-            items=items,
-            description=description
-        )
+        response = api_manager.create_network_list(name=name, items=items, description=description)
         network_list = NetworkList(response.get("results"))
         siemplify.result.add_result_json(json.dumps(response.get("results"), indent=4))
         siemplify.result.add_data_table(
-            "Network List Details",
-            construct_csv([network_list.to_csv()])
+            "Network List Details", construct_csv([network_list.to_csv()])
         )
         output_message = f"Successfully created network list '{name}'."
 
