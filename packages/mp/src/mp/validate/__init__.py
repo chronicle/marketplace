@@ -212,7 +212,7 @@ def validate(  # noqa: PLR0913
 
     _display_output(validations_output)
 
-    if _detrmine_exit_code(validations_output) == 1:
+    if _should_fail_program(validations_output):
         raise typer.Exit(code=1)
 
 
@@ -364,8 +364,5 @@ def _combine_results(
     return combined_output
 
 
-def _detrmine_exit_code(validations_output: dict[str, list[ValidationResults]]) -> int:
-    for category in validations_output:
-        if validations_output[category]:
-            return 1
-    return 0
+def _should_fail_program(validations_output: dict[str, list[ValidationResults]]) -> bool:
+    return any(validation_result for validation_result in validations_output.values())
