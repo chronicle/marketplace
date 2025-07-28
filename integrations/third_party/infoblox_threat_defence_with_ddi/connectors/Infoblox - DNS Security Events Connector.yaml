@@ -104,14 +104,14 @@ parameters:
         is_advanced: true
         mode: script
     -   name: Verify SSL
-        type: string
+        type: boolean
         description: Verify SSL
         is_mandatory: false
         is_advanced: true
         mode: script
-        default_value: 'false'
+        default_value: true
 description: Retrieve DNS security events from the Infoblox platform by applying various filters for investigation, enrichment, or automated response.
 integration: InfobloxThreatDefenseWithDDI
-rules: []
+rules: [ ]
 is_connector_rules_supported: true
 creator: Admin
