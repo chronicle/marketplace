@@ -14,9 +14,10 @@
 
 from __future__ import annotations
 
-from typing import Annotated, TypedDict
+from typing import Annotated, TypedDict, cast
 
 import pydantic
+import toml
 
 import mp.core.constants
 import mp.core.utils
@@ -44,6 +45,20 @@ class PyProjectToml(pydantic.BaseModel):
 
         """
         return cls(project=PyProjectAttrs.model_load(pyproject_toml["project"]))
+
+    @classmethod
+    def from_toml_str(cls, text: str) -> PyProjectToml:
+        """Load a toml string into a PyProjectToml object.
+
+        Args:
+            text: the string to parse into a PyProjectToml object.
+
+        Returns:
+            a `PyProjectToml` object.
+
+        """
+        pyproject_data: PyProjectTomlFile = cast("PyProjectTomlFile", toml.loads(text))
+        return cls.model_load(pyproject_data)
 
 
 class PyProjectAttrs(pydantic.BaseModel):

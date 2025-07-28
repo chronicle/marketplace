@@ -28,9 +28,10 @@ app = typer.Typer(help="Commands for interacting with the development environmen
 
 
 class DevEnvParams(NamedTuple):
-    username: str
-    password: str
     api_root: str
+    username: str | None
+    password: str | None
+    api_key: str | None
 
 
 @app.command(
@@ -62,6 +63,14 @@ def login(
             hide_input=True,
         ),
     ] = None,
+    api_key: Annotated[
+        str | None,
+        typer.Option(
+            "--api-key",
+            help="API key for authentication. If provided, username and password are not required.",
+            hide_input=True,
+        ),
+    ] = None,
     *,
     no_verify: Annotated[
         bool,
@@ -77,6 +86,7 @@ def login(
         api_root: The API root of the dev environment.
         username: The username to authenticate with.
         password: The password to authenticate with.
+        api_key: The API key for authentication.
         no_verify: Skip credential verification after saving.
 
     Raises:
@@ -85,25 +95,35 @@ def login(
     """
     if api_root is None:
         api_root = typer.prompt("API root (e.g. https://playground.example.com)")
-    if username is None:
-        username = typer.prompt("Username")
-    if password is None:
-        password = typer.prompt("Password", hide_input=True)
 
-    if api_root is None or username is None or password is None:
+    if api_key is not None:
+        username = None
+        password = None
+    else:
+        if username is None:
+            username = typer.prompt("Username")
+        if password is None:
+            password = typer.prompt("Password", hide_input=True)
+
+    if api_root is None:
+        rich.print("API root is required.")
+        raise typer.Exit(1)
+
+    if api_key is None and (username is None or password is None):
         rich.print(
-            "API root, username, and password are required. "
-            "Please provide them using the"
-            "--api-root, --username, and --password options."
+            "Either API key or both username and password are required. "
+            "Please provide them using the --api-key option or "
+            "--username and --password options. "
             "Or run 'mp dev-env login' to be prompted for them."
         )
         raise typer.Exit(1)
 
-    params = DevEnvParams(username=username, password=password, api_root=api_root)
+    params = DevEnvParams(username=username, password=password, api_key=api_key, api_root=api_root)
     config = {
         "api_root": params.api_root,
         "username": params.username,
         "password": params.password,
+        "api_key": params.api_key,
     }
     with utils.CONFIG_PATH.open("w", encoding="utf-8") as f:
         json.dump(config, f)
@@ -111,7 +131,12 @@ def login(
 
     if not no_verify:
         try:
-            backend_api = api.BackendAPI(params.api_root, params.username, params.password)
+            if api_key is not None:
+                backend_api = api.BackendAPI(api_root=params.api_root, api_key=params.api_key)
+            else:
+                backend_api = api.BackendAPI(
+                    api_root=params.api_root, username=params.username, password=params.password
+                )
             backend_api.login()
             rich.print("[green]✅ Credentials verified successfully.[/green]")
         except Exception as e:
@@ -155,7 +180,14 @@ def deploy(integration: str = typer.Argument(..., help="Integration to build and
     rich.print(f"Zipped built integration at {zip_path}")
 
     try:
-        backend_api = api.BackendAPI(config["api_root"], config["username"], config["password"])
+        if config.get("api_key"):
+            backend_api = api.BackendAPI(api_root=config["api_root"], api_key=config["api_key"])
+        else:
+            backend_api = api.BackendAPI(
+                api_root=config["api_root"],
+                username=config["username"],
+                password=config["password"],
+            )
         backend_api.login()
         details = backend_api.get_integration_details(zip_path)
         integration_id = details["identifier"]

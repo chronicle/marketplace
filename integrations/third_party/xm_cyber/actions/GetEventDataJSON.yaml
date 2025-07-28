@@ -1,6 +1,5 @@
 name: Get Event Data JSON
-description: This action retrieves entity details from events associated with the
-    Alert or Case, enriched by XM Cyber, and returns the JSON output.
+description: This action retrieves entity details from events and SecOps entities associated with the Alert, enriched by XM Cyber, and returns the JSON output.
 integration_identifier: XMCyber
 parameters: [ ]
 dynamic_results_metadata:

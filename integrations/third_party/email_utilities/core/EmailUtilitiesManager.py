@@ -36,6 +36,7 @@ try:
     import nacl.signing
 except ImportError:
     pass
+from netaddr import valid_ipv4, valid_ipv6
 
 import eml_parser
 from dkim.crypto import (
@@ -71,8 +72,6 @@ __all__ = [
     "verify",
 ]
 
-Relaxed = b"relaxed"  # for clients passing dkim.Relaxed
-Simple = b"simple"  # for clients passing dkim.Simple
 HASH_ALGORITHMS = {
     b"rsa-sha1": hashlib.sha1,
     b"rsa-sha256": hashlib.sha256,
@@ -700,7 +699,7 @@ def evaluate_pk(name, s):
             raise KeyFormatError(f"unknown service type in s= tag: {pub[b's']}")
         if pub[b"s"] == b"tlsrpt":
             seqtlsrpt = True
-    except:
+    except Exception:
         # Default is '*' - all service types, so no error if missing from key record
         pass
     return pk, keysize, ktag, seqtlsrpt
@@ -764,10 +763,14 @@ class DomainSigner:
             self.keysize = 0
         else:
             self.set_message(message)
+
         if logger is None:
-            logger = get_default_logger()
+            logger = logging.getLogger(__name__)
+
         self.logger = logger
-        self.info_content = info_content and logger.isEnabledFor(logging.info)
+        self.info_content = (
+            info_content and logger is not None and logger.isEnabledFor(logging.info)
+        )
         if signature_algorithm not in HASH_ALGORITHMS:
             raise ParameterError(
                 "Unsupported signature algorithm: " + signature_algorithm,
@@ -873,7 +876,10 @@ class DomainSigner:
         >>> dkim = DKIM()
         >>> dkim.add_frozen(DKIM.RFC5322_SINGLETON)
         >>> [text(x) for x in sorted(dkim.frozen_sign)]
-        ['cc', 'date', 'from', 'in-reply-to', 'message-id', 'references', 'reply-to', 'sender', 'to']
+        [
+            'cc', 'date', 'from', 'in-reply-to', 'message-id', 'references',
+            'reply-to', 'sender', 'to'
+        ]
         >>> dkim2 = DKIM()
         >>> dkim2.add_frozen((b"date", b"subject"))
         >>> [text(x) for x in sorted(dkim2.frozen_sign)]
@@ -891,7 +897,11 @@ class DomainSigner:
         >>> dkim = DKIM()
         >>> dkim.add_should_not(DKIM.RFC5322_SINGLETON)
         >>> [text(x) for x in sorted(dkim.should_not_sign)]
-        ['bcc', 'cc', 'comments', 'date', 'dkim-signature', 'in-reply-to', 'keywords', 'message-id', 'received', 'references', 'reply-to', 'resent-bcc', 'return-path', 'sender', 'to']
+        [
+            'bcc', 'cc', 'comments', 'date', 'dkim-signature', 'in-reply-to',
+            'keywords', 'message-id', 'received', 'references', 'reply-to',
+            'resent-bcc', 'return-path', 'sender', 'to'
+        ]
         """
         self.should_not_sign.update(
             x.lower() for x in s if x.lower() not in self.frozen_sign
@@ -1032,29 +1042,6 @@ class DomainSigner:
 
         hasher = HASH_ALGORITHMS[sig[b"a"]]
 
-        # validate body if present
-        ignore = r"""
-    if b'bh' in sig:
-      h = HashThrough(hasher(), self.info_content)
-
-      body = canon_policy.canonicalize_body(self.body)
-      if b'l' in sig and not self.tlsrpt:
-        body = body[:int(sig[b'l'])]
-      h.update(body)
-      if self.info_content:
-          self.logger.info("body hashed: %r" % h.hashed())
-      bodyhash = h.digest()
-
-      self.logger.info("bh: %s" % base64.b64encode(bodyhash))
-      try:
-          bh = base64.b64decode(re.sub(br"\s+", b"", sig[b'bh']))
-      except TypeError as e:
-          raise MessageFormatError(str(e))
-      if bodyhash != bh:
-          raise ValidationError(
-              "body hash mismatch (got %s, expected %s)" %
-              (base64.b64encode(bodyhash), sig[b'bh']))
-    """
         # address bug#644046 by including any additional From header
         # fields when verifying.  Since there should be only one From header,
         # this shouldn't break any legitimate messages.  This could be
@@ -1267,7 +1254,10 @@ class DKIM(DomainSigner):
 
     def verify_headerprep(self, idx=0):
         """Non-DNS verify parts to minimize asyncio code duplication."""
-        # sigheaders = [(x.encode('utf-8'),self.headers[x][0].encode('utf-8')) for x in self.headers if x.lower() == "dkim-signature"]
+        # sigheaders = [
+        #   (x.encode('utf-8'),self.headers[x][0].encode('utf-8')) for x in self.headers
+        #   if x.lower() == "dkim-signature"
+        # ]
         sigheaders = []
         for x in self.headers:
             if x.lower() == b"dkim-signature":
@@ -1390,7 +1380,7 @@ class ARC(DomainSigner):
         # check if authres has been imported
         try:
             AuthenticationResultsHeader
-        except:
+        except Exception:
             self.logger.info("authres package not installed")
             raise AuthresNotFoundError
 
@@ -1588,7 +1578,8 @@ class ARC(DomainSigner):
     #: @param dnsfunc: an optional function to lookup TXT resource records
     #: for a DNS domain.  The default uses dnspython or pydns.
     #: @return: True if signature verifies or False otherwise
-    #: @return: three-tuple of (CV Result (CV_Pass, CV_Fail, CV_None or None, for a chain that has ended), list of
+    #: @return: three-tuple of (CV Result (CV_Pass, CV_Fail, CV_None or None, for a
+    # chain that has ended), list of
     #: result dictionaries, result reason)
     #: @raise DKIMException: when the message, signature, or key are badly formed
     def verify(self, dnsfunc=get_txt):
@@ -1714,13 +1705,15 @@ class ARC(DomainSigner):
         if b"arc-seal" in include_headers:
             raise ParameterError("The Arc-Message-Signature MUST NOT sign ARC-Seal")
 
-        ams_header = (b"ARC-Message-Signature", b" " + ams_value)
-
-        # we can't use the AMS provided above, as it's already been canonicalized relaxed
+        # we can't use the AMS provided above, as it's already been canonicalized
+        # relaxed
         # for use in validating the AS.  However the AMS is included in the AMS itself,
         # and this can use simple canonicalization
 
-        # raw_ams_header = [(x, y) for (x, y) in self.headers if x.lower() == b'arc-message-signature'][0]
+        # raw_ams_header = [
+        #     (x, y) for (x, y) in self.headers
+        #     if x.lower() == b'arc-message-signature'
+        # ][0]
         raw_ams_header = [
             (x, self.headers[x])
             for x in self.headers
@@ -1793,10 +1786,13 @@ def sign(
     @param domain: the DKIM domain value for the signature
     @param privkey: a PKCS#1 private key in base64-encoded text form
     @param identity: the DKIM identity value for the signature (default "@"+domain)
-    @param canonicalize: the canonicalization algorithms to use (default (Simple, Simple))
+    @param canonicalize: the canonicalization algorithms to use
+        (default (Simple, Simple))
     @param signature_algorithm: the signing algorithm to use when signing
-    @param include_headers: a list of strings indicating which headers are to be signed (default all headers not listed as SHOULD NOT sign)
-    @param length: true if the l= tag should be included to indicate body length (default False)
+    @param include_headers: a list of strings indicating which headers are to be signed
+        (default all headers not listed as SHOULD NOT sign)
+    @param length: true if the l= tag should be included to indicate body length
+        (default False)
     @param logger: a logger to which info info will be written (default None)
     @param linesep: use this line seperator for folding the headers
     @param tlsrpt: message is an RFC 8460 TLS report (default False)
@@ -1877,10 +1873,13 @@ def arc_sign(
     @param selector: the DKIM selector value for the signature
     @param domain: the DKIM domain value for the signature
     @param privkey: a PKCS#1 private key in base64-encoded text form
-    @param srv_id: the authserv_id used to identify the ADMD's AR headers and to use for ARC authserv_id
+    @param srv_id: the authserv_id used to identify the ADMD's AR headers and to use for
+        ARC authserv_id
     @param signature_algorithm: the signing algorithm to use when signing
-    @param include_headers: a list of strings indicating which headers are to be signed (default all headers not listed as SHOULD NOT sign)
-    @param timestamp: the time in integer seconds when the message is sealed (default is int(time.time) based on platform, can be string or int)
+    @param include_headers: a list of strings indicating which headers are to be signed
+        (default all headers not listed as SHOULD NOT sign)
+    @param timestamp: the time in integer seconds when the message is sealed
+        (default is int(time.time) based on platform, can be string or int)
     @param logger: a logger to which info info will be written (default None)
     @param linesep: use this line seperator for folding the headers
     @return: A list containing the ARC set of header fields for the next instance
@@ -1937,7 +1936,7 @@ class Resolver:
     def query(self, hostname, query_type="ANY", name_server=False, use_tcp=True):
         ret = []
         response = None
-        if name_server == False:
+        if not name_server:
             name_server = self.get_ns()
         else:
             self.wildcards = {}
@@ -1958,9 +1957,10 @@ class Resolver:
             for r in response.rr:
                 try:
                     rtype = str(dnslib.QTYPE[r.rtype])
-                except:  # Server sent an unknown type:
+                except Exception:  # Server sent an unknown type:
                     rtype = str(r.rtype)
-                # Fully qualified domains may cause problems for other tools that use subbrute's output.
+                # Fully qualified domains may cause problems for other tools that
+                # use subbrute's output.
                 rhost = str(r.rname).rstrip(".")
                 ret.append((rhost, rtype, str(r.rdata)))
             # What kind of response did we get?
@@ -1992,7 +1992,7 @@ class Resolver:
         # we may have metadata on how this resolver fails
         try:
             ret, self.wildcards, self.failed_code = ret
-        except:
+        except Exception:
             self.wildcards = {}
             self.failed_code = None
         self.pos += 1
@@ -2246,3 +2246,19 @@ def fix_malformed_eml_content(content_bytes: bytes) -> bytes:
         content_bytes = content_bytes.replace(text_content_type, next_content_type, 1)
 
     return content_bytes
+
+
+def extract_valid_ips_from_body(body: str) -> list[str]:
+    """Extract valid IPs from body.
+
+    Args:
+        body (str): string to extract valid ips.
+
+    Retruns:
+        list[str]: list of valid ips.
+    """
+    candidates = re.findall(r"\b[0-9a-fA-F:.]+\b", body)
+    return [
+        candidate for candidate in candidates
+        if valid_ipv4(candidate) or valid_ipv6(candidate)
+    ]
