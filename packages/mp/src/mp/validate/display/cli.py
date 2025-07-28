@@ -27,8 +27,8 @@ class CliDisplay:
 
     def display(self) -> None:
         """Display the validation result in the cli."""
-        if not self.validation_results:
-            console.print("[bold green]All validations passed[/bold green]")
+        if self.is_results_empty():
+            console.print("[bold green]All validations passed\n[/bold green]")
 
         display_categories = ["Pre-Build", "Build", "Post-Build"]
 
@@ -53,3 +53,9 @@ class CliDisplay:
                     console.print(
                         f"[bold yellow]⚠️ WARNING: {validation_result.info}\n[/bold yellow]"
                     )
+
+    def is_results_empty(self) -> bool:
+        for category in self.validation_results:
+            if self.validation_results[category]:
+                return False
+        return True
