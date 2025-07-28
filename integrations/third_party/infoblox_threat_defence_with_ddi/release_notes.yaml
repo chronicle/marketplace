@@ -1,0 +1,10 @@
+-   description: NEW! Infoblox Threat Defence with DDI Integration.
+    integration_version: 1.0
+    item_name: Infoblox Threat Defence with DDI
+    item_type: Integration
+    publish_time: 1737967893
+    ticket_number: ''
+    new: true
+    regressive: false
+    deprecated: false
+    removed: false
