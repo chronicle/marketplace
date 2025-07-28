@@ -38,12 +38,12 @@ parameters:
   is_mandatory: false
 - name: Block DNS Rebinding
   default_value: 'false'
-  type: int
+  type: boolean
   description: Specify whether to block DNS rebinding attacks.
   is_mandatory: false
 - name: Safe Search
   default_value: 'false'
-  type: int
+  type: boolean
   description: Specify whether to enable safe search filtering.
   is_mandatory: false
 - name: Tags
