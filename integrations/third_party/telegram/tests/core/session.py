@@ -31,11 +31,11 @@ class TelegramSession(MockSession[MockRequest, MockResponse, Telegram]):
             payload: dict[str, Any] = get_request_payload(request)
             chat_id = payload["chat_id"]
             text = payload["text"]
-
-            response_data = self._product.send_message(chat_id, text)
+            response_data = self._product.telegram_bot_sendmessage(chat_id, text)
             return MockResponse(content=response_data)
         except Exception as e:
             return MockResponse(content=str(e), status_code=500)
+
 
     @router.get(r"/bot\S+/getMe")
     def get_me(self, request: MockRequest) -> MockResponse:
