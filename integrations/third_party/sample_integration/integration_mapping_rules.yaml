@@ -1,0 +1,15 @@
+-   source: SampleIntegration
+    product: SampleIntegration
+    event_name: test
+    security_event_file_name: test
+    transformation_function: to_string
+    transformation_function_param: test
+    raw_data_primary_field_match_term: test
+    raw_data_primary_field_comparison_type: equal
+    raw_data_secondary_field_match_term: test
+    raw_data_secondary_field_comparison_type: equal
+    raw_data_third_field_match_term: test
+    raw_data_third_field_comparison_type: equal
+    is_artifact: true
+    extract_function_param: test
+    extract_function: regex

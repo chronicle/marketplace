@@ -20,7 +20,8 @@ TIMEOUT_ERROR_MESSAGE = (
 
 
 class AsyncActionExample(BaseAction):
-    def __init__(self):
+
+    def __init__(self) -> None:
         super().__init__(ASYNC_ACTION_EXAMPLE_SCRIPT_NAME)
         self.output_message: str = ""
         self.result_value: bool = False
@@ -36,7 +37,7 @@ class AsyncActionExample(BaseAction):
             self.soar_action.async_total_duration_deadline,
         )
 
-    def _extract_action_parameters(self):
+    def _extract_action_parameters(self) -> None:
         self.params.case_ids = extract_action_param(
             self.soar_action,
             param_name="Case IDs",
@@ -57,7 +58,8 @@ class AsyncActionExample(BaseAction):
         # If no case IDs provided, use the current case ID
         if not self.params.case_ids:
             self.logger.info(
-                f"no Case IDs provided, defaulting to Case ID {self.soar_action.case_id}"
+                "no Case IDs provided, defaulting to Case ID "
+                f"{self.soar_action.case_id}"
             )
             self.params.case_ids = [self.soar_action.case_id]
             return
@@ -68,18 +70,18 @@ class AsyncActionExample(BaseAction):
             csv_string=self.params.case_ids,
         )
 
-    def _check_case_tags(self, case_ids: List[str], tag: str) -> dict[int, bool]:
+    def _check_case_tags(self, case_ids: list[str], tag: str) -> dict[int, bool]:
         """Check if the specified cases have the specified tag.
 
         Args:
-                case_ids: List of case IDs to check
-                tag: Tag to check for
+            case_ids: List of case IDs to check
+            tag: Tag to check for
 
         Returns:
-                Dictionary with case IDs as keys and boolean values indicating
-                if they have the tag
+            Dictionary with case IDs as keys and boolean values indicating
+            if they have the tag
         """
-        result = {}
+        result: dict[int, bool] = {}
 
         for case_id in case_ids:
             self.logger.info(f"Fetching Case {case_id} data from Server")
@@ -156,16 +158,20 @@ class AsyncActionExample(BaseAction):
             f"Cases missing the tag: {repr(self.waiting_cases)}"
         )
         self.logger.info(
-            "the action will continue its execution on the cases missing the tags in the next iteration."
+            "The action will continue its execution on the cases missing the tags in "
+            "the next iteration."
         )
         self.output_message = PENDING_MESSAGE.format(
-            case_ids=", ".join(self.waiting_cases), tag=self.params.case_tag_to_wait_for
+            case_ids=", ".join(self.waiting_cases),
+            tag=self.params.case_tag_to_wait_for,
         )
         self.execution_state = ExecutionState.IN_PROGRESS
-        self._result_value = json.dumps({
-            "cases_with_tag": list(self.cases_with_tag),
-            "waiting_cases": list(self.waiting_cases),
-        })
+        self._result_value = json.dumps(
+            {
+                "cases_with_tag": list(self.cases_with_tag),
+                "waiting_cases": list(self.waiting_cases),
+            }
+        )
 
 
 def main() -> NoReturn:

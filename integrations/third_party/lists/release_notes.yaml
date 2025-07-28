@@ -1,95 +1,104 @@
--   description: NEW! Lists integration to facilitate managing custom lists within
-        Siemplify.
-    integration_version: 1.0
-    item_name: Lists
-    item_type: Integration
-    ticket_number: xxx
-    new: false
-    regressive: false
-    deprecated: false
-    removed: false
--   description: UPDATE! Now supports all Siemplify versions.
-    integration_version: 2.0
-    item_name: Is String In Custom List
-    item_type: Action
-    publish_time: 1623255029
-    ticket_number: xxx
-    new: false
-    regressive: false
-    deprecated: false
-    removed: false
--   description: UPDATE! Now supports all Siemplify versions.
-    integration_version: 2.0
-    item_name: Remove String from Custom List
-    item_type: Action
-    publish_time: 1623255029
-    ticket_number: xxx
-    new: false
-    regressive: false
-    deprecated: false
-    removed: false
--   description: UPDATE! Now supports all Siemplify versions.
-    integration_version: 2.0
-    item_name: Add String to Custom List
-    item_type: Action
-    publish_time: 1623255029
-    ticket_number: xxx
-    new: false
-    regressive: false
-    deprecated: false
-    removed: false
--   description: New! Search Custom List - Search for a string in a custom list or
-        get all custom list values if no search query is provided.
-    integration_version: 3.0
-    item_name: Search Custom List
-    item_type: Action
-    publish_time: 1674648265
-    ticket_number: xxx
-    new: true
-    regressive: false
-    deprecated: false
-    removed: false
--   description: New! Search Environment Custom List - Search for a string in an environment's
-        custom list or get all custom list values if no search query is provided.
-    integration_version: 4.0
-    item_name: Search Environment Custom List
-    item_type: Action
-    publish_time: 1693227758
-    ticket_number: xxx
-    new: true
-    regressive: false
-    deprecated: false
-    removed: false
--   description: Lists - Security Enhancements.
-    integration_version: 5.0
-    item_name: Lists
-    item_type: Integration
-    publish_time: 1707410066
-    ticket_number: '315941503'
-    new: false
-    regressive: false
-    deprecated: false
-    removed: false
--   description: Lists - Updated integration's descriptions to reflect renaming to
-        Google SecOps.
-    integration_version: 6.0
-    item_name: Lists
-    item_type: Integration
-    publish_time: 1714030385
-    ticket_number: '332545706'
-    new: false
-    regressive: false
-    deprecated: false
-    removed: false
--   description: 'Important - Updated the integration code to work with Python version
-        3.11. To ensure compatibility and avoid disruptions, follow the upgrade best
-        practices described in the following document: https://cloud.google.com/chronicle/docs/soar/respond/integrations-setup/upgrade-python-versions'
-    integration_version: 7.0
-    item_name: Lists
-    item_type: Integration
-    publish_time: 1735201688
-    ticket_number: ''
-    new: false
-    regressive: false
-    deprecated: false
-    removed: false
+- description: NEW! Lists integration to facilitate managing custom lists within Siemplify.
+  integration_version: 1.0
+  item_name: Lists
+  item_type: Integration
+  ticket_number: xxx
+  new: false
+  regressive: false
+  deprecated: false
+  removed: false
+- description: UPDATE! Now supports all Siemplify versions.
+  integration_version: 2.0
+  item_name: Is String In Custom List
+  item_type: Action
+  publish_time: '2021-06-09'
+  ticket_number: xxx
+  new: false
+  regressive: false
+  deprecated: false
+  removed: false
+- description: UPDATE! Now supports all Siemplify versions.
+  integration_version: 2.0
+  item_name: Remove String from Custom List
+  item_type: Action
+  publish_time: '2021-06-09'
+  ticket_number: xxx
+  new: false
+  regressive: false
+  deprecated: false
+  removed: false
+- description: UPDATE! Now supports all Siemplify versions.
+  integration_version: 2.0
+  item_name: Add String to Custom List
+  item_type: Action
+  publish_time: '2021-06-09'
+  ticket_number: xxx
+  new: false
+  regressive: false
+  deprecated: false
+  removed: false
+- description: New! Search Custom List - Search for a string in a custom list or get
+    all custom list values if no search query is provided.
+  integration_version: 3.0
+  item_name: Search Custom List
+  item_type: Action
+  publish_time: '2023-01-25'
+  ticket_number: xxx
+  new: true
+  regressive: false
+  deprecated: false
+  removed: false
+- description: New! Search Environment Custom List - Search for a string in an environment's
+    custom list or get all custom list values if no search query is provided.
+  integration_version: 4.0
+  item_name: Search Environment Custom List
+  item_type: Action
+  publish_time: '2023-08-28'
+  ticket_number: xxx
+  new: true
+  regressive: false
+  deprecated: false
+  removed: false
+- description: Lists - Security Enhancements.
+  integration_version: 5.0
+  item_name: Lists
+  item_type: Integration
+  publish_time: '2024-02-08'
+  ticket_number: '315941503'
+  new: false
+  regressive: false
+  deprecated: false
+  removed: false
+- description: Lists - Updated integration's descriptions to reflect renaming to Google
+    SecOps.
+  integration_version: 6.0
+  item_name: Lists
+  item_type: Integration
+  publish_time: '2024-04-25'
+  ticket_number: '332545706'
+  new: false
+  regressive: false
+  deprecated: false
+  removed: false
+- description: 'Important - Updated the integration code to work with Python version
+    3.11. To ensure compatibility and avoid disruptions, follow the upgrade best practices
+    described in the following document: https://cloud.google.com/chronicle/docs/soar/respond/integrations-setup/upgrade-python-versions'
+  integration_version: 7.0
+  item_name: Lists
+  item_type: Integration
+  publish_time: '2024-12-26'
+  ticket_number: ''
+  new: false
+  regressive: false
+  deprecated: false
+  removed: false
+- description: Integration - Refactored the code to work with updated API.
+  integration_version: 8.0
+  item_name: Lists
+  item_type: Integration
+  publish_time: '2025-07-16'
+  ticket_number: '430251231'
+  new: false
+  regressive: false
+  deprecated: false
+  removed: false

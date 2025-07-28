@@ -1,172 +1,172 @@
--   description: ' Added a new parameter named "Jinja" to "Render Template" action.
-        This parameter can be used instead of the Template parameter to store the
-        Jinja code that will be rendered.'
-    integration_version: 3.0
-    item_name: Render Template
-    item_type: Action
-    publish_time: 1610893250
-    ticket_number: xxx
-    new: false
-    regressive: false
-    deprecated: false
-    removed: false
--   description: ' Added a new parameter named "Include Case Data" to "Render Template"
-        action. When enabled, adds entity attributes and event data to the input_json
-        object.'
-    integration_version: 4.0
-    item_name: Render Template
-    item_type: Action
-    publish_time: 1620102221
-    ticket_number: xxx
-    new: false
-    regressive: false
-    deprecated: false
-    removed: false
--   description: Fixed bug in Render Template Action.
-    integration_version: 5.0
-    item_name: Render Template
-    item_type: Action
-    publish_time: 1620312340
-    ticket_number: xxx
-    new: false
-    regressive: false
-    deprecated: false
-    removed: false
--   description: 'Entity Insight now supports all the filters Render Template supports.
-        Added support for {{ entity.ATTRIBUTE }}. '
-    integration_version: 6.0
-    item_name: Entity Insight
-    item_type: Action
-    publish_time: 1621165157
-    ticket_number: xxx
-    new: false
-    regressive: false
-    deprecated: false
-    removed: false
--   description: UPDATE! Support for removing all HTML br tags from the rendered template.  Support
-        for disabling the creation of insights.
-    integration_version: 8.0
-    item_name: Entity Insight
-    item_type: Action
-    publish_time: 1623259206
-    ticket_number: xxx
-    new: false
-    regressive: false
-    deprecated: false
-    removed: false
--   description: Locked Render Template action.
-    integration_version: 9.0
-    item_name: Render Template
-    item_type: Action
-    publish_time: 1623259206
-    ticket_number: xxx
-    new: false
-    regressive: false
-    deprecated: false
-    removed: false
--   description: Updated Jinja2 to 3.0.1
-    integration_version: 10.0
-    item_name: Render Template
-    item_type: Action
-    publish_time: 1625081208
-    ticket_number: xxx
-    new: false
-    regressive: false
-    deprecated: false
-    removed: false
--   description: Updated dependencies
-    integration_version: 11.0
-    item_name: TemplateEngine
-    item_type: Integration
-    publish_time: 1625336304
-    ticket_number: xxx
-    new: false
-    regressive: false
-    deprecated: false
-    removed: false
--   description: Updated Filters
-    integration_version: 12.0
-    item_name: TemplateEngine
-    item_type: Integration
-    publish_time: 1635519379
-    ticket_number: xxx
-    new: false
-    regressive: false
-    deprecated: false
-    removed: false
--   description: Updated SVG
-    integration_version: 13.0
-    item_name: TemplateEngine
-    item_type: Integration
-    publish_time: 1637759237
-    ticket_number: xxx
-    new: false
-    regressive: false
-    deprecated: false
-    removed: false
--   description: Added support for list entity results
-    integration_version: 14.0
-    item_name: TemplateEngine
-    item_type: Integration
-    publish_time: 1645615022
-    ticket_number: xxx
-    new: false
-    regressive: false
-    deprecated: false
-    removed: false
--   description: New Action! Render Template from Array.  The action will loop through
-        a list and apply the template to each item.
-    integration_version: 15.0
-    item_name: TemplateEngine
-    item_type: Integration
-    publish_time: 1671123403
-    ticket_number: xxx
-    new: false
-    regressive: false
-    deprecated: false
-    removed: false
--   description: 'New Feature! CustomFilters. When the integration finds a manager
-        named CustomFilters, it will load in those filters and make them available
-        within the template.  A manager named CustomJinjaFilters has been included
-        and can be used as a template. '
-    integration_version: 15.0
-    item_name: TemplateEngine
-    item_type: Integration
-    publish_time: 1671123403
-    ticket_number: xxx
-    new: false
-    regressive: false
-    deprecated: false
-    removed: false
--   description: Fixed Render Template - Include case data parameter description
-    integration_version: 16.0
-    item_name: TemplateEngine
-    item_type: Integration
-    publish_time: 1692098823
-    ticket_number: '290335603'
-    new: false
-    regressive: false
-    deprecated: false
-    removed: false
--   description: 'Important - Updated the integration code to work with Python version
-        3.11. To ensure compatibility and avoid disruptions, follow the upgrade best
-        practices described in the following document: https://cloud.google.com/chronicle/docs/soar/respond/integrations-setup/upgrade-python-versions'
-    integration_version: 17.0
-    item_name: TemplateEngine
-    item_type: Integration
-    publish_time: 1735211406
-    ticket_number: ''
-    new: false
-    regressive: false
-    deprecated: false
-    removed: false
--   description: Updated integration dependencies.
-    integration_version: 17.0
-    item_name: TemplateEngine
-    item_type: Integration
-    publish_time: 1745504354
-    ticket_number: 413275498,409615534
-    new: false
-    regressive: false
-    deprecated: false
-    removed: false
+- description: ' Added a new parameter named "Jinja" to "Render Template" action.
+    This parameter can be used instead of the Template parameter to store the Jinja
+    code that will be rendered.'
+  integration_version: 3.0
+  item_name: Render Template
+  item_type: Action
+  publish_time: '2021-01-17'
+  ticket_number: xxx
+  new: false
+  regressive: false
+  deprecated: false
+  removed: false
+- description: ' Added a new parameter named "Include Case Data" to "Render Template"
+    action. When enabled, adds entity attributes and event data to the input_json
+    object.'
+  integration_version: 4.0
+  item_name: Render Template
+  item_type: Action
+  publish_time: '2021-05-04'
+  ticket_number: xxx
+  new: false
+  regressive: false
+  deprecated: false
+  removed: false
+- description: Fixed bug in Render Template Action.
+  integration_version: 5.0
+  item_name: Render Template
+  item_type: Action
+  publish_time: '2021-05-06'
+  ticket_number: xxx
+  new: false
+  regressive: false
+  deprecated: false
+  removed: false
+- description: 'Entity Insight now supports all the filters Render Template supports.
+    Added support for {{ entity.ATTRIBUTE }}. '
+  integration_version: 6.0
+  item_name: Entity Insight
+  item_type: Action
+  publish_time: '2021-05-16'
+  ticket_number: xxx
+  new: false
+  regressive: false
+  deprecated: false
+  removed: false
+- description: UPDATE! Support for removing all HTML br tags from the rendered template.  Support
+    for disabling the creation of insights.
+  integration_version: 8.0
+  item_name: Entity Insight
+  item_type: Action
+  publish_time: '2021-06-09'
+  ticket_number: xxx
+  new: false
+  regressive: false
+  deprecated: false
+  removed: false
+- description: Locked Render Template action.
+  integration_version: 9.0
+  item_name: Render Template
+  item_type: Action
+  publish_time: '2021-06-09'
+  ticket_number: xxx
+  new: false
+  regressive: false
+  deprecated: false
+  removed: false
+- description: Updated Jinja2 to 3.0.1
+  integration_version: 10.0
+  item_name: Render Template
+  item_type: Action
+  publish_time: '2021-06-30'
+  ticket_number: xxx
+  new: false
+  regressive: false
+  deprecated: false
+  removed: false
+- description: Updated dependencies
+  integration_version: 11.0
+  item_name: TemplateEngine
+  item_type: Integration
+  publish_time: '2021-07-03'
+  ticket_number: xxx
+  new: false
+  regressive: false
+  deprecated: false
+  removed: false
+- description: Updated Filters
+  integration_version: 12.0
+  item_name: TemplateEngine
+  item_type: Integration
+  publish_time: '2021-10-29'
+  ticket_number: xxx
+  new: false
+  regressive: false
+  deprecated: false
+  removed: false
+- description: Updated SVG
+  integration_version: 13.0
+  item_name: TemplateEngine
+  item_type: Integration
+  publish_time: '2021-11-24'
+  ticket_number: xxx
+  new: false
+  regressive: false
+  deprecated: false
+  removed: false
+- description: Added support for list entity results
+  integration_version: 14.0
+  item_name: TemplateEngine
+  item_type: Integration
+  publish_time: '2022-02-23'
+  ticket_number: xxx
+  new: false
+  regressive: false
+  deprecated: false
+  removed: false
+- description: New Action! Render Template from Array.  The action will loop through
+    a list and apply the template to each item.
+  integration_version: 15.0
+  item_name: TemplateEngine
+  item_type: Integration
+  publish_time: '2022-12-15'
+  ticket_number: xxx
+  new: false
+  regressive: false
+  deprecated: false
+  removed: false
+- description: 'New Feature! CustomFilters. When the integration finds a manager named
+    CustomFilters, it will load in those filters and make them available within the
+    template.  A manager named CustomJinjaFilters has been included and can be used
+    as a template. '
+  integration_version: 15.0
+  item_name: TemplateEngine
+  item_type: Integration
+  publish_time: '2022-12-15'
+  ticket_number: xxx
+  new: false
+  regressive: false
+  deprecated: false
+  removed: false
+- description: Fixed Render Template - Include case data parameter description
+  integration_version: 16.0
+  item_name: TemplateEngine
+  item_type: Integration
+  publish_time: '2023-08-15'
+  ticket_number: '290335603'
+  new: false
+  regressive: false
+  deprecated: false
+  removed: false
+- description: 'Important - Updated the integration code to work with Python version
+    3.11. To ensure compatibility and avoid disruptions, follow the upgrade best practices
+    described in the following document: https://cloud.google.com/chronicle/docs/soar/respond/integrations-setup/upgrade-python-versions'
+  integration_version: 17.0
+  item_name: TemplateEngine
+  item_type: Integration
+  publish_time: '2024-12-26'
+  ticket_number: ''
+  new: false
+  regressive: false
+  deprecated: false
+  removed: false
+- description: Updated integration dependencies.
+  integration_version: 17.0
+  item_name: TemplateEngine
+  item_type: Integration
+  publish_time: '2025-04-24'
+  ticket_number: 413275498,409615534
+  new: false
+  regressive: false
+  deprecated: false
+  removed: false

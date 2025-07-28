@@ -11,6 +11,7 @@ from ..core.constants import (
     SupportedEntitiesEnum,
 )
 
+
 DEFAULT_ENTITY_TYPE = SupportedEntitiesEnum.ALL.value
 
 SUCCESS_MESSAGE = "Successfully enriched the following entities: {}"
@@ -18,14 +19,15 @@ NO_ENTITIES_MESSAGE = "No eligible entities were found in the scope of the Alert
 
 
 class EnrichEntityActionExample(BaseAction):
-    def __init__(self):
+
+    def __init__(self) -> None:
         super().__init__(ENRICH_ENTITY_ACTION_EXAMPLE_SCRIPT_NAME)
         self.enriched_entities: list[str] = []
         self.error_output_message: str = (
             f'Error executing action "{ENRICH_ENTITY_ACTION_EXAMPLE_SCRIPT_NAME}".'
         )
 
-    def _extract_action_parameters(self):
+    def _extract_action_parameters(self) -> None:
         self.params.entity_type = extract_action_param(
             self.soar_action,
             param_name="Entity Type",
