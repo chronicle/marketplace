@@ -1,42 +1,42 @@
--   description: NEW! Pulsedive integration.
-    integration_version: 1.0
-    item_name: Pulsedive
-    item_type: Integration
-    publish_time: 1614191635
-    ticket_number: xxx
-    new: false
-    regressive: false
-    deprecated: false
-    removed: false
--   description: Fixed output message.
-    integration_version: 2.0
-    item_name: Pulsedive
-    item_type: Integration
-    publish_time: 1614281710
-    ticket_number: xxx
-    new: false
-    regressive: false
-    deprecated: false
-    removed: false
--   description: Fix! raise NotImplementedError on non implemented methods.
-    integration_version: 3.0
-    item_name: Pulsedive
-    item_type: Integration
-    publish_time: 1704459984
-    ticket_number: '318190863'
-    new: false
-    regressive: false
-    deprecated: false
-    removed: false
--   description: 'Important - Updated the integration code to work with Python version
-        3.11. To ensure compatibility and avoid disruptions, follow the upgrade best
-        practices described in the following document: https://cloud.google.com/chronicle/docs/soar/respond/integrations-setup/upgrade-python-versions'
-    integration_version: 4.0
-    item_name: Pulsedive
-    item_type: Integration
-    publish_time: 1735202046
-    ticket_number: ''
-    new: false
-    regressive: false
-    deprecated: false
-    removed: false
+- description: NEW! Pulsedive integration.
+  integration_version: 1.0
+  item_name: Pulsedive
+  item_type: Integration
+  publish_time: '2021-02-24'
+  ticket_number: xxx
+  new: false
+  regressive: false
+  deprecated: false
+  removed: false
+- description: Fixed output message.
+  integration_version: 2.0
+  item_name: Pulsedive
+  item_type: Integration
+  publish_time: '2021-02-25'
+  ticket_number: xxx
+  new: false
+  regressive: false
+  deprecated: false
+  removed: false
+- description: Fix! raise NotImplementedError on non implemented methods.
+  integration_version: 3.0
+  item_name: Pulsedive
+  item_type: Integration
+  publish_time: '2024-01-05'
+  ticket_number: '318190863'
+  new: false
+  regressive: false
+  deprecated: false
+  removed: false
+- description: 'Important - Updated the integration code to work with Python version
+    3.11. To ensure compatibility and avoid disruptions, follow the upgrade best practices
+    described in the following document: https://cloud.google.com/chronicle/docs/soar/respond/integrations-setup/upgrade-python-versions'
+  integration_version: 4.0
+  item_name: Pulsedive
+  item_type: Integration
+  publish_time: '2024-12-26'
+  ticket_number: ''
+  new: false
+  regressive: false
+  deprecated: false
+  removed: false

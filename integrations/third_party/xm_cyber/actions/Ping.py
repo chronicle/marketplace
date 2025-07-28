@@ -15,11 +15,13 @@ from ..core.XMCyberException import XMCyberException
 @output_handler
 def main():
     """Test the configuration credentials of the XMCyber integration."""
-    siemplify = SiemplifyAction()
     is_success = False
     response = ""
-    auth_type, base_url, api_key = get_integration_params(siemplify)
+    output_message = ""
+    status = EXECUTION_STATE_FAILED
 
+    siemplify = SiemplifyAction()
+    auth_type, base_url, api_key = get_integration_params(siemplify)
     try:
         api_manager = ApiManager(auth_type, base_url, api_key, siemplify.LOGGER)
         if api_manager.error:
@@ -32,7 +34,10 @@ def main():
 
     if is_success is True:
         status = EXECUTION_STATE_COMPLETED
-        output_message = f"Successfully connected to the {INTEGRATION_NAME} server with the provided connection parameters."
+        output_message = (
+            f"Successfully connected to the {INTEGRATION_NAME} server with the provided "
+            f"connection parameters."
+        )
     else:
         status = EXECUTION_STATE_FAILED
         output_message = f"{ERRORS['ACTION']['FAILED']} {response}"

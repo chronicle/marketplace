@@ -1,0 +1,12 @@
+name: Enrich Entities
+description: This action enriches the HOSTNAME and USER types entities of an Alert using XMCyber's enrichment data.
+integration_identifier: XMCyber
+parameters: [ ]
+dynamic_results_metadata:
+    -   result_name: JsonResult
+        show_result: true
+        # language=json
+        result_example: '{}'
+default_result_value: ''
+creator: 80cf6f8c-c999-4e49-90ba-7f61317774b6
+script_result_name: ScriptResult

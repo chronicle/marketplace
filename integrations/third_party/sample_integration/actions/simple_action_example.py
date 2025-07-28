@@ -29,7 +29,8 @@ SUCCESS_MESSAGE = (
 
 
 class SimpleActionExample(BaseAction):
-    def __init__(self):
+
+    def __init__(self) -> None:
         super().__init__(SIMPLE_ACTION_EXAMPLE_SCRIPT_NAME)
         self.output_message: str = ""
         self.result_value: bool = False
@@ -37,7 +38,7 @@ class SimpleActionExample(BaseAction):
             f'Error executing action "{SIMPLE_ACTION_EXAMPLE_SCRIPT_NAME}".'
         )
 
-    def _extract_action_parameters(self):
+    def _extract_action_parameters(self) -> None:
         self.params.currencies_str = extract_action_param(
             self.soar_action,
             param_name="Currencies String",
@@ -74,7 +75,7 @@ class SimpleActionExample(BaseAction):
             print_value=True,
         )
 
-    def _validate_params(self):
+    def _validate_params(self) -> None:
         validator = ParameterValidator(self.soar_action)
         self._validate_currencies_params(validator)
         self._validate_time_params(validator)

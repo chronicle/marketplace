@@ -1,43 +1,29 @@
-# Copyright 2025 Google LLC
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#     http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-
--   deprecated: true
-    description: New Integration Added - Mock Integration.
-    integration_version: 1.0
-    item_name: Connector Name
-    item_type: Connector
-    new: true
-    regressive: false
-    removed: false
-    ticket_number: some ticket
--   deprecated: false
-    description: Change Description 1
-    integration_version: 2.0
-    item_name: Integration Name
-    item_type: Integration
-    new: false
-    publish_time: 1719273600
-    regressive: false
-    removed: false
-    ticket_number: some ticket
--   deprecated: false
-    description: Change Description 2
-    integration_version: 2.0
-    item_name: Integration Name
-    item_type: Integration
-    new: false
-    publish_time: 1719273600
-    regressive: false
-    removed: false
-    ticket_number: some ticket
+- deprecated: true
+  description: New Integration Added - Mock Integration.
+  integration_version: 1.0
+  item_name: Connector Name
+  item_type: Connector
+  new: true
+  regressive: false
+  removed: false
+  ticket_number: some ticket
+- deprecated: false
+  description: Change Description 1
+  integration_version: 2.0
+  item_name: Integration Name
+  item_type: Integration
+  new: false
+  publish_time: '2024-06-25'
+  regressive: false
+  removed: false
+  ticket_number: some ticket
+- deprecated: false
+  description: Change Description 2
+  integration_version: 2.0
+  item_name: Integration Name
+  item_type: Integration
+  new: false
+  publish_time: '2024-06-25'
+  regressive: false
+  removed: false
+  ticket_number: some ticket

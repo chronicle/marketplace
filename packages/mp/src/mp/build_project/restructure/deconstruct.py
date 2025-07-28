@@ -90,7 +90,7 @@ class DeconstructIntegration:
                     project_path=self.out_path,
                     requirements_path=requirements,
                 )
-            except mp.core.unix.CommandError as e:
+            except mp.core.unix.FatalCommandError as e:
                 rich.print(f"Failed to install dependencies from requirements: {e}")
 
     def update_pyproject(self) -> None:

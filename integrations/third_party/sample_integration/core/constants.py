@@ -5,31 +5,36 @@ from typing import Mapping
 from TIPCommon.base.action import EntityTypesEnum
 
 # Integration Identifiers
-INTEGRATION_IDENTIFIER = "SampleIntegration"
-INTEGRATION_DISPLAY_NAME = "Sample Integration"
+INTEGRATION_IDENTIFIER: str = "SampleIntegration"
+INTEGRATION_DISPLAY_NAME: str = "Sample Integration"
 
 # Script Identifiers
-PING_SCRIPT_NAME = f"{INTEGRATION_IDENTIFIER} - Ping"
-SIMPLE_ACTION_EXAMPLE_SCRIPT_NAME = f"{INTEGRATION_IDENTIFIER} - Simple Action Example"
-ENRICH_ENTITY_ACTION_EXAMPLE_SCRIPT_NAME = (
+PING_SCRIPT_NAME: str = f"{INTEGRATION_IDENTIFIER} - Ping"
+SIMPLE_ACTION_EXAMPLE_SCRIPT_NAME: str = (
+    f"{INTEGRATION_IDENTIFIER} - Simple Action Example"
+)
+ENRICH_ENTITY_ACTION_EXAMPLE_SCRIPT_NAME: str = (
     f"{INTEGRATION_IDENTIFIER} - Enrich Entity Action Example"
 )
-ASYNC_ACTION_EXAMPLE_SCRIPT_NAME = f"{INTEGRATION_IDENTIFIER} - Async Action Example"
-CONNECTOR_SCRIPT_NAME = "f{INTEGRATION_IDENTIFIER} - Simple Connector Example"
+ASYNC_ACTION_EXAMPLE_SCRIPT_NAME: str = (
+    f"{INTEGRATION_IDENTIFIER} - Async Action Example"
+)
+CONNECTOR_SCRIPT_NAME: str = f"{INTEGRATION_IDENTIFIER} - Simple Connector Example"
+JOB_SCRIPT_NAME: str = f"{INTEGRATION_IDENTIFIER} - Simple Job Example"
 
 # Default Configuration Parameter Values
-DEFAULT_API_ROOT = "https://api.vatcomply.com"
-DEFAULT_VERIFY_SSL = True
+DEFAULT_API_ROOT: str = "https://api.vatcomply.com"
+DEFAULT_VERIFY_SSL: bool = True
 
 # API Constants
-ENDPOINTS = {
+ENDPOINTS: Mapping[str, str] = {
     "ping": "/rates",
     "get-base-rate": "/rates",
 }
 
 # Timeouts
-REQUEST_TIMEOUT = 30
-ASYNC_ACTION_TIMEOUT_THRESHOLD_SEC = 60
+REQUEST_TIMEOUT: int = 30
+ASYNC_ACTION_TIMEOUT_THRESHOLD_SEC: int = 60
 
 
 # Parameter Values
@@ -110,3 +115,27 @@ ALERT_SEVERITY_MAP: Mapping[AlertSeverityEnum, int] = {
     AlertSeverityEnum.LOW: 40,
     AlertSeverityEnum.INFORMATIONAL: -1,
 }
+
+DEFAULT_VENDOR: str = "Sample Project"
+DEFAULT_PRODUCT: str = "Exchange"
+ALERT_NAME_FORMAT: str = "{date} : {base}"
+ALERT_NAME_EXCHANGE_FORMAT: str = "{date} : {base} - {currency}"
+DISPLAY_ID_FORMAT: str = "Sample_Project_{date}_{base}"
+DISPLAY_ID_EXCHANGE_FORMAT: str = "Sample_Project_{date}_{base}_{currency}"
+ATTACHMENT_FILE_NAME_FORMAT: str = "{date}_{base}.json"
+ATTACHMENT_FILE_NAME_EXCHANGE_FORMAT: str = "{date}_{base}_{currency}.json"
+REASON: str = "This is a sample Alert reason."
+DESCRIPTION: str = "This is a sample Alert description."
+RULE_GENERATOR: str = "This is a sample Rule Generator."
+SOURCE_GROUPING_IDENTIFIER_FORMAT: str = "{date}:{base}"
+PROCESSED_CASES_LIMIT: int = 100
+DATE_KEY: str = "date"
+CASES_WITH_COMMENT_KEY: str = "cases_with_comment"
+COMMENT_PREFIX: str = "Job Added a comment: Exchange Rate:"
+CURRENCY_PAIR: str = "USD - EUR"
+SIMPLE_JOB_CONTEXT_KEY: str = "simple_job_context"
+CLOSED_CASE_TAG: str = "Closed"
+CURRENCY_TAG: str = "Currency"
+ROOT_CAUSE: str = "Other"
+CLOSE_CASE_REASON: str = "Maintenance"
+CLOSE_CASE_COMMENT: str = "Closed by Sample Integration Job"

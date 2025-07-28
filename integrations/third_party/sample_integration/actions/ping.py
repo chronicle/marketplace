@@ -9,6 +9,7 @@ ERROR_MESSAGE = "Failed to connect to the API Service server!"
 
 
 class Ping(BaseAction):
+
     def __init__(self) -> None:
         super().__init__(PING_SCRIPT_NAME)
         self.output_message = SUCCESS_MESSAGE

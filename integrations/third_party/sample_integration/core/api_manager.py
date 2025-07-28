@@ -1,15 +1,19 @@
 from __future__ import annotations
 
-import datetime as dt
-from collections.abc import Iterable
+from typing import TYPE_CHECKING
 
-from TIPCommon.base.utils import NewLineLogger
-from requests import Session
+import datetime as dt
+import time
 
 from .api_utils import get_full_url, validate_response
 from .constants import REQUEST_TIMEOUT
 from .data_models import BaseRate, DailyRates
 from .utils import date_range
+
+if TYPE_CHECKING:
+    from collections.abc import Iterable
+    from requests import Session
+    from TIPCommon.base.utils import NewLineLogger
 
 
 class ApiManager:
@@ -73,6 +77,34 @@ class ApiManager:
             )
         return results
 
+    def get_connector_rates(
+        self,
+        currencies: Iterable[str],
+        start_date: dt.date,
+    ) -> DailyRates:
+        """Get daily rates for a given date range and currencies for connector use.
+
+        Args:
+            currencies (Iterable[str]): list of currencies to get rates for
+            start_date (dt.date): start date of the range
+
+        Returns:
+            DailyRates: list of daily rates
+        """
+        return DailyRates(
+            date=start_date.isoformat(),
+            exchange_rates=[
+                self.get_base_rate(base, start_date) for base in currencies
+            ],
+        )
+
+    def get_job_rate(self) -> None:
+        """Get job rate."""
+        url = get_full_url(self.api_root, "ping")
+        response = self.session.get(url)
+        validate_response(response)
+        return response.json()
+
     def get_base_rate(self, base_symbol: str, date: dt.date) -> BaseRate:
         """Get base rate for a given currency and date.
 
@@ -83,6 +115,7 @@ class ApiManager:
         Returns:
             BaseRate: base rate
         """
+        time.sleep(2)  # Simulating API rate limit
         url = get_full_url(self.api_root, "get-base-rate")
         params = {
             "date": date.isoformat(),
