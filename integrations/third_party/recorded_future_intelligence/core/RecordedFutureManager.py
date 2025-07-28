@@ -484,7 +484,7 @@ class RecordedFutureManager:
         for target in playbook_alert.panel_status.targets:
             entity = target.name
             if "." not in entity:
-                self.siemplify.LOGGER.warning(
+                self.siemplify.LOGGER.warn(
                     f"Entity {entity} is not a domain. Skipping...",
                 )
                 continue
@@ -612,7 +612,7 @@ class RecordedFutureManager:
     def update_playbook_alert(
         self,
         alert_id,
-        category,
+        category=None,
         status=None,
         assignee=None,
         log_entry=None,
