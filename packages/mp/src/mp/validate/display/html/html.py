@@ -53,7 +53,6 @@ class HtmlDisplay:
                     report_path = pathlib.Path(temp_file.name)
 
             resolved_path = report_path.resolve()
-            console.print("✅ Report successfully generated.")
 
             if not is_github_actions:
                 console.print(f"📂 Report available at: {resolved_path.as_uri()}")
