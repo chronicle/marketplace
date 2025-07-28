@@ -46,6 +46,7 @@ def main():
                     SUPPORTED_OUTPUT_TYPES,
                 ),
             )
+
             if intersection:
                 res.append({"Hash": _hash, "HashType": intersection[0]})
             else:
