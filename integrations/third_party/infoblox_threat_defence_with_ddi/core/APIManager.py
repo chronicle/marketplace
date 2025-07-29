@@ -515,7 +515,7 @@ class APIManager:
         """
         # Fetch current data using get_network_list (should return a dict for the specified ID)
         current_data = self.get_network_list(network_list_id=network_list_id)
-        current_data = current_data.get("results", {})
+        current_data = current_data.get("results")
 
         # Build body
         fields = {"name": name, "items": items, "description": description}
