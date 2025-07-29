@@ -42,7 +42,7 @@ class CliDisplay:
             for integration_result in category_validation_result:
                 console.print(
                     "[bold red]🛑 Few issues were detected in "
-                    f"---- {integration_result.integration_name} integration ----\n[/bold red]"
+                    f"---- {integration_result.integration_name} integration ----[/bold red]"
                 )
                 for (
                     validation_result

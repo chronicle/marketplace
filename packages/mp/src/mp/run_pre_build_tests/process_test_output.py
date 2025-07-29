@@ -14,14 +14,15 @@
 
 import json
 import pathlib
+from dataclasses import dataclass
 
 import rich
 
 
+@dataclass(frozen=True)
 class TestIssue:
-    def __init__(self, test_name: str, stack_trace: str) -> None:
-        self.test_name: str = test_name
-        self.stack_trace: str = stack_trace
+    test_name: str
+    stack_trace: str
 
 
 class IntegrationTestResults:
@@ -36,7 +37,7 @@ class IntegrationTestResults:
 def process_pytest_json_report(
     integration_name: str, json_report_path: pathlib.Path
 ) -> IntegrationTestResults:
-    """Processes the parsed JSON report data from pytest-json and returns an IntegrationTestResults object.
+    """Process parsed JSON report data from pytest-json and return an IntegrationTestResults object.
 
     Args:
         integration_name: The name of the integration being tested.
@@ -49,7 +50,7 @@ def process_pytest_json_report(
     """
     report_data = {}
     try:
-        with open(json_report_path, encoding="utf-8") as f:
+        with pathlib.Path.open(json_report_path, encoding="utf-8") as f:
             report_data = json.load(f)
 
         json_report_path.unlink(missing_ok=True)
@@ -84,7 +85,6 @@ def process_pytest_json_report(
 
 
 def _extract_failed_test_issue(test_item: dict) -> TestIssue:
-    """Extracts relevant information for a failed test item and returns a TestIssue."""
     test_name: str = test_item.get("nodeid", "N/A")
     call_info = test_item.get("call", {})
     full_stack_trace = "No stack trace available"
@@ -105,7 +105,6 @@ def _extract_failed_test_issue(test_item: dict) -> TestIssue:
 
 
 def _extract_skipped_test_issue(test_item: dict) -> TestIssue:
-    """Extracts relevant information for a skipped test item and returns a TestIssue."""
     test_name: str = test_item.get("nodeid", "N/A")
     skip_reason = test_item.get("was_skipped", "Unknown reason").strip()
 

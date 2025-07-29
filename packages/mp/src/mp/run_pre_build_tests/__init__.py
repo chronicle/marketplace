@@ -133,6 +133,9 @@ def run_pre_build_tests(  # noqa: PLR0913
         quiet: quiet log options
         verbose: Verbose log options
 
+    Raises:
+        typer.Exit: If one or more tests are failed.
+
     """
     if raise_error_on_violations:
         warnings.filterwarnings("error")
@@ -145,66 +148,81 @@ def run_pre_build_tests(  # noqa: PLR0913
 
     commercial_path: pathlib.Path = mp.core.file_utils.get_commercial_path()
     community_path: pathlib.Path = mp.core.file_utils.get_community_path()
+
+    all_integration_results: list[IntegrationTestResults] = []
+
     if integration:
         commercial_integrations: set[pathlib.Path] = _get_mp_paths_from_names(
             names=integration,
             marketplace_path=commercial_path,
         )
-        _test_integrations(commercial_integrations)
+        all_integration_results.extend(_test_integrations(commercial_integrations))
 
         community_integrations: set[pathlib.Path] = _get_mp_paths_from_names(
             names=integration,
             marketplace_path=community_path,
         )
-        _test_integrations(community_integrations)
+        all_integration_results.extend(_test_integrations(community_integrations))
 
     elif group:
         commercial_groups: set[pathlib.Path] = _get_mp_paths_from_names(
             names=group,
             marketplace_path=commercial_path,
         )
-        _test_groups(commercial_groups)
+        all_integration_results.extend(_test_groups(commercial_groups))
 
         community_groups: set[pathlib.Path] = _get_mp_paths_from_names(
             names=group,
             marketplace_path=community_path,
         )
-        _test_groups(community_groups)
+        all_integration_results.extend(_test_groups(community_groups))
 
     elif repository:
         repos: set[RepositoryType] = set(repository)
         if RepositoryType.COMMERCIAL in repos:
-            _test_repository(commercial_path)
+            all_integration_results.extend(_test_repository(commercial_path))
 
         if RepositoryType.COMMUNITY in repos:
-            _test_repository(community_path)
+            all_integration_results.extend(_test_repository(community_path))
+
+    _display(all_integration_results)
+    if all_integration_results:
+        raise typer.Exit(code=1)
 
 
-def _test_repository(repo: pathlib.Path) -> None:
+def _test_repository(repo: pathlib.Path) -> list[IntegrationTestResults]:
     products: Products[set[pathlib.Path]] = (
         mp.core.file_utils.get_integrations_and_groups_from_paths(repo)
     )
+    all_integration_results: list[IntegrationTestResults] = []
     if products.integrations:
-        _test_integrations(products.integrations)
+        all_integration_results.extend(_test_integrations(products.integrations))
 
     if products.groups:
-        _test_groups(products.groups)
+        all_integration_results.extend(_test_groups(products.groups))
+
+    return all_integration_results
 
 
-def _test_groups(groups: Iterable[pathlib.Path]) -> None:
+def _test_groups(groups: Iterable[pathlib.Path]) -> list[IntegrationTestResults]:
+    all_integration_results: list[IntegrationTestResults] = []
     for group in groups:
-        _test_integrations(group.iterdir())
+        all_integration_results.extend(_test_integrations(group.iterdir()))
+    return all_integration_results
 
 
-def _test_integrations(integrations: Iterable[pathlib.Path]) -> None:
+def _test_integrations(integrations: Iterable[pathlib.Path]) -> list[IntegrationTestResults]:
     if integrations:
-        _run_script_on_paths(
+        return _run_script_on_paths(
             script_path=RUN_PRE_BUILD_TESTS_PATH,
             paths=integrations,
         )
+    return []
 
 
-def _run_script_on_paths(script_path: pathlib.Path, paths: Iterable[pathlib.Path]) -> None:
+def _run_script_on_paths(
+    script_path: pathlib.Path, paths: Iterable[pathlib.Path]
+) -> list[IntegrationTestResults]:
     paths = [p for p in paths if p.is_dir()]
     all_integration_results: list[IntegrationTestResults] = []
 
@@ -215,14 +233,14 @@ def _run_script_on_paths(script_path: pathlib.Path, paths: Iterable[pathlib.Path
 
         for result in results_iterator:
             if result is not None:
-                all_integration_results.append(result)
+                all_integration_results.append(result)  # noqa: PERF401
 
-    CliDisplay(all_integration_results).display()
-    HtmlDisplay(all_integration_results).display()
+    return all_integration_results
 
 
-def _run_tests_for_single_integration(script_path: pathlib.Path, integration_path: pathlib.Path) -> IntegrationTestResults | None:
-
+def _run_tests_for_single_integration(
+    script_path: pathlib.Path, integration_path: pathlib.Path
+) -> IntegrationTestResults | None:
     status_code: int = mp.core.unix.run_script_on_paths(script_path, integration_path)
 
     json_report_path = integration_path / ".report.json"
@@ -231,6 +249,11 @@ def _run_tests_for_single_integration(script_path: pathlib.Path, integration_pat
         return None
 
     return process_pytest_json_report(integration_path.name, json_report_path)
+
+
+def _display(all_integration_results: list[IntegrationTestResults]) -> None:
+    CliDisplay(all_integration_results).display()
+    HtmlDisplay(all_integration_results).display()
 
 
 def _get_mp_paths_from_names(

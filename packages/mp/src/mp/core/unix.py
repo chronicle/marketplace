@@ -261,17 +261,15 @@ def run_script_on_paths(
 
     # Make the script executable
     chmod_command: list[str] = ["chmod", "+x", script_full_path]
-    sp.run(chmod_command, check=True)  # S603: subprocess.run with check=True is safe
+    sp.run(chmod_command, check=True)  # noqa: S603
 
-    # Prepare the command with the script and test paths
     command: list[str] = [script_full_path] + [str(p) for p in test_paths]
 
-    # Run the script and capture output
-    result = sp.run(
+    result = sp.run(  # noqa: S603
         command,
-        capture_output=True,  # Captures stdout and stderr
-        text=True,  # Decodes stdout/stderr as text using default encoding
-        check=False,  # Do not raise CalledProcessError for non-zero exit codes
+        capture_output=True,
+        text=True,
+        check=False,
     )
 
     return result.returncode

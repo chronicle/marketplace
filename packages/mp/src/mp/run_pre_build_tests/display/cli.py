@@ -23,7 +23,8 @@ class CliDisplay:
     def __init__(self, tests_report: list[IntegrationTestResults]) -> None:
         self.tests_report: list[IntegrationTestResults] = tests_report
 
-    def display(self):
+    def display(self) -> None:
+        """Display the tests result in the cli."""
         if not self.tests_report:
             console.print("[bold green]All Tests Passed\n[/bold green]")
 
