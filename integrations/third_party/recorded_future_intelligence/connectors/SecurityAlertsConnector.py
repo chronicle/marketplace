@@ -246,6 +246,10 @@ def main(is_test_run):
                     AlertInfo(),
                     environment_common=common_env,
                 )
+                for event in alert_info.events:
+                    event["alert_id"] = alert.id
+                    event["alert_url"] = f"https://app.recordedfuture.com/live/sc/notification/?id={alert.id}"
+                    event["ai_insights_text"] = alert.raw_data["ai_insights_text"]
 
                 if enable_overflow and is_overflowed(
                     siemplify,
