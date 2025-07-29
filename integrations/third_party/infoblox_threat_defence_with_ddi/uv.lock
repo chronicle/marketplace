@@ -314,7 +314,7 @@ requires-dist = [
 [package.metadata.requires-dev]
 dev = [
     { name = "pytest", specifier = ">=8.4.0" },
-    { name = "soar-sdk", git = "https://github.com/chronicle/soar-sdk" },
+    { name = "soar-sdk", git = "https://github.com/chronicle/soar-sdk.git" },
 ]
 
 [[package]]
@@ -547,7 +547,7 @@ wheels = [
 [[package]]
 name = "soar-sdk"
 version = "0.1.4"
-source = { git = "https://github.com/chronicle/soar-sdk#b24fc6eedac4132215dbaf259c73ed26cfb8b02a" }
+source = { git = "https://github.com/chronicle/soar-sdk.git#b24fc6eedac4132215dbaf259c73ed26cfb8b02a" }
 dependencies = [
     { name = "arrow" },
     { name = "chardet" },
