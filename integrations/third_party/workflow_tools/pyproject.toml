@@ -4,7 +4,6 @@ version = "3.0"
 description = "Gain more control over your workflows, with tools such as approval stages that can only be completed by a specified user or group. This can be actioned against a specific alert by moving it into a different case when the workflow requires, or by requiring an approval action against the case as a whole.\nDocumentation: https://github.com/snags141/SiemplifyIntegration_WorkflowTools"
 requires-python = ">=3.11,<3.12"
 dependencies = [
-    "pytest-json-report>=1.5.0",
     "requests>=2.32.3",
 ]
 
@@ -12,6 +11,7 @@ dependencies = [
 dev = [
     "integration-testing",
     "pytest>=8.3.5",
+    "pytest-json-report>=1.5.0",
     "soar-sdk",
 ]
 

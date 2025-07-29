@@ -46,7 +46,8 @@
 
   <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mb-8">
     <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-200"><p class="text-sm font-medium text-gray-500">Total Integrations</p><p class="text-3xl font-bold text-gray-900">{{ total_integrations }}</p></div>
-    <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-200"><p class="text-sm font-medium text-gray-500">Integrations Passed</p><p class="text-3xl font-bold" style="color: var(--color-pass);">{{ total_passed }}</p></div>
+    {# REMOVED: Integrations Passed summary card #}
+    {# <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-200"><p class="text-sm font-medium text-gray-500">Integrations Passed</p><p class="text-3xl font-bold" style="color: var(--color-pass);">{{ total_passed }}</p></div> #}
     <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-200"><p class="text-sm font-medium text-gray-500">Total Skipped Tests</p><p class="text-3xl font-bold" style="color: var(--color-warn);">{{ total_skipped_tests }}</p></div>
     <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-200"><p class="text-sm font-medium text-gray-500">Total Failed Tests</p><p class="text-3xl font-bold" style="color: var(--color-fail);">{{ total_failed_tests }}</p></div>
   </section>
@@ -64,6 +65,8 @@
           <div class="p-4 md:p-5 cursor-pointer hover:bg-gray-50 flex justify-between items-center" onclick="toggleAccordion(this)">
             <div class="flex items-center gap-4"><span class="status-badge-{{ status }} text-xs font-bold uppercase px-3 py-1 rounded-full">{{ status_text }}</span><p class="font-semibold text-lg text-gray-900">{{ result.integration_name }}</p></div>
             <div class="flex items-center gap-4">
+              {# NEW: Added Passed Tests count for each integration #}
+              <span class="hidden sm:inline text-sm text-green-600">{{ result.passed_tests }} Passed</span>
               <span class="hidden sm:inline text-sm text-red-600">{{ result.failed_tests }} Failed</span>
               <span class="hidden sm:inline text-sm text-amber-600">{{ result.skipped_tests }} Skipped</span>
               <svg class="chevron-icon h-6 w-6 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>

@@ -679,7 +679,6 @@ dependencies = [
     { name = "environmentcommon" },
     { name = "hatching-triage" },
     { name = "psengine" },
-    { name = "pytest-json-report" },
     { name = "requests" },
     { name = "setuptools" },
     { name = "tipcommon" },
@@ -689,6 +688,7 @@ dependencies = [
 [package.dev-dependencies]
 dev = [
     { name = "pytest" },
+    { name = "pytest-json-report" },
     { name = "soar-sdk" },
 ]
 
@@ -698,7 +698,6 @@ requires-dist = [
     { name = "environmentcommon", path = "../../../packages/envcommon/EnvironmentCommon-1.0.2/EnvironmentCommon-1.0.2-py2.py3-none-any.whl" },
     { name = "hatching-triage", url = "https://files.pythonhosted.org/packages/e2/f7/7396282c8d786dee9f73574fa84aeba0f4b198390ffeb4ef12f332dc1ee7/hatching-triage-0.2.0.tar.gz" },
     { name = "psengine", git = "https://github.com/RecordedFuture-ProfessionalServices/psengine?tag=v2.0.3" },
-    { name = "pytest-json-report", specifier = ">=1.5.0" },
     { name = "requests", specifier = ">=2.32.3" },
     { name = "setuptools", specifier = ">=79.0.0" },
     { name = "tipcommon", path = "../../../packages/tipcommon/TIPCommon-2.0.2/TIPCommon-2.0.2-py2.py3-none-any.whl" },
@@ -708,6 +707,7 @@ requires-dist = [
 [package.metadata.requires-dev]
 dev = [
     { name = "pytest", specifier = ">=8.3.5" },
+    { name = "pytest-json-report", specifier = ">=1.5.0" },
     { name = "soar-sdk", git = "https://github.com/chronicle/soar-sdk.git" },
 ]
 

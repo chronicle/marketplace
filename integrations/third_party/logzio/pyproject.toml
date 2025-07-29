@@ -5,7 +5,6 @@ description = "Automatically remediate security incidents identified by Logz.io 
 requires-python = ">=3.11,<3.12"
 dependencies = [
     "dateparser==1.2.0",
-    "pytest-json-report>=1.5.0",
     "requests>=2.32.3",
 ]
 
@@ -13,6 +12,7 @@ dependencies = [
 dev = [
     "integration-testing",
     "pytest>=8.3.5",
+    "pytest-json-report>=1.5.0",
     "soar-sdk",
 ]
 

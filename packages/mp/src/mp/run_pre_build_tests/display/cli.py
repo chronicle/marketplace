@@ -30,8 +30,8 @@ class CliDisplay:
 
         for integration_report in self.tests_report:
             console.print(
-                "[bold red]\n🛑 Few tests failed in "
-                f"---- {integration_report.integration_name} integration ----[/bold red]"
+                "[bold red]\n🛑 Few tests failed in: "
+                f"{integration_report.integration_name}[/bold red]"
             )
 
             if integration_report.failed_tests > 0:

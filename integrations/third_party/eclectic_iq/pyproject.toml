@@ -4,7 +4,6 @@ version = "3.0"
 description = "EclecticIQ is a global provider of threat intelligence technology and services.  \n\nThe most targeted organizations in the world – including governments and large enterprises – use our platform to automate intelligence management at scale and accelerate collaboration across security teams."
 requires-python = ">=3.11,<3.12"
 dependencies = [
-    "pytest-json-report>=1.5.0",
     "requests>=2.32.3",
     "tipcommon",
 ]
@@ -16,5 +15,6 @@ tipcommon = { path = "../../../packages/tipcommon/TIPCommon-1.0.12/TIPCommon-1.0
 [dependency-groups]
 dev = [
     "pytest>=8.3.5",
+    "pytest-json-report>=1.5.0",
     "soar-sdk",
 ]

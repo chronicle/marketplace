@@ -5,13 +5,13 @@ description = "Google Sheets is a spreadsheet program included as part of a free
 requires-python = ">=3.11,<3.12"
 dependencies = [
     "gspread==6.1.4",
-    "pytest-json-report>=1.5.0",
 ]
 
 [dependency-groups]
 dev = [
     "integration-testing",
     "pytest>=8.3.5",
+    "pytest-json-report>=1.5.0",
     "soar-sdk",
 ]
 

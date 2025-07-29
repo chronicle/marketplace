@@ -849,7 +849,6 @@ name = "zoom"
 version = "11.0"
 source = { virtual = "." }
 dependencies = [
-    { name = "pytest-json-report" },
     { name = "requests" },
 ]
 
@@ -857,18 +856,17 @@ dependencies = [
 dev = [
     { name = "integration-testing" },
     { name = "pytest" },
+    { name = "pytest-json-report" },
     { name = "soar-sdk" },
 ]
 
 [package.metadata]
-requires-dist = [
-    { name = "pytest-json-report", specifier = ">=1.5.0" },
-    { name = "requests", specifier = ">=2.32.3" },
-]
+requires-dist = [{ name = "requests", specifier = ">=2.32.3" }]
 
 [package.metadata.requires-dev]
 dev = [
     { name = "integration-testing", directory = "../../../packages/integration_testing" },
     { name = "pytest", specifier = ">=8.3.5" },
+    { name = "pytest-json-report", specifier = ">=1.5.0" },
     { name = "soar-sdk", git = "https://github.com/chronicle/soar-sdk.git" },
 ]

@@ -101,13 +101,13 @@ dependencies = [
     { name = "boto3" },
     { name = "cryptography" },
     { name = "pyopenssl" },
-    { name = "pytest-json-report" },
 ]
 
 [package.dev-dependencies]
 dev = [
     { name = "integration-testing" },
     { name = "pytest" },
+    { name = "pytest-json-report" },
     { name = "soar-sdk" },
 ]
 
@@ -116,13 +116,13 @@ requires-dist = [
     { name = "boto3", specifier = "==1.35.90" },
     { name = "cryptography", specifier = ">=3.4.8" },
     { name = "pyopenssl", specifier = ">=25.1.0" },
-    { name = "pytest-json-report", specifier = ">=1.5.0" },
 ]
 
 [package.metadata.requires-dev]
 dev = [
     { name = "integration-testing", directory = "../../../packages/integration_testing" },
     { name = "pytest", specifier = ">=8.3.5" },
+    { name = "pytest-json-report", specifier = ">=1.5.0" },
     { name = "soar-sdk", git = "https://github.com/chronicle/soar-sdk.git" },
 ]
 

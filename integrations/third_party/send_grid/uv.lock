@@ -743,7 +743,6 @@ name = "sendgridintegration"
 version = "32.0"
 source = { virtual = "." }
 dependencies = [
-    { name = "pytest-json-report" },
     { name = "sendgrid" },
     { name = "starkbank-ecdsa" },
 ]
@@ -752,12 +751,12 @@ dependencies = [
 dev = [
     { name = "integration-testing" },
     { name = "pytest" },
+    { name = "pytest-json-report" },
     { name = "soar-sdk" },
 ]
 
 [package.metadata]
 requires-dist = [
-    { name = "pytest-json-report", specifier = ">=1.5.0" },
     { name = "sendgrid", specifier = "==6.11.0" },
     { name = "starkbank-ecdsa", url = "https://files.pythonhosted.org/packages/a3/f8/a6091be6a60ed4df9ac806c89fbc5fe1a3416d0284f3ba70aa09a3419428/starkbank-ecdsa-2.2.0.tar.gz" },
 ]
@@ -766,6 +765,7 @@ requires-dist = [
 dev = [
     { name = "integration-testing", directory = "../../../packages/integration_testing" },
     { name = "pytest", specifier = ">=8.3.5" },
+    { name = "pytest-json-report", specifier = ">=1.5.0" },
     { name = "soar-sdk", git = "https://github.com/chronicle/soar-sdk.git" },
 ]
 

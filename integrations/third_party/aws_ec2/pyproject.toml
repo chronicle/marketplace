@@ -7,13 +7,13 @@ dependencies = [
     "boto3==1.35.90",
     "cryptography>=3.4.8",
     "pyopenssl>=25.1.0",
-    "pytest-json-report>=1.5.0",
 ]
 
 [dependency-groups]
 dev = [
     "integration-testing",
     "pytest>=8.3.5",
+    "pytest-json-report>=1.5.0",
     "soar-sdk",
 ]
 

@@ -4,7 +4,6 @@ version = "6.0"
 description = "Webhook.site lets you easily inspect, test and automate any incoming HTTP request or e-mail."
 requires-python = ">=3.11,<3.12"
 dependencies = [
-    "pytest-json-report>=1.5.0",
     "requests>=2.32.3",
 ]
 
@@ -12,6 +11,7 @@ dependencies = [
 dev = [
     "integration-testing",
     "pytest>=8.3.5",
+    "pytest-json-report>=1.5.0",
     "soar-sdk",
 ]
 

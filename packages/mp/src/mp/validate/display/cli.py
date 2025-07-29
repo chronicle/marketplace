@@ -41,8 +41,8 @@ class CliDisplay:
             console.print(f"[bold underline blue]\n{category} Validations\n[/bold underline blue]")
             for integration_result in category_validation_result:
                 console.print(
-                    "[bold red]🛑 Few issues were detected in "
-                    f"---- {integration_result.integration_name} integration ----[/bold red]"
+                    "[bold red]🛑 Few issues were detected in: "
+                    f"{integration_result.integration_name}[/bold red]"
                 )
                 for (
                     validation_result

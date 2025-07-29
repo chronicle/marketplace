@@ -429,7 +429,6 @@ source = { virtual = "." }
 dependencies = [
     { name = "pyjwt" },
     { name = "pyopenssl" },
-    { name = "pytest-json-report" },
     { name = "requests" },
 ]
 
@@ -437,6 +436,7 @@ dependencies = [
 dev = [
     { name = "integration-testing" },
     { name = "pytest" },
+    { name = "pytest-json-report" },
     { name = "soar-sdk" },
 ]
 
@@ -444,7 +444,6 @@ dev = [
 requires-dist = [
     { name = "pyjwt", specifier = "==2.10.1" },
     { name = "pyopenssl", specifier = ">=24.3.0" },
-    { name = "pytest-json-report", specifier = ">=1.5.0" },
     { name = "requests", specifier = ">=2.32.3" },
 ]
 
@@ -452,6 +451,7 @@ requires-dist = [
 dev = [
     { name = "integration-testing", directory = "../../../packages/integration_testing" },
     { name = "pytest", specifier = ">=8.3.5" },
+    { name = "pytest-json-report", specifier = ">=1.5.0" },
     { name = "soar-sdk", git = "https://github.com/chronicle/soar-sdk.git" },
 ]
 

@@ -248,7 +248,6 @@ source = { virtual = "." }
 dependencies = [
     { name = "file-magic" },
     { name = "filelock" },
-    { name = "pytest-json-report" },
     { name = "python-magic" },
     { name = "requests" },
 ]
@@ -257,6 +256,7 @@ dependencies = [
 dev = [
     { name = "integration-testing" },
     { name = "pytest" },
+    { name = "pytest-json-report" },
     { name = "soar-sdk" },
 ]
 
@@ -264,7 +264,6 @@ dev = [
 requires-dist = [
     { name = "file-magic", specifier = "==0.4.1" },
     { name = "filelock", specifier = "==3.16.1" },
-    { name = "pytest-json-report", specifier = ">=1.5.0" },
     { name = "python-magic", specifier = ">=0.4.27" },
     { name = "requests", specifier = ">=2.32.3" },
 ]
@@ -273,6 +272,7 @@ requires-dist = [
 dev = [
     { name = "integration-testing", directory = "../../../packages/integration_testing" },
     { name = "pytest", specifier = ">=8.3.5" },
+    { name = "pytest-json-report", specifier = ">=1.5.0" },
     { name = "soar-sdk", git = "https://github.com/chronicle/soar-sdk.git" },
 ]
 

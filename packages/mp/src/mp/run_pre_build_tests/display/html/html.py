@@ -4,7 +4,7 @@
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
 #
-#     http://www.apache.org/licenses/LICENSE-2.0
+#     http://www.apache.org/licenses/LICENSE-20.0
 #
 # Unless required by applicable law or agreed to in writing, software
 # distributed under the License is distributed on an "AS IS" BASIS,
@@ -84,8 +84,11 @@ class HtmlDisplay:
         total_skipped_tests = sum(r.skipped_tests for r in all_results)
 
         total_passed_integrations = sum(
-            1 for r in all_results if r.failed_tests == 0 and r.skipped_tests == 0 and r.errors == 0
+            1 for r in all_results if r.failed_tests == 0 and r.skipped_tests == 0
         )
+
+        system_local_timezone = datetime.datetime.now().astimezone().tzinfo
+        current_time_aware = datetime.datetime.now(system_local_timezone)
 
         context = {
             "integration_results_list": all_results,
@@ -93,6 +96,6 @@ class HtmlDisplay:
             "total_passed": total_passed_integrations,
             "total_skipped_tests": total_skipped_tests,
             "total_failed_tests": total_failed_tests,
-            "current_time": datetime.datetime.now().strftime("%B %d, %Y at %I:%M %p"),
+            "current_time": current_time_aware.strftime("%B %d, %Y at %I:%M %p %Z"),
         }
         return template.render(context)

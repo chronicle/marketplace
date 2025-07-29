@@ -4,7 +4,6 @@ version = "8.0"
 description = "Datadog is an essential monitoring platform for cloud applications. It brings together data from servers, containers, databases, and third-party services to make your stack entirely observable. These capabilities help DevOps teams avoid downtime, resolve performance issues, and ensure customers are getting the best user experience."
 requires-python = ">=3.11,<3.12"
 dependencies = [
-    "pytest-json-report>=1.5.0",
     "requests>=2.32.3",
 ]
 
@@ -12,6 +11,7 @@ dependencies = [
 dev = [
     "integration-testing",
     "pytest>=8.3.5",
+    "pytest-json-report>=1.5.0",
     "soar-sdk",
 ]
 

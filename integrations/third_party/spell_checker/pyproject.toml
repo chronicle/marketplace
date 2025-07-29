@@ -5,13 +5,13 @@ description = "Pyspellchecker provides a library for determining if a word is mi
 requires-python = ">=3.11,<3.12"
 dependencies = [
     "pyspellchecker==0.8.2",
-    "pytest-json-report>=1.5.0",
 ]
 
 [dependency-groups]
 dev = [
     "integration-testing",
     "pytest>=8.3.5",
+    "pytest-json-report>=1.5.0",
     "soar-sdk",
 ]
 

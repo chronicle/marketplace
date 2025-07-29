@@ -279,7 +279,6 @@ dependencies = [
     { name = "hashid" },
     { name = "jsonpath-ng" },
     { name = "pillow" },
-    { name = "pytest-json-report" },
     { name = "pytz" },
     { name = "tinycss2" },
     { name = "tld" },
@@ -291,6 +290,7 @@ dependencies = [
 dev = [
     { name = "integration-testing" },
     { name = "pytest" },
+    { name = "pytest-json-report" },
     { name = "soar-sdk" },
 ]
 
@@ -300,7 +300,6 @@ requires-dist = [
     { name = "hashid", specifier = "==3.1.4" },
     { name = "jsonpath-ng", specifier = "==1.7.0" },
     { name = "pillow", specifier = "==11.0.0" },
-    { name = "pytest-json-report", specifier = ">=1.5.0" },
     { name = "pytz", specifier = "==2024.2" },
     { name = "tinycss2", specifier = "==1.4.0" },
     { name = "tld", specifier = "==0.13" },
@@ -312,6 +311,7 @@ requires-dist = [
 dev = [
     { name = "integration-testing", directory = "../../../packages/integration_testing" },
     { name = "pytest", specifier = ">=8.3.5" },
+    { name = "pytest-json-report", specifier = ">=1.5.0" },
     { name = "soar-sdk", git = "https://github.com/chronicle/soar-sdk.git" },
 ]
 

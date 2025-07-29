@@ -28,6 +28,7 @@ class TestIssue:
 class IntegrationTestResults:
     def __init__(self, integration_name: str) -> None:
         self.integration_name: str = integration_name
+        self.passed_tests: int = 0
         self.failed_tests: int = 0
         self.skipped_tests: int = 0
         self.failed_tests_summary: list[TestIssue] = []
@@ -69,6 +70,7 @@ def process_pytest_json_report(
 
     summary = report_data.get("summary", {})
     integration_results.skipped_tests = summary.get("skipped", 0)
+    integration_results.passed_tests = summary.get("passed", 0)
 
     for test_item in report_data.get("tests", []):
         outcome = test_item.get("outcome")

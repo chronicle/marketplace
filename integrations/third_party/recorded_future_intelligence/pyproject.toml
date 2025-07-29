@@ -8,7 +8,6 @@ dependencies = [
     "environmentcommon",
     "hatching-triage",
     "psengine",
-    "pytest-json-report>=1.5.0",
     "requests>=2.32.3",
     "setuptools>=79.0.0",
     "tipcommon",
@@ -18,6 +17,7 @@ dependencies = [
 [dependency-groups]
 dev = [
     "pytest>=8.3.5",
+    "pytest-json-report>=1.5.0",
     "soar-sdk",
 ]
 
