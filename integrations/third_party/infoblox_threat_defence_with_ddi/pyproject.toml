@@ -2,18 +2,18 @@
 name = "InfobloxThreatDefenceWithDDI"
 version = "1.0"
 description = "Infoblox is a leading provider of secure cloud-managed network services that provide visibility and control over who and what connects to your network. The platform combines DNS, DHCP, and IP Address Management (DDI) with advanced security and threat defense capabilities. In case of any queries, please reach out to support@infoblox.com"
-requires-python = ">=3.11"
+requires-python = ">=3.11,<3.12"
 dependencies = [
     "requests>=2.32.4",
+    "tipcommon",
 ]
 
 [dependency-groups]
 dev = [
-    "integration-testing",
     "pytest>=8.4.0",
     "soar-sdk",
 ]
 
 [tool.uv.sources]
 soar-sdk = { git = "https://github.com/chronicle/soar-sdk" }
-integration-testing = { path = "../../../packages/integration_testing" }
+tipcommon = { path = "../../../packages/tipcommon/TIPCommon-1.1.9/TIPCommon-1.1.9.2-py2.py3-none-any.whl" }
