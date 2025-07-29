@@ -415,7 +415,7 @@
   regressive: false
   deprecated: false
   removed: false
-- description: Parse Case Wall Email - Improved entity extraction mechanism.
+- description: Parse Case Wall Email - Updated entity processing logic.
   integration_version: 38.0
   item_name: Parse Case Wall Email
   item_type: Action
