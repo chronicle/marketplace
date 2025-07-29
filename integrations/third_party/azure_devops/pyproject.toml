@@ -5,6 +5,7 @@ description = "Azure DevOps Server is a Microsoft product that provides version 
 requires-python = ">=3.11,<3.12"
 dependencies = [
     "azure-devops==7.1.0b4",
+    "pytest-json-report>=1.5.0",
 ]
 
 [dependency-groups]

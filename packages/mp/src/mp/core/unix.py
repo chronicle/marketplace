@@ -249,19 +249,32 @@ def mypy(paths: Iterable[pathlib.Path], /, **flags: bool | str) -> int:
 
 def run_script_on_paths(
     script_path: pathlib.Path,
-    test_paths: Iterable[pathlib.Path],
+    *test_paths: pathlib.Path,
 ) -> int:
     """Run a custom script on the provided paths.
 
     Returns:
-        A tuple of the status code and output
+        The status code of the output
 
     """
-    path: str = f"{script_path.resolve().absolute()}"
-    chmod_command: list[str] = ["chmod", "+x", path]
-    sp.run(chmod_command, check=True)  # noqa: S603
-    command: list[str] = [f"{script_path.resolve().absolute()}"]
-    return execute_command_and_get_output(command, test_paths)
+    script_full_path: str = f"{script_path.resolve().absolute()}"
+
+    # Make the script executable
+    chmod_command: list[str] = ["chmod", "+x", script_full_path]
+    sp.run(chmod_command, check=True)  # S603: subprocess.run with check=True is safe
+
+    # Prepare the command with the script and test paths
+    command: list[str] = [script_full_path] + [str(p) for p in test_paths]
+
+    # Run the script and capture output
+    result = sp.run(
+        command,
+        capture_output=True,  # Captures stdout and stderr
+        text=True,  # Decodes stdout/stderr as text using default encoding
+        check=False,  # Do not raise CalledProcessError for non-zero exit codes
+    )
+
+    return result.returncode
 
 
 def execute_command_and_get_output(

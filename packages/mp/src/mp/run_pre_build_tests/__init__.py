@@ -15,11 +15,11 @@
 from __future__ import annotations
 
 import dataclasses
+import multiprocessing
 import pathlib
 import warnings
 from typing import TYPE_CHECKING, Annotated
 
-import rich
 import typer
 
 import mp.build_project.marketplace
@@ -27,7 +27,12 @@ import mp.core.code_manipulation
 import mp.core.config
 import mp.core.file_utils
 import mp.core.unix
+from mp.core.code_manipulation import TestWarning
 from mp.core.custom_types import Products, RepositoryType
+
+from .display.cli import CliDisplay
+from .display.html.html import HtmlDisplay
+from .process_test_output import IntegrationTestResults, TestIssue, process_pytest_json_report
 
 if TYPE_CHECKING:
     from collections.abc import Iterable
@@ -36,7 +41,7 @@ if TYPE_CHECKING:
 
 RUN_PRE_BUILD_TESTS_PATH: pathlib.Path = pathlib.Path(__file__).parent / "run_pre_build_tests.sh"
 
-__all__: list[str] = ["app"]
+__all__: list[str] = ["TestIssue", "TestWarning", "app"]
 app: typer.Typer = typer.Typer()
 
 
@@ -141,7 +146,6 @@ def run_pre_build_tests(  # noqa: PLR0913
     commercial_path: pathlib.Path = mp.core.file_utils.get_commercial_path()
     community_path: pathlib.Path = mp.core.file_utils.get_community_path()
     if integration:
-        rich.print("Testing integrations...")
         commercial_integrations: set[pathlib.Path] = _get_mp_paths_from_names(
             names=integration,
             marketplace_path=commercial_path,
@@ -153,10 +157,8 @@ def run_pre_build_tests(  # noqa: PLR0913
             marketplace_path=community_path,
         )
         _test_integrations(community_integrations)
-        rich.print("Done testing integrations.")
 
     elif group:
-        rich.print("Testing groups...")
         commercial_groups: set[pathlib.Path] = _get_mp_paths_from_names(
             names=group,
             marketplace_path=commercial_path,
@@ -168,19 +170,14 @@ def run_pre_build_tests(  # noqa: PLR0913
             marketplace_path=community_path,
         )
         _test_groups(community_groups)
-        rich.print("Done testing groups.")
 
     elif repository:
         repos: set[RepositoryType] = set(repository)
         if RepositoryType.COMMERCIAL in repos:
-            rich.print("Testing all integrations and groups in commercial repo...")
             _test_repository(commercial_path)
-            rich.print("Done testing commercial integrations.")
 
         if RepositoryType.COMMUNITY in repos:
-            rich.print("Testing all integrations and groups in third party repo...")
             _test_repository(community_path)
-            rich.print("Done testing third party integrations.")
 
 
 def _test_repository(repo: pathlib.Path) -> None:
@@ -196,16 +193,44 @@ def _test_repository(repo: pathlib.Path) -> None:
 
 def _test_groups(groups: Iterable[pathlib.Path]) -> None:
     for group in groups:
-        rich.print(f"===== Testing group: {group.name}")
         _test_integrations(group.iterdir())
 
 
 def _test_integrations(integrations: Iterable[pathlib.Path]) -> None:
     if integrations:
-        mp.core.code_manipulation.run_script_on_paths(
+        _run_script_on_paths(
             script_path=RUN_PRE_BUILD_TESTS_PATH,
             paths=integrations,
         )
+
+
+def _run_script_on_paths(script_path: pathlib.Path, paths: Iterable[pathlib.Path]) -> None:
+    paths = [p for p in paths if p.is_dir()]
+    all_integration_results: list[IntegrationTestResults] = []
+
+    processes: int = mp.core.config.get_processes_number()
+    tasks_arguments = [(script_path, p) for p in paths]
+    with multiprocessing.Pool(processes=processes) as pool:
+        results_iterator = pool.starmap(_run_tests_for_single_integration, tasks_arguments)
+
+        for result in results_iterator:
+            if result is not None:
+                all_integration_results.append(result)
+
+    CliDisplay(all_integration_results).display()
+    HtmlDisplay(all_integration_results).display()
+
+
+def _run_tests_for_single_integration(script_path: pathlib.Path, integration_path: pathlib.Path) -> IntegrationTestResults | None:
+
+    status_code: int = mp.core.unix.run_script_on_paths(script_path, integration_path)
+
+    json_report_path = integration_path / ".report.json"
+    if not json_report_path.exists() or status_code == 0:
+        json_report_path.unlink(missing_ok=True)
+        return None
+
+    return process_pytest_json_report(integration_path.name, json_report_path)
 
 
 def _get_mp_paths_from_names(

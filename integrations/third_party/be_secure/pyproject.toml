@@ -3,7 +3,9 @@ name = "beSECURE"
 version = "9.0"
 description = "beSecure is a flexible, accurate, low maintenance Vulnerability Assessment and Management solution that delivers solid security improvements. "
 requires-python = ">=3.11,<3.12"
-dependencies = []
+dependencies = [
+    "pytest-json-report>=1.5.0",
+]
 
 [dependency-groups]
 dev = [

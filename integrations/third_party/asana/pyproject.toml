@@ -4,6 +4,7 @@ version = "5.0"
 description = "Asana is a software-as-a-service designed to improve team collaboration and work management. It helps teams manage projects and tasks in one tool. Teams can create projects, assign work to teammates, specify deadlines, and communicate about tasks directly in Asana."
 requires-python = ">=3.11,<3.12"
 dependencies = [
+    "pytest-json-report>=1.5.0",
     "requests>=2.32.3",
 ]
 

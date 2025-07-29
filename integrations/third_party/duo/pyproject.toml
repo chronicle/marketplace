@@ -5,6 +5,7 @@ description = "Cisco's MFA Solution. Duo is engineered to provide a simple, stre
 requires-python = ">=3.11,<3.12"
 dependencies = [
     "duo-client==5.3.0",
+    "pytest-json-report>=1.5.0",
 ]
 
 [dependency-groups]

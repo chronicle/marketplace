@@ -5,6 +5,7 @@ description = "Airtable can store information in a spreadsheet that's visually a
 requires-python = ">=3.11,<3.12"
 dependencies = [
     "airtable-python-wrapper==0.15.3",
+    "pytest-json-report>=1.5.0",
 ]
 
 [dependency-groups]

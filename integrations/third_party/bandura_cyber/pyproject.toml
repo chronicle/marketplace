@@ -5,6 +5,7 @@ description = "Bandura delivers the threat intelligence automation and control n
 requires-python = ">=3.11,<3.12"
 dependencies = [
     "datetime==5.5",
+    "pytest-json-report>=1.5.0",
     "tipcommon",
 ]
 

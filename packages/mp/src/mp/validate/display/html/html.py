@@ -34,7 +34,7 @@ class HtmlDisplay:
         self.validation_results = validation_results
 
     def display(self) -> None:
-        """Generate an HTML report with dual behavior."""
+        """Generate an HTML report for validation results."""
         try:
             html_content = self._generate_validation_report_html()
             is_github_actions = os.getenv("GITHUB_ACTIONS") == "true"
@@ -55,8 +55,7 @@ class HtmlDisplay:
             resolved_path = report_path.resolve()
 
             if not is_github_actions:
-                console.print(f"📂 Report available at: {resolved_path.as_uri()}")
-                console.print("🚀 Opening report in your default web browser...")
+                console.print(f"📂 Report available at 👉: {resolved_path.as_uri()}")
                 webbrowser.open(resolved_path.as_uri())
             else:
                 server_url = os.getenv("GITHUB_SERVER_URL")
@@ -65,7 +64,7 @@ class HtmlDisplay:
 
                 if server_url and repository and run_id:
                     artifact_url = f"{server_url}/{repository}/actions/runs/{run_id}"
-                    console.print("\n[bold cyan]View Report Artifacts:[/bold cyan]")
+                    console.print("\n[bold cyan]View Report for full details:[/bold cyan]")
                     console.print(f"👉 {artifact_url}\n")
                 else:
                     console.print(f"Artifact path for CI: {resolved_path}")

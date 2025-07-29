@@ -28,7 +28,7 @@ class CliDisplay:
     def display(self) -> None:
         """Display the validation result in the cli."""
         if self._is_results_empty():
-            console.print("[bold green]All validations passed\n[/bold green]")
+            console.print("[bold green]All Validations Passed\n[/bold green]")
 
         display_categories = ["Pre-Build", "Build", "Post-Build"]
 
@@ -42,7 +42,7 @@ class CliDisplay:
             for integration_result in category_validation_result:
                 console.print(
                     "[bold red]🛑 Few issues were detected in "
-                    f"---- {integration_result.integration_name} ----\n[/bold red]"
+                    f"---- {integration_result.integration_name} integration ----\n[/bold red]"
                 )
                 for (
                     validation_result

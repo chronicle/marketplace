@@ -4,6 +4,7 @@ version = "32.0"
 description = "SendGrid integration is a web API email delivery service"
 requires-python = ">=3.11,<3.12"
 dependencies = [
+    "pytest-json-report>=1.5.0",
     "sendgrid==6.11.0",
     "starkbank-ecdsa",
 ]

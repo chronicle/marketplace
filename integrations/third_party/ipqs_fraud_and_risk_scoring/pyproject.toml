@@ -4,6 +4,7 @@ version = "4.0"
 description = "IPQS Fraud and Risk Scoring provides enterprise grade fraud prevention, risk analysis, and threat detection. Analyze IP addresses, email addresses, and URLs or domains to identify sophisticated bad actors and high risk behavior."
 requires-python = ">=3.11,<3.12"
 dependencies = [
+    "pytest-json-report>=1.5.0",
     "requests>=2.32.3",
 ]
 
