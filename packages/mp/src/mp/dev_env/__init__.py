@@ -135,9 +135,7 @@ def login(
                 backend_api = api.BackendAPI(api_root=params.api_root, api_key=params.api_key)
             else:
                 backend_api = api.BackendAPI(
-                    api_root=params.api_root,
-                    username=params.username,
-                    password=params.password
+                    api_root=params.api_root, username=params.username, password=params.password
                 )
             backend_api.login()
             rich.print("[green]✅ Credentials verified successfully.[/green]")
