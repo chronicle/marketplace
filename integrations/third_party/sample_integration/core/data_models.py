@@ -8,7 +8,7 @@ from soar_sdk.SiemplifyConnectorsDataModel import AlertInfo
 from TIPCommon.transformation import dict_to_flat
 from TIPCommon.types import SingleJson
 
-import constants
+from . import constants
 from core.utils import create_secops_attachment_object
 
 
