@@ -4,7 +4,8 @@ version = "1.0"
 description = "Infoblox is a leading provider of secure cloud-managed network services that provide visibility and control over who and what connects to your network. The platform combines DNS, DHCP, and IP Address Management (DDI) with advanced security and threat defense capabilities. In case of any queries, please reach out to support@infoblox.com"
 requires-python = ">=3.11,<3.12"
 dependencies = [
-    "requests>=2.32.4",
+    "environmentcommon",
+    "requests>=2.32.3",
     "tipcommon",
 ]
 
@@ -17,3 +18,4 @@ dev = [
 [tool.uv.sources]
 soar-sdk = { git = "https://github.com/chronicle/soar-sdk" }
 tipcommon = { path = "../../../packages/tipcommon/TIPCommon-1.1.9/TIPCommon-1.1.9.2-py2.py3-none-any.whl" }
+environmentcommon = { path = "../../../packages/envcommon/EnvironmentCommon-1.0.2/EnvironmentCommon-1.0.2-py2.py3-none-any.whl" }
