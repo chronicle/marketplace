@@ -72,4 +72,4 @@ class TestSendPhoto:
             action_output.results.output_message
             == "Could not send photo. Error: b'Simulated API failure for SendPhoto'"
         )
-        assert action_output.results.execution_state == ExecutionState.COMPLETED
+        assert action_output.results.execution_state == ExecutionState.FAILED
