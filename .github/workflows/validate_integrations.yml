@@ -1,6 +1,7 @@
 name: Validate marketplace integrations
 permissions:
   contents: read
+  pull-requests: write # Add permission to write to pull requests
 on:
   push:
     branches:
@@ -31,10 +32,12 @@ jobs:
         pip install -e ./packages/mp
 
     - name: Validates all integrations
+      id: validate_output # Add an ID to this step
       shell: bash
       run: |
         mp config --marketplace-path . --processes 10 --display-config
-        mp validate --repository third_party --only-pre-build
+        mp validate --repository third_party --only-pre-build > validation_output.txt 2>&1
+        echo "validation_output=$(cat validation_output.txt)" >> "$GITHUB_OUTPUT"
 
     - name: Upload Report Artifact
       if: always()
@@ -43,3 +46,17 @@ jobs:
         name: validation-report
         path: ./artifacts/validation-report.html
         retention-days: 2
+
+    - name: Add PR comment
+      if: github.event_name == 'pull_request' # Only run on pull requests
+      uses: peter-evans/create-or-update-comment@v3
+      with:
+        issue-number: ${{ github.event.pull_request.number }}
+        body: |
+          ### Marketplace Integration Validation Report
+
+          ```
+          ${{ steps.validate_output.outputs.validation_output }}
+          ```
+
+          [View Full Validation Report](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})
