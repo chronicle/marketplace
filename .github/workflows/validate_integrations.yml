@@ -1,66 +1,80 @@
 name: Validate marketplace integrations
+
+# Grant necessary permissions for the workflow.
+# `contents: read` for checking out code.
+# `pull-requests: write` and `issues: write` for commenting on PRs.
 permissions:
   contents: read
-  pull-requests: write # Add write permission for pull requests
-  issues: write        # Some comment actions might also need issues:write
+  pull-requests: write
+  issues: write
 
 on:
   push:
     branches:
-    - '**'
-  pull_request:
-    branches:
-    - '**'
+    - '**' # Triggers on any push to any branch
+  # Use pull_request_target to get write permissions for PRs from forks.
+  # This runs on the base branch with elevated permissions.
+  pull_request_target:
+    types: [opened, synchronize, reopened] # Triggers when a PR is opened, updated, or reopened
 
 jobs:
   mp_validates:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest # Specify the runner environment
 
     steps:
-    - name: Checkout repository
+    - name: Checkout repository (PR's Head Branch)
       uses: actions/checkout@v4
       with:
-        fetch-depth: 0
+        # For 'pull_request_target', 'actions/checkout' defaults to the base branch.
+        # To validate the actual code from the PR, we must explicitly checkout the PR's head ref.
+        ref: ${{ github.event.pull_request.head.ref }}
+        repository: ${{ github.event.pull_request.head.repo.full_name }}
+        fetch-depth: 0 # Fetch all history for potentially complex operations
 
     - name: Set up Python
       uses: actions/setup-python@v5
       with:
-        python-version: '3.11'
+        python-version: '3.11' # Specify the Python version
 
     - name: Install mp package
       run: |
         pip install --upgrade pip
-        # This installs your local 'mp' tool so it can be used in the command line
+        # This installs your local 'mp' tool in editable mode, making it available on the command line
         pip install -e ./packages/mp
 
     - name: Validates all integrations
-      id: run_validation # Add an ID to this step to capture its output
+      id: run_validation # Assign an ID to this step to capture its outputs
       shell: bash
-      # Use `tee` to capture both stdout and the exit code for later use
-      # Also, make sure your 'mp validate' command's output is something you want in the comment.
-      # If it's a report, you might need to extract relevant parts or generate a summary.
-      # For now, we'll just capture the entire output.
       run: |
+        # Configure the 'mp' tool and display its config
         mp config --marketplace-path . --processes 10 --display-config
-        # Capture the output of the validation command
-        VALIDATION_OUTPUT=$(mp validate --repository third_party --only-pre-build 2>&1 || true) # Capture stderr too, and allow to fail
+
+        # Execute the validation command and capture its complete output (stdout + stderr).
+        # '|| true' ensures the step doesn't fail immediately, allowing us to capture output even on non-zero exit.
+        VALIDATION_OUTPUT=$(mp validate --repository third_party --only-pre-build 2>&1 || true)
+
+        # Set a multi-line output variable 'validation_result' with the captured CLI output.
         echo "validation_result<<EOF" >> $GITHUB_OUTPUT
         echo "$VALIDATION_OUTPUT" >> $GITHUB_OUTPUT
         echo "EOF" >> $GITHUB_OUTPUT
-        # Also store the exit code to determine success/failure for the comment
-        echo "validation_status=$?" >> $GITHUB_OUTPUT
 
+        # Capture the exit code of the 'mp validate' command.
+        # 'validation_status' will be '0' for success, non-zero for failure.
+        echo "validation_status=$?" >> $GITHUB_OUTPUT
 
     - name: Read Validation Report for Comment
       id: read_report_file
-      if: always() # Run even if previous steps fail, to post report
+      # This step should run always, even if previous steps fail,
+      # to ensure we attempt to read the report file for the PR comment.
+      if: always()
       run: |
-        # Check if the report file exists before attempting to read it
+        # Check if the HTML report file exists before trying to read its content.
         if [ -f "./artifacts/validation-report.html" ]; then
           REPORT_CONTENT=$(cat "./artifacts/validation-report.html")
-          # For large HTML reports, you might want to truncate or summarize.
-          # For a comment, plain text or a link might be more suitable.
-          # Here, we'll try to put the whole content, but be mindful of comment size limits.
+          # Set a multi-line output variable 'html_report_content' with the HTML report.
+          # Note: For very large HTML reports, directly embedding them in a PR comment
+          # might exceed GitHub's limits or make the comment unreadable.
+          # Providing a link to the artifact is generally preferred for detailed reports.
           echo "html_report_content<<EOF" >> $GITHUB_OUTPUT
           echo "$REPORT_CONTENT" >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
@@ -69,23 +83,31 @@ jobs:
         fi
 
     - name: Upload Report Artifact
+      # This step should always run to make the report available, regardless of validation outcome.
       if: always()
       uses: actions/upload-artifact@v4
       with:
-        name: validation-report
-        path: ./artifacts/validation-report.html
-        retention-days: 2
+        name: validation-report # Name of the artifact
+        path: ./artifacts/validation-report.html # Path to the report file
+        retention-days: 2 # How long to keep the artifact
 
-    - name: Comment on Pull Request
-      if: github.event_name == 'pull_request' # Only run on pull requests
+    - name: Comment on Pull Request (Always)
+      # This 'if' condition now only checks for 'pull_request_target' event,
+      # ensuring the comment is always added on PRs, regardless of validation status.
+      if: github.event_name == 'pull_request_target'
       uses: peter-evans/create-or-update-comment@v4
       with:
-        issue-number: ${{ github.event.pull_request.number }}
-        comment-id: validation-report-comment # Use a unique ID to update the same comment
-        # You can choose 'replace' or 'append' for edit-mode
+        # For 'pull_request_target' events, the PR number is available via 'github.event.issue.number'.
+        issue-number: ${{ github.event.issue.number }}
+        # Assign a unique ID to the comment. This allows the action to update an existing comment
+        # instead of creating a new one on subsequent runs (e.g., new commits pushed to the PR).
+        comment-id: validation-report-comment
+        # 'replace' will overwrite the previous comment with the same 'comment-id'.
+        # 'append' would add new content to the end of the existing comment.
         edit-mode: replace
         body: |
-          ### Marketplace Integrations Validation Report
+          ### Marketplace Integrations Validation Report 
+          ${{ steps.run_validation.outputs.validation_status == '0' && ':white_check_mark: Validation passed successfully!' || ':x: Validation failed!' }}
 
           **Workflow Run:** [${{ github.run_id }}](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})
 
@@ -93,9 +115,6 @@ jobs:
           ```
           ${{ steps.run_validation.outputs.validation_result }}
           ```
-
-          **Status:**
-          ${{ steps.run_validation.outputs.validation_status == '0' && ':white_check_mark: Validation passed successfully!' || ':x: Validation failed!' }}
 
           ${{ steps.read_report_file.outputs.html_report_content != 'No detailed HTML report generated.' && '
           A detailed HTML validation report has been generated. You can download it as an [artifact here](' + github.server_url + '/' + github.repository + '/actions/runs/' + github.run_id + '/artifacts/validation-report) (look for `validation-report`).
