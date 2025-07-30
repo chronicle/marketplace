@@ -120,7 +120,7 @@ class APIManager:
             if not response.get(result_key) or len(results) >= limit:
                 break
             remaining = limit - len(results)
-            params["_offset"] = params["_offset"] + 1
+            params["_offset"] += params["_limit"]
             params["_limit"] = (
                 DEFAULT_PAGE_SIZE if remaining >= DEFAULT_PAGE_SIZE else remaining
             )

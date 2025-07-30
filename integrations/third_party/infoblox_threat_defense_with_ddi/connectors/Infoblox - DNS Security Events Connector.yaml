@@ -16,7 +16,7 @@ parameters:
         is_advanced: false
         mode: regular
     -   name: DeviceProductField
-        default_value: Infoblox Threat Defence with DDI
+        default_value: Infoblox Threat Defense with DDI
         type: string
         description: The field name used to determine the device product
         is_mandatory: true
