@@ -3,7 +3,7 @@
 from integration_testing.platform.script_output import MockActionOutput
 from integration_testing.set_meta import set_metadata
 from integration_testing.common import create_entity
-from ..actions import DetectHashType
+from integrations.third_party.functions.actions import DetectHashType
 from TIPCommon.base.action import EntityTypesEnum
 
 HASH_ENTITY = create_entity("d41d8cd98f00b204e9800998ecf8427e", type_=EntityTypesEnum.FILE_HASH)

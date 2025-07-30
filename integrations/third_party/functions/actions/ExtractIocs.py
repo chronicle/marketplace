@@ -13,7 +13,7 @@
 # limitations under the License.
 
 from __future__ import annotations
-
+from urllib.parse import urlparse
 import ipaddress
 import re
 import urllib.parse
@@ -32,7 +32,7 @@ IPV6_REGEX: re.Pattern[str] = re.compile(
 EMAIL_REGEXP: re.Pattern[str] = re.compile(
     r"(?i)"  # Case-insensitive matching
     r"(?:[A-Z0-9!#$%&'*+/=?^_`{|}~-]+"  # Unquoted local part
-    r"(?:\.[A-Z0-9!#$%&'*+/=?^_`{|}~-]+)*"  # Dot-separated atoms in local part
+    r"(?:\.[A-Z0-9!#$%&'+/=?^_`{|}~-]+)"  # Dot-separated atoms in local part
     r"|\"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]"  # Quoted strings
     r"|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*\")"  # Escaped characters in local part
     r"@"  # Separator
@@ -86,38 +86,26 @@ def main() -> None:
         siemplify.end(f"Failed due to error: {e!s}", "", status)
 
 
-def get_urls(body: str) -> list[str]:
-    """Function for extracting URLs from the input string.
 
-    Args:
-        body (str): Text input which should be searched for URLs.
 
-    Returns:
-        list: Returns a list of URLs found in the input string.
+import re
 
-    """
-    list_observed_urls: dict[str, None] = {}
-    extractor: URLExtract = URLExtract(cache_dns=False)
-    for found_url in extractor.find_urls(body, check_dns=True):
-        if "." not in found_url:
-            # If we found a URL like http://afafasasfasfas that makes no
-            # sense, thus skip it
-            continue
+def get_urls(text):
+    # Основной паттерн для URL
+    url_pattern = r'(https?://[^\s]+)'
+    raw_urls = re.findall(url_pattern, text)
 
-        try:
-            _ = ipaddress.ip_address(found_url)
-            # We want to skip any IP addresses we find in the body.
-            # These will be added when via the extract_ips method.
-            continue
+    # Убираем конечную пунктуацию из каждого URL
+    cleaned_urls = []
+    for url in raw_urls:
+        cleaned_url = url.rstrip('.,;!?)]}')
+        cleaned_urls.append(cleaned_url)
 
-        except ValueError:
-            pass
+    return cleaned_urls
 
-        clean_uri: str | None = clean_found_url(found_url)
-        if clean_uri is not None:
-            list_observed_urls[clean_uri] = None
 
-    return list(list_observed_urls)
+
+
 
 
 def clean_found_url(url: str) -> str | None:
