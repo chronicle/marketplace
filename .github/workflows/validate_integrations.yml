@@ -1,7 +1,6 @@
 name: Validate marketplace integrations
 permissions:
   contents: read
-  pull-requests: write # Add permission to write to pull requests
 on:
   push:
     branches:
@@ -13,10 +12,6 @@ on:
 jobs:
   mp_validates:
     runs-on: ubuntu-latest
-    # This line ensures the JOB's status reflects the 'conclusion' of its steps.
-    # If the 'Validates all integrations' step fails, the job will fail.
-    # We'll use a final step to explicitly fail the job if the validation failed.
-    # So, we remove continue-on-error from the job level.
 
     steps:
     - name: Checkout repository
@@ -32,73 +27,19 @@ jobs:
     - name: Install mp package
       run: |
         pip install --upgrade pip
+        # This installs your local 'mp' tool so it can be used in the command line
         pip install -e ./packages/mp
 
     - name: Validates all integrations
-      id: validate_output
       shell: bash
-      # Do NOT use continue-on-error: true here if you want the job to fail.
-      # Instead, we'll capture the exit code and decide the job's fate later.
       run: |
         mp config --marketplace-path . --processes 10 --display-config
-        # Run the validation command and capture its exit code
-        mp validate --repository third_party --only-pre-build > validation_report_raw_output.txt 2>&1
-        VALIDATION_EXIT_CODE=$? # Capture the exit code of the last command
-        
-        # Read the raw output for the PR comment
-        echo "validation_output=$(cat validation_report_raw_output.txt)" >> "$GITHUB_OUTPUT"
-        
-        # Also store the exit code as a step output
-        echo "validation_status_code=$VALIDATION_EXIT_CODE" >> "$GITHUB_OUTPUT"
-        
-        # Exit with a success code (0) for this step, regardless of validation result
-        # This allows subsequent steps to run. We'll explicitly fail the job later.
-        exit 0
-
-    # New step to find the associated PR number for push events
-    - name: Find Pull Request for Push
-      id: find_pr
-      # Only run this step if the event is a 'push'
-      if: github.event_name == 'push'
-      uses: jwalton/gh-find-current-pr@v1
-      with:
-        state: open # Only find open PRs
-
-    - name: Add PR comment
-      # Condition now checks for pull_request event OR if a PR was found for a push event
-      if: |
-        github.event_name == 'pull_request' ||
-        (github.event_name == 'push' && steps.find_pr.outputs.number)
-      uses: peter-evans/create-or-update-comment@v3
-      with:
-        # Use the PR number from the pull_request event OR from the find_pr action
-        issue-number: ${{ github.event.pull_request.number || steps.find_pr.outputs.number }}
-        body: |
-          ### Marketplace Integration Validation Report
-
-          **Status:** ${{ steps.validate_output.outputs.validation_status_code == '0' && '✅ SUCCESS' || '❌ FAILED' }}
-
-          <details><summary>Click to view full output</summary>
-
-          ```
-          ${{ steps.validate_output.outputs.validation_output }}
-          ```
-          </details>
-
-          ---
-          [View Full Validation Report HTML](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})
+        mp validate --repository third_party --only-pre-build
 
     - name: Upload Report Artifact
-      if: always() # This ensures the artifact is always uploaded
+      if: always()
       uses: actions/upload-artifact@v4
       with:
         name: validation-report
         path: ./artifacts/validation-report.html
         retention-days: 2
-
-    # New step: Fail the job explicitly if the validation script failed
-    - name: Set Job Status based on Validation
-      if: steps.validate_output.outputs.validation_status_code != '0'
-      run: |
-        echo "Marketplace validation script failed. Marking job as failed."
-        exit 1
