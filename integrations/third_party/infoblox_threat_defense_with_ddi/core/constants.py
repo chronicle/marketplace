@@ -1,0 +1,164 @@
+from __future__ import annotations
+
+
+INTEGRATION_NAME = "Infoblox Threat Defense with DDI"
+
+RESULT_VALUE_TRUE = True
+RESULT_VALUE_FALSE = False
+DEFAULT_DEVICE_VENDOR = "Infoblox"
+DEFAULT_DEVICE_PRODUCT = INTEGRATION_NAME
+RULE_GENERATOR = DEFAULT_DEVICE_VENDOR
+COMMON_ACTION_ERROR_MESSAGE = "Error while executing action {}. Reason: {}"
+DEFAULT_PAGE_SIZE = 1000
+RETRY_COUNT = 3
+WAIT_TIME_FOR_RETRY = 5
+DEFAULT_RESULTS_LIMIT = 10000000
+RATE_LIMIT_EXCEEDED_STATUS_CODE = 429
+DEFAULT_REQUEST_TIMEOUT = 60
+MAX_IDS = 10000
+DEFAULT_OFFSET = "0"
+DEFAULT_LIMIT = "100"
+MAX_TABLE_RECORDS = 20
+MAX_JSON_CHARS = 300
+TIDE_RLIMIT = "100"
+DEFAULT_DNS_EVENTS_LIMIT = "100"
+DEFAULT_MAX_HOURS_BACKWARD = "24"
+
+# Time formats
+UNIX_FORMAT = "unix"
+ISO_FORMAT = "%Y-%m-%dT%H:%M:%S.%fZ"
+
+# Allowed values for parameters
+ALLOWED_THREAT_LEVEL_VALUES = ["LOW", "MEDIUM", "HIGH", "CRITICAL"]
+ALLOWED_STATUS_VALUES = ["Active", "Closed"]
+ALLOWED_PRIORITY_VALUES = ["LOW", "INFO", "MEDIUM", "HIGH", "CRITICAL"]
+
+# Scripts Name
+PING_SCRIPT_NAME = f"{INTEGRATION_NAME} - Ping"
+DNS_RECORD_LOOKUP_SCRIPT_NAME = f"{INTEGRATION_NAME} - DNS Record Lookup"
+CREATE_CUSTOM_LIST_SCRIPT_NAME = f"{INTEGRATION_NAME} - Create Custom List"
+GET_CUSTOM_LIST_SCRIPT_NAME = f"{INTEGRATION_NAME} - Get Custom List"
+UPDATE_CUSTOM_LIST_ITEMS_SCRIPT_NAME = (
+    f"{INTEGRATION_NAME} - Update Custom List Items"
+)
+REMOVE_NETWORK_LIST_SCRIPT_NAME = f"{INTEGRATION_NAME} - Remove Network List"
+REMOVE_CUSTOM_LIST_SCRIPT_NAME = f"{INTEGRATION_NAME} - Remove Custom List"
+UPDATE_CUSTOM_LIST_SCRIPT_NAME = f"{INTEGRATION_NAME} - Update Custom List"
+IP_LOOKUP_SCRIPT_NAME = f"{INTEGRATION_NAME} - IP Lookup"
+GET_NETWORK_LIST_SCRIPT_NAME = f"{INTEGRATION_NAME} - Get Network List"
+GET_SECURITY_POLICIES_SCRIPT_NAME = (
+    f"{INTEGRATION_NAME} - Get Security Policies"
+)
+CREATE_SECURITY_POLICY_SCRIPT_NAME = (
+    f"{INTEGRATION_NAME} - Create Security Policy"
+)
+UPDATE_SECURITY_POLICY_SCRIPT_NAME = (
+    f"{INTEGRATION_NAME} - Update Security Policy"
+)
+REMOVE_SECURITY_POLICY_SCRIPT_NAME = (
+    f"{INTEGRATION_NAME} - Remove Security Policy"
+)
+CREATE_NETWORK_LIST_SCRIPT_NAME = f"{INTEGRATION_NAME} - Create Network List"
+UPDATE_NETWORK_LIST_SCRIPT_NAME = f"{INTEGRATION_NAME} - Update Network List"
+GET_SOC_INSIGHTS_COMMENTS_SCRIPT_NAME = (
+    f"{INTEGRATION_NAME} - Get SOC Insights Comments"
+)
+GET_SOC_INSIGHTS_INDICATORS_SCRIPT_NAME = (
+    f"{INTEGRATION_NAME} - Get SOC Insights Indicators"
+)
+GET_SOC_INSIGHTS_EVENTS_SCRIPT_NAME = (
+    f"{INTEGRATION_NAME} - Get SOC Insights Events"
+)
+IP_ASSET_DATA_LOOKUP_SCRIPT_NAME = f"{INTEGRATION_NAME} - IP Asset Data Lookup"
+INITIATE_INDICATOR_INTEL_LOOKUP_WITH_DOSSIER_SCRIPT_NAME = (
+    f"{INTEGRATION_NAME} - Initiate Indicator Intel Lookup With Dossier"
+)
+GET_INDICATOR_INTEL_LOOKUP_RESULT_SCRIPT_NAME = (
+    f"{INTEGRATION_NAME} - Get Indicator Intel Lookup Result"
+)
+INDICATOR_THREAT_LOOKUP_WITH_TIDE_SCRIPT_NAME = (
+    f"{INTEGRATION_NAME} - Indicator Threat Lookup With TIDE"
+)
+DHCP_LEASE_LOOKUP_SCRIPT_NAME = f"{INTEGRATION_NAME} - DHCP Lease Lookup"
+GET_SOC_INSIGHTS_ASSETS_SCRIPT_NAME = (
+    f"{INTEGRATION_NAME} - Get SOC Insights Assets"
+)
+HOST_LOOKUP_SCRIPT_NAME = f"{INTEGRATION_NAME} - Host Lookup"
+
+SOC_INSIGHTS_CONNECTOR_NAME = f"{INTEGRATION_NAME} - SOC Insights Connector"
+DNS_SECURITY_EVENTS_CONNECTOR_NAME = (
+    f"{INTEGRATION_NAME} - DNS Security Events Connector"
+)
+
+# Action Identifiers
+GET_CUSTOM_LIST_ACTION_IDENTIFIER = "get_custom_list"
+GET_CUSTOM_LIST_BY_ID_ACTION_IDENTIFIER = "get_custom_list_by_id"
+UPDATE_CUSTOM_LIST_ITEMS_ACTION_IDENTIFIER = "update_custom_list_items"
+REMOVE_CUSTOM_LIST_ACTION_IDENTIFIER = "remove_custom_list"
+REMOVE_NETWORK_LIST_ACTION_IDENTIFIER = "remove_network_list"
+CREATE_CUSTOM_LIST_ACTION_IDENTIFIER = "create_custom_list"
+GET_NETWORK_LIST_ACTION_IDENTIFIER = "get_network_list"
+DNS_RECORD_LOOKUP_ACTION_IDENTIFIER = "dns_record_lookup"
+IP_LOOKUP_ACTION_IDENTIFIER = "ip_lookup"
+PING_ACTION_IDENTIFIER = "ping"
+CREATE_NETWORK_LIST_ACTION_IDENTIFIER = "create_network_list"
+UPDATE_NETWORK_LIST_ACTION_IDENTIFIER = "update_network_list"
+GET_SOC_INSIGHTS_COMMENTS_ACTION_IDENTIFIER = "get_soc_insights_comments"
+GET_SOC_INSIGHTS_INDICATORS_ACTION_IDENTIFIER = "get_soc_insights_indicators"
+GET_SOC_INSIGHTS_EVENTS_ACTION_IDENTIFIER = "get_soc_insights_events"
+INITIATE_INDICATOR_INTEL_LOOKUP_WITH_DOSSIER_ACTION_IDENTIFIER = (
+    "initiate_indicator_intel_lookup_with_dossier"
+)
+GET_INDICATOR_INTEL_LOOKUP_RESULT_ACTION_IDENTIFIER = (
+    "get_indicator_intel_lookup_result"
+)
+INDICATOR_THREAT_LOOKUP_WITH_TIDE_ACTION_IDENTIFIER = (
+    "indicator_threat_lookup_with_tide"
+)
+GET_SECURITY_POLICIES_ACTION_IDENTIFIER = "get_security_policies"
+CREATE_SECURITY_POLICY_ACTION_IDENTIFIER = "create_security_policy"
+UPDATE_SECURITY_POLICY_ACTION_IDENTIFIER = "update_security_policy"
+REMOVE_SECURITY_POLICY_ACTION_IDENTIFIER = "remove_security_policy"
+DHCP_LEASE_LOOKUP_ACTION_IDENTIFIER = "dhcp_lease_lookup"
+GET_SOC_INSIGHTS_ASSETS_ACTION_IDENTIFIER = "get_soc_insights_assets"
+HOST_LOOKUP_ACTION_IDENTIFIER = "host_lookup"
+GET_SOC_INSIGHTS_ACTION_IDENTIFIER = "get_soc_insights"
+GET_DNS_SECURITY_EVENTS_ACTION_IDENTIFIER = "get_dns_security_events"
+
+# API Services and Versions
+API_AUTHN_VERSION_V1 = "/api/authn/v1"
+
+# API Endpoints
+ENDPOINTS = {
+    REMOVE_CUSTOM_LIST_ACTION_IDENTIFIER: "/api/atcfw/v1/named_lists/{custom_list_id}",
+    PING_ACTION_IDENTIFIER: f"{API_AUTHN_VERSION_V1}/account",
+    GET_NETWORK_LIST_ACTION_IDENTIFIER: "/api/atcfw/v1/network_lists",
+    DNS_RECORD_LOOKUP_ACTION_IDENTIFIER: "/api/ddi/v1/dns/record",
+    CREATE_CUSTOM_LIST_ACTION_IDENTIFIER: "/api/atcfw/v1/named_lists",
+    GET_CUSTOM_LIST_ACTION_IDENTIFIER: "/api/atcfw/v1/named_lists",
+    GET_CUSTOM_LIST_BY_ID_ACTION_IDENTIFIER: "/api/atcfw/v1/named_lists/{custom_list_id}",
+    UPDATE_CUSTOM_LIST_ITEMS_ACTION_IDENTIFIER: "/api/atcfw/v1/named_lists/{custom_list_id}/items",
+    IP_LOOKUP_ACTION_IDENTIFIER: "/api/ddi/v1/ipam/address",
+    REMOVE_NETWORK_LIST_ACTION_IDENTIFIER: "/api/atcfw/v1/network_lists/{network_list_id}",
+    CREATE_NETWORK_LIST_ACTION_IDENTIFIER: "/api/atcfw/v1/network_lists",
+    UPDATE_NETWORK_LIST_ACTION_IDENTIFIER: "/api/atcfw/v1/network_lists/{network_list_id}",
+    GET_SOC_INSIGHTS_COMMENTS_ACTION_IDENTIFIER: "/api/v1/insights/{insight_id}/comments",
+    GET_SOC_INSIGHTS_INDICATORS_ACTION_IDENTIFIER: "/api/v1/insights/{insight_id}/indicators",
+    GET_SOC_INSIGHTS_EVENTS_ACTION_IDENTIFIER: "/api/v1/insights/{insight_id}/events",
+    INITIATE_INDICATOR_INTEL_LOOKUP_WITH_DOSSIER_ACTION_IDENTIFIER:
+        "/tide/api/services/intel/lookup/indicator/{type}",
+    GET_INDICATOR_INTEL_LOOKUP_RESULT_ACTION_IDENTIFIER:
+        "/tide/api/services/intel/lookup/jobs/{job_id}/results",
+    INDICATOR_THREAT_LOOKUP_WITH_TIDE_ACTION_IDENTIFIER: "/tide/api/data/threats",
+    GET_SECURITY_POLICIES_ACTION_IDENTIFIER: "/api/atcfw/v1/security_policies",
+    CREATE_SECURITY_POLICY_ACTION_IDENTIFIER: "/api/atcfw/v1/security_policies",
+    UPDATE_SECURITY_POLICY_ACTION_IDENTIFIER:
+        "/api/atcfw/v1/security_policies/{security_policy_id}",
+    REMOVE_SECURITY_POLICY_ACTION_IDENTIFIER:
+        "/api/atcfw/v1/security_policies/{security_policy_id}",
+    DHCP_LEASE_LOOKUP_ACTION_IDENTIFIER: "/api/ddi/v1/dhcp/lease",
+    GET_SOC_INSIGHTS_ASSETS_ACTION_IDENTIFIER: "/api/v1/insights/{insight_id}/assets",
+    HOST_LOOKUP_ACTION_IDENTIFIER: "/api/ddi/v1/ipam/host",
+    GET_SOC_INSIGHTS_ACTION_IDENTIFIER: "/api/v1/insights",
+    GET_DNS_SECURITY_EVENTS_ACTION_IDENTIFIER: "/api/dnsdata/v2/dns_event",
+}
