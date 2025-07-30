@@ -9,7 +9,7 @@ parameters:
     or state=="USED").'
   is_mandatory: false
 - name: Address State
-  default_value: Any
+  default_value: Used
   type: ddl
   description: "Filter by IP address state (e.g., ''free'', ''used'', ''any'')."
   is_mandatory: false

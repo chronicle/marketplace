@@ -42,7 +42,7 @@ def main():
         input_type=str,
         is_mandatory=False,
         print_value=True,
-        default_value="Any",
+        default_value="Used",
     )
     scope = extract_action_param(
         siemplify,
