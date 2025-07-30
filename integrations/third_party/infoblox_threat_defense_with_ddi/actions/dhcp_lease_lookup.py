@@ -5,7 +5,7 @@ from soar_sdk.SiemplifyUtils import output_handler, construct_csv
 
 from ..core.APIManager import APIManager
 from ..core.InfobloxExceptions import InfobloxException
-from ..core.TIPCommon import extract_action_param
+from TIPCommon import extract_action_param
 from ..core.constants import (
     RESULT_VALUE_FALSE,
     RESULT_VALUE_TRUE,
