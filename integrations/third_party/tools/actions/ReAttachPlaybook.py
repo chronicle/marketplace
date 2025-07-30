@@ -18,6 +18,7 @@ import psycopg2
 from soar_sdk.ScriptResult import EXECUTION_STATE_COMPLETED
 from soar_sdk.SiemplifyAction import SiemplifyAction
 from soar_sdk.SiemplifyUtils import output_handler
+from TIPCommon.rest.soar_api import get_integration_instance_details_by_name
 
 INSTANCE_NAME = "Siemplify"
 SHARED_ENV = "*"
@@ -89,20 +90,11 @@ class ConnectToDb:
 
 
 def get_integration_instance(siemplify, integration_name, environment, instance_name):
-    address = f"{siemplify.API_ROOT}/{'external/v1/integrations/GetOptionalIntegrationInstances?format=camel'}"
-    response = siemplify.session.post(
-        address,
-        headers={
-            "AppKey": siemplify.api_key,
-            "Accept": "application/json",
-            "Content-Type": "application/json",
-        },
-        verify=False,
-        json={"environments": [environment], "integrationIdentifier": integration_name},
-    )
-    response.raise_for_status()
-    filtered = list(
-        filter(lambda x: x["instanceName"] == instance_name, response.json()),
+    filtered = get_integration_instance_details_by_name(
+        chronicle_soar=siemplify,
+        integration_identifier=integration_name,
+        instance_display_name=instance_name,
+        environments=[environment],
     )
     return filtered[0] if filtered else {"identifier": "N/A"}
 

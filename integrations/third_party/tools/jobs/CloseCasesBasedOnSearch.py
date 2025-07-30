@@ -20,6 +20,7 @@ from urllib.parse import urljoin
 import requests
 from soar_sdk.SiemplifyJob import SiemplifyJob
 from soar_sdk.SiemplifyUtils import output_handler
+from TIPCommon.rest.soar_api import execute_bulk_close_case
 
 SCRIPT_NAME = "CloseCasesBasedOnSearch"
 
@@ -36,7 +37,6 @@ def get_bearer_token(siemplify, username, password):
 
 
 SEARCH_URL = "api/external/v1/search/CaseSearchEverything"
-BULK_CLOSE_URL = "api/external/v1/cases-queue/bulk-operations/ExecuteBulkCloseCase"
 
 
 @output_handler
@@ -68,18 +68,13 @@ def main():
         if case_ids:
             siemplify.LOGGER.info(f"The following cases will be affected: {case_ids}")
 
-            close_payload = {
-                "casesIds": case_ids,
-                "closeComment": siemplify.parameters.get("Close Comment"),
-                "closeReason": int(siemplify.parameters.get("Close Reason")),
-                "rootCause": siemplify.parameters.get("Root Cause"),
-            }
-
-            res_close = session.post(
-                urljoin(siemplify.API_ROOT, BULK_CLOSE_URL),
-                json=close_payload,
+            execute_bulk_close_case(
+                chronicle_soar=siemplify,
+                case_ids=case_ids,
+                close_reason=int(siemplify.parameters.get("Close Reason")),
+                root_cause=siemplify.parameters.get("Root Cause"),
+                close_comment=siemplify.parameters.get("Close Comment"),
             )
-            res_close.raise_for_status()
             siemplify.LOGGER.info(f"Successfully closed {len(case_ids)} cases")
 
         else:
