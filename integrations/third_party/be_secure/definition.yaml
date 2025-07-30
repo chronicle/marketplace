@@ -1,39 +1,25 @@
 identifier: beSECURE
 name: beSECURE
 parameters:
-    -   name: API Key
-        type: password
-        description: API key to use for authentication
-        is_mandatory: true
-        integration_identifier: beSECURE
-    -   name: URL
-        default_value: https://
-        type: string
-        description: API root of the bSecure server
-        is_mandatory: true
-        integration_identifier: beSECURE
-    -   name: Verify SSL Certificate
-        default_value: 'true'
-        type: boolean
-        description: Should use SSL verification or not
-        is_mandatory: false
-        integration_identifier: beSECURE
+- name: API Key
+  type: password
+  description: API key to use for authentication
+  is_mandatory: true
+  integration_identifier: beSECURE
+- name: URL
+  default_value: https://
+  type: string
+  description: API root of the bSecure server
+  is_mandatory: true
+  integration_identifier: beSECURE
+- name: Verify SSL Certificate
+  default_value: 'true'
+  type: boolean
+  description: Should use SSL verification or not
+  is_mandatory: false
+  integration_identifier: beSECURE
 categories:
-    - Security
-    - Vulnerability & Risk Management
-# language=svg
-svg_image: "<?xml version=\"1.0\" encoding=\"utf-8\"?><!-- Generator: Adobe Illustrator\
-    \ 24.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  --><svg version=\"\
-    1.1\" id=\"Layer_1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\"\
-    \ x=\"0px\" y=\"0px\"\t viewBox=\"0 0 25 25\" style=\"enable-background:new 0\
-    \ 0 25 25;\" xml:space=\"preserve\"><g>\t<g>\t\t<path d=\"M14.3,16c0.5-0.5,0.9-0.9,1.4-1.4c0.5-0.5,1.1-0.9,1.8-1c0.8-0.1,1.8,0.3,2.1,0.9c-0.9,0.5-1.9,1-2.8,1.5\t\
-    \t\tc0.3,0.6,0.6,1.3,0.9,1.9c0.9-0.5,1.8-0.9,2.6-1.3c0.9-0.4,1.7-0.9,2.6-1.3c0-0.1-0.1-0.3-0.1-0.4c-0.9-3.4-3.7-4.6-6.5-3.8\t\
-    \t\tc-1.5,0.4-2.4,1.5-3.4,2.7c0,0,0,0.1,0,0.2C13.4,14.5,13.9,15.2,14.3,16z M22.8,17.9c-0.9,0-1.8,0-2.7,0c-0.2,0-0.3,0.1-0.4,0.2\t\
-    \t\tc-0.5,0.8-1.3,1.1-2.2,1c-0.8-0.1-1.5-0.5-1.9-1.2c-0.9-1.2-1.7-2.3-2.6-3.5c-0.6-0.9-1.2-1.7-2-2.4c-1.5-1.2-3.1-1.6-4.9-1.2\t\
-    \t\tc-0.4,0.1-0.8,0.3-1.3,0.4c0,0,0-0.1,0-0.1c0-2.7,0-5.5,0-8.2H4.6C4,3.1,3.5,3.2,2.9,3.3c-0.3,0-0.5,0.1-0.8,0.1c0,0.7,0,1.3,0,2\t\
-    \t\tc0,2.4,0,4.8,0,7.2c0,0.1,0,0.2,0,0.4v4.2c0,0.2,0.1,0.3,0.1,0.5c0.7,3.8,4.2,5.2,7.2,3.9c1.3-0.5,2.2-1.6,3-2.7\t\
-    \t\tc-0.5-0.7-1-1.4-1.6-2.2c-0.1,0.2-0.3,0.3-0.4,0.5c-0.5,0.6-1.1,1.2-1.7,1.6c-0.9,0.6-2,0.5-2.8-0.2c-0.7-0.6-1-1.4-0.9-2.4\t\
-    \t\tc0-0.8,0.3-1.5,0.8-2c0.9-0.8,2.2-0.8,3.2,0c0.4,0.3,0.7,0.7,1,1c0.6,0.8,1.2,1.6,1.8,2.4c0.8,1.1,1.5,2.2,2.6,3\t\
-    \t\tc0.9,0.7,1.8,1.2,2.9,1.3c1.5,0.1,2.8-0.3,4-1.2c1-0.7,1.5-1.7,1.7-2.9C22.9,17.9,22.9,17.9,22.8,17.9z\"\
-    />\t</g></g></svg>"
-image_base64: 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
+- Security
+- Vulnerability & Risk Management
+svg_logo_path: resources/logo.svg
+image_path: resources/image.png

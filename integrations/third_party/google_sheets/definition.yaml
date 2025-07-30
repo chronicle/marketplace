@@ -1,26 +1,17 @@
 identifier: Google Sheets
 name: Google Sheets
 parameters:
-    -   name: Credentials Json
-        default_value: '{}'
-        type: password
-        description: 'View the guide on how to create auth json credentials (service account)
+- name: Credentials Json
+  default_value: '{}'
+  type: password
+  description: 'View the guide on how to create auth json credentials (service account)
 
-        https://gspread.readthedocs.io/en/latest/oauth2.html#enable-api-access'
-        is_mandatory: true
-        integration_identifier: Google Sheets
+    https://gspread.readthedocs.io/en/latest/oauth2.html#enable-api-access'
+  is_mandatory: true
+  integration_identifier: Google Sheets
 categories:
-    - Google
-    - Productivity
-    - Cloud
-# language=svg
-svg_image: "<?xml version=\"1.0\" encoding=\"utf-8\"?><!-- Generator: Adobe Illustrator\
-    \ 24.2.3, SVG Export Plug-In . SVG Version: 6.00 Build 0)  --><svg version=\"\
-    1.1\" id=\"Layer_1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\"\
-    \ x=\"0px\" y=\"0px\"\t viewBox=\"0 0 25 25\" style=\"enable-background:new 0\
-    \ 0 25 25;\" xml:space=\"preserve\"><g>\t<g>\t\t<path d=\"M19.8,7.5l-5.4-5.3C14.2,2.1,14,2,13.8,2H6.1C5,2,4,3,4,4.1v16.9C4,22,5,23,6.1,23h11.8c1.1,0,2.1-1,2.1-2.1V8.1\t\
-    \t\tC20,7.9,19.9,7.7,19.8,7.5z M14.6,4.5l2.9,2.8h-2.3c-0.3,0-0.6-0.3-0.6-0.6V4.5z\
-    \ M18.5,20.9c0,0.3-0.3,0.6-0.6,0.6H6.1\t\t\tc-0.3,0-0.6-0.3-0.6-0.6V4.1c0-0.3,0.3-0.6,0.6-0.6h7v3.3c0,1.1,1,2.1,2.1,2.1h3.3V20.9z\
-    \ M8,19h8v-7H8V19z M12.5,13H15v1.2h-2.5\t\t\tV13z M12.5,15H15v1.2h-2.5V15z M12.5,16.9H15V18h-2.5V16.9z\
-    \ M9,13h2.5v1.2H9V13z M9,15h2.5v1.2H9V15z M9,16.9h2.5V18H9V16.9z\"/>\t</g></g></svg>"
-image_base64: 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
+- Google
+- Productivity
+- Cloud
+svg_logo_path: resources/logo.svg
+image_path: resources/image.png

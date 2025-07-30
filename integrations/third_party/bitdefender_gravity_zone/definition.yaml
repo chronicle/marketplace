@@ -1,31 +1,25 @@
 identifier: Bitdefender GravityZone
 name: Bitdefender GravityZone
 parameters:
-    -   name: API Key
-        type: password
-        description: API Key generated under "My Account"
-        is_mandatory: true
-        integration_identifier: Bitdefender GravityZone
-    -   name: Access URL
-        default_value: https://cloud.gravityzone.bitdefender.com/api
-        type: string
-        description: Access URL for Control Center API
-        is_mandatory: true
-        integration_identifier: Bitdefender GravityZone
-    -   name: Verify SSL
-        default_value: 'false'
-        type: boolean
-        description: Verify SSL when making requests
-        is_mandatory: false
-        integration_identifier: Bitdefender GravityZone
+- name: API Key
+  type: password
+  description: API Key generated under "My Account"
+  is_mandatory: true
+  integration_identifier: Bitdefender GravityZone
+- name: Access URL
+  default_value: https://cloud.gravityzone.bitdefender.com/api
+  type: string
+  description: Access URL for Control Center API
+  is_mandatory: true
+  integration_identifier: Bitdefender GravityZone
+- name: Verify SSL
+  default_value: 'false'
+  type: boolean
+  description: Verify SSL when making requests
+  is_mandatory: false
+  integration_identifier: Bitdefender GravityZone
 categories:
-    - Security
-    - Endpoint Security
-# language=svg
-svg_image: |
-    <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg"
-         viewBox="0 0 25 25">
-        <path d="M13,18.24H10.49V13.49H13.1c1.76,0,3.59.64,3.59,2.41C16.76,18.1,14.65,18.24,13,18.24ZM10.56,6.76h2.19c1.55,0,2.18.07,2.74.57a1.81,1.81,0,0,1,.64,1.49,1.76,1.76,0,0,1-.64,1.41c-.49.5-1.19.57-2.46.57H10.56Zm5.71,5.31a3.91,3.91,0,0,0,3-3.82C19.3,5.13,16.55,4,13.87,4H5v.28L5.92,5c1,.85,1.19,1,1.19,1.77V21h6.27C16.83,21,20,19.87,20,16.11A4,4,0,0,0,16.27,12.07Z"
-              fill-rule="evenodd"/>
-    </svg>
-image_base64: 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
+- Security
+- Endpoint Security
+svg_logo_path: resources/logo.svg
+image_path: resources/image.png
