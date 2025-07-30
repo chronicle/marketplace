@@ -53,7 +53,6 @@ def process_pytest_json_report(
     try:
         with pathlib.Path.open(json_report_path, encoding="utf-8") as f:
             report_data = json.load(f)
-
         json_report_path.unlink(missing_ok=True)
 
     except FileNotFoundError:

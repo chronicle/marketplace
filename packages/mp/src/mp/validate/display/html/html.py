@@ -69,10 +69,10 @@ class HtmlDisplay:
                 else:
                     console.print(f"Artifact path for CI: {resolved_path}")
 
-        except Exception as e:
+        except Exception as e:  # noqa: BLE001
             console.print(f"❌ Error generating report: {e}")
 
-    def _generate_validation_report_html(self, template_name: str = "report_template.html") -> str:
+    def _generate_validation_report_html(self, template_name: str = "report.html") -> str:
         script_dir = pathlib.Path(__file__).parent.resolve()
         env = Environment(
             loader=FileSystemLoader(script_dir), autoescape=select_autoescape(["html"])
@@ -84,21 +84,19 @@ class HtmlDisplay:
             if reports_list is not None
             for report in reports_list
         ]
+
+        system_local_timezone = datetime.datetime.now().astimezone().tzinfo
+        current_time_aware = datetime.datetime.now(system_local_timezone)
+
         context = {
             "reports_by_category": self.validation_results,
             "total_integrations": len(all_reports),
-            "total_passed": sum(
-                1
-                for r in all_reports
-                if not r.validation_report.failed_fatal_validations
-                and not r.validation_report.failed_non_fatal_validations
-            ),
             "total_fatal_issues": sum(
                 len(r.validation_report.failed_fatal_validations) for r in all_reports
             ),
             "total_non_fatal_issues": sum(
                 len(r.validation_report.failed_non_fatal_validations) for r in all_reports
             ),
-            "current_time": datetime.datetime.now().strftime("%B %d, %Y at %I:%M %p"),
+            "current_time": current_time_aware.strftime("%B %d, %Y at %I:%M %p %Z"),
         }
         return template.render(context)

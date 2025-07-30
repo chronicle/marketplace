@@ -79,8 +79,6 @@ class VersionBumpValidation:
         changed_files: list[pathlib.Path] = mp.core.unix.get_files_unmerged_to_main_branch(
             "main", head_sha, integration_path
         )
-        # if not changed_files or set(changed_files) == {"pyproject.toml", "uv.lock"}:
-        #     return
 
         rn_path: pathlib.Path | None = None
         toml_path: pathlib.Path | None = None

@@ -24,23 +24,23 @@ class CliDisplay:
         self.tests_report: list[IntegrationTestResults] = tests_report
 
     def display(self) -> None:
-        """Display the tests result in the cli."""
+        """Display the test results in the cli."""
         if not self.tests_report:
             console.print("[bold green]All Tests Passed\n[/bold green]")
 
         for integration_report in self.tests_report:
             console.print(
-                "[bold red]\n🛑 Few tests failed in: "
+                "[bold red]🛑 Few tests failed in: "
                 f"{integration_report.integration_name}[/bold red]"
             )
 
             if integration_report.failed_tests > 0:
                 console.print(f"Total Failed Tests: {integration_report.failed_tests}")
                 for test_issue in integration_report.failed_tests_summary:
-                    console.print(f"[bold yellow]⚠️  {test_issue.test_name}[/bold yellow]")
+                    console.print(f"[bold yellow]⚠️ {test_issue.test_name}[/bold yellow]")
                 console.print()
             if integration_report.skipped_tests > 0:
                 console.print(f"Total Skipped Tests: {integration_report.skipped_tests}")
                 for test_issue in integration_report.skipped_tests_summary:
-                    console.print(f"[bold yellow]⚠️  {test_issue.test_name}[/bold yellow]")
+                    console.print(f"[bold yellow]⚠️ {test_issue.test_name}[/bold yellow]")
                 console.print()

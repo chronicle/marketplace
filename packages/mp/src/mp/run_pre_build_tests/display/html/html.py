@@ -4,7 +4,7 @@
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
 #
-#     http://www.apache.org/licenses/LICENSE-20.0
+#     http://www.apache.org/licenses/LICENSE-2.0
 #
 # Unless required by applicable law or agreed to in writing, software
 # distributed under the License is distributed on an "AS IS" BASIS,
@@ -32,7 +32,7 @@ class HtmlDisplay:
         self.integration_results_list: list[IntegrationTestResults] = integration_results_list
 
     def display(self) -> None:
-        """Generate an HTML report for integrations test results."""
+        """Generate an HTML report for integration test results."""
         try:
             html_content = self._generate_validation_report_html()
             is_github_actions = os.getenv("GITHUB_ACTIONS") == "true"
@@ -67,10 +67,10 @@ class HtmlDisplay:
                 else:
                     console.print(f"Artifact path for CI: {resolved_path}")
 
-        except Exception as e:
+        except Exception as e:  # noqa: BLE001
             console.print(f"❌ Error generating report: {e}")
 
-    def _generate_validation_report_html(self, template_name: str = "report_template.html") -> str:
+    def _generate_validation_report_html(self, template_name: str = "report.html") -> str:
         script_dir = pathlib.Path(__file__).parent.resolve()
         env = Environment(
             loader=FileSystemLoader(script_dir), autoescape=select_autoescape(["html"])
@@ -83,17 +83,12 @@ class HtmlDisplay:
         total_failed_tests = sum(r.failed_tests for r in all_results)
         total_skipped_tests = sum(r.skipped_tests for r in all_results)
 
-        total_passed_integrations = sum(
-            1 for r in all_results if r.failed_tests == 0 and r.skipped_tests == 0
-        )
-
         system_local_timezone = datetime.datetime.now().astimezone().tzinfo
         current_time_aware = datetime.datetime.now(system_local_timezone)
 
         context = {
             "integration_results_list": all_results,
             "total_integrations": total_integrations,
-            "total_passed": total_passed_integrations,
             "total_skipped_tests": total_skipped_tests,
             "total_failed_tests": total_failed_tests,
             "current_time": current_time_aware.strftime("%B %d, %Y at %I:%M %p %Z"),

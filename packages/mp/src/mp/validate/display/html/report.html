@@ -46,9 +46,8 @@
     </div>
   </header>
 
-  <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mb-8">
+  <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 mb-8">
     <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-200"><p class="text-sm font-medium text-gray-500">Total Integrations</p><p class="text-3xl font-bold text-gray-900">{{ total_integrations }}</p></div>
-    <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-200"><p class="text-sm font-medium text-gray-500">Integrations Passed</p><p class="text-3xl font-bold" style="color: var(--color-pass);">{{ total_passed }}</p></div>
     <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-200"><p class="text-sm font-medium text-gray-500">Total Warnings</p><p class="text-3xl font-bold" style="color: var(--color-warn);">{{ total_non_fatal_issues }}</p></div>
     <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-200"><p class="text-sm font-medium text-gray-500">Total Failures</p><p class="text-3xl font-bold" style="color: var(--color-fail);">{{ total_fatal_issues }}</p></div>
   </section>
