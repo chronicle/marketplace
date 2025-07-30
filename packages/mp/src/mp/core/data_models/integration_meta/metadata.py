@@ -360,8 +360,8 @@ class IntegrationMetadata(
                 str(self.documentation_link) if self.documentation_link is not None else None
             ),
             categories=self.categories,
-            svg_logo_path=str(svg_path) if self.svg_logo is not None else None,
-            image_path=str(image) if self.image_base64 is not None else None,
+            svg_logo_path=svg_path.as_posix() if self.svg_logo is not None else None,
+            image_path=image.as_posix() if self.image_base64 is not None else None,
         )
 
         if self.feature_tags is not None:
