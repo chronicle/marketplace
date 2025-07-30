@@ -39,19 +39,25 @@ jobs:
         mp validate --repository third_party --only-pre-build > validation_output.txt 2>&1
         echo "validation_output=$(cat validation_output.txt)" >> "$GITHUB_OUTPUT"
 
-    - name: Upload Report Artifact
-      if: always()
-      uses: actions/upload-artifact@v4
+    # New step to find the associated PR number for push events
+    - name: Find Pull Request for Push
+      id: find_pr
+      # Only run this step if the event is a 'push'
+      if: github.event_name == 'push'
+      uses: jwalton/gh-find-current-pr@v1
       with:
-        name: validation-report
-        path: ./artifacts/validation-report.html
-        retention-days: 2
+        state: open # Only find open PRs
+        # The action automatically uses the current commit SHA from the push event
 
     - name: Add PR comment
-      if: github.event_name == 'pull_request' # Only run on pull requests
+      # Condition now checks for pull_request event OR if a PR was found for a push event
+      if: |
+        github.event_name == 'pull_request' ||
+        (github.event_name == 'push' && steps.find_pr.outputs.number)
       uses: peter-evans/create-or-update-comment@v3
       with:
-        issue-number: ${{ github.event.pull_request.number }}
+        # Use the PR number from the pull_request event OR from the find_pr action
+        issue-number: ${{ github.event.pull_request.number || steps.find_pr.outputs.number }}
         body: |
           ### Marketplace Integration Validation Report
 
@@ -60,3 +66,11 @@ jobs:
           ```
 
           [View Full Validation Report](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})
+
+    - name: Upload Report Artifact
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: validation-report
+        path: ./artifacts/validation-report.html
+        retention-days: 2
