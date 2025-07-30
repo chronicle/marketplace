@@ -1,9 +1,0 @@
-[project]
-name = "marketplace"
-version = "0.1.0"
-description = "Add your description here"
-requires-python = ">=3.11"
-dependencies = [
-    "mypy>=1.16.1",
-    "ruff>=0.12.1",
-]
