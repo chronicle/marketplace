@@ -46,7 +46,7 @@ jobs:
         mp config --marketplace-path . --processes 10 --display-config
         mp validate --repository third_party --only-pre-build
 
-    - name: Comment on PR with Markdown Report
+    - name: Comment on PR with Collapsible Report
       # This step only runs if:
       # 1. The trigger is a pull request.
       # 2. The previous 'validate' step failed.
@@ -54,20 +54,21 @@ jobs:
       uses: actions/github-script@v7
       with:
         script: |
-          // Use the 'fs' module to read the .md report file created by the validation script.
           const fs = require('fs');
           const reportPath = './artifacts/report.md';
           const reportBody = fs.readFileSync(reportPath, 'utf8');
 
-          // Format the comment. Since the report is already in Markdown, we can embed it directly.
+          // We wrap the report body in <details> and <summary> tags
+          // to make the comment section collapsible in the pull request.
           const finalComment = `❌ **Marketplace Validation Failed**
 
-          A validation report has been generated:
-          
+          <details>
+          <summary>Click to view the full validation report</summary>
+
           ---
-          ${reportBody}`;
+          ${reportBody}
+          </details>`;
           
-          // Post the comment to the pull request.
           github.rest.issues.createComment({
             issue_number: context.issue.number,
             owner: context.repo.owner,
@@ -76,7 +77,6 @@ jobs:
           });
 
     - name: Fail the workflow if validation failed
-      # This step ensures the entire job is marked as a failure if the validation step failed.
       if: steps.validate.outcome == 'failure'
       run: |
         echo "Validation step failed. Failing the workflow."
@@ -89,13 +89,4 @@ jobs:
       with:
         name: validation-report-md
         path: ./artifacts/report.md
-        retention-days: 2
-
-    - name: Upload HTML Report Artifact
-      # Uploads the original HTML report.
-      if: always()
-      uses: actions/upload-artifact@v4
-      with:
-        name: validation-report-html
-        path: ./artifacts/validation-report.html
         retention-days: 2
