@@ -82,7 +82,7 @@
         Fix legacy Classic Alert status parameter in connector and actions.
         Fix missing Playbook Alert category parameter for Update Playbook Alert action.
         Fix Recorded Future API SDK logging issue preventing actions from exiting successfully.
-  integration_version: 6.1
+  integration_version: 7.0
   item_name: RecordedFutureIntelligence
   item_type: Integration
   publish_time: '2025-08-01'
