@@ -99,8 +99,14 @@ class GitSyncManager:
         self.content = GitContentManager(self.git_client, self.api)
 
     def __del__(self):
-        self.logger.info("Cleaning up")
-        self._wd.cleanup()
+        try:
+            self.logger.info("Cleaning up")
+            if self.git_client:
+                getattr(self.git_client, "cleanup", lambda: None)()
+            self._wd.cleanup()
+        except Exception as e:
+            if hasattr(self, "logger"):
+                self.logger.warn(f"Cleanup failed: {e}", exc_info=True)
 
     @classmethod
     def from_siemplify_object(
