@@ -39,7 +39,7 @@ class MdFormat:
                     markdown_content_list.append(f"---\n\n## {stage_name} Validation:\n\n")
 
                     for validation_result in results_list:
-                        table_data = self._get_integration_table_data(validation_result)
+                        table_data = _get_integration_table_data(validation_result)
 
                         if table_data:
                             markdown_content_list.extend(
@@ -57,7 +57,6 @@ class MdFormat:
 
         except Exception as e:
             console.print(f"❌ Error generating report: {e}")
-            raise
 
 
 def _should_display_stage(results_list: list[ValidationResults]) -> bool:
@@ -105,16 +104,7 @@ def _format_table(table_data: list[list[str]], integration_name: str) -> list[st
 
 
 def _save_report_file(markdown_content_str: str, output_filename: str) -> None:
-    try:
-        current_cwd = pathlib.Path.cwd()
-        print(f"DEBUG: Current working directory: {current_cwd}")  # ADD THIS
-        output_dir = pathlib.Path("./artifacts")
-        output_dir.mkdir(exist_ok=True)
-        report_path = output_dir / output_filename
-        print(f"DEBUG: Attempting to write report to: {report_path.resolve()}")  # ADD THIS
-        report_path.write_text(markdown_content_str, encoding="utf-8")
-        print(f"DEBUG: Report successfully written to: {report_path.resolve()}")  # ADD THIS
-    except Exception as e:
-        # Re-raise the exception after printing, or log more verbosely
-        print(f"❌ Error during file save in _save_report_file: {e}")
-        raise  # Re-raise to see the full traceback in GA logs
+    output_dir = pathlib.Path("./artifacts")
+    output_dir.mkdir(exist_ok=True)
+    report_path = output_dir / output_filename
+    report_path.write_text(markdown_content_str, encoding="utf-8")
