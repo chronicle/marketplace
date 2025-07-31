@@ -1,6 +1,12 @@
 name: Validate marketplace integrations
+
+# Required permissions:
+# contents: read - to checkout the repository
+# pull-requests: write - to post a comment on the pull request
 permissions:
   contents: read
+  pull-requests: write
+
 on:
   push:
     branches:
@@ -27,16 +33,68 @@ jobs:
     - name: Install mp package
       run: |
         pip install --upgrade pip
-        # This installs your local 'mp' tool so it can be used in the command line
         pip install -e ./packages/mp
 
-    - name: Validates all integrations
+    - name: Run Validations and Capture Output
+      # This step will run the validation command.
+      # 'continue-on-error: true' ensures that even if this step fails,
+      # the subsequent steps (like posting a comment) will still run.
+      id: validate
+      continue-on-error: true
       shell: bash
       run: |
         mp config --marketplace-path . --processes 10 --display-config
-        mp validate --repository third_party --only-pre-build
+        
+        # We run the command and pipe its output (stdout and stderr) to a file named 'validation_output.txt'.
+        # 'tee' allows the output to be displayed in the live terminal log AND be written to the file.
+        # 'exit ${PIPESTATUS[0]}' ensures this step's exit code is the exit code of the 'mp validate' command,
+        # not the 'tee' command. This correctly marks the step as failed or succeeded.
+        mp validate --repository third_party --only-pre-build 2>&1 | tee validation_output.txt
+        exit ${PIPESTATUS[0]}
+
+    - name: Comment on PR with Failure Output
+      # This step only runs if:
+      # 1. The trigger is a pull request.
+      # 2. The previous 'validate' step failed.
+      if: github.event_name == 'pull_request' && steps.validate.outcome == 'failure'
+      uses: actions/github-script@v7
+      with:
+        script: |
+          // Use the 'fs' module to read the output file created in the previous step
+          const fs = require('fs');
+          const output = fs.readFileSync('validation_output.txt', 'utf8');
+
+          // Format the comment body
+          const body = `❌ **Marketplace Validation Failed**
+
+          The \`mp validate\` command failed. Please review the logs below.
+
+          <details>
+          <summary>Click to view validation output</summary>
+
+          \`\`\`
+          ${output}
+          \`\`\`
+          </details>`;
+          
+          // Post the comment to the pull request
+          github.rest.issues.createComment({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            body: body
+          });
+
+    - name: Fail the workflow if validation failed
+      # This step ensures the entire job is marked as a failure if the validation step failed.
+      # This is the standard way to enforce failure after using 'continue-on-error'.
+      if: steps.validate.outcome == 'failure'
+      run: |
+        echo "Validation step failed. Failing the workflow."
+        exit 1
 
     - name: Upload Report Artifact
+      # 'if: always()' ensures this step runs regardless of success or failure
       if: always()
       uses: actions/upload-artifact@v4
       with:
