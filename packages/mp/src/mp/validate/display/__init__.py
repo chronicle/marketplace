@@ -25,10 +25,10 @@ class Report:
     @classmethod
     def display(cls, validation_results: dict[str, list[ValidationResults]]) -> None:
         """Run the display logic and creates the required reports."""
-        is_github_actions = os.getenv("GITHUB_ACTIONS") == "true"
+        is_github_actions = os.getenv("GITHUB_ACTIONS")
 
         CliDisplay(validation_results).display()
-        if is_github_actions:
+        if is_github_actions == "true":
             MdFormat(validation_results).display()
         else:
             HtmlDisplay(validation_results).display()

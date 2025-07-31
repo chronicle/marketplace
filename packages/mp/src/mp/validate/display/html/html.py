@@ -54,14 +54,12 @@ class HtmlDisplay:
     def _generate_validation_report_html(
         self, template_name: str = "html_report/report.html"
     ) -> str:
-
         script_dir = pathlib.Path(__file__).parent.resolve()
         template_dir = script_dir / "templates"
         env = Environment(
             loader=FileSystemLoader(template_dir), autoescape=select_autoescape(["html"])
         )
         template = env.get_template(template_name)
-
 
         css_file_path = template_dir / "static" / "style.css"
         js_file_path = template_dir / "static" / "script.js"
