@@ -1,0 +1,101 @@
+name: Initiate Indicator Intel Lookup With Dossier
+description: Initiates an indicator (IP/URL/Host/Email/Hash) investigation using Infoblox
+  Dossier.
+integration_identifier: InfobloxThreatDefenseWithDDI
+parameters:
+- name: Indicator Type
+  default_value: Host
+  type: ddl
+  description: Specify the type of indicator to search for (Host, IP, URL, Email,
+    Hash).
+  is_mandatory: true
+  optional_values:
+  - IP
+  - Host
+  - URL
+  - Email
+  - Hash
+- name: Indicator Value
+  default_value: ' '
+  type: string
+  description: Specify the indicator value(s) based on the indicator type you want
+    to search for.
+  is_mandatory: true
+- name: Source
+  default_value: null
+  type: string
+  description: Specify the comma-separated sources to query
+  is_mandatory: false
+- name: Wait for Results
+  default_value: 'false'
+  type: boolean
+  description: If set to true, the call will wait for results to complete else return
+    the jobID
+  is_mandatory: false
+dynamic_results_metadata:
+- result_name: JsonResult
+  show_result: true
+  result_example: "[\r\n    {\r\n        \"status\": \"pending\",\r\n        \"job_id\"\
+    : \"72fa20c0-b846-4d35-83e9-d265971621a7\",\r\n        \"job\": {\r\n        \
+    \    \"id\": \"72fa20c0-b846-4d35-83e9-d265971621a7\",\r\n            \"state\"\
+    : \"created\",\r\n            \"status\": \"pending\",\r\n            \"create_ts\"\
+    : 1751285949589,\r\n            \"create_time\": \"2025-06-30T12:19:09.589260341Z\"\
+    ,\r\n            \"start_ts\": 1751285949589,\r\n            \"start_time\": \"\
+    2025-06-30T12:19:09.589260341Z\",\r\n            \"request_ttl\": 0,\r\n     \
+    \       \"result_ttl\": 3600,\r\n            \"pending_tasks\": [\r\n        \
+    \        \"f7532c64-231b-47b1-ab5d-24fe2f529e8c\",\r\n                \"977a5630-72a5-4c97-9955-584931d924f0\"\
+    \r\n            ],\r\n            \"org\": \"001SAND30ab5807046\",\r\n       \
+    \     \"user\": \"test.user@example.com\",\r\n            \"tasks_tbc\": 0\r\n\
+    \        },\r\n        \"tasks\": {\r\n            \"977a5630-72a5-4c97-9955-584931d924f0\"\
+    : {\r\n                \"id\": \"977a5630-72a5-4c97-9955-584931d924f0\",\r\n \
+    \               \"state\": \"created\",\r\n                \"status\": \"pending\"\
+    ,\r\n                \"create_ts\": 1751285949589,\r\n                \"create_time\"\
+    : \"2025-06-30T12:19:09.589260341Z\",\r\n                \"params\": {\r\n   \
+    \                 \"type\": \"host\",\r\n                    \"target\": \"one.one.one.one\"\
+    ,\r\n                    \"source\": \"atp\"\r\n                },\r\n       \
+    \         \"results\": null,\r\n                \"rl\": false\r\n            },\r\
+    \n            \"f7532c64-231b-47b1-ab5d-24fe2f529e8c\": {\r\n                \"\
+    id\": \"f7532c64-231b-47b1-ab5d-24fe2f529e8c\",\r\n                \"state\":\
+    \ \"created\",\r\n                \"status\": \"pending\",\r\n               \
+    \ \"create_ts\": 1751285949589,\r\n                \"create_time\": \"2025-06-30T12:19:09.589260341Z\"\
+    ,\r\n                \"params\": {\r\n                    \"type\": \"host\",\r\
+    \n                    \"target\": \"one.one.one.one\",\r\n                   \
+    \ \"source\": \"atp\"\r\n                },\r\n                \"results\": null,\r\
+    \n                \"rl\": false\r\n            }\r\n        }\r\n    },\r\n  \
+    \  {\r\n        \"status\": \"success\",\r\n        \"job_id\": \"34f53069-391e-4b4d-89fa-2372a06286e2\"\
+    ,\r\n        \"job\": {\r\n            \"id\": \"34f53069-391e-4b4d-89fa-2372a06286e2\"\
+    ,\r\n            \"state\": \"completed\",\r\n            \"status\": \"success\"\
+    ,\r\n            \"create_ts\": 1751450789352,\r\n            \"create_time\"\
+    : \"2025-07-02T10:06:29.352Z\",\r\n            \"request_ttl\": 0,\r\n       \
+    \     \"result_ttl\": 3600,\r\n            \"completed_tasks\": [\r\n        \
+    \        \"9380a4e7-524c-4a60-a65d-39416b826b66\"\r\n            ],\r\n      \
+    \      \"org\": \"001SAND30ab5807046\",\r\n            \"user\": \"john.deo@example.com\"\
+    ,\r\n            \"tasks_tbc\": 0\r\n        },\r\n        \"tasks\": {\r\n  \
+    \          \"9380a4e7-524c-4a60-a65d-39416b826b66\": {\r\n                \"id\"\
+    : \"9380a4e7-524c-4a60-a65d-39416b826b66\",\r\n                \"state\": \"completed\"\
+    ,\r\n                \"status\": \"success\",\r\n                \"create_ts\"\
+    : 1751450789352,\r\n                \"create_time\": \"2025-07-02T10:06:29.352Z\"\
+    ,\r\n                \"start_ts\": 1751450790794,\r\n                \"start_time\"\
+    : \"2025-07-02T10:06:30.794Z\",\r\n                \"end_ts\": 1751450791125,\r\
+    \n                \"end_time\": \"2025-07-02T10:06:31.125Z\",\r\n            \
+    \    \"params\": {\r\n                    \"type\": \"host\",\r\n            \
+    \        \"target\": \"one.one.one.one\",\r\n                    \"source\": \"\
+    geo\"\r\n                },\r\n                \"options\": {},\r\n          \
+    \      \"results\": null,\r\n                \"rl\": false\r\n            }\r\n\
+    \        },\r\n        \"results\": [\r\n            {\r\n                \"task_id\"\
+    : \"9380a4e7-524c-4a60-a65d-39416b826b66\",\r\n                \"params\": {\r\
+    \n                    \"type\": \"host\",\r\n                    \"target\": \"\
+    one.one.one.one\",\r\n                    \"source\": \"geo\"\r\n            \
+    \    },\r\n                \"status\": \"success\",\r\n                \"time\"\
+    : 6,\r\n                \"v\": \"3.0.0\",\r\n                \"data\": {\r\n \
+    \                   \"asn_num\": \"13335\",\r\n                    \"city\": \"\
+    Sydney\",\r\n                    \"country_code\": \"AU\",\r\n               \
+    \     \"country_name\": \"Australia\",\r\n                    \"isp\": \"Cloudflare,\
+    \ Inc.\",\r\n                    \"latitude\": -33.8688,\r\n                 \
+    \   \"longitude\": 151.209,\r\n                    \"org\": \"\",\r\n        \
+    \            \"postal_code\": \"1001\",\r\n                    \"region\": \"\
+    New South Wales\"\r\n                }\r\n            }\r\n        ]\r\n    }\r\
+    \n]"
+default_result_value: ''
+creator: Admin
+script_result_name: ScriptResult
