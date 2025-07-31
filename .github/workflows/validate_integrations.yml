@@ -1,8 +1,5 @@
 name: Validate marketplace integrations
 
-# Required permissions:
-# contents: read - to checkout the repository
-# pull-requests: write - to post a comment on the pull request
 permissions:
   contents: read
   pull-requests: write
@@ -36,9 +33,6 @@ jobs:
         pip install -e ./packages/mp
 
     - name: Run Validations
-      # This step runs the validation command. Its live output will appear in the terminal.
-      # The Python script itself will generate the report.md file inside the ./artifacts directory.
-      # 'continue-on-error: true' allows the workflow to proceed to the commenting step even if this fails.
       id: validate
       continue-on-error: true
       shell: bash
@@ -47,9 +41,6 @@ jobs:
         mp validate --repository third_party --only-pre-build
 
     - name: Comment on PR with Collapsible Report
-      # This step only runs if:
-      # 1. The trigger is a pull request.
-      # 2. The previous 'validate' step failed.
       if: github.event_name == 'pull_request' && steps.validate.outcome == 'failure'
       uses: actions/github-script@v7
       with:
@@ -83,7 +74,6 @@ jobs:
         exit 1
 
     - name: Upload Markdown Report Artifact
-      # Uploads the generated Markdown report.
       if: always()
       uses: actions/upload-artifact@v4
       with:

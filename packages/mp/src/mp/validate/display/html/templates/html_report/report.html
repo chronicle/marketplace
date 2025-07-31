@@ -7,26 +7,7 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --color-pass: #10b981; /* Emerald 500 */
-      --color-warn: #f59e0b; /* Amber 500 */
-      --color-fail: #ef4444; /* Red 500 */
-    }
-    body { font-family: 'Inter', sans-serif; background-color: #f3f4f6; }
-    .collapsible-content { max-height: 0; overflow: hidden; transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1); }
-    .collapsible-content.is-open { max-height: 5000px; }
-    .chevron-icon { transition: transform 0.3s ease-in-out; }
-    .is-open .chevron-icon { transform: rotate(180deg); }
-    .status-badge-pass { background-color: #ecfdf5; color: var(--color-pass); }
-    .status-badge-warn { background-color: #fffbeb; color: var(--color-warn); }
-    .status-badge-fail { background-color: #fef2f2; color: var(--color-fail); }
-    .border-l-pass { border-left-color: var(--color-pass); }
-    .border-l-warn { border-left-color: var(--color-warn); }
-    .border-l-fail { border-left-color: var(--color-fail); }
-    pre { white-space: pre-wrap; word-wrap: break-word; }
-    .tab-button.active { border-color: #4f46e5; color: #4f46e5; }
-    .tab-button:not(.active) { border-color: transparent; color: #6b7280; }
-    .tab-button:not(.active):hover { border-color: #d1d5db; color: #374151; }
+    {{ css_content }}
   </style>
 </head>
 <body class="text-gray-800 p-4 sm:p-6 lg:p-8">
@@ -106,36 +87,7 @@
 </main>
 
 <script>
-  function toggleAccordion(element) {
-    const content = element.nextElementSibling;
-    if (content && content.classList.contains('collapsible-content')) {
-      element.parentElement.classList.toggle('is-open');
-      content.classList.toggle('is-open');
-    }
-  }
-
-  function switchTab(buttonElement, categoryId) {
-    document.querySelectorAll('.tab-button').forEach(button => button.classList.remove('active'));
-    buttonElement.classList.add('active');
-    document.querySelectorAll('.tab-content').forEach(content => content.classList.add('hidden'));
-    const targetContent = document.getElementById('tab-content-' + categoryId);
-    if (targetContent) {
-      targetContent.classList.remove('hidden');
-    }
-  }
-
-  function downloadReport() {
-    const htmlContent = document.documentElement.outerHTML;
-    const blob = new Blob([htmlContent], { type: 'text/html' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = `validation-report-${new Date().toISOString().slice(0,10)}.html`;
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
-  }
+  {{ js_content | safe }}
 </script>
 </body>
 </html>

@@ -11,3 +11,24 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+
+import os
+
+from mp.validate.validation_results import ValidationResults
+
+from .cli import CliDisplay
+from .html.html import HtmlDisplay
+from .md_format import MdFormat
+
+
+class Report:
+    @classmethod
+    def display(cls, validation_results: dict[str, list[ValidationResults]]) -> None:
+        """Run the display logic and creates the required reports."""
+        is_github_actions = os.getenv("GITHUB_ACTIONS") == "true"
+
+        CliDisplay(validation_results).display()
+        if is_github_actions:
+            MdFormat(validation_results).display()
+        else:
+            HtmlDisplay(validation_results).display()

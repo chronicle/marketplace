@@ -12,8 +12,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-
-import os
 import pathlib
 
 from rich.console import Console
@@ -36,7 +34,7 @@ class MdFormat:
             content_added = False
 
             for stage_name, results_list in self.validation_results.items():
-                if self._should_display_stage(results_list):
+                if _should_display_stage(results_list):
                     content_added = True
                     markdown_content_list.append(f"---\n\n## {stage_name} Validation:\n\n")
 
@@ -45,7 +43,7 @@ class MdFormat:
 
                         if table_data:
                             markdown_content_list.extend(
-                                self._format_table(
+                                _format_table(
                                     table_data, validation_result.validation_report.integration_name
                                 )
                             )
@@ -55,57 +53,58 @@ class MdFormat:
 
             markdown_content_str = "".join(markdown_content_list)
 
-            self._save_report_file(markdown_content_str, output_filename)
+            _save_report_file(markdown_content_str, output_filename)
 
         except Exception as e:  # noqa: BLE001
             console.print(f"❌ Error generating report: {e}")
 
-    def _should_display_stage(self, results_list: list[ValidationResults]) -> bool:
-        """Determines if a validation stage should be displayed in the report."""
-        if not results_list:
-            return False
-        for validation_result in results_list:
-            report = validation_result.validation_report
-            if (
-                report.failed_fatal_validations
-                or report.failed_non_fatal_validations
-                or validation_result.is_success
-            ):
-                return True
+
+def _should_display_stage(results_list: list[ValidationResults]) -> bool:
+    if not results_list:
         return False
-
-    def _get_integration_table_data(self, validation_result: ValidationResults) -> list[list[str]]:
+    for validation_result in results_list:
         report = validation_result.validation_report
-        table_data = []
+        if (
+            report.failed_fatal_validations
+            or report.failed_non_fatal_validations
+            or validation_result.is_success
+        ):
+            return True
+    return False
 
-        for issue in report.failed_fatal_validations:
-            table_data.append([f"⚠️ {issue.validation_name}", issue.info])
-        for issue in report.failed_non_fatal_validations:
-            table_data.append([f"⚠️ {issue.validation_name}", issue.info])
 
-        return table_data
+def _get_integration_table_data(validation_result: ValidationResults) -> list[list[str]]:
+    report = validation_result.validation_report
+    table_data = []
 
-    def _format_table(self, table_data: list[list[str]], integration_name: str) -> list[str]:
-        markdown_lines = []
-        markdown_lines.append(f"### Integration: {integration_name}\n\n")
+    for issue in report.failed_fatal_validations:
+        table_data.append([f"⚠️ {issue.validation_name}", issue.info])  # noqa: PERF401
+    for issue in report.failed_non_fatal_validations:
+        table_data.append([f"⚠️ {issue.validation_name}", issue.info])  # noqa: PERF401
 
-        headers = ["Validation Name", "Details"]
-        markdown_lines.append("| " + " | ".join(headers) + " |\n")
-        markdown_lines.append("|" + "---|".join(["-" * len(h) for h in headers]) + "|\n")
+    return table_data
 
-        for row in table_data:
-            info_content = str(row[1]) if row[1] is not None else ""
-            clean_info = info_content.replace("\n", " ").replace("|", "\\|")
-            markdown_lines.append(f"| {row[0]} | {clean_info} |\n")
-        markdown_lines.append("\n")
-        return markdown_lines
 
-    def _save_report_file(self, markdown_content_str: str, output_filename: str) -> None:
-        is_github_actions = os.getenv("GITHUB_ACTIONS") == "true"
-        report_path: pathlib.Path
+def _format_table(table_data: list[list[str]], integration_name: str) -> list[str]:
+    markdown_lines = []
+    markdown_lines.append(f"### Integration: {integration_name}\n\n")
 
-        if is_github_actions:
-            output_dir = pathlib.Path("./artifacts")
-            output_dir.mkdir(exist_ok=True)
-            report_path = output_dir / output_filename
-            report_path.write_text(markdown_content_str, encoding="utf-8")
+    headers = ["Validation Name", "Details"]
+    markdown_lines.extend([
+        "| " + " | ".join(headers) + " |\n",
+        "|" + "---|".join(["-" * len(h) for h in headers]) + "|\n",
+    ])
+
+    for row in table_data:
+        info_content = str(row[1]) if row[1] is not None else ""
+        clean_info = info_content.replace("\n", " ").replace("|", "\\|")
+        markdown_lines.append(f"| {row[0]} | {clean_info} |\n")
+    markdown_lines.append("\n")
+    return markdown_lines
+
+
+def _save_report_file(markdown_content_str: str, output_filename: str) -> None:
+    output_dir = pathlib.Path("./artifacts")
+    output_dir.mkdir(exist_ok=True)
+    report_path = output_dir / output_filename
+    report_path.write_text(markdown_content_str, encoding="utf-8")

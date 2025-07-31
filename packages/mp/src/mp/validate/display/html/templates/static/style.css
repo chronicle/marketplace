@@ -1,0 +1,80 @@
+:root {
+  --color-pass: #10b981; /* Emerald 500 */
+  --color-warn: #f59e0b; /* Amber 500 */
+  --color-fail: #ef4444; /* Red 500 */
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #f3f4f6;
+}
+
+/* Collapsible / Accordion Styles */
+.collapsible-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.collapsible-content.is-open {
+  max-height: 5000px; /* A large enough value to accommodate content */
+}
+
+.chevron-icon {
+  transition: transform 0.3s ease-in-out;
+}
+
+.is-open .chevron-icon {
+  transform: rotate(180deg);
+}
+
+/* Status Badges */
+.status-badge-pass {
+  background-color: #ecfdf5;
+  color: var(--color-pass);
+}
+
+.status-badge-warn {
+  background-color: #fffbeb;
+  color: var(--color-warn);
+}
+
+.status-badge-fail {
+  background-color: #fef2f2;
+  color: var(--color-fail);
+}
+
+/* Border Colors for Issues */
+.border-l-pass {
+  border-left-color: var(--color-pass);
+}
+
+.border-l-warn {
+  border-left-color: var(--color-warn);
+}
+
+.border-l-fail {
+  border-left-color: var(--color-fail);
+}
+
+/* Preformatted Text */
+pre {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+/* Tab Button Styles */
+.tab-button.active {
+  border-color: #4f46e5;
+  color: #4f46e5;
+}
+
+.tab-button:not(.active) {
+  border-color: transparent;
+  color: #6b7280;
+}
+
+.tab-button:not(.active):hover {
+  border-color: #d1d5db;
+  color: #374151;
+}

@@ -1,9 +1,3 @@
-"""Package for validates integration projects.
-
-This package provides the 'validate' CLI command for processing integration
-repositories, groups, or individual integrations and run pre-build and post-build validations.
-"""
-
 # Copyright 2025 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -33,9 +27,7 @@ import mp.core.file_utils
 from mp.build_project.marketplace import Marketplace
 from mp.core.custom_types import RepositoryType
 
-from .display.cli import CliDisplay
-from .display.html.html import HtmlDisplay
-from .display.md_format import MdFormat
+from .display import Report
 from .pre_build_validation import PreBuildValidations
 from .utils import Configurations, get_marketplace_paths_from_names
 from .validation_results import ValidationResults
@@ -337,9 +329,7 @@ def _run_pre_build_validations(integration_path: pathlib.Path) -> ValidationResu
 
 
 def _display_output(validation_results: dict[str, list[ValidationResults]]) -> None:
-    CliDisplay(validation_results).display()
-    HtmlDisplay(validation_results).display()
-    MdFormat(validation_results).display()
+    Report.display(validation_results)
 
 
 def _combine_results(
