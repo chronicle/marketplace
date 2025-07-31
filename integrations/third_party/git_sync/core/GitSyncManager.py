@@ -100,7 +100,8 @@ class GitSyncManager:
 
     def __del__(self):
         self.logger.info("Cleaning up")
-        self.git_client.cleanup()
+        if self.git_client:
+            self.git_client.cleanup()
         self._wd.cleanup()
 
     @classmethod
