@@ -1,4 +1,4 @@
-############################## TERMS OF USE ###################################
+############################## TERMS OF USE ################################### # noqa: E266
 # The following code is provided for demonstration purposes only, and should  #
 # not be used without independent verification. Recorded Future makes no      #
 # representations or warranties, express, implied, statutory, or otherwise,   #
@@ -37,7 +37,6 @@ from TIPCommon.utils import is_overflowed
 from TIPCommon.validation import ParameterValidator
 
 from ..core.constants import (
-    ALERT_STATUS_MAP,
     CLASSIC_ALERT_DEFAULT_STATUSES,
     CLASSIC_ALERT_STATUSES,
     CONNECTOR_NAME,
@@ -176,7 +175,7 @@ def main(is_test_run):
             verify_ssl=verify_ssl,
             siemplify=siemplify,
         )
-        fetch_statuses = [ALERT_STATUS_MAP.get(param) for param in fetch_statuses_param]
+        fetch_statuses = fetch_statuses_param
         fetched_alerts = []
         rules_to_fetch = None
         if siemplify.whitelist and not allowlist_as_a_denylist:
@@ -247,6 +246,10 @@ def main(is_test_run):
                     AlertInfo(),
                     environment_common=common_env,
                 )
+                for event in alert_info.events:
+                    event["alert_id"] = alert.id
+                    event["alert_url"] = f"https://app.recordedfuture.com/live/sc/notification/?id={alert.id}"
+                    event["ai_insights_text"] = alert.raw_data["ai_insights_text"]
 
                 if enable_overflow and is_overflowed(
                     siemplify,

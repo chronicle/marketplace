@@ -1,4 +1,4 @@
-############################## TERMS OF USE ###################################
+############################## TERMS OF USE ################################### # noqa: E266
 # The following code is provided for demonstration purposes only, and should  #
 # not be used without independent verification. Recorded Future makes no      #
 # representations or warranties, express, implied, statutory, or otherwise,   #
@@ -21,7 +21,6 @@
 from __future__ import annotations
 
 from datetime import datetime
-from unicodedata import category
 
 from psengine.analyst_notes import AnalystNoteMgr, AnalystNotePublishError
 from psengine.classic_alerts import (
@@ -349,7 +348,7 @@ class RecordedFutureManager:
         if note is not None:
             payload["note"] = note
         if status is not None:
-            payload["status"] = status
+            payload["statusInPortal"] = status
 
         try:
             self.alerts.update([payload])
@@ -485,7 +484,7 @@ class RecordedFutureManager:
         for target in playbook_alert.panel_status.targets:
             entity = target.name
             if "." not in entity:
-                self.siemplify.LOGGER.warning(
+                self.siemplify.LOGGER.warn(
                     f"Entity {entity} is not a domain. Skipping...",
                 )
                 continue
@@ -613,6 +612,7 @@ class RecordedFutureManager:
     def update_playbook_alert(
         self,
         alert_id,
+        category=None,
         status=None,
         assignee=None,
         log_entry=None,
@@ -622,6 +622,7 @@ class RecordedFutureManager:
         """Update Alert in Recorded Future.
 
         :param alert_id: {str} The id of alert to update.
+        :param category: {str} The category of alert to update.
         :param status: {str} New status of the alert
         :param assignee: {str} Assignee to assign the alert to
         :param log_entry: {str} Log comment to add to the update
