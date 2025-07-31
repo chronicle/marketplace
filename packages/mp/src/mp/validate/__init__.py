@@ -1,9 +1,3 @@
-"""Package for validates integration projects.
-
-This package provides the 'validate' CLI command for processing integration
-repositories, groups, or individual integrations and run pre-build and post-build validations.
-"""
-
 # Copyright 2025 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -26,7 +20,6 @@ import pathlib
 from collections.abc import Callable
 from typing import TYPE_CHECKING, Annotated, TypeAlias
 
-import rich
 import typer
 
 import mp.core.config
@@ -34,6 +27,7 @@ import mp.core.file_utils
 from mp.build_project.marketplace import Marketplace
 from mp.core.custom_types import RepositoryType
 
+from .display import Report
 from .pre_build_validation import PreBuildValidations
 from .utils import Configurations, get_marketplace_paths_from_names
 from .validation_results import ValidationResults
@@ -164,73 +158,75 @@ def validate(  # noqa: PLR0913
 
     run_configurations: Configurations = Configurations(only_pre_build=only_pre_build)
 
-    validations_output: list[ValidationResults] = []
+    validations_output: dict[str, list[ValidationResults]] = {}
+    commercial_output: dict[str, list[ValidationResults]] = {}
+    community_output: dict[str, list[ValidationResults]] = {}
 
     if integration:
-        validations_output.extend(
-            _validate_integrations(
-                get_marketplace_paths_from_names(integration, commercial_mp.path),
-                commercial_mp,
-                run_configurations,
-            )
-        )
-        validations_output.extend(
-            _validate_integrations(
-                get_marketplace_paths_from_names(integration, community_mp.path),
-                community_mp,
-                run_configurations,
-            )
+        commercial_output = _validate_integrations(
+            get_marketplace_paths_from_names(integration, commercial_mp.path),
+            commercial_mp,
+            run_configurations,
         )
 
+        community_output = _validate_integrations(
+            get_marketplace_paths_from_names(integration, community_mp.path),
+            community_mp,
+            run_configurations,
+        )
+
+        validations_output = _combine_results(commercial_output, community_output)
+
     elif group:
-        validations_output.extend(
-            _validate_groups(
-                get_marketplace_paths_from_names(group, commercial_mp.path),
-                commercial_mp,
-                run_configurations,
-            )
+        commercial_output = _validate_groups(
+            get_marketplace_paths_from_names(group, commercial_mp.path),
+            commercial_mp,
+            run_configurations,
         )
-        validations_output.extend(
-            _validate_groups(
-                get_marketplace_paths_from_names(group, community_mp.path),
-                community_mp,
-                run_configurations,
-            )
+
+        community_output = _validate_groups(
+            get_marketplace_paths_from_names(group, community_mp.path),
+            community_mp,
+            run_configurations,
         )
+
+        validations_output = _combine_results(commercial_output, community_output)
 
     elif repository:
         repos: set[RepositoryType] = set(repository)
 
         if RepositoryType.COMMERCIAL in repos:
-            validations_output.extend(_validate_repo(commercial_mp, run_configurations))
+            commercial_output = _validate_repo(commercial_mp, run_configurations)
 
         if RepositoryType.COMMUNITY in repos:
-            validations_output.extend(_validate_repo(community_mp, run_configurations))
+            community_output = _validate_repo(community_mp, run_configurations)
+
+        validations_output = _combine_results(commercial_output, community_output)
 
     _display_output(validations_output)
 
-    if validations_output:
+    if _should_fail_program(validations_output):
         raise typer.Exit(code=1)
 
 
 def _validate_repo(
     marketplace: Marketplace, configurations: Configurations
-) -> list[ValidationResults]:
+) -> dict[str, list[ValidationResults]]:
     products: Products[set[pathlib.Path]] = (
         mp.core.file_utils.get_integrations_and_groups_from_paths(marketplace.path)
     )
 
-    validation_outputs: list[ValidationResults] = []
+    validation_outputs: dict[str, list[ValidationResults]]
 
-    integrations_outputs: list[ValidationResults] = _validate_integrations(
+    integrations_outputs: dict[str, list[ValidationResults]] = _validate_integrations(
         products.integrations, marketplace, configurations
     )
-    groups_output: list[ValidationResults] = _validate_groups(
+    groups_output: dict[str, list[ValidationResults]] = _validate_groups(
         products.groups, marketplace, configurations
     )
 
-    validation_outputs.extend(integrations_outputs)
-    validation_outputs.extend(groups_output)
+    validation_outputs = _combine_results(integrations_outputs, groups_output)
+
     return validation_outputs
 
 
@@ -238,19 +234,19 @@ def _validate_groups(
     groups: Iterable[pathlib.Path],
     marketplace: Marketplace,
     configurations: Configurations,
-) -> list[ValidationResults]:
+) -> dict[str, list[ValidationResults]]:
     """Validate a list of integration group names within a specific marketplace scope.
 
     Returns:
         list[ValidationResults]: List contains the Validation results object
 
     """
-    validation_outputs: list[ValidationResults] = []
+    validation_outputs: dict[str, list[ValidationResults]] = {}
     if groups:
         pre_build_output: list[ValidationResults] = _process_groups_for_validation(
             groups, _run_pre_build_validations
         )
-        validation_outputs.extend(pre_build_output)
+        validation_outputs["Pre-Build"] = pre_build_output
 
         if not configurations.only_pre_build:
             marketplace.build_groups(groups)
@@ -283,21 +279,21 @@ def _validate_integrations(
     integrations: Iterable[pathlib.Path],
     marketplace: Marketplace,
     configurations: Configurations,
-) -> list[ValidationResults]:
+) -> dict[str, list[ValidationResults]]:
     """Validate a list of integration names within a specific marketplace scope.
 
     Returns:
         list[ValidationResults]: List contains the Validation results object
 
     """
-    validation_outputs: list[ValidationResults] = []
+    validation_outputs: dict[str, list[ValidationResults]] = {}
     if not integrations:
         return validation_outputs
 
     pre_build_output: list[ValidationResults] = _run_validations(
         integrations, _run_pre_build_validations
     )
-    validation_outputs.extend(pre_build_output)
+    validation_outputs["Pre-Build"] = pre_build_output
 
     if not configurations.only_pre_build:
         marketplace.build_integrations(integrations)
@@ -332,11 +328,33 @@ def _run_pre_build_validations(integration_path: pathlib.Path) -> ValidationResu
     return validation_object.results
 
 
-def _display_output(validation_results: list[ValidationResults]) -> None:
-    if not validation_results:
-        rich.print("[bold green]All validations passed[/bold green]")
-        return
+def _display_output(validation_results: dict[str, list[ValidationResults]]) -> None:
+    Report.display(validation_results)
 
-    for res in validation_results:
-        for msg in res.errors:
-            rich.print(msg)
+
+def _combine_results(
+    validations_output1: dict[str, list[ValidationResults]],
+    validations_output2: dict[str, list[ValidationResults]],
+) -> dict[str, list[ValidationResults]]:
+    combined_output: dict[str, list[ValidationResults]] = {}
+    keys_to_combine = ["Pre-Build", "Build", "Post-Build"]
+
+    for key in keys_to_combine:
+        list1 = validations_output1.get(key)
+        list2 = validations_output2.get(key)
+
+        actual_list1 = list1 if list1 is not None else []
+        actual_list2 = list2 if list2 is not None else []
+
+        combined_list = actual_list1 + actual_list2
+
+        if not combined_list and list1 is None and list2 is None:
+            combined_output[key] = None
+        else:
+            combined_output[key] = combined_list
+
+    return combined_output
+
+
+def _should_fail_program(validations_output: dict[str, list[ValidationResults]]) -> bool:
+    return any(validation_result for validation_result in validations_output.values())

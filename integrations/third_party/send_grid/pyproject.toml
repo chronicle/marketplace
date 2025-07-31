@@ -17,5 +17,6 @@ starkbank-ecdsa = { url = "https://files.pythonhosted.org/packages/a3/f8/a6091be
 dev = [
     "integration-testing",
     "pytest>=8.3.5",
+    "pytest-json-report>=1.5.0",
     "soar-sdk",
 ]
