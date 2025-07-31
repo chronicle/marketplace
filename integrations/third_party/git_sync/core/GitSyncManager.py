@@ -78,7 +78,7 @@ class GitSyncManager:
         self.logger = siemplify.LOGGER
         self._siemplify = siemplify
         self._cache = {}
-        self._wd = tempfile.TemporaryDirectory(dir=siemplify.RUN_FOLDER)
+        self._wd = tempfile.TemporaryDirectory(dir=siemplify.RUN_FOLDER, ignore_cleanup_errors=True)
         self.api = SiemplifyApiClient(
             siemplify.API_ROOT,
             siemplify.api_key,
@@ -99,14 +99,9 @@ class GitSyncManager:
         self.content = GitContentManager(self.git_client, self.api)
 
     def __del__(self):
-        try:
-            self.logger.info("Cleaning up")
-            if self.git_client:
-                getattr(self.git_client, "cleanup", lambda: None)()
-            self._wd.cleanup()
-        except Exception as e:
-            if hasattr(self, "logger"):
-                self.logger.warn(f"Cleanup failed: {e}", exc_info=True)
+        self.logger.info("Cleaning up")
+        self.git_client.cleanup()
+        self._wd.cleanup()
 
     @classmethod
     def from_siemplify_object(
