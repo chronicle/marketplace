@@ -30,8 +30,7 @@ import mp.core.unix
 from mp.core.code_manipulation import TestWarning
 from mp.core.custom_types import Products, RepositoryType
 
-from .display.cli import CliDisplay
-from .display.html.html import HtmlDisplay
+from .display import Report
 from .process_test_output import IntegrationTestResults, TestIssue, process_pytest_json_report
 
 if TYPE_CHECKING:
@@ -252,8 +251,7 @@ def _run_tests_for_single_integration(
 
 
 def _display(all_integration_results: list[IntegrationTestResults]) -> None:
-    CliDisplay(all_integration_results).display()
-    HtmlDisplay(all_integration_results).display()
+    Report.display(all_integration_results)
 
 
 def _get_mp_paths_from_names(

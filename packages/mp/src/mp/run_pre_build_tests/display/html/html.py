@@ -14,7 +14,6 @@
 
 
 import datetime
-import os
 import pathlib
 import tempfile
 import webbrowser
@@ -35,47 +34,36 @@ class HtmlDisplay:
         """Generate an HTML report for integration test results."""
         try:
             html_content = self._generate_validation_report_html()
-            is_github_actions = os.getenv("GITHUB_ACTIONS") == "true"
             report_path: pathlib.Path
 
-            if is_github_actions:
-                output_dir = pathlib.Path("./artifacts")
-                output_dir.mkdir(exist_ok=True)
-                report_path = output_dir / "validation-report.html"
-                report_path.write_text(html_content, encoding="utf-8")
-            else:
-                with tempfile.NamedTemporaryFile(
-                    mode="w", delete=False, suffix=".html", encoding="utf-8"
-                ) as temp_file:
-                    temp_file.write(html_content)
-                    report_path = pathlib.Path(temp_file.name)
+            with tempfile.NamedTemporaryFile(
+                mode="w", delete=False, suffix=".html", encoding="utf-8"
+            ) as temp_file:
+                temp_file.write(html_content)
+                report_path = pathlib.Path(temp_file.name)
 
             resolved_path = report_path.resolve()
-
-            if not is_github_actions:
-                console.print(f"📂 Report available at 👉: {resolved_path.as_uri()}")
-                webbrowser.open(resolved_path.as_uri())
-            else:
-                server_url = os.getenv("GITHUB_SERVER_URL")
-                repository = os.getenv("GITHUB_REPOSITORY")
-                run_id = os.getenv("GITHUB_RUN_ID")
-
-                if server_url and repository and run_id:
-                    artifact_url = f"{server_url}/{repository}/actions/runs/{run_id}"
-                    console.print("\n[bold cyan]View Report for full details:[/bold cyan]")
-                    console.print(f"👉 {artifact_url}\n")
-                else:
-                    console.print(f"Artifact path for CI: {resolved_path}")
+            console.print(f"📂 Report available at 👉: {resolved_path.as_uri()}")
+            webbrowser.open(resolved_path.as_uri())
 
         except Exception as e:  # noqa: BLE001
             console.print(f"❌ Error generating report: {e}")
 
-    def _generate_validation_report_html(self, template_name: str = "report.html") -> str:
+    def _generate_validation_report_html(
+        self, template_name: str = "html_report/report.html"
+    ) -> str:
         script_dir = pathlib.Path(__file__).parent.resolve()
+        template_dir = script_dir / "templates"
         env = Environment(
-            loader=FileSystemLoader(script_dir), autoescape=select_autoescape(["html"])
+            loader=FileSystemLoader(template_dir), autoescape=select_autoescape(["html"])
         )
         template = env.get_template(template_name)
+
+        css_file_path = template_dir / "static" / "style.css"
+        js_file_path = template_dir / "static" / "script.js"
+
+        css_content = css_file_path.read_text(encoding="utf-8-sig")
+        js_content = js_file_path.read_text(encoding="utf-8-sig")
 
         all_results = self.integration_results_list
 
@@ -92,5 +80,7 @@ class HtmlDisplay:
             "total_skipped_tests": total_skipped_tests,
             "total_failed_tests": total_failed_tests,
             "current_time": current_time_aware.strftime("%B %d, %Y at %I:%M %p %Z"),
+            "css_content": css_content,
+            "js_content": js_content,
         }
         return template.render(context)

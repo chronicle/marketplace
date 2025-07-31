@@ -1,0 +1,48 @@
+:root {
+  --color-pass: #10b981;
+  --color-warn: #f59e0b;
+  --color-fail: #ef4444;
+}
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #f3f4f6;
+}
+.collapsible-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.collapsible-content.is-open {
+  max-height: 5000px; /* A large value to accommodate content */
+}
+.chevron-icon {
+  transition: transform 0.3s ease-in-out;
+}
+.is-open .chevron-icon {
+  transform: rotate(180deg);
+}
+.status-badge-pass {
+  background-color: #ecfdf5;
+  color: var(--color-pass);
+}
+.status-badge-warn {
+  background-color: #fffbeb;
+  color: var(--color-warn);
+}
+.status-badge-fail {
+  background-color: #fef2f2;
+  color: var(--color-fail);
+}
+.border-l-pass {
+  border-left-color: var(--color-pass);
+}
+.border-l-warn {
+  border-left-color: var(--color-warn);
+}
+.border-l-fail {
+  border-left-color: var(--color-fail);
+}
+pre {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}

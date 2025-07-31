@@ -20,7 +20,6 @@ console = Console()
 
 
 class CliDisplay:
-    validation_results: dict[str, list[ValidationResults] | None]
 
     def __init__(self, validation_results: dict[str, list[ValidationResults] | None]) -> None:
         self.validation_results: dict[str, list[ValidationResults] | None] = validation_results

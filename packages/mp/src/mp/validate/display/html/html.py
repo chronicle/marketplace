@@ -27,7 +27,6 @@ console = Console()
 
 
 class HtmlDisplay:
-    validation_results: dict[str, list[ValidationResults] | None]
 
     def __init__(self, validation_results: dict[str, list[ValidationResults] | None]) -> None:
         self.validation_results = validation_results

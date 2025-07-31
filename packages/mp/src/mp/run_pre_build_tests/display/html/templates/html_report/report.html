@@ -7,23 +7,7 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --color-pass: #10b981;
-      --color-warn: #f59e0b;
-      --color-fail: #ef4444;
-    }
-    body { font-family: 'Inter', sans-serif; background-color: #f3f4f6; }
-    .collapsible-content { max-height: 0; overflow: hidden; transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1); }
-    .collapsible-content.is-open { max-height: 5000px; }
-    .chevron-icon { transition: transform 0.3s ease-in-out; }
-    .is-open .chevron-icon { transform: rotate(180deg); }
-    .status-badge-pass { background-color: #ecfdf5; color: var(--color-pass); }
-    .status-badge-warn { background-color: #fffbeb; color: var(--color-warn); }
-    .status-badge-fail { background-color: #fef2f2; color: var(--color-fail); }
-    .border-l-pass { border-left-color: var(--color-pass); }
-    .border-l-warn { border-left-color: var(--color-warn); }
-    .border-l-fail { border-left-color: var(--color-fail); }
-    pre { white-space: pre-wrap; word-wrap: break-word; }
+    {{ css_content | safe }}
   </style>
 </head>
 <body class="text-gray-800 p-4 sm:p-6 lg:p-8">
@@ -136,26 +120,7 @@
 </main>
 
 <script>
-  function toggleAccordion(element) {
-    const content = element.nextElementSibling;
-    if (content && content.classList.contains('collapsible-content')) {
-      element.parentElement.classList.toggle('is-open');
-      content.classList.toggle('is-open');
-    }
-  }
-
-  function downloadReport() {
-    const htmlContent = document.documentElement.outerHTML;
-    const blob = new Blob([htmlContent], { type: 'text/html' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = `integration-report-${new Date().toISOString().slice(0,10)}.html`;
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
-  }
+  {{ js_content | safe }}
 </script>
 </body>
 </html>

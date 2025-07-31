@@ -1,6 +1,8 @@
 name: Test integrations
 permissions:
   contents: read
+  pull-requests: write
+
 on:
   push:
     branches:
@@ -10,7 +12,7 @@ on:
     - '**'
 
 jobs:
-  test_integrations: # This is the job name
+  test_integrations:
     runs-on: ubuntu-latest
 
     steps:
@@ -30,15 +32,49 @@ jobs:
         pip install -e ./packages/mp
 
     - name: Run integration tests
+      id: test
+      continue-on-error: true
       shell: bash
       run: |
         mp config --marketplace-path . --processes 10 --display-config
         mp test --repository third_party --repository commercial --raise-error-on-violations
 
-    - name: Upload Report Artifact
+    - name: Comment on PR with Collapsible Report
+      if: github.event_name == 'pull_request' && steps.test.outcome == 'failure'
+      uses: actions/github-script@v7
+      with:
+        script: |
+          const fs = require('fs');
+          const reportPath = './artifacts/report.md';
+          const reportBody = fs.readFileSync(reportPath, 'utf8');
+
+          // The comment body is wrapped in <details> tags to make it collapsible.
+          const finalComment = `❌ **Integration Tests Failed**
+
+          <details>
+          <summary>Click to view the full test report</summary>
+
+          ---
+          ${reportBody}
+          </details>`;
+          
+          github.rest.issues.createComment({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            body: finalComment
+          });
+
+    - name: Fail the workflow if tests failed
+      if: steps.test.outcome == 'failure'
+      run: |
+        echo "Integration test step failed. Failing the workflow."
+        exit 1
+
+    - name: Upload Markdown Report Artifact
       if: always()
       uses: actions/upload-artifact@v4
       with:
-        name: Test-report
-        path: ./artifacts/validation-report.html
+        name: test-report-md
+        path: ./artifacts/test_report.md
         retention-days: 2

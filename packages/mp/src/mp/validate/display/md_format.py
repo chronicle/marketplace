@@ -22,12 +22,11 @@ console = Console()
 
 
 class MdFormat:
-    validation_results: dict[str, list[ValidationResults] | None]
 
     def __init__(self, validation_results: dict[str, list[ValidationResults] | None]) -> None:
         self.validation_results = validation_results
 
-    def display(self, output_filename: str = "report.md") -> None:
+    def display(self, output_filename: str = "validation_report.md") -> None:
         """Generate a Markdown file with a validation report table."""
         try:
             markdown_content_list = ["# Validations Report\n\n"]
@@ -55,7 +54,7 @@ class MdFormat:
 
             _save_report_file(markdown_content_str, output_filename)
 
-        except Exception as e:
+        except Exception as e:  # noqa: BLE001
             console.print(f"❌ Error generating report: {e}")
 
 
