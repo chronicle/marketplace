@@ -303,14 +303,18 @@ class EmailUtils:
             )
             url = re.sub(r"[^\w\s:/?.=&%-]", "", url).rstrip(" .]")
             url = urllib.parse.urlparse(url).geturl()
-
+            no_schema = "noscheme://"
             if ":/" in url[:10]:
                 scheme_url = re.sub(r":/{1,3}", "://", url, count=1)
             else:
-                scheme_url = "noscheme://" + url
+                scheme_url = f"{no_schema}{url}"
 
             parsed_url = urllib.parse.urlparse(scheme_url)
-            if parsed_url.hostname is None:
+            if (
+                parsed_url.hostname is None
+                or no_schema in scheme_url
+                and extract_valid_ips_from_body(parsed_url.hostname)
+            ):
                 return None
 
             tld = parsed_url.hostname.rstrip(".").rsplit(".", 1)[-1].lower()
