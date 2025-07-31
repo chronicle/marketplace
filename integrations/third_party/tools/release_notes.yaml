@@ -793,3 +793,14 @@
   regressive: false
   deprecated: false
   removed: false
+- description: Get Original Alert Json - Updated sample json
+    values.
+  integration_version: 67.0
+  item_name: Get Original Alert Json
+  item_type: Action
+  publish_time: '2025-08-05'
+  ticket_number: '433939306'
+  new: false
+  regressive: true
+  deprecated: false
+  removed: false

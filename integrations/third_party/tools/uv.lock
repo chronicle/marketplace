@@ -900,7 +900,7 @@ wheels = [
 
 [[package]]
 name = "tools"
-version = "66.0"
+version = "66.7"
 source = { virtual = "." }
 dependencies = [
     { name = "croniter" },
