@@ -33,8 +33,9 @@ import mp.core.file_utils
 from mp.build_project.marketplace import Marketplace
 from mp.core.custom_types import RepositoryType
 
-from .display.cli import CliDisplay, console
+from .display.cli import CliDisplay
 from .display.html.html import HtmlDisplay
+from .display.md_format import MdFormat
 from .pre_build_validation import PreBuildValidations
 from .utils import Configurations, get_marketplace_paths_from_names
 from .validation_results import ValidationResults
@@ -49,7 +50,7 @@ if TYPE_CHECKING:
 ValidationFn: TypeAlias = Callable[[pathlib.Path], ValidationResults]
 
 
-__all__: list[str] = ["Configurations", "app", "console"]
+__all__: list[str] = ["Configurations", "app"]
 app: typer.Typer = typer.Typer()
 
 
@@ -338,6 +339,7 @@ def _run_pre_build_validations(integration_path: pathlib.Path) -> ValidationResu
 def _display_output(validation_results: dict[str, list[ValidationResults]]) -> None:
     CliDisplay(validation_results).display()
     HtmlDisplay(validation_results).display()
+    MdFormat(validation_results).display()
 
 
 def _combine_results(

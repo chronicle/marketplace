@@ -82,7 +82,7 @@ class ValidationTypes(Enum):
 
     PRE_BUILD = "Pre-Build"
     BUILD = "Build"
-    POST_BUILD = "Post Build"
+    POST_BUILD = "Post-Build"
 
 
 class ValidationResults:
