@@ -516,7 +516,6 @@ class Git:
         """Close Dulwich repository to release file handles."""
         try:
             self.repo.close()
-            self.repo = None
         except Exception as e:
             self.logger.warn(f"Git cleanup failed: {e}", exc_info=True)
 
