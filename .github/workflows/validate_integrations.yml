@@ -46,16 +46,12 @@ jobs:
       with:
         script: |
           const fs = require('fs');
-          const reportPath = './artifacts/report.md';
+          const reportPath = './artifacts/validation_report.md';
           const reportBody = fs.readFileSync(reportPath, 'utf8');
 
-          // We wrap the report body in <details> and <summary> tags
-          // to make the comment section collapsible in the pull request.
           const finalComment = `❌ **Marketplace Validation Failed**
-
           <details>
           <summary>Click to view the full validation report</summary>
-
           ---
           ${reportBody}
           </details>`;

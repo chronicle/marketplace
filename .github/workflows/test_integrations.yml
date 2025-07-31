@@ -45,15 +45,13 @@ jobs:
       with:
         script: |
           const fs = require('fs');
-          const reportPath = './artifacts/report.md';
+          // --- FIX: Point to the correct report file for tests ---
+          const reportPath = './artifacts/test_report.md';
           const reportBody = fs.readFileSync(reportPath, 'utf8');
 
-          // The comment body is wrapped in <details> tags to make it collapsible.
           const finalComment = `❌ **Integration Tests Failed**
-
           <details>
           <summary>Click to view the full test report</summary>
-
           ---
           ${reportBody}
           </details>`;
