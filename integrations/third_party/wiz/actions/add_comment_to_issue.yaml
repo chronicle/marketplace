@@ -1,0 +1,21 @@
+name: Add Comment To Issue
+description: Use the Add Comment To Issue action to add a comment to a specified issue
+    in Wiz.
+integration_identifier: Wiz
+parameters:
+-   name: Issue ID
+    default_value: ''
+    type: string
+    description: The unique identifier of the issue in Wiz.
+    is_mandatory: true
+-   name: Comment
+    default_value: ''
+    type: string
+    description: The text of the comment to add to the issue.
+    is_mandatory: true
+dynamic_results_metadata:
+-   result_example: '{"createdAt": "2025-08-01T11:59:00.843434941Z", "id": "comment_thread",
+        "text": "testing"}'
+    result_name: JsonResult
+    show_result: true
+creator: admin
