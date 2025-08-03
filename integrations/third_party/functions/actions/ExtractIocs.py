@@ -32,7 +32,7 @@ IPV6_REGEX: re.Pattern[str] = re.compile(
 EMAIL_REGEXP: re.Pattern[str] = re.compile(
     r"(?i)"  # Case-insensitive matching
     r"(?:[A-Z0-9!#$%&'*+/=?^_`{|}~-]+"  # Unquoted local part
-    r"(?:\.[A-Z0-9!#$%&'+/=?^_`{|}~-]+)"  # Dot-separated atoms in local part
+    r"(?:\.[A-Z0-9!#$%&'*+/=?^_`{|}~-]+)*"  # Dot-separated atoms in local part
     r"|\"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]"  # Quoted strings
     r"|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*\")"  # Escaped characters in local part
     r"@"  # Separator
