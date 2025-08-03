@@ -27,7 +27,7 @@ class TestBuffer:
         assert action_output.results.result_value == "False"
         assert "Input values 'transferred' to the output." in action_output.results.output_message
         assert "Failed to load JSON with error" in action_output.results.output_message
-        assert action_output.results.json_output.json_result is None
+        assert action_output.results.json_output is None
         assert action_output.results.execution_state is ExecutionState.COMPLETED
 
     @set_metadata(parameters={"JSON": "", "ResultValue": "Maybe"})
@@ -35,7 +35,7 @@ class TestBuffer:
         Buffer.main()
         assert action_output.results.result_value == "Maybe"
         assert action_output.results.output_message == "Input values 'transferred' to the output."
-        assert action_output.results.json_output.json_result is None
+        assert action_output.results.json_output is None
         assert action_output.results.execution_state is ExecutionState.COMPLETED
 
     @set_metadata(parameters={"ResultValue": "42"})
@@ -43,5 +43,5 @@ class TestBuffer:
         Buffer.main()
         assert action_output.results.result_value == "42"
         assert action_output.results.output_message == "Input values 'transferred' to the output."
-        assert action_output.results.json_output.json_result is None
+        assert action_output.results.json_output is None
         assert action_output.results.execution_state is ExecutionState.COMPLETED
