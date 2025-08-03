@@ -1,57 +1,58 @@
+from __future__ import annotations
 import pytest
-from ..core.session import TestSession
-from jsonpath_ng.ext import parse
-import json
+from TIPCommon.base.action import ExecutionState
+from integration_testing.platform.script_output import MockActionOutput
+from integration_testing.set_meta import set_metadata
+from actions import RunJsonpathQuery
 
-@pytest.fixture
-def session():
-    # Создаем и возвращаем экземпляр TestSession или MockSession
-    return TestSession()
+pytest_plugins: tuple[str, ...] = ("integration_testing.conftest",)
 
-def test_run_json_path_query_success(session):
-    # Arrange: Настроим данные и ожидаемый результат
-    input_data = {
-        "json_data": '{"user": {"name": "John", "age": 30}}',
-        "json_path": "$.user.name"
-    }
-    expected_result = {"matches": ["John"]}
 
-    # Настроим мок-ответ для выполнения запроса
-    session.product.run_json_path_query = lambda data: expected_result
+class TestRunJsonPathQuery:
+    @set_metadata(parameters={
+        "Json": '{"users": [{"name": "Alice"}, {"name": "Bob"}]}',
+        "JSONPath Expression": "$.users[*].name"
+    })
+    def test_successful_query(self, action_output: MockActionOutput) -> None:
+        RunJsonpathQuery.main()
+        assert action_output.results.execution_state is ExecutionState.COMPLETED
+        result = action_output.results.json_output.json_result
+        assert "Alice" in result["matches"]
+        assert "Bob" in result["matches"]
+        assert action_output.results.json_output is not None
 
-    # Act: Вызовем функцию для выполнения запроса
-    response = session.product.run_json_path_query(input_data)
+    @set_metadata(parameters={
+        "Json": '{"users": [}',  # Невалидный JSON
+        "JSONPath Expression": "$.users[*].name"
+    })
+    def test_invalid_json_exception(self) -> None:
+        with pytest.raises(Exception):
+            RunJsonpathQuery.main()
 
-    # Assert: Проверим результат
-    assert response == expected_result
+    @set_metadata(parameters={
+        "Json": '{"users": [{"name": "Alice"}]}',
+        "JSONPath Expression": "$.nonexistent[*]"
+    })
+    def test_no_matches_returns_empty(self, action_output: MockActionOutput) -> None:
+        RunJsonpathQuery.main()
+        assert action_output.results.execution_state is ExecutionState.COMPLETED
+        result = action_output.results.json_output.json_result
+        assert result == {"matches": []}
 
-def test_run_json_path_query_invalid_json(session):
-    # Arrange: Настроим недействительные данные JSON
-    input_data = {
-        "json_data": '{"user": {"name": "John", "age": 30}}',
-        "json_path": "$.user.invalidField"
-    }
-    expected_error = {"matches": []}
+    @set_metadata(parameters={
+        "Json": '{}',  # Пустой JSON
+        "JSONPath Expression": "$.users[*].name"
+    })
+    def test_empty_json_returns_empty_matches(self, action_output: MockActionOutput) -> None:
+        RunJsonpathQuery.main()
+        assert action_output.results.execution_state is ExecutionState.COMPLETED
+        result = action_output.results.json_output.json_result
+        assert result == {"matches": []}
 
-    # Симулируем ошибку в ответе
-    session.product.run_json_path_query = lambda data: expected_error
-
-    # Act: Вызовем функцию для выполнения запроса
-    response = session.product.run_json_path_query(input_data)
-
-    # Assert: Проверим, что ошибка была обработана
-    assert response == expected_error
-
-def test_run_json_path_query_empty_response(session):
-    # Arrange: Настроим данные с пустым JSON
-    input_data = {
-        "json_data": '{"user": {}}',
-        "json_path": "$.user.name"
-    }
-    expected_result = {"matches": []}
-
-    # Act: Вызовем функцию для выполнения запроса
-    response = session.product.run_json_path_query(input_data)
-
-    # Assert: Проверим, что пустой ответ корректно обработан
-    assert response == expected_result
+    @set_metadata(parameters={
+        "Json": '',  # Полностью пустая строка
+        "JSONPath Expression": "$.users[*].name"
+    })
+    def test_empty_input_exception(self) -> None:
+        with pytest.raises(Exception):
+            RunJsonpathQuery.main()
