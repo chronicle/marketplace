@@ -21,13 +21,12 @@ import webbrowser
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 from rich.console import Console
 
-from mp.validate.validation_results import ValidationResults
+from mp.validate.data_models import ValidationResults
 
 console = Console()
 
 
 class HtmlDisplay:
-
     def __init__(self, validation_results: dict[str, list[ValidationResults] | None]) -> None:
         self.validation_results = validation_results
 

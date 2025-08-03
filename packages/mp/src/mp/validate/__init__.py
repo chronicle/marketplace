@@ -27,10 +27,10 @@ import mp.core.file_utils
 from mp.build_project.marketplace import Marketplace
 from mp.core.custom_types import RepositoryType
 
+from .data_models import ValidationResults
 from .display import Report
 from .pre_build_validation import PreBuildValidations
 from .utils import Configurations, get_marketplace_paths_from_names
-from .validation_results import ValidationResults
 
 if TYPE_CHECKING:
     from collections.abc import Iterable, Iterator

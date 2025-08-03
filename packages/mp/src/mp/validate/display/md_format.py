@@ -16,13 +16,12 @@ import pathlib
 
 from rich.console import Console
 
-from mp.validate.validation_results import ValidationResults
+from mp.validate.data_models import ValidationResults
 
 console = Console()
 
 
 class MdFormat:
-
     def __init__(self, validation_results: dict[str, list[ValidationResults] | None]) -> None:
         self.validation_results = validation_results
 

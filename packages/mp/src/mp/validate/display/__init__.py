@@ -14,7 +14,7 @@
 
 import os
 
-from mp.validate.validation_results import ValidationResults
+from mp.validate.data_models import ValidationResults
 
 from .cli import CliDisplay
 from .html.html import HtmlDisplay

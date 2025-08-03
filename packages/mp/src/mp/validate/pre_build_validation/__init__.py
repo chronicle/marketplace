@@ -19,7 +19,7 @@ from typing import TYPE_CHECKING, Protocol
 import typer
 
 from mp.core.exceptions import FatalValidationError, NonFatalValidationError
-from mp.validate.validation_results import ValidationResults, ValidationTypes
+from mp.validate.data_models import ValidationResults, ValidationTypes
 
 from .uv_lock_validation import UvLockValidation as UvLockValidation
 from .version_bump_validation import VersionBumpValidation as VersionBumpValidation

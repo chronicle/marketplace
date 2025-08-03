@@ -31,7 +31,9 @@ class MdFormat:
         """Adds a markdown table with the summary of test results."""
         self._report_lines.append("| ✅ Passed | ❌ Failed | ⏭️ Skipped |")
         self._report_lines.append("|:---------:|:--------:|:----------:|")
-        self._report_lines.append(f"| {result.passed_tests} | {result.failed_tests} | {result.skipped_tests} |")
+        self._report_lines.append(
+            f"| {result.passed_tests} | {result.failed_tests} | {result.skipped_tests} |"
+        )
         self._report_lines.append("")  # Add a blank line for spacing
 
     def _format_issues(self, title: str, issues: list[TestIssue], emoji: str) -> None:
@@ -62,7 +64,7 @@ class MdFormat:
 
         for result in self.test_results:
             # Integration name and summary are always visible.
-            self._report_lines.append(f"<h2>🧩 {result.integration_name}</h2>")
+            self._report_lines.append(f"<h2>🧩   {result.integration_name}</h2>")
             self._report_lines.append("")  # Ensure a blank line after HTML for markdown parsing.
             self._format_summary_table(result)
 

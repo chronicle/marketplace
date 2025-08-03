@@ -13,14 +13,14 @@
 # limitations under the License.
 
 from rich.console import Console
+from rich.table import Table
 
-from mp.validate.validation_results import ValidationResults
+from mp.validate.data_models import ValidationResults
 
 console = Console()
 
 
 class CliDisplay:
-
     def __init__(self, validation_results: dict[str, list[ValidationResults] | None]) -> None:
         self.validation_results: dict[str, list[ValidationResults] | None] = validation_results
 
@@ -39,21 +39,27 @@ class CliDisplay:
                 continue
             console.print(f"[bold underline blue]\n{category} Validations\n[/bold underline blue]")
             for integration_result in category_validation_result:
-                console.print(
-                    "[bold red]🛑 Few issues were detected in: "
-                    f"{integration_result.integration_name}[/bold red]"
-                )
-                for (
-                    validation_result
-                ) in integration_result.validation_report.failed_non_fatal_validations:
-                    console.print(
-                        f"[bold magenta]▶️ {validation_result.validation_name}[/bold magenta]"
-                    )
-                    console.print(
-                        f"[bold yellow]⚠️ WARNING: {validation_result.info}\n[/bold yellow]"
-                    )
+                console.print(_build_table(integration_result))
+                console.print("\n")
 
     def _is_results_empty(self) -> bool:
         return not any(
             integration_result for integration_result in self.validation_results.values()
         )
+
+
+def _build_table(integration_result: ValidationResults) -> Table:
+    table = Table(
+        title=f"🛑  {integration_result.integration_name}",
+        title_style="bold red",
+        show_lines=True,
+    )
+    table.add_column("Validation Name")
+    table.add_column("Details", style="yellow")
+    for validation in integration_result.validation_report.failed_non_fatal_validations:
+        table.add_row(validation.validation_name, validation.info)
+
+    for validation in integration_result.validation_report.failed_fatal_validations:
+        table.add_row(validation.validation_name, validation.info)
+
+    return table
