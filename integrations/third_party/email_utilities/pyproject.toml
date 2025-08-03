@@ -11,7 +11,7 @@ dependencies = [
     "dnslib==0.9.25",
     "dnspython==2.7.0",
     "eml-parser==2.0.0",
-    "extract-msg==0.52.0",
+    "extract-msg==0.54.1",
     "file-magic==0.4.1",
     "geocoder==1.38.1",
     "html2text",
