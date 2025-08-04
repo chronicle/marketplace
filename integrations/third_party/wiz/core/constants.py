@@ -44,7 +44,7 @@ IGNORE_ISSUE_RESOLUTION_REASONS: Mapping[str, str] = {
     "Exception": "EXCEPTION",
     "Won't Fix": "WONT_FIX",
 }
-DEFAULT_RESOLVE_ISSUE_RESOLUTION_REASON: str = "Malicious Threat"
+DEFAULT_RESOLVE_ISSUE_RESOLUTION_REASON: str = "Not Malicious Threat"
 RESOLVE_ISSUE_RESOLUTION_REASONS: Mapping[str, str] = {
     "Malicious Threat": "MALICIOUS_THREAT",
     "Not Malicious Threat": "NOT_MALICIOUS_THREAT",
