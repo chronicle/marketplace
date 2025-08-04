@@ -219,7 +219,6 @@ SCRIPT_DISPLAY_NAME_REGEX: str = (
     r"^[a-zA-Z0-9-\s]+$"
     # Excluded scripts that already have issues with their name
     r"|^IOC_Enrichment$"
-    r"|^claroty_.*$"
 )
 # language=regexp
 SCRIPT_IDENTIFIER_REGEX: str = (
@@ -290,6 +289,4 @@ PARAM_DISPLAY_NAME_REGEX: str = (
     r"|^from_date$"
     r"|^logzio_token$"
     r"|^search_term$"
-    r"|^xdome_.*$"
-    r"|^claroty_.*$"
 )
