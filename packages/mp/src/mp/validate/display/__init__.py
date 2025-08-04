@@ -23,8 +23,8 @@ from .markdown_format import MarkdownFormat
 
 
 class DisplayReport(Protocol):
-    def display(validation_results: dict[str, list[ValidationResults]]) -> None:
-        """The Start point of the report creation and displaying."""
+    def display(self, validation_results: dict[str, list[ValidationResults]]) -> None:
+        """Start point of the report creation and displaying."""
 
 
 # TODO Need to change the function name

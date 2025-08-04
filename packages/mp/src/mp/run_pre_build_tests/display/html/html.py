@@ -18,11 +18,13 @@ import datetime
 import pathlib
 import tempfile
 import webbrowser
+from typing import TYPE_CHECKING
 
 import jinja2
 from rich.console import Console
 
-from mp.run_pre_build_tests.process_test_output import IntegrationTestResults
+if TYPE_CHECKING:
+    from mp.run_pre_build_tests.process_test_output import IntegrationTestResults
 
 
 class HtmlFormat:
@@ -53,7 +55,8 @@ class HtmlFormat:
     ) -> str:
         template_dir: pathlib.Path = pathlib.Path(__file__).parent.resolve() / "templates"
         env = jinja2.Environment(
-            loader=jinja2.FileSystemLoader(template_dir), autoescape=jinja2.select_autoescape(["html"])
+            loader=jinja2.FileSystemLoader(template_dir),
+            autoescape=jinja2.select_autoescape(["html"]),
         )
         template: jinja2 = env.get_template(template_name)
 

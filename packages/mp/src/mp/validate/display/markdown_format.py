@@ -15,10 +15,12 @@
 from __future__ import annotations
 
 import pathlib
+from typing import TYPE_CHECKING
 
 from rich.console import Console
 
-from mp.validate.data_models import ValidationResults
+if TYPE_CHECKING:
+    from mp.validate.data_models import ValidationResults
 
 
 class MarkdownFormat:

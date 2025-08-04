@@ -15,18 +15,19 @@
 from __future__ import annotations
 
 import os
-from typing import Protocol
-
-from mp.run_pre_build_tests.process_test_output import IntegrationTestResults
+from typing import TYPE_CHECKING, Protocol
 
 from .cli import CliDisplay
 from .html.html import HtmlFormat
 from .markdown_format import MarkdownFormat
 
+if TYPE_CHECKING:
+    from mp.run_pre_build_tests.process_test_output import IntegrationTestResults
+
 
 class DisplayReport(Protocol):
-    def display(test_results: list[IntegrationTestResults]) -> None:
-        """The Start point of the report creation and displaying."""
+    def display(self, test_results: list[IntegrationTestResults]) -> None:
+        """Start point of the report creation and displaying."""
 
 
 # TODO : FIND ANOTHER NAME FOR THE FUNCTION!!!!!!!!!

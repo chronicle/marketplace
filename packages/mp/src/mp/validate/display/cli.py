@@ -14,11 +14,14 @@
 
 from __future__ import annotations
 
+from typing import TYPE_CHECKING
+
 from rich import box
 from rich.console import Console
 from rich.table import Table
 
-from mp.validate.data_models import ValidationResults
+if TYPE_CHECKING:
+    from mp.validate.data_models import ValidationResults
 
 
 class CliDisplay:
@@ -39,7 +42,9 @@ class CliDisplay:
             )
             if not category_validation_result:
                 continue
-            self.console.print(f"[bold underline blue]\n{category} Validations\n[/bold underline blue]")
+            self.console.print(
+                f"[bold underline blue]\n{category} Validations\n[/bold underline blue]"
+            )
             for integration_result in category_validation_result:
                 self.console.print(_build_table(integration_result), "\n")
 

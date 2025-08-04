@@ -331,10 +331,9 @@ def _run_pre_build_validations(integration_path: pathlib.Path) -> ValidationResu
     return validation_object.results
 
 
-def _combine_results(*validations_outputs: dict[str, list[ValidationResults]]
+def _combine_results(
+    *validations_outputs: dict[str, list[ValidationResults]],
 ) -> dict[str, list[ValidationResults]]:
-    """Combines an arbitrary number of validation results dictionaries into a single dictionary.
-    """
     combined_output: dict[str, list[ValidationResults]] = {}
     keys_to_combine = [PRE_BUILD, BUILD, POST_BUILD]
 

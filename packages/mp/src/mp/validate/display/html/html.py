@@ -18,11 +18,13 @@ import datetime
 import pathlib
 import tempfile
 import webbrowser
+from typing import TYPE_CHECKING
 
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 from rich.console import Console
 
-from mp.validate.data_models import ValidationResults
+if TYPE_CHECKING:
+    from mp.validate.data_models import ValidationResults
 
 
 class HtmlFormat:
