@@ -164,7 +164,7 @@ class UpdateIssueMutationBuilder:
             Argument(name="id", value=issue_id_var),
             Argument(name="patch", value=patch_var),
         ]
-        issue_fields = ["id", "status", "resolutionReason", "note"]
+        issue_fields = ["id", "status", "resolutionReason", "note", "dueAt"]
 
         if self.return_note_field:
             issue_fields.remove("note")
