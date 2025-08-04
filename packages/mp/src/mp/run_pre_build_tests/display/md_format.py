@@ -19,19 +19,15 @@ from mp.run_pre_build_tests.process_test_output import IntegrationTestResults, T
 
 
 class MdFormat:
-    """Formats a list of IntegrationTestResults into a Markdown report
-    and saves it to a file using a hierarchical list format.
-    """
-
-    def __init__(self, test_results: list[IntegrationTestResults]):
+    def __init__(self, test_results: list[IntegrationTestResults]) -> None:
         self.test_results: list[IntegrationTestResults] = test_results
         self._report_lines: list[str] = []
 
     def display(self) -> None:
-        """Generates and saves the test report in markdown format."""
+        """Generate and saves the test report in Markdown format."""
         self._report_lines.append("")
         for integration_result in self.test_results:
-            self._report_lines.append(f"<h2>🧩    {integration_result.integration_name}</h2>")
+            self._report_lines.append(f"<h2>🧩   {integration_result.integration_name}</h2>")
             self._report_lines.append("")
             self._format_summary_table(integration_result)
 

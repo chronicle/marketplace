@@ -31,7 +31,7 @@ class MdFormat:
             markdown_content_list = ["\n"]
             for stage_name, results_list in self.validation_results.items():
                 if _should_display_stage(results_list):
-                    markdown_content_list.append(f"---\n\n## {stage_name} Validation:\n\n")
+                    markdown_content_list.append(f"---\n\n## {stage_name} Validation:\n\n")  # noqa: FURB113
 
                     markdown_content_list.append("<details>\n")
                     markdown_content_list.append("  <summary>Click to view details</summary>\n\n")
@@ -92,8 +92,8 @@ def _format_table(table_data: list[list[str]], integration_name: str) -> list[st
     ])
 
     for validation_name, validation_details in table_data:
-        validation_details = validation_details.replace("\n", " ").replace("|", "\\|")
-        markdown_lines.append(f"| {validation_name} | {validation_details} |\n")
+        formated_details = validation_details.replace("\n", " ").replace("|", "\\|")
+        markdown_lines.append(f"| {validation_name} | {formated_details} |\n")
     markdown_lines.append("\n")
     return markdown_lines
 
