@@ -25,19 +25,19 @@ class MdFormat:
     def __init__(self, validation_results: dict[str, list[ValidationResults] | None]) -> None:
         self.validation_results = validation_results
 
-    def display(self, output_filename: str = "validation_report.md") -> None:
+    def display(self) -> None:
         """Generate a Markdown file with a validation report table."""
         try:
-            markdown_content_list = ["# Validations Report\n\n"]
-            content_added = False
-
+            markdown_content_list = ["\n"]
             for stage_name, results_list in self.validation_results.items():
                 if _should_display_stage(results_list):
-                    content_added = True
                     markdown_content_list.append(f"---\n\n## {stage_name} Validation:\n\n")
 
+                    markdown_content_list.append("<details>\n")
+                    markdown_content_list.append("  <summary>Click to view details</summary>\n\n")
+
                     for validation_result in results_list:
-                        table_data = _get_integration_table_data(validation_result)
+                        table_data = _get_integration_validation_data(validation_result)
 
                         if table_data:
                             markdown_content_list.extend(
@@ -46,12 +46,10 @@ class MdFormat:
                                 )
                             )
 
-            if not content_added and len(markdown_content_list) == 1:
-                markdown_content_list.append("All Validation Passed.\n")
+                    markdown_content_list.append("</details>\n\n")
 
             markdown_content_str = "".join(markdown_content_list)
-
-            _save_report_file(markdown_content_str, output_filename)
+            _save_report_file(markdown_content_str, output_filename="validation_report.md")
 
         except Exception as e:  # noqa: BLE001
             console.print(f"❌ Error generating report: {e}")
@@ -71,7 +69,7 @@ def _should_display_stage(results_list: list[ValidationResults]) -> bool:
     return False
 
 
-def _get_integration_table_data(validation_result: ValidationResults) -> list[list[str]]:
+def _get_integration_validation_data(validation_result: ValidationResults) -> list[list[str]]:
     report = validation_result.validation_report
     table_data = []
 
@@ -85,7 +83,7 @@ def _get_integration_table_data(validation_result: ValidationResults) -> list[li
 
 def _format_table(table_data: list[list[str]], integration_name: str) -> list[str]:
     markdown_lines = []
-    markdown_lines.append(f"### Integration: {integration_name}\n\n")
+    markdown_lines.append(f"### 🧩 {integration_name}\n\n")
 
     headers = ["Validation Name", "Details"]
     markdown_lines.extend([
@@ -93,10 +91,10 @@ def _format_table(table_data: list[list[str]], integration_name: str) -> list[st
         "|" + "---|".join(["-" * len(h) for h in headers]) + "|\n",
     ])
 
-    for row in table_data:
-        info_content = str(row[1]) if row[1] is not None else ""
-        clean_info = info_content.replace("\n", " ").replace("|", "\\|")
-        markdown_lines.append(f"| {row[0]} | {clean_info} |\n")
+    for validation_name, validation_details in table_data:
+        # info_content = str(row[1]) if row[1] is not None else ""
+        # clean_info = info_content.replace("\n", " ").replace("|", "\\|")
+        markdown_lines.append(f"| {validation_name} | {validation_details} |\n")
     markdown_lines.append("\n")
     return markdown_lines
 

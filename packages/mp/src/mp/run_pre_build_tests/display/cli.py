@@ -12,7 +12,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+from rich import box
 from rich.console import Console
+from rich.table import Table
 
 from mp.run_pre_build_tests.process_test_output import IntegrationTestResults
 
@@ -29,18 +31,23 @@ class CliDisplay:
             console.print("[bold green]All Tests Passed\n[/bold green]")
 
         for integration_report in self.tests_report:
-            console.print(
-                "[bold red]🛑 Few tests failed in: "
-                f"{integration_report.integration_name}[/bold red]"
-            )
+            console.print(_build_table(integration_report), "\n")
 
-            if integration_report.failed_tests > 0:
-                console.print(f"Total Failed Tests: {integration_report.failed_tests}")
-                for test_issue in integration_report.failed_tests_summary:
-                    console.print(f"[bold yellow]⚠️ {test_issue.test_name}[/bold yellow]")
-                console.print()
-            if integration_report.skipped_tests > 0:
-                console.print(f"Total Skipped Tests: {integration_report.skipped_tests}")
-                for test_issue in integration_report.skipped_tests_summary:
-                    console.print(f"[bold yellow]⚠️ {test_issue.test_name}[/bold yellow]")
-                console.print()
+
+def _build_table(integration_report: IntegrationTestResults) -> Table:
+    table = Table(
+        title=f"🧩 {integration_report.integration_name}",
+        title_style="bold",
+        show_lines=True,
+        box=box.ROUNDED,
+    )
+    table.add_column("Test Name", style="yellow")
+    if integration_report.failed_tests > 0:
+        table.add_row("❌  Failed Tests:", style="red")
+        for test_issue in integration_report.failed_tests_summary:
+            table.add_row(test_issue.test_name)
+    if integration_report.skipped_tests > 0:
+        table.add_row("⏭️  Skipped Tests:", style="red")
+        for test_issue in integration_report.skipped_tests_summary:
+            table.add_row(test_issue.test_name)
+    return table

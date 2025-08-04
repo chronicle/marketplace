@@ -12,6 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+from rich import box
 from rich.console import Console
 from rich.table import Table
 
@@ -39,8 +40,7 @@ class CliDisplay:
                 continue
             console.print(f"[bold underline blue]\n{category} Validations\n[/bold underline blue]")
             for integration_result in category_validation_result:
-                console.print(_build_table(integration_result))
-                console.print("\n")
+                console.print(_build_table(integration_result), "\n")
 
     def _is_results_empty(self) -> bool:
         return not any(
@@ -50,12 +50,13 @@ class CliDisplay:
 
 def _build_table(integration_result: ValidationResults) -> Table:
     table = Table(
-        title=f"🛑  {integration_result.integration_name}",
-        title_style="bold red",
+        title=f"🧩  {integration_result.integration_name}",
+        title_style="bold",
         show_lines=True,
+        box=box.ROUNDED,
     )
-    table.add_column("Validation Name")
-    table.add_column("Details", style="yellow")
+    table.add_column("Validation Name", style="red")
+    table.add_column("Validation Details", style="yellow")
     for validation in integration_result.validation_report.failed_non_fatal_validations:
         table.add_row(validation.validation_name, validation.info)
 

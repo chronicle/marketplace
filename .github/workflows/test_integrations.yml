@@ -45,7 +45,6 @@ jobs:
       with:
         script: |
           const fs = require('fs');
-          // --- FIX: Point to the correct report file for tests ---
           const reportPath = './artifacts/test_report.md';
           const reportBody = fs.readFileSync(reportPath, 'utf8');
 
