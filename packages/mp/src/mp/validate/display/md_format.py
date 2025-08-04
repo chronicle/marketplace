@@ -83,7 +83,7 @@ def _get_integration_validation_data(validation_result: ValidationResults) -> li
 
 def _format_table(table_data: list[list[str]], integration_name: str) -> list[str]:
     markdown_lines = []
-    markdown_lines.append(f"### 🧩 {integration_name}\n\n")
+    markdown_lines.append(f"### 🧩  {integration_name}\n\n")
 
     headers = ["Validation Name", "Details"]
     markdown_lines.extend([
@@ -92,8 +92,7 @@ def _format_table(table_data: list[list[str]], integration_name: str) -> list[st
     ])
 
     for validation_name, validation_details in table_data:
-        # info_content = str(row[1]) if row[1] is not None else ""
-        # clean_info = info_content.replace("\n", " ").replace("|", "\\|")
+        validation_details = validation_details.replace("\n", " ").replace("|", "\\|")
         markdown_lines.append(f"| {validation_name} | {validation_details} |\n")
     markdown_lines.append("\n")
     return markdown_lines

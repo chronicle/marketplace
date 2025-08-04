@@ -58,7 +58,7 @@ class MdFormat:
         if not issues:
             return
 
-        self._report_lines.append(f"### {emoji}  {title}")
+        self._report_lines.append(f"### {emoji}   {title}")
         for issue in issues:
             self._report_lines.append("<details>")
             self._report_lines.append(f"<summary>{issue.test_name}</summary>\n")
