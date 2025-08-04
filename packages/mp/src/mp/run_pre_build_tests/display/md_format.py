@@ -31,7 +31,7 @@ class MdFormat:
         """Generates and saves the test report in markdown format."""
         self._report_lines.append("")
         for integration_result in self.test_results:
-            self._report_lines.append(f"<h2>🧩   {integration_result.integration_name}</h2>")
+            self._report_lines.append(f"<h2>🧩    {integration_result.integration_name}</h2>")
             self._report_lines.append("")
             self._format_summary_table(integration_result)
 
