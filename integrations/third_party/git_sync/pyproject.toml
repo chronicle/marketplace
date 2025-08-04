@@ -1,10 +1,10 @@
 [project]
 name = "GitSync"
-version = "35.0"
+version = "36.0"
 description = "Sync Google SecOps integrations, playbooks, and settings with a GitHub, BitBucket or GitLab instance"
 requires-python = ">=3.11,<3.12"
 dependencies = [
-    "dulwich==0.22.1",
+    "dulwich==0.24.1",
     "environmentcommon",
     "jinja2>=3.1.5",
     "packaging>=24.2",
