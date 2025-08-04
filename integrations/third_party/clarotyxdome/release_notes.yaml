@@ -1,1 +1,10 @@
-[]
+- description: NEW! Claroty xDome.
+  integration_version: 1.0
+  item_name: Claroty xDome
+  item_type: Integration
+  publish_time: '2021-10-21'
+  ticket_number: xxx
+  new: false
+  regressive: false
+  deprecated: false
+  removed: false
