@@ -1,23 +1,19 @@
 [project]
-name = "GitSync"
-version = "36.0"
-description = "Sync Google SecOps integrations, playbooks, and settings with a GitHub, BitBucket or GitLab instance"
-requires-python = ">=3.11,<3.12"
+name = "Wiz"
+version = "1.0"
+description = "Wiz connects to every cloud environment, scans every layer, and covers every aspect of your cloud security - including elements that normally require installing agents. Its comprehensive approach has all of these cloud security solutions built in."
+requires-python = ">=3.11"
 dependencies = [
-    "dulwich==0.24.1",
-    "environmentcommon",
-    "jinja2>=3.1.5",
-    "packaging>=24.2",
-    "paramiko>=3.5.0",
-    "requests>=2.32.3",
-    "tipcommon",
+    "environmentcommon>=1.0.2",
+    "graphql-query>=1.4.0",
+    "requests>=2.32.4",
+    "tipcommon>=2.2.7",
 ]
 
 [dependency-groups]
 dev = [
     "integration-testing",
     "pytest>=8.3.5",
-    "pytest-json-report>=1.5.0",
     "soar-sdk",
 ]
 
