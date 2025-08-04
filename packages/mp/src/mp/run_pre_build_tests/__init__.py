@@ -30,7 +30,7 @@ import mp.core.unix
 from mp.core.code_manipulation import TestWarning
 from mp.core.custom_types import Products, RepositoryType
 
-from .display import Report
+from .display import display
 from .process_test_output import IntegrationTestResults, TestIssue, process_pytest_json_report
 
 if TYPE_CHECKING:
@@ -184,7 +184,7 @@ def run_pre_build_tests(  # noqa: PLR0913
         if RepositoryType.COMMUNITY in repos:
             all_integration_results.extend(_test_repository(community_path))
 
-    _display(all_integration_results)
+    display(all_integration_results)
     if all_integration_results:
         raise typer.Exit(code=1)
 
@@ -248,10 +248,6 @@ def _run_tests_for_single_integration(
         return None
 
     return process_pytest_json_report(integration_path.name, json_report_path)
-
-
-def _display(all_integration_results: list[IntegrationTestResults]) -> None:
-    Report.display(all_integration_results)
 
 
 def _get_mp_paths_from_names(

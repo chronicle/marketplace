@@ -259,7 +259,6 @@ def run_script_on_paths(
     """
     script_full_path: str = f"{script_path.resolve().absolute()}"
 
-    # Make the script executable
     chmod_command: list[str] = ["chmod", "+x", script_full_path]
     sp.run(chmod_command, check=True)  # noqa: S603
 

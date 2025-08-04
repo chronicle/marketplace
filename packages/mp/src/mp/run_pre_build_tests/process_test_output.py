@@ -12,27 +12,29 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+from __future__ import annotations
+
+import dataclasses
 import json
 import pathlib
-from dataclasses import dataclass
+from typing import NamedTuple
 
 import rich
 
 
-@dataclass(frozen=True)
-class TestIssue:
+class TestIssue(NamedTuple):
     test_name: str
     stack_trace: str
 
 
+@dataclasses.dataclass(slots=True)
 class IntegrationTestResults:
-    def __init__(self, integration_name: str) -> None:
-        self.integration_name: str = integration_name
-        self.passed_tests: int = 0
-        self.failed_tests: int = 0
-        self.skipped_tests: int = 0
-        self.failed_tests_summary: list[TestIssue] = []
-        self.skipped_tests_summary: list[TestIssue] = []
+    integration_name: str
+    passed_tests: int = 0
+    failed_tests: int = 0
+    skipped_tests: int = 0
+    failed_tests_summary: list[TestIssue] = dataclasses.field(default_factory=list)
+    skipped_tests_summary: list[TestIssue] = dataclasses.field(default_factory=list)
 
 
 def process_pytest_json_report(
@@ -49,10 +51,9 @@ def process_pytest_json_report(
         test counts, and details of failed tests.
 
     """
-    report_data = {}
     try:
         with pathlib.Path.open(json_report_path, encoding="utf-8") as f:
-            report_data = json.load(f)
+            report_data: dict = json.load(f)
         json_report_path.unlink(missing_ok=True)
 
     except FileNotFoundError:
@@ -67,7 +68,7 @@ def process_pytest_json_report(
 
     integration_results = IntegrationTestResults(integration_name=integration_name)
 
-    summary = report_data.get("summary", {})
+    summary: dict = report_data.get("summary", {})
     integration_results.skipped_tests = summary.get("skipped", 0)
     integration_results.passed_tests = summary.get("passed", 0)
 

@@ -12,23 +12,24 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+from __future__ import annotations
+
 from rich import box
 from rich.console import Console
 from rich.table import Table
 
 from mp.validate.data_models import ValidationResults
 
-console = Console()
-
 
 class CliDisplay:
     def __init__(self, validation_results: dict[str, list[ValidationResults] | None]) -> None:
         self.validation_results: dict[str, list[ValidationResults] | None] = validation_results
+        self.console: Console = Console()
 
     def display(self) -> None:
         """Display the validation result in the cli."""
         if self._is_results_empty():
-            console.print("[bold green]All Validations Passed\n[/bold green]")
+            self.console.print("[bold green]All Validations Passed\n[/bold green]")
 
         display_categories = ["Pre-Build", "Build", "Post-Build"]
 
@@ -38,9 +39,9 @@ class CliDisplay:
             )
             if not category_validation_result:
                 continue
-            console.print(f"[bold underline blue]\n{category} Validations\n[/bold underline blue]")
+            self.console.print(f"[bold underline blue]\n{category} Validations\n[/bold underline blue]")
             for integration_result in category_validation_result:
-                console.print(_build_table(integration_result), "\n")
+                self.console.print(_build_table(integration_result), "\n")
 
     def _is_results_empty(self) -> bool:
         return not any(

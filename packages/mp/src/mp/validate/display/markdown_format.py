@@ -12,18 +12,19 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+from __future__ import annotations
+
 import pathlib
 
 from rich.console import Console
 
 from mp.validate.data_models import ValidationResults
 
-console = Console()
 
-
-class MdFormat:
+class MarkdownFormat:
     def __init__(self, validation_results: dict[str, list[ValidationResults] | None]) -> None:
         self.validation_results = validation_results
+        self.console: Console = Console()
 
     def display(self) -> None:
         """Generate a Markdown file with a validation report table."""
@@ -52,7 +53,7 @@ class MdFormat:
             _save_report_file(markdown_content_str, output_filename="validation_report.md")
 
         except Exception as e:  # noqa: BLE001
-            console.print(f"❌ Error generating report: {e}")
+            self.console.print(f"❌ Error generating report: {e}")
 
 
 def _should_display_stage(results_list: list[ValidationResults]) -> bool:

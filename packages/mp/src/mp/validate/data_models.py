@@ -25,7 +25,7 @@ class ValidationIssue:
     info: str = ""
 
 
-@dataclass
+@dataclass(slots=True)
 class ValidationReport:
     """Data model to store validation errors for a specific integration."""
 

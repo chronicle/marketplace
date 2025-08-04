@@ -12,29 +12,28 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+from __future__ import annotations
 
 import datetime
 import pathlib
 import tempfile
 import webbrowser
 
-from jinja2 import Environment, FileSystemLoader, select_autoescape
+import jinja2
 from rich.console import Console
 
 from mp.run_pre_build_tests.process_test_output import IntegrationTestResults
 
-console = Console()
 
-
-class HtmlDisplay:
+class HtmlFormat:
     def __init__(self, integration_results_list: list[IntegrationTestResults]) -> None:
         self.integration_results_list: list[IntegrationTestResults] = integration_results_list
+        self.console = Console()
 
     def display(self) -> None:
         """Generate an HTML report for integration test results."""
         try:
             html_content = self._generate_validation_report_html()
-            report_path: pathlib.Path
 
             with tempfile.NamedTemporaryFile(
                 mode="w", delete=False, suffix=".html", encoding="utf-8"
@@ -43,21 +42,20 @@ class HtmlDisplay:
                 report_path = pathlib.Path(temp_file.name)
 
             resolved_path = report_path.resolve()
-            console.print(f"📂 Report available at 👉: {resolved_path.as_uri()}")
+            self.console.print(f"📂 Report available at 👉: {resolved_path.as_uri()}")
             webbrowser.open(resolved_path.as_uri())
 
         except Exception as e:  # noqa: BLE001
-            console.print(f"❌ Error generating report: {e}")
+            self.console.print(f"❌ Error generating report: {e}")
 
     def _generate_validation_report_html(
         self, template_name: str = "html_report/report.html"
     ) -> str:
-        script_dir = pathlib.Path(__file__).parent.resolve()
-        template_dir = script_dir / "templates"
-        env = Environment(
-            loader=FileSystemLoader(template_dir), autoescape=select_autoescape(["html"])
+        template_dir: pathlib.Path = pathlib.Path(__file__).parent.resolve() / "templates"
+        env = jinja2.Environment(
+            loader=jinja2.FileSystemLoader(template_dir), autoescape=jinja2.select_autoescape(["html"])
         )
-        template = env.get_template(template_name)
+        template: jinja2 = env.get_template(template_name)
 
         css_file_path = template_dir / "static" / "style.css"
         js_file_path = template_dir / "static" / "script.js"

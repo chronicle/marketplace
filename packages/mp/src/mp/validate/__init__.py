@@ -28,7 +28,7 @@ from mp.build_project.marketplace import Marketplace
 from mp.core.custom_types import RepositoryType
 
 from .data_models import ValidationResults
-from .display import Report
+from .display import display
 from .pre_build_validation import PreBuildValidations
 from .utils import Configurations, get_marketplace_paths_from_names
 
@@ -38,6 +38,9 @@ if TYPE_CHECKING:
     from mp.core.config import RuntimeParams
     from mp.core.custom_types import Products
 
+PRE_BUILD: str = "Pre-Build"
+BUILD: str = "Build"
+POST_BUILD: str = "Post-Build"
 
 ValidationFn: TypeAlias = Callable[[pathlib.Path], ValidationResults]
 
@@ -203,7 +206,7 @@ def validate(  # noqa: PLR0913
 
         validations_output = _combine_results(commercial_output, community_output)
 
-    _display_output(validations_output)
+    display(validations_output)
 
     if _should_fail_program(validations_output):
         raise typer.Exit(code=1)
@@ -246,7 +249,7 @@ def _validate_groups(
         pre_build_output: list[ValidationResults] = _process_groups_for_validation(
             groups, _run_pre_build_validations
         )
-        validation_outputs["Pre-Build"] = pre_build_output
+        validation_outputs[PRE_BUILD] = pre_build_output
 
         if not configurations.only_pre_build:
             marketplace.build_groups(groups)
@@ -293,7 +296,7 @@ def _validate_integrations(
     pre_build_output: list[ValidationResults] = _run_validations(
         integrations, _run_pre_build_validations
     )
-    validation_outputs["Pre-Build"] = pre_build_output
+    validation_outputs[PRE_BUILD] = pre_build_output
 
     if not configurations.only_pre_build:
         marketplace.build_integrations(integrations)
@@ -328,27 +331,24 @@ def _run_pre_build_validations(integration_path: pathlib.Path) -> ValidationResu
     return validation_object.results
 
 
-def _display_output(validation_results: dict[str, list[ValidationResults]]) -> None:
-    Report.display(validation_results)
-
-
-def _combine_results(
-    validations_output1: dict[str, list[ValidationResults]],
-    validations_output2: dict[str, list[ValidationResults]],
+def _combine_results(*validations_outputs: dict[str, list[ValidationResults]]
 ) -> dict[str, list[ValidationResults]]:
+    """Combines an arbitrary number of validation results dictionaries into a single dictionary.
+    """
     combined_output: dict[str, list[ValidationResults]] = {}
-    keys_to_combine = ["Pre-Build", "Build", "Post-Build"]
+    keys_to_combine = [PRE_BUILD, BUILD, POST_BUILD]
 
     for key in keys_to_combine:
-        list1 = validations_output1.get(key)
-        list2 = validations_output2.get(key)
+        combined_list: list[ValidationResults] = []
+        all_lists_are_none = True
 
-        actual_list1 = list1 if list1 is not None else []
-        actual_list2 = list2 if list2 is not None else []
+        for output_dict in validations_outputs:
+            current_list = output_dict.get(key)
+            if current_list is not None:
+                combined_list.extend(current_list)
+                all_lists_are_none = False
 
-        combined_list = actual_list1 + actual_list2
-
-        if not combined_list and list1 is None and list2 is None:
+        if all_lists_are_none:
             combined_output[key] = None
         else:
             combined_output[key] = combined_list

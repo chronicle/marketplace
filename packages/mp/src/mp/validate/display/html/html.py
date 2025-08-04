@@ -12,6 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+from __future__ import annotations
 
 import datetime
 import pathlib
@@ -23,12 +24,11 @@ from rich.console import Console
 
 from mp.validate.data_models import ValidationResults
 
-console = Console()
 
-
-class HtmlDisplay:
+class HtmlFormat:
     def __init__(self, validation_results: dict[str, list[ValidationResults] | None]) -> None:
         self.validation_results = validation_results
+        self.console: Console = Console()
 
     def display(self) -> None:
         """Generate an HTML report for validation results."""
@@ -43,11 +43,11 @@ class HtmlDisplay:
                 temp_report_path = pathlib.Path(temp_file.name)
 
             resolved_temp_path = temp_report_path.resolve()
-            console.print(f"📂 Report available at 👉: {resolved_temp_path.as_uri()}")
+            self.console.print(f"📂 Report available at 👉: {resolved_temp_path.as_uri()}")
             webbrowser.open(resolved_temp_path.as_uri())
 
         except Exception as e:  # noqa: BLE001
-            console.print(f"❌  Error generating report: {e.args}")
+            self.console.print(f"❌  Error generating report: {e.args}")
 
     def _generate_validation_report_html(
         self, template_name: str = "html_report/report.html"

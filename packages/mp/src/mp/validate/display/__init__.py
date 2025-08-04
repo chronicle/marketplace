@@ -13,22 +13,35 @@
 # limitations under the License.
 
 import os
+from typing import Protocol
 
 from mp.validate.data_models import ValidationResults
 
 from .cli import CliDisplay
-from .html.html import HtmlDisplay
-from .md_format import MdFormat
+from .html.html import HtmlFormat
+from .markdown_format import MarkdownFormat
 
 
-class Report:
-    @classmethod
-    def display(cls, validation_results: dict[str, list[ValidationResults]]) -> None:
-        """Run the display logic and creates the required reports."""
-        is_github_actions = os.getenv("GITHUB_ACTIONS")
+class DisplayReport(Protocol):
+    def display(validation_results: dict[str, list[ValidationResults]]) -> None:
+        """The Start point of the report creation and displaying."""
 
-        CliDisplay(validation_results).display()
-        if is_github_actions == "true":
-            MdFormat(validation_results).display()
-        else:
-            HtmlDisplay(validation_results).display()
+
+# TODO Need to change the function name
+def display(validation_results: dict[str, list[ValidationResults]]) -> None:
+    """Run the display logic and creates the required reports."""
+    display_types_list: list[DisplayReport] = _build_display_objects(validation_results)
+    for report_type in display_types_list:
+        report_type.display()
+
+
+def _build_display_objects(test_results: dict[str, list[ValidationResults]]) -> list[DisplayReport]:
+    display_types_list: list[DisplayReport] = [CliDisplay(test_results)]
+
+    is_github_actions = os.getenv("GITHUB_ACTIONS")
+    if is_github_actions == "true":
+        display_types_list.append(MarkdownFormat(test_results))
+    else:
+        display_types_list.append(HtmlFormat(test_results))
+
+    return display_types_list

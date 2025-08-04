@@ -12,13 +12,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+from __future__ import annotations
 
 import pathlib
 
 from mp.run_pre_build_tests.process_test_output import IntegrationTestResults, TestIssue
 
 
-class MdFormat:
+class MarkdownFormat:
     def __init__(self, test_results: list[IntegrationTestResults]) -> None:
         self.test_results: list[IntegrationTestResults] = test_results
         self._report_lines: list[str] = []

@@ -12,26 +12,27 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+from __future__ import annotations
+
 from rich import box
 from rich.console import Console
 from rich.table import Table
 
 from mp.run_pre_build_tests.process_test_output import IntegrationTestResults
 
-console = Console()
-
 
 class CliDisplay:
     def __init__(self, tests_report: list[IntegrationTestResults]) -> None:
         self.tests_report: list[IntegrationTestResults] = tests_report
+        self.console = Console()
 
     def display(self) -> None:
         """Display the test results in the cli."""
         if not self.tests_report:
-            console.print("[bold green]All Tests Passed\n[/bold green]")
+            self.console.print("[bold green]All Tests Passed\n[/bold green]")
 
         for integration_report in self.tests_report:
-            console.print(_build_table(integration_report), "\n")
+            self.console.print(_build_table(integration_report), "\n")
 
 
 def _build_table(integration_report: IntegrationTestResults) -> Table:
