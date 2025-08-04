@@ -23,8 +23,15 @@ parameters:
     description: A note that gives additional context for the issue resolution.
     is_mandatory: true
 dynamic_results_metadata:
--   result_example: '{"id": "abc", "note": "", "status": "REJECTED", "dueAt": null,
-        "resolutionReason": "FALSE_POSITIVE"}'
+    # language=json
+-   result_example: |
+        {
+            "id": "abc",
+            "note": "",
+            "status": "REJECTED",
+            "dueAt": null,
+            "resolutionReason": "FALSE_POSITIVE"
+        }
     result_name: JsonResult
     show_result: true
 creator: admin

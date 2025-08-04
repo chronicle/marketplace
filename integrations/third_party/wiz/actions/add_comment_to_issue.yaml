@@ -14,8 +14,13 @@ parameters:
     description: The text of the comment to add to the issue.
     is_mandatory: true
 dynamic_results_metadata:
--   result_example: '{"createdAt": "2025-08-01T11:59:00.843434941Z", "id": "comment_thread",
-        "text": "testing"}'
+    # language=json
+-   result_example: |
+        {
+            "createdAt": "2025-08-01T11:59:00.843434941Z",
+            "id": "comment_thread",
+            "text": "testing"
+        }
     result_name: JsonResult
     show_result: true
 creator: admin

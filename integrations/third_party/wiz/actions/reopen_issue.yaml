@@ -8,8 +8,15 @@ parameters:
     description: The unique identifier of the issue in Wiz to retrieve or update.
     is_mandatory: true
 dynamic_results_metadata:
--   result_example: '{"id": "abc", "note": "", "status": "OPEN", "dueAt": null, "resolutionReason":
-        null}'
+    # language=json
+-   result_example: |
+        {
+            "id": "abc",
+            "note": "",
+            "status": "OPEN",
+            "dueAt": null,
+            "resolutionReason":null
+        }
     result_name: JsonResult
     show_result: true
 creator: admin

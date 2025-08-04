@@ -25,8 +25,15 @@ parameters:
     description: A note that gives additional context about the resolution
     is_mandatory: false
 dynamic_results_metadata:
--   result_example: '{"id": "abc", "resolutionNote": "", "status": "RESOLVED", "dueAt":
-        null, "resolutionReason": "NOT_MALICIOUS_THREAT"}'
+    # language=json
+-   result_example: |
+        {
+            "id": "abc",
+            "resolutionNote": "",
+            "status": "RESOLVED",
+            "dueAt":null,
+            "resolutionReason": "NOT_MALICIOUS_THREAT"
+        }
     result_name: JsonResult
     show_result: true
 creator: admin

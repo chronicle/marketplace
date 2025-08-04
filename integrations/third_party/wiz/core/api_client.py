@@ -1,11 +1,26 @@
+# Copyright 2025 Google LLC
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
 from __future__ import annotations
 
-from typing import TYPE_CHECKING
-
-import dataclasses
+from typing import NamedTuple, TYPE_CHECKING
 import requests
 
+from TIPCommon.base.interfaces import Apiable
+
 from . import api_utils
+from . import auth_manager
 from . import constants
 from . import datamodels
 from . import data_parser
@@ -13,25 +28,28 @@ from . import query_builder
 
 if TYPE_CHECKING:
     from collections.abc import Mapping
+
     from TIPCommon.base.interfaces.logger import ScriptLogger
 
 
-@dataclasses.dataclass(slots=True)
-class ApiParameters:
+class ApiParameters(NamedTuple):
     api_root: str
 
 
-class ApiManager:
+class WizApiClient(Apiable):
     def __init__(
         self,
-        session: requests.Session,
-        api_parameters: ApiParameters,
+        authenticated_session: auth_manager.AuthenticateSession,
+        configuration: ApiParameters,
         logger: ScriptLogger,
     ) -> None:
-        self.session: requests.Session = session
-        self.api_root: str = api_parameters.api_root
+        super().__init__(
+            authenticated_session=authenticated_session,
+            configuration=configuration,
+        )
         self.logger: ScriptLogger = logger
         self.parser: data_parser = data_parser
+        self.api_root: str = self.configuration.api_root
 
     def test_connectivity(self) -> None:
         """Test the connectivity to the Wiz API."""

@@ -1,19 +1,32 @@
+# Copyright 2025 Google LLC
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
 from __future__ import annotations
 
 from typing import TYPE_CHECKING
-
 import dataclasses
-import requests
 
 from TIPCommon.base.interfaces import Authable
 from TIPCommon.base.utils import CreateSession
 
-from core import api_utils
-from core import constants
-from core.datamodels import IntegrationParameters
+from . import api_utils
+from . import constants
 
 if TYPE_CHECKING:
     from collections.abc import Mapping
+
+    import requests
 
 
 @dataclasses.dataclass(slots=True)
@@ -25,22 +38,8 @@ class SessionAuthenticationParameters:
 
 
 class AuthenticateSession(Authable):
-    def authenticate_session(self, params: IntegrationParameters) -> requests.Session:
-        """Get authenticate session with provided configuration parameters.
-
-        Args:
-            params (IntegrationParameters): IntegrationParameters object.
-
-        Returns:
-            requests.Session: Authenticated session object.
-        """
-        session_parameters: SessionAuthenticationParameters = SessionAuthenticationParameters(
-            api_root=params.api_root,
-            client_id=params.client_id,
-            client_secret=params.client_secret,
-            verify_ssl=params.verify_ssl,
-        )
-        return get_authenticated_session(session_parameters=session_parameters)
+    def authenticate_session(self, params: SessionAuthenticationParameters) -> None:
+        self.session = get_authenticated_session(session_parameters=params)
 
 
 def get_authenticated_session(
@@ -94,8 +93,7 @@ def _generate_token(
         "audience": "wiz-api",
         "grant_type": "client_credentials",
     }
-
-    response: requests.Session = session.post(constants.AUTH_URL, data=auth_payload)
+    response: requests.Response = session.post(constants.AUTH_URL, data=auth_payload)
     api_utils.validate_response(response)
 
     return response.json()["access_token"]
