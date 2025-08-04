@@ -14,20 +14,32 @@
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Protocol
 
 import rich
 import typer
 
-import mp.core.file_utils
-import mp.core.unix
 from mp.core.exceptions import FatalValidationError, NonFatalValidationError
+from mp.validate.validation_results import ValidationResults, ValidationTypes
 
-from .validation_results import ValidationResults, ValidationTypes
+from .uv_lock_validation import UvLockValidation as UvLockValidation
+from .version_bump_validation import VersionBumpValidation as VersionBumpValidation
 
 if TYPE_CHECKING:
     import pathlib
-    from collections.abc import Callable
+
+
+class Validator(Protocol):
+    validation_init_msg: str
+
+    def run(self, validation_path: pathlib.Path) -> None:
+        """Execute the validation process on the specified path.
+
+        Args:
+            validation_path: A `pathlib.Path` object pointing to the directory
+                or file that needs to be validated.
+
+        """
 
 
 class PreBuildValidations:
@@ -46,15 +58,17 @@ class PreBuildValidations:
 
         """
         self.results.errors.append(
-            "[bold green]Running pre build validation on "
-            f"---- {self.integration_path.name} ---- \n[/bold green]"
+            "[bold green]Running pre build validation on"
+            f" ---- {self.integration_path.name} ---- \n[/bold green]"
         )
 
-        for func in self._get_validation_functions():
+        for validator in self._get_validation():
             try:
-                func()
+                self.results.errors.append(validator.validation_init_msg)
+                validator.run(self.integration_path)
+
             except NonFatalValidationError as e:
-                self.results.errors.append(f"[red]{e}[/red]\n")
+                self.results.errors.append(f"[red]{e}\n[/red]")
 
             except FatalValidationError as error:
                 rich.print(f"[bold red]{error}[/bold red]")
@@ -65,16 +79,8 @@ class PreBuildValidations:
             f"---- {self.integration_path.name} ---- \n[/bold green]"
         )
 
-        self.results.is_success = len(self.results.errors) == (
-            len(self._get_validation_functions()) + 2
-        )
+        self.results.is_success = len(self.results.errors) == (len(self._get_validation()) + 2)
 
-    def _get_validation_functions(self) -> list[Callable]:
-        return [
-            self._uv_lock_validation,
-        ]
-
-    def _uv_lock_validation(self) -> None:
-        self.results.errors.append("[yellow]Running uv lock validation [/yellow]")
-        if not mp.core.file_utils.is_built(self.integration_path):
-            mp.core.unix.check_lock_file(self.integration_path)
+    @classmethod
+    def _get_validation(cls) -> list[Validator]:
+        return [UvLockValidation(), VersionBumpValidation()]

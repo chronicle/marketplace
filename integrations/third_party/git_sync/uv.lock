@@ -307,7 +307,7 @@ wheels = [
 
 [[package]]
 name = "gitsync"
-version = "33.0"
+version = "35.0"
 source = { virtual = "." }
 dependencies = [
     { name = "dulwich" },
@@ -484,7 +484,7 @@ wheels = [
 
 [[package]]
 name = "integration-testing"
-version = "1.1.1"
+version = "1.1.2"
 source = { directory = "../../../packages/integration_testing" }
 dependencies = [
     { name = "aiohttp" },

@@ -1,0 +1,42 @@
+-   extract_function: none
+    extract_function_param: ','
+    is_artifact: false
+    product: Infoblox Threat Defense with DDI
+    raw_data_primary_field_comparison_type: equal
+    raw_data_primary_field_match_term: qip
+    raw_data_secondary_field_comparison_type: equal
+    raw_data_secondary_field_match_term: null
+    raw_data_third_field_comparison_type: equal
+    raw_data_third_field_match_term: ''
+    security_event_file_name: SourceAddress
+    source: InfobloxThreatDefenseWithDDI
+    transformation_function: to_string
+    transformation_function_param: ''
+-   extract_function: none
+    extract_function_param: ''
+    is_artifact: false
+    product: Infoblox Threat Defense with DDI
+    raw_data_primary_field_comparison_type: equal
+    raw_data_primary_field_match_term: endTime
+    raw_data_secondary_field_comparison_type: equal
+    raw_data_secondary_field_match_term: event_time
+    raw_data_third_field_comparison_type: equal
+    raw_data_third_field_match_term: ''
+    security_event_file_name: EndTime
+    source: InfobloxThreatDefenseWithDDI
+    transformation_function: to_string
+    transformation_function_param: ''
+-   extract_function: none
+    extract_function_param: ''
+    is_artifact: false
+    product: Infoblox Threat Defense with DDI
+    raw_data_primary_field_comparison_type: equal
+    raw_data_primary_field_match_term: startTime
+    raw_data_secondary_field_comparison_type: equal
+    raw_data_secondary_field_match_term: event_time
+    raw_data_third_field_comparison_type: equal
+    raw_data_third_field_match_term: ''
+    security_event_file_name: StartTime
+    source: InfobloxThreatDefenseWithDDI
+    transformation_function: to_string
+    transformation_function_param: ''
