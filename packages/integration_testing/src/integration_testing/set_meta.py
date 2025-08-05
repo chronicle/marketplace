@@ -139,7 +139,7 @@ def _get_json_context_patch_path_and_fn(
 
 
 def _get_entities_path_and_fn(entities: list[Entity] | None) -> tuple[str, list[Entity] | None]:
-    path: str = "SiemplifyAction.SiemplifyAction.target_entities"
+    path: str = "soar_sdk.SiemplifyAction.SiemplifyAction.target_entities"
     return path, entities
 
 
