@@ -6,7 +6,10 @@ from unittest.mock import Mock, patch
 import pytest
 from requests.exceptions import HTTPError, RequestException
 
-from ..core.Houdin import HoudinManager, API_ROOT
+import pytest
+import requests_mock
+
+from ..core.houdin import HoudinManager, API_ROOT
 
 
 class TestHoudinManager:

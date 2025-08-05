@@ -5,7 +5,10 @@ from __future__ import annotations
 from unittest.mock import Mock, patch
 import pytest
 
-from ..core.Houdin import HoudinManager
+import json
+import requests_mock
+
+from ..core.houdin import HoudinManager
 
 
 class TestHoudinWithTestArtifact:

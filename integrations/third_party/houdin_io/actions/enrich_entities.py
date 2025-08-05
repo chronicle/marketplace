@@ -3,7 +3,7 @@ from soar_sdk.SiemplifyAction import SiemplifyAction
 from soar_sdk.SiemplifyUtils import output_handler
 from soar_sdk.SiemplifyDataModel import EntityTypes
 
-from ..core.Houdin import HoudinManager
+from ..core.houdin import HoudinManager
 import json
 import ipaddress
 

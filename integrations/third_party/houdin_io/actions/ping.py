@@ -2,7 +2,7 @@ from soar_sdk.ScriptResult import EXECUTION_STATE_COMPLETED, EXECUTION_STATE_FAI
 from soar_sdk.SiemplifyAction import SiemplifyAction
 from soar_sdk.SiemplifyUtils import output_handler
 
-from ..core.Houdin import HoudinManager
+from ..core.houdin import HoudinManager
 
 IDENTIFIER = "Houdin-io"
 SCRIPT_NAME = "Houdin-io - Ping"
