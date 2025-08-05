@@ -27,8 +27,8 @@ import mp.core.file_utils
 from mp.build_project.marketplace import Marketplace
 from mp.core.custom_types import RepositoryType
 
-from .data_models import ValidationResults
-from .display import display
+from .data_models import FullReport, ValidationResults
+from .display import display_validation_reports
 from .pre_build_validation import PreBuildValidations
 from .utils import Configurations, get_marketplace_paths_from_names
 
@@ -161,9 +161,9 @@ def validate(  # noqa: PLR0913
 
     run_configurations: Configurations = Configurations(only_pre_build=only_pre_build)
 
-    validations_output: dict[str, list[ValidationResults]] = {}
-    commercial_output: dict[str, list[ValidationResults]] = {}
-    community_output: dict[str, list[ValidationResults]] = {}
+    validations_output: FullReport = {}
+    commercial_output: FullReport = {}
+    community_output: FullReport = {}
 
     if integration:
         commercial_output = _validate_integrations(
@@ -206,27 +206,23 @@ def validate(  # noqa: PLR0913
 
         validations_output = _combine_results(commercial_output, community_output)
 
-    display(validations_output)
+    display_validation_reports(validations_output)
 
     if _should_fail_program(validations_output):
         raise typer.Exit(code=1)
 
 
-def _validate_repo(
-    marketplace: Marketplace, configurations: Configurations
-) -> dict[str, list[ValidationResults]]:
+def _validate_repo(marketplace: Marketplace, configurations: Configurations) -> FullReport:
     products: Products[set[pathlib.Path]] = (
         mp.core.file_utils.get_integrations_and_groups_from_paths(marketplace.path)
     )
 
-    validation_outputs: dict[str, list[ValidationResults]]
+    validation_outputs: FullReport
 
-    integrations_outputs: dict[str, list[ValidationResults]] = _validate_integrations(
+    integrations_outputs: FullReport = _validate_integrations(
         products.integrations, marketplace, configurations
     )
-    groups_output: dict[str, list[ValidationResults]] = _validate_groups(
-        products.groups, marketplace, configurations
-    )
+    groups_output: FullReport = _validate_groups(products.groups, marketplace, configurations)
 
     validation_outputs = _combine_results(integrations_outputs, groups_output)
 
@@ -237,14 +233,14 @@ def _validate_groups(
     groups: Iterable[pathlib.Path],
     marketplace: Marketplace,
     configurations: Configurations,
-) -> dict[str, list[ValidationResults]]:
+) -> FullReport:
     """Validate a list of integration group names within a specific marketplace scope.
 
     Returns:
         list[ValidationResults]: List contains the Validation results object
 
     """
-    validation_outputs: dict[str, list[ValidationResults]] = {}
+    validation_outputs: FullReport = {}
     if groups:
         pre_build_output: list[ValidationResults] = _process_groups_for_validation(
             groups, _run_pre_build_validations
@@ -282,14 +278,14 @@ def _validate_integrations(
     integrations: Iterable[pathlib.Path],
     marketplace: Marketplace,
     configurations: Configurations,
-) -> dict[str, list[ValidationResults]]:
+) -> FullReport:
     """Validate a list of integration names within a specific marketplace scope.
 
     Returns:
         list[ValidationResults]: List contains the Validation results object
 
     """
-    validation_outputs: dict[str, list[ValidationResults]] = {}
+    validation_outputs: FullReport = {}
     if not integrations:
         return validation_outputs
 
@@ -331,10 +327,8 @@ def _run_pre_build_validations(integration_path: pathlib.Path) -> ValidationResu
     return validation_object.results
 
 
-def _combine_results(
-    *validations_outputs: dict[str, list[ValidationResults]],
-) -> dict[str, list[ValidationResults]]:
-    combined_output: dict[str, list[ValidationResults]] = {}
+def _combine_results(*validations_outputs: FullReport) -> FullReport:
+    combined_output: FullReport = {}
     keys_to_combine = [PRE_BUILD, BUILD, POST_BUILD]
 
     for key in keys_to_combine:
@@ -355,5 +349,5 @@ def _combine_results(
     return combined_output
 
 
-def _should_fail_program(validations_output: dict[str, list[ValidationResults]]) -> bool:
+def _should_fail_program(validations_output: FullReport) -> bool:
     return any(validation_result for validation_result in validations_output.values())

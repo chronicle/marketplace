@@ -15,7 +15,9 @@
 from __future__ import annotations
 
 import os
-from typing import TYPE_CHECKING, Protocol
+from typing import TYPE_CHECKING
+
+from mp.core.display_utils import DisplayReportProtocol, display_reports
 
 from .cli import CliDisplay
 from .html.html import HtmlFormat
@@ -25,21 +27,18 @@ if TYPE_CHECKING:
     from mp.run_pre_build_tests.process_test_output import IntegrationTestResults
 
 
-class DisplayReport(Protocol):
-    def display(self, test_results: list[IntegrationTestResults]) -> None:
-        """Start point of the report creation and displaying."""
+def display_test_reports(test_results: list[IntegrationTestResults]) -> None:
+    """Display integrations test results in various formats.
 
+    This function determines the appropriate display formats (CLI, Markdown, or HTML)
+    based on the environment (e.g., GitHub Actions) and then renders the test reports.
 
-# TODO : FIND ANOTHER NAME FOR THE FUNCTION!!!!!!!!!
-def display(test_results: list[IntegrationTestResults]) -> None:
-    """Run the display logic and creates the required reports."""
-    display_types_list: list[DisplayReport] = _build_display_objects(test_results)
-    for report_type in display_types_list:
-        report_type.display()
+    Args:
+        test_results: A list of `IntegrationTestResults` objects containing the
+            outcomes of the integration tests.
 
-
-def _build_display_objects(test_results: list[IntegrationTestResults]) -> list[DisplayReport]:
-    display_types_list: list[DisplayReport] = [CliDisplay(test_results)]
+    """
+    display_types_list: list[DisplayReportProtocol] = [CliDisplay(test_results)]
 
     is_github_actions = os.getenv("GITHUB_ACTIONS")
     if is_github_actions == "true":
@@ -47,4 +46,4 @@ def _build_display_objects(test_results: list[IntegrationTestResults]) -> list[D
     else:
         display_types_list.append(HtmlFormat(test_results))
 
-    return display_types_list
+    display_reports(*display_types_list)

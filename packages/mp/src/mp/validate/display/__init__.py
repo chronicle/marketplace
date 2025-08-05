@@ -13,35 +13,32 @@
 # limitations under the License.
 
 import os
-from typing import Protocol
 
-from mp.validate.data_models import ValidationResults
+from mp.core.display_utils import DisplayReportProtocol, display_reports
+from mp.validate.data_models import FullReport
 
 from .cli import CliDisplay
 from .html.html import HtmlFormat
 from .markdown_format import MarkdownFormat
 
 
-class DisplayReport(Protocol):
-    def display(self, validation_results: dict[str, list[ValidationResults]]) -> None:
-        """Start point of the report creation and displaying."""
+def display_validation_reports(validation_results: FullReport) -> None:
+    """Display integrations validation results in various formats.
 
+    This function determines the appropriate display formats (CLI, Markdown, or HTML)
+    based on the environment (e.g., GitHub Actions) and then renders the validation reports.
 
-# TODO Need to change the function name
-def display(validation_results: dict[str, list[ValidationResults]]) -> None:
-    """Run the display logic and creates the required reports."""
-    display_types_list: list[DisplayReport] = _build_display_objects(validation_results)
-    for report_type in display_types_list:
-        report_type.display()
+    Args:
+        validation_results: A dict that contains the pre-build, build and post-build
+        validation results.
 
-
-def _build_display_objects(test_results: dict[str, list[ValidationResults]]) -> list[DisplayReport]:
-    display_types_list: list[DisplayReport] = [CliDisplay(test_results)]
+    """
+    display_types_list: list[DisplayReportProtocol] = [CliDisplay(validation_results)]
 
     is_github_actions = os.getenv("GITHUB_ACTIONS")
     if is_github_actions == "true":
-        display_types_list.append(MarkdownFormat(test_results))
+        display_types_list.append(MarkdownFormat(validation_results))
     else:
-        display_types_list.append(HtmlFormat(test_results))
+        display_types_list.append(HtmlFormat(validation_results))
 
-    return display_types_list
+    display_reports(*display_types_list)

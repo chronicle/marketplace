@@ -20,11 +20,11 @@ from typing import TYPE_CHECKING
 from rich.console import Console
 
 if TYPE_CHECKING:
-    from mp.validate.data_models import ValidationResults
+    from mp.validate.data_models import FullReport, ValidationResults
 
 
 class MarkdownFormat:
-    def __init__(self, validation_results: dict[str, list[ValidationResults] | None]) -> None:
+    def __init__(self, validation_results: FullReport) -> None:
         self.validation_results = validation_results
         self.console: Console = Console()
 

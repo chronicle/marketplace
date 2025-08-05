@@ -21,12 +21,12 @@ from rich.console import Console
 from rich.table import Table
 
 if TYPE_CHECKING:
-    from mp.validate.data_models import ValidationResults
+    from mp.validate.data_models import FullReport, ValidationResults
 
 
 class CliDisplay:
-    def __init__(self, validation_results: dict[str, list[ValidationResults] | None]) -> None:
-        self.validation_results: dict[str, list[ValidationResults] | None] = validation_results
+    def __init__(self, validation_results: FullReport) -> None:
+        self.validation_results: FullReport = validation_results
         self.console: Console = Console()
 
     def display(self) -> None:

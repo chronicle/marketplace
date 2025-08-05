@@ -31,7 +31,7 @@ class TestGetBotDetails:
 
         GetBotDetails.main()
 
-        assert len(script_session.request_history) == 5
+        assert len(script_session.request_history) == 1
         request = script_session.request_history[0].request
         assert request.url.path.endswith("/getMe")
 

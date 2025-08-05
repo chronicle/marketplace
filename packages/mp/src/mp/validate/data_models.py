@@ -14,7 +14,7 @@
 
 from dataclasses import dataclass, field
 from enum import Enum
-from typing import Any
+from typing import Any, TypeAlias
 
 
 @dataclass
@@ -91,3 +91,6 @@ class ValidationResults:
         self.validation_type: ValidationTypes = validation_type
         self.validation_report: ValidationReport = ValidationReport(integration_name)
         self.is_success: bool = True
+
+
+FullReport: TypeAlias = dict[str, list[ValidationResults]]
