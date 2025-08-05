@@ -1,36 +1,77 @@
 name: Test integrations
 permissions:
   contents: read
+  pull-requests: write
+
 on:
-    push:
-        branches:
-            - '**'
-    pull_request:
-        branches:
-            - '**'
+  push:
+    branches:
+    - '**'
+  pull_request:
+    branches:
+    - '**'
 
 jobs:
-    test_integrations:
-        runs-on: ubuntu-latest
+  test_integrations:
+    runs-on: ubuntu-latest
 
-        steps:
-            - name: Checkout repository
-              uses: actions/checkout@v4
-              with:
-                  fetch-depth: 0
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
 
-            - name: Set up Python
-              uses: actions/setup-python@v5
-              with:
-                  python-version: '3.11'
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
 
-            - name: Install mp package
-              run: |
-                  pip install --upgrade pip
-                  pip install -e ./packages/mp
+    - name: Install mp package
+      run: |
+        pip install --upgrade pip
+        pip install -e ./packages/mp
 
-            - name: Run integration tests
-              shell: bash
-              run: |
-                  mp config --marketplace-path . --processes 10 --display-config
-                  mp test --repository third_party --repository commercial --raise-error-on-violations
+    - name: Run integration tests
+      id: test
+      continue-on-error: true
+      shell: bash
+      run: |
+        mp config --marketplace-path . --processes 10 --display-config
+        mp test --repository third_party --repository commercial --raise-error-on-violations
+
+    - name: Comment on PR with Collapsible Report
+      if: github.event_name == 'pull_request' && steps.test.outcome == 'failure'
+      uses: actions/github-script@v7
+      with:
+        script: |
+          const fs = require('fs');
+          const reportPath = './artifacts/test_report.md';
+          const reportBody = fs.readFileSync(reportPath, 'utf8');
+
+          const finalComment = `❌ **Integration Tests Failed**
+          <details>
+          <summary>Click to view the full test report</summary>
+          ---
+          ${reportBody}
+          </details>`;
+          
+          github.rest.issues.createComment({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            body: finalComment
+          });
+
+    - name: Fail the workflow if tests failed
+      if: steps.test.outcome == 'failure'
+      run: |
+        echo "Integration test step failed. Failing the workflow."
+        exit 1
+
+    - name: Upload Markdown Report Artifact
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: test-report-md
+        path: ./artifacts/test_report.md
+        retention-days: 2

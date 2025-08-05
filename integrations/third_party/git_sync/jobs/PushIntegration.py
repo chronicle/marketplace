@@ -62,7 +62,7 @@ def main():
                 )
                 gitsync.content.metadata.set_readme_addon(
                     "Integration",
-                    integration.identifier,
+                    integration_obj.identifier,
                     readme_addon,
                 )
             gitsync.content.push_integration(integration_obj)

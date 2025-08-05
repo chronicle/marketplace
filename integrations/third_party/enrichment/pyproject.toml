@@ -25,5 +25,6 @@ whois-alt = { url = "https://files.pythonhosted.org/packages/28/2c/9220dff07bedf
 dev = [
     "integration-testing",
     "pytest>=8.3.5",
+    "pytest-json-report>=1.5.0",
     "soar-sdk",
 ]

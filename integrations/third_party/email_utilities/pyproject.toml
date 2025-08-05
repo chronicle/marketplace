@@ -1,6 +1,6 @@
 [project]
 name = "EmailUtilities"
-version = "37.0"
+version = "38.0"
 description = "A set of utility actions to assist with working with emails.  Includes actions to parse EMLs and analyze email headers."
 requires-python = ">=3.11,<3.12"
 dependencies = [
@@ -46,5 +46,6 @@ timeout-decorator = { url = "https://files.pythonhosted.org/packages/80/f8/0802d
 dev = [
     "integration-testing",
     "pytest>=8.3.5",
+    "pytest-json-report>=1.5.0",
     "soar-sdk",
 ]
