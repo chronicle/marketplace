@@ -14,7 +14,7 @@ from .constants import DEFAULT_API_ROOT, DEFAULT_VERIFY_SSL, INTEGRATION_IDENTIF
 from .exceptions import SampleIntegrationError
 
 
-@dataclasses.dataclass(frozen=True)
+@dataclasses.dataclass(slots=True)
 class AuthManagerParams:
     api_root: str
     password: str
@@ -86,5 +86,6 @@ class AuthManager:
         """Preparse session object to be used in API session."""
         session = CreateSession.create_session()
         session.verify = self.params.verify_ssl
-        session.headers.update({"dummy-password-header": f"{self.params.password}"})
+        password = self.params.password.encode("utf-8").decode("iso-8859-1")
+        session.headers.update({"dummy-password-header": f"{password}"})
         return session

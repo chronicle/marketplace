@@ -1,5 +1,5 @@
 identifier: SampleIntegration
-name: SampleIntegration
+name: Sample Integration
 parameters:
     -   name: API Root
         default_value: https://api.vatcomply.com

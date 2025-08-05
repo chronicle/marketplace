@@ -2,7 +2,7 @@ import datetime as dt
 import json
 from typing import NoReturn
 
-from TIPCommon.base.action.data_models import DataTable
+from TIPCommon.base.action.data_models import DataTable, Link
 from TIPCommon.extraction import extract_action_param
 from TIPCommon.transformation import construct_csv
 from TIPCommon.types import JSON
@@ -17,32 +17,27 @@ from ..core.constants import (
 from ..core.data_models import DailyRates
 from ..core.exceptions import SampleIntegrationInvalidParameterError
 
-DEFAULT_CURRENCIES_STR = "USD, EUR"
-DEFAULT_CURRENCIES_DDL = "Select One"
-DEFAULT_TIME_FRAME = "Today"
-DEFAULT_RETURN_JSON_RESULT = True
 
-SUCCESS_MESSAGE = (
+DEFAULT_CURRENCIES_DDL: str = "Select One"
+DEFAULT_TIME_FRAME: str = "Today"
+DEFAULT_RETURN_JSON_RESULT: bool = True
+
+SUCCESS_MESSAGE: str = (
     "Successfully returned information about the following currencies from "
     "{start_time} to {end_time} :\n{currencies}"
 )
+EXAMPLE_CASE_WALL_LINK: str = "https://api.vatcomply.com/rates?date={date}&base={base}"
 
 
 class SimpleActionExample(BaseAction):
 
     def __init__(self) -> None:
         super().__init__(SIMPLE_ACTION_EXAMPLE_SCRIPT_NAME)
-        self.output_message: str = ""
-        self.result_value: bool = False
-        self.error_output_message: str = (
-            f'Error executing action "{SIMPLE_ACTION_EXAMPLE_SCRIPT_NAME}".'
-        )
 
     def _extract_action_parameters(self) -> None:
         self.params.currencies_str = extract_action_param(
             self.soar_action,
             param_name="Currencies String",
-            default_value=DEFAULT_CURRENCIES_STR,
             print_value=True,
         )
         self.params.currencies_ddl = extract_action_param(
@@ -100,7 +95,7 @@ class SimpleActionExample(BaseAction):
         )
         if currency_ddl_option not in currencies + [DEFAULT_CURRENCIES_DDL]:
             currencies.append(currency_ddl_option)
-        if not currencies:
+        if not currencies and currency_ddl_option == DEFAULT_CURRENCIES_DDL:
             raise SampleIntegrationInvalidParameterError(
                 'at least "Currencies String" or "Currencies DDL" should have a '
                 "value provided."
@@ -172,6 +167,25 @@ class SimpleActionExample(BaseAction):
                 for base_rate in daily_rates.exchange_rates
             )
 
+    def _create_links(self, exchange_rates: list[DailyRates]) -> None:
+        """Creates links from the given exchange rates and adds them to the
+        links attribute.
+
+        Args:
+            exchange_rates (list[DailyRates]): A list of DailyRates objects.
+        """
+        for daily_rates in exchange_rates:
+            self.links.extend(
+                Link(
+                    link=EXAMPLE_CASE_WALL_LINK.format(
+                        date=base_rate.date,
+                        base=base_rate.base,
+                    ),
+                    title=f"Currency: {base_rate.base} - {base_rate.date} Link",
+                )
+                for base_rate in daily_rates.exchange_rates
+            )
+
     def _add_result_case_attachment(self, json_results: JSON) -> None:
         """Add the JSON results as an attachment to the current case.
 
@@ -193,6 +207,7 @@ class SimpleActionExample(BaseAction):
         if self.params.return_json_result:
             self.json_results = json_results
         self._create_data_tables(exchange_rates)
+        self._create_links(exchange_rates)
         self._add_result_case_attachment(json_results)
         self.output_message = SUCCESS_MESSAGE.format(
             start_time=self.params.start_date,

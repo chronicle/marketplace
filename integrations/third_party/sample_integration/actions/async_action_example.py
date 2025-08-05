@@ -1,5 +1,5 @@
 import json
-from typing import Iterable, List, NoReturn
+from typing import Iterable, NoReturn
 
 from TIPCommon.base.action.data_models import ExecutionState
 from TIPCommon.extraction import extract_action_param
