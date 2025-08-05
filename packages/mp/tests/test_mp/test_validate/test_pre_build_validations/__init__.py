@@ -11,21 +11,3 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
-from enum import Enum
-
-
-class ValidationTypes(Enum):
-    """Enum representing the various stages of a build process."""
-
-    PRE_BUILD = "pre_build"
-    BUILD = "build"
-    POST_BUILD = "post_build"
-
-
-class ValidationResults:
-    def __init__(self, integration_name: str, validation_type: ValidationTypes) -> None:
-        self.integration_name: str = integration_name
-        self.validation_type: ValidationTypes = validation_type
-        self.errors: list[str] = []
-        self.is_success: bool = True

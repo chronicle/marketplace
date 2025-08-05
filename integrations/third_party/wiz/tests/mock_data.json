@@ -1,0 +1,119 @@
+{
+    "get_issue_details": {
+        "data": {
+            "issue": {
+                "id": "abc",
+                "createdAt": "2024-03-16T22:12:10.685397Z",
+                "updatedAt": "2025-07-30T00:59:29.355466Z",
+                "status": "OPEN",
+                "severity": "INFORMATIONAL",
+                "type": "TOXIC_COMBINATION",
+                "description": "abc",
+                "resolvedAt": null,
+                "entitySnapshot": {
+                    "cloudPlatform": "Kubernetes",
+                    "id": "abc",
+                    "name": "system:cluster-autoscaler",
+                    "region": "",
+                    "subscriptionName": "Wiz-Labs",
+                    "type": "USER_ACCOUNT"
+                },
+                "projects": [
+                    {
+                        "id": "abc",
+                        "name": "GCP Lab"
+                    }
+                ],
+                "sourceRules": [
+                    {
+                        "id": "abc",
+                        "name": "abc",
+                        "description": "abc"
+                    }
+                ]
+            }
+        }
+    },
+    "invalid_issue": {
+        "data": {
+            "issue": null
+        },
+        "errors": [
+            {
+                "message": "id must be a valid service issue id",
+                "path": [
+                    "issue",
+                    "id"
+                ],
+                "extensions": {
+                    "code": "BAD_USER_INPUT"
+                }
+            }
+        ]
+    },
+    "add_comment_to_issue": {
+        "data": {
+            "createIssueNote": {
+                "issueNote": {
+                    "createdAt": "2025-08-01T11:13:46.433236812Z",
+                    "id": "a52184e4-4f61-418b-924e-3e144cd9cd32",
+                    "text": "Test Comment from Secops action."
+                }
+            }
+        }
+    },
+    "ignore_issue": {
+        "data": {
+            "updateIssue": {
+                "issue": {
+                    "id": "41facd3f-29b0-4fcf-9a0c-e7fc40416aa0",
+                    "note": "",
+                    "status": "REJECTED",
+                    "dueAt": null,
+                    "resolutionReason": "FALSE_POSITIVE"
+                }
+            }
+        }
+    },
+    "reopen_issue": {
+        "data": {
+            "updateIssue": {
+                "issue": {
+                    "id": "41facd3f-29b0-4fcf-9a0c-e7fc40416aa0",
+                    "note": "",
+                    "status": "OPEN",
+                    "dueAt": null,
+                    "resolutionReason": "FALSE_POSITIVE"
+                }
+            }
+        }
+    },
+    "resolve_issue": {
+        "data": {
+            "updateIssue": {
+                "issue": {
+                    "id": "41facd3f-29b0-4fcf-9a0c-e7fc40416aa0",
+                    "note": "",
+                    "status": "RESOLVED",
+                    "dueAt": null,
+                    "resolutionReason": "FALSE_POSITIVE"
+                }
+            }
+        }
+    },
+    "valid_token": {
+        "access_token": "valid_token",
+        "refresh_token": "valid_refresh_token",
+        "expires_in": 3600,
+        "token_type": "Bearer"
+    },
+    "invalid_token": {
+        "detail": "Invalid token."
+    },
+    "invalid_alert": {
+        "detail": "You do not have permission to perform this action."
+    },
+    "invalid_close_alert": {
+        "error": "Invalid permissions"
+    }
+}

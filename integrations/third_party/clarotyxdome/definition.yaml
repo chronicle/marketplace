@@ -1,0 +1,25 @@
+identifier: clarotyxdome
+name: Claroty xDome
+parameters:
+-   name: xdomeHost
+    default_value: https://api.claroty.com
+    type: string
+    description: The base URL for the Claroty xDome API.
+    is_mandatory: true
+    integration_identifier: clarotyxdome
+-   name: xdomeApiToken
+    default_value: ''
+    type: password
+    description: API token for authenticating to Claroty xDome.
+    is_mandatory: true
+    integration_identifier: clarotyxdome
+-   name: Verify SSL
+    default_value: true
+    type: boolean
+    description: Enable to validate SSL certificates for xDome API connections.
+    is_mandatory: true
+    integration_identifier: clarotyxdome
+categories: []
+image_base64: 
+svg_image: 
+is_available_for_community: false

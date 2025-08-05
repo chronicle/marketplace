@@ -1,6 +1,6 @@
 ![Google Security Operations](/docs/resources/response_integrations/google_secops_logo.png)
 
-# Welcome to the Google SecOps Response Integration Content Repository!
+# Welcome to the Google SecOps Content Hub Repository
 
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
 ![Maintenance](https://img.shields.io/maintenance/yes/2025)
@@ -8,14 +8,11 @@
 > [!WARNING]
 > **Disclaimer:** This documentation is actively under development. Its content and structure are subject to ongoing updates and revisions
 
-> **Note:** Only community response integrations are currently available in this repository.
+> **Note:** At this time, only response integration content is supported via this contribution workflow. We expect to expand support to other critical content types in the near future. 
 
-👋 Hello and welcome! This repository is the central hub for a wide array of content related to the
-Google SecOps Response Integrations. From connecting Google SecOps with other
-security tools to exploring practical use-cases and leveraging powerful development packages
-– this is your go-to resource!
-Our goal is to provide you with everything you need to effectively use, develop, and
-contribute to the Google SecOps ecosystem.
+👋 Hello and welcome! 
+
+This repository is the central hub for a wide array of community-contributed content intended to enhance the Google SecOps platform. From normalizing and transforming telemetry for ingestion, to connecting Google SecOps with other security tools, to exploring practical use-cases and leveraging powerful development packages -- anything needed to enhance the Google Security Operations experience lives here.
 
 ## **Getting Started: Your First Contribution**
 

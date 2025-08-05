@@ -1,0 +1,21 @@
+name: EnrichXDomeAssetInformation
+description: Enriches XDome asset information for the selected entities.
+integration_identifier: clarotyxdome
+parameters:
+-   name: xdomeHost
+    default_value: ''
+    type: playbook_name
+    description: Base URL for Claroty xDome instance.
+    is_mandatory: true
+-   name: xdomeApiToken
+    default_value: ''
+    type: playbook_name
+    description: API token for authenticating to Claroty xDome.
+    is_mandatory: true
+dynamic_results_metadata:
+-   result_example: '{}'
+    result_name: JsonResult
+    show_result: true
+default_result_value: ''
+creator: 01510cf5-bc5e-4a6c-b91d-1facfab4ce0f
+script_result_name: xDome asset enrichment

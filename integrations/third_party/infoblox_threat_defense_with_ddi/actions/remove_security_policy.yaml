@@ -1,0 +1,16 @@
+name: Remove Security Policy
+description: Deletes a specified security policy from the system to unblock an indicator.
+integration_identifier: InfobloxThreatDefenseWithDDI
+parameters:
+- name: Security Policy ID
+  default_value: '0'
+  type: string
+  description: Specify the ID of the security policy to delete.
+  is_mandatory: true
+dynamic_results_metadata:
+- result_name: JsonResult
+  show_result: true
+  result_example: '{}'
+default_result_value: ''
+creator: Admin
+script_result_name: ScriptResult

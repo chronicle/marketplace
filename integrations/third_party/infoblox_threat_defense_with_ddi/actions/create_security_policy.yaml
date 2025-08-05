@@ -1,0 +1,215 @@
+name: Create Security Policy
+description: Creates a new security policy.
+integration_identifier: InfobloxThreatDefenseWithDDI
+parameters:
+- name: Policy Name
+  default_value: ' '
+  type: string
+  description: Specify the name of the security policy to create.
+  is_mandatory: true
+- name: Description
+  default_value: null
+  type: string
+  description: Specify description for this security policy.
+  is_mandatory: false
+- name: Rules
+  default_value: null
+  type: string
+  description: Specify security rules as a list of JSON objects, each with action,
+    type, data, policy_name and redirect_name.
+  is_mandatory: false
+- name: Network Lists
+  default_value: null
+  type: string
+  description: Specify the comma-separated network lists to associate with this policy
+    (e.g 522436, 522438).
+  is_mandatory: false
+- name: DFPS
+  default_value: null
+  type: string
+  description: Specify the comma-separated DNS Forwarding Proxies to associate with
+    this policy (e.g 12456, 12458).
+  is_mandatory: false
+- name: Roaming Device Groups
+  default_value: null
+  type: string
+  description: Specify the comma-separated Roaming Device Groups to associate with
+    this policy (e.g 56312, 56316).
+  is_mandatory: false
+- name: Block DNS Rebinding
+  default_value: 'false'
+  type: boolean
+  description: Specify whether to block DNS rebinding attacks.
+  is_mandatory: false
+- name: Safe Search
+  default_value: 'false'
+  type: boolean
+  description: Specify whether to enable safe search filtering.
+  is_mandatory: false
+- name: Tags
+  default_value: null
+  type: string
+  description: Add tags used to categorize and organize the Security Policy.
+  is_mandatory: false
+- name: Additional Parameters
+  default_value: null
+  type: string
+  description: JSON object containing additional parameters to update (precedence,
+    access_codes, doh_enabled, doh_fqdn, ecs, onprem_resolve, dfp_services, etc).
+  is_mandatory: false
+dynamic_results_metadata:
+- result_name: JsonResult
+  show_result: true
+  result_example: "{\n    \"access_codes\": [\n        \"7TYWLZ\"\n    ],\n    \"\
+    block_dns_rebind_attack\": false,\n    \"created_time\": \"2025-07-10T09:15:56Z\"\
+    ,\n    \"default_action\": \"action_allow\",\n    \"default_redirect_name\": \"\
+    \",\n    \"description\": \"\",\n    \"dfp_services\": [],\n    \"dfps\": [],\n\
+    \    \"doh_enabled\": false,\n    \"doh_fqdn\": \"\",\n    \"ecs\": false,\n \
+    \   \"id\": 226393,\n    \"is_default\": false,\n    \"migration_status\": {\n\
+    \        \"uses_legacy_feeds\": true\n    },\n    \"name\": \"Policy09\",\n  \
+    \  \"net_address_dfps\": [],\n    \"network_lists\": [],\n    \"onprem_resolve\"\
+    : false,\n    \"precedence\": 28,\n    \"roaming_device_groups\": [],\n    \"\
+    rules\": [\n        {\n            \"action\": \"action_block\",\n           \
+    \ \"data\": \"suspicious\",\n            \"description\": \"Suspicious destinations:\
+    \ Enables protection against hostnames that have not been directly linked to malicious\
+    \ behavior but behave in a manner that suggests malicious behavior may be imminent.\"\
+    ,\n            \"type\": \"named_feed\"\n        },\n        {\n            \"\
+    action\": \"action_allow\",\n            \"data\": \"Default Allow\",\n      \
+    \      \"description\": \"Auto-generated\",\n            \"type\": \"custom_list\"\
+    \n        },\n        {\n            \"action\": \"action_block\",\n         \
+    \   \"data\": \"Default Block\",\n            \"description\": \"Auto-generated\"\
+    ,\n            \"type\": \"custom_list\"\n        },\n        {\n            \"\
+    action\": \"action_block\",\n            \"data\": \"suspicious-lookalikes\",\n\
+    \            \"description\": \"These are domains that appear to impersonate other\
+    \ trusted domains, but have demonstrated enough abnormal behavior to warrant concern.\"\
+    ,\n            \"type\": \"named_feed\"\n        },\n        {\n            \"\
+    action\": \"action_block\",\n            \"data\": \"base\",\n            \"description\"\
+    : \"Suspicious/malicious as destinations: Enables protection against known hostnames\
+    \ such as APT, Bot, Compromised Host/Domains, Exploit Kits, Malicious Name Servers,\
+    \ and Sinkholes.\",\n            \"type\": \"named_feed\"\n        },\n      \
+    \  {\n            \"action\": \"action_log\",\n            \"data\": \"antimalware\"\
+    ,\n            \"description\": \"Suspicious/malicious as destinations: Enables\
+    \ protection against known malicious hostname threats that can take action on\
+    \ or control of your systems, such as Malware Command & Control, Malware Download,\
+    \ and active Phishing sites.\",\n            \"type\": \"named_feed\"\n      \
+    \  },\n        {\n            \"action\": \"action_block\",\n            \"data\"\
+    : \"malware-dga\",\n            \"description\": \"Suspicious/malicious as destinations:\
+    \ Domain generation algorithm (DGA) are algorithms seen in various families of\
+    \ malware that are used to periodically generate a large number of domain names\
+    \ that can be used as rendezvous points with their command and control servers.\
+    \ Examples include Ramnit, Conficker, and Banjori.\",\n            \"type\": \"\
+    named_feed\"\n        },\n        {\n            \"action\": \"action_block\"\
+    ,\n            \"data\": \"ransomware\",\n            \"description\": \"Suspicious/malicious\
+    \ as destinations: Enables protection against ransomware taking over your system.\
+    \ Ransomware will encrypt files on your system and require you to pay in order\
+    \ to get them decrypted. This feed prevents ransomware to contact the servers\
+    \ which it needs to encrypt your files.\",\n            \"type\": \"named_feed\"\
+    \n        },\n        {\n            \"action\": \"action_block\",\n         \
+    \   \"data\": \"public-doh-ip\",\n            \"description\": \"The Public DOH\
+    \ IP feed provides a list of known public DNS services that tunnel their traffic\
+    \ over HTTP. This may be from a browser (such as Mozilla Firefox), a piece of\
+    \ malware, or a user attempting to bypass your organization's DNS policies. This\
+    \ feed contains \\u201ccanary\\u201d addresses. We recommend all organizations\
+    \ enable this blocking rule.\",\n            \"type\": \"named_feed\"\n      \
+    \  },\n        {\n            \"action\": \"action_block\",\n            \"data\"\
+    : \"suspicious-noed\",\n            \"description\": \"These are High Risk, New\
+    \ Domains. These domains have only recently become active, and share one or more\
+    \ characteristics with other known malicious domains to warrant concern.\",\n\
+    \            \"type\": \"named_feed\"\n        },\n        {\n            \"action\"\
+    : \"action_log\",\n            \"data\": \"tor-exit-node-ip\",\n            \"\
+    description\": \"Not necessarily malicious, but may be blocked based on company\
+    \ policy. Tor Exit Nodes are the gateways where encrypted Tor traffic hits the\
+    \ Internet. This means an exit node can be used to monitor Tor traffic (after\
+    \ it leaves the onion network). It is in the design of the Tor network that locating\
+    \ the source of that traffic through the network should be difficult to determine.\"\
+    ,\n            \"type\": \"named_feed\"\n        },\n        {\n            \"\
+    action\": \"action_block\",\n            \"data\": \"public-doh\",\n         \
+    \   \"description\": \"The Public DOH feed provides a list of known public DNS\
+    \ services that tunnel their traffic over HTTP. This may be from a browser (such\
+    \ as Mozilla Firefox), a piece of malware, or a user attempting to bypass your\
+    \ organization's DNS policies. This feed contains \\u201ccanary\\u201d domains.\
+    \ We recommend all organizations enable this blocking rule.\",\n            \"\
+    type\": \"named_feed\"\n        },\n        {\n            \"action\": \"action_log\"\
+    ,\n            \"data\": \"noed\",\n            \"description\": \"These are recently\
+    \ created and newly active domain names. These are not necessarily suspicious\
+    \ but some may wish to log traffic going to these domains as there is a low likelihood\
+    \ that these domains would be visited normally.\",\n            \"type\": \"named_feed\"\
+    \n        },\n        {\n            \"action\": \"action_log\",\n           \
+    \ \"data\": \"Threat Insight - DGA\",\n            \"description\": \"Auto-generated\"\
+    ,\n            \"type\": \"custom_list\"\n        },\n        {\n            \"\
+    action\": \"action_log\",\n            \"data\": \"Threat Insight - Data Exfiltration\"\
+    ,\n            \"description\": \"Auto-generated\",\n            \"type\": \"\
+    custom_list\"\n        },\n        {\n            \"action\": \"action_log\",\n\
+    \            \"data\": \"Threat Insight - DNS Messenger\",\n            \"description\"\
+    : \"Auto-generated\",\n            \"type\": \"custom_list\"\n        },\n   \
+    \     {\n            \"action\": \"action_log\",\n            \"data\": \"antimalware-ip\"\
+    ,\n            \"description\": \"Suspicious/malicious as destinations: Enables\
+    \ protection against known malicious or compromised IP addresses. These are known\
+    \ to host threats that can take action on or control of your systems, such as\
+    \ Malware Command & Control, Malware Download, and active Phishing sites.\",\n\
+    \            \"type\": \"named_feed\"\n        },\n        {\n            \"action\"\
+    : \"action_log\",\n            \"data\": \"dhs-ais-domain\",\n            \"description\"\
+    : \"Suspicious/malicious as destinations: The Department of Homeland Security's\
+    \ (DHS) Automated Indicator Sharing (AIS) program enables the exchange of cyber\
+    \ threat indicators between the Federal Government and the private sector. AIS\
+    \ is a part of the Department of Homeland Security's effort to create an ecosystem\
+    \ where as soon as a company or federal agency observes an attempted compromise,\
+    \ the indicator is shared with AIS program partners, including Infoblox. Hostname\
+    \ Indicators contained in this feed are not validated by DHS as the emphasis is\
+    \ on velocity and volume. Infoblox does not modify or verify the indicators. However,\
+    \ indicators from the AIS program are classified and normalized by Infoblox to\
+    \ ease consumption. Data included in this feed includes AIS data subject to the\
+    \ U.S. Department of Homeland Security Automated Indicator Sharing Terms of Use\
+    \ available at https://www.us-cert.gov/ais and must be handled in accordance with\
+    \ the Terms of Use. Prior to further distributing the AIS data, you may be required\
+    \ to sign and submit the Terms of Use. Please email ncciccustomerservice@hq.dhs.gov\
+    \ for additional information.\",\n            \"type\": \"named_feed\"\n     \
+    \   },\n        {\n            \"action\": \"action_log\",\n            \"data\"\
+    : \"Threat Insight - Notional Data Exfiltration\",\n            \"description\"\
+    : \"Auto-generated\",\n            \"type\": \"custom_list\"\n        },\n   \
+    \     {\n            \"action\": \"action_log\",\n            \"data\": \"ext-base-antimalware\"\
+    ,\n            \"description\": \"Suspicious/malicious as destinations: An extension\
+    \ of the Base and AntiMalware feed that contains recently expired hostname indicators\
+    \ with an extended time-to-live (TTL) applied. The extended time-to-live (TTL)\
+    \ provides an extended reach of protection for the DNS FW, but may also increase\
+    \ the risk of false positives as some of these Base and Antimalware feed related\
+    \ domains and hosts may no longer be active.\",\n            \"type\": \"named_feed\"\
+    \n        },\n        {\n            \"action\": \"action_log\",\n           \
+    \ \"data\": \"ext-ransomware\",\n            \"description\": \"Suspicious/malicious\
+    \ as destinations: An extension of the Ransomware feed that contains recently\
+    \ expired Ransomware with an extended time-to-live (TTL) applied. The extended\
+    \ time-to-live (TTL) provides an extended reach of protection for the DNS FW,\
+    \ but may also increase the risk of false positives as some of the Ransomware\
+    \ related domains and hosts may no longer be active.\",\n            \"type\"\
+    : \"named_feed\"\n        },\n        {\n            \"action\": \"action_log\"\
+    ,\n            \"data\": \"ext-antimalware-ip\",\n            \"description\"\
+    : \"Suspicious/malicious as destinations: An extension of the AntiMalware IP feed\
+    \ that contains recently expired Malware IP's with an extended time-to-live (TTL)\
+    \ applied. The extended time-to-live (TTL) provides an extended reach of protection\
+    \ for the DNS FW, but may also increase the risk of false positives as some of\
+    \ these Malware IP's may no longer be active.\",\n            \"type\": \"named_feed\"\
+    \n        },\n        {\n            \"action\": \"action_log\",\n           \
+    \ \"data\": \"cryptocurrency\",\n            \"description\": \"The use and mining\
+    \ of cryptocurrency is not inherently benign or malicious, or used exclusively\
+    \ by threat actors or general users. However, over the last several years, it\
+    \ has been increasingly used for illegal and/or fraudulent activities such as\
+    \ human trafficking, black market sales/purchases, and ransomware payments, and\
+    \ others. Cryptocurrency mining can impair system performance and risk end users\
+    \ and businesses to information theft, hijacking, and a plethora of other malware.\
+    \ This feed features threats that allow malicious actors to perform illegal and/or\
+    \ fraudulent activities, coinhives that allows site owners to embed cryptocurrency\
+    \ mining software into their webpages as a replacement to normal advertising,\
+    \ Cryptojacking  that allows site owners  to mine for cryptocurrency without the\
+    \ owner's consent, and cryptocurrency mining pools working together to mine cryptocurrency.\
+    \ This feed features indicators of activity which may indicate malicious or unauthorized\
+    \ use of resources including: coinhive which can be embed into a site owners web\
+    \ pages to lie cryptocurrency with the visitors permission as an alternative to\
+    \ web banner advertising; cryptojacking where malicious actors use in-browser\
+    \ mining without the victim's consent; and cryptocurrency mining pools working\
+    \ together to mine cryptocurrency.\",\n            \"type\": \"named_feed\"\n\
+    \        }\n    ],\n    \"safe_search\": false,\n    \"scope_expr\": \"\",\n \
+    \   \"scope_tags\": [],\n    \"tags\": null,\n    \"updated_time\": \"2025-07-10T09:15:56Z\"\
+    ,\n    \"user_groups\": []\n}"
+default_result_value: ''
+creator: Admin
+script_result_name: ScriptResult
