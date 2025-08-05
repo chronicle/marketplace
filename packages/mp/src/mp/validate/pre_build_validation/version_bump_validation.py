@@ -80,6 +80,9 @@ class VersionBumpValidation:
             "main", head_sha, integration_path
         )
 
+        if not changed_files:
+            return
+
         rn_path: pathlib.Path | None = None
         toml_path: pathlib.Path | None = None
         for p in changed_files:
