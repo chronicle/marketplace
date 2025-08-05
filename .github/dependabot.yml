@@ -2,13 +2,15 @@ version: 2
 updates:
   - package-ecosystem: "uv"
     directories:
-      - "**/*"
+      - "**/packages/**"
+      - "**/tools/**"
     schedule:
       interval: "daily"
 
   - package-ecosystem: "pip"
     directories:
-      - "**/*"
+      - "**/packages/**"
+      - "**/tools/**"
     schedule:
       interval: "daily"
 
