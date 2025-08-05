@@ -15,14 +15,14 @@
 from typing import Protocol
 
 
-class DisplayReportProtocol(Protocol):
+class DisplayReport(Protocol):
     def __init__(self, validation_results: dict | list) -> None: ...
 
     def display(self) -> None:
         """Start point of the report creation and displaying."""
 
 
-def display_reports(*displayers: DisplayReportProtocol) -> None:
+def display_reports(*displayers: DisplayReport) -> None:
     """Run the display logic and creates the required reports."""
     for displayer in displayers:
         displayer.display()

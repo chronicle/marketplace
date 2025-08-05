@@ -17,7 +17,7 @@ from __future__ import annotations
 import os
 from typing import TYPE_CHECKING
 
-from mp.core.display_utils import DisplayReportProtocol, display_reports
+from mp.core.display_utils import DisplayReport, display_reports
 
 from .cli import CliDisplay
 from .html.html import HtmlFormat
@@ -38,7 +38,7 @@ def display_test_reports(test_results: list[IntegrationTestResults]) -> None:
             outcomes of the integration tests.
 
     """
-    display_types_list: list[DisplayReportProtocol] = [CliDisplay(test_results)]
+    display_types_list: list[DisplayReport] = [CliDisplay(test_results)]
 
     is_github_actions = os.getenv("GITHUB_ACTIONS")
     if is_github_actions == "true":

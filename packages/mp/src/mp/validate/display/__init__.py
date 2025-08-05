@@ -14,7 +14,7 @@
 
 import os
 
-from mp.core.display_utils import DisplayReportProtocol, display_reports
+from mp.core.display_utils import DisplayReport, display_reports
 from mp.validate.data_models import FullReport
 
 from .cli import CliDisplay
@@ -33,7 +33,7 @@ def display_validation_reports(validation_results: FullReport) -> None:
         validation results.
 
     """
-    display_types_list: list[DisplayReportProtocol] = [CliDisplay(validation_results)]
+    display_types_list: list[DisplayReport] = [CliDisplay(validation_results)]
 
     is_github_actions = os.getenv("GITHUB_ACTIONS")
     if is_github_actions == "true":
