@@ -1,26 +1,18 @@
 identifier: Asana
 name: Asana
 parameters:
-    -   name: Token
-        type: password
-        description: The personal access token
-        is_mandatory: true
-        integration_identifier: Asana
-    -   name: Base URL
-        default_value: https://app.asana.com/api/1.0
-        type: string
-        description: Base URL
-        is_mandatory: true
-        integration_identifier: Asana
+- name: Token
+  type: password
+  description: The personal access token
+  is_mandatory: true
+  integration_identifier: Asana
+- name: Base URL
+  default_value: https://app.asana.com/api/1.0
+  type: string
+  description: Base URL
+  is_mandatory: true
+  integration_identifier: Asana
 categories:
-    - IT & Infrastructure
-# language=svg
-svg_image: "<?xml version=\"1.0\" encoding=\"utf-8\"?><!-- Generator: Adobe Illustrator\
-    \ 24.1.3, SVG Export Plug-In . SVG Version: 6.00 Build 0)  --><svg version=\"\
-    1.1\" id=\"Layer_1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\"\
-    \ x=\"0px\" y=\"0px\"\t viewBox=\"0 0 25 25\" style=\"enable-background:new 0\
-    \ 0 25 25;\" xml:space=\"preserve\"><g>\t<g>\t\t<path d=\"M17.1,7.2c0-2.6-2.1-4.7-4.6-4.7S7.9,4.6,7.9,7.2c0,2.6,2.1,4.7,4.6,4.7S17.1,9.8,17.1,7.2z\
-    \ M6.6,13.1\t\t\tC4,13.1,2,15.2,2,17.8c0,2.6,2,4.7,4.6,4.7c2.5,0,4.6-2.1,4.6-4.7C11.1,15.2,9.1,13.1,6.6,13.1z\
-    \ M18.4,13.1\t\t\tc-2.5,0-4.6,2.1-4.6,4.7c0,2.6,2,4.7,4.6,4.7c2.6,0,4.6-2.1,4.6-4.7C23,15.2,21,13.1,18.4,13.1z\"\
-    />\t</g></g></svg>"
-image_base64: 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
+- IT & Infrastructure
+svg_logo_path: resources/logo.svg
+image_path: resources/image.png

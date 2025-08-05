@@ -46,6 +46,10 @@ integration_name/
 │   ├── job2.py
 │   └── job2.yaml
 │
+├── resources/
+│   ├── image.png
+│   └── logo.svg
+│
 ├── tests/
 │   ├── __init__.py
 │   ├── common.py

@@ -1,39 +1,31 @@
 identifier: Bandura Cyber
 name: Bandura Cyber
 parameters:
-    -   name: API Root
-        default_value: https://gmc.banduracyber.com/api/v1
-        type: string
-        description: API Root
-        is_mandatory: true
-        integration_identifier: Bandura Cyber
-    -   name: Username
-        default_value: danield@siemplify.co
-        type: string
-        description: Username
-        is_mandatory: true
-        integration_identifier: Bandura Cyber
-    -   name: Password
-        type: password
-        description: Password
-        is_mandatory: true
-        integration_identifier: Bandura Cyber
-    -   name: Verify SSL
-        default_value: true
-        type: boolean
-        description: verify SSL
-        is_mandatory: false
-        integration_identifier: Bandura Cyber
+- name: API Root
+  default_value: https://gmc.banduracyber.com/api/v1
+  type: string
+  description: API Root
+  is_mandatory: true
+  integration_identifier: Bandura Cyber
+- name: Username
+  default_value: danield@siemplify.co
+  type: string
+  description: Username
+  is_mandatory: true
+  integration_identifier: Bandura Cyber
+- name: Password
+  type: password
+  description: Password
+  is_mandatory: true
+  integration_identifier: Bandura Cyber
+- name: Verify SSL
+  default_value: true
+  type: boolean
+  description: verify SSL
+  is_mandatory: false
+  integration_identifier: Bandura Cyber
 categories:
-    - Security
-    - Threat Intelligence
-# language=svg
-svg_image: |
-    <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg"
-         viewBox="0 0 25 25">
-        <path d="M8.91,16.49c.6,0,1-.31,1-.81a.69.69,0,0,0-.53-.74.66.66,0,0,0,.44-.65c0-.45-.35-.73-.92-.73H7.76a.08.08,0,0,0-.08.08v2.77a.08.08,0,0,0,.08.08Zm-.07-1.75H8.3a0,0,0,0,1,0,0v-.56a0,0,0,0,1,0,0h.54a.3.3,0,0,1,.35.31A.31.31,0,0,1,8.84,14.74Zm0,1.21H8.3a0,0,0,0,1,0,0v-.62a0,0,0,0,1,0,0h.54c.27,0,.44.13.44.34S9.11,16,8.84,16Z"
-              fill="#091b22"/>
-        <path d="M12.16,23.94a1,1,0,0,0,.68,0l.15-.06c8.33-3.16,9-9.42,9-16.67V6.89a.92.92,0,0,0-.54-.84l-8.56-4a.93.93,0,0,0-.8,0l-8.56,4A.92.92,0,0,0,3,6.89v.32c0,7.25.68,13.51,9,16.67Zm.73-14.17c0-1.88,0-3.77,0-5.65a.35.35,0,0,1,.5-.31l7.07,3.28a.34.34,0,0,1,.21.31c0,1.08,0,2.13-.08,3.15a.34.34,0,0,1-.38.32c-2.12-.19-4.32-.31-6.54-.34a.17.17,0,0,1-.16-.09A1,1,0,0,0,13,9.93.18.18,0,0,1,12.89,9.77ZM4.83,11.53c2.1-.16,4.28-.25,6.48-.28a.19.19,0,0,1,.16.09,1,1,0,0,0,.53.5.18.18,0,0,1,.1.16c0,3.29,0,6.58,0,9.87a.35.35,0,0,1-.49.32C6.49,20,5,16.27,4.51,11.91A.34.34,0,0,1,4.83,11.53Zm8.69-.19a1,1,0,0,1-.53.5.18.18,0,0,0-.1.16c0,2.19,0,4.38,0,6.57v3.31a.35.35,0,0,0,.49.32c5.15-2.24,6.69-5.93,7.13-10.29a.34.34,0,0,0-.32-.38c-2.1-.16-4.29-.25-6.5-.28A.19.19,0,0,0,13.52,11.34Zm-9-4.25,7.05-3.28a.36.36,0,0,1,.5.32h0c0,1.88,0,3.76,0,5.63a.16.16,0,0,1-.1.16,1.05,1.05,0,0,0-.53.51.16.16,0,0,1-.15.09c-2.21,0-4.41.15-6.53.34a.34.34,0,0,1-.38-.32c-.06-1-.07-2.07-.08-3.15A.34.34,0,0,1,4.53,7.09Z"
-              fill="#091b22" fill-rule="evenodd"/>
-    </svg>
-image_base64: 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
+- Security
+- Threat Intelligence
+svg_logo_path: resources/logo.svg
+image_path: resources/image.png

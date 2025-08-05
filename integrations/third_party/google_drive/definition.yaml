@@ -1,23 +1,17 @@
 identifier: Google Drive
 name: Google Drive
 parameters:
-    -   name: Credentials Json
-        type: password
-        description: 'View the guide on how to create auth json credentials (service account)
-        - provide access for Google Drive
+- name: Credentials Json
+  type: password
+  description: 'View the guide on how to create auth json credentials (service account)
+    - provide access for Google Drive
 
-        https://gspread.readthedocs.io/en/latest/oauth2.html#enable-api-access'
-        is_mandatory: true
-        integration_identifier: Google Drive
+    https://gspread.readthedocs.io/en/latest/oauth2.html#enable-api-access'
+  is_mandatory: true
+  integration_identifier: Google Drive
 categories:
-    - Google
-    - Productivity
-    - Cloud
-# language=svg
-svg_image: "<?xml version=\"1.0\" encoding=\"utf-8\"?><!-- Generator: Adobe Illustrator\
-    \ 24.2.3, SVG Export Plug-In . SVG Version: 6.00 Build 0)  --><svg version=\"\
-    1.1\" id=\"Layer_1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\"\
-    \ x=\"0px\" y=\"0px\"\t viewBox=\"0 0 25 25\" style=\"enable-background:new 0\
-    \ 0 25 25;\" xml:space=\"preserve\"><g>\t<g>\t\t<path d=\"M9.5,15.8L6,22l13.5,0l3.5-6.2H9.5z\
-    \ M22.8,15.2L15.8,3L9.2,3l7,12.2H22.8z M9,4L2,15.9L5.2,22L12,9L9,4z\"/>\t</g></g></svg>"
-image_base64: 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
+- Google
+- Productivity
+- Cloud
+svg_logo_path: resources/logo.svg
+image_path: resources/image.png
