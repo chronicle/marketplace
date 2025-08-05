@@ -46,5 +46,6 @@ timeout-decorator = { url = "https://files.pythonhosted.org/packages/80/f8/0802d
 dev = [
     "integration-testing",
     "pytest>=8.3.5",
+    "pytest-json-report>=1.5.0",
     "soar-sdk",
 ]
