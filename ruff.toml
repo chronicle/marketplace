@@ -53,7 +53,7 @@ ignore = [
 ]
 
 # Allow fix for all enabled rules (when `--fix`) is provided.
-fixable = ["A", "B", "C", "D", "E", "F"]
+fixable = ["A", "B", "C", "D", "E", "F", "I"]
 unfixable = []
 
 # Allow unused variables when underscore-prefixed.
