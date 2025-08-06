@@ -1,33 +1,26 @@
 name: Validate marketplace integrations
+
 permissions:
   contents: read
-  issues: write
+  pull-requests: write
 
 on:
   push:
     branches:
     - '**'
-  pull_request_target:
-    types: [opened, synchronize]
+  pull_request:
+    branches:
+    - '**'
 
 jobs:
   mp_validates:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout PR head (for pull_request_target)
-      if: github.event_name == 'pull_request_target'
+    - name: Checkout repository
       uses: actions/checkout@v4
       with:
         fetch-depth: 0
-        ref: ${{ github.event.pull_request.head.sha }}
-
-    - name: Checkout current branch (for push)
-      if: github.event_name == 'push'
-      uses: actions/checkout@v4
-      with:
-        fetch-depth: 0
-        ref: ${{ github.ref }}
 
     - name: Set up Python
       uses: actions/setup-python@v5
@@ -43,14 +36,12 @@ jobs:
       id: validate
       continue-on-error: true
       shell: bash
-      env:
-        PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
       run: |
         mp config --marketplace-path . --processes 10 --display-config
         mp validate --repository third_party --only-pre-build
 
     - name: Comment on PR with Collapsible Report
-      if: steps.validate.outcome == 'failure'
+      if: github.event_name == 'pull_request' && steps.validate.outcome == 'failure'
       uses: actions/github-script@v7
       with:
         script: |
