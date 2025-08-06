@@ -99,7 +99,11 @@ class GitSyncManager:
         self.content = GitContentManager(self.git_client, self.api)
 
     def __del__(self):
-        self.logger.info("Cleaning up")
+        try:
+            if getattr(self, "logger", None):
+                self.logger.info("Cleaning up")
+        except Exception:
+            pass
         try:
             git_client = getattr(self, "git_client", None)
             if git_client is not None:
