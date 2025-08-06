@@ -18,13 +18,12 @@ from urllib.parse import urljoin
 
 import requests
 from packaging import version
-
+from requests.exceptions import HTTPError
 from TIPCommon.rest.soar_api import (
     get_integration_instance_details_by_id,
-    get_integration_instance_details_by_name
+    get_integration_instance_details_by_name,
 )
 from requests.exceptions import HTTPError
-
 
 VERSION_6117 = version.parse("6.1.17")
 VERSION_6138 = version.parse("6.1.38.77")
