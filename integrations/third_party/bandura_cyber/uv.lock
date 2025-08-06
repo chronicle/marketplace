@@ -1,5 +1,5 @@
 version = 1
-revision = 2
+revision = 3
 requires-python = "==3.11.*"
 
 [[package]]
@@ -26,6 +26,7 @@ dependencies = [
 
 [package.dev-dependencies]
 dev = [
+    { name = "environmentcommon" },
     { name = "pytest" },
     { name = "pytest-json-report" },
     { name = "soar-sdk" },
@@ -39,6 +40,7 @@ requires-dist = [
 
 [package.metadata.requires-dev]
 dev = [
+    { name = "environmentcommon", path = "../../../packages/envcommon/EnvironmentCommon-1.0.2/EnvironmentCommon-1.0.2-py2.py3-none-any.whl" },
     { name = "pytest", specifier = ">=8.3.5" },
     { name = "pytest-json-report", specifier = ">=1.5.0" },
     { name = "soar-sdk", git = "https://github.com/chronicle/soar-sdk.git" },
@@ -177,6 +179,14 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/2f/66/e284b9978fede35185e5d18fb3ae855b8f573d8c90a56de5f6d03e8ef99e/DateTime-5.5.tar.gz", hash = "sha256:21ec6331f87a7fcb57bd7c59e8a68bfffe6fcbf5acdbbc7b356d6a9a020191d3", size = 63671, upload-time = "2024-03-21T07:26:50.211Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/f3/78/8e382b8cb4346119e2e04270b6eb4a01c5ee70b47a8a0244ecdb157204f7/DateTime-5.5-py3-none-any.whl", hash = "sha256:0abf6c51cb4ba7cee775ca46ccc727f3afdde463be28dbbe8803631fefd4a120", size = 52649, upload-time = "2024-03-21T07:26:47.849Z" },
+]
+
+[[package]]
+name = "environmentcommon"
+version = "1.0.2"
+source = { path = "../../../packages/envcommon/EnvironmentCommon-1.0.2/EnvironmentCommon-1.0.2-py2.py3-none-any.whl" }
+wheels = [
+    { filename = "environmentcommon-1.0.2-py2.py3-none-any.whl", hash = "sha256:a31d611ddf539fb081cfe9423a8d506d198fb5aefdb225c5534904ef9d80aaaa" },
 ]
 
 [[package]]
