@@ -16,6 +16,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Dump workflow_run event context
+      run: echo "${{ toJSON(github.event.workflow_run) }}"
+
+
     - name: Download validation report
       uses: actions/download-artifact@v4
       with:
@@ -27,6 +31,7 @@ jobs:
       with:
         script: |
           const fs = require('fs');
+          // The artifact is downloaded to the root of the workspace.
           const reportBody = fs.readFileSync('./validation_report.md', 'utf8');
           
           const finalComment = `❌ **Marketplace Validation Failed**
@@ -36,6 +41,7 @@ jobs:
           ${reportBody}
           </details>`;
           
+          // The 'workflow_run' event payload contains information about the PR.
           const prNumber = github.event.workflow_run.pull_requests[0].number;
           
           github.rest.issues.createComment({
