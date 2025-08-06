@@ -8,6 +8,7 @@ on:
 
 permissions:
   pull-requests: write
+  actions: read
 
 jobs:
   comment_on_pr:
@@ -17,6 +18,15 @@ jobs:
       github.event.workflow_run.conclusion == 'failure'
 
     steps:
+    - name: Debug Workflow Information
+      run: |
+        echo "Workflow run ID: ${{ github.event.workflow_run.id }}"
+        echo "Workflow run event: ${{ github.event.workflow_run.event }}"
+        echo "Workflow run conclusion: ${{ github.event.workflow_run.conclusion }}"
+        echo "Head repository: ${{ github.event.workflow_run.head_repository.full_name }}"
+        echo "Repository: ${{ github.event.workflow_run.repository.full_name }}"
+        echo "Pull requests: ${{ toJSON(github.event.workflow_run.pull_requests) }}"
+
     - name: Download Validation Report Artifact
       uses: actions/download-artifact@v4
       with:
@@ -43,28 +53,49 @@ jobs:
           if (!fs.existsSync(reportPath)) {
             console.log(`Report file not found at ${reportPath}. Posting a fallback comment.`);
             const fallbackComment = `❌ **Marketplace Validation Failed**\n\nThe validation report artifact could not be found. Please check the logs of the 'Validate Marketplace Integrations' workflow run for details.`;
-            await github.rest.issues.createComment({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              issue_number: prNumber,
-              body: fallbackComment
-            });
+            try {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: prNumber,
+                body: fallbackComment
+              });
+              console.log('Successfully posted fallback comment to PR #' + prNumber);
+            } catch (error) {
+              console.error('Failed to post fallback comment to PR #' + prNumber + ':', error.message);
+              if (error.status === 403) {
+                console.log('This appears to be a permissions issue. This can happen with forks from external contributors.');
+              }
+            }
             return;
           }
           
           const reportBody = fs.readFileSync(reportPath, 'utf8');
           
           const finalComment = `❌ **Marketplace Validation Failed**
+          
           <details>
           <summary>Click to view the full validation report</summary>
-          ---
+          
+          \`\`\`
           ${reportBody}
+          \`\`\`
+          
           </details>`;
           
-          await github.rest.issues.createComment({
-            owner: context.repo.owner,
-            repo: context.repo.repo,
-            issue_number: prNumber,
-            body: finalComment
-          });
+          try {
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: prNumber,
+              body: finalComment
+            });
+            console.log('Successfully posted validation failure comment to PR #' + prNumber);
+          } catch (error) {
+            console.error('Failed to post comment to PR #' + prNumber + ':', error.message);
+            // For forks or permission issues, log the error but don't fail the workflow
+            if (error.status === 403) {
+              console.log('This appears to be a permissions issue. This can happen with forks from external contributors.');
+            }
+          }
 

@@ -35,6 +35,24 @@ jobs:
         # Your validation commands
         mp config --marketplace-path . --processes 10 --display-config
         mp validate --repository third_party --only-pre-build
+        
+        # Ensure artifacts directory exists
+        mkdir -p ./artifacts
+
+    - name: Create validation report if it doesn't exist
+      if: steps.validate.outcome == 'failure'
+      run: |
+        if [ ! -f ./artifacts/validation_report.md ]; then
+          echo "# Validation Report" > ./artifacts/validation_report.md
+          echo "" >> ./artifacts/validation_report.md
+          echo "## Summary" >> ./artifacts/validation_report.md
+          echo "The marketplace validation failed. Please check the workflow logs for detailed error information." >> ./artifacts/validation_report.md
+          echo "" >> ./artifacts/validation_report.md
+          echo "### Steps to resolve:" >> ./artifacts/validation_report.md
+          echo "1. Review the validation errors in the workflow logs" >> ./artifacts/validation_report.md
+          echo "2. Fix any integration issues" >> ./artifacts/validation_report.md
+          echo "3. Re-run the validation" >> ./artifacts/validation_report.md
+        fi
 
     - name: Upload Validation Report Artifact
       if: steps.validate.outcome == 'failure'
