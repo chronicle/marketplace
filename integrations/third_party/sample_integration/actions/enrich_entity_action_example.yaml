@@ -3,7 +3,24 @@ description: 'Example of action that works with entities and enriches them. This
 dynamic_results_metadata:
   - result_name: JsonResult
     show_result: true
-    result_example: "{}"
+    # language=json
+    result_example: |
+        [
+            {
+                "Entity": "him@abc.com",
+                "EntityResult": {
+                    "enriched": "true",
+                    "timestamp": "1754418093881"
+                }
+            },
+            {
+                "Entity": "192.105.72.1",
+                "EntityResult": {
+                    "enriched": "true",
+                    "timestamp": "1754418093883"
+                }
+            }
+        ]
 integration_identifier: SampleIntegration
 name: Enrich Entity Action Example
 parameters:

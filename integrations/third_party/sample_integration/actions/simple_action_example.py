@@ -120,24 +120,31 @@ class SimpleActionExample(BaseAction):
             print_value=True,
         )
         time_frame = TimeFrameDDLEnum(self.params.time_frame)
-        if time_frame == TimeFrameDDLEnum.CUSTOM and not self.params.start_time:
-            raise SampleIntegrationInvalidParameterError(
-                "'Start Time' must be provided if 'Time Frame' is set to 'Custom'",
-            )
-        self.params.start_date = (
-            dt.datetime.fromisoformat(
+        if time_frame != TimeFrameDDLEnum.CUSTOM:
+            self.params.start_date = time_frame.to_start_date()
+            self.params.end_date = dt.datetime.now().date()
+            if self.params.start_time or self.params.end_time:
+                self.logger.warn(
+                    f"Time Frame is set to '{time_frame.value}'. "
+                    "Ignoring 'Start Time' and 'End Time' parameters."
+                )
+
+        else:
+            if not self.params.start_time:
+                raise SampleIntegrationInvalidParameterError(
+                    "'Start Time' must be provided if 'Time Frame' is set to 'Custom'",
+                )
+
+            self.params.start_date = dt.datetime.fromisoformat(
                 self.params.start_time.replace("Z", "+00:00"),
             ).date()
-            if self.params.start_time
-            else time_frame.to_start_date()
-        )
-        self.logger.info(f"Using start_time {repr(self.params.start_date)}")
 
-        self.params.end_date = (
-            dt.datetime.fromisoformat(self.params.end_time.replace("Z", "+00:00"))
-            if self.params.end_time and time_frame == TimeFrameDDLEnum.CUSTOM
-            else dt.datetime.now()
-        ).date()
+            if self.params.end_time:
+                self.params.end_date = dt.datetime.fromisoformat(
+                    self.params.end_time.replace("Z", "+00:00")
+                ).date()
+            else:
+                self.params.end_date = dt.datetime.now().date()
 
         if self.params.end_date - self.params.start_date > dt.timedelta(days=7):
             self.logger.warn(
@@ -146,6 +153,8 @@ class SimpleActionExample(BaseAction):
                 '"Start Time"'
             )
             self.params.end_date = self.params.start_date + dt.timedelta(days=7)
+
+        self.logger.info(f"Using start_time {repr(self.params.start_date)}")
         self.logger.info(f"Using end_time {repr(self.params.end_date)}")
 
     def _create_data_tables(self, exchange_rates: list[DailyRates]) -> None:

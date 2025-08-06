@@ -1,4 +1,7 @@
+from __future__ import annotations
+
 from TIPCommon.base.action import EntityTypesEnum
+from TIPCommon.base.action.base_enrich_action import EnrichAction
 from TIPCommon.base.action.data_models import DataTable, Entity
 from TIPCommon.extraction import extract_action_param
 from TIPCommon.transformation import add_prefix_to_dict, construct_csv
@@ -12,20 +15,17 @@ from ..core.constants import (
 )
 
 
-DEFAULT_ENTITY_TYPE = SupportedEntitiesEnum.ALL.value
+DEFAULT_ENTITY_TYPE: str = SupportedEntitiesEnum.ALL.value
 
-SUCCESS_MESSAGE = "Successfully enriched the following entities: {}"
-NO_ENTITIES_MESSAGE = "No eligible entities were found in the scope of the Alert."
+SUCCESS_MESSAGE: str = "Successfully enriched the following entities: {}"
+NO_ENTITIES_MESSAGE: str = "No eligible entities were found in the scope of the Alert."
 
 
-class EnrichEntityActionExample(BaseAction):
+class EnrichEntityActionExample(EnrichAction, BaseAction):
 
     def __init__(self) -> None:
         super().__init__(ENRICH_ENTITY_ACTION_EXAMPLE_SCRIPT_NAME)
         self.enriched_entities: list[str] = []
-        self.error_output_message: str = (
-            f'Error executing action "{ENRICH_ENTITY_ACTION_EXAMPLE_SCRIPT_NAME}".'
-        )
 
     def _extract_action_parameters(self) -> None:
         self.params.entity_type = extract_action_param(
@@ -47,36 +47,34 @@ class EnrichEntityActionExample(BaseAction):
     def _get_entity_types(self) -> list[EntityTypesEnum]:
         return SupportedEntitiesEnum(self.params.entity_type).to_entity_type_enum_list()
 
-    def _enrich_entity(self, entity: Entity):
-        """Enrich a single entity with sample data."""
+    def _perform_enrich_action(self, current_entity: Entity) -> None:
+        self.logger.info(f"Starting enrichment for entity {current_entity.identifier}")
         timestamp = unix_now()
 
         enrichment_data = {
             "enriched": "true",
             "timestamp": str(timestamp),
         }
-        entity.additional_properties.update(
-            add_prefix_to_dict(enrichment_data, "SampleIntegration_")
-        )
-        entity.is_enriched = True
-        self.entities_to_update.append(entity)
-        return enrichment_data
+        self.enrichment_data = add_prefix_to_dict(enrichment_data, "SampleIntegration_")
+        self.entity_results = enrichment_data
+        self.data_tables = [
+            DataTable(
+                title=f"Sample: {current_entity.identifier}",
+                data_table=construct_csv([enrichment_data]),
+            )
+        ]
+        self.enriched_entities.append(current_entity.identifier)
+        self.logger.info(f"Finished enrichment for entity {current_entity.identifier}")
 
     def _finalize_action_on_success(self) -> None:
         super()._finalize_action_on_success()
-        self.output_message = SUCCESS_MESSAGE.format(", ".join(self.enriched_entities))
-
-    def _perform_action(self, entity: Entity):
-        enrichment_data = self._enrich_entity(entity)
-        self.logger.info(f"Successfully enriched entity {entity.identifier}")
-        self.enriched_entities.append(entity.identifier)
-        self.json_results[entity.identifier] = enrichment_data
-        self.data_tables.append(
-            DataTable(
-                title=f"Sample: {entity.identifier}",
-                data_table=construct_csv([enrichment_data]),
+        if self.enriched_entities:
+            self.output_message = SUCCESS_MESSAGE.format(
+                ", ".join(self.enriched_entities)
             )
-        )
+        else:
+            self.output_message = NO_ENTITIES_MESSAGE
+            self.result_value = False
 
 
 def main():
