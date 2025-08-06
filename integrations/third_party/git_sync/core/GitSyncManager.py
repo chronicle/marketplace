@@ -100,9 +100,18 @@ class GitSyncManager:
 
     def __del__(self):
         self.logger.info("Cleaning up")
-        if self.git_client:
-            self.git_client.cleanup()
-        self._wd.cleanup()
+        try:
+            git_client = getattr(self, "git_client", None)
+            if git_client is not None:
+                git_client.cleanup()
+        except Exception:
+            pass
+        try:
+            _wd = getattr(self, "_wd", None)
+            if _wd is not None:
+                _wd.cleanup()
+        except Exception:
+            pass
 
     @classmethod
     def from_siemplify_object(
@@ -839,6 +848,7 @@ class WorkflowInstaller:
             step.get("integration"),
             environments=environments,
             display_name=fallback_instance_display_name,
+            consider_404_to_none=True,
         )
         # If the playbook is for one specific environment, choose the first integration instance
         # from that environment. Otherwise, set the step to dynamic mode and set the first shared
@@ -854,6 +864,7 @@ class WorkflowInstaller:
                     step.get("integration"),
                     environments=environments,
                     display_name=instance_display_name,
+                    consider_404_to_none=True,
                 )
                 self._set_step_parameter_by_name(
                     step,
