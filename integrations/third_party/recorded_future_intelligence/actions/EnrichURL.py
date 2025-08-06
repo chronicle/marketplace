@@ -1,4 +1,4 @@
-############################## TERMS OF USE ###################################
+############################## TERMS OF USE ################################### # noqa: E266
 # The following code is provided for demonstration purposes only, and should  #
 # not be used without independent verification. Recorded Future makes no      #
 # representations or warranties, express, implied, statutory, or otherwise,   #

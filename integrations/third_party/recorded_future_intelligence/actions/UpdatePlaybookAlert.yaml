@@ -7,6 +7,11 @@ parameters:
         type: string
         description: Specify the ID of the playbook alert that needs to be updated.
         is_mandatory: true
+    -   name: Playbook Alert Category
+        default_value: ''
+        type: string
+        description: Specify the category of the playbook alert that needs to be updated.
+        is_mandatory: true
     -   name: Assign To
         default_value: ''
         type: string
