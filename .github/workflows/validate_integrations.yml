@@ -45,6 +45,9 @@ jobs:
         pip install --upgrade pip
         pip install -e ./packages/mp
 
+    - name: Print GitHub Event Context
+      run: echo "${{ toJSON(github.event) }}"
+
     - name: Run Validations
       id: validate
       continue-on-error: true
@@ -64,7 +67,7 @@ jobs:
         retention-days: 2
 
     - name: Comment on PR with Collapsible Report
-      if: steps.validate.outcome == 'failure'
+      if: github.event_name == 'pull_request_target' && steps.validate.outcome == 'failure'
       uses: actions/github-script@v7
       with:
         script: |
@@ -91,5 +94,3 @@ jobs:
       run: |
         echo "Validation step failed. Failing the workflow."
         exit 1
-
-
