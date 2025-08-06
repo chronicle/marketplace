@@ -5,6 +5,12 @@ on:
     workflows: ["Validate Marketplace Integrations"]
     types:
     - completed
+  workflow_dispatch:
+    inputs:
+      pr_number:
+        description: 'PR number to comment on (for testing)'
+        required: false
+        type: string
 
 permissions:
   pull-requests: write
@@ -14,20 +20,24 @@ jobs:
   comment_on_pr:
     runs-on: ubuntu-latest
     if: >
-      github.event.workflow_run.event == 'pull_request' &&
-      github.event.workflow_run.conclusion == 'failure'
+      (github.event.workflow_run.event == 'pull_request' &&
+       github.event.workflow_run.conclusion == 'failure') ||
+      github.event_name == 'workflow_dispatch'
 
     steps:
     - name: Debug Workflow Information
       run: |
-        echo "Workflow run ID: ${{ github.event.workflow_run.id }}"
-        echo "Workflow run event: ${{ github.event.workflow_run.event }}"
-        echo "Workflow run conclusion: ${{ github.event.workflow_run.conclusion }}"
-        echo "Head repository: ${{ github.event.workflow_run.head_repository.full_name }}"
-        echo "Repository: ${{ github.event.workflow_run.repository.full_name }}"
-        echo "Pull requests: ${{ toJSON(github.event.workflow_run.pull_requests) }}"
+        echo "Event name: ${{ github.event_name }}"
+        echo "Workflow run ID: ${{ github.event.workflow_run.id || 'N/A (manual dispatch)' }}"
+        echo "Workflow run event: ${{ github.event.workflow_run.event || 'N/A (manual dispatch)' }}"
+        echo "Workflow run conclusion: ${{ github.event.workflow_run.conclusion || 'N/A (manual dispatch)' }}"
+        echo "Head repository: ${{ github.event.workflow_run.head_repository.full_name || 'N/A (manual dispatch)' }}"
+        echo "Repository: ${{ github.event.workflow_run.repository.full_name || github.repository }}"
+        echo "Pull requests: ${{ toJSON(github.event.workflow_run.pull_requests) || 'N/A (manual dispatch)' }}"
+        echo "Manual PR number: ${{ github.event.inputs.pr_number || 'N/A' }}"
 
     - name: Download Validation Report Artifact
+      if: github.event_name == 'workflow_run'
       uses: actions/download-artifact@v4
       with:
         name: validation-report-md
@@ -40,9 +50,15 @@ jobs:
         github-token: ${{ secrets.GITHUB_TOKEN }}
         script: |
           const fs = require('fs');
-          // Safely get the pull request number by passing the whole pull_requests object
-          const pull_requests = ${{ toJSON(github.event.workflow_run.pull_requests) }};
-          const prNumber = pull_requests.length > 0 ? pull_requests[0].number : null;
+          // Get PR number from workflow_run event or manual input
+          let prNumber = null;
+          if (context.eventName === 'workflow_run') {
+            const pull_requests = ${{ toJSON(github.event.workflow_run.pull_requests) }};
+            prNumber = pull_requests.length > 0 ? pull_requests[0].number : null;
+          } else if (context.eventName === 'workflow_dispatch') {
+            prNumber = '${{ github.event.inputs.pr_number }}' || null;
+            if (prNumber) prNumber = parseInt(prNumber);
+          }
           
           if (!prNumber) {
             console.log('Could not find an associated pull request. Skipping comment.');
@@ -50,9 +66,17 @@ jobs:
           }
           
           const reportPath = 'validation_report.md'; // It's downloaded to the workspace root
-          if (!fs.existsSync(reportPath)) {
+          let reportBody = '';
+          let fallbackComment = '';
+          
+          if (context.eventName === 'workflow_dispatch') {
+            fallbackComment = `🧪 **Manual Test Comment**\n\nThis is a test comment from the validation workflow. The workflow is working correctly!`;
+          } else if (!fs.existsSync(reportPath)) {
             console.log(`Report file not found at ${reportPath}. Posting a fallback comment.`);
-            const fallbackComment = `❌ **Marketplace Validation Failed**\n\nThe validation report artifact could not be found. Please check the logs of the 'Validate Marketplace Integrations' workflow run for details.`;
+            fallbackComment = `❌ **Marketplace Validation Failed**\n\nThe validation report artifact could not be found. Please check the logs of the 'Validate Marketplace Integrations' workflow run for details.`;
+          }
+          
+          if (fallbackComment) {
             try {
               await github.rest.issues.createComment({
                 owner: context.repo.owner,
@@ -70,32 +94,35 @@ jobs:
             return;
           }
           
-          const reportBody = fs.readFileSync(reportPath, 'utf8');
-          
-          const finalComment = `❌ **Marketplace Validation Failed**
-          
-          <details>
-          <summary>Click to view the full validation report</summary>
-          
-          \`\`\`
-          ${reportBody}
-          \`\`\`
-          
-          </details>`;
-          
-          try {
-            await github.rest.issues.createComment({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              issue_number: prNumber,
-              body: finalComment
-            });
-            console.log('Successfully posted validation failure comment to PR #' + prNumber);
-          } catch (error) {
-            console.error('Failed to post comment to PR #' + prNumber + ':', error.message);
-            // For forks or permission issues, log the error but don't fail the workflow
-            if (error.status === 403) {
-              console.log('This appears to be a permissions issue. This can happen with forks from external contributors.');
+          // Only process report if not manual dispatch (fallback already handled above)
+          if (context.eventName !== 'workflow_dispatch') {
+            reportBody = fs.readFileSync(reportPath, 'utf8');
+            
+            const finalComment = `❌ **Marketplace Validation Failed**
+            
+            <details>
+            <summary>Click to view the full validation report</summary>
+            
+            \`\`\`
+            ${reportBody}
+            \`\`\`
+            
+            </details>`;
+            
+            try {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: prNumber,
+                body: finalComment
+              });
+              console.log('Successfully posted validation failure comment to PR #' + prNumber);
+            } catch (error) {
+              console.error('Failed to post comment to PR #' + prNumber + ':', error.message);
+              // For forks or permission issues, log the error but don't fail the workflow
+              if (error.status === 403) {
+                console.log('This appears to be a permissions issue. This can happen with forks from external contributors.');
+              }
             }
           }
 
