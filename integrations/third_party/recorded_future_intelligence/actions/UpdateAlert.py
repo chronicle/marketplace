@@ -1,4 +1,4 @@
-############################## TERMS OF USE ###################################
+############################## TERMS OF USE ################################### # noqa: E266
 # The following code is provided for demonstration purposes only, and should  #
 # not be used without independent verification. Recorded Future makes no      #
 # representations or warranties, express, implied, statutory, or otherwise,   #
@@ -18,12 +18,16 @@
 
 from __future__ import annotations
 
+import json
+import sys
+from typing import NoReturn
+
 from soar_sdk.ScriptResult import EXECUTION_STATE_COMPLETED, EXECUTION_STATE_FAILED
 from soar_sdk.SiemplifyAction import SiemplifyAction
-from soar_sdk.SiemplifyUtils import output_handler
+from soar_sdk.SiemplifyUtils import output_handler, resume_stdout
 from TIPCommon.extraction import extract_action_param, extract_configuration_param
 
-from ..core.constants import ALERT_STATUS_MAP, PROVIDER_NAME, UPDATE_ALERT_SCRIPT_NAME
+from ..core.constants import PROVIDER_NAME, UPDATE_ALERT_SCRIPT_NAME
 from ..core.exceptions import RecordedFutureUnauthorizedError
 from ..core.RecordedFutureManager import RecordedFutureManager
 
@@ -31,6 +35,15 @@ from ..core.RecordedFutureManager import RecordedFutureManager
 @output_handler
 def main():
     siemplify = SiemplifyAction()
+
+    def end_script() -> NoReturn:
+        output_object = siemplify._build_output_object()
+        resume_stdout()
+        sys.stdout.write(json.dumps(output_object))
+        sys.exit()
+
+    siemplify.end_script = end_script
+
     siemplify.script_name = UPDATE_ALERT_SCRIPT_NAME
 
     api_url = extract_configuration_param(
@@ -75,7 +88,6 @@ def main():
         is_mandatory=False,
         print_value=True,
     )
-    alert_status = ALERT_STATUS_MAP.get(alert_status)
 
     siemplify.LOGGER.info("----------------- Main - Started -----------------")
 

@@ -24,8 +24,6 @@ parameters:
         optional_values:
             - Select One
             - New
-            - Assigned
-            - Unassigned
             - Pending
             - Dismissed
             - Resolved
