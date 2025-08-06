@@ -3,10 +3,8 @@
 from __future__ import annotations
 
 from unittest.mock import Mock, patch
-import pytest
 
-import json
-import requests_mock
+import pytest
 
 from ..core.houdin import HoudinManager
 

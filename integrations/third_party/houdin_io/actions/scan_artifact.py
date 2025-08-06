@@ -1,9 +1,10 @@
+import json
+
 from soar_sdk.ScriptResult import EXECUTION_STATE_COMPLETED, EXECUTION_STATE_FAILED
 from soar_sdk.SiemplifyAction import SiemplifyAction
 from soar_sdk.SiemplifyUtils import output_handler
 
 from ..core.houdin import HoudinManager
-import json
 
 IDENTIFIER = "Houdin-io"
 SCRIPT_NAME = "Houdin-io - Scan Artifact"
