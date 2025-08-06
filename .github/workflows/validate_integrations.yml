@@ -1,123 +1,50 @@
-# This workflow validates marketplace integrations.
-# It runs on every push to any branch and when pull requests are opened or updated.
-
 name: Validate marketplace integrations
 
-# Granting necessary permissions for the workflow to run.
-# contents: read - To checkout the code.
-# issues: write - To create comments on pull requests.
-permissions:
-  contents: read
-  issues: write
-
-# Defines the triggers for this workflow.
 on:
   push:
     branches:
     - '**'
-  pull_request_target:
-    types: [opened, synchronize]
+  pull_request:
+    branches:
+    - '**'
 
 jobs:
-  mp-validates:
+  mp_validates:
     runs-on: ubuntu-latest
-
     steps:
-
-    # Step to checkout the head of the pull request.
-    # This is used when the event is a 'pull_request_target'.
-    - name: Checkout PR head (for pull_request_target)
-      if: github.event_name == 'pull_request_target'
+    - name: Checkout repository
       uses: actions/checkout@v4
       with:
         fetch-depth: 0
-        ref: ${{ github.event.pull_request.head.sha }}
 
-    # Step to checkout the current branch.
-    # This is used for 'push' events.
-    - name: Checkout current branch (for push)
-      if: github.event_name == 'push'
-      uses: actions/checkout@v4
-      with:
-        fetch-depth: 0
-        ref: ${{ github.ref }}
-
-    # Sets up the specified version of Python.
     - name: Set up Python
       uses: actions/setup-python@v5
       with:
         python-version: '3.11'
 
-    # Installs the required Python package from the local repository.
     - name: Install mp package
       run: |
         pip install --upgrade pip
         pip install -e ./packages/mp
 
-    # Runs the validation script.
-    # 'continue-on-error: true' ensures that the workflow doesn't stop here if validation fails.
-    # Instead, it sets the outcome of this step to 'failure'.
     - name: Run Validations
       id: validate
       continue-on-error: true
       shell: bash
-      env:
-        PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
       run: |
         mp config --marketplace-path . --processes 10 --display-config
         mp validate --repository third_party --only-pre-build
 
-    # --- CORRECTED DEBUG STEP ---
-    # This step will always run to help you debug.
-    # It prints the event name and the outcome of the validation step.
-    # The indentation and name have been fixed here.
-    - name: Debug-Step
-      if: always()
-      run: |
-        echo "The event name is: ${{ github.event_name }}"
-        echo "The validation outcome is: ${{ steps.validate.outcome }}"
-
-    # Comments on the Pull Request if validation fails.
-    # This step only runs if the event is a 'pull_request_target' AND the 'validate' step failed.
-    - name: Comment on PR with Collapsible Report
-      if: github.event_name == 'pull_request_target' && steps.validate.outcome == 'failure'
-      uses: actions/github-script@v7
-      with:
-        script: |
-          const fs = require('fs');
-          const reportPath = './artifacts/validation_report.md';
-          let reportBody = 'Validation report file not found.';
-          if (fs.existsSync(reportPath)) {
-            reportBody = fs.readFileSync(reportPath, 'utf8');
-          }
-
-          const finalComment = `❌ **Marketplace Validation Failed**
-          <details>
-          <summary>Click to view the full validation report</summary>
-          ---
-          ${reportBody}
-          </details>`;
-
-          github.rest.issues.createComment({
-            issue_number: context.issue.number,
-            owner: context.repo.owner,
-            repo: context.repo.repo,
-            body: finalComment
-          });
-
-    # Fails the entire workflow run if the validation step resulted in a failure.
-    - name: Fail the workflow if validation failed
-      if: steps.validate.outcome == 'failure'
-      run: |
-        echo "Validation step failed. Failing the workflow."
-        exit 1
-
-    # Uploads the validation report as an artifact.
-    # 'if: always()' ensures this step runs even if previous steps failed.
     - name: Upload Markdown Report Artifact
-      if: always()
+      if: steps.validate.outcome == 'failure'
       uses: actions/upload-artifact@v4
       with:
         name: validation-report-md
         path: ./artifacts/validation_report.md
         retention-days: 2
+
+    - name: Fail the workflow if validation failed
+      if: steps.validate.outcome == 'failure'
+      run: |
+        echo "Validation step failed. Failing the workflow."
+        exit 1
