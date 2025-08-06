@@ -1,9 +1,4 @@
 name: Validate marketplace integrations
-
-# Define permissions for the GITHUB_TOKEN.
-# 'contents: read' is needed for actions/checkout.
-# 'issues: write' is the minimal permission required to add comments to PRs/Issues.
-# This is more restrictive and secure than 'pull-requests: write'.
 permissions:
   contents: read
   issues: write
@@ -12,21 +7,14 @@ on:
   push:
     branches:
     - '**'
-  # Use 'pull_request_target' for PRs from forks.
-  # This event runs in the context of the base repository and grants the
-  # defined permissions, enabling commenting.
-  # It will still require manual approval for external contributors from forks.
   pull_request_target:
-    types: [opened, synchronize] # Trigger on PR opening and new pushes to the PR
+    types: [opened, synchronize]
 
 jobs:
   mp_validates:
     runs-on: ubuntu-latest
 
     steps:
-    # Conditional checkout for pull_request_target events
-    # This ensures we checkout the specific PR head for security and correctness
-    # when the workflow is triggered by a pull request from a fork.
     - name: Checkout PR head (for pull_request_target)
       if: github.event_name == 'pull_request_target'
       uses: actions/checkout@v4
@@ -34,15 +22,11 @@ jobs:
         fetch-depth: 0
         ref: ${{ github.event.pull_request.head.sha }}
 
-    # Conditional checkout for push events
-    # This ensures the workflow checks out the current branch for direct pushes.
     - name: Checkout current branch (for push)
       if: github.event_name == 'push'
       uses: actions/checkout@v4
       with:
         fetch-depth: 0
-        # For push events, 'github.ref' refers to the branch or tag that triggered the workflow.
-        # This ensures the correct code is checked out for direct pushes.
         ref: ${{ github.ref }}
 
     - name: Set up Python
@@ -60,20 +44,13 @@ jobs:
       continue-on-error: true
       shell: bash
       env:
-        # Pass the PR head SHA as an environment variable to the Python script
-        # ONLY if the event is pull_request_target.
-        # This is needed because GITHUB_SHA points to the base branch for pull_request_target.
         PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
       run: |
-        # Your Python script will need to read PR_HEAD_SHA instead of GITHUB_SHA
-        # when running in the context of a pull_request_target event.
         mp config --marketplace-path . --processes 10 --display-config
         mp validate --repository third_party --only-pre-build
 
     - name: Comment on PR with Collapsible Report
-      # This step will now succeed because the workflow has 'issues: write' permission.
-      # The condition ensures it only runs for pull_request_target events and if validation failed.
-      if: github.event_name == 'pull_request_target' && steps.validate.outcome == 'failure'
+      if: steps.validate.outcome == 'failure'
       uses: actions/github-script@v7
       with:
         script: |
@@ -96,14 +73,12 @@ jobs:
           });
 
     - name: Fail the workflow if validation failed
-      # This step runs for both push and pull_request_target if validation failed.
       if: steps.validate.outcome == 'failure'
       run: |
         echo "Validation step failed. Failing the workflow."
         exit 1
 
     - name: Upload Markdown Report Artifact
-      # This step runs regardless of success or failure.
       if: always()
       uses: actions/upload-artifact@v4
       with:
