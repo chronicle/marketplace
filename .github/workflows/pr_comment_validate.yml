@@ -1,4 +1,4 @@
-name: Comment on PR
+name: Comment on Validate PR
 
 permissions:
   pull-requests: write
