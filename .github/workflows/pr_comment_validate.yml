@@ -1,75 +1,44 @@
-name: Comment on Validate PR
+# .github/workflows/commenter.yml
+name: Comment on Validation Failure
 
+# This workflow is triggered by the completion of another workflow.
+on:
+  workflow_run:
+    # The name of the workflow that must complete before this one runs.
+    workflows: ["Validate marketplace integrations"]
+    types:
+    - completed
+
+# These permissions are granted because this workflow runs in the context
+# of the base repository, not the fork.
 permissions:
   pull-requests: write
 
-on:
-  workflow_run:
-    workflows: ["Validate marketplace integrations"]
-    types: [completed]
-
 jobs:
-  comment:
+  comment_on_pr:
     runs-on: ubuntu-latest
-    if: >
-      github.event.workflow_run.conclusion == 'failure' &&
-      github.event.workflow_run.event == 'pull_request'
+    
+    # We only want to run this job if:
+    # 1. The triggering workflow failed.
+    # 2. The triggering event was a pull request.
+    if: github.event.workflow_run.conclusion == 'failure' && github.event.workflow_run.event == 'pull_request'
+
     steps:
-    - name: Download and comment with validation report
+    - name: Download validation report artifact
+      uses: actions/download-artifact@v4
+      with:
+        name: validation-report-md
+        # The artifact is downloaded from the triggering workflow run
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        run-id: ${{ github.event.workflow_run.id }}
+
+    - name: Comment on PR with Collapsible Report
       uses: actions/github-script@v7
       with:
         script: |
-          const { Octokit } = require("@octokit/rest");
-          const { Buffer } = require("buffer");
-          const AdmZip = require("adm-zip");
-          
-          const githubToken = process.env.GITHUB_TOKEN;
-          const octokit = new Octokit({ auth: githubToken });
-          
-          let artifact;
-          try {
-            const artifacts = await octokit.rest.actions.listWorkflowRunArtifacts({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              run_id: context.payload.workflow_run.id
-            });
-          
-            if (artifacts.data.artifacts.length === 0) {
-              console.log("No artifacts found in the triggering workflow run.");
-              return; // Exit if no artifacts are found
-            }
-
-            const validationReportArtifact = artifacts.data.artifacts.find(a => a.name === 'validation-report-md');
-
-            if (!validationReportArtifact) {
-              console.log("Validation report artifact 'validation-report-md' not found.");
-              return;
-            }
-
-            artifact = await octokit.rest.actions.downloadArtifact({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              artifact_id: validationReportArtifact.id,
-              archive_format: 'zip' // Artifacts are downloaded as zip files
-            });
-          } catch (error) {
-            console.error('Failed to download artifact:', error);
-            core.setFailed('Failed to download artifact.'); // Mark step as failed
-            return;
-          }
-          
           const fs = require('fs');
-          const zip = new AdmZip(Buffer.from(artifact.data));
-          zip.extractAllTo('./', true); // Extract to the current working directory, overwriting if necessary
-          
-          const reportPath = './validation_report.md'; // Path to the unzipped markdown report file
-          let reportBody = '';
-          try {
-            reportBody = fs.readFileSync(reportPath, 'utf8');
-          } catch (readError) {
-            console.error(`Failed to read report file at ${reportPath}:`, readError);
-            reportBody = `Could not retrieve the full validation report. Error: ${readError.message}`;
-          }
+          const reportPath = './validation_report.md'; // Path where download-artifact places the file
+          const reportBody = fs.readFileSync(reportPath, 'utf8');
 
           const finalComment = `❌ **Marketplace Validation Failed**
           <details>
@@ -77,11 +46,12 @@ jobs:
           ---
           ${reportBody}
           </details>`;
-          
-          const pr_number = context.payload.workflow_run.pull_requests[0].number;
-          
+
+          // Get the PR number from the 'workflow_run' event payload
+          const prNumber = github.event.workflow_run.pull_requests[0].number;
+
           github.rest.issues.createComment({
-            issue_number: pr_number,
+            issue_number: prNumber,
             owner: context.repo.owner,
             repo: context.repo.repo,
             body: finalComment

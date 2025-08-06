@@ -1,17 +1,18 @@
+# .github/workflows/validate.yml
 name: Validate marketplace integrations
 
-permissions:
-  contents: read
-  actions: write
-
+# This workflow still runs on push and pull_request events from anyone.
 on:
   push:
     branches:
     - '**'
   pull_request:
-    types: [opened, synchronize]
     branches:
     - '**'
+
+# Permissions for this workflow are read-only, which is safe for PRs from forks.
+permissions:
+  contents: read
 
 jobs:
   mp_validates:
@@ -35,22 +36,26 @@ jobs:
 
     - name: Run Validations
       id: validate
-      continue-on-error: true
+      continue-on-error: true # Continue even if validation fails so we can upload artifacts
       shell: bash
       run: |
         mp config --marketplace-path . --processes 10 --display-config
         mp validate --repository third_party --only-pre-build
 
-    - name: Fail the workflow if validation failed
-      if: steps.validate.outcome == 'failure'
-      run: |
-        echo "Validation step failed. Failing the workflow."
-        exit 1
+    # We no longer try to comment from here.
 
     - name: Upload Markdown Report Artifact
+      # always() ensures this runs even if the validation step failed.
       if: always()
       uses: actions/upload-artifact@v4
       with:
         name: validation-report-md
         path: ./artifacts/validation_report.md
-        retention-days: 2
+        retention-days: 7 # Keep artifact for a reasonable time for the second workflow
+
+    - name: Fail the workflow if validation failed
+      # This step ensures the PR check is marked as failed.
+      if: steps.validate.outcome == 'failure'
+      run: |
+        echo "Validation step failed. Failing the workflow."
+        exit 1
