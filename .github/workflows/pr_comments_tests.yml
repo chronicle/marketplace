@@ -1,0 +1,83 @@
+name: Comment on Test PR
+
+permissions:
+  pull-requests: write
+
+on:
+  workflow_run:
+    workflows: ["Test integrations"]
+    types: [completed]
+
+jobs:
+  comment:
+    runs-on: ubuntu-latest
+    if: >
+      github.event.workflow_run.conclusion == 'failure' &&
+      github.event.workflow_run.event == 'pull_request'
+    steps:
+    - name: Download and comment with test report
+      uses: actions/github-script@v7
+      with:
+        script: |
+          const { Octokit } = require("@octokit/rest");
+          const { Buffer } = require("buffer");
+          const AdmZip = require("adm-zip");
+          
+          const githubToken = process.env.GITHUB_TOKEN;
+          const octokit = new Octokit({ auth: githubToken });
+          
+          let artifact;
+          try {
+            const artifacts = await octokit.rest.actions.listWorkflowRunArtifacts({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              run_id: context.payload.workflow_run.id
+            });
+          
+            if (artifacts.data.artifacts.length === 0) {
+              console.log("No artifacts found in the triggering workflow run.");
+              return;
+            }
+
+            const testReportArtifact = artifacts.data.artifacts.find(a => a.name === 'test-report-md');
+
+            if (!testReportArtifact) {
+              console.log("Test report artifact 'test-report-md' not found.");
+              return;
+            }
+
+            // Download the artifact
+            artifact = await octokit.rest.actions.downloadArtifact({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              artifact_id: testReportArtifact.id,
+              archive_format: 'zip'
+            });
+          } catch (error) {
+            console.error('Failed to download artifact:', error);
+            core.setFailed('Failed to download artifact.');
+            return;
+          }
+          
+          const fs = require('fs');
+          const zip = new AdmZip(Buffer.from(artifact.data));
+          zip.extractAllTo('./', true); // Extract to current directory
+          
+          const reportPath = './test_report.md'; // Path to the unzipped report file
+          const reportBody = fs.readFileSync(reportPath, 'utf8');
+
+          const finalComment = `❌ **Integration Tests Failed**
+          <details>
+          <summary>Click to view the full test report</summary>
+          ---
+          ${reportBody}
+          </details>`;
+          
+          const pr_number = context.payload.workflow_run.pull_requests[0].number;
+          
+          github.rest.issues.createComment({
+            issue_number: pr_number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            body: finalComment
+          });

@@ -2,14 +2,14 @@ name: Validate marketplace integrations
 
 permissions:
   contents: read
-  issues: write
 
 on:
   push:
     branches:
     - '**'
-  pull_request_target:
-    types: [opened, synchronize] # Trigger on PR opening and new pushes to the PR
+  pull_request:
+    branches:
+    - '**'
 
 jobs:
   mp_validates:
@@ -20,7 +20,6 @@ jobs:
       uses: actions/checkout@v4
       with:
         fetch-depth: 0
-        ref: ${{ github.event.pull_request.head.sha }}
 
     - name: Set up Python
       uses: actions/setup-python@v5
@@ -39,29 +38,6 @@ jobs:
       run: |
         mp config --marketplace-path . --processes 10 --display-config
         mp validate --repository third_party --only-pre-build
-
-    - name: Comment on PR with Collapsible Report
-      if: steps.validate.outcome == 'failure'
-      uses: actions/github-script@v7
-      with:
-        script: |
-          const fs = require('fs');
-          const reportPath = './artifacts/validation_report.md';
-          const reportBody = fs.readFileSync(reportPath, 'utf8');
-
-          const finalComment = `❌ **Marketplace Validation Failed**
-          <details>
-          <summary>Click to view the full validation report</summary>
-          ---
-          ${reportBody}
-          </details>`;
-          
-          github.rest.issues.createComment({
-            issue_number: context.issue.number,
-            owner: context.repo.owner,
-            repo: context.repo.repo,
-            body: finalComment
-          });
 
     - name: Fail the workflow if validation failed
       if: steps.validate.outcome == 'failure'
