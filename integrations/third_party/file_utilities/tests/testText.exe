@@ -1,0 +1,6 @@
+
+
+exe_content = b'MZ' + b'\x00' * 100
+
+with open('testText.exe', 'wb') as f:
+    f.write(exe_content)
