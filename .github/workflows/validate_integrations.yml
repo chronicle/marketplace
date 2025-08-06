@@ -2,12 +2,14 @@ name: Validate marketplace integrations
 
 permissions:
   contents: read
+  actions: write
 
 on:
   push:
     branches:
     - '**'
   pull_request:
+    types: [opened, synchronize]
     branches:
     - '**'
 

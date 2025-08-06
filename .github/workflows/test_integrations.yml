@@ -2,6 +2,7 @@ name: Test integrations
 
 permissions:
   contents: read
+  actions: write
 
 on:
   push:
