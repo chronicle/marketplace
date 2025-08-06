@@ -80,7 +80,7 @@ jobs:
     # Comments on the Pull Request if validation fails.
     # This step only runs if the event is a 'pull_request_target' AND the 'validate' step failed.
     - name: Comment on PR with Collapsible Report
-      if: (github.event_name == 'pull_request_target' || github.event_name == 'push') && steps.validate.outcome == 'failure'
+      if: github.event_name == 'pull_request_target' && steps.validate.outcome == 'failure'
       uses: actions/github-script@v7
       with:
         script: |
