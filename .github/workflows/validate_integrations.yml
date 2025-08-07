@@ -1,4 +1,4 @@
-name: Validate marketplace integrations
+name: 'Validate marketplace integrations'
 
 on:
   pull_request:
