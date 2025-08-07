@@ -1,5 +1,5 @@
 version = 1
-revision = 2
+revision = 3
 requires-python = "==3.11.*"
 
 [[package]]
@@ -339,10 +339,12 @@ dependencies = [
 
 [package.dev-dependencies]
 dev = [
+    { name = "environmentcommon" },
     { name = "integration-testing" },
     { name = "pytest" },
     { name = "pytest-json-report" },
     { name = "soar-sdk" },
+    { name = "tipcommon" },
 ]
 
 [package.metadata]
@@ -350,10 +352,12 @@ requires-dist = [{ name = "requests", specifier = ">=2.32.3" }]
 
 [package.metadata.requires-dev]
 dev = [
-    { name = "integration-testing", directory = "../../../packages/integration_testing" },
+    { name = "environmentcommon", path = "../../../packages/envcommon/EnvironmentCommon-1.0.2/EnvironmentCommon-1.0.2-py2.py3-none-any.whl" },
+    { name = "integration-testing", path = "../../../packages/integration_testing_whls/integration_testing-2.2.7-py3-none-any.whl" },
     { name = "pytest", specifier = ">=8.3.5" },
     { name = "pytest-json-report", specifier = ">=1.5.0" },
     { name = "soar-sdk", git = "https://github.com/chronicle/soar-sdk.git" },
+    { name = "tipcommon", path = "../../../packages/tipcommon/TIPCommon-2.2.7/TIPCommon-2.2.7-py2.py3-none-any.whl" },
 ]
 
 [[package]]
@@ -416,8 +420,8 @@ wheels = [
 
 [[package]]
 name = "integration-testing"
-version = "1.1.2"
-source = { directory = "../../../packages/integration_testing" }
+version = "2.2.7"
+source = { path = "../../../packages/integration_testing_whls/integration_testing-2.2.7-py3-none-any.whl" }
 dependencies = [
     { name = "aiohttp" },
     { name = "environmentcommon" },
@@ -427,26 +431,19 @@ dependencies = [
     { name = "tipcommon" },
     { name = "yarl" },
 ]
+wheels = [
+    { filename = "integration_testing-2.2.7-py3-none-any.whl", hash = "sha256:50d8f71e80162f4b312c1048d775fc4247cae15933b2d6954b5b941ed5555b53" },
+]
 
 [package.metadata]
 requires-dist = [
     { name = "aiohttp", specifier = ">=3.12.13" },
-    { name = "environmentcommon", path = "../../../packages/envcommon/EnvironmentCommon-1.0.2/EnvironmentCommon-1.0.2-py2.py3-none-any.whl" },
+    { name = "environmentcommon" },
     { name = "pyyaml", specifier = ">=6.0.2" },
     { name = "requests", specifier = ">=2.32.3" },
-    { name = "soar-sdk", git = "https://github.com/chronicle/soar-sdk.git" },
-    { name = "tipcommon", path = "../../../packages/tipcommon/TIPCommon-2.2.7/TIPCommon-2.2.7-py2.py3-none-any.whl" },
+    { name = "soar-sdk" },
+    { name = "tipcommon" },
     { name = "yarl", specifier = ">=1.20.1" },
-]
-
-[package.metadata.requires-dev]
-dev = [
-    { name = "mypy", specifier = ">=1.16.0" },
-    { name = "pytest", specifier = ">=8.4.0" },
-    { name = "pytest-xdist", specifier = ">=3.7.0" },
-    { name = "ruff", specifier = ">=0.11.13" },
-    { name = "types-pyyaml", specifier = ">=6.0.12.20250516" },
-    { name = "types-requests", specifier = ">=2.32.0.20250611" },
 ]
 
 [[package]]

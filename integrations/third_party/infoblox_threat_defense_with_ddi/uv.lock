@@ -1,5 +1,5 @@
 version = 1
-revision = 2
+revision = 3
 requires-python = "==3.11.*"
 
 [[package]]
@@ -300,6 +300,7 @@ dependencies = [
 
 [package.dev-dependencies]
 dev = [
+    { name = "environmentcommon" },
     { name = "pytest" },
     { name = "soar-sdk" },
 ]
@@ -313,6 +314,7 @@ requires-dist = [
 
 [package.metadata.requires-dev]
 dev = [
+    { name = "environmentcommon", path = "../../../packages/envcommon/EnvironmentCommon-1.0.2/EnvironmentCommon-1.0.2-py2.py3-none-any.whl" },
     { name = "pytest", specifier = ">=8.4.0" },
     { name = "soar-sdk", git = "https://github.com/chronicle/soar-sdk.git" },
 ]
