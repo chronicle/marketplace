@@ -52,7 +52,11 @@ class AsyncActionExample(BaseAction):
             print_value=True,
         )
         self.params.additional_data = json.loads(
-            extract_action_param(self.soar_action, "additional_data", "{}"),
+            extract_action_param(
+                siemplify=self.soar_action,
+                param_name="additional_data",
+                default_value="{}",
+            ),
         )
 
     def _validate_params(self):
@@ -106,7 +110,6 @@ class AsyncActionExample(BaseAction):
             case_ids,
             self.params.case_tag_to_wait_for,
         )
-        self.logger.info(f"Testing::{case_tags_status}")
         for case_id, status in case_tags_status.items():
             if status:
                 self.logger.info(

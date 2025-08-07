@@ -86,6 +86,10 @@ class AuthManager:
         """Preparse session object to be used in API session."""
         session = CreateSession.create_session()
         session.verify = self.params.verify_ssl
-        password = self.params.password.encode("utf-8").decode("iso-8859-1")
+        password = (
+            self.params.password.encode("utf-8").decode("iso-8859-1")
+            if self.params.password
+            else ""
+        )
         session.headers.update({"dummy-password-header": f"{password}"})
         return session

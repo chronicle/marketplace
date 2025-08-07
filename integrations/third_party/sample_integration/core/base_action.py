@@ -38,3 +38,11 @@ class BaseAction(Action, ABC):
         with open(file_path, "w") as f:
             f.write(content)
         return file_path
+
+    @property
+    def result_value(self) -> bool:
+        return self._result_value
+
+    @result_value.setter
+    def result_value(self, value: bool) -> None:
+        self._result_value = value
