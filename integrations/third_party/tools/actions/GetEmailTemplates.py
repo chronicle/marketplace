@@ -38,12 +38,21 @@ def main():
     )
 
     email_templates = get_email_template(siemplify)
+    HTML_TYPES = {1, "HtmlFormat"}
+    STANDARD_TYPES = {0, "Template"}
     res = []
+
     for template in email_templates:
-        if (template["type"] == 1 and template_type == "HTML") or (
-            template["type"] == 0 and template_type == "Standard"
+        template_json = template.to_json()
+        template_type_value = template_json.get("type")
+
+        if (
+            (template_type == "HTML" and template_type_value in HTML_TYPES)
+            or
+            (template_type == "Standard" and template_type_value in STANDARD_TYPES)
         ):
-            res.append(template)
+            res.append(template_json)
+
     siemplify.result.add_result_json({"templates": res})
     siemplify.end(output_message, json.dumps(res), status)
 
