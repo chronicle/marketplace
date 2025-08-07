@@ -1,0 +1,112 @@
+name: 'Comment on Test Failure'
+
+on:
+  workflow_run:
+    # This now watches the "Test Integrations" workflow
+    workflows: ["Test Integrations"]
+    types:
+      - completed
+
+permissions:
+  pull-requests: write
+
+jobs:
+  post_comment:
+    runs-on: ubuntu-latest
+
+    if: github.event.workflow_run.conclusion == 'failure'
+
+    steps:
+      # ====================================================================
+      # DEBUG STEP 1: See what artifacts GitHub thinks are available for this run.
+      # ====================================================================
+      - name: 'DEBUG: List available artifacts for this workflow run'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const { owner, repo } = context.repo;
+            const run_id = ${{ github.event.workflow_run.id }};
+            try {
+              const artifacts = await github.rest.actions.listWorkflowRunArtifacts({
+                owner,
+                repo,
+                run_id,
+              });
+              console.log(`Found ${artifacts.data.total_count} artifacts for run ID ${run_id}:`);
+              for (const artifact of artifacts.data.artifacts) {
+                console.log(`  - ${artifact.name} (ID: ${artifact.id}, Size: ${artifact.size_in_bytes} bytes)`);
+              }
+              if (artifacts.data.total_count === 0) {
+                core.setFailed('No artifacts were found. The upload in the previous workflow likely failed.');
+              }
+            } catch (error) {
+              console.error(`Error fetching artifacts: ${error.message}`);
+              core.setFailed(error.message);
+            }
+
+      - name: Download test report
+        uses: actions/download-artifact@v4
+        with:
+          # This now looks for the artifact from the test workflow
+          name: test-report-md
+          run-id: ${{ github.event.workflow_run.id }}
+
+      # ====================================================================
+      # DEBUG STEP 2: List all files and directories after download.
+      # ====================================================================
+      - name: 'DEBUG: List files in the current directory'
+        run: |
+          echo "Current working directory is: $PWD"
+          echo "Listing all files and directories recursively..."
+          ls -R
+
+      - name: Comment on PR with Collapsible Report
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            // This now looks for the test report file
+            const reportPath = './test_report.md';
+            
+            console.log(`Attempting to read report from path: ${reportPath}`);
+
+            if (!fs.existsSync(reportPath)) {
+              console.log('--- DEBUG INFO ---');
+              console.log('Test report file not found at the expected path.');
+              console.log('Please check the "List files" step above to see where the file was actually downloaded.');
+              console.log('--- END DEBUG INFO ---');
+              core.setFailed('Report file does not exist after download.');
+              return;
+            }
+            const reportBody = fs.readFileSync(reportPath, 'utf8');
+            
+            // Find the correct PR to comment on
+            const response = await github.rest.pulls.list({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              head: `${github.event.workflow_run.head_repository.owner.login}:${github.event.workflow_run.head_branch}`
+            });
+            const pr = response.data[0];
+            if (!pr) {
+              console.log('No matching PR found for this workflow run.');
+              return;
+            }
+
+            // The comment text is updated for test failures
+            const finalComment = `❌ **Integration Tests Failed**
+            <details>
+            <summary>Click to view the full test report</summary>
+            
+            ---
+            
+            ${reportBody}
+            
+            </details>`;
+            
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: pr.number,
+              body: finalComment
+            });
+
