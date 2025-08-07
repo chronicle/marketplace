@@ -1,0 +1,62 @@
+# .github/workflows/commenter.yml
+name: 'Comment on PR'
+
+# This workflow is triggered after another workflow completes.
+on:
+  workflow_run:
+    # Watch for the 'PR Validation' workflow
+    workflows: ["Validate marketplace integrations"]
+    types:
+      - completed
+
+permissions:
+  pull-requests: write # Only this workflow gets write permissions
+
+jobs:
+  post_comment:
+    runs-on: ubuntu-latest
+
+    # Only run this job if the triggering workflow failed.
+    if: github.event.workflow_run.conclusion == 'failure'
+
+    steps:
+      - name: Download validation report
+        uses: actions/download-artifact@v4
+        with:
+          name: validation-report
+          # The artifact is from the run that triggered this workflow
+          run-id: ${{ github.event.workflow_run.id }}
+
+      - name: Comment on PR with Collapsible Report
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            // Find the pull request associated with the commit SHA
+            const pr_response = await github.rest.pulls.list({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              head: `${github.event.workflow_run.head_repository.owner.login}:${github.event.workflow_run.head_branch}`
+            });
+            const pr = pr_response.data[0];
+            if (!pr) {
+              console.log('No matching PR found.');
+              return;
+            }
+
+            const reportPath = './validation_report.md';
+            const reportBody = fs.readFileSync(reportPath, 'utf8');
+
+            const finalComment = `❌ **Marketplace Validation Failed**
+            <details>
+            <summary>Click to view the full validation report</summary>
+            ---
+            ${reportBody}
+            </details>`;
+            
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: pr.number,
+              body: finalComment
+            });
