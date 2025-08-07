@@ -673,3 +673,43 @@
   regressive: false
   deprecated: false
   removed: false
+- description: dependency cleanup on close
+  integration_version: 34.0
+  item_name: GitSync
+  item_type: Jobs
+  publish_time: '2025-07-31'
+  ticket_number: 'xxx'
+  new: false
+  regressive: false
+  deprecated: false
+  removed: false
+- description: Bug Fix in Push Integration action
+  integration_version: 35.0
+  item_name: GitSync
+  item_type: Jobs
+  publish_time: '2025-08-03'
+  ticket_number: '434972629'
+  new: false
+  regressive: false
+  deprecated: false
+  removed: false
+- description: Update dependency
+  integration_version: 36.0
+  item_name: GitSync
+  item_type: Jobs
+  publish_time: '2025-08-04'
+  ticket_number: '432139863'
+  new: false
+  regressive: false
+  deprecated: false
+  removed: false
+- description: Bug fix in fetching integration instance id by name
+  integration_version: 37.0
+  item_name: GitSync
+  item_type: Jobs
+  publish_time: '2025-08-06'
+  ticket_number: '436327198'
+  new: false
+  regressive: false
+  deprecated: false
+  removed: false

@@ -1,0 +1,66 @@
+name: Get Custom List
+description: Retrieves the contents of a custom list.
+integration_identifier: InfobloxThreatDefenseWithDDI
+parameters:
+- name: Custom List ID
+  default_value: ''
+  type: string
+  description: Specify the ID of the Custom List to retrieve.
+  is_mandatory: false
+- name: Name
+  default_value: null
+  type: string
+  description: The name of the custom list.
+  is_mandatory: false
+- name: Type
+  default_value: custom_list
+  type: string
+  description: The type of the custom list.
+  is_mandatory: false
+- name: Tag Filter
+  default_value: null
+  type: string
+  description: "Filter security policy by specific tags format: '<tag_name>'='<tag_value>'."
+  is_mandatory: false
+- name: Tag Sort Filter
+  default_value: null
+  type: string
+  description: 'Sort Custom List by Tags (e.g.: Test1).'
+  is_mandatory: false
+- name: Offset
+  default_value: '0'
+  type: string
+  description: Specify the offset from where to start pagination.
+  is_mandatory: false
+- name: Limit
+  default_value: '100'
+  type: string
+  description: Specify the maximum number of results to return.
+  is_mandatory: false
+dynamic_results_metadata:
+- result_name: JsonResult
+  show_result: true
+  result_example: "{\n    \"results\": [\n        {\n            \"confidence_level\"\
+    : \"LOW\",\n            \"created_time\": \"2025-06-26T12:36:15Z\",\n        \
+    \    \"description\": \"Named List A Description\",\n            \"id\": 831056,\n\
+    \            \"item_count\": 2,\n            \"name\": \"block_unblock_IP_TEST1\"\
+    ,\n            \"policies\": [\n                \"test-policy\"\n            ],\n\
+    \            \"tags\": {},\n            \"threat_level\": \"INFO\",\n        \
+    \    \"type\": \"custom_list\",\n            \"updated_time\": \"2025-07-04T12:02:36Z\"\
+    \n        },\n        {\n            \"confidence_level\": \"LOW\",\n        \
+    \    \"created_time\": \"2025-04-24T12:46:56Z\",\n            \"description\"\
+    : \"Named List A Description\",\n            \"id\": 827783,\n            \"item_count\"\
+    : 3,\n            \"name\": \"block_unblock_IP_TEST1_UPDATED\",\n            \"\
+    policies\": [\n                \"New Network Policy\"\n            ],\n      \
+    \      \"tags\": {},\n            \"threat_level\": \"INFO\",\n            \"\
+    type\": \"custom_list\",\n            \"updated_time\": \"2025-07-04T12:02:01Z\"\
+    \n        },\n        {\n            \"confidence_level\": \"HIGH\",\n       \
+    \     \"created_time\": \"2024-07-03T17:36:56Z\",\n            \"description\"\
+    : \"\",\n            \"id\": 808094,\n            \"item_count\": 19,\n      \
+    \      \"name\": \"ConfigError\",\n            \"policies\": [\n             \
+    \   \"Config Error\"\n            ],\n            \"tags\": null,\n          \
+    \  \"threat_level\": \"LOW\",\n            \"type\": \"custom_list\",\n      \
+    \      \"updated_time\": \"2025-05-14T09:10:19Z\"\n        }\n    ]\n}"
+default_result_value: ''
+creator: Admin
+script_result_name: ScriptResult

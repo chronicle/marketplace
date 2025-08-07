@@ -249,19 +249,29 @@ def mypy(paths: Iterable[pathlib.Path], /, **flags: bool | str) -> int:
 
 def run_script_on_paths(
     script_path: pathlib.Path,
-    test_paths: Iterable[pathlib.Path],
+    *test_paths: pathlib.Path,
 ) -> int:
     """Run a custom script on the provided paths.
 
     Returns:
-        A tuple of the status code and output
+        The status code of the output
 
     """
-    path: str = f"{script_path.resolve().absolute()}"
-    chmod_command: list[str] = ["chmod", "+x", path]
+    script_full_path: str = f"{script_path.resolve().absolute()}"
+
+    chmod_command: list[str] = ["chmod", "+x", script_full_path]
     sp.run(chmod_command, check=True)  # noqa: S603
-    command: list[str] = [f"{script_path.resolve().absolute()}"]
-    return execute_command_and_get_output(command, test_paths)
+
+    command: list[str] = [script_full_path] + [str(p) for p in test_paths]
+
+    result = sp.run(  # noqa: S603
+        command,
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+
+    return result.returncode
 
 
 def execute_command_and_get_output(

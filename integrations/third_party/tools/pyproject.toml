@@ -18,13 +18,15 @@ dependencies = [
 
 [dependency-groups]
 dev = [
+    "environmentcommon",
     "integration-testing",
+    "pytest-json-report>=1.5.0",
     "pytest>=8.3.5",
     "soar-sdk",
 ]
 
 [tool.uv.sources]
 environmentcommon = { path = "../../../packages/envcommon/EnvironmentCommon-1.0.2/EnvironmentCommon-1.0.2-py2.py3-none-any.whl" }
-integration-testing = { path = "../../../packages/integration_testing" }
+integration-testing = { path = "../../../packages/integration_testing_whls/integration_testing-2.2.7-py3-none-any.whl" }
 soar-sdk = { git = "https://github.com/chronicle/soar-sdk.git" }
 tipcommon = { path = "../../../packages/tipcommon/TIPCommon-2.2.7/TIPCommon-2.2.7-py2.py3-none-any.whl" }
