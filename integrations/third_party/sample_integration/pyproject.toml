@@ -1,0 +1,22 @@
+[project]
+name = "SampleIntegration"
+version = "1.0"
+description = "This is an educational integration designed to showcase the most common design patterns, when working with actions, connectors and jobs."
+requires-python = ">=3.11,<3.12"
+dependencies = [
+    "environmentcommon",
+    "tipcommon",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.3.5",
+    "soar-sdk",
+    "integration-testing",
+]
+
+[tool.uv.sources]
+soar-sdk = { git = "https://github.com/chronicle/soar-sdk" }
+tipcommon = { path = "../../../packages/tipcommon/TIPCommon-2.2.9/TIPCommon-2.2.9-py2.py3-none-any.whl" }
+environmentcommon = { path = "../../../packages/envcommon/EnvironmentCommon-1.0.2/EnvironmentCommon-1.0.2-py2.py3-none-any.whl" }
+integration-testing = { path = "../../../packages/integration_testing" }

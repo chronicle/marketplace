@@ -1,0 +1,21 @@
+name: Simple Job Example
+parameters:
+    -   name: API Root
+        default_value: https://api.vatcomply.com
+        type: string
+        description: API Root for the integration. In this case, we are integrating with "api.vatcomply.com" service.
+        is_mandatory: true
+    -   name: Password Field
+        default_value: Google SecOps
+        type: password
+        description: Example of API password field parameter. API doesn't require authentication, this parameter is just for showcase purpose.
+        is_mandatory: false
+    -   name: Verify SSL
+        default_value: true
+        type: boolean
+        description: If selected, the integration validates the SSL certificate when connecting to API Service. Selected by default.
+        is_mandatory: true
+description: 'This is an example of a simple job. It has 2 functions: if a case has a tag "Closed", it will close the
+    case from the job, if a case has a tag "Currency", it will add a comment to the case.'
+integration: SampleIntegration
+creator: Admin
