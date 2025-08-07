@@ -3,7 +3,13 @@ description: 'Example of an async action in Google SecOps. This action will not 
 dynamic_results_metadata:
   - result_name: JsonResult
     show_result: true
-    result_example: "{}"
+    result_example: |
+        [
+            {
+            "case_id": "1",
+            "tags": ["Async"]
+            }
+        ]
 integration_identifier: SampleIntegration
 is_async: true
 name: Async Action Example

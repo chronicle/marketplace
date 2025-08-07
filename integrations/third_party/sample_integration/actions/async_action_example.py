@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import json
 from typing import Iterable, NoReturn
 
@@ -7,20 +9,19 @@ from TIPCommon.rest.soar_api import get_case_overview_details
 from TIPCommon.smp_time import is_approaching_action_timeout
 from TIPCommon.validation import ParameterValidator
 
-from ..core.base_action import BaseAction
-from ..core.constants import ASYNC_ACTION_EXAMPLE_SCRIPT_NAME
+from base_action import BaseAction
+from constants import ASYNC_ACTION_EXAMPLE_SCRIPT_NAME
 
-DEFAULT_CASE_TAG_TO_WAIT_FOR = "Async"
+DEFAULT_CASE_TAG_TO_WAIT_FOR: str = "Async"
 
-SUCCESS_MESSAGE = 'The following cases have tag "{tag}": {case_ids}'
-PENDING_MESSAGE = 'Action is waiting for the cases "{case_ids}" to have a tag {tag}...'
-TIMEOUT_ERROR_MESSAGE = (
+SUCCESS_MESSAGE: str = 'The following cases have tag "{tag}": {case_ids}'
+PENDING_MESSAGE: str = 'Action is waiting for the cases "{case_ids}" to have a tag {tag}...'
+TIMEOUT_ERROR_MESSAGE: str = (
     "Action ran into a timeout during execution. Please increase the timeout in IDE."
 )
 
 
 class AsyncActionExample(BaseAction):
-
     def __init__(self) -> None:
         super().__init__(ASYNC_ACTION_EXAMPLE_SCRIPT_NAME)
         self.output_message: str = ""
@@ -58,8 +59,7 @@ class AsyncActionExample(BaseAction):
         # If no case IDs provided, use the current case ID
         if not self.params.case_ids:
             self.logger.info(
-                "no Case IDs provided, defaulting to Case ID "
-                f"{self.soar_action.case_id}"
+                f"no Case IDs provided, defaulting to Case ID {self.soar_action.case_id}"
             )
             self.params.case_ids = [self.soar_action.case_id]
             return
@@ -89,16 +89,14 @@ class AsyncActionExample(BaseAction):
                 self.soar_action,
                 case_id,
             )
-            result[case_id] = tag in case.tags
+            result[case_id] = any(case_tag["displayName"] == tag for case_tag in case.tags)
         return result
 
     def _first_run(self):
         self._process_cases(self.params.case_ids)
 
     def _consecutive_run(self):
-        self.cases_with_tag.update(
-            self.params.additional_data.get("cases_with_tag", [])
-        )
+        self.cases_with_tag.update(self.params.additional_data.get("cases_with_tag", []))
         cases_to_process = self.params.additional_data.get("waiting_cases", [])
         self._process_cases(cases_to_process)
 
@@ -108,6 +106,7 @@ class AsyncActionExample(BaseAction):
             case_ids,
             self.params.case_tag_to_wait_for,
         )
+        self.logger.info(f"Testing::{case_tags_status}")
         for case_id, status in case_tags_status.items():
             if status:
                 self.logger.info(
@@ -122,9 +121,7 @@ class AsyncActionExample(BaseAction):
 
     def _perform_action(self, _=None):
         if self._is_approaching_async_timeout():
-            self.logger.info(
-                "Action is approaching async timeout, and will exit gracefully"
-            )
+            self.logger.info("Action is approaching async timeout, and will exit gracefully")
             raise TimeoutError(TIMEOUT_ERROR_MESSAGE)
 
         if self.is_first_run:
@@ -166,12 +163,10 @@ class AsyncActionExample(BaseAction):
             tag=self.params.case_tag_to_wait_for,
         )
         self.execution_state = ExecutionState.IN_PROGRESS
-        self._result_value = json.dumps(
-            {
-                "cases_with_tag": list(self.cases_with_tag),
-                "waiting_cases": list(self.waiting_cases),
-            }
-        )
+        self.result_value = json.dumps({
+            "cases_with_tag": list(self.cases_with_tag),
+            "waiting_cases": list(self.waiting_cases),
+        })
 
 
 def main() -> NoReturn:
