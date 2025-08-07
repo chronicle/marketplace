@@ -1,0 +1,63 @@
+name: Comment on Validation Failure
+
+on:
+  workflow_run:
+    workflows: ["Validate Marketplace Integrations"]
+    types:
+    - completed
+
+permissions:
+  pull-requests: write
+
+jobs:
+  post_comment:
+    runs-on: ubuntu-latest
+
+    if: github.event.workflow_run.conclusion == 'failure'
+
+    steps:
+    - name: Download validation report
+      uses: actions/download-artifact@v4
+      with:
+        name: validation-report-md
+        run-id: ${{ github.event.workflow_run.id }}
+
+    - name: Comment on PR with Collapsible Report
+      uses: actions/github-script@v7
+      with:
+        script: |
+          const fs = require('fs');
+          const response = await github.rest.pulls.list({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            head: `${github.event.workflow_run.head_repository.owner.login}:${github.event.workflow_run.head_branch}`
+          });
+          const pr = response.data[0];
+          if (!pr) {
+            console.log('No matching PR found for this workflow run.');
+            return;
+          }
+          
+          const reportPath = './validation_report.md';
+          if (!fs.existsSync(reportPath)) {
+            console.log('Validation report file not found.');
+            return;
+          }
+          const reportBody = fs.readFileSync(reportPath, 'utf8');
+          
+          const finalComment = `❌ **Marketplace Validation Failed**
+          <details>
+          <summary>Click to view the full validation report</summary>
+          
+          ---
+          
+          ${reportBody}
+          
+          </details>`;
+          
+          await github.rest.issues.createComment({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            issue_number: pr.number,
+            body: finalComment
+          });
