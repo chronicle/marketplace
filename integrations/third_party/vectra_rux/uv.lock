@@ -1,5 +1,5 @@
 version = 1
-revision = 2
+revision = 3
 requires-python = "==3.11.*"
 
 [[package]]
@@ -139,10 +139,10 @@ wheels = [
 
 [[package]]
 name = "environmentcommon"
-version = "1.0.1"
-source = { path = "../../../packages/envcommon/EnvironmentCommon-1.0.1/EnvironmentCommon-1.0.1-py2.py3-none-any.whl" }
+version = "1.0.2"
+source = { path = "../../../packages/envcommon/EnvironmentCommon-1.0.2/EnvironmentCommon-1.0.2-py2.py3-none-any.whl" }
 wheels = [
-    { filename = "environmentcommon-1.0.1-py2.py3-none-any.whl", hash = "sha256:a3652bd23029ca01c7acd8e424bfc69f1525d6a9da81c165cb35ac8d107e091e" },
+    { filename = "environmentcommon-1.0.2-py2.py3-none-any.whl", hash = "sha256:a31d611ddf539fb081cfe9423a8d506d198fb5aefdb225c5534904ef9d80aaaa" },
 ]
 
 [[package]]
@@ -431,6 +431,7 @@ dependencies = [
 
 [package.dev-dependencies]
 dev = [
+    { name = "environmentcommon" },
     { name = "pytest" },
     { name = "pytest-json-report" },
     { name = "soar-sdk" },
@@ -438,13 +439,14 @@ dev = [
 
 [package.metadata]
 requires-dist = [
-    { name = "environmentcommon", path = "../../../packages/envcommon/EnvironmentCommon-1.0.1/EnvironmentCommon-1.0.1-py2.py3-none-any.whl" },
+    { name = "environmentcommon", path = "../../../packages/envcommon/EnvironmentCommon-1.0.2/EnvironmentCommon-1.0.2-py2.py3-none-any.whl" },
     { name = "requests", specifier = ">=2.32.3" },
     { name = "tipcommon", path = "../../../packages/tipcommon/TIPCommon-1.0.12/TIPCommon-1.0.12-py2.py3-none-any.whl" },
 ]
 
 [package.metadata.requires-dev]
 dev = [
+    { name = "environmentcommon", path = "../../../packages/envcommon/EnvironmentCommon-1.0.2/EnvironmentCommon-1.0.2-py2.py3-none-any.whl" },
     { name = "pytest", specifier = ">=8.3.5" },
     { name = "pytest-json-report", specifier = ">=1.5.0" },
     { name = "soar-sdk", git = "https://github.com/chronicle/soar-sdk.git" },
