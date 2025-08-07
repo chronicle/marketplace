@@ -1,5 +1,5 @@
 version = 1
-revision = 3
+revision = 2
 requires-python = "==3.11.*"
 
 [[package]]
@@ -877,8 +877,8 @@ dependencies = [
 
 [[package]]
 name = "tipcommon"
-version = "2.2.8"
-source = { path = "../../../packages/tipcommon/TIPCommon-2.2.8/TIPCommon-2.2.8-py2.py3-none-any.whl" }
+version = "2.2.11"
+source = { path = "../../../packages/tipcommon/TIPCommon-2.2.11/TIPCommon-2.2.11-py2.py3-none-any.whl" }
 dependencies = [
     { name = "google-api-python-client" },
     { name = "google-auth" },
@@ -888,7 +888,7 @@ dependencies = [
     { name = "requests" },
 ]
 wheels = [
-    { filename = "tipcommon-2.2.8-py2.py3-none-any.whl", hash = "sha256:c9459bdf31de0c146ba93501092d32bcb21cb6538c24475d659c6309ded1ddb5" },
+    { filename = "tipcommon-2.2.11-py2.py3-none-any.whl", hash = "sha256:b9b0135c2b4bd0e7c3649c4d0cbe6b2a8ddacf55b71f7e28c94544f4f4890b56" },
 ]
 
 [package.metadata]
@@ -952,7 +952,7 @@ requires-dist = [
     { name = "pyopenssl", specifier = ">=24.3.0" },
     { name = "pyspellchecker", specifier = "==0.8.2" },
     { name = "requests", specifier = ">=2.32.3" },
-    { name = "tipcommon"},
+    { name = "tipcommon", path = "../../../packages/tipcommon/TIPCommon-2.2.11/TIPCommon-2.2.11-py2.py3-none-any.whl" },
     { name = "tldextract", specifier = "==5.1.3" },
 ]
 
