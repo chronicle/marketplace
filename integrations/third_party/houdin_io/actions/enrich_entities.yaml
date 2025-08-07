@@ -1,0 +1,28 @@
+name: Enrich Entities
+description: 'Scan compatible entities on Houdin.io, and add enrichment results for each one.
+    Compatible types are: Public IPv4/IPv6, URL, Domain, MD5, SHA1, SHA256
+    Note: Action is running as async, adjust script timeout value in Google SecOps IDE for action, as needed.'
+integration_identifier: Houdin-io
+is_async: true
+parameters:
+    -   name: scanOn
+        default_value: ''
+        type: multi_choice_parameter
+        description: '(Optional) An array of scanners you want Houdin to use.'
+        is_mandatory: false
+        optional_values:
+            - vt
+            - urlscan
+            - alienvault
+            - abuseipdb
+            - triage
+            - mesmer
+            - servicenow
+dynamic_results_metadata:
+    -   result_name: JsonResult
+        show_result: true
+        # language=json
+        result_example: "[\n  {\n    \"Entity\": \"malicious.com\",\n    \"EntityResult\": {\n      \"scanID\": \"houdin-1232085c-d4cc-43df-b841-e49e81520a3e\",\n      \"clientID\": \"6848b13cd6d2453c384404a0\",\n      \"status\": \"Done\",\n      \"artifact\": \"malicious.com\",\n      \"scanOn\": [\"vt\", \"urlscan\", \"alienvault\", \"abuseipdb\", \"triage\", \"mesmer\"],\n      \"scanResults\": {\n        \"vt\": {\n          \"result\": {\n            \"data\": {\n              \"id\": \"malicious.com\",\n              \"type\": \"domain\",\n              \"attributes\": {\n                \"reputation\": -60,\n                \"last_analysis_stats\": {\n                  \"malicious\": 12,\n                  \"suspicious\": 0,\n                  \"undetected\": 28,\n                  \"harmless\": 54\n                }\n              }\n            }\n          }\n        },\n        \"urlscan\": {\n          \"result\": {\n            \"results\": [\n              {\n                \"task\": {\"url\": \"http://malicious.com/payload.ps1\"},\n                \"page\": {\"status\": \"200\"},\n                \"_id\": \"01983b58-ffc8-777d-903b-fa813685774d\"\n              }\n            ],\n            \"total\": 253\n          }\n        },\n        \"alienvault\": {\n          \"result\": {\n            \"general\": {\n              \"indicator\": \"malicious.com\",\n              \"type\": \"domain\",\n              \"pulse_info\": {\"count\": 4}\n            }\n          }\n        },\n        \"abuseipdb\": {\n          \"result\": {\n            \"ipAddress\": \"149.28.227.54\",\n            \"abuseConfidenceScore\": 0,\n            \"countryCode\": \"US\",\n            \"totalReports\": 0\n          }\n        },\n        \"triage\": {\n          \"result\": {\n            \"lastScan\": {\n              \"analysis\": {\"score\": 5},\n              \"sample\": {\n                \"id\": \"240312-mnz43seh3s\",\n                \"target\": \"http://malicious.com\",\n                \"score\": 5\n              }\n            }\n          }\n        },\n        \"mesmer\": {\n          \"result\": {\n            \"observable\": \"malicious.com\",\n            \"globalScore\": \"9\",\n            \"summary\": \"The domain malicious.com is confirmed malicious with multiple reports.\",\n            \"tags\": [\n              {\"value\": \"Trojan\", \"color\": \"red\", \"source\": \"vt\"},\n              {\"value\": \"Malware\", \"color\": \"red\", \"source\": \"alienvault\"}\n            ]\n          }\n        }\n      },\n      \"scanTime\": \"2025-07-27T17:28:30.905Z\",\n      \"expiresAfter\": \"2025-08-24T17:28:30.905Z\"\n    }\n  }\n]"
+default_result_value: ''
+creator: Admin
+script_result_name: ScriptResult
