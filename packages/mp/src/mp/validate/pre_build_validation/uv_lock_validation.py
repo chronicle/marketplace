@@ -18,13 +18,14 @@ from typing import TYPE_CHECKING
 
 import mp.core.file_utils
 import mp.core.unix
+from mp.core.unix import NonFatalCommandError
 
 if TYPE_CHECKING:
     import pathlib
 
 
 class UvLockValidation:
-    validation_init_msg: str = "[yellow]Running uv lock validation [/yellow]"
+    name: str = "Uv Lock Validation"
 
     def run(self, integration_path: pathlib.Path) -> None:  # noqa: PLR6301
         """Check if the 'uv.lock' file is consistent with 'pyproject.toml' file.
@@ -32,6 +33,14 @@ class UvLockValidation:
         Args:
             integration_path (pathlib.Path): Path to the integration directory.
 
+        Raises:
+        NonFatalCommandError: If the 'uv lock --check' command indicates that the
+                      'uv.lock' file is out of sync or if another error
+                      occurs during the check.
+
         """
         if not mp.core.file_utils.is_built(integration_path):
-            mp.core.unix.check_lock_file(integration_path)
+            try:
+                mp.core.unix.check_lock_file(integration_path)
+            except NonFatalCommandError as e:
+                raise NonFatalCommandError(str(e)) from e

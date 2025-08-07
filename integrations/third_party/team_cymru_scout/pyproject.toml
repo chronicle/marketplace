@@ -16,6 +16,8 @@ tipcommon = { path = "../../../packages/tipcommon/TIPCommon-1.1.9/TIPCommon-1.1.
 
 [dependency-groups]
 dev = [
+    "environmentcommon",
+    "pytest-json-report>=1.5.0",
     "pytest>=8.3.5",
     "soar-sdk",
 ]
