@@ -574,8 +574,8 @@ class SiemplifyApiClient:
         except HTTPError as e:
             if e.response and e.response.status_code == 404 and consider_404_to_none:
                 return None
-            else:
-                raise
+
+            raise
 
         if res is None:
             return None
