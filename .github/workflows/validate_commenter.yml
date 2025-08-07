@@ -28,14 +28,14 @@ jobs:
         script: |
           const fs = require('fs');
           
-          const pr = github.event.workflow_run.pull_requests[0];
+          const pr = context.payload.workflow_run.pull_requests[0];
           
           if (!pr) {
             console.log('Could not find the pull request associated with this workflow run.');
             return;
           }
           
-          const reportPath = './artifacts/validation_report.md';
+          const reportPath = './validation_report.md';
           
           if (!fs.existsSync(reportPath)) {
             console.log(`Validation report file not found at path: ${reportPath}`);
