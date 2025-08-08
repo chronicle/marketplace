@@ -17,13 +17,12 @@ from __future__ import annotations
 from soar_sdk.ScriptResult import EXECUTION_STATE_COMPLETED
 from soar_sdk.SiemplifyAction import SiemplifyAction
 from soar_sdk.SiemplifyUtils import output_handler
+from TIPCommon.rest.soar_api import add_comment_to_entity
 
 # Example Consts:
 INTEGRATION_NAME = "Tools"
 
 SCRIPT_NAME = "Add Comment To Entity Log"
-
-ADD_NOTE = "{}/external/v1/entities/AddNote?format=camel"
 
 
 @output_handler
@@ -51,18 +50,15 @@ def main():
         for entity in siemplify.target_entities:
             siemplify.LOGGER.info(f"Adding comment to entity: {entity.identifier}")
 
-            payload = {
-                "author": user,
-                "content": comment,
-                "entityIdentifier": entity.identifier,
-                "id": 0,
-                "entityEnvironment": siemplify._environment,
-            }
-            res = siemplify.session.post(
-                ADD_NOTE.format(siemplify.API_ROOT),
-                json=payload,
+            add_comment_to_entity(
+                chronicle_soar=siemplify,
+                entity_id=0,
+                content=comment,
+                author=user,
+                entity_type=entity.entity_type,
+                entity_identifier=entity.identifier,
+                entity_environment=siemplify._environment,
             )
-            siemplify.validate_siemplify_error(res)
 
             siemplify.LOGGER.info(f"Finished processing entity {entity.identifier}")
             output_message += f"{user} Added comment to entity: {entity.identifier}, Environment: {siemplify._environment}. Comment: {comment}\n"
