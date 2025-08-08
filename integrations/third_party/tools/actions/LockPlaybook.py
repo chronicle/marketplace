@@ -21,8 +21,8 @@ from soar_sdk.ScriptResult import (
 )
 from soar_sdk.SiemplifyAction import SiemplifyAction
 from soar_sdk.SiemplifyUtils import output_handler
+from TIPCommon.rest.soar_api import get_case_overview_details
 
-GET_CASE_DETAILS = "{0}/external/v1/dynamic-cases/GetCaseDetails/{1}"
 WF_STATUS_INPROGRESS = 1
 WF_STATUS_COMPLETED = 2
 WF_STATUS_FAILED = 3
@@ -34,11 +34,10 @@ WF_STATUS_TERMINATED = 5
 def main():
     siemplify = SiemplifyAction()
     siemplify.script_name = "Lock Playbook"
-    res = siemplify.session.get(
-        GET_CASE_DETAILS.format(siemplify.API_ROOT, siemplify.case_id),
-    )
-    siemplify.validate_siemplify_error(res)
-    case = res.json()
+    case = get_case_overview_details(
+        chronicle_soar=siemplify,
+        case_id=siemplify.case_id,
+    ).json()
     current_alert_index = None
     alerts = sorted(
         case["alertCards"],

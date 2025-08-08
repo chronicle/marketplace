@@ -16,10 +16,10 @@ from __future__ import annotations
 
 from soar_sdk.SiemplifyAction import SiemplifyAction
 from soar_sdk.SiemplifyUtils import output_handler
+from TIPCommon.rest.soar_api import assign_case_to_user
 
-TASK_URL = "{}/external/v1/cases/AssignUserToCase"
 ACTION_NAME = "AssignCaseToUser"
-
+TRUE = "true"
 
 @output_handler
 def main():
@@ -30,17 +30,16 @@ def main():
     assign_to = siemplify.parameters["Assign To"]
     alert_id = siemplify.parameters["Alert Id"]
 
-    json_payload = {"caseId": case_id, "alertIdentifier": alert_id, "userId": assign_to}
-    add_task = siemplify.session.post(
-        TASK_URL.format(siemplify.API_ROOT),
-        json=json_payload,
+    add_task = assign_case_to_user(
+        chronicle_soar=siemplify,
+        case_id=case_id,
+        assign_to=assign_to,
+        alert_identifier=alert_id,
     )
-    add_task.raise_for_status()
-    output_message = add_task.json()
-    siemplify.LOGGER.info(output_message)
 
-    siemplify.end(output_message, True)
+    siemplify.LOGGER.info(add_task)
 
+    siemplify.end(TRUE, True)
 
 if __name__ == "__main__":
     main()

@@ -19,8 +19,7 @@ import json
 from soar_sdk.ScriptResult import EXECUTION_STATE_COMPLETED
 from soar_sdk.SiemplifyAction import SiemplifyAction
 from soar_sdk.SiemplifyUtils import output_handler
-
-GET_TEMPLATE_URL = "{}/external/v1/settings/GetEmailTemplateRecords?format=camel"
+from TIPCommon.rest.soar_api import get_email_template
 
 
 @output_handler
@@ -38,14 +37,22 @@ def main():
         None  # Set a simple result value, used for playbook if\else and placeholders.
     )
 
-    email_templates = siemplify.session.get(GET_TEMPLATE_URL.format(siemplify.API_ROOT))
-    email_templates.raise_for_status()
+    email_templates = get_email_template(siemplify)
+    HTML_TYPES = {1, "HtmlFormat"}
+    STANDARD_TYPES = {0, "Template"}
     res = []
-    for template in email_templates.json():
-        if (template["type"] == 1 and template_type == "HTML") or (
-            template["type"] == 0 and template_type == "Standard"
+
+    for template in email_templates:
+        template_json = template.to_json()
+        template_type_value = template_json.get("type")
+
+        if (
+            (template_type == "HTML" and template_type_value in HTML_TYPES)
+            or
+            (template_type == "Standard" and template_type_value in STANDARD_TYPES)
         ):
-            res.append(template)
+            res.append(template_json)
+
     siemplify.result.add_result_json({"templates": res})
     siemplify.end(output_message, json.dumps(res), status)
 

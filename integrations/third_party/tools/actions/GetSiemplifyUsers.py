@@ -16,8 +16,8 @@ from __future__ import annotations
 
 from soar_sdk.SiemplifyAction import SiemplifyAction
 from soar_sdk.SiemplifyUtils import output_handler
+from TIPCommon.rest.soar_api import get_siemplify_user_details
 
-GET_USERS_URL = "{}/external/v1/settings/GetUserProfiles"
 ACTION_NAME = "GetSiemplifyUsers"
 
 
@@ -27,21 +27,16 @@ def main():
     siemplify.script_name = ACTION_NAME
 
     hide_disabled = siemplify.parameters.get("Hide Disabled Users").lower() == "true"
-    json_payload = {
-        "searchTerm": "",
-        "filterRole": False,
-        "requestedPage": 0,
-        "pageSize": 1000,
-        "shouldHideDisabledUsers": hide_disabled,
-    }
-
-    siemplify_users = siemplify.session.post(
-        GET_USERS_URL.format(siemplify.API_ROOT),
-        json=json_payload,
+    siemplify_users = get_siemplify_user_details(
+        chronicle_soar=siemplify,
+        search_term="",
+        filter_by_role=False,
+        requested_page=0,
+        page_size=1000,
+        should_hide_disabled_users=hide_disabled,
     )
-    siemplify_users.raise_for_status()
     siemplify.result.add_result_json(
-        {"siemplifyUsers": siemplify_users.json()["objectsList"]},
+        {"siemplifyUsers": [s_user.to_json() for s_user in siemplify_users]},
     )
     output_message = "Returned Siemplify Users."
     siemplify.end(output_message, True)
