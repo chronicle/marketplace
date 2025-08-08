@@ -436,7 +436,7 @@ dev = [
 [package.metadata]
 requires-dist = [
     { name = "environmentcommon", path = "../../../packages/envcommon/EnvironmentCommon-1.0.2/EnvironmentCommon-1.0.2-py2.py3-none-any.whl" },
-    { name = "tipcommon", path = "../../../packages/tipcommon/TIPCommon-2.2.7/TIPCommon-2.2.7-py2.py3-none-any.whl" },
+    { name = "tipcommon", path = "../../../packages/tipcommon/TIPCommon-2.2.11/TIPCommon-2.2.11-py2.py3-none-any.whl" },
 ]
 
 [package.metadata.requires-dev]
@@ -779,8 +779,8 @@ dependencies = [
 
 [[package]]
 name = "tipcommon"
-version = "2.2.7"
-source = { path = "../../../packages/tipcommon/TIPCommon-2.2.7/TIPCommon-2.2.7-py2.py3-none-any.whl" }
+version = "2.2.11"
+source = { path = "../../../packages/tipcommon/TIPCommon-2.2.11/TIPCommon-2.2.11-py2.py3-none-any.whl" }
 dependencies = [
     { name = "google-api-python-client" },
     { name = "google-auth" },
@@ -790,7 +790,7 @@ dependencies = [
     { name = "requests" },
 ]
 wheels = [
-    { filename = "tipcommon-2.2.7-py2.py3-none-any.whl", hash = "sha256:e814f0ffa0b177aac36b49aee479bbafdce756bed5eedf9955f4d3d0d5e7fa85" },
+    { filename = "tipcommon-2.2.11-py2.py3-none-any.whl", hash = "sha256:b9b0135c2b4bd0e7c3649c4d0cbe6b2a8ddacf55b71f7e28c94544f4f4890b56" },
 ]
 
 [package.metadata]
