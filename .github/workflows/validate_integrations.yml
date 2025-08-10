@@ -1,11 +1,15 @@
 name: Validate marketplace integrations
+
 permissions:
   contents: read
+  pull-requests: write
+
 on:
   push:
     branches:
     - '**'
-  pull_request:
+  pull_request_target:
+    types: [opened, synchronize, reopened]
     branches:
     - '**'
 
@@ -14,9 +18,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
+    - name: Checkout repository at PR head
       uses: actions/checkout@v4
       with:
+        ref: ${{ github.event.pull_request.head.sha }}
         fetch-depth: 0
 
     - name: Set up Python
@@ -29,8 +34,58 @@ jobs:
         pip install --upgrade pip
         pip install -e ./packages/mp
 
-    - name: Validates all integrations
+    - name: Run Validations
+      id: validate
+      continue-on-error: true
+      env:
+        PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
       shell: bash
       run: |
         mp config --marketplace-path . --processes 10 --display-config
         mp validate --repository third_party --only-pre-build
+
+    - name: Comment on PR with Collapsible Report
+      if: github.event_name == 'pull_request_target' && steps.validate.outcome == 'failure'
+      uses: actions/github-script@v7
+      with:
+        script: |
+          const fs = require('fs');
+          const reportPath = './artifacts/validation_report.md';
+          let reportBody = 'Validation report not found.'; // Default message
+
+          // Check if the report file exists before reading
+          if (fs.existsSync(reportPath)) {
+            reportBody = fs.readFileSync(reportPath, 'utf8');
+          }
+
+          const finalComment = `❌ **Marketplace Validation Failed**
+          <details>
+          <summary>Click to view the full validation report</summary>
+          
+          ---
+          
+          ${reportBody}
+          
+          </details>`;
+
+          // This API call will now succeed for PRs from forks.
+          github.rest.issues.createComment({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            body: finalComment
+          });
+
+    - name: Fail the workflow if validation failed
+      if: steps.validate.outcome == 'failure'
+      run: |
+        echo "Validation step failed. Failing the workflow."
+        exit 1
+
+    - name: Upload Markdown Report Artifact
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: validation-report-md
+        path: ./artifacts/validation_report.md
+        retention-days: 2

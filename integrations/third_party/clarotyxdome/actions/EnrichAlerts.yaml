@@ -1,0 +1,17 @@
+name: EnrichAlerts
+description: Enrich Claroty xDome alert by ID and add MITRE info to the Siemplify
+    alert.
+integration_identifier: clarotyxdome
+parameters:
+-   name: clarotyAlertId
+    default_value: ''
+    type: string
+    description: The unique alert ID from Claroty xDome.
+    is_mandatory: true
+dynamic_results_metadata:
+-   result_example: '{}'
+    result_name: JsonResult
+    show_result: true
+default_result_value: ''
+creator: 01510cf5-bc5e-4a6c-b91d-1facfab4ce0f
+script_result_name: ScriptResult

@@ -60,7 +60,7 @@ VersionBumpValidationData: TypeAlias = tuple[ExistingIntegrationFiles, NewIntegr
 
 
 class VersionBumpValidation:
-    validation_init_msg: str = "[yellow]Running version bump validation [/yellow]"
+    name: str = "Version Bump Validation"
 
     def run(self, integration_path: pathlib.Path) -> None:  # noqa: PLR6301
         """Validate that `project.toml` and `release_notes.yml` files are correctly versioned.
@@ -72,13 +72,14 @@ class VersionBumpValidation:
             NonFatalValidationError: If versioning rules are violated.
 
         """
-        head_sha: str | None = os.environ.get("GITHUB_SHA")
+        head_sha: str | None = os.environ.get("PR_HEAD_SHA") or os.environ.get("GITHUB_SHA")
         if not head_sha:
             return
 
         changed_files: list[pathlib.Path] = mp.core.unix.get_files_unmerged_to_main_branch(
             "main", head_sha, integration_path
         )
+
         if not changed_files:
             return
 
