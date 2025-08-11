@@ -39,7 +39,7 @@ class IntegrationTestResults:
 
 def process_pytest_json_report(
     integration_name: str, json_report_path: pathlib.Path
-) -> IntegrationTestResults:
+) -> IntegrationTestResults | None:
     """Process parsed JSON report data from pytest-json and return an IntegrationTestResults object.
 
     Args:
@@ -57,14 +57,17 @@ def process_pytest_json_report(
         json_report_path.unlink(missing_ok=True)
 
     except FileNotFoundError:
-        rich.print(f"[bold red]Error:[/bold red] JSON report not found at {json_report_path}")
-        return IntegrationTestResults(integration_name)
+        rich.print(
+            f"[bold red]Error:[/bold red] JSON report not found at {json_report_path}\n"
+            f"Make sure you have added pytest-json-report to your dev dependency"
+        )
+        return None
     except json.JSONDecodeError as e:
         rich.print(
             f"[bold red]Error:[/bold red] Failed to decode JSON report at {json_report_path}: {e}"
         )
         json_report_path.unlink(missing_ok=True)
-        return IntegrationTestResults(integration_name)
+        return None
 
     integration_results = IntegrationTestResults(integration_name=integration_name)
 

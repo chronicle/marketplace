@@ -13,6 +13,7 @@ dependencies = [
 dev = [
     "environmentcommon",
     "pytest>=8.4.0",
+    "pytest-json-report>=1.5.0",
     "soar-sdk",
 ]
 
