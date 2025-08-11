@@ -18,12 +18,11 @@ from urllib.parse import urljoin
 
 import requests
 from packaging import version
-
+from requests.exceptions import HTTPError
 from TIPCommon.rest.soar_api import (
     get_integration_instance_details_by_id,
-    get_integration_instance_details_by_name
+    get_integration_instance_details_by_name,
 )
-
 
 VERSION_6117 = version.parse("6.1.17")
 VERSION_6138 = version.parse("6.1.38.77")
@@ -550,12 +549,14 @@ class SiemplifyApiClient:
         integration_name: str,
         environments,
         display_name: str | None,
+        consider_404_to_none: bool = False,
     ) -> str | None:
         """Gets the integration instance id by name.
 
         Args:
             integration_name (str): Integration name.
             display_name (str | None): Display name of the integration instance.
+            consider_404_to_none (bool, optional): If True, treats HTTP 404 errors as None
 
         Returns:
             str | None: Returns integration instance id.
@@ -563,12 +564,19 @@ class SiemplifyApiClient:
         if display_name is None:
             return None
 
-        res = get_integration_instance_details_by_name(
-            chronicle_soar=chronicle_soar,
-            integration_identifier=integration_name,
-            instance_display_name=display_name,
-            environments=environments
-        )
+        try:
+            res = get_integration_instance_details_by_name(
+                chronicle_soar=chronicle_soar,
+                integration_identifier=integration_name,
+                instance_display_name=display_name,
+                environments=environments
+            )
+        except HTTPError as e:
+            if e.response and e.response.status_code == 404 and consider_404_to_none:
+                return None
+
+            raise
+
         if res is None:
             return None
 

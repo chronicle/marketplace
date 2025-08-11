@@ -512,6 +512,13 @@ class Git:
         ):
             self.logger.info(file)
 
+    def cleanup(self) -> None:
+        """Close Dulwich repository to release file handles."""
+        try:
+            self.repo.close()
+        except Exception as e:
+            self.logger.warn(f"Git cleanup failed: {e}", exc_info=True)
+
 
 class SiemplifyParamikoSSHVendor:
     def __init__(self, **kwargs):

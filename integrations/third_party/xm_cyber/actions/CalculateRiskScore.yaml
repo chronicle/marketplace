@@ -1,8 +1,95 @@
 name: Calculate Risk Score
-description: This action retrieves the event details of an Alert and generates final
-    Alert JSON Object which can be used by a Playbook for Alert filtration.
+description: This action retrieves alert data by fetching both event and entity details, then generates a structured JSON object that playbooks can use for filtering alerts. Additionally, it provides configuration options for XM Cyber enrichment fields, allowing you to control and customize risk score calculations.
 integration_identifier: XMCyber
-parameters: [ ]
+parameters:
+    -   name: AD Risk to Domain
+        default_value: Disabled
+        type: ddl
+        optional_values:
+            - Disabled
+            - Low
+            - Default
+            - High
+        description: Select the AD Risk to Domain values to be used in the XMCyber Risk Score Calculations.
+        is_mandatory: true
+    -   name: AD Risky Principals
+        default_value: Disabled
+        type: ddl
+        optional_values:
+            - Disabled
+            - Low
+            - Default
+            - High
+        description: Select the AD Risky Principals values to be used in the XMCyber Risk Score Calculations.
+        is_mandatory: true
+    -   name: AD Admins And DCs
+        default_value: Disabled
+        type: ddl
+        optional_values:
+            - Disabled
+            - Low
+            - Default
+            - High
+        description: Select the AD Admins And DCs values to be used in the XMCyber Risk Score Calculations.
+        is_mandatory: true
+    -   name: User without MFA
+        default_value: Disabled
+        type: ddl
+        optional_values:
+            - Disabled
+            - Low
+            - Default
+            - High
+        description: Select the User without MFA values to be used in the XMCyber Risk Score Calculations.
+        is_mandatory: true
+    -   name: Is Critical Asset
+        default_value: Disabled
+        type: ddl
+        optional_values:
+            - Disabled
+            - Low
+            - Default
+            - High
+        description: Select the Is Critical Asset values to be used in the XMCyber Risk Score Calculations.
+        is_mandatory: true
+    -   name: Predefined Admin
+        default_value: Disabled
+        type: ddl
+        optional_values:
+            - Disabled
+            - Low
+            - Default
+            - High
+        description: Select the Predefined Admin values to be used in the XMCyber Risk Score Calculations.
+        is_mandatory: true
+    -   name: Highly Privileged
+        default_value: Disabled
+        type: ddl
+        optional_values:
+            - Disabled
+            - Low
+            - Default
+            - High
+        description: Select the Highly Privileged values to be used in the XMCyber Risk Score Calculations.
+        is_mandatory: true
+    -   name: Compromise Risk Score
+        default_value: Default
+        type: ddl
+        optional_values:
+            - Low
+            - Default
+            - High
+        description: Select Compromise Risk Score value to be used for the XMCyber Risk Score Calculations
+        is_mandatory: true
+    -   name: Choke Point Score
+        default_value: Default
+        type: ddl
+        optional_values:
+            - Low
+            - Default
+            - High
+        description: Select Choke Point Score value to be used for the XMCyber Risk Score Calculations
+        is_mandatory: true
 dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: true

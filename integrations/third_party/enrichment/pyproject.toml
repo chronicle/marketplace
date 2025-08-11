@@ -15,7 +15,7 @@ dependencies = [
 ]
 
 [tool.uv.sources]
-integration-testing = { path = "../../../packages/integration_testing" }
+integration-testing = { path = "../../../packages/integration_testing_whls/integration_testing-2.2.7-py3-none-any.whl" }
 tipcommon = { path = "../../../packages/tipcommon/TIPCommon-2.2.7/TIPCommon-2.2.7-py2.py3-none-any.whl" }
 environmentcommon = { path = "../../../packages/envcommon/EnvironmentCommon-1.0.2/EnvironmentCommon-1.0.2-py2.py3-none-any.whl" }
 soar-sdk = { git = "https://github.com/chronicle/soar-sdk.git" }
@@ -23,7 +23,9 @@ whois-alt = { url = "https://files.pythonhosted.org/packages/28/2c/9220dff07bedf
 
 [dependency-groups]
 dev = [
+    "environmentcommon",
     "integration-testing",
+    "pytest-json-report>=1.5.0",
     "pytest>=8.3.5",
     "soar-sdk",
 ]

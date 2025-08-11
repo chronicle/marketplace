@@ -48,15 +48,6 @@ class TestWarning(RuntimeWarning):
     """Failed tests."""
 
 
-def run_script_on_paths(script_path: pathlib.Path, paths: Iterable[pathlib.Path]) -> None:
-    """Run prebuilt integration tests."""
-    paths = [p for p in paths if p.is_dir()]
-    status_code: int = unix.run_script_on_paths(script_path, paths)
-    if status_code != 0:
-        msg: str = "Failed Tests"
-        warnings.warn(msg, TestWarning, stacklevel=1)
-
-
 def lint_python_files(paths: Iterable[pathlib.Path], params: RuffParams) -> None:
     """Run a linter on python files and fix all unsafe issues."""
     paths = [p for p in paths if p.is_dir() or file_utils.is_python_file(p)]
