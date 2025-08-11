@@ -4,7 +4,7 @@ from integration_testing.platform.script_output import MockActionOutput
 from integration_testing.set_meta import set_metadata
 from actions import XMLtoJson
 
-pytest_plugins: tuple[str, ...] = ("integration_testing.conftest",)
+pytest_plugins: tuple[str, ...] = ("integration_testing.conftest")
 
 
 class TestXMLtoJson:
