@@ -189,9 +189,9 @@ def deploy(integration: str = typer.Argument(..., help="Integration to build and
                 password=config["password"],
             )
         backend_api.login()
-        details = backend_api.get_integration_details(zip_path)
+        details = backend_api.get_integration_details(zip_path, is_staging=False)
         integration_id = details["identifier"]
-        result = backend_api.upload_integration(zip_path, integration_id)
+        result = backend_api.upload_integration(zip_path, integration_id, is_staging=False)
         rich.print(f"Upload result: {result}")
         rich.print("[green]✅ Integration deployed successfully.[/green]")
     except Exception as e:

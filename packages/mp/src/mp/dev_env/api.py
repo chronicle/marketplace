@@ -79,12 +79,13 @@ class BackendAPI:
             self.session.headers.update({"Authorization": f"Bearer {self.token}"})
 
     def get_integration_details(
-        self, zip_path: pathlib.Path, is_staging: bool = False
+        self, zip_path: pathlib.Path, *, is_staging: bool = False
     ) -> dict[str, Any]:
         """Get integration details from a zipped package.
 
         Args:
             zip_path: Path to the zipped integration package.
+            is_staging: Push to staging or not.
 
         Returns:
             dict: The integration details as returned by the backend.
@@ -100,13 +101,14 @@ class BackendAPI:
         return resp.json()
 
     def upload_integration(
-        self, zip_path: pathlib.Path, integration_id: str, is_staging: bool = False
+        self, zip_path: pathlib.Path, integration_id: str, *, is_staging: bool = False
     ) -> dict[str, Any]:
         """Upload a zipped integration package to the backend.
 
         Args:
             zip_path: Path to the zipped integration package.
             integration_id: The identifier of the integration.
+            is_staging: Push to staging or not.
 
         Returns:
             dict: The backend response after uploading the integration.
