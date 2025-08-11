@@ -118,25 +118,29 @@ def validate_svg_content(path: pathlib.Path) -> str:
 
     """
     try:
+        # Read content
         content = path.read_text(encoding="utf-8")
-        if not content.strip():
-            msg = f"SVG file is empty: {path}"
-            raise ValueError(msg)  # noqa: TRY301
-
-        # Attempt to parse the content as XML to check for well-formedness
-        tree = SafeElementTree.fromstring(content)
-
-        if "svg" not in tree.tag.lower():
-            msg = f"File is not a valid SVG (missing <svg> root tag): {path}"
-            raise ValueError(msg)  # noqa: TRY301
-
-        return content  # noqa: TRY300
-    except SafeElementTree.ParseError as e:
-        msg = f"Invalid XML syntax in SVG file: {path}"
-        raise ValueError(msg) from e
     except Exception as e:
         msg = f"Failed to read or validate SVG file: {path}"
         raise ValueError(msg) from e
+
+    if not content.strip():
+        msg = f"SVG file is empty: {path}"
+        raise ValueError(msg)
+
+    try:
+        # Parse the content as XML to check for well-formedness
+        tree = SafeElementTree.fromstring(content)
+
+    except SafeElementTree.ParseError as e:
+        msg = f"Invalid XML syntax in SVG file: {path}"
+        raise ValueError(msg) from e
+
+    if "svg" not in tree.tag.lower():
+        msg = f"File is not a valid SVG (missing <svg> root tag): {path}"
+        raise ValueError(msg)
+
+    return content
 
 
 def validate_png_content(path: pathlib.Path) -> bytes:

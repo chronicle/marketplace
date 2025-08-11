@@ -73,26 +73,6 @@ class DeconstructIntegration:
     out_path: pathlib.Path
     integration: Integration
 
-    def _create_png_image(self, resources_dir: pathlib.Path) -> None:
-        if self.integration.metadata.image_base64:
-            mp.core.file_utils.base64_to_png_file(
-                self.integration.metadata.image_base64, resources_dir / IMAGE_FILE
-            )
-
-    def _create_svg_logo(self, resources_dir: pathlib.Path) -> None:
-        if self.integration.metadata.svg_logo:
-            mp.core.file_utils.text_to_svg_file(
-                self.integration.metadata.svg_logo, resources_dir / LOGO_FILE
-            )
-
-    def _create_resource_files(self) -> None:
-        """Create the image files in the resources directory."""
-        resources_dir: pathlib.Path = self.out_path / RESOURCES_DIR
-        resources_dir.mkdir(exist_ok=True)
-
-        self._create_png_image(resources_dir)
-        self._create_svg_logo(resources_dir)
-
     def initiate_project(self) -> None:
         """Initialize a new python project.
 
@@ -139,6 +119,26 @@ class DeconstructIntegration:
         self._create_mapping_rules()
         self._create_scripts_dirs()
         self._create_package_file()
+
+    def _create_resource_files(self) -> None:
+        """Create the image files in the resources directory."""
+        resources_dir: pathlib.Path = self.out_path / RESOURCES_DIR
+        resources_dir.mkdir(exist_ok=True)
+
+        self._create_png_image(resources_dir)
+        self._create_svg_logo(resources_dir)
+
+    def _create_png_image(self, resources_dir: pathlib.Path) -> None:
+        if self.integration.metadata.image_base64:
+            mp.core.file_utils.base64_to_png_file(
+                self.integration.metadata.image_base64, resources_dir / IMAGE_FILE
+            )
+
+    def _create_svg_logo(self, resources_dir: pathlib.Path) -> None:
+        if self.integration.metadata.svg_logo:
+            mp.core.file_utils.text_to_svg_file(
+                self.integration.metadata.svg_logo, resources_dir / LOGO_FILE
+            )
 
     def _create_definition_file(self) -> None:
         def_file: pathlib.Path = self.out_path / mp.core.constants.DEFINITION_FILE

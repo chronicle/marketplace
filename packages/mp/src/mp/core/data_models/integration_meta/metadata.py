@@ -125,17 +125,6 @@ class NonBuiltIntegrationMetadata(TypedDict):
     is_powerup: NotRequired[bool]
 
 
-def _read_image_files(metadata_content: NonBuiltIntegrationMetadata, path: pathlib.Path) -> None:
-    """Read image files and update the metadata dictionary in place."""
-    if image_str := metadata_content.get("image_path"):
-        full_path = path / image_str
-        metadata_content["image_path"] = mp.core.file_utils.png_path_to_bytes(full_path)
-
-    if svg_path_str := metadata_content.get("svg_logo_path"):
-        full_path = path / svg_path_str
-        metadata_content["svg_logo_path"] = mp.core.file_utils.svg_path_to_text(full_path)
-
-
 class IntegrationMetadata(
     mp.core.data_models.abc.Buildable[BuiltIntegrationMetadata, NonBuiltIntegrationMetadata]
 ):
@@ -378,3 +367,14 @@ class IntegrationMetadata(
 
         mp.core.utils.remove_none_entries_from_mapping(non_built)
         return non_built
+
+
+def _read_image_files(metadata_content: NonBuiltIntegrationMetadata, path: pathlib.Path) -> None:
+    """Read image files and update the metadata dictionary in place."""
+    if image_str := metadata_content.get("image_path"):
+        full_path = path / image_str
+        metadata_content["image_path"] = mp.core.file_utils.png_path_to_bytes(full_path)
+
+    if svg_path_str := metadata_content.get("svg_logo_path"):
+        full_path = path / svg_path_str
+        metadata_content["svg_logo_path"] = mp.core.file_utils.svg_path_to_text(full_path)
