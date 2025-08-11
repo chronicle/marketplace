@@ -28,7 +28,7 @@ class TestDetectHashType:
         assert action_output.results.json_output == [{"Hash": SHA1_HASH, "HashType": "SHA1"}]
 
     @set_metadata(parameters={"Hashes": SHA256_HASH})
-    def test_detect_sha256(self, action_output: MockActionOutput) -> None:
+    def test_detect_sha256(self, action_output: MockActionOutput) ->None:
         DetectHashType.main()
         assert action_output.results.execution_state is ExecutionState.COMPLETED
         assert action_output.results.json_output == [{"Hash": SHA256_HASH, "HashType": "SHA256"}]
