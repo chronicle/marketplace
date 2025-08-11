@@ -435,3 +435,14 @@
   regressive: false
   deprecated: false
   removed: false
+- description: Parse Case Wall Email - Updated entity creation logic.
+  integration_version: 39.0
+  item_name: Parse Case Wall Email
+  item_type: Action
+  publish_time: '2025-08-20'
+  ticket_number: '432241464'
+  new: false
+  regressive: false
+  deprecated: false
+  removed: false
+

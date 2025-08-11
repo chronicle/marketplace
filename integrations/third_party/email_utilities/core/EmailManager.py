@@ -45,19 +45,18 @@ import magic
 import olefile
 from html2text import HTML2Text
 from msg_parser import MsOxMessage
-from soar_sdk.SiemplifyDataModel import EntityTypes
+from soar_sdk.SiemplifyDataModel import Attachment, EntityTypes
 from soar_sdk.SiemplifyLogger import SiemplifyLogger
 from soar_sdk.SiemplifyUtils import dict_to_flat
 from tld import get_fld
 from urlextract import URLExtract
 
 from . import EmailParserRouting, OleId
-from soar_sdk.SiemplifyDataModel import Attachment
-
 from .EmailUtilitiesManager import (
     extract_valid_ips_from_body,
     fix_malformed_eml_content,
 )
+
 if typing.TYPE_CHECKING:
     from collections.abc import Iterable
 
@@ -65,6 +64,10 @@ if typing.TYPE_CHECKING:
 IPV4_REGEX = re.compile(r"""(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})""")
 IPV6_REGEX = re.compile(
     r"""((?:[0-9A-Fa-f]{1,4}:){6}(?:[0-9A-Fa-f]{1,4}:[0-9A-Fa-f]{1,4}|(?:(?:[0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}(?:[0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]))|::(?:[0-9A-Fa-f]{1,4}:){5}(?:[0-9A-Fa-f]{1,4}:[0-9A-Fa-f]{1,4}|(?:(?:[0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}(?:[0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]))|(?:[0-9A-Fa-f]{1,4})?::(?:[0-9A-Fa-f]{1,4}:){4}(?:[0-9A-Fa-f]{1,4}:[0-9A-Fa-f]{1,4}|(?:(?:[0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}(?:[0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]))|(?:[0-9A-Fa-f]{1,4}:[0-9A-Fa-f]{1,4})?::(?:[0-9A-Fa-f]{1,4}:){3}(?:[0-9A-Fa-f]{1,4}:[0-9A-Fa-f]{1,4}|(?:(?:[0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}(?:[0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]))|(?:(?:[0-9A-Fa-f]{1,4}:){,2}[0-9A-Fa-f]{1,4})?::(?:[0-9A-Fa-f]{1,4}:){2}(?:[0-9A-Fa-f]{1,4}:[0-9A-Fa-f]{1,4}|(?:(?:[0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}(?:[0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]))|(?:(?:[0-9A-Fa-f]{1,4}:){,3}[0-9A-Fa-f]{1,4})?::[0-9A-Fa-f]{1,4}:(?:[0-9A-Fa-f]{1,4}:[0-9A-Fa-f]{1,4}|(?:(?:[0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}(?:[0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]))|(?:(?:[0-9A-Fa-f]{1,4}:){,4}[0-9A-Fa-f]{1,4})?::(?:[0-9A-Fa-f]{1,4}:[0-9A-Fa-f]{1,4}|(?:(?:[0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}(?:[0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]))|(?:(?:[0-9A-Fa-f]{1,4}:){,5}[0-9A-Fa-f]{1,4})?::[0-9A-Fa-f]{1,4}|(?:(?:[0-9A-Fa-f]{1,4}:){,6}[0-9A-Fa-f]{1,4})?::)""",
+)
+URL_REGEX = re.compile(
+    r"(?i)\[?(?:(?:(?:https?|ftps?|ssh|git|svn)(?:://))|www\.(?!://))(?:[a-zA-Z0-9"
+    r"\-\._~:;/\?#\[\]@!\$&'\(\)\*\+,=%])+"
 )
 WINDOW_SLICE_REGEX = re.compile(r"""\s""")
 EMAIL_REGEX = re.compile(
@@ -600,7 +603,7 @@ class EmailUtils:
             matched_urls = EmailUtils.find_urls_regex(body)
 
         for found_url in matched_urls:
-            if "." not in found_url:
+            if "." not in found_url or URL_REGEX.search(found_url) is None:
                 # if we found a URL like e.g. http://afafasasfasfas; that makes no
                 # sense, thus skip it
                 continue
