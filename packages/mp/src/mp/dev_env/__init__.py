@@ -146,11 +146,19 @@ def login(
 
 
 @app.command(help="Deploy an integration to the SOAR environment configured by the login command.")
-def deploy(integration: str = typer.Argument(..., help="Integration to build and deploy.")) -> None:
+def deploy(
+    integration: str = typer.Argument(..., help="Integration to build and deploy."),
+    *,
+    is_staging: Annotated[
+        bool,
+        typer.Option("--staging", help="Add this option to deploy integration in to staging mode."),
+    ] = False,
+) -> None:
     """Build and deploy an integration to the dev environment (playground).
 
     Args:
         integration: The integration to build and deploy.
+        is_staging: Add this option to deploy integration in to staging mode.
 
     Raises:
         typer.Exit: If the integration is not found.
@@ -189,67 +197,9 @@ def deploy(integration: str = typer.Argument(..., help="Integration to build and
                 password=config["password"],
             )
         backend_api.login()
-        details = backend_api.get_integration_details(zip_path, is_staging=False)
+        details = backend_api.get_integration_details(zip_path, is_staging=is_staging)
         integration_id = details["identifier"]
-        result = backend_api.upload_integration(zip_path, integration_id, is_staging=False)
-        rich.print(f"Upload result: {result}")
-        rich.print("[green]✅ Integration deployed successfully.[/green]")
-    except Exception as e:
-        rich.print(f"[red]Upload failed: {e}[/red]")
-        raise typer.Exit(1) from e
-
-
-@app.command(
-    help="Deploy an integration to the staging SOAR environment configured by the login command."
-)
-def deploy_to_staging(
-    integration: str = typer.Argument(..., help="Integration to build and deploy."),
-) -> None:
-    """Build and deploy an integration to the staging environment (playground).
-
-    Args:
-        integration: The integration to build and deploy.
-
-    Raises:
-        typer.Exit: If the integration is not found.
-
-    """
-    config = utils.load_dev_env_config()
-    integrations_root = pathlib.Path.cwd() / "integrations"
-    source_path = None
-
-    for repo in ["commercial", "third_party"]:
-        candidate = integrations_root / repo / integration
-        if candidate.exists():
-            source_path = candidate
-            break
-
-    if not source_path:
-        rich.print(
-            f"[red]Could not find source integration "
-            f"at integrations/commercial | third_party/{integration}[/red]"
-        )
-        raise typer.Exit(1)
-
-    identifier = utils.get_integration_identifier(source_path)
-    utils.build_integration(integration)
-    built_dir = utils.find_built_integration_dir(source_path, identifier)
-    zip_path = utils.zip_integration_dir(built_dir)
-    rich.print(f"Zipped built integration at {zip_path}")
-
-    try:
-        if config.get("api_key"):
-            backend_api = api.BackendAPI(api_root=config["api_root"], api_key=config["api_key"])
-        else:
-            backend_api = api.BackendAPI(
-                api_root=config["api_root"],
-                username=config["username"],
-                password=config["password"],
-            )
-        backend_api.login()
-        details = backend_api.get_integration_details(zip_path, is_staging=True)
-        integration_id = details["identifier"]
-        result = backend_api.upload_integration(zip_path, integration_id, is_staging=True)
+        result = backend_api.upload_integration(zip_path, integration_id, is_staging=is_staging)
         rich.print(f"Upload result: {result}")
         rich.print("[green]✅ Integration deployed successfully.[/green]")
     except Exception as e:
