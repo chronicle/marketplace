@@ -205,7 +205,7 @@ def deploy(integration: str = typer.Argument(..., help="Integration to build and
 def deploy_to_staging(
     integration: str = typer.Argument(..., help="Integration to build and deploy."),
 ) -> None:
-    """Build and deploy an integration to the dev environment (playground).
+    """Build and deploy an integration to the staging environment (playground).
 
     Args:
         integration: The integration to build and deploy.

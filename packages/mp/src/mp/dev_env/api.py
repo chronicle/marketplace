@@ -114,7 +114,7 @@ class BackendAPI:
         """
         upload_url = f"{self.api_root}/api/external/v1/ide/ImportPackage?format=camel"
         if is_staging:
-            is_staging: bool = False
+            upload_url += "&isStaging=true"
         data = base64.b64encode(zip_path.read_bytes()).decode()
         upload_payload = {
             "data": data,
