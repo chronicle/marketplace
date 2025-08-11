@@ -5,14 +5,11 @@ from integration_testing.set_meta import set_metadata
 from ..actions import Buffer
 
 pytest_plugins: tuple[str, ...] = ("integration_testing.conftest",)
-
 VALID_JSON_INPUT: str = '{"foo": "bar"}'
 PARSED_JSON: dict = {"foo": "bar"}
 INVALID_JSON_INPUT: str = '{"foo": "bar"'
 
-
 class TestBuffer:
-
     @set_metadata(parameters={"JSON": VALID_JSON_INPUT, "ResultValue": "True"})
     def test_valid_json_success(self, action_output: MockActionOutput) -> None:
         Buffer.main()
@@ -20,7 +17,6 @@ class TestBuffer:
         assert action_output.results.output_message == "Input values 'transferred' to the output."
         assert action_output.results.json_output.json_result == PARSED_JSON
         assert action_output.results.execution_state is ExecutionState.COMPLETED
-
     @set_metadata(parameters={"JSON": INVALID_JSON_INPUT, "ResultValue": "False"})
     def test_invalid_json_returns_error_message(self, action_output: MockActionOutput) -> None:
         Buffer.main()
@@ -29,7 +25,6 @@ class TestBuffer:
         assert "Failed to load JSON with error" in action_output.results.output_message
         assert action_output.results.json_output is None
         assert action_output.results.execution_state is ExecutionState.COMPLETED
-
     @set_metadata(parameters={"JSON": "", "ResultValue": "Maybe"})
     def test_empty_json_parameter(self, action_output: MockActionOutput) -> None:
         Buffer.main()
@@ -37,7 +32,6 @@ class TestBuffer:
         assert action_output.results.output_message == "Input values 'transferred' to the output."
         assert action_output.results.json_output is None
         assert action_output.results.execution_state is ExecutionState.COMPLETED
-
     @set_metadata(parameters={"ResultValue": "42"})
     def test_missing_json_parameter(self, action_output: MockActionOutput) -> None:
         Buffer.main()
