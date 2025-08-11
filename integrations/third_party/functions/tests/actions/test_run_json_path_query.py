@@ -22,7 +22,7 @@ class TestRunJsonPathQuery:
         assert action_output.results.json_output is not None
 
     @set_metadata(parameters={
-        "Json": '{"users": [}',  # Невалидный JSON
+        "Json": '{"users": [}',
         "JSONPath Expression": "$.users[*].name"
     })
     def test_invalid_json_exception(self) -> None:
@@ -40,7 +40,7 @@ class TestRunJsonPathQuery:
         assert result == {"matches": []}
 
     @set_metadata(parameters={
-        "Json": '{}',  # Пустой JSON
+        "Json": '{}',
         "JSONPath Expression": "$.users[*].name"
     })
     def test_empty_json_returns_empty_matches(self, action_output: MockActionOutput) -> None:
@@ -50,7 +50,7 @@ class TestRunJsonPathQuery:
         assert result == {"matches": []}
 
     @set_metadata(parameters={
-        "Json": '',  # Полностью пустая строка
+        "Json": '',
         "JSONPath Expression": "$.users[*].name"
     })
     def test_empty_input_exception(self) -> None:

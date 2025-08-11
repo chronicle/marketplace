@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from integration_testing.platform.script_output import MockActionOutput
 from integration_testing.set_meta import set_metadata
-from ..core.session import TelegramSession  # 👈 корректный импорт внутри tests
+from ..core.session import TelegramSession
 
 @set_metadata(integration_config_file_path="tests/integration_config.yaml")
 def test_send_message_success(

@@ -16,7 +16,7 @@ def _patch_params(monkeypatch, params: Dict[str, str]) -> None:
     Orig = Action.SiemplifyAction
     orig_init = Orig.__init__
 
-    def _init(self, *a, **k):  # noqa: ANN001, ANN202
+    def _init(self, *a, **k):
         orig_init(self, *a, **k)
         try:
             p = dict(getattr(self, "parameters", {}) or {})
@@ -25,12 +25,12 @@ def _patch_params(monkeypatch, params: Dict[str, str]) -> None:
         p.update(params)
         self.parameters = p
 
-    def _extract(self, *a, **kw):  # noqa: ANN001, ANN202
+    def _extract(self, *a, **kw):
         key = kw.get("param_name") or (a[0] if a else None)
         default = kw.get("default_value", "")
         return str(params.get(str(key), default))
 
-    def _noop_update_entities(self, updated_entities):  # noqa: ANN001
+    def _noop_update_entities(self, updated_entities):
         return None
 
     monkeypatch.setattr(Orig, "__init__", _init, raising=True)
@@ -82,7 +82,7 @@ class TestExtractURLDomain:
         _patch_params(monkeypatch, {"Separator": ",", "URLs": "", "Extract subdomain": "False"})
         _set_entities(monkeypatch, entities)
 
-        def _fake_gdfs(s: str, sub: bool) -> str | None:  # noqa: ANN001
+        def _fake_gdfs(s: str, sub: bool) -> str | None:
             m = {
                 "YOUR NEW SALARY NOTIFICATION": None,
                 "<INSERT STRING>": None,
@@ -130,7 +130,7 @@ class TestExtractURLDomain:
         )
         _set_entities(monkeypatch, [])
 
-        def _fake_gdfs(s: str, sub: bool) -> str | None:  # noqa: ANN001
+        def _fake_gdfs(s: str, sub: bool) -> str | None:
             if s.startswith("https://a.example.com"):
                 return "example.com"
             if s.startswith("http://b.org"):
@@ -171,7 +171,7 @@ class TestExtractURLDomain:
         _patch_params(monkeypatch, {"Separator": ",", "URLs": "http://sub.example.co.uk/x", "Extract subdomain": "True"})
         _set_entities(monkeypatch, [])
 
-        def _fake_gdfs(s: str, sub: bool) -> str | None:  # noqa: ANN001
+        def _fake_gdfs(s: str, sub: bool) -> str | None:
             return "sub.example.co.uk" if sub else "example.co.uk"
 
         monkeypatch.setattr(Action, "get_domain_from_string", _fake_gdfs, raising=True)
@@ -198,7 +198,7 @@ class TestExtractURLDomain:
         _patch_params(monkeypatch, {"Separator": ",", "URLs": "", "Extract subdomain": "False"})
         _set_entities(monkeypatch, [])
 
-        def _fake_gdfs(s: str, sub: bool) -> str | None:  # noqa: ANN001
+        def _fake_gdfs(s: str, sub: bool) -> str | None:
             return None
 
         monkeypatch.setattr(Action, "get_domain_from_string", _fake_gdfs, raising=True)
@@ -223,7 +223,7 @@ class TestExtractURLDomain:
         _patch_params(monkeypatch, {"Separator": ",", "URLs": "http://ok.com, http://boom.com", "Extract subdomain": "False"})
         _set_entities(monkeypatch, [])
 
-        def _fake_gdfs(s: str, sub: bool) -> str | None:  # noqa: ANN001
+        def _fake_gdfs(s: str, sub: bool) -> str | None:
             if "boom.com" in s:
                 raise RuntimeError("parse error")
             return "ok.com"

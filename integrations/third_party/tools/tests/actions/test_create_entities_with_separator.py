@@ -7,7 +7,7 @@ from TIPCommon.base.action import ExecutionState
 from integration_testing.platform.script_output import MockActionOutput
 from integration_testing.set_meta import set_metadata
 
-# корректный импорт
+
 from ...actions import CreateEntitiesWithSeparator as Action
 
 pytest_plugins: tuple[str, ...] = ("integration_testing.conftest",)
@@ -20,7 +20,6 @@ class _Calls:
 
 
 def _jo(obj: Any) -> Any:
-    # В разных рантаймах json_output может быть dict или обёртка
     if isinstance(obj, dict):
         return obj
     if obj is None:
@@ -32,23 +31,22 @@ def _jo(obj: Any) -> Any:
 
 
 def _set_case_entities(monkeypatch, identifiers: Iterable[str]) -> None:
-    """Подменяем только property 'case', без записи в self.case."""
     entities = [SimpleNamespace(identifier=i) for i in identifiers]
     alerts = [SimpleNamespace(entities=entities)]
     case = SimpleNamespace(alerts=alerts)
 
-    def _get_case(self):  # noqa: ANN001
+    def _get_case(self):
         return case
 
-    # у исходного класса 'case' — property без сеттера, подменяем его целиком
+
     monkeypatch.setattr(Action.SiemplifyAction, "case", property(_get_case), raising=True)
 
 
 def _patch_entity_apis(monkeypatch, calls: _Calls) -> None:
-    def _add(self, identifier, etype, is_internal, is_suspicious, is_enriched, is_vulnerable, props):  # noqa: ANN001
+    def _add(self, identifier, etype, is_internal, is_suspicious, is_enriched, is_vulnerable, props):
         calls.adds.append((identifier, etype, is_internal, is_suspicious, is_enriched, is_vulnerable, props))
 
-    def _upd(self, ents):  # noqa: ANN001
+    def _upd(self, ents):
         calls.updates.append(list(ents))
 
     monkeypatch.setattr(Action.SiemplifyAction, "add_entity_to_case", _add, raising=True)
@@ -56,8 +54,7 @@ def _patch_entity_apis(monkeypatch, calls: _Calls) -> None:
 
 
 def _patch_params(monkeypatch, params: dict[str, str]) -> None:
-    # Инжектим параметры напрямую в обёрнутую функцию под капотом output_handler
-    Action.main.__wrapped__.__dict__["__siemplify_params__"] = params  # type: ignore[attr-defined]
+    Action.main.__wrapped__.__dict__["__siemplify_params__"] = params
 
 
 class TestCreateEntitiesWithSeparator:
@@ -156,7 +153,6 @@ class TestCreateEntitiesWithSeparator:
         assert calls.adds[0][0] == "NEW.EXAMPLE"
         jo = _jo(action_output.results.json_output)
         assert isinstance(jo, dict)
-        # текущая реализация относит уже существующие в failed
         assert "DUP.EXAMPLE" in jo.get("failed", [])
 
     @set_metadata(
@@ -189,7 +185,6 @@ class TestCreateEntitiesWithSeparator:
         assert len(calls.adds) == 2
         for _, _, _, _, _, _, props in calls.adds:
             assert props.get("is_new_entity") is True
-            # текущее действие добавляет двойное подчеркивание после префикса
             assert props.get("P__k") == "v"
             assert props.get("P__n") == 1
         jo = _jo(action_output.results.json_output)
@@ -227,7 +222,6 @@ class TestCreateEntitiesWithSeparator:
         jo = _jo(action_output.results.json_output)
         assert isinstance(jo, dict)
         assert jo.get("created") == []
-        # допускаем пустой failed, т.к. текущее действие может не добавлять туда ошибки IP
         failed = set(jo.get("failed", []))
         assert failed == {"300.1.1.1".upper(), "OK.EXAMPLE"} or failed == set()
 

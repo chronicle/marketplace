@@ -50,7 +50,7 @@ def _patch_params(monkeypatch, archive_value: str) -> None:
     Orig = Action.SiemplifyAction
     orig_init = Orig.__init__
 
-    def _init(self, *a, **k):  # noqa: ANN001, ANN202
+    def _init(self, *a, **k):
         orig_init(self, *a, **k)
         try:
             params = dict(getattr(self, "parameters", {}) or {})

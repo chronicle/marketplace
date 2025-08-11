@@ -24,16 +24,16 @@ class _FakeEFM:
     def __enter__(self) -> "_FakeEFM":
         return self
 
-    def __exit__(self, exc_type, exc, tb) -> None:  # noqa: ANN001
+    def __exit__(self, exc_type, exc, tb) -> None:
         return None
 
-    def addEntity(self, val: str) -> None:  # noqa: N802
+    def addEntity(self, val: str) -> None:
         self.entities.add(val)
         self.added.append(val)
 
 
 def _patch_extract(monkeypatch, params: Dict[str, str]) -> None:
-    def _extract(self, *a, **kw):  # noqa: ANN001, ANN202
+    def _extract(self, *a, **kw):
         key = kw.get("param_name") or (a[0] if a else None)
         default = kw.get("default_value", "")
         return params.get(str(key), default)

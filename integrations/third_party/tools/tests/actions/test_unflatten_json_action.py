@@ -40,7 +40,7 @@ class TestUnflattenJson:
 
     @set_metadata(
         parameters={
-            "JSON Object": "lead_ore",  # невалидный JSON
+            "JSON Object": "lead_ore",
             "Delimiter": "_"
         }
     )

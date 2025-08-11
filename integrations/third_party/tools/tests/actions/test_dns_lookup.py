@@ -16,7 +16,7 @@ def _patch_params(monkeypatch, params: Dict[str, str]) -> None:
     Orig = Action.SiemplifyAction
     orig_init = Orig.__init__
 
-    def _init(self, *a, **k):  # noqa: ANN001, ANN202
+    def _init(self, *a, **k):
         orig_init(self, *a, **k)
         cur = dict(getattr(self, "parameters", {}) or {})
         cur.update(params)
@@ -88,14 +88,14 @@ def _patch_dnspython_for_ptr(monkeypatch, mapping: Dict[Tuple[str, str], _FakePT
 
 
 def _patch_dnspython_for_hostname(monkeypatch, resp_by_server: Dict[Tuple[str, str], _FakeDnsMsg]) -> None:
-    def _make_query(name: str, rdt: Any) -> Tuple[str, Any]:  # noqa: ANN001
+    def _make_query(name: str, rdt: Any) -> Tuple[str, Any]:
         return (name, rdt)
 
-    def _udp(query: Tuple[str, Any], server: str) -> _FakeDnsMsg:  # noqa: ANN001
+    def _udp(query: Tuple[str, Any], server: str) -> _FakeDnsMsg:
         name, _rdt = query
         return resp_by_server.get((server.strip(), name), _FakeDnsMsg([]))
 
-    def _to_text(rt: Any) -> str:  # noqa: ANN001
+    def _to_text(rt: Any) -> str:
         if isinstance(rt, str):
             return rt
         mp = {1: "A", 15: "MX", 16: "TXT", 2: "NS", 5: "CNAME", 6: "SOA"}

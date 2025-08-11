@@ -80,7 +80,7 @@ class TestRemoveEntityFromFile:
         msg = action_output.results.output_message or ""
         for ent in initial_entities:
             assert f"Removed Entity: {ent}" in msg
-        # проверяем, что в менеджере ничего не осталось
+
         assert not efm_bag[-1].entities
 
     @set_metadata(
@@ -109,7 +109,7 @@ class TestRemoveEntityFromFile:
         assert action_output.results.result_value in (False, "False")
         msg = action_output.results.output_message or ""
         assert "Entity not found in file: notfound@example.com" in msg
-        # сущность осталась в файле
+
         assert "exist@example.com" in efm_bag[-1].entities
 
     @set_metadata(
@@ -138,5 +138,5 @@ class TestRemoveEntityFromFile:
         msg = action_output.results.output_message or ""
         assert "Removed Entity: remove@example.com" in msg
         assert "Entity not found in file: missing@example.com" in msg
-        # "keep@example.com" осталась в файле
+
         assert "keep@example.com" in efm_bag[-1].entities
