@@ -8,7 +8,7 @@
   regressive: false
   deprecated: false
   removed: false
-- description: New actions added - Get Playbook Alert Details, Refresh Playbook Alert,
+- description: New test_actions added - Get Playbook Alert Details, Refresh Playbook Alert,
     Update Playbook Alert.
   integration_version: 2.0
   item_name: Recorded Future Intelligence

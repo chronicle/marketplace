@@ -354,7 +354,7 @@ class IntegrationParityValidator:
         """Validate the components of the integration.
 
         This method ensures that all critical parts of the integration,
-        including actions, connectors, jobs, and widgets,
+        including test_actions, connectors, jobs, and widgets,
         adhere to the required validation rules.
         Meaning there is parity between scripts and metadata files 1:1
 

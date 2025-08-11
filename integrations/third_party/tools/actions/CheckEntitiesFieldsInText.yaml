@@ -1,5 +1,5 @@
 name: Check Entities Fields In Text
-description: This actions allows to search for a specific field from each entity in
+description: This test_actions allows to search for a specific field from each entity in
     the scope (or multiple fields using regex) and compare it with one or more values.
     The compared values can also go through regex. A match is found if one of the
     post regex values from the entity enrichment is in one or more values searched

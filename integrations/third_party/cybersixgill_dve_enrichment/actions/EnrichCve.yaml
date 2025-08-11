@@ -19,7 +19,7 @@ dynamic_results_metadata:
         \ LTSC 2019 and earlier contain an improper authorization vulnerability. A\
         \ local authenticated malicious user with low privileges may potentially exploit\
         \ this vulnerability to bypass the restricted environment and perform unauthorized\
-        \ actions on the affected system.\",\r\n      \"external_references\": [\r\
+        \ test_actions on the affected system.\",\r\n      \"external_references\": [\r\
         \n        {\r\n          \"external_id\": \"CVE-2021-21552\",\r\n        \
         \  \"source_name\": \"cve\"\r\n        }\r\n      ],\r\n      \"id\": \"vulnerability--16613a0e-bc9c-db43-e3e4-11adda88d220\"\
         ,\r\n      \"last_activity_date\": \"2021-06-02T22:08:06Z\",\r\n      \"name\"\

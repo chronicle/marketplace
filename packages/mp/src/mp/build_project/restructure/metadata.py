@@ -3,7 +3,7 @@
 This module defines a class, `Metadata`, responsible for organizing and
 writing the various metadata files associated with an integration to its
 designated output directory. This includes the main integration definition,
-release notes, and metadata for actions, connectors, jobs, widgets, custom
+release notes, and metadata for test_actions, connectors, jobs, widgets, custom
 families, and mapping rules.
 """
 
@@ -101,7 +101,7 @@ class Metadata(Restructurable):
 
     def _restructure_actions_metadata(self) -> None:
         self._restructure_metadata(
-            metadata_json=self.metadata["actions"],
+            metadata_json=self.metadata["test_actions"],
             dir_name=mp.core.constants.OUT_ACTIONS_META_DIR,
             file_suffix=mp.core.constants.ACTIONS_META_SUFFIX,
         )

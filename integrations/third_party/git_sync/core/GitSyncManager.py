@@ -948,7 +948,7 @@ class WorkflowInstaller:
 
     @staticmethod
     def _flatten_playbook_steps(steps: list) -> list[dict]:
-        """Flatten playbook steps with parallel actions to one list
+        """Flatten playbook steps with parallel test_actions to one list
 
         Args:
             steps: The playbook steps to flatten

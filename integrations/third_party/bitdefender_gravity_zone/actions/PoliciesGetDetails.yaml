@@ -332,7 +332,7 @@ dynamic_results_metadata:
         "exclusions": [], "rules": [{"name": "Default rule", "active": true, "default":
         true, "scope": {"applyTo": 4, "from": 1, "to": 1}, "settings": {"scanMode":
         1, "extensions": [], "maximumSizeEnabled": false, "maximumSize": 3, "maximumDepthEnabled":
-        true, "maximumDepth": 4, "scanPUA": true}, "actions": {"infected": {"action":
+        true, "maximumDepth": 4, "scanPUA": true}, "test_actions": {"infected": {"action":
         2, "then": 4}, "suspected": {"action": 1, "then": 1}, "stopIfMatched": true,
         "unscannable": {"action": 1, "then": 1}}}], "scanTasks": [], "settings": {"appendFooter":
         true, "footerText": "This email was scanned by Bitdefender", "infectedText":
@@ -347,7 +347,7 @@ dynamic_results_metadata:
         [{"name": "Default Rule", "default": true, "active": true, "scope": {"applyTo":
         1, "from": 1, "to": 1}, "aggressivity": 2, "filters": {"asian": false, "cyrillic":
         false, "fapMaterial": true, "url": true, "rbl": false, "cloud": true, "heuristic":
-        true}, "checkAuthConnections": false, "actions": {"type": 1, "exchangeSCL":
+        true}, "checkAuthConnections": false, "test_actions": {"type": 1, "exchangeSCL":
         true, "modifySubject": true, "modifySubjectText": "[SPAM]", "appendHeader":
         false, "headerName": "X-Bitdefender-Spam", "headerValue": "${score}", "saveMailToDisk":
         false, "archiveToAccount": false, "stopIfMatched": true}}]}, "antispoofing":

@@ -9,7 +9,7 @@ from actions import CreateThumbnail
 
 pytest_plugins: tuple[str, ...] = ("integration_testing.conftest",)
 
-IMAGE_PATH: str = "C:/Users/elgin/marketplace/integrations/third_party/functions/tests/actions/resources/test_image.jpg"
+IMAGE_PATH: str = "/tests/test_actions/resources/test_image.jpg"
 THUMBNAIL_SIZE: str = "100,100"
 
 

@@ -46,7 +46,7 @@ def main():
     filepath = FILE_PATH + filename
     siemplify.LOGGER.info("----------------- Main - Started -----------------")
     try:
-        # Lock the file from other actions that may use it. if file
+        # Lock the file from other test_actions that may use it. if file
         with EntityFileManager(filepath, timeout) as efm:
             for entity in siemplify.target_entities:
                 if entity.identifier in efm.entities:

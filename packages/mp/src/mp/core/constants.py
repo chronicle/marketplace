@@ -59,7 +59,7 @@ OUT_MAPPING_RULES_FILE: str = "integration_mapping_rules.json"
 
 CUSTOM_FAMILIES_FILE: str = f"integration_families{DEF_FILE_SUFFIX}"
 MAPPING_RULES_FILE: str = f"ontology_mapping{DEF_FILE_SUFFIX}"
-ACTIONS_DIR: str = "actions"
+ACTIONS_DIR: str = "test_actions"
 CONNECTORS_DIR: str = "connectors"
 JOBS_DIR: str = "jobs"
 WIDGETS_DIR: str = "widgets"

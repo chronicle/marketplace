@@ -235,7 +235,7 @@ def validate_enum(value, allowed_values, param_name):
 
 class HandleExceptions(object):
     """
-    A class to handle exceptions based on different actions.
+    A class to handle exceptions based on different test_actions.
     """
 
     def __init__(

@@ -29,7 +29,7 @@ if TYPE_CHECKING:
 
 
 class TestNoPingAction:
-    """Test cases specifically for integrations without ping actions."""
+    """Test cases specifically for integrations without ping test_actions."""
 
     def test_has_ping_action_with_lowercase_name(self) -> None:
         """Test that _has_ping_action works with a lowercase action name."""

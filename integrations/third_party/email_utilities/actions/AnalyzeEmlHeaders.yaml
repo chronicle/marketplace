@@ -1,5 +1,5 @@
 name: Analyze EML Headers
-description: This actions gets a base64 EML or list of headers and extracts/analyses
+description: This test_actions gets a base64 EML or list of headers and extracts/analyses
     its headers
 integration_identifier: EmailUtilities
 parameters:

@@ -295,7 +295,7 @@ class Integration:
             msg: str = (
                 f"{self.identifier} contains custom scripts:"
                 f"\nIs the integration custom: {self.metadata.is_custom}"
-                f"\nCustom actions: {', '.join(self._custom_actions) or None}"
+                f"\nCustom test_actions: {', '.join(self._custom_actions) or None}"
                 f"\nCustom connectors: {', '.join(self._custom_connectors) or None}"
                 f"\nCustom jobs: {', '.join(self._custom_jobs) or None}"
             )
@@ -311,7 +311,7 @@ class Integration:
         if self.has_disabled_parts:
             msg: str = (
                 f"{self.identifier} contains disabled scripts:"
-                f"\nDisabled actions: {', '.join(self._disabled_actions) or None}"
+                f"\nDisabled test_actions: {', '.join(self._disabled_actions) or None}"
                 f"\nDisabled connectors: {', '.join(self._disabled_connectors) or None}"
                 f"\nDisabled jobs: {', '.join(self._disabled_jobs) or None}"
             )
@@ -346,10 +346,10 @@ class Integration:
 
     @property
     def _has_custom_actions(self) -> bool:
-        """Check whether any of the actions are custom.
+        """Check whether any of the test_actions are custom.
 
         Returns:
-            Whether the integration has any custom actions in it.
+            Whether the integration has any custom test_actions in it.
 
         """
         return any(a.is_custom for a in self.actions_metadata.values())
@@ -376,10 +376,10 @@ class Integration:
 
     @property
     def _has_disabled_actions(self) -> bool:
-        """Check whether any of the actions are disabled.
+        """Check whether any of the test_actions are disabled.
 
         Returns:
-            Whether the integration has any disabled actions in it.
+            Whether the integration has any disabled test_actions in it.
 
         """
         return any(not a.is_enabled for a in self.actions_metadata.values())
@@ -406,7 +406,7 @@ class Integration:
 
     @property
     def _custom_actions(self) -> list[str]:
-        """Get a list of custom actions.
+        """Get a list of custom test_actions.
 
         Returns:
             Custom action names
@@ -436,7 +436,7 @@ class Integration:
 
     @property
     def _disabled_actions(self) -> list[str]:
-        """Get a list of disabled actions.
+        """Get a list of disabled test_actions.
 
         Returns:
             Disabled action names

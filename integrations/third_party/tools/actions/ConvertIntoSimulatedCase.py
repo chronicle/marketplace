@@ -22,7 +22,7 @@ from soar_sdk.SiemplifyAction import SiemplifyAction
 from soar_sdk.SiemplifyUtils import output_handler
 
 
-# The output_handler decorator manages output for Siemplify actions.
+# The output_handler decorator manages output for Siemplify test_actions.
 @output_handler
 def main():
     try:

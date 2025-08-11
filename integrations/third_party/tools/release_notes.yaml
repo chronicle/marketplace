@@ -424,7 +424,7 @@
   regressive: false
   deprecated: false
   removed: false
-- description: Align Async actions to Siemplify 6.1
+- description: Align Async test_actions to Siemplify 6.1
   integration_version: 34.0
   item_name: Update Alert Score
   item_type: Action

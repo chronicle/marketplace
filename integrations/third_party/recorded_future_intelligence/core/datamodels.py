@@ -9,7 +9,7 @@
 
 # ============================================================================#
 # title           :datamodels.py                                    noqa: ERA001
-# description     :This Module contains the DataModels for integration actions
+# description     :This Module contains the DataModels for integration test_actions
 # author          :support@recordedfuture.com                       noqa: ERA001
 # date            :09-03-2024
 # python_version  :3.11                                             noqa: ERA001

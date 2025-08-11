@@ -52,7 +52,7 @@
   regressive: false
   deprecated: false
   removed: false
-- description: 'Fixed: Integration actions readme description was added twice.'
+- description: 'Fixed: Integration test_actions readme description was added twice.'
   integration_version: 4.0
   item_name: GitSync
   item_type: Integration
@@ -268,7 +268,7 @@
   regressive: false
   deprecated: false
   removed: false
-- description: 'Added: Support for parallel actions'
+- description: 'Added: Support for parallel test_actions'
   integration_version: 11.0
   item_name: GitSync
   item_type: Integration
@@ -298,7 +298,7 @@
   regressive: false
   deprecated: false
   removed: false
-- description: 'Fixed: Pulling actions and jobs with the same name'
+- description: 'Fixed: Pulling test_actions and jobs with the same name'
   integration_version: 12.0
   item_name: GitSync
   item_type: Integration
@@ -308,7 +308,7 @@
   regressive: false
   deprecated: false
   removed: false
-- description: 'Fixed: Support for entity selection within parallel actions'
+- description: 'Fixed: Support for entity selection within parallel test_actions'
   integration_version: 12.0
   item_name: GitSync
   item_type: Integration
