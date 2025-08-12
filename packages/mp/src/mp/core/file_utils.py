@@ -468,39 +468,31 @@ def text_to_svg_file(svg_text: str, output_path: pathlib.Path) -> None:
         raise OSError(msg) from e
 
 
-def svg_path_to_text(file_path: pathlib.Path) -> str:
+def svg_path_to_text(file_path: pathlib.Path) -> str | None:
     """Read and validate an SVG file from a path.
 
     Args:
         file_path: The path to the SVG file.
 
     Returns:
-        The text content of the SVG file.
-
-    Raises:
-        FileNotFoundError: If the file does not exist.
+        The text content of the SVG file if exists.
 
     """
-    if not file_path.exists():
-        msg = f"Build failed: SVG file not found at {file_path}"
-        raise FileNotFoundError(msg)
-    return validate_svg_content(file_path)
+    if file_path.exists():
+        return validate_svg_content(file_path)
+    return None
 
 
-def png_path_to_bytes(file_path: pathlib.Path) -> str:
+def png_path_to_bytes(file_path: pathlib.Path) -> str | None:
     """Read and validate a PNG file from a path.
 
     Args:
         file_path: The path to the PNG file.
 
     Returns:
-        The raw byte content of the PNG file.
-
-    Raises:
-        FileNotFoundError: If the file does not exist.
+        The decoded byte content of the PNG file if exists.
 
     """
-    if not file_path.exists():
-        msg = f"Build failed: PNG file not found at {file_path}"
-        raise FileNotFoundError(msg)
-    return base64.b64encode(validate_png_content(file_path)).decode("utf-8")
+    if file_path.exists():
+        return base64.b64encode(validate_png_content(file_path)).decode("utf-8")
+    return None
