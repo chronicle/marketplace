@@ -425,3 +425,13 @@
   regressive: false
   deprecated: false
   removed: false
+- description: EmailUtilities - Dependencies updated.
+  integration_version: 39.0
+  item_name: EmailUtilities
+  item_type: Integration
+  publish_time: '2025-08-20'
+  ticket_number: '433361672, 434658560'
+  new: false
+  regressive: false
+  deprecated: false
+  removed: false
