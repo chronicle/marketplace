@@ -42,4 +42,4 @@ jobs:
       with:
         name: validation-report
         path: ./artifacts/validation_report.md
-        retention-days: 3
+        retention-days: 2
