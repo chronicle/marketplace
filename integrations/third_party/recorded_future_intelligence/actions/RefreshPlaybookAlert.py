@@ -1,4 +1,4 @@
-############################## TERMS OF USE ###################################
+############################## TERMS OF USE ################################### # noqa: E266
 # The following code is provided for demonstration purposes only, and should  #
 # not be used without independent verification. Recorded Future makes no      #
 # representations or warranties, express, implied, statutory, or otherwise,   #
@@ -18,9 +18,13 @@
 
 from __future__ import annotations
 
+import json
+import sys
+from typing import NoReturn
+
 from soar_sdk.ScriptResult import EXECUTION_STATE_COMPLETED, EXECUTION_STATE_FAILED
 from soar_sdk.SiemplifyAction import SiemplifyAction
-from soar_sdk.SiemplifyUtils import output_handler
+from soar_sdk.SiemplifyUtils import output_handler, resume_stdout
 from TIPCommon.extraction import extract_action_param, extract_configuration_param
 
 from ..core.constants import (
@@ -41,6 +45,15 @@ from ..core.RecordedFutureManager import RecordedFutureManager
 @output_handler
 def main():
     siemplify = SiemplifyAction()
+
+    def end_script() -> NoReturn:
+        output_object = siemplify._build_output_object()
+        resume_stdout()
+        sys.stdout.write(json.dumps(output_object))
+        sys.exit()
+
+    siemplify.end_script = end_script
+
     siemplify.script_name = REFRESH_PBA_DETAILS_SCRIPT_NAME
     siemplify.LOGGER.info("----------------- Main - Param Init -----------------")
 
@@ -80,7 +93,10 @@ def main():
         )
     if not category:
         raise RecordedFutureInvalidCaseTypeError(
-            f"Label {siemplify.current_alert.rule_generator} is not one of accepted types: {LABEL_MAP.keys()!s}",
+            (
+                f"Label {siemplify.current_alert.rule_generator} is not "
+                f"one of accepted types: {LABEL_MAP.keys()!s}"
+            )
         )
 
     is_success = False
@@ -99,7 +115,10 @@ def main():
 
         is_success = True
         status = EXECUTION_STATE_COMPLETED
-        output_message = f"Successfully fetched the following Alert ID details from Recorded Future: \n{alert_id}"
+        output_message = (
+            "Successfully fetched the following Alert ID "
+            f"details from Recorded Future: \n{alert_id}"
+        )
 
     except RecordedFutureUnauthorizedError as e:
         output_message = (

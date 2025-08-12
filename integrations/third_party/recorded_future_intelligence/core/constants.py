@@ -1,4 +1,4 @@
-############################## TERMS OF USE ###################################
+############################## TERMS OF USE ################################### # noqa: E266
 # The following code is provided for demonstration purposes only, and should  #
 # not be used without independent verification. Recorded Future makes no      #
 # representations or warranties, express, implied, statutory, or otherwise,   #
@@ -95,17 +95,6 @@ TOPIC_MAP = {
     "YARA Rule": "VTrvnW",
 }
 
-ALERT_STATUS_MAP = {
-    "Unassigned": "unassigned",
-    "Assigned": "assigned",
-    "Pending": "pending",
-    "Dismissed": "dismiss",
-    "New": "no-action",
-    "Resolved": "actionable",
-    "Flag for Tuning": "tuning",
-    "Select One": None,
-}
-
 LABEL_MAP = {
     "Domain Abuse": "domain_abuse",
     "Cyber Vulnerability": "cyber_vulnerability",
@@ -125,7 +114,7 @@ ENTITY_PREFIX_TYPE_MAP = {
 
 # Classic Alerts Connector
 CLASSIC_ALERT_DEFAULT_STATUSES = ["New"]
-CLASSIC_ALERT_STATUSES = ["New", "Pending", "Resolved", "Dismissed"]
+CLASSIC_ALERT_STATUSES = ["New", "Pending", "Resolved", "Dismissed", "Flag for Tuning"]
 
 # Playbook Alerts Connector
 PLAYBOOK_ALERT_API_LIMIT = 200
