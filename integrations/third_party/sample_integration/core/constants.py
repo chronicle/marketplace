@@ -1,8 +1,12 @@
 import datetime
 from enum import Enum
-from typing import Mapping
+from typing import TYPE_CHECKING
 
 from TIPCommon.base.action import EntityTypesEnum
+
+if TYPE_CHECKING:
+    from collections.abc import Mapping
+
 
 # Integration Identifiers
 INTEGRATION_IDENTIFIER: str = "SampleIntegration"
@@ -10,15 +14,11 @@ INTEGRATION_DISPLAY_NAME: str = "Sample Integration"
 
 # Script Identifiers
 PING_SCRIPT_NAME: str = f"{INTEGRATION_IDENTIFIER} - Ping"
-SIMPLE_ACTION_EXAMPLE_SCRIPT_NAME: str = (
-    f"{INTEGRATION_IDENTIFIER} - Simple Action Example"
-)
+SIMPLE_ACTION_EXAMPLE_SCRIPT_NAME: str = f"{INTEGRATION_IDENTIFIER} - Simple Action Example"
 ENRICH_ENTITY_ACTION_EXAMPLE_SCRIPT_NAME: str = (
     f"{INTEGRATION_IDENTIFIER} - Enrich Entity Action Example"
 )
-ASYNC_ACTION_EXAMPLE_SCRIPT_NAME: str = (
-    f"{INTEGRATION_IDENTIFIER} - Async Action Example"
-)
+ASYNC_ACTION_EXAMPLE_SCRIPT_NAME: str = f"{INTEGRATION_IDENTIFIER} - Async Action Example"
 CONNECTOR_SCRIPT_NAME: str = f"{INTEGRATION_IDENTIFIER} - Simple Connector Example"
 JOB_SCRIPT_NAME: str = f"{INTEGRATION_IDENTIFIER} - Simple Job Example"
 
@@ -87,11 +87,7 @@ class SupportedEntitiesEnum(DDLEnum):
             case SupportedEntitiesEnum.USER:
                 return [EntityTypesEnum.USER]
             case SupportedEntitiesEnum.ALL:
-                return (
-                    SupportedEntitiesEnum.IP.to_entity_type_enum_list()
-                    + SupportedEntitiesEnum.HASH.to_entity_type_enum_list()
-                    + SupportedEntitiesEnum.USER.to_entity_type_enum_list()
-                )
+                return list(EntityTypesEnum)
             case _:
                 raise ValueError("Unfamiliar Entity type")
 

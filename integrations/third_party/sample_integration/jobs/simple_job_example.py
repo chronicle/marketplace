@@ -4,6 +4,7 @@ from typing import TYPE_CHECKING
 
 from datetime import datetime
 import json
+
 from soar_sdk.SiemplifyDataModel import (
     CaseFilterOperatorEnum,
     CaseFilterSortByEnum,
@@ -18,11 +19,12 @@ from core.auth_manager import AuthManager, build_auth_manager_params
 import constants
 
 if TYPE_CHECKING:
+    from typing import NoReturn
+
     from TIPCommon.data_models import CaseDetails
 
 
 class SimpleJobExample(Job):
-
     def __init__(self) -> None:
         super().__init__(constants.JOB_SCRIPT_NAME)
         self.context: dict[str, str] = {}
@@ -81,8 +83,7 @@ class SimpleJobExample(Job):
 
     def _get_cases_with_details(self) -> list[CaseDetails]:
         return [
-            get_case_overview_details(self.soar_job, case_id)
-            for case_id in self._get_case_ids()
+            get_case_overview_details(self.soar_job, case_id) for case_id in self._get_case_ids()
         ]
 
     def _get_case_ids(self) -> list[int]:
@@ -151,7 +152,7 @@ class SimpleJobExample(Job):
         return datetime.utcnow().strftime("%Y-%m-%d")
 
 
-def main() -> None:
+def main() -> NoReturn:
     SimpleJobExample().start()
 
 

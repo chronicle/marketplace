@@ -666,30 +666,26 @@
    * Flattens nested objects into key-value pairs.
    */
   function flattenObject(obj, prefix = "") {
-    return Object.keys(obj).reduce((acc, key) => {
-      const pre = prefix.length ? `${prefix}.` : "";
-      const value = obj[key];
+      return Object.keys(obj).reduce((acc, key) => {
+          const pre = prefix.length ? `${prefix}.` : "";
+          const value = obj[key];
 
-      if (Array.isArray(value)) {
-        if (value.length === 1 && typeof value[0] !== "object") {
-          acc[`${pre}${key}`] = value[0];
-        } else {
-          value.forEach((item, index) => {
-            if (typeof item === "object" && item !== null) {
-              Object.assign(acc, flattenObject(item, `${pre}${key}.${index}`));
-            } else {
-              acc[`${pre}${key}.${index}`] = item;
-            }
-          });
-        }
-      } else if (typeof value === "object" && value !== null) {
-        Object.assign(acc, flattenObject(value, `${pre}${key}`));
-      } else {
-        acc[`${pre}${key}`] = value;
-      }
+          if (Array.isArray(value)) {
+              value.forEach((item, index) => {
+                  if (typeof item === "object" && item !== null) {
+                      Object.assign(acc, flattenObject(item, `${pre}${key}.${index}`));
+                  } else {
+                      acc[`${pre}${key}.${index}`] = item;
+                  }
+              });
+          } else if (typeof value === "object" && value !== null) {
+              Object.assign(acc, flattenObject(value, `${pre}${key}`));
+          } else {
+              acc[`${pre}${key}`] = value;
+          }
 
-      return acc;
-    }, {});
+          return acc;
+      }, {});
   }
 
   /**

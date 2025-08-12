@@ -1,11 +1,13 @@
+from __future__ import annotations
+
+from typing import TYPE_CHECKING
+
 import datetime as dt
 import json
-from typing import NoReturn
 
 from TIPCommon.base.action.data_models import DataTable, Link
 from TIPCommon.extraction import extract_action_param
 from TIPCommon.transformation import construct_csv
-from TIPCommon.types import JSON
 from TIPCommon.validation import ParameterValidator
 
 from ..core.base_action import BaseAction
@@ -14,8 +16,14 @@ from ..core.constants import (
     SIMPLE_ACTION_EXAMPLE_SCRIPT_NAME,
     TimeFrameDDLEnum,
 )
-from ..core.data_models import DailyRates
 from ..core.exceptions import SampleIntegrationInvalidParameterError
+
+if TYPE_CHECKING:
+    from typing import NoReturn
+
+    from TIPCommon.types import JSON
+
+    from ..core.data_models import DailyRates
 
 
 DEFAULT_CURRENCIES_DDL: str = "Select One"
@@ -30,7 +38,6 @@ EXAMPLE_CASE_WALL_LINK: str = "https://api.vatcomply.com/rates?date={date}&base=
 
 
 class SimpleActionExample(BaseAction):
-
     def __init__(self) -> None:
         super().__init__(SIMPLE_ACTION_EXAMPLE_SCRIPT_NAME)
 
@@ -97,13 +104,10 @@ class SimpleActionExample(BaseAction):
             currencies.append(currency_ddl_option)
         if not currencies and currency_ddl_option == DEFAULT_CURRENCIES_DDL:
             raise SampleIntegrationInvalidParameterError(
-                'at least "Currencies String" or "Currencies DDL" should have a '
-                "value provided."
+                'at least "Currencies String" or "Currencies DDL" should have a value provided.'
             )
         self.params.currencies = currencies
-        self.logger.info(
-            f"Action is going to get data for currencies: {repr(currencies)}"
-        )
+        self.logger.info(f"Action is going to get data for currencies: {repr(currencies)}")
 
     def _validate_time_params(self, validator: ParameterValidator) -> None:
         """Validate the provided time_frame, start_time, end_time parameters
@@ -157,6 +161,24 @@ class SimpleActionExample(BaseAction):
         self.logger.info(f"Using start_time {repr(self.params.start_date)}")
         self.logger.info(f"Using end_time {repr(self.params.end_date)}")
 
+    def _perform_action(self, _=None):
+        exchange_rates: list[DailyRates] = self.api_client.get_rates(
+            currencies=self.params.currencies,
+            start_date=self.params.start_date,
+            end_date=self.params.end_date,
+        )
+        json_results = [rates.json() for rates in exchange_rates]
+        if self.params.return_json_result:
+            self.json_results = json_results
+        self._create_data_tables(exchange_rates)
+        self._create_links(exchange_rates)
+        self._add_result_case_attachment(json_results)
+        self.output_message = SUCCESS_MESSAGE.format(
+            start_time=self.params.start_date,
+            end_time=self.params.end_date,
+            currencies=",".join(self.params.currencies),
+        )
+
     def _create_data_tables(self, exchange_rates: list[DailyRates]) -> None:
         """Creates data tables from the given exchange rates and adds them to the
         data_tables attribute.
@@ -165,9 +187,7 @@ class SimpleActionExample(BaseAction):
             exchange_rates (list[DailyRates]): A list of DailyRates objects.
         """
         for daily_rates in exchange_rates:
-            self.logger.info(
-                f"Creating data tables for exchange date {daily_rates.date}"
-            )
+            self.logger.info(f"Creating data tables for exchange date {daily_rates.date}")
             self.data_tables.extend(
                 DataTable(
                     data_table=construct_csv(base_rate.to_csv()),
@@ -205,24 +225,6 @@ class SimpleActionExample(BaseAction):
             filename="Result.json", content=json.dumps(json_results)
         )
         self._add_attachment_to_current_case(result_file_path)
-
-    def _perform_action(self, _=None):
-        exchange_rates: list[DailyRates] = self.api_client.get_rates(
-            currencies=self.params.currencies,
-            start_date=self.params.start_date,
-            end_date=self.params.end_date,
-        )
-        json_results = [rates.json() for rates in exchange_rates]
-        if self.params.return_json_result:
-            self.json_results = json_results
-        self._create_data_tables(exchange_rates)
-        self._create_links(exchange_rates)
-        self._add_result_case_attachment(json_results)
-        self.output_message = SUCCESS_MESSAGE.format(
-            start_time=self.params.start_date,
-            end_time=self.params.end_date,
-            currencies=",".join(self.params.currencies),
-        )
 
 
 def main() -> NoReturn:

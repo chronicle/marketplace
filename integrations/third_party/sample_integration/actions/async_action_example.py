@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 import json
-from typing import Iterable, NoReturn
+from typing import TYPE_CHECKING
 
 from TIPCommon.base.action.data_models import ExecutionState
 from TIPCommon.extraction import extract_action_param
@@ -11,6 +11,12 @@ from TIPCommon.validation import ParameterValidator
 
 from base_action import BaseAction
 from constants import ASYNC_ACTION_EXAMPLE_SCRIPT_NAME
+
+if TYPE_CHECKING:
+    from typing import NoReturn
+
+    from collections.abc import Iterable
+
 
 DEFAULT_CASE_TAG_TO_WAIT_FOR: str = "Async"
 
@@ -59,7 +65,7 @@ class AsyncActionExample(BaseAction):
             ),
         )
 
-    def _validate_params(self):
+    def _validate_params(self) -> None:
         # If no case IDs provided, use the current case ID
         if not self.params.case_ids:
             self.logger.info(
@@ -93,13 +99,17 @@ class AsyncActionExample(BaseAction):
                 self.soar_action,
                 case_id,
             )
-            result[case_id] = any(case_tag["displayName"] == tag for case_tag in case.tags)
+            result[case_id] = any(
+                (isinstance(case_tag, dict) and case_tag.get("displayName") == tag)
+                or (isinstance(case_tag, str) and case_tag == tag)
+                for case_tag in case.tags
+            )
         return result
 
-    def _first_run(self):
+    def _first_run(self) -> None:
         self._process_cases(self.params.case_ids)
 
-    def _consecutive_run(self):
+    def _consecutive_run(self) -> None:
         self.cases_with_tag.update(self.params.additional_data.get("cases_with_tag", []))
         cases_to_process = self.params.additional_data.get("waiting_cases", [])
         self._process_cases(cases_to_process)
@@ -122,7 +132,7 @@ class AsyncActionExample(BaseAction):
             )
             self.waiting_cases.add(case_id)
 
-    def _perform_action(self, _=None):
+    def _perform_action(self, _=None) -> None:
         if self._is_approaching_async_timeout():
             self.logger.info("Action is approaching async timeout, and will exit gracefully")
             raise TimeoutError(TIMEOUT_ERROR_MESSAGE)
@@ -139,7 +149,7 @@ class AsyncActionExample(BaseAction):
             for case_id in self.cases_with_tag
         ]
 
-    def _is_all_cases_done(self):
+    def _is_all_cases_done(self) -> bool:
         return self.cases_with_tag == set(self.params.case_ids)
 
     def _finalize_action_on_success(self) -> None:

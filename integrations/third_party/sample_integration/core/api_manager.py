@@ -11,8 +11,10 @@ from .data_models import BaseRate, DailyRates
 from .utils import date_range
 
 if TYPE_CHECKING:
-    from collections.abc import Iterable
+    from collections.abc import Iterable, Sequence
+
     from requests import Session
+
     from TIPCommon.base.utils import NewLineLogger
 
 
@@ -45,7 +47,7 @@ class ApiManager:
         currencies: Iterable[str],
         start_date: dt.date,
         end_date: dt.date | None = None,
-    ) -> list[DailyRates]:
+    ) -> Sequence[DailyRates]:
         """Get daily rates for a given date range and currencies.
 
         Args:
@@ -55,7 +57,7 @@ class ApiManager:
                 Defaults to dt.date.today().
 
         Returns:
-            list[DailyRates]: list of daily rates
+            Sequence[DailyRates]: list of daily rates
         """
         results = []
 
@@ -70,9 +72,7 @@ class ApiManager:
             results.append(
                 DailyRates(
                     date=date.isoformat(),
-                    exchange_rates=[
-                        self.get_base_rate(base, date) for base in currencies
-                    ],
+                    exchange_rates=[self.get_base_rate(base, date) for base in currencies],
                 )
             )
         return results
@@ -93,9 +93,7 @@ class ApiManager:
         """
         return DailyRates(
             date=start_date.isoformat(),
-            exchange_rates=[
-                self.get_base_rate(base, start_date) for base in currencies
-            ],
+            exchange_rates=[self.get_base_rate(base, start_date) for base in currencies],
         )
 
     def get_job_rate(self) -> None:

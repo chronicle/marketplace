@@ -31,9 +31,7 @@ class VatComply:
             None,
         )
         if not result:
-            raise ValueError(
-                f"Value error, Unknown base currency {_base} or date {_date}"
-            )
+            raise ValueError(f"Value error, Unknown base currency {_base} or date {_date}")
         return result.to_json(_symbols)
 
     def set_rates(self, mock_rates: SingleJson) -> None:

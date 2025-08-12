@@ -1,8 +1,10 @@
 from __future__ import annotations
 
+from typing import TYPE_CHECKING
+
 from TIPCommon.base.action import EntityTypesEnum
 from TIPCommon.base.action.base_enrich_action import EnrichAction
-from TIPCommon.base.action.data_models import DataTable, Entity
+from TIPCommon.base.action.data_models import DataTable
 from TIPCommon.extraction import extract_action_param
 from TIPCommon.transformation import add_prefix_to_dict, construct_csv
 from TIPCommon.validation import ParameterValidator
@@ -14,6 +16,11 @@ from ..core.constants import (
     SupportedEntitiesEnum,
 )
 
+if TYPE_CHECKING:
+    from typing import NoReturn
+
+    from TIPCommon.base.action.data_models import Entity
+
 
 DEFAULT_ENTITY_TYPE: str = SupportedEntitiesEnum.ALL.value
 
@@ -22,7 +29,6 @@ NO_ENTITIES_MESSAGE: str = "No eligible entities were found in the scope of the 
 
 
 class EnrichEntityActionExample(EnrichAction, BaseAction):
-
     def __init__(self) -> None:
         super().__init__(ENRICH_ENTITY_ACTION_EXAMPLE_SCRIPT_NAME)
         self.enriched_entities: list[str] = []
@@ -69,15 +75,13 @@ class EnrichEntityActionExample(EnrichAction, BaseAction):
     def _finalize_action_on_success(self) -> None:
         super()._finalize_action_on_success()
         if self.enriched_entities:
-            self.output_message = SUCCESS_MESSAGE.format(
-                ", ".join(self.enriched_entities)
-            )
+            self.output_message = SUCCESS_MESSAGE.format(", ".join(self.enriched_entities))
         else:
             self.output_message = NO_ENTITIES_MESSAGE
             self.result_value = False
 
 
-def main():
+def main() -> NoReturn:
     EnrichEntityActionExample().run()
 
 

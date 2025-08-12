@@ -18,7 +18,6 @@ import data_models
 
 
 class SimpleConnector(Connector):
-
     def __init__(self, is_test_connector_run: bool) -> None:
         super().__init__(constants.CONNECTOR_SCRIPT_NAME, is_test_connector_run)
         self.manager: ApiManager | None = None
@@ -54,10 +53,10 @@ class SimpleConnector(Connector):
     def get_last_success_time(self) -> int:
         return super().get_last_success_time(
             max_backwards_param_name="max_days_backwards",
-            metric= "days",
+            metric="days",
         )
 
-    def get_alerts(self) -> list[SingleJson]:
+    def get_alerts(self) -> list[AlertInfo]:
         """Fetch alerts from the API."""
         alerts = []
         rate = self.manager.get_connector_rates(
@@ -65,18 +64,20 @@ class SimpleConnector(Connector):
                 string_value=self.params.currencies_to_fetch,
                 only_unique=True,
             ),
-            start_date= self.context.last_success_timestamp.date(),
+            start_date=self.context.last_success_timestamp.date(),
         )
         for base_rate in rate.exchange_rates:
-            alerts.extend(base_rate.to_alerts(
-                create_per_rate=self.params.create_alert_per_exchange_rate,
-                severity=self.params.alert_severity,
-                env_common=self.env_common,
-            ))
+            alerts.extend(
+                base_rate.to_alerts(
+                    create_per_rate=self.params.create_alert_per_exchange_rate,
+                    severity=self.params.alert_severity,
+                    env_common=self.env_common,
+                )
+            )
 
         return alerts
 
-    def filter_alerts(self, fetched_alerts: list[SingleJson]) -> list[AlertInfo]:
+    def filter_alerts(self, fetched_alerts: list[AlertInfo]) -> list[AlertInfo]:
         """Filter out alerts that are already processed or overflowed."""
         return filter_old_alerts(
             self.siemplify,
@@ -85,14 +86,14 @@ class SimpleConnector(Connector):
             "alert_id",
         )
 
-    def max_alerts_processed(self, processed_alerts: list[SingleJson]) -> bool:
+    def max_alerts_processed(self, processed_alerts: list[AlertInfo]) -> bool:
         """Check if the maximum number of alerts to process has been reached."""
         if len(processed_alerts) >= self.params.max_alerts_to_fetch:
             return True
 
         return False
 
-    def pass_filters(self, alert) -> bool:
+    def pass_filters(self, alert: AlertInfo) -> bool:
         """Check if the alert passes the whitelist filter."""
         return pass_whitelist_filter(
             siemplify=self.siemplify,
@@ -107,19 +108,19 @@ class SimpleConnector(Connector):
             self.siemplify, alert_info, self.is_test_run
         )
 
-    def store_alert_in_cache(self, processed_alert) -> None:
+    def store_alert_in_cache(self, processed_alert: AlertInfo) -> None:
         """Store the processed alert in the context."""
         self.context.existing_ids.append(processed_alert.alert_id)
 
-    def create_alert_info(self, processed_alert) -> AlertInfo:
+    def create_alert_info(self, processed_alert: AlertInfo) -> AlertInfo:
         """Create an AlertInfo object from the processed alert."""
         return processed_alert
 
-    def set_last_success_time(self, alerts) -> None:
+    def set_last_success_time(self, alerts: list[AlertInfo]) -> None:
         """Set connector's last success time."""
         super().set_last_success_time(alerts=alerts, timestamp_key="start_time")
 
-    def write_context_data(self, alerts) -> None:
+    def write_context_data(self, alerts: list[AlertInfo]) -> None:
         """Write connector's context data."""
         if not alerts:
             return
