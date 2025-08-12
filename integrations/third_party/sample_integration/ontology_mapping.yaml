@@ -1,5 +1,5 @@
 -   source: SampleIntegration
-    product: SampleIntegration
+    product: null
     security_event_file_name: StartTime
     transformation_function: from_custom_date
     transformation_function_param: '%Y-%m-%d'
@@ -13,7 +13,7 @@
     extract_function_param: ''
     extract_function: none
 -   source: SampleIntegration
-    product: SampleIntegration
+    product: null
     security_event_file_name: EndTime
     transformation_function: from_custom_date
     transformation_function_param: '%Y-%m-%d'
@@ -27,7 +27,7 @@
     extract_function_param: ''
     extract_function: none
 -   source: SampleIntegration
-    product: SampleIntegration
+    product: null
     security_event_file_name: Name
     transformation_function: to_string
     transformation_function_param: ''

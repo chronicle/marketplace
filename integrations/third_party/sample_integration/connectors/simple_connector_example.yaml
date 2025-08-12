@@ -34,7 +34,7 @@ parameters:
         is_advanced: true
         mode: regular
     -   name: PythonProcessTimeout
-        default_value: '30'
+        default_value: '180'
         type: string
         description: The timeout limit (in seconds) for the python process running current
             script
