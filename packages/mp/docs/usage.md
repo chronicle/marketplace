@@ -133,6 +133,11 @@ mp dev-env deploy <integration_name>
 
 - `<integration_name>`: The name of the integration directory under `integrations/commercial` or `integrations/third_party`.
 
+Options:
+
+- `--staging`: Uploads the integrations into the staging environment in the playground system.
+
+
 ## Integration Validation Command
 
 ### Validate Integrations
