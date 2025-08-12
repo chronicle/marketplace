@@ -2,7 +2,7 @@
     product: SampleIntegration
     security_event_file_name: StartTime
     transformation_function: from_custom_date
-    transformation_function_param: '%Y-%m-%dT%H:%M:%SZ'
+    transformation_function_param: '%Y-%m-%d'
     raw_data_primary_field_match_term: date
     raw_data_primary_field_comparison_type: equal
     raw_data_secondary_field_match_term: ''
@@ -16,7 +16,7 @@
     product: SampleIntegration
     security_event_file_name: EndTime
     transformation_function: from_custom_date
-    transformation_function_param: '%Y-%m-%dT%H:%M:%SZ'
+    transformation_function_param: '%Y-%m-%d'
     raw_data_primary_field_match_term: date
     raw_data_primary_field_comparison_type: equal
     raw_data_secondary_field_match_term: ''
