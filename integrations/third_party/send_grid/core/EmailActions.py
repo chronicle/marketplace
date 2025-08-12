@@ -10,7 +10,7 @@ from soar_sdk.SiemplifyUtils import convert_unixtime_to_datetime, unix_now
 
 
 class BaseEmailAction:
-    """Abstract class for Email actions"""
+    """Abstract class for Email test_actions"""
 
     # Constants related to Email integration config
     INTEGRATION_NAME = "SendGrid"
@@ -37,7 +37,7 @@ class BaseEmailAction:
 
     # noinspection PyAttributeOutsideInit
     def load_base_integration_configuration(self):
-        """Loads base integration configuration, which is used by all Email integration actions"""
+        """Loads base integration configuration, which is used by all Email integration test_actions"""
         configurations = self.siemplify.get_configuration("SendGrid")
         self.api_token = configurations["API Token"]
 
@@ -54,7 +54,7 @@ class BaseEmailAction:
         raise NotImplementedError
 
     def run(self):
-        """Main Email action method. It wraps some common logic for actions"""
+        """Main Email action method. It wraps some common logic for test_actions"""
         self.logger.info("----------------- Main - Started -----------------")
 
         try:

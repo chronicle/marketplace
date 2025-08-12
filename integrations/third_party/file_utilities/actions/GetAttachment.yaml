@@ -1,5 +1,5 @@
 name: Get Attachment
-description: The actions gets an attachment from the case wall (the result is presented
+description: The test_actions gets an attachment from the case wall (the result is presented
     as a Base64)
 integration_identifier: FileUtilities
 parameters:

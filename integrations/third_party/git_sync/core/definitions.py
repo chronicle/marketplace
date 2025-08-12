@@ -296,7 +296,7 @@ class Integration(Content):
             integration = {
                 "dependencies": self.dependencies,
                 "definition": self.definition,
-                "actions": [x for x in self.actions if x["IsCustom"]],
+                "test_actions": [x for x in self.actions if x["IsCustom"]],
                 "jobs": [x for x in self.jobs if x["IsCustom"]],
                 "connectors": [x for x in self.connectors if x["IsCustom"]],
                 "has_resources": self.has_resources,

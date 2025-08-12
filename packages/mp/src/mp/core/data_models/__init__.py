@@ -1,7 +1,7 @@
 """Data models representing integration components.
 
 This package defines a set of data classes that model various aspects of
-an integration, such as actions, connectors, jobs, widgets, release notes,
+an integration, such as test_actions, connectors, jobs, widgets, release notes,
 custom families, mapping rules, and the integration itself. These data
 models provide functionality to instantiate themselves from both the
 "built" (final, deployable) and "non-built" (source) representations found

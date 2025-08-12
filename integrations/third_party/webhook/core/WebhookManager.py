@@ -39,7 +39,7 @@ class WebhookManager:
             "cors": False,
             "expiry": True,
             "alias": "my-webhook",
-            "actions": True,
+            "test_actions": True,
         }
 
         response = self.session.post(endpoint_url, json=payload)

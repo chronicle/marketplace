@@ -56,7 +56,7 @@ def set_metadata(  # noqa: PLR0913, PLR0917
     Args:
         func: The wrapped function. Do not use this!
         parameters: The script's input parameters
-        entities: A list of entities for actions to use
+        entities: A list of entities for test_actions to use
         input_context: The script's input context json
         external_context: External context for the script to use. Can be set with
             initial values, and is passed as an argument to the wrapped function so the

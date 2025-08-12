@@ -2,7 +2,7 @@
 
 This module defines TypedDicts that capture all the necessary information
 for a built integration, extending beyond the basic metadata. This includes
-details about supported actions and additional attributes relevant to the
+details about supported test_actions and additional attributes relevant to the
 full representation of an integration.
 """
 

@@ -337,7 +337,7 @@ class MicrosoftGraphSecurityManager:
     def get_ti_indicator(self, indicators):
         """NOTE: Not in use yet as the API endpoint doesn't seem to be working,
         Likely because it's still in Beta. I'll update once it starts working
-        with relevant actions.
+        with relevant test_actions.
         Query Azure/Defender ATP for a threat indicator.
         :param user_id: {str} The identifier of the user to kill
         :return: {list} A list of TI match information {dicts}

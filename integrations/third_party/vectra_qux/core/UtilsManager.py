@@ -18,7 +18,7 @@ from .VectraQUXExceptions import *
 
 
 class HandleExceptions:
-    """A class to handle exceptions based on different actions."""
+    """A class to handle exceptions based on different test_actions."""
 
     def __init__(self, api_name, error, response, error_msg="An error occurred"):
         """Initializes the HandleExceptions class.

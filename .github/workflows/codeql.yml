@@ -43,11 +43,11 @@ jobs:
       fail-fast: false
       matrix:
         include:
-        - language: actions
+        - language: test_actions
           build-mode: none
         - language: python
           build-mode: none
-        # CodeQL supports the following values keywords for 'language': 'actions', 'c-cpp', 'csharp', 'go', 'java-kotlin', 'javascript-typescript', 'python', 'ruby', 'swift'
+        # CodeQL supports the following values keywords for 'language': 'test_actions', 'c-cpp', 'csharp', 'go', 'java-kotlin', 'javascript-typescript', 'python', 'ruby', 'swift'
         # Use `c-cpp` to analyze code written in C, C++ or both
         # Use 'java-kotlin' to analyze code written in Java, Kotlin or both
         # Use 'javascript-typescript' to analyze code written in JavaScript, TypeScript or both
@@ -60,10 +60,10 @@ jobs:
       uses: actions/checkout@v4
 
     # Add any setup steps before running the `github/codeql-action/init` action.
-    # This includes steps like installing compilers or runtimes (`actions/setup-node`
+    # This includes steps like installing compilers or runtimes (`test_actions/setup-node`
     # or others). This is typically only required for manual builds.
     # - name: Setup runtime (example)
-    #   uses: actions/setup-example@v1
+    #   uses: test_actions/setup-example@v1
 
     # Initializes the CodeQL tools for scanning.
     - name: Initialize CodeQL

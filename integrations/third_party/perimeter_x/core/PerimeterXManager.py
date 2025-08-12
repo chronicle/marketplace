@@ -106,7 +106,7 @@ class PerimeterXManager:
                 "value",
             ),
             "deepLink": self.getItemFromList(
-                msg["attachments"][0]["actions"],
+                msg["attachments"][0]["test_actions"],
                 "text",
                 "View in Console",
                 "url",

@@ -61,7 +61,7 @@ class ActionBaseClass(abc.ABC):
 
     def load_base_integration_configuration(self) -> None:
         """Loads base integration configuration, which is used by all async
-        integration actions.
+        integration test_actions.
         """
         raise NotImplementedError
 
@@ -97,7 +97,7 @@ class ActionBaseClass(abc.ABC):
         raise NotImplementedError
 
     def run(self) -> NoReturn:
-        """Main ChronicleSupportTools action method. It wraps some common logic for actions."""
+        """Main ChronicleSupportTools action method. It wraps some common logic for test_actions."""
         try:
             self.logger.info(f"{'Main - Param Init':-^80}")
             self._extract_action_configuration()

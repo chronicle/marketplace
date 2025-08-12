@@ -1,7 +1,7 @@
 """Module for restructuring an integration's script files.
 
 This module defines a class, `Scripts`, responsible for copying and organizing
-the various script files (actions, connectors, jobs, widgets, managers, and
+the various script files (test_actions, connectors, jobs, widgets, managers, and
 common scripts) of an integration to its designated output directory. It also
 handles the removal of definition files from the script directories.
 """

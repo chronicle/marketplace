@@ -333,7 +333,7 @@ def set_sys_argv(args: list[str]) -> None:
 
 
 def set_is_first_run_to_true() -> None:
-    """Set the 'is_first_run' sys arg of async actions to True."""
+    """Set the 'is_first_run' sys arg of async test_actions to True."""
     first_run_arg_num: int = 3
     if not sys.argv or len(sys.argv) < first_run_arg_num:
         set_sys_argv(["", "", ""])
@@ -342,7 +342,7 @@ def set_is_first_run_to_true() -> None:
 
 
 def set_is_first_run_to_false() -> None:
-    """Set the 'is_first_run' sys arg of async actions to True."""
+    """Set the 'is_first_run' sys arg of async test_actions to True."""
     first_run_arg_num: int = 3
     if not sys.argv or len(sys.argv) < first_run_arg_num:
         set_sys_argv(["", "", ""])

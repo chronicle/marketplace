@@ -29,7 +29,7 @@ def main():
     output_message = (
         "output message :"  # human readable message, showed in UI as the action result
     )
-    successfull_entities = []  # In case this actions contains entity based logic, collect successfull entity.identifiers
+    successfull_entities = []  # In case this test_actions contains entity based logic, collect successfull entity.identifiers
 
     json_result = {}
     for entity in siemplify.target_entities:

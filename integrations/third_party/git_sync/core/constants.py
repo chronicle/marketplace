@@ -230,9 +230,9 @@ Python Version - {{ integration.definition.PythonVersion }}
 |{{ depend | replace("Dependencies/", "") }}|
 {% endfor -%}
 {% endif %}
-{% if integration.actions %}
+{% if integration.test_actions %}
 ## Actions
-{% for action in integration.actions -%}
+{% for action in integration.test_actions -%}
 #### {{ action.Name }}
 {{ action.Description }}
 Timeout - {{ action.TimeoutSeconds }} Seconds\n

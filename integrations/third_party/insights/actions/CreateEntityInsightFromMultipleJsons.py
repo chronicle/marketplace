@@ -99,7 +99,7 @@ def process_fields_string(field_string, ph_separator):
 
 
 def extract_json_based_on_entity(entity, json):
-    for item in json:  # Assuming regular list format for enrichment actions
+    for item in json:  # Assuming regular list format for enrichment test_actions
         if item[ENTITY_IDENTIFIER_FIELD_NAME].lower() == entity.identifier.lower():
             return item[JSON_DATA_FIELD_NAME]
     return None

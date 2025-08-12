@@ -18,7 +18,7 @@
   regressive: false
   deprecated: false
   removed: false
-- description: 'Added the following actions: Get User By Email, List Incidents, Filtered
+- description: 'Added the following test_actions: Get User By Email, List Incidents, Filtered
     Incident List, Get User By ID, List All OnCall, List Users, Get Incident By ID,
     Snooze Incident, Create Incident, Run Response Play'
   integration_version: 14.0

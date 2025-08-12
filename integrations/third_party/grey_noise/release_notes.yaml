@@ -37,7 +37,7 @@
     \ - Added IP Similarity Lookup \n - Added IP Timeline Lookup \n - Fixed output\
     \ sample for Quick IP Lookup \n - Added better handling for non-routable/invalid\
     \ IPs \n - Small tweaks made to RIOT and Context Entity insights \n - Improved\
-    \ error handling on all actions.\n"
+    \ error handling on all test_actions.\n"
   integration_version: 4.0
   item_name: GreyNoise
   item_type: Integration

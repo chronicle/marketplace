@@ -23,7 +23,7 @@ dynamic_results_metadata:
         show_result: true
         # language=json
         result_example: "{\r\n\t\"uuid\": \"7fc8d86a-280a-4308-9cb4-48a8070cfe81\",\r\n\
-        \t\"redirect\": false,\r\n\t\"alias\": null,\r\n\t\"actions\": true,\r\n\t\
+        \t\"redirect\": false,\r\n\t\"alias\": null,\r\n\t\"test_actions\": true,\r\n\t\
         \"cors\": false,\r\n\t\"expiry\": true,\r\n\t\"timeout\": 0,\r\n\t\"premium\"\
         : false,\r\n\t\"user_id\": null,\r\n\t\"password\": false,\r\n\t\"ip\": \"\
         1.1.1.1\",\r\n\t\"user_agent\": \"python-requests/2.26.0\",\r\n\t\"default_content\"\
