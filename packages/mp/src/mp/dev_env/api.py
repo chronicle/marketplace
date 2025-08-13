@@ -78,35 +78,45 @@ class BackendAPI:
             self.token = resp.json()["token"]
             self.session.headers.update({"Authorization": f"Bearer {self.token}"})
 
-    def get_integration_details(self, zip_path: pathlib.Path) -> dict[str, Any]:
+    def get_integration_details(
+        self, zip_path: pathlib.Path, *, is_staging: bool = False
+    ) -> dict[str, Any]:
         """Get integration details from a zipped package.
 
         Args:
             zip_path: Path to the zipped integration package.
+            is_staging: Push to staging or not.
 
         Returns:
             dict: The integration details as returned by the backend.
 
         """
         details_url = f"{self.api_root}/api/external/v1/ide/GetPackageDetails?format=camel"
+        if is_staging:
+            details_url += "&isStaging=true"
         data = base64.b64encode(zip_path.read_bytes()).decode()
         details_payload = {"data": data}
         resp = self.session.post(details_url, json=details_payload)
         resp.raise_for_status()
         return resp.json()
 
-    def upload_integration(self, zip_path: pathlib.Path, integration_id: str) -> dict[str, Any]:
+    def upload_integration(
+        self, zip_path: pathlib.Path, integration_id: str, *, is_staging: bool = False
+    ) -> dict[str, Any]:
         """Upload a zipped integration package to the backend.
 
         Args:
             zip_path: Path to the zipped integration package.
             integration_id: The identifier of the integration.
+            is_staging: Push to staging or not.
 
         Returns:
             dict: The backend response after uploading the integration.
 
         """
         upload_url = f"{self.api_root}/api/external/v1/ide/ImportPackage?format=camel"
+        if is_staging:
+            upload_url += "&isStaging=true"
         data = base64.b64encode(zip_path.read_bytes()).decode()
         upload_payload = {
             "data": data,
