@@ -9,7 +9,7 @@ permissions:
 
 jobs:
   validate:
-    name: Run validation on PR code
+    name: Run Validation On PR Code
     runs-on: ubuntu-latest
 
     steps:

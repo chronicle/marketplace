@@ -11,7 +11,7 @@ on:
 
 jobs:
   mp_check:
-    name: mp check
+    name: Code Linter
     runs-on: ubuntu-latest
 
     steps:

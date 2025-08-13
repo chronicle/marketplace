@@ -15,7 +15,7 @@ on:
 
 jobs:
   test_mp:
-    name: Run mp tests
+    name: Test mp Package
     runs-on: ubuntu-latest
 
     steps:

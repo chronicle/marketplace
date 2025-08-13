@@ -9,7 +9,7 @@ on:
 
 jobs:
   require_checklist:
-    name: Require checklist
+    name: Require PR Checklist
     runs-on: ubuntu-latest
     steps:
       - uses: mheap/require-checklist-action@v2
