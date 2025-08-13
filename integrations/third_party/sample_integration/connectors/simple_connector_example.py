@@ -7,14 +7,12 @@ from TIPCommon.base.connector import Connector
 from TIPCommon.filters import filter_old_alerts, pass_whitelist_filter
 from TIPCommon.smp_io import read_ids, write_ids
 from TIPCommon.transformation import string_to_multi_value
-from TIPCommon.types import SingleJson
 from TIPCommon.utils import is_overflowed, is_test_run
 
 from core.api_manager import ApiManager
 from core.auth_manager import AuthManager, build_auth_manager_params
 
 import constants
-import data_models
 
 
 class SimpleConnector(Connector):
@@ -72,6 +70,7 @@ class SimpleConnector(Connector):
                     create_per_rate=self.params.create_alert_per_exchange_rate,
                     severity=self.params.alert_severity,
                     env_common=self.env_common,
+                    attachment=self.params.add_attachment,
                 )
             )
 
