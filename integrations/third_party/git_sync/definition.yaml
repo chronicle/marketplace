@@ -1,67 +1,60 @@
 identifier: GitSync
 name: GitSync
 parameters:
-    -   name: Repo URL
-        default_value: ''
-        type: string
-        description: Repository URL. The URL must start with 'https' for HTTPS+Token or
-            'git@' for SSH+Cert.
-        is_mandatory: true
-        integration_identifier: GitSync
-    -   name: Branch
-        default_value: ''
-        type: string
-        description: Target branch
-        is_mandatory: true
-        integration_identifier: GitSync
-    -   name: Git Password/Token/SSH Key
-        type: password
-        description: Git Password/Token/SSH Key (Base64). RSA and Ed25519 are supported.
-        is_mandatory: true
-        integration_identifier: GitSync
-    -   name: Git Username
-        default_value: ''
-        type: string
-        description: Git Username
-        is_mandatory: false
-        integration_identifier: GitSync
-    -   name: Commit Author
-        default_value: ''
-        type: string
-        description: 'Commit Author. Must be in the following format: ''James Bond <james.bond@gmail.com>'''
-        is_mandatory: false
-        integration_identifier: GitSync
-    -   name: Siemplify Verify SSL
-        default_value: true
-        type: boolean
-        description: Siemplify Verify SSL
-        is_mandatory: true
-        integration_identifier: GitSync
-    -   name: Git Verify SSL
-        default_value: true
-        type: boolean
-        description: Git Verify SSL
-        is_mandatory: true
-        integration_identifier: GitSync
-    -   name: SOAR Username
-        type: string
-        description: Username with playbook edit permissions. Required if API Key fails
-            due to permission limits.
-        is_mandatory: false
-        integration_identifier: GitSync
-    -   name: SOAR Password
-        type: password
-        description: Password for SOAR Username.
-        is_mandatory: false
-        integration_identifier: GitSync
-categories: [ ]
-# language=svg
-svg_image: |
-    <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg"
-         viewBox="0 0 25 25">
-        <path d="M24.13,6.12,19,4.52l-.44,1.56h0l-1,3.61,1.59.49.51-1.82v0l.13-.48a8.87,8.87,0,0,1,1.43,5.74A8.51,8.51,0,0,1,8.71,20.41l-.54,1.83a10.33,10.33,0,0,0,14.88-8.38A10.87,10.87,0,0,0,21.38,7l2.32.71Z"/>
-        <path
-                d="M6,15.12l-.51,1.82v0l-.13.48A8.88,8.88,0,0,1,4,11.66,8.53,8.53,0,0,1,7.07,5.79a8.66,8.66,0,0,1,1-.7l2,2.12A1.72,1.72,0,0,0,11,9.43v6.05a1.46,1.46,0,0,0-.53.37,1.72,1.72,0,0,0,0,2.38,1.59,1.59,0,0,0,2.31,0,1.73,1.73,0,0,0,0-2.38,1.5,1.5,0,0,0-.44-.32v-6l2.21,2.28a1.74,1.74,0,0,0,.35,1.84,1.61,1.61,0,0,0,2.32,0,1.73,1.73,0,0,0,0-2.39,1.57,1.57,0,0,0-1.69-.4L13.17,8.41a1.72,1.72,0,0,0-.38-1.74,1.6,1.6,0,0,0-1.68-.41L9.37,4.47a8.68,8.68,0,0,1,7.05.42L17,3.05A10.35,10.35,0,0,0,2.08,11.44a10.82,10.82,0,0,0,1.68,6.9l-2.32-.71L1,19.18l5.18,1.59.44-1.55h0l1-3.61Z"/>
-    </svg>
-image_base64: iVBORw0KGgoAAAANSUhEUgAAADAAAABACAYAAABcIPRGAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEwAACxMBAJqcGAAAAzlJREFUaIHtmT1rFFEUhh+jJpuPNcZgITY2goUmxkIQK7+qGBPRxlKws/MH+Assgokkgo2VP8BGDEoQO7GSuJsUKhYWomCjJDFmLM4umb33zr1zZ2bnbmAfOMUuZ2bed/d+nDkXunTpojIBLAJrwEYjVoEFYDygLif9wBMgssQ2Yq4SSGMi/cAb7OLjsUyHmXD98qZYCKLUwAS6uBowDVQbMQPU0YdTR8yJRXTxw4a8g8hkjuc+KkmjlTVaRU1bcq+jmw3OBq2iqpbcqpK73nZ1DnqAPR75am5UoJZM9ABflO8uWfKvKJ8/F6omIwu0Dos6MmFVRtDny2xJGq2MIUtiXNgqMmGrwAHgBrr4LeBEAL1G5vHfyB4EUZpAL/CS9OKfA/uCKLXQi4zpNAZuB9KYijQG3gdTl4K0w+hqKIEu0hqoAfsDabTisxLdD6TRio+Bv8C5MDKT8d0PvgFHgyhNwNdABKwAoyHEmshiIAI+AEcC6NXIaiACvgJnypfcSh4DEfKScw8p1bNwmp2+1CYZ+lJ5DTTjHXDeQ3ilIVKtjOORqi/lEvbb08gSMAXstTyzD3jlcc9lmwnXxRcymIiAH8BT4A5wFjiMFJAADzPcL7Ev5boQZPP6meGhpthCHzYrwCQwAAwi/2BNyUnsS6UxAHAcvdlVRKwgb4EqwwYTxr5UWgMgr5zPCjYwaRLV4JqSa+xL+Rhocgv4XpCBAYuBISXX2JfKYgDgEDIZN3MaGAxloMkxZIX4k9HAlOXeM0rux3YYaDIC3AXeAv88DCQ1l0fQm8tz7TQQZxS4ibRiXiBlwi/kfWITfRmtIRN2qBEzBvHbwKmyDLhI2w2Jx3zSzUIY8O1LvUbKj44xAGJiDvt82UZ++UTxWC5ut4EmJxGRdWSZXEdWmzkMY950NuAS6XOe0HbiLx19yEbkYpadKrJjqOBXjy/RYSbUk8pcy1jZTJC9Hh8LoFfjMbr4XPV42ahHRz71eL3t6lKglr+56/Ey6UFf9ztqnXdhOie+aMm/rHz+VKiajKjnxLnr8bIZp+B6PAS7eiMDKSWWKageD0UF+SdczVVnPR6acWSHrZGiHu/SpUtY/gPyEh70ZBj4xQAAAABJRU5ErkJggg==
+- name: Repo URL
+  default_value: ''
+  type: string
+  description: Repository URL. The URL must start with 'https' for HTTPS+Token or
+    'git@' for SSH+Cert.
+  is_mandatory: true
+  integration_identifier: GitSync
+- name: Branch
+  default_value: ''
+  type: string
+  description: Target branch
+  is_mandatory: true
+  integration_identifier: GitSync
+- name: Git Password/Token/SSH Key
+  type: password
+  description: Git Password/Token/SSH Key (Base64). RSA and Ed25519 are supported.
+  is_mandatory: true
+  integration_identifier: GitSync
+- name: Git Username
+  default_value: ''
+  type: string
+  description: Git Username
+  is_mandatory: false
+  integration_identifier: GitSync
+- name: Commit Author
+  default_value: ''
+  type: string
+  description: 'Commit Author. Must be in the following format: ''James Bond <james.bond@gmail.com>'''
+  is_mandatory: false
+  integration_identifier: GitSync
+- name: Siemplify Verify SSL
+  default_value: true
+  type: boolean
+  description: Siemplify Verify SSL
+  is_mandatory: true
+  integration_identifier: GitSync
+- name: Git Verify SSL
+  default_value: true
+  type: boolean
+  description: Git Verify SSL
+  is_mandatory: true
+  integration_identifier: GitSync
+- name: SOAR Username
+  type: string
+  description: Username with playbook edit permissions. Required if API Key fails
+    due to permission limits.
+  is_mandatory: false
+  integration_identifier: GitSync
+- name: SOAR Password
+  type: password
+  description: Password for SOAR Username.
+  is_mandatory: false
+  integration_identifier: GitSync
+categories: []
 is_powerup: true
+svg_logo_path: resources/logo.svg
+image_path: resources/image.png

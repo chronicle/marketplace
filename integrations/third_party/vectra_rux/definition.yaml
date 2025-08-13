@@ -1,52 +1,31 @@
 identifier: VectraRUX
 name: Vectra RUX
 parameters:
-    -   name: API Root
-        default_value: https://<address>:<port>
-        type: string
-        description: The base URL of the API, used as the entry point for all API requests.
-        is_mandatory: true
-        integration_identifier: VectraRUX
-    -   name: Client ID
-        default_value: '12345'
-        type: string
-        description: A unique identifier assigned to each client to authenticate and authorize
-            API requests.
-        is_mandatory: true
-        integration_identifier: VectraRUX
-    -   name: Client Secret
-        type: password
-        description: A confidential key associated with the client ID, used to authenticate
-            and securely authorize API requests.
-        is_mandatory: true
-        integration_identifier: VectraRUX
+- name: API Root
+  default_value: https://<address>:<port>
+  type: string
+  description: The base URL of the API, used as the entry point for all API requests.
+  is_mandatory: true
+  integration_identifier: VectraRUX
+- name: Client ID
+  default_value: '12345'
+  type: string
+  description: A unique identifier assigned to each client to authenticate and authorize
+    API requests.
+  is_mandatory: true
+  integration_identifier: VectraRUX
+- name: Client Secret
+  type: password
+  description: A confidential key associated with the client ID, used to authenticate
+    and securely authorize API requests.
+  is_mandatory: true
+  integration_identifier: VectraRUX
 documentation_link: https://support.vectra.ai/s/article/KB-VS-1851
 categories:
-    - Security
-    - Network Security
-    - SIEM
-    - Cloud Security
-    - XDR
-# language=svg
-svg_image: "<?xml version=\"1.0\" encoding=\"utf-8\"?><!-- Generator: Adobe Illustrator\
-    \ 24.3.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  --><svg version=\"\
-    1.1\" id=\"Layer_1\" width=\"300\" height=\"390\" xmlns=\"http://www.w3.org/2000/svg\"\
-    \ xmlns:xlink=\"http://www.w3.org/1999/xlink\" x=\"0px\" y=\"0px\"\t viewBox=\"\
-    0 0 400 75\" style=\"enable-background:new 0 0 400 75;\" xml:space=\"preserve\"\
-    \ fill=\"currentColor\"><g>\t<path class=\"st0\" d=\"M390.8,11.1c0.7,0,1.5,0,1.5-0.9c0-0.8-0.6-0.9-1.2-0.9H390v1.8H390.8z\
-    \ M390,14.1h-0.7V8.7h2.1\t\tc1.2,0,1.7,0.5,1.7,1.5c0,0.9-0.6,1.4-1.2,1.5l1.5,2.4h-0.8l-1.5-2.4h-1V14.1z\
-    \ M394.7,11.4c0-2.2-1.6-3.9-3.8-3.9\t\tc-2.2,0-3.8,1.7-3.8,3.9c0,2.2,1.6,3.9,3.8,3.9C393.1,15.3,394.7,13.6,394.7,11.4\
-    \ M395.4,11.4c0,2.5-2,4.5-4.5,4.5\t\tc-2.5,0-4.5-2-4.5-4.5c0-2.5,2-4.5,4.5-4.5C393.4,6.9,395.4,8.9,395.4,11.4\"\
-    />\t<polygon class=\"st0\" points=\"259.3,8.5 201,8.5 201,15.8 226.6,15.8 226.6,65.3\
-    \ 233.8,65.3 233.8,15.8 259.3,15.8 \t\"/>\t<polygon class=\"st0\" points=\"69,8.5\
-    \ 60.7,8.5 35.6,57.3 10.6,8.5 2.4,8.5 31.6,65.4 35.6,65.4 39.8,65.4 \t\"/>\t<polygon\
-    \ class=\"st0\" points=\"398.4,65.4 369.2,8.4 361.1,8.5 331.9,65.4 340,65.4 365.2,16.5\
-    \ 390.2,65.4 \t\"/>\t<polygon class=\"st0\" points=\"130.8,15.8 130.8,8.5 85.6,8.5\
-    \ 78.4,8.5 78.4,65.3 78.4,65.4 130.8,65.4 130.8,58.1 85.6,58.1\t\t85.6,40.5 129.1,40.5\
-    \ 129.1,33.3 85.6,33.3 85.6,15.8 \t\"/>\t<path class=\"st0\" d=\"M170,67.5c9.3,0,17.6-3.6,23.6-9.5c0.2-0.2,0.4-0.4,0.6-0.5l-5.7-4.9c-4.7,4.3-11.2,7-18.5,7\t\
-    \tc-14.1,0-25.5-10.2-25.5-22.7c0-12.5,11.4-22.7,25.5-22.7c7.2,0,13.7,2.7,18.4,7l5.7-4.9c-6-6.1-14.5-10-24.1-10\t\
-    \tc-18,0-32.6,13.7-32.6,30.6C137.3,53.8,151.9,67.5,170,67.5\"/>\t<path class=\"\
-    st0\" d=\"M276.1,15.8h34.6c4.8,0,8.7,3.9,8.7,8.7c0,4.6-3.7,8.5-8.2,8.8h-35.1V15.8z\
-    \ M326.7,24.5\t\tc0-8.9-7.2-15.9-16-15.9h-41.9v24.7v7.3v24.7h7.3V40.5h29.7l12.8,24.8h8.2l-13-25.1C321.1,38.8,326.7,32.3,326.7,24.5\"\
-    /></g></svg>"
-image_base64: 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
+- Security
+- Network Security
+- SIEM
+- Cloud Security
+- XDR
+svg_logo_path: resources/logo.svg
+image_path: resources/image.png
