@@ -1,6 +1,6 @@
 [project]
 name = "EmailUtilities"
-version = "38.0"
+version = "39.0"
 description = "A set of utility actions to assist with working with emails.  Includes actions to parse EMLs and analyze email headers."
 requires-python = ">=3.11,<3.12"
 dependencies = [
@@ -20,7 +20,8 @@ dependencies = [
     "msg-parser==1.2.0",
     "olefile==0.47",
     "oletools==0.60.2",
-    "pydnsbl==1.1.6",
+    "pydnsbl==1.1.7",
+    "pycares==4.8.0",
     "pyleri",
     "python-magic>=0.4.27",
     "red-black-tree-mod",

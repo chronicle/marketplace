@@ -1,4 +1,4 @@
-name: Build marketpalce integrations
+name: Build Marketplace Integrations
 permissions:
   contents: read
 on:
@@ -11,6 +11,7 @@ on:
 
 jobs:
   mp_build:
+    name: Build Marketplace
     runs-on: ubuntu-latest
 
     steps:

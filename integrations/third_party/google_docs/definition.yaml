@@ -1,28 +1,20 @@
 identifier: Google Docs
 name: Google Docs
 parameters:
-    -   name: Credentials Json
-        default_value: '{}'
-        type: string
-        description: 'View the guide on how to create auth json credentials (service account)
-        - provide access for Google Docs
+- name: Credentials Json
+  default_value: '{}'
+  type: string
+  description: 'View the guide on how to create auth json credentials (service account)
+    - provide access for Google Docs
 
-        https://gspread.readthedocs.io/en/latest/oauth2.html#enable-api-access
+    https://gspread.readthedocs.io/en/latest/oauth2.html#enable-api-access
 
-        '
-        is_mandatory: true
-        integration_identifier: Google Docs
+    '
+  is_mandatory: true
+  integration_identifier: Google Docs
 categories:
-    - Google
-    - Productivity
-    - Cloud
-# language=svg
-svg_image: |
-    <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg"
-         viewBox="0 0 25 25">
-        <path d="M8.37,16.94h7.25v-.89H8.37Zm0,1.78h5.44v-.89H8.37Zm0-6.22v.89h7.25V12.5Zm0,2.66h7.25v-.88H8.37Z"/>
-        <path
-                d="M4,4.06A2.12,2.12,0,0,1,6.11,2h7.7a.75.75,0,0,1,.53.22l5.44,5.32a.75.75,0,0,1,.22.6v12.8A2.12,2.12,0,0,1,17.89,23H6.11A2.12,2.12,0,0,1,4,20.94ZM17.44,7.33,14.56,4.51V6.73a.64.64,0,0,0,.61.6ZM13.06,3.47H6.11a.64.64,0,0,0-.61.59V20.94a.64.64,0,0,0,.61.59H17.89a.64.64,0,0,0,.61-.59V8.79H15.17a2.12,2.12,0,0,1-2.11-2.06Z"
-                fill-rule="evenodd"/>
-    </svg>
-image_base64: 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
+- Google
+- Productivity
+- Cloud
+svg_logo_path: resources/logo.svg
+image_path: resources/image.png
