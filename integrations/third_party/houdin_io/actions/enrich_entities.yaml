@@ -22,7 +22,108 @@ dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: true
         # language=json
-        result_example: "[\n  {\n    \"Entity\": \"malicious.com\",\n    \"EntityResult\": {\n      \"scanID\": \"houdin-1232085c-d4cc-43df-b841-e49e81520a3e\",\n      \"clientID\": \"6848b13cd6d2453c384404a0\",\n      \"status\": \"Done\",\n      \"artifact\": \"malicious.com\",\n      \"scanOn\": [\"vt\", \"urlscan\", \"alienvault\", \"abuseipdb\", \"triage\", \"mesmer\"],\n      \"scanResults\": {\n        \"vt\": {\n          \"result\": {\n            \"data\": {\n              \"id\": \"malicious.com\",\n              \"type\": \"domain\",\n              \"attributes\": {\n                \"reputation\": -60,\n                \"last_analysis_stats\": {\n                  \"malicious\": 12,\n                  \"suspicious\": 0,\n                  \"undetected\": 28,\n                  \"harmless\": 54\n                }\n              }\n            }\n          }\n        },\n        \"urlscan\": {\n          \"result\": {\n            \"results\": [\n              {\n                \"task\": {\"url\": \"http://malicious.com/payload.ps1\"},\n                \"page\": {\"status\": \"200\"},\n                \"_id\": \"01983b58-ffc8-777d-903b-fa813685774d\"\n              }\n            ],\n            \"total\": 253\n          }\n        },\n        \"alienvault\": {\n          \"result\": {\n            \"general\": {\n              \"indicator\": \"malicious.com\",\n              \"type\": \"domain\",\n              \"pulse_info\": {\"count\": 4}\n            }\n          }\n        },\n        \"abuseipdb\": {\n          \"result\": {\n            \"ipAddress\": \"149.28.227.54\",\n            \"abuseConfidenceScore\": 0,\n            \"countryCode\": \"US\",\n            \"totalReports\": 0\n          }\n        },\n        \"triage\": {\n          \"result\": {\n            \"lastScan\": {\n              \"analysis\": {\"score\": 5},\n              \"sample\": {\n                \"id\": \"240312-mnz43seh3s\",\n                \"target\": \"http://malicious.com\",\n                \"score\": 5\n              }\n            }\n          }\n        },\n        \"mesmer\": {\n          \"result\": {\n            \"observable\": \"malicious.com\",\n            \"globalScore\": \"9\",\n            \"summary\": \"The domain malicious.com is confirmed malicious with multiple reports.\",\n            \"tags\": [\n              {\"value\": \"Trojan\", \"color\": \"red\", \"source\": \"vt\"},\n              {\"value\": \"Malware\", \"color\": \"red\", \"source\": \"alienvault\"}\n            ]\n          }\n        }\n      },\n      \"scanTime\": \"2025-07-27T17:28:30.905Z\",\n      \"expiresAfter\": \"2025-08-24T17:28:30.905Z\"\n    }\n  }\n]"
+        result_example: |
+          [
+            {
+              "Entity": "malicious.com",
+              "EntityResult": {
+                "scanID": "houdin-1232085c-d4cc-43df-b841-e49e81520a3e",
+                "clientID": "6848b13cd6d2453c384404a0",
+                "status": "Done",
+                "artifact": "malicious.com",
+                "scanOn": [
+                  "vt",
+                  "urlscan",
+                  "alienvault",
+                  "abuseipdb",
+                  "triage",
+                  "mesmer"],
+                "scanResults": {
+                  "vt": {
+                    "result": {
+                      "data": {
+                        "id": "malicious.com",
+                        "type": "domain",
+                        "attributes": {
+                          "reputation": -60,
+                          "last_analysis_stats": {
+                            "malicious": 12,
+                            "suspicious": 0,
+                            "undetected": 28,
+                            "harmless": 54
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "urlscan": {
+                    "result": {
+                      "results": [
+                        {
+                          "task": {
+                            "url": "http://malicious.com/payload.ps1"},
+                          "page": {
+                            "status": "200"},
+                          "_id": "01983b58-ffc8-777d-903b-fa813685774d"
+                        }
+                      ],
+                      "total": 253
+                    }
+                  },
+                  "alienvault": {
+                    "result": {
+                      "general": {
+                        "indicator": "malicious.com",
+                        "type": "domain",
+                        "pulse_info": {
+                          "count": 4}
+                      }
+                    }
+                  },
+                  "abuseipdb": {
+                    "result": {
+                      "ipAddress": "149.28.227.54",
+                      "abuseConfidenceScore": 0,
+                      "countryCode": "US",
+                      "totalReports": 0
+                    }
+                  },
+                  "triage": {
+                    "result": {
+                      "lastScan": {
+                        "analysis": {
+                          "score": 5},
+                        "sample": {
+                          "id": "240312-mnz43seh3s",
+                          "target": "http://malicious.com",
+                          "score": 5
+                        }
+                      }
+                    }
+                  },
+                  "mesmer": {
+                    "result": {
+                      "observable": "malicious.com",
+                      "globalScore": "9",
+                      "summary": "The domain malicious.com is confirmed malicious with multiple reports.",
+                      "tags": [
+                        {
+                          "value": "Trojan",
+                          "color": "red",
+                          "source": "vt"},
+                        {
+                          "value": "Malware",
+                          "color": "red",
+                          "source": "alienvault"}
+                      ]
+                    }
+                  }
+                },
+                "scanTime": "2025-07-27T17:28:30.905Z",
+                "expiresAfter": "2025-08-24T17:28:30.905Z"
+              }
+            }
+          ]
 default_result_value: ''
 creator: Admin
 script_result_name: ScriptResult
