@@ -72,7 +72,7 @@ class VersionBumpValidation:
             NonFatalValidationError: If versioning rules are violated.
 
         """
-        head_sha: str | None = os.environ.get("GITHUB_SHA")
+        head_sha: str | None = os.environ.get("GITHUB_PR_SHA")
         if not head_sha:
             return
 
