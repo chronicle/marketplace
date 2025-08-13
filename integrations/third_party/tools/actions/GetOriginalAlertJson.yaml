@@ -1,56 +1,84 @@
 name: Get Original Alert Json
-description: 'The action gets the original alert Json (raw data) and presents it as
-    a Json result. '
+description:
+    "The action gets the original alert Json (raw data) and presents it as
+    a Json result. "
 integration_identifier: Tools
-parameters: [ ]
+parameters: []
 dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: "{\n  \"Cases\": [\n    {\n      \"Events\": [\n        {\n  \
-        \        \"_fields\": {\n            \"BaseEventIds\": \"[]\",\n         \
-        \   \"ParentEventId\": -1,\n            \"deviceEventClassId\": \"Email check\"\
-        ,\n            \"DeviceProduct\": \"Phishing email detector\",\n         \
-        \   \"StartTime\": \"1592847448454\",\n            \"EndTime\": \"1592847448454\"\
-        \n          },\n          \"_rawDataFields\": {\n            \"sourcetype\"\
-        : \"Phishing email detector\",\n            \"DeviceVendor\": \"Email server\"\
-        ,\n            \"StartTime\": \"1592847662304\",\n            \"EndTime\"\
-        : \"1592847662304\",\n            \"EventId\": \"220\",\n            \"Name\"\
-        : \"Your New Salary Notification\",\n            \"Mail_OriginalEmailBody\"\
-        : \"Hello, You have an important email from the Human Resources Department\
-        \ with regards to your December 2015 Paycheck\\r\\n\\r\\nThis email is enclosed\
-        \ in the Marquette University secure network, hence access it below\\r\\n\\\
-        r\\nAccess the documents here <http://markossolomon.com/F1q7QX.php<link removed>\\\
-        r\\n\\r\\n***Ensure your login credentials are correct to avoid cancellations**\\\
-        r\\n\\r\\nFaithfully \\r\\nHuman Resources \\r\\nUniversity of California,\
-        \ Berkeley\\r\\n\\r\",\n            \"Severity\": \"High\",\n            \"\
-        CategoryOutcome\": \"allowed\",\n            \"DeviceEventClassId\": \"Email\
-        \ check\",\n            \"SourceUserName\": \"f.attacker4@gmail.com\",\n \
-        \           \"DestinationUserName\": \"vickie.b@siemplify.co\",\n        \
-        \    \"DestinationURL\": \"http://markossolomon.com/F1q7QX.php\",\n      \
-        \      \"sentTime\": \"1522059431000\",\n            \"message_id\": \"220\"\
-        ,\n            \"subject\": \"Your New Salary Notification\",\n          \
-        \  \"body\": \"Hello, You have an important email from the Human Resources\
-        \ Department with regards to your December 2015 Paycheck\\r\\n\\r\\nThis email\
-        \ is enclosed in the Marquette University secure network, hence access it\
-        \ below\\r\\n\\r\\nAccess the documents here <http://markossolomon.com/F1q7QX.php<link\
-        \ removed>\\r\\n\\r\\n***Ensure your login credentials are correct to avoid\
-        \ cancellations**\\r\\n\\r\\nFaithfully \\r\\nHuman Resources \\r\\nUniversity\
-        \ of California, Berkeley\\r\\n\\r\"\n          },\n          \"Environment\"\
-        : null,\n          \"SourceSystemName\": null\n        }\n      ],\n     \
-        \ \"Environment\": \"Default Environment\",\n      \"SourceSystemName\": \"\
-        Arcsight\",\n      \"TicketId\": \"8dcaf2f2-5ed6-4bcc-8a49-61e0850c3881\"\
-        ,\n      \"Description\": \"The email from <f.attacker4@gmail.com> to <vickie.b@siemplify.co>\
-        \ detected as phishing email.\",\n      \"DisplayId\": \"8dcaf2f2-5ed6-4bcc-8a49-61e0850c3881\"\
-        ,\n      \"Reason\": \"Phishing email detector\",\n      \"Name\": \"Suspicious\
-        \ phishing email\",\n      \"DeviceVendor\": \"Email server\",\n      \"DeviceProduct\"\
-        : \"Phishing email detector\",\n      \"StartTime\": 1592847662304,\n    \
-        \  \"EndTime\": 1592847662304,\n      \"IsTestCase\": true,\n      \"Priority\"\
-        : -1,\n      \"RuleGenerator\": \"Simulation_Original_Phishing email detector\"\
-        ,\n      \"SourceGroupingIdentifier\": null,\n      \"PlaybookTriggerKeywords\"\
-        : [],\n      \"Extensions\": [],\n      \"Attachments\": null\n    }\n  ],\n\
-        \  \"IsTestCase\": true,\n  \"DebugOutput\": null,\n  \"ConnectorIdentifier\"\
-        : null\n}"
-default_result_value: ''
+    - result_name: JsonResult
+      show_result: true
+      # language=json
+      result_example: |-
+        {
+          "CreatorUserId": null,
+          "Events": [
+            {
+              "_fields": {
+                "BaseEventIds": "[]",
+                "ParentEventId": -1,
+                "deviceEventClassId": "Email check",
+                "DeviceProduct": "Phishing email detector",
+                "StartTime": "12345",
+                "EndTime": "12345"
+              },
+              "_rawDataFields": {
+                "sourcetype": "Phishing email detector",
+                "DeviceVendor": "Email server",
+                "StartTime": "12345",
+                "EndTime": "12345",
+                "EventId": "220",
+                "Name": "Your New Salary Notification",
+                "Mail_OriginalEmailBody": "Hello",
+                "Severity": "High",
+                "CategoryOutcome": "allowed",
+                "DeviceEventClassId": "Email check",
+                "SourceUserName": "f.xx@xx.com",
+                "DestinationUserName": "xx.x@xx.co",
+                "DestinationURL": "http://xx.com/xx.php",
+                "sentTime": "12345",
+                "message_id": "000",
+                "subject": "Your New Salary Notification",
+                "body": "Hello"
+              },
+              "Environment": null,
+              "SourceSystemName": null,
+              "Extensions": []
+            }
+          ],
+          "Environment": "Default Environment",
+          "SourceSystemName": "xxxx",
+          "TicketId": "xxxxxxxxxx-xxxxxxxxxx-xxxxxxxxxx-xxxxxxxxxx-xxxxxxxxxx",
+          "Description": "The email from <f.xx@xx.com> to <xx.x@xx.co> detected as phishing email.",
+          "DisplayId": "xxxxxxxxxx-xxxxxxxxxx-xxxxxxxxxx-xxxxxxxxxx-xxxxxxxxxx",
+          "Reason": "Phishing email detector",
+          "Name": "Suspicious phishing email",
+          "DeviceVendor": "Email server",
+          "DeviceProduct": "Phishing email detector",
+          "StartTime": 12345,
+          "EndTime": 12345,
+          "Type": 0,
+          "Priority": 80,
+          "RuleGenerator": "Phishing email detector",
+          "SourceGroupingIdentifier": null,
+          "PlaybookTriggerKeywords": [],
+          "Extensions": [],
+          "Attachments": null,
+          "IsTrimmed": false,
+          "DataType": 1,
+          "SourceType": 1,
+          "SourceSystemUrl": null,
+          "SourceRuleIdentifier": null,
+          "SiemAlertId": null,
+          "UpdatedFields": [],
+          "AlertUpdateSupported": false,
+          "AlertMetadata": {},
+          "DataAccessScope": null,
+          "__TraceContext": {
+            "traceparent": "xx-xx-xx-xx",
+            "baggage": "xx"
+          },
+          "__CorrelationId": "xxxxx"
+        }
+default_result_value: ""
 creator: Robert
 script_result_name: ScriptResult
