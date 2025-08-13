@@ -1,6 +1,6 @@
 [project]
 name = "mp"
-version = "1.3.0"
+version = "1.4.1"
 description = "General Purpose CLI tool for Google SecOps Marketplace"
 readme = "README.md"
 authors = [
@@ -59,8 +59,8 @@ dev = [
 mp = "mp:main"
 
 [build-system]
-requires = ["hatchling"]
-build-backend = "hatchling.build"
+requires = ["uv_build"]
+build-backend = "uv_build"
 
 [project.urls]
 Repository = "https://github.com/chronicle/marketplace/tree/main/packages/mp"
