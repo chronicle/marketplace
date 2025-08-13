@@ -27,9 +27,7 @@ class BaseRate:
         return {"base": self.base, "rates": self.rates}
 
     def to_csv(self) -> list[SingleJson]:
-        return [
-            {"Currency": symbol, "Value": value} for symbol, value in self.rates.items()
-        ]
+        return [{"Currency": symbol, "Value": value} for symbol, value in self.rates.items()]
 
     def to_alerts(
         self,
@@ -59,13 +57,11 @@ class BaseRate:
         alert.name = self._format_exchange_alert_name(currency)
         alert.events = [self._build_event(currency, rate)]
         if attachment:
-            attachment_content = json.dumps(
-                {
-                    "base": self.base,
-                    "date": self.date,
-                    "rates": {currency: rate},
-                }
-            )
+            attachment_content = json.dumps({
+                "base": self.base,
+                "date": self.date,
+                "rates": {currency: rate},
+            })
             alert.attachments = [
                 create_secops_attachment_object(
                     file_name=alert.display_id,
@@ -82,9 +78,7 @@ class BaseRate:
         alert.display_id = self._format_display_id()
         alert.ticket_id = alert.display_id
         alert.name = self._format_alert_name()
-        alert.events = [
-            self._build_event(currency, rate) for currency, rate in self.rates.items()
-        ]
+        alert.events = [self._build_event(currency, rate) for currency, rate in self.rates.items()]
         if attachment:
             attachment_content = json.dumps(self.json())
             alert.attachments = [
@@ -97,14 +91,12 @@ class BaseRate:
         return alert
 
     def _build_event(self, currency: str, rate: float) -> SingleJson:
-        return dict_to_flat(
-            {
-                "date": self.date,
-                "base": self.base,
-                "secondary": currency,
-                "rate": rate,
-            }
-        )
+        return dict_to_flat({
+            "date": self.date,
+            "base": self.base,
+            "secondary": currency,
+            "rate": rate,
+        })
 
     def _populate_common_alert_fields(
         self,
@@ -122,10 +114,8 @@ class BaseRate:
         alert.priority = constants.AlertSeverityEnum(severity).severity
         alert.environment = env_common.get_environment(self._env_data())
         alert.start_time = alert.end_time = timestamp
-        alert.source_grouping_identifier = (
-            constants.SOURCE_GROUPING_IDENTIFIER_FORMAT.format(
-                date=self.date, base=self.base
-            )
+        alert.source_grouping_identifier = constants.SOURCE_GROUPING_IDENTIFIER_FORMAT.format(
+            date=self.date, base=self.base
         )
 
     def _format_display_id(self) -> str:
@@ -148,13 +138,11 @@ class BaseRate:
         return int(datetime.strptime(self.date, "%Y-%m-%d").timestamp()) * 1000
 
     def _env_data(self) -> SingleJson:
-        return dict_to_flat(
-            {
-                "date": self.date,
-                "base": self.base,
-                "rates": self.rates,
-            }
-        )
+        return dict_to_flat({
+            "date": self.date,
+            "base": self.base,
+            "rates": self.rates,
+        })
 
 
 @dataclass(frozen=True, slots=True)

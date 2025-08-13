@@ -21,25 +21,5 @@ parameters:
         integration_identifier: SampleIntegration
 documentation_link: https://cloud.google.com/chronicle/docs/soar/marketplace-integrations/SampleIntegration
 categories: []
-# language=svg
-svg_image: |
-  <?xml version="1.0" encoding="utf-8"?><!-- Generator: Adobe Illustrator
-         24.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-  <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-       x="0px" y="0px" viewBox="0 0 25 25" style="enable-background:new 0
-     0 25 25;" xml:space="preserve"><g>
-  <g><path d=
-             "M20.9,13.8c0.1-0.4,0.1-0.8,0.1-1.3c0-0.4,0-0.9-0.1-1.3l1.9-1.8C22.9,9.3,23,9.1,23,8.9c0-0.2,0-0.4-0.1-0.6l-1.3-2.3
-      c-0.1-0.2-0.3-0.3-0.4-0.4c-0.2-0.1-0.4-0.1-0.6,0l-2.5,0.7c-0.7-0.5-1.4-1-2.2-1.3l-0.6-2.5c0-0.2-0.2-0.4-0.3-0.5S14.5,2,14.3,2
-      h-2.7c-0.2,0-0.4,0.1-0.5,0.2c-0.2,0.1-0.3,0.3-0.3,0.5l-0.6,2.5C9.4,5.4,8.6,5.9,7.9,6.4L5.5,5.7c-0.2-0.1-0.4,0-0.6,0
-      C4.7,5.8,4.5,5.9,4.4,6.1L3.1,8.4C3,8.6,3,8.8,3,8.9c0,0.2,0.1,0.4,0.3,0.5l1.9,1.8C5.1,11.6,5,12.1,5,12.5c0,0.4,0,0.9,0.1,1.3
-      l-1.9,1.8C3.1,15.7,3,15.9,3,16.1c0,0.2,0,0.4,0.1,0.6l1.3,2.3c0.1,0.1,0.2,0.2,0.3,0.3c0.1,0.1,0.3,0.1,0.4,0.1
-      c0.1,0,0.2,0,0.2,0l2.5-0.7c0.7,0.5,1.4,1,2.2,1.3l0.6,2.5c0,0.2,0.2,0.4,0.3,0.5s0.3,0.2,0.5,0.2h2.7c0.2,0,0.4-0.1,0.5-0.2
-      c0.2-0.1,0.3-0.3,0.3-0.5l0.6-2.5c0.8-0.3,1.6-0.7,2.2-1.3l2.5,0.7c0.1,0,0.2,0,0.2,0c0.2,0,0.3,0,0.4-0.1
-      c0.1-0.1,0.2-0.2,0.3-0.3l1.3-2.3c0.1-0.2,0.1-0.4,0.1-0.6c0-0.2-0.1-0.4-0.3-0.5L20.9,13.8z
-      M15.5,15c-0.7,0.7-1.6,1-2.5,1c-0.7,0-1.4-0.2-2-0.6c-0.6-0.4-1-0.9-1.3-1.6c-0.3-0.6-0.3-1.3-0.2-2c0.1-0.7,0.5-1.3,1-1.8s1.1-0.8,1.8-1c0.7-0.1,1.4-0.1,2,0.2
-      c0.6,0.3,1.2,0.7,1.6,1.3c0.4,0.6,0.6,1.3,0.6,1.9C16.5,13.4,16.2,14.3,15.5,15z"
-      />
-  </g>
-  </g></svg>
-image_base64: iVBORw0KGgoAAAANSUhEUgAAAJ4AAABSCAYAAAClr220AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAakSURBVHgB7dx9TNR1AMfxD61NKx7OpTNBOd1MWCUuC9xsggquFpsEZTqXumnqUBF8GGJFhadSYD7gA6tVKJj5uBOn5UKYB9VMnONQC7GMh4Fzah6gpX/R9/u747w70bQJX77s89puXr/fnf3z3vfph/i1CyDqZo+BSAGGR0owPFKC4ZESDI+UYHikBMMjJRgeKcHwSAmGR0owPFKC4ZESDI+UYHikBMMjJRgeKcHwSAmGR0owPFKC4ZESDI+UYHikBMMjJRgeKcHwSAmGR0owPFJC6/AOHf0TYybtR9/gzxE25hsU7a0B6eFxaKpoTw3mppXhg2WRyM0aKyK8iLmppXA4biNl3ihExe1G9blrrk/7iZfP7yZqd1123/ODeYg/zp+cCep6frr+tqio2F2IGTsYuZZo9zXLul+w5YsqXK6dj/rGNvFqxcMwBfZBxAv9QV1P2/D6DFyPEuvbiBbxdbCfu4KoiTtRe2qOGL0CQT2Xtms882B/2H5q8LpWfeayGLUeZ3Qa0HaNlzJvNFbnVojIAhDzSijqGlpgyakQ11807kdNKID97GX3591LOpfa08niu0EgNbSdaqXVIjRLTrl725AyPwqfrZlkvK9vbBExOkRsnrk5P2kK6ivWcgPR1WrOX0BTUzNiJ8aAvGkdnuRouYWGRgdCh5iMoLqTDKumplaEFY2AgIC77idNmSk+U4uSo1aEBA8C3aHtVNtBxmYKegYqlJbZsDX/S5REWjsNb2Hyu0Z4DxrdrNkLEBIyCGstmejtesWTi3oxpfZEciSU8flqbr6Etra2u67LEfR+5PfkqzfQesTbnF+BVZ8cE9PtbZhDTZg1/SVkZjjXeHIKbmn552H+OgQFPfFIp+uUtHT8VnMBx8RUK8nRsXDnHnd0ciTMSF+CwAB/rMy0GNdLy8oRV5lo3J/5zjTxmmqMrO9lrvaKNSM9zbivK23DK9x1CkszipG58lUkxD8P+5lmLBP/bQrsi5QF4xAbv00crzTDz88Pd5axYqsh9hr3WtaaRHhXGix4VFpbb7hHKDnlyvAiXx6NNxLiRUQ3jGuBgf7GnmdM5GhYi4+IKdvfeC+FBDuXEFvzvzKuy9FT/im/J7+vM23Dy9t6HOuzJ4vInE8uRo0MRovjJlZlf2+EV3okWYx4t1yf9jxM6Xjvew3wPnDpGuHhI5AowvMV6QovSvy5xmeN1zHSyanbuV6Mh+60Dc9+pgERIxO8rkWPGw5HxgGx5rsmpt6njRGspwgPG4HYCdEo2rkbZWLqlKHJEexBNh5yus3O2YhJryUao6UMV46cOtP3yYU4PrH9WOt1zV7dKIILMqJztPyN+vpr93ypsHlTjrFjlbEdFKNb0pQZOHnq9H9+b4ZYy8kjGRmd/J7c/cppW2fajniLF8ZgafpemAL6IiZ6BGwVtVi19rC4Hmvcf3NavnFNHiC3d/KTKVebN4gR8Ul0NxmPfDWJtZ8855MhRT3A6CVjldHKUTIldYXYpOzudMesC33DWxALh1jT5W0rEQHugsn0FD58f7IIL864f+Db5Pvuah9ldNmfbnRuElzkmd5Ksev0VFl5GtZDR4wpV+5iW8XmwPdIRU6fcgdb6PqMjFPGtUiEJtd+8prU2VGMbrR/ciHV11+F2dz9P84kz90WpabfdbYmRyc5NcopsVJMpb9WnxDrunL3kUmH8LBnjem3Y53n+/eFiQCt+woRJ9Z2nv8PGfbC5DlaH6f0ivB00uQR0L02Fh2f8bwvg211HaH0hsdv+j+rdYhNRMMVsaEYIKbb7l+z0f+j9ZOLLMs+5G35zohPWpzyOjasm2W8r7LXiZ3tTTyMfiZ/jIowg7qetuFlWfZi0+bDsO5fIWIZBlv5WSxZXmA88voocyqWLvsax8vPeX3H+RQDPvtc577X+DcX5gG4eCEf1A3aNTVs+Nz27TtKva4dPHiivV//6e3U82l7gFxXd8kYoTyZhw6A43qrccxCPZu2U23MuOdQXPwzxseMdF+zHbdjqDhWkWd6VVUXRYA+D9I9/pXj+PERIHW0DS91cQISkz6WawUkJIyFzWZHVlYRCgqWG/dnz84V8f1hvO/sxwGu/2U1AiU1tD5O2b7jB+RtOgB71e8INQ9EWtpbSE1NAvV8PEAmJfhLe0gJhkdKMDxSguGREgyPlGB4pATDIyUYHinB8EgJhkdKMDxSguGREgyPlGB4pATDIyUYHinB8EgJhkdKMDxSguGREgyPlGB4pATDIyUYHinB8EgJhkdK/AvsTNBLH7J9hwAAAABJRU5ErkJggg==
+svg_logo_path: resources/logo.svg
+image_path: resources/image.png
