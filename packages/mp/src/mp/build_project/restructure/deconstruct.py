@@ -34,6 +34,7 @@ import mp.core
 import mp.core.constants
 import mp.core.file_utils
 import mp.core.unix
+from mp.core.constants import IMAGE_FILE, LOGO_FILE, RESOURCES_DIR
 from mp.core.data_models.action.metadata import ActionMetadata
 from mp.core.data_models.connector.metadata import ConnectorMetadata
 from mp.core.data_models.integration_meta.metadata import IntegrationMetadata, PythonVersion
@@ -111,12 +112,33 @@ class DeconstructIntegration:
 
     def deconstruct_integration_files(self) -> None:
         """Deconstruct an integration's code to its "out" path."""
+        self._create_resource_files()
         self._create_definition_file()
         self._create_release_notes()
         self._create_custom_families()
         self._create_mapping_rules()
         self._create_scripts_dirs()
         self._create_package_file()
+
+    def _create_resource_files(self) -> None:
+        """Create the image files in the resources directory."""
+        resources_dir: pathlib.Path = self.out_path / RESOURCES_DIR
+        resources_dir.mkdir(exist_ok=True)
+
+        self._create_png_image(resources_dir)
+        self._create_svg_logo(resources_dir)
+
+    def _create_png_image(self, resources_dir: pathlib.Path) -> None:
+        if self.integration.metadata.image_base64:
+            mp.core.file_utils.base64_to_png_file(
+                self.integration.metadata.image_base64, resources_dir / IMAGE_FILE
+            )
+
+    def _create_svg_logo(self, resources_dir: pathlib.Path) -> None:
+        if self.integration.metadata.svg_logo:
+            mp.core.file_utils.text_to_svg_file(
+                self.integration.metadata.svg_logo, resources_dir / LOGO_FILE
+            )
 
     def _create_definition_file(self) -> None:
         def_file: pathlib.Path = self.out_path / mp.core.constants.DEFINITION_FILE

@@ -16,7 +16,8 @@ from __future__ import annotations
 
 import base64
 import json
-from typing import TYPE_CHECKING, Annotated, Any, NotRequired, Self, TypedDict
+import pathlib
+from typing import Annotated, Any, NotRequired, Self, TypedDict
 
 import pydantic
 import yaml
@@ -29,10 +30,6 @@ import mp.core.validators
 
 from .feature_tags import BuiltFeatureTags, FeatureTags, NonBuiltFeatureTags
 from .parameter import BuiltIntegrationParameter, IntegrationParameter, NonBuiltIntegrationParameter
-
-if TYPE_CHECKING:
-    import pathlib
-
 
 MINIMUM_SYSTEM_VERSION: float = 5.3
 
@@ -118,10 +115,10 @@ class NonBuiltIntegrationMetadata(TypedDict):
     identifier: str
     python_version: NotRequired[str]
     documentation_link: NotRequired[str | None]
-    image_base64: str | None
+    image_path: str | None
     parameters: list[NonBuiltIntegrationParameter]
     should_install_in_system: NotRequired[bool]
-    svg_image: str | None
+    svg_logo_path: str | None
     version: NotRequired[float]
     is_custom: NotRequired[bool]
     is_available_for_community: NotRequired[bool]
@@ -163,7 +160,7 @@ class IntegrationMetadata(
         pydantic.Field(ge=mp.core.constants.MINIMUM_SCRIPT_VERSION),
     ] = mp.core.constants.MINIMUM_SCRIPT_VERSION
     should_install_in_system: bool = False
-    svg_image: str | None
+    svg_logo: str | None
     is_certified: bool = True
     is_custom: bool = False
     is_available_for_community: bool = True
@@ -222,6 +219,7 @@ class IntegrationMetadata(
         built: str = metadata_path.read_text(encoding="utf-8")
         try:
             metadata_content: NonBuiltIntegrationMetadata = yaml.safe_load(built)
+            _read_image_files(metadata_content, path)
             metadata: Self = cls.from_non_built(metadata_content)
             metadata.is_certified = mp.core.file_utils.is_commercial_integration(path)
         except (ValueError, json.JSONDecodeError) as e:
@@ -256,7 +254,7 @@ class IntegrationMetadata(
             image_base64=image,
             parameters=[IntegrationParameter.from_built(p) for p in built["IntegrationProperties"]],
             should_install_in_system=built["ShouldInstalledInSystem"],
-            svg_image=svg,
+            svg_logo=svg,
             version=built["Version"],
             is_custom=built.get("IsCustom", False),
             is_available_for_community=built.get("IsAvailableForCommunity", True),
@@ -270,14 +268,8 @@ class IntegrationMetadata(
         if raw_feature_tags is not None:
             feature_tags = FeatureTags.from_non_built(raw_feature_tags)
 
-        image: str | bytes | None = non_built["image_base64"]
-        if isinstance(image, str):
-            image = image.encode()
-
         name: str = non_built["name"]
-        svg: str | None = non_built.get("svg_image")
-        if name not in mp.core.constants.EXCLUDED_INTEGRATIONS_WITHOUT_SVG_IMAGE:
-            svg = non_built["svg_image"]
+        svg: str | None = non_built.get("svg_logo_path")
 
         return cls(
             categories=non_built["categories"],
@@ -285,11 +277,11 @@ class IntegrationMetadata(
             name=name,
             identifier=non_built["identifier"],
             documentation_link=non_built.get("documentation_link"),
-            image_base64=image,
+            image_base64=non_built["image_path"],
             parameters=[IntegrationParameter.from_non_built(p) for p in non_built["parameters"]],
             should_install_in_system=non_built.get("should_install_in_system", False),
             is_custom=non_built.get("is_custom", False),
-            svg_image=svg,
+            svg_logo=svg,
             is_available_for_community=non_built.get(
                 "is_available_for_community",
                 True,
@@ -325,7 +317,7 @@ class IntegrationMetadata(
             MarketingDisplayName=self.name,
             MinimumSystemVersion=float(self.minimum_system_version),
             PythonVersion=self.python_version.value,
-            SVGImage=self.svg_image,
+            SVGImage=self.svg_logo,
             ShouldInstalledInSystem=self.should_install_in_system,
             Version=self.version,
             IsCustom=self.is_custom,
@@ -342,6 +334,13 @@ class IntegrationMetadata(
             The "non-built" TypedDict version of the integration's metadata.
 
         """
+        svg_path: pathlib.Path = pathlib.Path(
+            ".", mp.core.constants.RESOURCES_DIR, mp.core.constants.LOGO_FILE
+        )
+        image: pathlib.Path = pathlib.Path(
+            ".", mp.core.constants.RESOURCES_DIR, mp.core.constants.IMAGE_FILE
+        )
+
         non_built: NonBuiltIntegrationMetadata = NonBuiltIntegrationMetadata(
             identifier=self.identifier,
             name=self.name,
@@ -350,12 +349,8 @@ class IntegrationMetadata(
                 str(self.documentation_link) if self.documentation_link is not None else None
             ),
             categories=self.categories,
-            svg_image=self.svg_image,
-            image_base64=(
-                base64.b64encode(self.image_base64).decode()
-                if self.image_base64 is not None
-                else None
-            ),
+            svg_logo_path=svg_path.as_posix() if self.svg_logo is not None else None,
+            image_path=image.as_posix() if self.image_base64 is not None else None,
         )
 
         if self.feature_tags is not None:
@@ -372,3 +367,14 @@ class IntegrationMetadata(
 
         mp.core.utils.remove_none_entries_from_mapping(non_built)
         return non_built
+
+
+def _read_image_files(metadata_content: NonBuiltIntegrationMetadata, path: pathlib.Path) -> None:
+    """Read image files and update the metadata dictionary in place."""
+    if image_str := metadata_content.get("image_path"):
+        full_path = path / image_str
+        metadata_content["image_path"] = mp.core.file_utils.png_path_to_bytes(full_path)
+
+    if svg_path_str := metadata_content.get("svg_logo_path"):
+        full_path = path / svg_path_str
+        metadata_content["svg_logo_path"] = mp.core.file_utils.svg_path_to_text(full_path)

@@ -19,6 +19,7 @@ Used for things such as path manipulation and file content operations.
 
 from __future__ import annotations
 
+import base64
 import dataclasses
 import pathlib
 import shutil
@@ -28,6 +29,7 @@ import yaml
 
 from . import config, constants
 from .custom_types import ManagerName, Products
+from .validators import validate_png_content, validate_svg_content
 
 if TYPE_CHECKING:
     import pathlib
@@ -435,3 +437,62 @@ def is_commercial_integration(path: pathlib.Path) -> bool:
 
     """
     return is_integration(path) and path.parent.name == constants.COMMERCIAL_DIR_NAME
+
+
+def base64_to_png_file(image_data: bytes, output_path: pathlib.Path) -> None:
+    """Save image bytes to a PNG file.
+
+    Args:
+        image_data: The raw byte content of the image.
+        output_path: The path to save the PNG file to.
+
+    """
+    output_path.write_bytes(image_data)
+
+
+def text_to_svg_file(svg_text: str, output_path: pathlib.Path) -> None:
+    """Save a string of SVG content to a .svg file.
+
+    Args:
+        svg_text: The string content of the SVG.
+        output_path: The path to save the SVG file to.
+
+    Raises:
+        OSError: If the file cannot be written.
+
+    """
+    try:
+        output_path.write_text(svg_text, encoding="utf-8")
+    except OSError as e:
+        msg = f"Failed to write SVG file to {output_path}"
+        raise OSError(msg) from e
+
+
+def svg_path_to_text(file_path: pathlib.Path) -> str | None:
+    """Read and validate an SVG file from a path.
+
+    Args:
+        file_path: The path to the SVG file.
+
+    Returns:
+        The text content of the SVG file if exists.
+
+    """
+    if file_path.exists():
+        return validate_svg_content(file_path)
+    return None
+
+
+def png_path_to_bytes(file_path: pathlib.Path) -> str | None:
+    """Read and validate a PNG file from a path.
+
+    Args:
+        file_path: The path to the PNG file.
+
+    Returns:
+        The decoded byte content of the PNG file if exists.
+
+    """
+    if file_path.exists():
+        return base64.b64encode(validate_png_content(file_path)).decode("utf-8")
+    return None

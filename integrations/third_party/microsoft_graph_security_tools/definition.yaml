@@ -1,48 +1,38 @@
 identifier: MicrosoftGraphSecurityTools
 name: MicrosoftGraphSecurityTools
 parameters:
-    -   name: Certificate Password
-        type: password
-        description: Optional, if certificate is password-protected, specify the password
-            to open the certificate file.
-        is_mandatory: false
-        integration_identifier: MicrosoftGraphSecurityTools
-    -   name: Client ID
-        default_value: clientIdhere
-        type: string
-        description: Client ID from Azure
-        is_mandatory: true
-        integration_identifier: MicrosoftGraphSecurityTools
-    -   name: Secret ID
-        type: password
-        description: Secret ID from Azure
-        is_mandatory: false
-        integration_identifier: MicrosoftGraphSecurityTools
-    -   name: Tenant ID
-        default_value: tenantidhere
-        type: string
-        description: Tenant ID from Azure here
-        is_mandatory: true
-        integration_identifier: MicrosoftGraphSecurityTools
-    -   name: Certificate Path
-        type: string
-        description: If authentication based on certificates is  used instead of client
-            secret, specify path to the certificate on Siemplify server
-        is_mandatory: false
-        integration_identifier: MicrosoftGraphSecurityTools
+- name: Certificate Password
+  type: password
+  description: Optional, if certificate is password-protected, specify the password
+    to open the certificate file.
+  is_mandatory: false
+  integration_identifier: MicrosoftGraphSecurityTools
+- name: Client ID
+  default_value: clientIdhere
+  type: string
+  description: Client ID from Azure
+  is_mandatory: true
+  integration_identifier: MicrosoftGraphSecurityTools
+- name: Secret ID
+  type: password
+  description: Secret ID from Azure
+  is_mandatory: false
+  integration_identifier: MicrosoftGraphSecurityTools
+- name: Tenant ID
+  default_value: tenantidhere
+  type: string
+  description: Tenant ID from Azure here
+  is_mandatory: true
+  integration_identifier: MicrosoftGraphSecurityTools
+- name: Certificate Path
+  type: string
+  description: If authentication based on certificates is  used instead of client
+    secret, specify path to the certificate on Siemplify server
+  is_mandatory: false
+  integration_identifier: MicrosoftGraphSecurityTools
 categories:
-    - Security
-    - Cloud
-    - Cloud Security
-# language=svg
-svg_image: "<?xml version=\"1.0\" encoding=\"utf-8\"?><!-- Generator: Adobe Illustrator\
-    \ 24.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  --><svg version=\"\
-    1.1\" id=\"Layer_1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\"\
-    \ x=\"0px\" y=\"0px\"\t viewBox=\"0 0 25 25\" style=\"enable-background:new 0\
-    \ 0 25 25;\" xml:space=\"preserve\"><g>\t<g>\t\t<path d=\"M23.8,9.6l-5.4-5.4c-0.2-0.2-0.5-0.3-0.8-0.2c-0.3,0.1-0.5,0.4-0.5,0.7v2.3h-2.3v1.5h3c0.4,0,0.8-0.3,0.8-0.8V6.6l3.5,3.5\t\
-    \t\tl-3.5,3.5v-1.2c0-0.4-0.3-0.8-0.8-0.8h-10V9.4c0-0.3-0.2-0.6-0.5-0.7C7.1,8.6,6.8,8.6,6.6,8.9l-5.4,5.4c-0.3,0.3-0.3,0.8,0,1.1\t\
-    \t\tl5.4,5.4c0.2,0.2,0.5,0.3,0.8,0.2c0.3-0.1,0.5-0.4,0.5-0.7v-2.3h2.7v-1.5H7.1c-0.4,0-0.8,0.3-0.8,0.8v1.2l-3.5-3.5l3.5-3.5v1.2\t\
-    \t\tc0,0.4,0.3,0.8,0.8,0.8h10v2.3c0,0.3,0.2,0.6,0.5,0.7c0.3,0.1,0.6,0.1,0.8-0.2l5.4-5.4C24.1,10.4,24.1,9.9,23.8,9.6z\
-    \ M11.2,17.9\t\t\th1.5v-1.5h-1.5V17.9z M13.4,17.9h1.5v-1.5h-1.5V17.9z M14.2,7.1h-1.3v1.5h1.3V7.1z\
-    \ M12.3,7.1h-1.4v1.5h1.4V7.1z\"/>\t</g></g></svg>"
-image_base64: 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
+- Security
+- Cloud
+- Cloud Security
+svg_logo_path: resources/logo.svg
+image_path: resources/image.png
