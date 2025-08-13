@@ -9,7 +9,7 @@ permissions:
 
 jobs:
   run-tests:
-    name: Run Tests on Pr code
+    name: Run tests on PR code
     runs-on: ubuntu-latest
 
     steps:

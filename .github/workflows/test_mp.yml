@@ -1,4 +1,4 @@
-name: Run mp tests
+name: Run mp Tests
 permissions:
   contents: read
 on:
@@ -15,6 +15,7 @@ on:
 
 jobs:
   test_mp:
+    name: Run mp tests
     runs-on: ubuntu-latest
 
     steps:
