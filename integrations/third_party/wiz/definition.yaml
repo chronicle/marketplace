@@ -1,42 +1,34 @@
 identifier: Wiz
 name: Wiz
 parameters:
--   name: API Root
-    default_value: https://api.<Tenant Data Center>.app.wiz.io
-    type: string
-    description: The API Root of the Wiz instance.
-    is_mandatory: true
-    integration_identifier: Wiz
--   name: Client ID
-    default_value: ''
-    type: string
-    description: The client ID associated with your Wiz API credentials.
-    is_mandatory: true
-    integration_identifier: Wiz
--   name: Client Secret
-    default_value: ''
-    type: password
-    description: The client secret associated with your Wiz API credentials.
-    is_mandatory: true
-    integration_identifier: Wiz
--   name: Verify SSL
-    default_value: true
-    type: boolean
-    description: If selected, the integration validates the SSL certificate when connecting
-        to the Wiz server. Enabled by default.
-    is_mandatory: true
-    integration_identifier: Wiz
+- name: API Root
+  default_value: https://api.<Tenant Data Center>.app.wiz.io
+  type: string
+  description: The API Root of the Wiz instance.
+  is_mandatory: true
+  integration_identifier: Wiz
+- name: Client ID
+  default_value: ''
+  type: string
+  description: The client ID associated with your Wiz API credentials.
+  is_mandatory: true
+  integration_identifier: Wiz
+- name: Client Secret
+  default_value: ''
+  type: password
+  description: The client secret associated with your Wiz API credentials.
+  is_mandatory: true
+  integration_identifier: Wiz
+- name: Verify SSL
+  default_value: true
+  type: boolean
+  description: If selected, the integration validates the SSL certificate when connecting
+    to the Wiz server. Enabled by default.
+  is_mandatory: true
+  integration_identifier: Wiz
 documentation_link: https://cloud.google.com/chronicle/docs/soar/marketplace-integrations/wiz
 categories:
 - Cloud
 - Cloud Security
-svg_image: "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<svg xmlns=\"http://www.w3.org/2000/svg\"\
-    \ version=\"1.1\" viewBox=\"0 0 940.97 475.3\" width=\"100px\" height=\"100px\"\
-    >\n  <!-- Generator: Adobe Illustrator 28.7.5, SVG Export Plug-In . SVG Version:\
-    \ 1.2.0 Build 176)  -->\n  <g>\n    <g id=\"Layer_1\">\n      <g id=\"fn46EB\"\
-    >\n        <g>\n          <path d=\"M226.96,402.66c-32.46-84.39-64.41-167.47-96.57-251.08,2.07-.15,3.48-.33,4.88-.33,18.33-.02,36.66.12,54.99-.12,3.75-.05,5.14,1.42,6.34,4.6,12.4,32.76,24.92,65.48,37.42,98.2.64,1.68,1.42,3.3,2.71,6.26,2.06-4.05,3.68-6.99,5.08-10.04,14.41-31.4,28.72-62.84,43.32-94.15,1.08-2.31,4.35-5.2,6.37-5.04,2.41.2,5.57,2.93,6.71,5.37,15.41,32.95,30.52,66.03,45.72,99.07.58,1.27,1.39,2.44,2.67,4.65,1.38-3.28,2.39-5.48,3.26-7.74,12.37-32.23,24.73-64.47,37.08-96.71.83-2.16,1.29-4.22,4.56-4.2,18.66.09,37.32-.05,55.99-.09.45,0,.89.24,1.73.49-.56,1.8-.98,3.54-1.62,5.2-30.98,80.58-61.98,161.16-93.05,241.71-.63,1.64-2.21,2.92-3.35,4.36-1.09-1.32-2.52-2.48-3.2-3.99-16.7-36.92-33.25-73.91-50.09-110.77-1.12-2.45-4.23-5.24-6.64-5.47-1.97-.19-5.17,2.75-6.33,5.06-18.17,35.87-36.09,71.86-54.08,107.81-.95,1.89-2.05,3.7-3.88,6.97Z\"\
-    />\n          <path d=\"M550.21,212.45v-59.73c2.24,0,4.2,0,6.16,0,60.16,0,120.31,0,180.47,0,.17,0,.33,0,.5,0,7.68.03,8.51,1.33,4.93,7.98-6.15,11.41-12.34,22.8-18.54,34.18-26.64,48.89-53.29,97.77-79.92,146.66-2.54,4.67-1.31,6.64,4.17,6.65,30.83.02,61.66.01,92.48.01,1.95,0,3.9,0,6.12,0v54.91h-5.58c-62.32,0-124.65,0-186.97,0-7.78,0-8.63-1.38-5.13-8.38,29.03-57.97,58.07-115.93,87.1-173.89,3.48-6.96,2.61-8.38-5.16-8.38-24.83-.01-49.66,0-74.49,0-1.96,0-3.92,0-6.14,0Z\"\
-    />\n          <path d=\"M526.68,402.84h-60.32v-249.84h60.32v249.84Z\"/>\n    \
-    \      <path d=\"M785.45,161.15c-3.65-32.08-13.42-41.79-51.81-51.93,13.87-3.35,27.65-5.17,37.33-15.42,9.5-10.08,11.48-23.58,14.83-36.88,2.56,31.31,18.62,49.33,50.82,51.94-13.03,3.73-26.17,5.72-35.9,15.14-9.96,9.65-11.75,23.05-15.26,37.15Z\"\
-    />\n        </g>\n      </g>\n    </g>\n  </g>\n</svg>"
-image_base64: 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
+image_path: resources/image.png
+svg_logo_path: resources/logo.svg

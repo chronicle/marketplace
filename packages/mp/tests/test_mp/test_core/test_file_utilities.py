@@ -14,6 +14,7 @@
 
 from __future__ import annotations
 
+import base64
 import unittest.mock
 from typing import TYPE_CHECKING
 
@@ -231,3 +232,46 @@ def test_remove_and_create_dir(tmp_path: pathlib.Path, mock_get_marketplace_path
 
         assert test_dir.exists()
         assert not new_file.exists()
+
+
+def test_base64_to_png_file_writes_correct_content(tmp_path: pathlib.Path) -> None:
+    sample_bytes: bytes = b"test png data"
+    output_file: pathlib.Path = tmp_path / "test.png"
+
+    mp.core.file_utils.base64_to_png_file(sample_bytes, output_file)
+
+    assert output_file.exists()
+    assert output_file.read_bytes() == sample_bytes
+
+
+def test_text_to_svg_file_writes_correct_content(tmp_path: pathlib.Path) -> None:
+    sample_svg: str = "<svg>test</svg>"
+    output_file: pathlib.Path = tmp_path / "test.svg"
+
+    mp.core.file_utils.text_to_svg_file(sample_svg, output_file)
+
+    assert output_file.exists()
+    assert output_file.read_text(encoding="utf-8") == sample_svg
+
+
+def test_svg_path_to_text(tmp_path: pathlib.Path) -> None:
+    sample_svg: str = "<svg>test</svg>"
+    input_file: pathlib.Path = tmp_path / "test.svg"
+    input_file.write_text(sample_svg, encoding="utf-8")
+    non_existent_file = tmp_path / "not_real.svg"
+
+    assert mp.core.file_utils.svg_path_to_text(input_file) == sample_svg
+    assert mp.core.file_utils.svg_path_to_text(non_existent_file) is None
+
+
+def test_png_path_to_bytes(tmp_path: pathlib.Path) -> None:
+    sample_bytes = b"valid png bytes"
+    with unittest.mock.patch("mp.core.file_utils.validate_png_content", return_value=sample_bytes):
+        input_file = tmp_path / "test.png"
+        input_file.write_bytes(sample_bytes)
+        non_existent_file = tmp_path / "not_real.png"
+
+        expected_b64_string = base64.b64encode(sample_bytes).decode("utf-8")
+
+        assert mp.core.file_utils.png_path_to_bytes(input_file) == expected_b64_string
+        assert mp.core.file_utils.png_path_to_bytes(non_existent_file) is None
