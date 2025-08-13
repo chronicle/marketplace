@@ -61,7 +61,7 @@ def convert_iso_to_epoch(iso_timestamp: str) -> int:
         # Make it timezone-aware (UTC) to the beginning of the day before getting the epoch time
         dt_object = dt_object.replace(tzinfo=UTC)
         return int(dt_object.timestamp())
-    except ValueError as e:
+    except Exception as e:
         msg = f"Invalid date format for '{iso_timestamp}'. The expected format is 'YYYY-MM-DD'."
         raise ValueError(msg) from e
 
