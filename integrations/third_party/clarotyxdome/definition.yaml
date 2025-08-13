@@ -20,6 +20,6 @@ parameters:
     is_mandatory: true
     integration_identifier: clarotyxdome
 categories: []
-image_base64: 
-svg_image: 
+image_path:
+svg_logo_path:
 is_available_for_community: false

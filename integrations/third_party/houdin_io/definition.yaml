@@ -1,0 +1,20 @@
+identifier: Houdin-io
+name: Houdin-io
+parameters:
+    -   name: API Key
+        type: password
+        description: 'Your Houdin API key. Used to launch scans, retrieve data, etc.'
+        is_mandatory: true
+        integration_identifier: Houdin-io
+    -   name: Verify SSL
+        default_value: true
+        description: 'Enable or disable SSL verification.'
+        type: boolean
+        is_mandatory: false
+        integration_identifier: Houdin-io
+categories:
+    - AI
+    - Security
+    - Threat Intelligence
+svg_logo_path: resources/logo.svg
+image_path: resources/image.png
