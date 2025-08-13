@@ -302,7 +302,7 @@ wheels = [
 
 [[package]]
 name = "mp"
-version = "1.4.0"
+version = "1.4.1"
 source = { directory = "../../../packages/mp" }
 dependencies = [
     { name = "defusedxml" },
