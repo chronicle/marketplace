@@ -4,7 +4,7 @@ import sys
 
 from soar_sdk.SiemplifyConnectorsDataModel import AlertInfo
 from TIPCommon.base.connector import Connector
-from TIPCommon.filters import filter_old_alerts, pass_whitelist_filter
+from TIPCommon.filters import filter_old_alerts
 from TIPCommon.smp_io import read_ids, write_ids
 from TIPCommon.transformation import string_to_multi_value
 from TIPCommon.utils import is_overflowed, is_test_run
@@ -98,11 +98,10 @@ class SimpleConnector(Connector):
 
     def pass_filters(self, alert: AlertInfo) -> bool:
         """Check if the alert passes the whitelist filter."""
-        return pass_whitelist_filter(
-            siemplify=self.siemplify,
-            whitelist_as_a_blacklist=self.params.use_dynamic_list_as_blocklist,
-            model=alert,
-            model_key="currency",
+        return alert.pass_filter(
+            soar_connector=self.siemplify,
+            create_per_rate=self.params.create_alert_per_exchange_rate,
+            use_dynamic_list_as_blocklist=self.params.use_dynamic_list_as_blocklist,
         )
 
     def is_overflow_alert(self, alert_info: AlertInfo) -> bool:
