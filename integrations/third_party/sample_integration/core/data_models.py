@@ -204,7 +204,7 @@ class RateAlertInfo(AlertInfo):
 
     def alter_events(
         self,
-        whitelist: list[setattr],
+        whitelist: list[str],
         use_dynamic_list_as_blocklist: bool,
     ) -> None:
         """Filters the events list based on a whitelist/blocklist logic.
