@@ -146,11 +146,19 @@ def login(
 
 
 @app.command(help="Deploy an integration to the SOAR environment configured by the login command.")
-def deploy(integration: str = typer.Argument(..., help="Integration to build and deploy.")) -> None:
+def deploy(
+    integration: str = typer.Argument(..., help="Integration to build and deploy."),
+    *,
+    is_staging: Annotated[
+        bool,
+        typer.Option("--staging", help="Add this option to deploy integration in to staging mode."),
+    ] = False,
+) -> None:
     """Build and deploy an integration to the dev environment (playground).
 
     Args:
         integration: The integration to build and deploy.
+        is_staging: Add this option to deploy integration in to staging mode.
 
     Raises:
         typer.Exit: If the integration is not found.
@@ -189,9 +197,9 @@ def deploy(integration: str = typer.Argument(..., help="Integration to build and
                 password=config["password"],
             )
         backend_api.login()
-        details = backend_api.get_integration_details(zip_path)
+        details = backend_api.get_integration_details(zip_path, is_staging=is_staging)
         integration_id = details["identifier"]
-        result = backend_api.upload_integration(zip_path, integration_id)
+        result = backend_api.upload_integration(zip_path, integration_id, is_staging=is_staging)
         rich.print(f"Upload result: {result}")
         rich.print("[green]✅ Integration deployed successfully.[/green]")
     except Exception as e:

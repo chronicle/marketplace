@@ -1,26 +1,19 @@
 identifier: Enrichment
 name: Enrichment
 parameters:
-    -   name: API Key
-        type: password
-        description: SOAR API Key - Required to Enrich Entities from Explorer
-        is_mandatory: false
-        integration_identifier: Enrichment
-    -   name: Verify SSL
-        default_value: false
-        type: boolean
-        description: Verify SSL Certificates when executing requests to Chronicle SOAR
-            instance.
-        is_mandatory: false
-        integration_identifier: Enrichment
+- name: API Key
+  type: password
+  description: SOAR API Key - Required to Enrich Entities from Explorer
+  is_mandatory: false
+  integration_identifier: Enrichment
+- name: Verify SSL
+  default_value: false
+  type: boolean
+  description: Verify SSL Certificates when executing requests to Chronicle SOAR instance.
+  is_mandatory: false
+  integration_identifier: Enrichment
 categories:
-    - Utility
-# language=svg
-svg_image: |
-    <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg"
-         viewBox="0 0 25 25">
-        <path d="M12.5,23A10.5,10.5,0,1,0,2,12.5,10.5,10.5,0,0,0,12.5,23ZM7.3,13.8a1.3,1.3,0,0,1,0-2.6h3.9V7.3a1.3,1.3,0,0,1,2.6,0v3.9h3.9a1.3,1.3,0,1,1,0,2.6H13.8v3.9a1.3,1.3,0,1,1-2.6,0V13.8Z"
-              fill-rule="evenodd"/>
-    </svg>
-image_base64: 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
+- Utility
 is_powerup: true
+svg_logo_path: resources/logo.svg
+image_path: resources/image.png

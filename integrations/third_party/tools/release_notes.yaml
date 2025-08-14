@@ -793,13 +793,21 @@
   regressive: false
   deprecated: false
   removed: false
-- description: Integration - Refactored the code to work with updated API.
+- description: REGRESSIVE! Get Original Alert Json - Updated sample json values.
   integration_version: 67.0
+  item_name: Get Original Alert Json
+  item_type: Action
+  publish_time: '2025-08-13'
+  ticket_number: '433939306'
+  new: false
+  regressive: true
+  deprecated: false
+  removed: false
+ - description: Integration - Refactored the code to work with updated API.
+  integration_version: 68.0
   item_name: Tools
   item_type: Integration
   publish_time: '2025-07-30'
   ticket_number: '432162390'
   new: false
   regressive: false
-  deprecated: false
-  removed: false
