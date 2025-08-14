@@ -60,7 +60,10 @@ def main():
             )
 
             siemplify.LOGGER.info(f"Finished processing entity {entity.identifier}")
-            output_message += f"{user} Added comment to entity: {entity.identifier}, Environment: {siemplify._environment}. Comment: {comment}\n"
+            output_message += (
+                f"{user} Added comment to entity: {entity.identifier}, "
+                f"Environment: {siemplify._environment}. Comment: {comment}\n"
+            )
 
     except Exception as e:
         siemplify.LOGGER.error(f"General error performing action {SCRIPT_NAME}")
