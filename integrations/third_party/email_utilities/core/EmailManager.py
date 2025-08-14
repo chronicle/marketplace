@@ -603,7 +603,7 @@ class EmailUtils:
             matched_urls = EmailUtils.find_urls_regex(body)
 
         for found_url in matched_urls:
-            if "." not in found_url or URL_REGEX.search(found_url) is None:
+            if "." not in found_url:
                 # if we found a URL like e.g. http://afafasasfasfas; that makes no
                 # sense, thus skip it
                 continue
@@ -624,6 +624,8 @@ class EmailUtils:
         entities.extend([])
         urls = EmailUtils.get_urls(in_str)
         for url in urls:
+            if URL_REGEX.search(url) is None:
+                continue
             entity = {}
             entity["entity_type"] = "DestinationURL"
             entity["identifier"] = url
