@@ -45,7 +45,11 @@ def main():
         reverse=True,
     )
     if siemplify.current_alert.identifier == siemplify.case.alerts[-1].identifier:
-        output_message = f"Alert Index: {current_alert_index}. Alert Id: {siemplify.current_alert.identifier}: First alert - continuing playbook."
+        output_message = (
+            f"Alert Index: {current_alert_index}. "
+            f"Alert Id: {siemplify.current_alert.identifier}: First alert - "
+            "continuing playbook."
+        )
         result_value = "true"
         status = EXECUTION_STATE_COMPLETED
     else:
@@ -56,12 +60,16 @@ def main():
                     f"alert id: {siemplify.alert_id} alert index: {current_alert_index}",
                 )
                 break
-        if current_alert_index != None:
+        if current_alert_index is not None:
             if (
                 siemplify.current_alert.identifier
                 == siemplify.case.alerts[-1].identifier
             ):
-                output_message = f"Alert Index: {current_alert_index}. Alert Id: {siemplify.current_alert.identifier}: First alert - continuing playbook."
+                output_message = (
+                    f"Alert Index: {current_alert_index}. Alert Id: "
+                    f"{siemplify.current_alert.identifier}: "
+                    "First alert - continuing playbook."
+                )
                 result_value = "true"
                 status = EXECUTION_STATE_COMPLETED
             elif (
@@ -69,11 +77,18 @@ def main():
                 == WF_STATUS_INPROGRESS
             ):
                 prev_case = alerts[current_alert_index - 1]["identifier"]
-                output_message = f"Alert Index: {current_alert_index}. Alert Id: {siemplify.current_alert.identifier}: Playbook Locked. Waiting for alert # {prev_case} playbook to finish."
+                output_message = (
+                    f"Alert Index: {current_alert_index}. Alert Id: "
+                    f"{siemplify.current_alert.identifier}: Playbook Locked. "
+                    f"Waiting for alert # {prev_case} playbook to finish."
+                )
                 result_value = "false"
                 status = EXECUTION_STATE_INPROGRESS
             else:
-                output_message = f"Alert Index: {current_alert_index}. Alert Id: {siemplify.current_alert.identifier}: Lock Released. "
+                output_message = (
+                    f"Alert Index: {current_alert_index}. Alert Id: "
+                    f"{siemplify.current_alert.identifier}: Lock Released. "
+                )
                 result_value = "true"
                 status = EXECUTION_STATE_COMPLETED
         else:

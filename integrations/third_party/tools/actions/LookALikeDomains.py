@@ -32,7 +32,7 @@ def get_page_results(siemplify):
             "objectsList", res.get("domains", [])
         )
     ]
-    if res.get("metadata",{}).get("totalNumberOfPages", 0) > 1:
+    if res.get("metadata", {}).get("totalNumberOfPages", 0) > 1:
         for page in range(res.get("metadata", {}).get("totalNumberOfPages", 0) - 1):
             res = get_domain_alias(siemplify, page + 1)
             results.extend([
@@ -48,9 +48,7 @@ def get_domains(siemplify):
     res = get_page_results(siemplify)
     env_domains = []
 
-    for domain in res:
-        
-        
+    for domain in res:  
         if siemplify._environment in domain.environments_json:
             env_domains.append(domain.to_json())
     return env_domains
@@ -77,7 +75,10 @@ def main():
                 )
                 if distance >= 1 and distance < 4:
                     look_a_like_domains.append(domain["domain"])
-                    output_message += f"Domain {entity.identifier} is a look alike to {domain['domain']} with a score of {distance}.  \n"
+                    output_message += (
+                        f"Domain {entity.identifier} is a look alike to"
+                        f" {domain['domain']} with a score of {distance}.  \n"
+                    )
                     entity.is_suspicious = True
                     entity.additional_properties["look_a_like_domain"] = domain[
                         "domain"

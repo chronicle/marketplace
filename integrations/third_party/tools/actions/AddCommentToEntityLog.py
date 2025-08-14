@@ -43,7 +43,6 @@ def main():
     )
     result_value = None
     output_message = ""
-    status = EXECUTION_STATE_COMPLETED
 
     siemplify.LOGGER.info("----------------- Main - Started -----------------")
     try:

@@ -26,8 +26,19 @@ GET_WFS_QUERY = """
 select * from "WorkflowInstances" where "WorkflowName" = '{}' AND "CaseId" = {}
 """
 
-DELETE_WI_QUERY = """delete from "WorkflowInstances" where "CaseId" = {} and "WorkflowName" = '{}' and "IndicatorIdentifier" = '{}';"""
-DELETE_AR_QUERY = """delete from "ActionResults" where "CaseId" = {} and "WorkflowId" = '{}' and "IndicatorIdentifier" = '{}';"""
+DELETE_WI_QUERY = (
+    "delete from \"WorkflowInstances\" "
+    "where \"CaseId\" = {} "
+    "and \"WorkflowName\" = '{}' "
+    "and \"IndicatorIdentifier\" = '{}';"
+)
+
+DELETE_AR_QUERY = (
+    "delete from \"ActionResults\" "
+    "where \"CaseId\" = {} "
+    "and \"WorkflowId\" = '{}' "
+    "and \"IndicatorIdentifier\" = '{}';"
+)
 ADD_PLAYBOOK_URL = "{}/external/v1/playbooks/AttacheWorkflowToCase?format=camel"
 
 
@@ -41,7 +52,8 @@ class ConnectToDb:
 
         # Connect to PostgreSQL
         self.conn = psycopg2.connect(
-            f"dbname='{self.database}' user='{self.username}' host='{self.server}' password='{self.password}'",
+            f"dbname='{self.database}' user='{self.username}' "
+            f"host='{self.server}' password='{self.password}'",
         )
 
     def execute(self, query):
@@ -182,13 +194,14 @@ def main():
         siemplify.LOGGER.error("Error re-running the playbook.")
         siemplify.LOGGER.exception(err)
 
-    status = EXECUTION_STATE_COMPLETED  # used to flag back to siemplify system, the action final status
-    output_message = "Successfully re-attached the playbook to the case."  # human readable message, showed in UI as the action result
+    status = EXECUTION_STATE_COMPLETED
+    output_message = "Successfully re-attached the playbook to the case."
     result_value = (
         True  # Set a simple result value, used for playbook if\else and placeholders.
     )
     siemplify.LOGGER.info(
-        f"\n  status: {status}\n  result_value: {result_value}\n  output_message: {output_message}",
+        f"\n  status: {status}\n  result_value: {result_value}\n  "
+        f"output_message: {output_message}",
     )
     siemplify.end(output_message, result_value, status)
 

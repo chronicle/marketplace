@@ -21,6 +21,7 @@ from TIPCommon.rest.soar_api import assign_case_to_user
 ACTION_NAME = "AssignCaseToUser"
 TRUE = "true"
 
+
 @output_handler
 def main():
     siemplify = SiemplifyAction()
@@ -40,6 +41,7 @@ def main():
     siemplify.LOGGER.info(add_task)
 
     siemplify.end(TRUE, True)
+
 
 if __name__ == "__main__":
     main()

@@ -801,6 +801,8 @@
   ticket_number: '433939306'
   new: false
   regressive: true
+  deprecated: false
+  removed: false
 - description: Integration - Refactored the code to work with updated API.
   integration_version: 68.0
   item_name: Tools

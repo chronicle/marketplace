@@ -42,7 +42,7 @@ SEARCH_URL = "api/external/v1/search/CaseSearchEverything"
 @output_handler
 def main():
     siemplify = SiemplifyJob()
-    siemplify.script_name = SCRIPT_NAME  # In order to use the SiemplifyLogger, you must assign a name to the script.
+    siemplify.script_name = SCRIPT_NAME
     username = siemplify.parameters["Siemplify Username"]
     password = siemplify.parameters["Siemplify Password"]
     siemplify.LOGGER.info("----------------- Main - Started -----------------")

@@ -38,7 +38,6 @@ def main():
             [integration.to_json() for integration in siemplify_integrations]
         )
 
-
     siemplify.result.add_result_json({"instances": instances})
     output_message = "Returned Instances."
     siemplify.end(output_message, True)
