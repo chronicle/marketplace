@@ -37,7 +37,7 @@ def main():
     case = get_case_overview_details(
         chronicle_soar=siemplify,
         case_id=siemplify.case_id,
-    ).json()
+    ).to_json()
     current_alert_index = None
     alerts = sorted(
         case["alertCards"],
