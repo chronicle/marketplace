@@ -811,3 +811,11 @@
   regressive: false
   deprecated: false
   removed: false
+ - description: Integration - Refactored the code to work with updated API.
+  integration_version: 68.0
+  item_name: Tools
+  item_type: Integration
+  publish_time: '2025-07-30'
+  ticket_number: '432162390'
+  new: false
+  regressive: false
