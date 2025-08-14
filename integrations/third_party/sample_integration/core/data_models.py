@@ -53,8 +53,8 @@ class BaseRate:
     ) -> AlertInfo:
         alert = AlertInfo()
         alert.display_id = self._format_exchange_display_id(currency)
-        alert.ticket_id = alert.display_id
         alert.name = self._format_exchange_alert_name(currency)
+        alert.currency = currency
         alert.events = [self._build_event(currency, rate)]
         if attachment:
             attachment_content = json.dumps({
@@ -72,12 +72,16 @@ class BaseRate:
         return alert
 
     def _build_combined_alert(
-        self, severity: str, env_common: EnvironmentHandle, attachment: bool = False
+        self,
+        severity: str,
+        env_common: EnvironmentHandle,
+        currency: str,
+        attachment: bool = False,
     ) -> AlertInfo:
         alert = AlertInfo()
         alert.display_id = self._format_display_id()
-        alert.ticket_id = alert.display_id
         alert.name = self._format_alert_name()
+        alert.currency = currency
         alert.events = [self._build_event(currency, rate) for currency, rate in self.rates.items()]
         if attachment:
             attachment_content = json.dumps(self.json())
@@ -107,6 +111,7 @@ class BaseRate:
         timestamp = self._get_timestamp()
         alert.description = constants.DESCRIPTION
         alert.alert_id = alert.display_id
+        alert.ticket_id = alert.display_id
         alert.reason = constants.REASON
         alert.device_vendor = constants.DEFAULT_VENDOR
         alert.device_product = constants.DEFAULT_PRODUCT
@@ -141,7 +146,6 @@ class BaseRate:
         return dict_to_flat({
             "date": self.date,
             "base": self.base,
-            "rates": self.rates,
         })
 
 

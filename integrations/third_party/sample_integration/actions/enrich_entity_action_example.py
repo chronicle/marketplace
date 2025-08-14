@@ -10,7 +10,7 @@ from TIPCommon.transformation import add_prefix_to_dict, construct_csv
 from TIPCommon.validation import ParameterValidator
 from soar_sdk.SiemplifyUtils import unix_now
 
-from ..core.base_action import BaseAction
+from ..core.base_action import SampleAction
 from ..core.constants import (
     ENRICH_ENTITY_ACTION_EXAMPLE_SCRIPT_NAME,
     SupportedEntitiesEnum,
@@ -28,7 +28,7 @@ SUCCESS_MESSAGE: str = "Successfully enriched the following entities: {}"
 NO_ENTITIES_MESSAGE: str = "No eligible entities were found in the scope of the Alert."
 
 
-class EnrichEntityActionExample(EnrichAction, BaseAction):
+class EnrichEntityActionExample(EnrichAction, SampleAction):
     def __init__(self) -> None:
         super().__init__(ENRICH_ENTITY_ACTION_EXAMPLE_SCRIPT_NAME)
         self.enriched_entities: list[str] = []

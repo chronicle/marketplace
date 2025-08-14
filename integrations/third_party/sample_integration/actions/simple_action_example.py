@@ -10,7 +10,7 @@ from TIPCommon.extraction import extract_action_param
 from TIPCommon.transformation import construct_csv
 from TIPCommon.validation import ParameterValidator
 
-from ..core.base_action import BaseAction
+from ..core.base_action import SampleAction
 from ..core.constants import (
     CurrenciesDDLEnum,
     SIMPLE_ACTION_EXAMPLE_SCRIPT_NAME,
@@ -37,7 +37,7 @@ SUCCESS_MESSAGE: str = (
 EXAMPLE_CASE_WALL_LINK: str = "https://api.vatcomply.com/rates?date={date}&base={base}"
 
 
-class SimpleActionExample(BaseAction):
+class SimpleActionExample(SampleAction):
     def __init__(self) -> None:
         super().__init__(SIMPLE_ACTION_EXAMPLE_SCRIPT_NAME)
 

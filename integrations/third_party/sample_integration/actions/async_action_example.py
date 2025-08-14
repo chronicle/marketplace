@@ -9,7 +9,7 @@ from TIPCommon.rest.soar_api import get_case_overview_details
 from TIPCommon.smp_time import is_approaching_action_timeout
 from TIPCommon.validation import ParameterValidator
 
-from base_action import BaseAction
+from base_action import SampleAction
 from constants import ASYNC_ACTION_EXAMPLE_SCRIPT_NAME
 
 if TYPE_CHECKING:
@@ -27,7 +27,7 @@ TIMEOUT_ERROR_MESSAGE: str = (
 )
 
 
-class AsyncActionExample(BaseAction):
+class AsyncActionExample(SampleAction):
     def __init__(self) -> None:
         super().__init__(ASYNC_ACTION_EXAMPLE_SCRIPT_NAME)
         self.output_message: str = ""

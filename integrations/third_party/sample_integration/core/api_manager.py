@@ -16,6 +16,7 @@ if TYPE_CHECKING:
     from requests import Session
 
     from TIPCommon.base.utils import NewLineLogger
+    from TIPCommon.types import SingleJson
 
 
 class ApiManager:
@@ -96,7 +97,7 @@ class ApiManager:
             exchange_rates=[self.get_base_rate(base, start_date) for base in currencies],
         )
 
-    def get_job_rate(self) -> None:
+    def get_job_rate(self) -> SingleJson:
         """Get job rate."""
         url = get_full_url(self.api_root, "ping")
         response = self.session.get(url)

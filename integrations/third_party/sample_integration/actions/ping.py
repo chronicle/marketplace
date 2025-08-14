@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-from ..core.base_action import BaseAction
+from ..core.base_action import SampleAction
 from ..core.constants import PING_SCRIPT_NAME
 
 if TYPE_CHECKING:
@@ -15,7 +15,7 @@ SUCCESS_MESSAGE: str = (
 ERROR_MESSAGE: str = "Failed to connect to the API Service server!"
 
 
-class Ping(BaseAction):
+class Ping(SampleAction):
     def __init__(self) -> None:
         super().__init__(PING_SCRIPT_NAME)
         self.output_message = SUCCESS_MESSAGE

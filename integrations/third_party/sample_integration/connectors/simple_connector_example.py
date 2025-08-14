@@ -22,14 +22,18 @@ class SimpleConnector(Connector):
 
     def validate_params(self) -> None:
         """Validate connector params with param_validator."""
-        self.params.max_days_backwards = self.param_validator.validate_positive(
+        self.params.max_days_backwards = self.param_validator.validate_range(
             param_name="Max Days Backwards",
             value=self.params.max_days_backwards,
+            min_limit=constants.MIN_DAYS_BACKWARDS,
+            max_limit=constants.MAX_DAYS_BACKWARDS,
+            print_value=True,
         )
 
         self.params.max_alerts_to_fetch = self.param_validator.validate_positive(
             param_name="Max Alerts To Fetch",
             value=self.params.max_alerts_to_fetch,
+            print_value=True,
         )
 
     def init_managers(self) -> ApiManager:
@@ -98,7 +102,7 @@ class SimpleConnector(Connector):
             siemplify=self.siemplify,
             whitelist_as_a_blacklist=self.params.use_dynamic_list_as_blocklist,
             model=alert,
-            model_key="name",
+            model_key="currency",
         )
 
     def is_overflow_alert(self, alert_info: AlertInfo) -> bool:

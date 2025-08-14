@@ -9,7 +9,7 @@ from .api_manager import ApiManager
 from .auth_manager import AuthManager, build_auth_manager_params
 
 
-class BaseAction(Action, ABC):
+class SampleAction(Action, ABC):
     """Base action class."""
 
     def _init_api_clients(self) -> ApiManager:
