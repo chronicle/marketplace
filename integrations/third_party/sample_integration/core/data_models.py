@@ -75,13 +75,11 @@ class BaseRate:
         self,
         severity: str,
         env_common: EnvironmentHandle,
-        currency: str,
         attachment: bool = False,
     ) -> AlertInfo:
         alert = AlertInfo()
         alert.display_id = self._format_display_id()
         alert.name = self._format_alert_name()
-        alert.currency = currency
         alert.events = [self._build_event(currency, rate) for currency, rate in self.rates.items()]
         if attachment:
             attachment_content = json.dumps(self.json())
@@ -107,10 +105,12 @@ class BaseRate:
         alert: AlertInfo,
         severity: str,
         env_common: EnvironmentHandle,
+        currency: str = None,
     ) -> None:
         timestamp = self._get_timestamp()
         alert.description = constants.DESCRIPTION
         alert.alert_id = alert.display_id
+        alert.currency = currency
         alert.ticket_id = alert.display_id
         alert.reason = constants.REASON
         alert.device_vendor = constants.DEFAULT_VENDOR
