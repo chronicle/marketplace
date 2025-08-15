@@ -95,7 +95,7 @@ class SimpleActionExample(SampleAction):
             print_value=True,
         )
         currency_ddl_option: str = validator.validate_ddl(
-            param_name="",
+            param_name="Currencies DDL",
             value=self.params.currencies_ddl,
             ddl_values=CurrenciesDDLEnum.values(),
             print_value=True,

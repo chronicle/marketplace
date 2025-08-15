@@ -13,8 +13,6 @@ from base_action import SampleAction
 from constants import ASYNC_ACTION_EXAMPLE_SCRIPT_NAME
 
 if TYPE_CHECKING:
-    from typing import NoReturn
-
     from collections.abc import Iterable
 
 
@@ -182,7 +180,7 @@ class AsyncActionExample(SampleAction):
         })
 
 
-def main() -> NoReturn:
+def main() -> None:
     AsyncActionExample().run()
 
 
