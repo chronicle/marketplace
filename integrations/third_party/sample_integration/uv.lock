@@ -389,7 +389,7 @@ wheels = [
 
 [[package]]
 name = "integration-testing"
-version = "2.2.9"
+version = "2.2.10"
 source = { directory = "../../../packages/integration_testing" }
 dependencies = [
     { name = "aiohttp" },
@@ -408,7 +408,7 @@ requires-dist = [
     { name = "pyyaml", specifier = ">=6.0.2" },
     { name = "requests", specifier = ">=2.32.3" },
     { name = "soar-sdk", git = "https://github.com/chronicle/soar-sdk.git" },
-    { name = "tipcommon", path = "../../../packages/tipcommon/TIPCommon-2.2.9/TIPCommon-2.2.9-py2.py3-none-any.whl" },
+    { name = "tipcommon", path = "../../../packages/tipcommon/TIPCommon-2.2.10/TIPCommon-2.2.10-py2.py3-none-any.whl" },
     { name = "yarl", specifier = ">=1.20.1" },
 ]
 
@@ -697,6 +697,7 @@ version = "1.0"
 source = { virtual = "." }
 dependencies = [
     { name = "environmentcommon" },
+    { name = "requests" },
     { name = "tipcommon" },
 ]
 
@@ -710,7 +711,8 @@ dev = [
 [package.metadata]
 requires-dist = [
     { name = "environmentcommon", path = "../../../packages/envcommon/EnvironmentCommon-1.0.2/EnvironmentCommon-1.0.2-py2.py3-none-any.whl" },
-    { name = "tipcommon", path = "../../../packages/tipcommon/TIPCommon-2.2.9/TIPCommon-2.2.9-py2.py3-none-any.whl" },
+    { name = "requests", specifier = ">=2.32.4" },
+    { name = "tipcommon", path = "../../../packages/tipcommon/TIPCommon-2.2.10/TIPCommon-2.2.10-py2.py3-none-any.whl" },
 ]
 
 [package.metadata.requires-dev]
@@ -757,8 +759,8 @@ dependencies = [
 
 [[package]]
 name = "tipcommon"
-version = "2.2.9"
-source = { path = "../../../packages/tipcommon/TIPCommon-2.2.9/TIPCommon-2.2.9-py2.py3-none-any.whl" }
+version = "2.2.10"
+source = { path = "../../../packages/tipcommon/TIPCommon-2.2.10/TIPCommon-2.2.10-py2.py3-none-any.whl" }
 dependencies = [
     { name = "google-api-python-client" },
     { name = "google-auth" },
@@ -768,7 +770,7 @@ dependencies = [
     { name = "requests" },
 ]
 wheels = [
-    { filename = "tipcommon-2.2.9-py2.py3-none-any.whl", hash = "sha256:b1730aadb7cb2b96a53995c8bba1067c6229fb5091dea73d273cde4fc0970d59" },
+    { filename = "tipcommon-2.2.10-py2.py3-none-any.whl", hash = "sha256:9bb9ba3654b26d6e9dae6344c80db5011443a1616a9efde0d610035f9c4f44fc" },
 ]
 
 [package.metadata]
