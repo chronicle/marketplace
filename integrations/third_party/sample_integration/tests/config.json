@@ -1,0 +1,5 @@
+{
+    "API Root": "https://api.vatcomply.com",
+    "Password Field": "Google SecOps",
+    "Verify SSL": true
+}
