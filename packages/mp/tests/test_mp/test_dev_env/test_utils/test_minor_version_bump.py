@@ -57,16 +57,13 @@ def sandbox(tmp_path: pathlib.Path) -> dict[str, pathlib.Path]:
     shutil.copytree(ORIG_BUILT_INTEGRATION_PATH, built_dst)
     shutil.copytree(ORIG_NON_BUILT_INTEGRATION_PATH, non_built_dst)
 
-    yield {
+    return {
         "BUILT": built_dst,
         "NON_BUILT": non_built_dst,
         "DEF_FILE": built_dst / "Integration-mock_integration.def",
         "VERSION_CACHE": INTEGRATIONS_CACHE_FOLDER_PATH / "mock_integration" / "version_cache.yaml",
         "TMP_ROOT": tmp_path,
     }
-
-    if INTEGRATIONS_CACHE_FOLDER_PATH.exists():
-        shutil.rmtree(INTEGRATIONS_CACHE_FOLDER_PATH / "mock_integration")
 
 
 class TestMinorVersionBump:
