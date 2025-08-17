@@ -12,6 +12,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+from __future__ import annotations
+
 import json
 import pathlib
 import shutil
@@ -20,7 +22,9 @@ import pytest
 import toml
 import yaml
 
-from mp.dev_env.utils import minor_version_bump
+from mp.dev_env.utils import find_project_root, minor_version_bump
+
+INTEGRATIONS_CACHE_FOLDER_PATH: pathlib.Path = find_project_root() / ".integrations_cache"
 
 ORIG_BUILT_INTEGRATION_PATH = (
     pathlib.Path(__file__).parent.parent.parent
@@ -53,54 +57,57 @@ def sandbox(tmp_path: pathlib.Path) -> dict[str, pathlib.Path]:
     shutil.copytree(ORIG_BUILT_INTEGRATION_PATH, built_dst)
     shutil.copytree(ORIG_NON_BUILT_INTEGRATION_PATH, non_built_dst)
 
-    return {
+    yield {
         "BUILT": built_dst,
         "NON_BUILT": non_built_dst,
         "DEF_FILE": built_dst / "Integration-mock_integration.def",
-        "VERSION_CACHE": non_built_dst / ".integration_cache" / "version_cache.yml",
+        "VERSION_CACHE": INTEGRATIONS_CACHE_FOLDER_PATH / "mock_integration" / "version_cache.yaml",
         "TMP_ROOT": tmp_path,
     }
 
+    if INTEGRATIONS_CACHE_FOLDER_PATH.exists():
+        shutil.rmtree(INTEGRATIONS_CACHE_FOLDER_PATH / "mock_integration")
+
 
 class TestMinorVersionBump:
-    def test_run_first_time(self, sandbox: dict[str, pathlib.Path]) -> None:
+    def test_run_first_time_success(self, sandbox: dict[str, pathlib.Path]) -> None:
         minor_version_bump(sandbox["BUILT"], sandbox["NON_BUILT"])
 
-        assert (sandbox["NON_BUILT"] / ".integration_cache").exists()
+        assert INTEGRATIONS_CACHE_FOLDER_PATH.exists()
         assert sandbox["VERSION_CACHE"].exists()
-        assert load_cached_version(sandbox["VERSION_CACHE"]) == 2.2
-        assert load_built_version(sandbox["DEF_FILE"]) == 2.2
+        assert _load_cached_version(sandbox["VERSION_CACHE"]) == 2.2
+        assert _load_built_version(sandbox["DEF_FILE"]) == 2.2
 
-    def test_dependencies_not_changed(self, sandbox: dict[str, pathlib.Path]) -> None:
+    def test_dependencies_not_changed_success(self, sandbox: dict[str, pathlib.Path]) -> None:
         minor_version_bump(sandbox["BUILT"], sandbox["NON_BUILT"])
 
-        old_version_cached = load_cached_version(sandbox["VERSION_CACHE"])
-        old_version_def_file = load_built_version(sandbox["DEF_FILE"])
+        old_version_cached = _load_cached_version(sandbox["VERSION_CACHE"])
+        old_version_def_file = _load_built_version(sandbox["DEF_FILE"])
 
         minor_version_bump(sandbox["BUILT"], sandbox["NON_BUILT"])
 
-        assert load_cached_version(sandbox["VERSION_CACHE"]) == old_version_cached
-        assert load_built_version(sandbox["DEF_FILE"]) == old_version_def_file
+        assert _load_cached_version(sandbox["VERSION_CACHE"]) == old_version_cached
+        assert _load_built_version(sandbox["DEF_FILE"]) == old_version_def_file
 
-    def test_dependencies_changed(self, sandbox: dict[str, pathlib.Path]) -> None:
+    def test_dependencies_changed_success(self, sandbox: dict[str, pathlib.Path]) -> None:
         minor_version_bump(sandbox["BUILT"], sandbox["NON_BUILT"])
 
-        old_version_cached = load_cached_version(sandbox["VERSION_CACHE"])
-        old_version_def_file = load_built_version(sandbox["DEF_FILE"])
+        old_version_cached = _load_cached_version(sandbox["VERSION_CACHE"])
+        old_version_def_file = _load_built_version(sandbox["DEF_FILE"])
 
-        add_dependencies(sandbox["NON_BUILT"])
+        _add_dependencies(sandbox["NON_BUILT"])
         minor_version_bump(sandbox["BUILT"], sandbox["NON_BUILT"])
 
-        assert load_cached_version(sandbox["VERSION_CACHE"]) == old_version_cached - 0.1
-        assert load_built_version(sandbox["DEF_FILE"]) == old_version_def_file - 0.1
+        assert _load_cached_version(sandbox["VERSION_CACHE"]) == old_version_cached - 0.1
+        assert _load_built_version(sandbox["DEF_FILE"]) == old_version_def_file - 0.1
 
-        remove_dependencies(sandbox["NON_BUILT"])
+        _remove_dependencies(sandbox["NON_BUILT"])
 
-    def test_major_version_changed(self, sandbox: dict[str, pathlib.Path]) -> None:
+    def test_major_version_changed_success(self, sandbox: dict[str, pathlib.Path]) -> None:
         minor_version_bump(sandbox["BUILT"], sandbox["NON_BUILT"])
 
-        old_version_cached = load_cached_version(sandbox["VERSION_CACHE"])
-        old_version_def_file = load_built_version(sandbox["DEF_FILE"])
+        old_version_cached = _load_cached_version(sandbox["VERSION_CACHE"])
+        old_version_def_file = _load_built_version(sandbox["DEF_FILE"])
 
         pyproject_path = sandbox["NON_BUILT"] / "pyproject.toml"
         pyproject_data = toml.load(pyproject_path)
@@ -109,8 +116,8 @@ class TestMinorVersionBump:
             toml.dump(pyproject_data, f)
 
         minor_version_bump(sandbox["BUILT"], sandbox["NON_BUILT"])
-        assert load_cached_version(sandbox["VERSION_CACHE"]) == old_version_cached + 1.0
-        assert load_built_version(sandbox["DEF_FILE"]) == old_version_def_file + 1.0
+        assert _load_cached_version(sandbox["VERSION_CACHE"]) == old_version_cached + 1.0
+        assert _load_built_version(sandbox["DEF_FILE"]) == old_version_def_file + 1.0
 
         pyproject_data = toml.load(pyproject_path)
         pyproject_data["project"]["version"] = "2.0"
@@ -118,19 +125,19 @@ class TestMinorVersionBump:
             toml.dump(pyproject_data, f)
 
 
-def load_cached_version(version_cache_path: pathlib.Path) -> float:
+def _load_cached_version(version_cache_path: pathlib.Path) -> float:
     with version_cache_path.open("r", encoding="utf-8") as f:
         versions_cache = yaml.safe_load(f)
         return versions_cache["version"]
 
 
-def load_built_version(def_file_path: pathlib.Path) -> float:
+def _load_built_version(def_file_path: pathlib.Path) -> float:
     with def_file_path.open("r", encoding="utf-8") as f:
         def_file = json.load(f)
         return def_file["Version"]
 
 
-def add_dependencies(non_built_integration_path: pathlib.Path) -> None:
+def _add_dependencies(non_built_integration_path: pathlib.Path) -> None:
     pyproject_path = non_built_integration_path / "pyproject.toml"
     pyproject_data = toml.load(pyproject_path)
     deps = pyproject_data["project"].setdefault("dependencies", [])
@@ -139,7 +146,7 @@ def add_dependencies(non_built_integration_path: pathlib.Path) -> None:
         toml.dump(pyproject_data, f)
 
 
-def remove_dependencies(non_built_integration_path: pathlib.Path) -> None:
+def _remove_dependencies(non_built_integration_path: pathlib.Path) -> None:
     pyproject_path = non_built_integration_path / "pyproject.toml"
     pyproject_data = toml.load(pyproject_path)
     pyproject_data["project"]["dependencies"].pop()
