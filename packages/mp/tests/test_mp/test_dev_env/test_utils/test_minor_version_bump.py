@@ -41,29 +41,30 @@ ORIG_NON_BUILT_INTEGRATION_PATH = (
 
 
 @pytest.fixture
-def sandbox(tmp_path: pathlib.Path) -> dict[str, pathlib.Path]:
-    """
-    Clone the two integration folders into a per-test sandbox.
-    Returns a dict with convenient resolved paths inside the sandbox.
+def sandbox(tmp_path, request):
+    worker_id = getattr(request.config, "workerinput", {}).get("workerid", "gw0")
+    integration_name = f"mock_integration_{worker_id}"
 
-    pytest will delete tmp_path automatically at test end.
-    """
-    built_dst = tmp_path / "mock_built_integration" / "mock_integration"
-    non_built_dst = tmp_path / "commercial" / "mock_integration"
-
+    built_dst = tmp_path / "mock_built_integration" / integration_name
+    non_built_dst = tmp_path / "commercial" / integration_name
     built_dst.parent.mkdir(parents=True, exist_ok=True)
     non_built_dst.parent.mkdir(parents=True, exist_ok=True)
 
     shutil.copytree(ORIG_BUILT_INTEGRATION_PATH, built_dst)
     shutil.copytree(ORIG_NON_BUILT_INTEGRATION_PATH, non_built_dst)
 
-    return {
+    def_path = built_dst / f"Integration-{integration_name}.def"
+    shutil.move(built_dst / "Integration-mock_integration.def", def_path)
+
+    yield {
         "BUILT": built_dst,
         "NON_BUILT": non_built_dst,
-        "DEF_FILE": built_dst / "Integration-mock_integration.def",
-        "VERSION_CACHE": INTEGRATIONS_CACHE_FOLDER_PATH / "mock_integration" / "version_cache.yaml",
+        "DEF_FILE": def_path,
+        "VERSION_CACHE": INTEGRATIONS_CACHE_FOLDER_PATH / integration_name / "version_cache.yaml",
         "TMP_ROOT": tmp_path,
     }
+
+    shutil.rmtree(INTEGRATIONS_CACHE_FOLDER_PATH / integration_name)
 
 
 class TestMinorVersionBump:
