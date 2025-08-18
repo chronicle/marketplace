@@ -148,6 +148,34 @@ class TestMinorVersionBump:
         with pyproject_path.open("w") as f:
             toml.dump(pyproject_data, f)
 
+    def test_cache_file_invalid_schema_recovers_success(
+        self, sandbox: dict[str, pathlib.Path]
+    ) -> None:
+        minor_version_bump(sandbox["BUILT"], sandbox["NON_BUILT"])
+        cache_file = sandbox["VERSION_CACHE"]
+        cache_file.parent.mkdir(parents=True, exist_ok=True)
+        with cache_file.open("w", encoding="utf-8") as f:
+            yaml.safe_dump({"hash": "some_hash", "next_version_change": 0.1}, f)
+
+        minor_version_bump(sandbox["BUILT"], sandbox["NON_BUILT"])
+
+        assert _load_cached_version(sandbox["VERSION_CACHE"]) == 2.2
+        assert _load_built_version(sandbox["DEF_FILE"]) == 2.2
+
+    def test_pyproject_toml_missing_raises_error_fail(
+        self, sandbox: dict[str, pathlib.Path]
+    ) -> None:
+        (sandbox["NON_BUILT"] / "pyproject.toml").unlink()
+
+        with pytest.raises(FileNotFoundError):
+            minor_version_bump(sandbox["BUILT"], sandbox["NON_BUILT"])
+
+    def test_def_file_missing_raises_error_fail(self, sandbox: dict[str, pathlib.Path]) -> None:
+        sandbox["DEF_FILE"].unlink()
+
+        with pytest.raises(FileNotFoundError):
+            minor_version_bump(sandbox["BUILT"], sandbox["NON_BUILT"])
+
 
 def _load_cached_version(version_cache_path: pathlib.Path) -> float:
     with version_cache_path.open("r", encoding="utf-8") as f:
