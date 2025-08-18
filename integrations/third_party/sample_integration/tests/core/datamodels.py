@@ -25,7 +25,7 @@ class MockBaseRate:
     def to_json(self, symbols: Iterable[str] = None) -> SingleJson:
         result = {
             "date": self.date.isoformat(),
-            "symbol": self.base,
+            "base": self.base,
             "rates": self.rates,
         }
         if symbols:

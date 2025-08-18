@@ -3,13 +3,14 @@ from __future__ import annotations
 import json
 from typing import TYPE_CHECKING
 
-from base_action import SampleAction
-from constants import ASYNC_ACTION_EXAMPLE_SCRIPT_NAME
 from TIPCommon.base.action.data_models import ExecutionState
 from TIPCommon.extraction import extract_action_param
 from TIPCommon.rest.soar_api import get_case_overview_details
 from TIPCommon.smp_time import is_approaching_action_timeout
 from TIPCommon.validation import ParameterValidator
+
+from ..core.base_action import SampleAction
+from ..core.constants import ASYNC_ACTION_EXAMPLE_SCRIPT_NAME
 
 if TYPE_CHECKING:
     from collections.abc import Iterable
