@@ -102,7 +102,6 @@ def restructure_script_imports(code_string: str) -> str:
 
     Returns:
         The modified code string.
-
     """
     tree: cst.Module = cst.parse_module(code_string)
     transformer: ImportTransformer = ImportTransformer()
@@ -119,10 +118,9 @@ class ImportTransformer(cst.CSTTransformer):
         # `from ...common.package...module import ...` => `from module import ...`
         # `from ...core.package...module import ...` => `from module import ...`
         # `from ...soar_sdk.package...module import ...` => `from module import ...`
-        attrs: list[cst.Attribute] = _get_attribute_list(original_node)
-        if attrs and _is_reserved_node(attrs[-1]):
-            attr: cst.Attribute = attrs[0]
-            return updated_node.with_changes(relative=[], module=attr.attr)
+        match _get_attribute_list(original_node):
+            case [*attrs] if attrs and _is_reserved_node(attrs[-1]):
+                return updated_node.with_changes(relative=[], module=attrs[0].attr)
 
         match original_node:
             # `from (.)?(nothing | reserved) import ...` => `import ...`
