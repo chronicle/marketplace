@@ -8,7 +8,7 @@
   regressive: false
   deprecated: false
   removed: false
-- description: Removed mp from dev dependencies
+- description: Updated integration dependencies
   integration_version: 2.0
   item_name: Houdin-io
   item_type: Integration
