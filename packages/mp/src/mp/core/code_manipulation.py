@@ -102,6 +102,7 @@ def restructure_script_imports(code_string: str) -> str:
 
     Returns:
         The modified code string.
+
     """
     tree: cst.Module = cst.parse_module(code_string)
     transformer: ImportTransformer = ImportTransformer()
