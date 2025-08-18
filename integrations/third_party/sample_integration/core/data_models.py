@@ -1,23 +1,30 @@
 from __future__ import annotations
 
-from typing import TYPE_CHECKING
-
 import json
 from dataclasses import dataclass
 from datetime import datetime
+from typing import TYPE_CHECKING
 
+from core.utils import create_secops_attachment_object
 from soar_sdk.SiemplifyConnectorsDataModel import AlertInfo
 from TIPCommon.filters import pass_whitelist_filter
 from TIPCommon.transformation import dict_to_flat
 
 from . import constants
-from core.utils import create_secops_attachment_object
 
 if TYPE_CHECKING:
-    from soar_sdk.SiemplifyConnectors import SiemplifyConnectorExecution
-
     from EnvironmentCommon import EnvironmentHandle
+    from soar_sdk.SiemplifyConnectors import SiemplifyConnectorExecution
+    from TIPCommon.base.interfaces.logger import ScriptLogger
     from TIPCommon.types import SingleJson
+
+
+@dataclass(slots=True)
+class IntegrationParameters:
+    api_root: str
+    password: str
+    verify_ssl: bool
+    siemplify_logger: ScriptLogger
 
 
 @dataclass(frozen=True, slots=True)

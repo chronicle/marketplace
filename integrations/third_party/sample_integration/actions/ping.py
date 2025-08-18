@@ -18,9 +18,8 @@ ERROR_MESSAGE: str = "Failed to connect to the API Service server!"
 class Ping(SampleAction):
     def __init__(self) -> None:
         super().__init__(PING_SCRIPT_NAME)
-        self.output_message = SUCCESS_MESSAGE
-        self.error_output_message = ERROR_MESSAGE
-        self.json_results = {}
+        self.output_message: str = SUCCESS_MESSAGE
+        self.error_output_message: str = ERROR_MESSAGE
 
     def _perform_action(self, _=None) -> None:
         self.api_client.test_connectivity()

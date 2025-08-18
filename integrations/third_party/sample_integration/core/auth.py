@@ -2,33 +2,35 @@ from __future__ import annotations
 
 import dataclasses
 
-from TIPCommon.base.utils import CreateSession
-from TIPCommon.extraction import extract_script_param
-from TIPCommon.types import ChronicleSOAR
 from requests import Session
 from soar_sdk.SiemplifyAction import SiemplifyAction
 from soar_sdk.SiemplifyConnectors import SiemplifyConnectorExecution
 from soar_sdk.SiemplifyJob import SiemplifyJob
+from TIPCommon.base.interfaces import Authable
+from TIPCommon.base.utils import CreateSession
+from TIPCommon.extraction import extract_script_param
+from TIPCommon.types import ChronicleSOAR
 
 from .constants import DEFAULT_API_ROOT, DEFAULT_VERIFY_SSL, INTEGRATION_IDENTIFIER
+from .data_models import IntegrationParameters
 from .exceptions import SampleIntegrationError
 
 
 @dataclasses.dataclass(slots=True)
-class AuthManagerParams:
+class SessionAuthenticationParameters:
     api_root: str
     password: str
     verify_ssl: bool
 
 
-def build_auth_manager_params(soar_sdk_object: ChronicleSOAR) -> AuthManagerParams:
+def build_auth_params(soar_sdk_object: ChronicleSOAR) -> IntegrationParameters:
     """Extract auth params for Auth manager
 
     Args:
          soar_sdk_object: ChronicleSOAR SDK object
 
     Returns:
-        AuthManagerParams: AuthManagerParams object
+        SessionAuthenticationParameters: SessionAuthenticationParameters object.
 
     """
     sdk_class = type(soar_sdk_object).__name__
@@ -67,29 +69,44 @@ def build_auth_manager_params(soar_sdk_object: ChronicleSOAR) -> AuthManagerPara
         print_value=True,
     )
 
-    return AuthManagerParams(
+    return IntegrationParameters(
         api_root=api_root,
         password=password,
         verify_ssl=verify_ssl,
+        siemplify_logger=soar_sdk_object.LOGGER,
     )
 
 
-class AuthManager:
-    def __init__(
-        self,
-        params: AuthManagerParams,
-    ) -> None:
-        self.params = params
-        self.api_root = params.api_root
+class AuthenticatedSession(Authable):
+    def authenticate_session(self, params: SessionAuthenticationParameters) -> None:
+        self.session = get_authenticated_session(session_parameters=params)
 
-    def prepare_session(self) -> Session:
-        """Preparse session object to be used in API session."""
-        session = CreateSession.create_session()
-        session.verify = self.params.verify_ssl
-        password = (
-            self.params.password.encode("utf-8").decode("iso-8859-1")
-            if self.params.password
-            else ""
-        )
-        session.headers.update({"dummy-password-header": f"{password}"})
-        return session
+
+def get_authenticated_session(
+    session_parameters: SessionAuthenticationParameters,
+) -> Session:
+    """Get authenticated session with provided configuration parameters.
+
+    Args:
+        session_parameters (SessionAuthenticationParameters): Session parameters.
+
+    Returns:
+        Session: Authenticated session object.
+    """
+    session: Session = CreateSession.create_session()
+    _authenticate_session(session, session_parameters=session_parameters)
+
+    return session
+
+
+def _authenticate_session(
+    session: Session,
+    session_parameters: SessionAuthenticationParameters,
+) -> None:
+    session.verify: bool = session_parameters.verify_ssl
+    password: str = (
+        session_parameters.password.encode("utf-8").decode("iso-8859-1")
+        if session_parameters.password
+        else ""
+    )
+    session.headers.update({"dummy-password-header": f"{password}"})

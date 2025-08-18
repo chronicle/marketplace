@@ -1,9 +1,8 @@
 from __future__ import annotations
 
-from typing import TYPE_CHECKING
-
 import datetime as dt
 import json
+from typing import TYPE_CHECKING
 
 from TIPCommon.base.action.data_models import DataTable, Link
 from TIPCommon.extraction import extract_action_param
@@ -12,8 +11,8 @@ from TIPCommon.validation import ParameterValidator
 
 from ..core.base_action import SampleAction
 from ..core.constants import (
-    CurrenciesDDLEnum,
     SIMPLE_ACTION_EXAMPLE_SCRIPT_NAME,
+    CurrenciesDDLEnum,
     TimeFrameDDLEnum,
 )
 from ..core.exceptions import SampleIntegrationInvalidParameterError
@@ -21,7 +20,7 @@ from ..core.exceptions import SampleIntegrationInvalidParameterError
 if TYPE_CHECKING:
     from typing import NoReturn
 
-    from TIPCommon.types import JSON
+    from TIPCommon.types import JSON, SingleJson
 
     from ..core.data_models import DailyRates
 
@@ -78,7 +77,7 @@ class SimpleActionExample(SampleAction):
         )
 
     def _validate_params(self) -> None:
-        validator = ParameterValidator(self.soar_action)
+        validator: ParameterValidator = ParameterValidator(self.soar_action)
         self._validate_currencies_params(validator)
         self._validate_time_params(validator)
 
@@ -167,13 +166,13 @@ class SimpleActionExample(SampleAction):
             start_date=self.params.start_date,
             end_date=self.params.end_date,
         )
-        json_results = [rates.json() for rates in exchange_rates]
+        json_results: list[SingleJson] = [rates.json() for rates in exchange_rates]
         if self.params.return_json_result:
             self.json_results = json_results
         self._create_data_tables(exchange_rates)
         self._create_links(exchange_rates)
         self._add_result_case_attachment(json_results)
-        self.output_message = SUCCESS_MESSAGE.format(
+        self.output_message: str = SUCCESS_MESSAGE.format(
             start_time=self.params.start_date,
             end_time=self.params.end_date,
             currencies=",".join(self.params.currencies),
@@ -221,8 +220,9 @@ class SimpleActionExample(SampleAction):
         Args:
             json_results (JSON): The JSON results to be added as an attachment.
         """
-        result_file_path = self.save_temp_file(
-            filename="Result.json", content=json.dumps(json_results)
+        result_file_path: str = self.save_temp_file(
+            filename="Result.json",
+            content=json.dumps(json_results),
         )
         self._add_attachment_to_current_case(result_file_path)
 

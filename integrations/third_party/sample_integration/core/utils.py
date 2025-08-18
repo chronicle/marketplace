@@ -1,9 +1,8 @@
 from __future__ import annotations
 
-from typing import TYPE_CHECKING
-
 import datetime as dt
 from base64 import b64encode
+from typing import TYPE_CHECKING
 
 from soar_sdk.SiemplifyDataModel import Attachment
 

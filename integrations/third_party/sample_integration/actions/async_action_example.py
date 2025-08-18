@@ -3,17 +3,19 @@ from __future__ import annotations
 import json
 from typing import TYPE_CHECKING
 
+from base_action import SampleAction
+from constants import ASYNC_ACTION_EXAMPLE_SCRIPT_NAME
 from TIPCommon.base.action.data_models import ExecutionState
 from TIPCommon.extraction import extract_action_param
 from TIPCommon.rest.soar_api import get_case_overview_details
 from TIPCommon.smp_time import is_approaching_action_timeout
 from TIPCommon.validation import ParameterValidator
 
-from base_action import SampleAction
-from constants import ASYNC_ACTION_EXAMPLE_SCRIPT_NAME
-
 if TYPE_CHECKING:
     from collections.abc import Iterable
+
+    from TIPCommon.data_models import CaseDetails
+    from TIPCommon.types import SingleJson
 
 
 DEFAULT_CASE_TAG_TO_WAIT_FOR: str = "Async"
@@ -72,7 +74,7 @@ class AsyncActionExample(SampleAction):
             self.params.case_ids = [self.soar_action.case_id]
             return
 
-        validator = ParameterValidator(self.soar_action)
+        validator: ParameterValidator = ParameterValidator(self.soar_action)
         self.params.case_ids = validator.validate_csv(
             param_name="Case IDs",
             csv_string=self.params.case_ids,
@@ -93,14 +95,14 @@ class AsyncActionExample(SampleAction):
 
         for case_id in case_ids:
             self.logger.info(f"Fetching Case {case_id} data from Server")
-            case = get_case_overview_details(
+            case_details: CaseDetails = get_case_overview_details(
                 self.soar_action,
                 case_id,
             )
             result[case_id] = any(
                 (isinstance(case_tag, dict) and case_tag.get("displayName") == tag)
                 or (isinstance(case_tag, str) and case_tag == tag)
-                for case_tag in case.tags
+                for case_tag in case_details.tags
             )
         return result
 
@@ -109,12 +111,12 @@ class AsyncActionExample(SampleAction):
 
     def _consecutive_run(self) -> None:
         self.cases_with_tag.update(self.params.additional_data.get("cases_with_tag", []))
-        cases_to_process = self.params.additional_data.get("waiting_cases", [])
+        cases_to_process: SingleJson = self.params.additional_data.get("waiting_cases", [])
         self._process_cases(cases_to_process)
 
     def _process_cases(self, case_ids: Iterable[int]):
         self.logger.info("Starting to process cases tags")
-        case_tags_status = self._check_case_tags(
+        case_tags_status: dict[int, bool] = self._check_case_tags(
             case_ids,
             self.params.case_tag_to_wait_for,
         )

@@ -1,9 +1,10 @@
 from __future__ import annotations
 
-from typing import TYPE_CHECKING
-
 import datetime as dt
 import time
+from typing import TYPE_CHECKING, NamedTuple
+
+from TIPCommon.base.interfaces import Apiable
 
 from .api_utils import get_full_url, validate_response
 from .constants import REQUEST_TIMEOUT
@@ -13,34 +14,35 @@ from .utils import date_range
 if TYPE_CHECKING:
     from collections.abc import Iterable, Sequence
 
-    from requests import Session
-
-    from TIPCommon.base.utils import NewLineLogger
+    from requests import Response
+    from TIPCommon.base.interfaces.logger import ScriptLogger
     from TIPCommon.types import SingleJson
 
+    from .auth import AuthenticatedSession
 
-class ApiManager:
+
+class ApiParameters(NamedTuple):
+    api_root: str
+
+
+class SampleApiClient(Apiable):
     def __init__(
         self,
-        api_root: str,
-        session: Session,
-        logger: NewLineLogger,
+        authenticated_session: AuthenticatedSession,
+        configuration: ApiParameters,
+        logger: ScriptLogger,
     ) -> None:
-        """Manager for handling API interactions
-
-        Args:
-            session (Session): initialized session object to be used in API session
-            logger (NewLineLogger): logger object
-
-        """
-        self.api_root = api_root
-        self.session = session
-        self.logger = logger
+        super().__init__(
+            authenticated_session=authenticated_session,
+            configuration=configuration,
+        )
+        self.logger: ScriptLogger = logger
+        self.api_root: str = configuration.api_root
 
     def test_connectivity(self) -> None:
         """Test connectivity to API."""
-        url = get_full_url(self.api_root, "ping")
-        response = self.session.get(url)
+        url: str = get_full_url(self.api_root, "ping")
+        response: Response = self.session.get(url)
         validate_response(response)
 
     def get_rates(
@@ -60,10 +62,10 @@ class ApiManager:
         Returns:
             Sequence[DailyRates]: list of daily rates
         """
-        results = []
+        results: Sequence[DailyRates] = []
 
         if end_date is None:
-            end_date = dt.date.today()
+            end_date: dt.date = dt.date.today()
 
         # Ideally, the API endpoint would accept a range of value per parameter in the
         # request. However, Vatcomply '/rates' endpoint only supports a single value
@@ -99,8 +101,8 @@ class ApiManager:
 
     def get_job_rate(self) -> SingleJson:
         """Get job rate."""
-        url = get_full_url(self.api_root, "ping")
-        response = self.session.get(url)
+        url: str = get_full_url(self.api_root, "ping")
+        response: Response = self.session.get(url)
         validate_response(response)
         return response.json()
 
@@ -115,11 +117,11 @@ class ApiManager:
             BaseRate: base rate
         """
         time.sleep(2)  # Simulating API rate limit
-        url = get_full_url(self.api_root, "get-base-rate")
-        params = {
+        url: str = get_full_url(self.api_root, "get-base-rate")
+        params: dict[str, str] = {
             "date": date.isoformat(),
             "base": base_symbol,
         }
-        response = self.session.get(url, params=params, timeout=REQUEST_TIMEOUT)
+        response: Response = self.session.get(url, params=params, timeout=REQUEST_TIMEOUT)
         validate_response(response)
         return BaseRate(**response.json())

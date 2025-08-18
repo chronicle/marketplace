@@ -1,7 +1,11 @@
 from __future__ import annotations
 
 import sys
+from typing import TYPE_CHECKING
 
+import constants
+from core.api.api_client import SampleApiClient
+from core.authentication.auth import AuthenticatedSession, build_auth_params
 from soar_sdk.SiemplifyConnectorsDataModel import AlertInfo
 from TIPCommon.base.connector import Connector
 from TIPCommon.filters import filter_old_alerts
@@ -9,16 +13,14 @@ from TIPCommon.smp_io import read_ids, write_ids
 from TIPCommon.transformation import string_to_multi_value
 from TIPCommon.utils import is_overflowed, is_test_run
 
-from core.api_manager import ApiManager
-from core.auth_manager import AuthManager, build_auth_manager_params
-
-import constants
+if TYPE_CHECKING:
+    from core.authentication.auth import SessionAuthenticationParameters
 
 
 class SimpleConnector(Connector):
     def __init__(self, is_test_connector_run: bool) -> None:
         super().__init__(constants.CONNECTOR_SCRIPT_NAME, is_test_connector_run)
-        self.manager: ApiManager | None = None
+        self.manager: SampleApiClient | None = None
 
     def validate_params(self) -> None:
         """Validate connector params with param_validator."""
@@ -36,12 +38,12 @@ class SimpleConnector(Connector):
             print_value=True,
         )
 
-    def init_managers(self) -> ApiManager:
+    def init_managers(self) -> SampleApiClient:
         """Initialize API manager with authentication."""
-        auth_manager_params = build_auth_manager_params(self.siemplify)
-        manager = AuthManager(auth_manager_params)
+        auth_manager_params: SessionAuthenticationParameters = build_auth_params(self.siemplify)
+        manager: AuthenticatedSession = AuthenticatedSession(auth_manager_params)
 
-        self.manager = ApiManager(
+        self.manager = SampleApiClient(
             api_root=manager.api_root,
             session=manager.prepare_session(),
             logger=self.logger,
@@ -60,7 +62,7 @@ class SimpleConnector(Connector):
 
     def get_alerts(self) -> list[AlertInfo]:
         """Fetch alerts from the API."""
-        alerts = []
+        alerts: list[AlertInfo] = []
         rate = self.manager.get_connector_rates(
             currencies=string_to_multi_value(
                 string_value=self.params.currencies_to_fetch,

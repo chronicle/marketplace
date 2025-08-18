@@ -1,10 +1,12 @@
 from __future__ import annotations
 
+import json
+from datetime import datetime
 from typing import TYPE_CHECKING
 
-from datetime import datetime
-import json
-
+import constants
+from core.api.api_client import SampleApiClient
+from core.authentication.auth import AuthenticatedSession, build_auth_params
 from soar_sdk.SiemplifyDataModel import (
     CaseFilterOperatorEnum,
     CaseFilterSortByEnum,
@@ -14,14 +16,11 @@ from soar_sdk.SiemplifyDataModel import (
 from TIPCommon.base.job import Job
 from TIPCommon.rest.soar_api import get_case_overview_details
 
-from core.api_manager import ApiManager
-from core.auth_manager import AuthManager, build_auth_manager_params
-import constants
-
 if TYPE_CHECKING:
     from typing import NoReturn
 
     from TIPCommon.data_models import CaseDetails
+    from TIPCommon.types import SingleJson
 
 
 class SimpleJobExample(Job):
@@ -30,11 +29,11 @@ class SimpleJobExample(Job):
         self.context: dict[str, str] = {}
         self.current_date: str = self._get_today_date()
 
-    def _init_api_clients(self) -> ApiManager:
-        auth_manager_params = build_auth_manager_params(self.soar_job)
-        manager = AuthManager(auth_manager_params)
+    def _init_api_clients(self) -> SampleApiClient:
+        auth_manager_params = build_auth_params(self.soar_job)
+        manager = AuthenticatedSession(auth_manager_params)
 
-        return ApiManager(
+        return SampleApiClient(
             api_root=manager.api_root,
             session=manager.prepare_session(),
             logger=self.logger,
@@ -43,7 +42,7 @@ class SimpleJobExample(Job):
     def _perform_job(self) -> None:
         self._load_context()
         updated_case_ids: list[int] = []
-        cases = self._get_cases_with_details()
+        cases: list[CaseDetails] = self._get_cases_with_details()
 
         for case in cases:
             tags = self._get_case_tags(case)
@@ -61,7 +60,7 @@ class SimpleJobExample(Job):
 
     def _load_context(self) -> None:
         self.logger.info("Loading context...")
-        context_str = self.soar_job.get_job_context_property(
+        context_str: str = self.soar_job.get_job_context_property(
             self.name_id,
             constants.SIMPLE_JOB_CONTEXT_KEY,
         )
@@ -76,7 +75,7 @@ class SimpleJobExample(Job):
         self.context = json.loads(context_str)
         if self.context.get(constants.DATE_KEY) != self.current_date:
             self.logger.info("New date detected. Resetting context.")
-            self.context = {
+            self.context: SingleJson = {
                 constants.DATE_KEY: self.current_date,
                 constants.CASES_WITH_COMMENT_KEY: [],
             }
@@ -87,7 +86,7 @@ class SimpleJobExample(Job):
         ]
 
     def _get_case_ids(self) -> list[int]:
-        case_ids = self.soar_job.get_cases_ids_by_filter(
+        case_ids: list[int] = self.soar_job.get_cases_ids_by_filter(
             status=CaseFilterStatusEnum.OPEN,
             operator=CaseFilterOperatorEnum.OR,
             sort_by=CaseFilterSortByEnum.UPDATE_TIME,
@@ -123,9 +122,9 @@ class SimpleJobExample(Job):
         )
 
     def _add_currency_comment_to_case(self, case: CaseDetails) -> None:
-        exchange_data = self.api_client.get_job_rate()
-        rate = exchange_data.get("rates", {}).get("EUR")
-        comment = (
+        exchange_data: SingleJson = self.api_client.get_job_rate()
+        rate: str = exchange_data.get("rates", {}).get("EUR")
+        comment: str = (
             f"{constants.COMMENT_PREFIX} {constants.CURRENCY_PAIR} {rate}. Date: "
             f"{exchange_data[constants.DATE_KEY]}"
         )
