@@ -18,7 +18,6 @@
 from __future__ import annotations
 
 import warnings
-from collections import deque
 from typing import TYPE_CHECKING
 
 import libcst as cst
@@ -117,16 +116,16 @@ class ImportTransformer(cst.CSTTransformer):
         original_node: cst.ImportFrom,
         updated_node: cst.ImportFrom,
     ) -> cst.ImportFrom | cst.Import:
-        # `from ...common.module... import ...` => `from module import module...`
-        # `from ...core.module... import ...` => `from module import module...`
-        # `from ...soar_sdk.module... import ...` => `from module import module...`
-        nodes: deque[cst.Attribute] = _get_attribute_list(original_node)
-        if nodes and _is_reserved_node(nodes[0]):
-            node: cst.Attribute | cst.Name = _rebuild_attributes(nodes)
-            return updated_node.with_changes(relative=[], module=node)
+        # `from ...common.package...module import ...` => `from module import ...`
+        # `from ...core.package...module import ...` => `from module import ...`
+        # `from ...soar_sdk.package...module import ...` => `from module import ...`
+        attrs: list[cst.Attribute] = _get_attribute_list(original_node)
+        if attrs and _is_reserved_node(attrs[-1]):
+            attr: cst.Attribute = attrs[0]
+            return updated_node.with_changes(relative=[], module=attr.attr)
 
         match original_node:
-            # `from .(nothing or reserved) import ...` => `import ...`
+            # `from (.)?(nothing | reserved) import ...` => `import ...`
             case cst.ImportFrom(
                 module=(
                     None
@@ -158,20 +157,11 @@ def _is_reserved_node(node: cst.Attribute) -> bool:
     }
 
 
-def _get_attribute_list(node: cst.ImportFrom) -> deque[cst.Attribute]:
-    nodes: deque[cst.Attribute] = deque()
+def _get_attribute_list(node: cst.ImportFrom) -> list[cst.Attribute]:
+    nodes: list[cst.Attribute] = []
     current_node: cst.Name | cst.Attribute | None = node.module
     while isinstance(current_node, cst.Attribute):
-        nodes.appendleft(current_node)
+        nodes.append(current_node)
         current_node = current_node.value  # type: ignore[assignment]
 
     return nodes
-
-
-def _rebuild_attributes(nodes: deque[cst.Attribute]) -> cst.Attribute | cst.Name:
-    attribute: cst.Attribute = nodes.popleft()
-    current: cst.Attribute | cst.Name = attribute.attr
-    for node in nodes:
-        current = node.with_changes(value=current)
-
-    return current
