@@ -36,8 +36,8 @@ from mp.core.constants import COMMON_SCRIPTS_DIR, CORE_SCRIPTS_DIR, SDK_PACKAGE_
             "import another_thing, yet_another as y",
         ),
         (
-            f"from ...{COMMON_SCRIPTS_DIR}.module.sub.s.s.s.s.s import something as s",
-            "from module.sub.s.s.s.s.s import something as s",
+            f"from ...{COMMON_SCRIPTS_DIR}.module.sub.a.b.c.d.e import something as s",
+            "from e import something as s",
         ),
         (
             f"from ...{COMMON_SCRIPTS_DIR} import another_thing as at, yet_another",
@@ -48,8 +48,8 @@ from mp.core.constants import COMMON_SCRIPTS_DIR, CORE_SCRIPTS_DIR, SDK_PACKAGE_
             "import another_thing as at, yet_another",
         ),
         (
-            f"from ...{SDK_PACKAGE_NAME}.module.sub.s.s.s.s.s import something as s",
-            "from module.sub.s.s.s.s.s import something as s",
+            f"from ...{SDK_PACKAGE_NAME}.module.sub.a.b.c.d.e import something as s",
+            "from e import something as s",
         ),
         (
             f"from ...{SDK_PACKAGE_NAME} import another_thing as at, yet_another",
@@ -80,6 +80,10 @@ from mp.core.constants import COMMON_SCRIPTS_DIR, CORE_SCRIPTS_DIR, SDK_PACKAGE_
             f"from {COMMON_SCRIPTS_DIR} import authentication as a",
         ),
         (
+            f"from .{CORE_SCRIPTS_DIR}.{COMMON_SCRIPTS_DIR}.module import authentication as a",
+            "from module import authentication as a",
+        ),
+        (
             f"from .{COMMON_SCRIPTS_DIR}.something import authentication as a",
             "from something import authentication as a",
         ),
@@ -88,12 +92,16 @@ from mp.core.constants import COMMON_SCRIPTS_DIR, CORE_SCRIPTS_DIR, SDK_PACKAGE_
             f"from {CORE_SCRIPTS_DIR} import authentication as a",
         ),
         (
+            f"from .{COMMON_SCRIPTS_DIR}.{CORE_SCRIPTS_DIR}.module import authentication as a",
+            "from module import authentication as a",
+        ),
+        (
             "from ..another_module import another_thing",
             "from another_module import another_thing",
         ),
         (
-            "from ..another_module.module.sub_module import another_thing",
-            "from another_module.module.sub_module import another_thing",
+            "from ..another_package.sub_package.module import another_thing",
+            "from another_package.sub_package.module import another_thing",
         ),
         (
             "import os",
