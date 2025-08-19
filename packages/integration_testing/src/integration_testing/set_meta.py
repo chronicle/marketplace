@@ -153,6 +153,7 @@ def _get_json_context_patch_path_and_fn(
 
     return context_path, mock_get_context
 
+
 def _get_json_context_patch_path_and_fn_2(
     parameters: SingleJson,
     json_context: SingleJson,
