@@ -20,7 +20,7 @@ class TestPing:
         action_output: MockActionOutput,
         vatcomply: VatComply,
     ) -> None:
-        MOCK_RATES_DEFAULT["date"] = datetime.date.today().isoformat()
+        MOCK_RATES_DEFAULT["date"]: str = datetime.date.today().isoformat()
         vatcomply.set_rates(MOCK_RATES_DEFAULT)
         success_output_msg = (
             "Successfully connected to the API Service server with "

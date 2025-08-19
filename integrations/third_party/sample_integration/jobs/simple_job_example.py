@@ -4,9 +4,6 @@ import json
 from datetime import datetime
 from typing import TYPE_CHECKING
 
-import constants
-from core.api.api_client import SampleApiClient
-from core.authentication.auth import AuthenticatedSession, build_auth_params
 from soar_sdk.SiemplifyDataModel import (
     CaseFilterOperatorEnum,
     CaseFilterSortByEnum,
@@ -16,9 +13,18 @@ from soar_sdk.SiemplifyDataModel import (
 from TIPCommon.base.job import Job
 from TIPCommon.rest.soar_api import get_case_overview_details
 
+from ..core import constants
+from ..core.api.api_client import ApiParameters, SampleApiClient
+from ..core.auth import (
+    AuthenticatedSession,
+    SessionAuthenticationParameters,
+    build_auth_params,
+)
+
 if TYPE_CHECKING:
     from typing import NoReturn
 
+    import requests
     from TIPCommon.data_models import CaseDetails
     from TIPCommon.types import SingleJson
 
@@ -30,13 +36,24 @@ class SimpleJobExample(Job):
         self.current_date: str = self._get_today_date()
 
     def _init_api_clients(self) -> SampleApiClient:
-        auth_manager_params = build_auth_params(self.soar_job)
-        manager = AuthenticatedSession(auth_manager_params)
+        auth_params = build_auth_params(self.soar_job)
+        authenticator: AuthenticatedSession = AuthenticatedSession()
+        auth_params_for_session = SessionAuthenticationParameters(
+            api_root=auth_params.api_root,
+            password=auth_params.password,
+            verify_ssl=auth_params.verify_ssl,
+        )
+        authenticator.authenticate_session(auth_params_for_session)
+        authenticated_session: requests.Session = authenticator.session
+
+        api_params: ApiParameters = ApiParameters(
+            api_root=auth_params.api_root,
+        )
 
         return SampleApiClient(
-            api_root=manager.api_root,
-            session=manager.prepare_session(),
-            logger=self.logger,
+            authenticated_session=authenticated_session,
+            configuration=api_params,
+            logger=auth_params.siemplify_logger,
         )
 
     def _perform_job(self) -> None:
@@ -99,7 +116,10 @@ class SimpleJobExample(Job):
         return case_ids
 
     def _get_case_tags(self, case: CaseDetails) -> list[str]:
-        return [tag.get("displayName").lower() for tag in case.tags]
+        return [
+            tag.get("displayName").lower() if "displayName" in tag else tag.lower()
+            for tag in case.tags
+        ]
 
     def _should_close_case(self, tags: list[str]) -> bool:
         return constants.CLOSED_CASE_TAG.lower() in tags

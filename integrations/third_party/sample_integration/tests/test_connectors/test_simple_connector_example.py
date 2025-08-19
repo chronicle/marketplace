@@ -3,6 +3,7 @@ from __future__ import annotations
 import datetime
 import pathlib
 import sys
+from typing import TYPE_CHECKING
 
 from integration_testing.common import set_is_test_run_to_true
 from integration_testing.platform.external_context import (
@@ -12,7 +13,6 @@ from integration_testing.platform.external_context import (
 from integration_testing.platform.script_output import MockConnectorOutput
 from integration_testing.set_meta import set_metadata
 from TIPCommon.data_models import DatabaseContextType
-from TIPCommon.types import SingleJson
 from TIPCommon.utils import is_test_run
 
 from sample_integration.connectors.simple_connector_example import SimpleConnector
@@ -20,9 +20,14 @@ from sample_integration.tests.common import CONFIG, INTEGRATION_PATH, MOCK_RATES
 from sample_integration.tests.core.product import VatComply
 from sample_integration.tests.core.session import VatComplySession
 
+if TYPE_CHECKING:
+    from TIPCommon.types import SingleJson
+
+
 IDS_DB_KEY: str = "offset"
 DEF_PATH: pathlib.Path = INTEGRATION_PATH / "connectors" / "simple_connector_example.yaml"
-
+CURRENCY: str = "EUR"
+DEFAULT_DATE: str = (datetime.date.today() - datetime.timedelta(days=3)).isoformat()
 DEFAULT_PARAMETERS: SingleJson = {
     "Environment Field Name": "Default Environment",
     "Run Every": 10,
@@ -33,19 +38,24 @@ DEFAULT_PARAMETERS: SingleJson = {
     "Verify SSL": "false",
     "Max Days Backwards": "3",
     "Max Alerts To Fetch": "3",
-    "Currencies To Fetch": "EUR",
+    "Currencies To Fetch": CURRENCY,
+    "Create Alert Per Exchange Rate": "False",
+    "Alert Severity": "Informational",
+    "Environment Regex Pattern": ".*",
+    "Add Attachment": "True",
+    "Use Dynamic List As Blocklist": "False",
+    "Disable Overflow": "False",
 }
-ALERT_NAME: str = "Microsoft Graph Monitored Mailbox <>"
+ALERT_NAME: str = f"{DEFAULT_DATE} : {CURRENCY} - {CURRENCY}"
 
 
 @set_metadata(connector_def_file_path=DEF_PATH, parameters=DEFAULT_PARAMETERS)
-def test_simeple_connector_example_connector(
+def test_sample_connector_example_connector(
     vatcomply: VatComply,
     script_session: VatComplySession,
     connector_output: MockConnectorOutput,
 ) -> None:
-    today = datetime.date.today().isoformat()
-    MOCK_RATES_DEFAULT["date"] = today
+    MOCK_RATES_DEFAULT["date"]: str = DEFAULT_DATE
     vatcomply.set_rates(MOCK_RATES_DEFAULT)
 
     set_is_test_run_to_true()
@@ -53,19 +63,18 @@ def test_simeple_connector_example_connector(
     connector = SimpleConnector(is_test)
     connector.start()
 
-    assert len(script_session.request_history) == 7
+    assert len(script_session.request_history) == 1
     assert connector_output.results.json_output.alerts[0].name == ALERT_NAME
 
 
 @set_metadata(connector_def_file_path=DEF_PATH, parameters=DEFAULT_PARAMETERS)
-def test_simeple_connector_example_with_no_external_context(
+def test_sample_connector_example_with_no_external_context(
     vatcomply: VatComply,
     script_session: VatComplySession,
     connector_output: MockConnectorOutput,
     external_context: MockExternalContext,
 ) -> None:
-    today = datetime.date.today().isoformat()
-    MOCK_RATES_DEFAULT["date"] = today
+    MOCK_RATES_DEFAULT["date"]: str = DEFAULT_DATE
     vatcomply.set_rates(MOCK_RATES_DEFAULT)
 
     set_is_test_run_to_true()
@@ -73,7 +82,7 @@ def test_simeple_connector_example_with_no_external_context(
     connector = SimpleConnector(is_test)
     connector.start()
 
-    assert len(script_session.request_history) == 7
+    assert len(script_session.request_history) == 1
     assert connector_output.results.json_output.alerts[0].name == ALERT_NAME
     assert len(connector_output.results.json_output.alerts) == 1
 

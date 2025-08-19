@@ -2,8 +2,8 @@
     integration_version: 1.0
     item_name: Sample Integration
     item_type: Integration
-    publish_time: '2025-07-28'
-    ticket_number: 'xxxxxxx'
+    publish_time: '2025-08-20'
+    ticket_number: '429552537'
     new: true
     regressive: false
     deprecated: false

@@ -19,6 +19,8 @@ class VatComplySession(MockSession[MockRequest, MockResponse, VatComply]):
             self.add_attachment,
             self.update_entities,
             self.get_case_details,
+            self.get_case_id_by_filter,
+            self.close_case,
         ]
 
     @router.get(r"/rates")
@@ -46,8 +48,20 @@ class VatComplySession(MockSession[MockRequest, MockResponse, VatComply]):
     def get_case_details(self, request: MockRequest) -> MockResponse:
         case_id = request.url.path.split("/")[-1]
         case = self._product.get_case_details(int(case_id))
-        tag = self._product.get_tag(int(case_id))
-        if tag:
-            self._product.add_tag_to_case(int(case_id), tag)
+        tags = self._product.get_tags(int(case_id))
+        if tags:
+            self._product.add_tags_to_case(int(case_id), tags)
 
         return MockResponse(content=case, status_code=200)
+
+    @router.post(r"/api/external/v1/sdk/GetCasesIdByFilter")
+    def get_case_id_by_filter(self, request: MockRequest) -> MockResponse:
+        case_ids = self._product.get_case_ids()
+        if case_ids:
+            return MockResponse(content=case_ids, status_code=200)
+
+        return MockResponse(content=[], status_code=200)
+
+    @router.post(r"/api/external/v1/sdk/Close")
+    def close_case(self, request: MockRequest) -> MockResponse:
+        return MockResponse(content={}, status_code=200)

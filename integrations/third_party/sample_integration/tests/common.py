@@ -2,9 +2,13 @@ from __future__ import annotations
 
 import json
 import pathlib
+from typing import TYPE_CHECKING
 
 from integration_testing.common import get_def_file_content
-from TIPCommon.types import SingleJson
+
+if TYPE_CHECKING:
+    from TIPCommon.types import SingleJson
+
 
 INTEGRATION_PATH: pathlib.Path = pathlib.Path(__file__).parent.parent
 CONFIG_PATH = pathlib.Path.joinpath(INTEGRATION_PATH, "tests", "config.json")

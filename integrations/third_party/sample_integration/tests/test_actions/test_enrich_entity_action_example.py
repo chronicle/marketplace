@@ -14,10 +14,10 @@ from sample_integration.tests.common import CONFIG_PATH, MOCK_RATES_DEFAULT
 from sample_integration.tests.core.product import VatComply
 from sample_integration.tests.core.session import VatComplySession
 
-DEFAULT_PARAMETERS = {
+DEFAULT_PARAMETERS: dict[str, str] = {
     "Entity Type": "All Entities",
 }
-USERNAME_ENTITY_ID = "abcd@x.com"
+USERNAME_ENTITY_ID: str = "abcd@x.com"
 USERNAME_ENTITY_1: Entity = create_entity(USERNAME_ENTITY_ID, EntityTypesEnum.USER)
 SCRIPT_DEADLINE_TIME: datetime.datetime = datetime.datetime.now() + datetime.timedelta(minutes=10)
 
@@ -38,8 +38,8 @@ def test_enrich_entity_action_example_success(
     vatcomply: VatComply,
 ) -> None:
     # Arrange
-    today = datetime.date.today().isoformat()
-    MOCK_RATES_DEFAULT["date"] = today
+    today: str = datetime.date.today().isoformat()
+    MOCK_RATES_DEFAULT["date"]: str = today
     vatcomply.set_rates(MOCK_RATES_DEFAULT)
     success_output_msg = (
         f"Successfully enriched the following entities: {USERNAME_ENTITY_ID.upper()}"

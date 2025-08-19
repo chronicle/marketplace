@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import datetime
+from typing import TYPE_CHECKING
 
 from integration_testing.platform.script_output import MockActionOutput
 from integration_testing.set_meta import set_metadata
@@ -11,7 +12,11 @@ from sample_integration.tests.common import CONFIG_PATH, MOCK_RATES_DEFAULT
 from sample_integration.tests.core.product import VatComply
 from sample_integration.tests.core.session import VatComplySession
 
-DEFAULT_PARAMETERS = {
+if TYPE_CHECKING:
+    from TIPCommon.types import SingleJson
+
+
+DEFAULT_PARAMETERS: SingleJson = {
     "Currencies String": "EUR",
     "Currencies DDL": "Select One",
     "Time Frame": "Today",
@@ -26,8 +31,8 @@ def test_sample_action_example_success(
     vatcomply: VatComply,
 ) -> None:
     # Arrange
-    today = datetime.date.today().isoformat()
-    MOCK_RATES_DEFAULT["date"] = today
+    today: str = datetime.date.today().isoformat()
+    MOCK_RATES_DEFAULT["date"]: str = today
     vatcomply.set_rates(MOCK_RATES_DEFAULT)
     success_output_msg = (
         "Successfully returned information about the following currencies from "

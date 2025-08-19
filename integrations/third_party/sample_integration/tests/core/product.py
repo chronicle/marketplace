@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import dataclasses
 import datetime
+from collections import defaultdict
 
 from TIPCommon.types import SingleJson
 
@@ -13,7 +14,7 @@ from sample_integration.tests.core.datamodels import MockBaseRate
 class VatComply:
     rates: list[MockBaseRate] = dataclasses.field(default_factory=list)
     cases: dict[int, SingleJson] = dataclasses.field(default_factory=dict)
-    tag: dict[int, str] = dataclasses.field(default_factory=dict)
+    tags: dict[int, list[str]] = dataclasses.field(default_factory=lambda: defaultdict(list))
 
     def get_rates(
         self,
@@ -71,19 +72,22 @@ class VatComply:
             raise ValueError(f"Case ID {case_id} not found.")
         return self.cases[case_id]
 
+    def get_case_ids(self) -> list[int]:
+        return list(self.cases.keys())
+
     def add_case_details(self, case_id: int, details: SingleJson) -> None:
         self.cases[case_id] = details
 
     def add_tag(self, case_id: int, tag: str) -> None:
-        self.tag[case_id] = tag
+        self.tags[case_id].append(tag)
 
-    def get_tag(self, case_id: int) -> str | None:
-        if case_id not in self.tag:
+    def get_tags(self, case_id: int) -> list[str] | None:
+        if case_id not in self.tags:
             return None
-        return self.tag[case_id]
+        return self.tags[case_id]
 
-    def add_tag_to_case(self, case_id: int, tag: str) -> None:
+    def add_tags_to_case(self, case_id: int, tags: list[str]) -> None:
         if case_id not in self.cases:
             raise ValueError(f"Case ID {case_id} not found.")
         case_details = self.cases[case_id]
-        case_details["tags"].append(tag)
+        case_details["tags"].extend(tags)

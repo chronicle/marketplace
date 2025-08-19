@@ -19,42 +19,35 @@ from sample_integration.tests.core.session import VatComplySession
 
 CASE_ID: int = 1
 TAG: str = "Async"
-DEFAULT_PARAMETERS = {
+DEFAULT_PARAMETERS: dict[str, str] = {
     "Case IDs": f"{CASE_ID}",
     "Case Tag To Wait For": TAG,
 }
-SCRIPT_DEADLINE_TIME: datetime.datetime = datetime.datetime.now() + datetime.timedelta(
-    minutes=10
-)
+SCRIPT_DEADLINE_TIME: datetime.datetime = datetime.datetime.now() + datetime.timedelta(minutes=10)
 
 
 @set_metadata(
     integration_config_file_path=CONFIG_PATH,
     parameters=DEFAULT_PARAMETERS,
     input_context={
-        "async_total_duration_deadline": int(
-            SCRIPT_DEADLINE_TIME.timestamp() * NUM_OF_MILLI_IN_SEC
-        )
+        "async_total_duration_deadline": int(SCRIPT_DEADLINE_TIME.timestamp() * NUM_OF_MILLI_IN_SEC)
     },
 )
 def test_async_action_example_first_run_success(
     script_session: VatComplySession,
     action_output: MockActionOutput,
     vatcomply: VatComply,
-    sdk_session: VatComplySession,
 ) -> None:
     # Arrange
     with unittest.mock.patch(
         "TIPCommon.base.action.Action.is_first_run",
         return_value=True,
     ):
-        today = datetime.date.today().isoformat()
-        MOCK_RATES_DEFAULT["date"] = today
+        today: str = datetime.date.today().isoformat()
+        MOCK_RATES_DEFAULT["date"]: str = today
         vatcomply.set_rates(MOCK_RATES_DEFAULT)
         vatcomply.add_case_details(CASE_ID, GET_CASE_DETAILS)
-        success_output_msg = (
-            f'Action is waiting for the cases "{CASE_ID}" to have a tag {TAG}...'
-        )
+        success_output_msg = f'Action is waiting for the cases "{CASE_ID}" to have a tag {TAG}...'
 
         # Act
         async_action_example.main()
@@ -69,9 +62,7 @@ def test_async_action_example_first_run_success(
     integration_config_file_path=CONFIG_PATH,
     parameters=DEFAULT_PARAMETERS,
     input_context={
-        "async_total_duration_deadline": int(
-            SCRIPT_DEADLINE_TIME.timestamp() * NUM_OF_MILLI_IN_SEC
-        )
+        "async_total_duration_deadline": int(SCRIPT_DEADLINE_TIME.timestamp() * NUM_OF_MILLI_IN_SEC)
     },
 )
 def test_async_action_example_second_run_success(
@@ -84,8 +75,8 @@ def test_async_action_example_second_run_success(
         "TIPCommon.base.action.Action.is_first_run",
         return_value=False,
     ):
-        today = datetime.date.today().isoformat()
-        MOCK_RATES_DEFAULT["date"] = today
+        today: str = datetime.date.today().isoformat()
+        MOCK_RATES_DEFAULT["date"]: str = today
         vatcomply.set_rates(MOCK_RATES_DEFAULT)
         vatcomply.add_case_details(CASE_ID, GET_CASE_DETAILS)
         vatcomply.add_tag(CASE_ID, TAG)
