@@ -9,7 +9,6 @@ from integration_testing.requests.response import MockResponse
 from integration_testing.requests.session import MockSession, Response, RouteFunction
 from TIPCommon.types import SingleJson
 
-from ..common import FULL_ALERT_DATA
 from .product import VatComply
 
 
@@ -18,7 +17,8 @@ class VatComplySession(MockSession[MockRequest, MockResponse, VatComply]):
         return [
             self.get_rates,
             self.add_attachment,
-            self.alert_details,
+            self.update_entities,
+            self.get_case_details,
         ]
 
     @router.get(r"/rates")
@@ -38,7 +38,16 @@ class VatComplySession(MockSession[MockRequest, MockResponse, VatComply]):
     def add_attachment(self, _: MockRequest) -> MockResponse:
         return MockResponse(content={}, status_code=200)
 
-    @router.post("/api/external/v1/sdk/AlertFullDetails")
-    def alert_details(self, _) -> MockResponse:
-        """Route /AlertFullDetails requests"""
-        return MockResponse(content=FULL_ALERT_DATA, status_code=201)
+    @router.post(r"/api/external/v1/sdk/UpdateEntities")
+    def update_entities(self, _: MockRequest) -> MockResponse:
+        return MockResponse(content={}, status_code=200)
+
+    @router.get(r"/api/external/v1/dynamic-cases/GetCaseDetails/[0-9]+")
+    def get_case_details(self, request: MockRequest) -> MockResponse:
+        case_id = request.url.path.split("/")[-1]
+        case = self._product.get_case_details(int(case_id))
+        tag = self._product.get_tag(int(case_id))
+        if tag:
+            self._product.add_tag_to_case(int(case_id), tag)
+
+        return MockResponse(content=case, status_code=200)

@@ -12,6 +12,8 @@ from .datamodels import MockBaseRate
 @dataclasses.dataclass(slots=True)
 class VatComply:
     rates: list[MockBaseRate] = dataclasses.field(default_factory=list)
+    cases: dict[int, SingleJson] = dataclasses.field(default_factory=dict)
+    tag: dict[int, str] = dataclasses.field(default_factory=dict)
 
     def get_rates(
         self,
@@ -63,3 +65,25 @@ class VatComply:
             return datetime.date.fromisoformat(date_str)
         except ValueError as e:
             raise ValueError(f"Input should be a valid date or datetime, {e}")
+
+    def get_case_details(self, case_id: int) -> SingleJson:
+        if case_id not in self.cases:
+            raise ValueError(f"Case ID {case_id} not found.")
+        return self.cases[case_id]
+
+    def add_case_details(self, case_id: int, details: SingleJson) -> None:
+        self.cases[case_id] = details
+
+    def add_tag(self, case_id: int, tag: str) -> None:
+        self.tag[case_id] = tag
+
+    def get_tag(self, case_id: int) -> str | None:
+        if case_id not in self.tag:
+            return None
+        return self.tag[case_id]
+
+    def add_tag_to_case(self, case_id: int, tag: str) -> None:
+        if case_id not in self.cases:
+            raise ValueError(f"Case ID {case_id} not found.")
+        case_details = self.cases[case_id]
+        case_details["tags"].append(tag)

@@ -30,6 +30,7 @@ def script_session(
 
     return session
 
+
 @pytest.fixture(autouse=True)
 def sdk_session(monkeypatch: pytest.MonkeyPatch) -> VatComplySession:
     """Mock the SDK sessions and get it back to view request and response history"""

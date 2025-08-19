@@ -3,9 +3,9 @@ from __future__ import annotations
 import sys
 from typing import TYPE_CHECKING
 
-import constants
-from core.api.api_client import SampleApiClient
-from core.authentication.auth import AuthenticatedSession, build_auth_params
+from ..core import constants
+from ..core.api.api_client import ApiParameters, SampleApiClient
+from ..core.auth import AuthenticatedSession, build_auth_params, SessionAuthenticationParameters
 from soar_sdk.SiemplifyConnectorsDataModel import AlertInfo
 from TIPCommon.base.connector import Connector
 from TIPCommon.filters import filter_old_alerts
@@ -14,7 +14,7 @@ from TIPCommon.transformation import string_to_multi_value
 from TIPCommon.utils import is_overflowed, is_test_run
 
 if TYPE_CHECKING:
-    from core.authentication.auth import SessionAuthenticationParameters
+    import requests
 
 
 class SimpleConnector(Connector):
@@ -40,13 +40,24 @@ class SimpleConnector(Connector):
 
     def init_managers(self) -> SampleApiClient:
         """Initialize API manager with authentication."""
-        auth_manager_params: SessionAuthenticationParameters = build_auth_params(self.siemplify)
-        manager: AuthenticatedSession = AuthenticatedSession(auth_manager_params)
+        auth_params = build_auth_params(self.siemplify)
+        authenticator: AuthenticatedSession = AuthenticatedSession()
+        auth_params_for_session = SessionAuthenticationParameters(
+            api_root=auth_params.api_root,
+            password=auth_params.password,
+            verify_ssl=auth_params.verify_ssl,
+        )
+        authenticator.authenticate_session(auth_params_for_session)
+        authenticated_session: requests.Session = authenticator.session
+
+        api_params: ApiParameters = ApiParameters(
+            api_root=auth_params.api_root,
+        )
 
         self.manager = SampleApiClient(
-            api_root=manager.api_root,
-            session=manager.prepare_session(),
-            logger=self.logger,
+            authenticated_session=authenticated_session,
+            configuration=api_params,
+            logger=auth_params.siemplify_logger,
         )
 
     def read_context_data(self) -> None:
