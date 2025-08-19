@@ -1,10 +1,9 @@
 from __future__ import annotations
 
-from typing import NamedTuple, TYPE_CHECKING
-
 import json
 from dataclasses import dataclass
 from datetime import datetime
+from typing import TYPE_CHECKING, NamedTuple
 
 from core.utils import create_secops_attachment_object
 from soar_sdk.SiemplifyConnectorsDataModel import AlertInfo
@@ -16,7 +15,6 @@ from . import constants
 if TYPE_CHECKING:
     from EnvironmentCommon import EnvironmentHandle
     from soar_sdk.SiemplifyConnectors import SiemplifyConnectorExecution
-    from TIPCommon.base.interfaces.logger import ScriptLogger
     from TIPCommon.types import SingleJson
 
 
