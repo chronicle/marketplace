@@ -5,8 +5,8 @@ import datetime
 
 from TIPCommon.types import SingleJson
 
-from .constants import KNOWN_SYMBOLS
-from .datamodels import MockBaseRate
+from sample_integration.tests.core.constants import KNOWN_SYMBOLS
+from sample_integration.tests.core.datamodels import MockBaseRate
 
 
 @dataclasses.dataclass(slots=True)

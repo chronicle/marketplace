@@ -9,7 +9,7 @@ from integration_testing.requests.response import MockResponse
 from integration_testing.requests.session import MockSession, Response, RouteFunction
 from TIPCommon.types import SingleJson
 
-from .product import VatComply
+from sample_integration.tests.core.product import VatComply
 
 
 class VatComplySession(MockSession[MockRequest, MockResponse, VatComply]):

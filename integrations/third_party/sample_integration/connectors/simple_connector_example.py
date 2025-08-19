@@ -3,15 +3,16 @@ from __future__ import annotations
 import sys
 from typing import TYPE_CHECKING
 
-from ..core import constants
-from ..core.api.api_client import ApiParameters, SampleApiClient
-from ..core.auth import AuthenticatedSession, build_auth_params, SessionAuthenticationParameters
 from soar_sdk.SiemplifyConnectorsDataModel import AlertInfo
 from TIPCommon.base.connector import Connector
 from TIPCommon.filters import filter_old_alerts
 from TIPCommon.smp_io import read_ids, write_ids
 from TIPCommon.transformation import string_to_multi_value
 from TIPCommon.utils import is_overflowed, is_test_run
+
+from ..core import constants
+from ..core.api.api_client import ApiParameters, SampleApiClient
+from ..core.auth import AuthenticatedSession, SessionAuthenticationParameters, build_auth_params
 
 if TYPE_CHECKING:
     import requests

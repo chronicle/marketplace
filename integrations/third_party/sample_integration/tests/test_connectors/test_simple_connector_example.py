@@ -4,24 +4,21 @@ import datetime
 import pathlib
 import sys
 
-from integration_testing.platform.script_output import MockActionOutput
-from integration_testing.set_meta import set_metadata
 from integration_testing.common import set_is_test_run_to_true
-from integration_testing.platform.script_output import MockConnectorOutput
-from integration_testing.set_meta import set_metadata
 from integration_testing.platform.external_context import (
     ExternalContextRowKey,
     MockExternalContext,
 )
+from integration_testing.platform.script_output import MockConnectorOutput
+from integration_testing.set_meta import set_metadata
 from TIPCommon.data_models import DatabaseContextType
 from TIPCommon.types import SingleJson
 from TIPCommon.utils import is_test_run
 
-from ...connectors.simple_connector_example import SimpleConnector
-from ..common import CONFIG, INTEGRATION_PATH, MOCK_RATES_DEFAULT
-from ..core.product import VatComply
-from ..core.session import VatComplySession
-
+from sample_integration.connectors.simple_connector_example import SimpleConnector
+from sample_integration.tests.common import CONFIG, INTEGRATION_PATH, MOCK_RATES_DEFAULT
+from sample_integration.tests.core.product import VatComply
+from sample_integration.tests.core.session import VatComplySession
 
 IDS_DB_KEY: str = "offset"
 DEF_PATH: pathlib.Path = INTEGRATION_PATH / "connectors" / "simple_connector_example.yaml"
@@ -38,7 +35,7 @@ DEFAULT_PARAMETERS: SingleJson = {
     "Max Alerts To Fetch": "3",
     "Currencies To Fetch": "EUR",
 }
-ALERT_NAME: str = f"Microsoft Graph Monitored Mailbox <>"
+ALERT_NAME: str = "Microsoft Graph Monitored Mailbox <>"
 
 
 @set_metadata(connector_def_file_path=DEF_PATH, parameters=DEFAULT_PARAMETERS)

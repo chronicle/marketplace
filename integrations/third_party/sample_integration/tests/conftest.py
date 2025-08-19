@@ -5,8 +5,8 @@ from integration_testing.common import use_live_api
 from soar_sdk.SiemplifyBase import SiemplifyBase
 from TIPCommon.base.utils import CreateSession
 
-from .core.product import VatComply
-from .core.session import VatComplySession
+from sample_integration.tests.core.product import VatComply
+from sample_integration.tests.core.session import VatComplySession
 
 pytest_plugins = ("integration_testing.conftest",)
 

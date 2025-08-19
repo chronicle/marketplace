@@ -9,10 +9,10 @@ from TIPCommon.base.action import EntityTypesEnum, ExecutionState
 from TIPCommon.consts import NUM_OF_MILLI_IN_SEC
 from TIPCommon.types import Entity
 
-from ...actions import enrich_entity_action_example
-from ..common import CONFIG_PATH, MOCK_RATES_DEFAULT
-from ..core.product import VatComply
-from ..core.session import VatComplySession
+from sample_integration.actions import enrich_entity_action_example
+from sample_integration.tests.common import CONFIG_PATH, MOCK_RATES_DEFAULT
+from sample_integration.tests.core.product import VatComply
+from sample_integration.tests.core.session import VatComplySession
 
 DEFAULT_PARAMETERS = {
     "Entity Type": "All Entities",

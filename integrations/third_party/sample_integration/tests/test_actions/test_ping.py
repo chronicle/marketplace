@@ -6,10 +6,10 @@ from integration_testing.platform.script_output import MockActionOutput
 from integration_testing.set_meta import set_metadata
 from TIPCommon.base.action import ExecutionState
 
-from ...actions import ping
-from ..common import CONFIG_PATH, MOCK_RATES_DEFAULT
-from ..core.product import VatComply
-from ..core.session import VatComplySession
+from sample_integration.actions import ping
+from sample_integration.tests.common import CONFIG_PATH, MOCK_RATES_DEFAULT
+from sample_integration.tests.core.product import VatComply
+from sample_integration.tests.core.session import VatComplySession
 
 
 class TestPing:
