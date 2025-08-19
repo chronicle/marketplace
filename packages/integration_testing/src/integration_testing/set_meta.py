@@ -37,7 +37,7 @@ TestFn = Callable[..., None]
 PatchParams = tuple[str, GeneralFunction]
 
 
-def set_metadata(  # noqa: PLR0913, PLR0917
+def set_metadata(  # noqa: PLR0913, PLR0917, PLR0914
     func: TestFn | None = None,
     parameters: SingleJson | None = None,
     entities: list[Entity] | None = None,
