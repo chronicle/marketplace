@@ -5,8 +5,8 @@ from urllib.parse import urljoin
 
 import requests
 
-from .constants import ENDPOINTS
-from .exceptions import InvalidRequestParametersError, SampleIntegrationHTTPError
+from ..constants import ENDPOINTS
+from ..exceptions import InvalidRequestParametersError, SampleIntegrationHTTPError
 
 
 def get_full_url(

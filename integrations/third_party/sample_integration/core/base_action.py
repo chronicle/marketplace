@@ -6,8 +6,8 @@ from typing import TYPE_CHECKING
 
 from TIPCommon.base.action import Action
 
-from .api.api_client import ApiParameters, SampleApiClient
-from .auth import AuthenticatedSession, SessionAuthenticationParameters, build_auth_params
+from ..core.api.api_client import ApiParameters, SampleApiClient
+from ..core.auth import AuthenticatedSession, SessionAuthenticationParameters, build_auth_params
 
 if TYPE_CHECKING:
     import requests

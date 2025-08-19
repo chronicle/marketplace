@@ -6,7 +6,7 @@ from typing import TYPE_CHECKING, NamedTuple
 
 from TIPCommon.base.interfaces import Apiable
 
-from ..api_utils import get_full_url, validate_response
+from .api_utils import get_full_url, validate_response
 from ..constants import REQUEST_TIMEOUT
 from ..data_models import BaseRate, DailyRates
 from ..utils import date_range

@@ -3,6 +3,7 @@ from __future__ import annotations
 import dataclasses
 
 from requests import Session
+
 from soar_sdk.SiemplifyAction import SiemplifyAction
 from soar_sdk.SiemplifyConnectors import SiemplifyConnectorExecution
 from soar_sdk.SiemplifyJob import SiemplifyJob
