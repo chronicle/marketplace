@@ -37,7 +37,7 @@ TestFn = Callable[..., None]
 PatchParams = tuple[str, GeneralFunction]
 
 
-def set_metadata(  # noqa: PLR0913, PLR0917, PLR0914
+def set_metadata(  # noqa: PLR0913, PLR0917
     func: TestFn | None = None,
     parameters: SingleJson | None = None,
     entities: list[Entity] | None = None,
@@ -85,7 +85,7 @@ def set_metadata(  # noqa: PLR0913, PLR0917, PLR0914
             fn = functools.partial(fn, external_context=ec)
 
         @functools.wraps(fn)
-        def wrapper(*args: Any, **kwargs: Any) -> None:  # noqa: ANN401
+        def wrapper(*args: Any, **kwargs: Any) -> None:  # noqa: ANN401, PLR0914
             json_context_path, mock_get_context = _get_json_context_patch_path_and_fn(
                 parameters,
                 input_context,
