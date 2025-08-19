@@ -58,7 +58,7 @@ class SimpleConnector(Connector):
         self.manager = SampleApiClient(
             authenticated_session=authenticated_session,
             configuration=api_params,
-            logger=auth_params.siemplify_logger,
+            logger=self.logger,
         )
 
     def read_context_data(self) -> None:

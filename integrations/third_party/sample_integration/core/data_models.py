@@ -1,9 +1,10 @@
 from __future__ import annotations
 
+from typing import NamedTuple, TYPE_CHECKING
+
 import json
 from dataclasses import dataclass
 from datetime import datetime
-from typing import TYPE_CHECKING
 
 from core.utils import create_secops_attachment_object
 from soar_sdk.SiemplifyConnectorsDataModel import AlertInfo
@@ -19,12 +20,10 @@ if TYPE_CHECKING:
     from TIPCommon.types import SingleJson
 
 
-@dataclass(slots=True)
-class IntegrationParameters:
+class IntegrationParameters(NamedTuple):
     api_root: str
     password: str
     verify_ssl: bool
-    siemplify_logger: ScriptLogger
 
 
 @dataclass(frozen=True, slots=True)

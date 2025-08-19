@@ -53,7 +53,7 @@ class SimpleJobExample(Job):
         return SampleApiClient(
             authenticated_session=authenticated_session,
             configuration=api_params,
-            logger=auth_params.siemplify_logger,
+            logger=self.logger,
         )
 
     def _perform_job(self) -> None:

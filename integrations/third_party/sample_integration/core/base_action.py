@@ -35,7 +35,7 @@ class SampleAction(Action, ABC):
         return SampleApiClient(
             authenticated_session=authenticated_session,
             configuration=api_params,
-            logger=auth_params.siemplify_logger,
+            logger=self.logger,
         )
 
     def save_temp_file(self, filename: str, content: str) -> str:

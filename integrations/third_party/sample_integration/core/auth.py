@@ -73,7 +73,6 @@ def build_auth_params(soar_sdk_object: ChronicleSOAR) -> IntegrationParameters:
         api_root=api_root,
         password=password,
         verify_ssl=verify_ssl,
-        siemplify_logger=soar_sdk_object.LOGGER,
     )
 
 
