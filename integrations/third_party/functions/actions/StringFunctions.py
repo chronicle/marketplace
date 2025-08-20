@@ -23,6 +23,25 @@ from soar_sdk.SiemplifyAction import SiemplifyAction
 from soar_sdk.SiemplifyUtils import output_handler
 
 
+# A dictionary of placeholders and their replacement.
+PLACEHOLDER_MAP = {
+    "_SPACE_": " "
+}
+
+
+def replace_placeholders(text_input: str) -> str:
+    """
+    Substitutes predefined placeholders in a string with their
+    corresponding literal values from the PLACEHOLDER_MAP.
+    """
+    # Make a mutable copy to modify
+    normalized_text = text_input
+    # Loop through the placeholder dictionary and replace each occurrence
+    for placeholder, replacement_value in PLACEHOLDER_MAP.items():
+        normalized_text = normalized_text.replace(placeholder, replacement_value)
+    return normalized_text
+
+
 @output_handler
 def main():
     siemplify = SiemplifyAction()
@@ -64,7 +83,7 @@ def main():
         output_message = f"'{param_1}' was found {result} times in '{input}'"
 
     elif function == "Replace":
-        result = input.replace(param_1, param_2)
+        result = input.replace(replace_placeholders(param_1), replace_placeholders(param_2))
         output_message = (
             f"{input} successfully converted to {result} with replace function"
         )
@@ -96,7 +115,7 @@ def main():
             output_message = f"Not all characters in {input} are digits"
 
     elif function == "Regex Replace":
-        result = re.sub(param_1, param_2, input)
+        result = re.sub(replace_placeholders(param_1), replace_placeholders(param_2), input)
         output_message = (
             f"{input} successfully converted to {result} with regex replace function"
         )
