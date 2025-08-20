@@ -57,6 +57,7 @@ dev = [
 
 [project.scripts]
 mp = "mp:main"
+marketplace = "mp:main"
 
 [build-system]
 requires = ["uv_build"]

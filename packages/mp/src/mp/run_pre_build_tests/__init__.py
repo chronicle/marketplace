@@ -18,6 +18,7 @@ import dataclasses
 import multiprocessing
 import pathlib
 import warnings
+import sys
 from typing import TYPE_CHECKING, Annotated
 
 import typer
@@ -38,7 +39,14 @@ if TYPE_CHECKING:
 
     from mp.core.config import RuntimeParams
 
-RUN_PRE_BUILD_TESTS_PATH: pathlib.Path = pathlib.Path(__file__).parent / "run_pre_build_tests.sh"
+if sys.platform == "win32":
+    RUN_PRE_BUILD_TESTS_PATH: pathlib.Path = (
+        pathlib.Path(__file__).parent / "run_pre_build_tests.bat"
+    )
+else:
+    RUN_PRE_BUILD_TESTS_PATH: pathlib.Path = (
+        pathlib.Path(__file__).parent / "run_pre_build_tests.sh"
+    )
 
 __all__: list[str] = ["TestIssue", "TestWarning", "app"]
 app: typer.Typer = typer.Typer()

@@ -80,13 +80,37 @@ def compile_core_integration_dependencies(
         raise FatalCommandError(COMMAND_ERR_MSG.format(e)) from e
 
 
+def run_pip_command(command, cwd=None):
+    """
+    Run a pip command and ignore safe-to-ignore errors.
+    """
+    try:
+        return sp.run(command, cwd=cwd, capture_output=True, text=True, check=True)
+    except sp.CalledProcessError as e:
+        full_msg: str = (e.stdout or "") + "\n" + (e.stderr or "")
+        ignored_packages: List[str] = [
+            pkg for pkg in constants.SAFE_TO_IGNORE_PACKAGES if pkg in full_msg
+        ]
+        # Check if this is a safe-to-ignore error / marker issue
+        if ignored_packages and any(
+            msg in full_msg for msg in constants.SAFE_TO_IGNORE_ERROR_MESSAGES
+        ):
+            sys.stdout.write(
+                f"[INFO] Ignored safe-to-ignore packages due to Python version incompatibility: {', '.join(ignored_packages)}\n"
+            )
+            return None
+        raise
+
+
 def download_wheels_from_requirements(
+    project_path: pathlib.Path,
     requirements_path: pathlib.Path,
     dst_path: pathlib.Path,
 ) -> None:
     """Download `.whl` files from a requirements' file.
 
     Args:
+        project_path: the path of the project repository
         requirements_path: the path of the 'requirements.txt' file
         dst_path: the path to install the `.whl` files into
 
@@ -109,16 +133,21 @@ def download_wheels_from_requirements(
         python_version,
         "--implementation",
         "cp",
-        "--platform",
-        "none-any",
-        "--platform",
-        "manylinux_2_17_x86_64",
     ]
     runtime_config: list[str] = _get_runtime_config()
     command.extend(runtime_config)
 
     try:
-        sp.run(command, cwd=requirements_path.parent, check=True, text=True)  # noqa: S603
+        if sys.platform == "win32":
+            run_pip_command(command, cwd=project_path)
+        else:
+            command.extend([
+                "--platform",
+                "none-any",
+                "--platform",
+                "manylinux_2_17_x86_64",
+            ])
+            run_pip_command(command, cwd=project_path)
     except sp.CalledProcessError as e:
         raise FatalCommandError(COMMAND_ERR_MSG.format(e)) from e
 
@@ -259,8 +288,9 @@ def run_script_on_paths(
     """
     script_full_path: str = f"{script_path.resolve().absolute()}"
 
-    chmod_command: list[str] = ["chmod", "+x", script_full_path]
-    sp.run(chmod_command, check=True)  # noqa: S603
+    if sys.platform != "win32":
+        chmod_command: list[str] = ["chmod", "+x", script_full_path]
+        sp.run(chmod_command, check=True)  # noqa: S603
 
     command: list[str] = [script_full_path] + [str(p) for p in test_paths]
 
@@ -272,7 +302,6 @@ def run_script_on_paths(
     )
 
     return result.returncode
-
 
 def execute_command_and_get_output(
     command: list[str],
