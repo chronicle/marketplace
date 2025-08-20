@@ -41,10 +41,8 @@ class Dependencies(Restructurable):
     def restructure(self) -> None:
         """Restructure an integration's dependencies, downloading them to `out_path`."""
         with (
-            tempfile.TemporaryDirectory(dir=self.path, prefix="dependencies_") as d,
             tempfile.NamedTemporaryFile(
                 mode="r",
-                # dir=self.path,
                 suffix=".txt",
                 prefix="requirements_",
                 encoding="utf8",

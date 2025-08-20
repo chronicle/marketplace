@@ -303,6 +303,7 @@ def run_script_on_paths(
 
     return result.returncode
 
+
 def execute_command_and_get_output(
     command: list[str],
     paths: Iterable[pathlib.Path],
