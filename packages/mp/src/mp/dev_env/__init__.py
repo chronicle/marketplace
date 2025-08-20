@@ -23,6 +23,7 @@ import rich
 import typer
 
 from . import api, utils
+from .minor_version_bump import minor_version_bump
 
 app = typer.Typer(help="Commands for interacting with the development environment (playground)")
 
@@ -184,7 +185,7 @@ def deploy(
     identifier = utils.get_integration_identifier(source_path)
     utils.build_integration(integration)
     built_dir = utils.find_built_integration_dir(source_path, identifier)
-    utils.minor_version_bump(built_dir, source_path)
+    minor_version_bump(built_dir, source_path)
     zip_path = utils.zip_integration_dir(built_dir)
     rich.print(f"Zipped built integration at {zip_path}")
 

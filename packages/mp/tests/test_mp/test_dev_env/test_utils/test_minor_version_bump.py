@@ -21,14 +21,16 @@ from typing import TYPE_CHECKING
 
 import pytest
 import toml
+import typer
 import yaml
 
-from mp.dev_env.utils import find_project_root, minor_version_bump
+from mp.core.config import get_marketplace_path
+from mp.dev_env.minor_version_bump import minor_version_bump
 
 if TYPE_CHECKING:
     from collections.abc import Generator
 
-INTEGRATIONS_CACHE_FOLDER_PATH: pathlib.Path = find_project_root() / ".integrations_cache"
+INTEGRATIONS_CACHE_FOLDER_PATH: pathlib.Path = get_marketplace_path() / ".integrations_cache"
 
 ORIG_BUILT_INTEGRATION_PATH = (
     pathlib.Path(__file__).parent.parent.parent
@@ -167,13 +169,13 @@ class TestMinorVersionBump:
     ) -> None:
         (sandbox["NON_BUILT"] / "pyproject.toml").unlink()
 
-        with pytest.raises(FileNotFoundError):
+        with pytest.raises(typer.Exit):
             minor_version_bump(sandbox["BUILT"], sandbox["NON_BUILT"])
 
     def test_def_file_missing_raises_error_fail(self, sandbox: dict[str, pathlib.Path]) -> None:
         sandbox["DEF_FILE"].unlink()
 
-        with pytest.raises(FileNotFoundError):
+        with pytest.raises(typer.Exit):
             minor_version_bump(sandbox["BUILT"], sandbox["NON_BUILT"])
 
 
