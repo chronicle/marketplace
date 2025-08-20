@@ -21,6 +21,8 @@ import subprocess as sp  # noqa: S404
 import sys
 from typing import IO, TYPE_CHECKING
 
+import rich
+
 from mp.core.exceptions import FatalValidationError, NonFatalValidationError
 
 from . import config, constants, file_utils
@@ -80,26 +82,38 @@ def compile_core_integration_dependencies(
         raise FatalCommandError(COMMAND_ERR_MSG.format(e)) from e
 
 
-def run_pip_command(command, cwd=None):
-    """
-    Run a pip command and ignore safe-to-ignore errors.
+def _get_safe_to_ignore_packages(e: sp.CalledProcessError, /) -> list[str]:
+    full_msg: str = f"{e.stdout or ''}\n{e.stderr or ''}"
+    ignored_packages: list[str] = [
+        pkg for pkg in constants.SAFE_TO_IGNORE_PACKAGES if pkg in full_msg
+    ]
+    ignored_messages: list[bool] = [
+        msg in full_msg for msg in constants.SAFE_TO_IGNORE_ERROR_MESSAGES
+    ]
+    if ignored_messages and ignored_packages:
+        return ignored_packages
+    return []
+
+
+def run_pip_command(command: list[str], cwd: pathlib.Path) -> None:
+    """Run a pip command and ignore safe-to-ignore errors.
+
+    Raises:
+        FatalCommandError: if a pip command fails.
+
     """
     try:
-        return sp.run(command, cwd=cwd, capture_output=True, text=True, check=True)
+        sp.run(command, cwd=cwd, capture_output=True, text=True, check=True)  # noqa: S603
     except sp.CalledProcessError as e:
-        full_msg: str = (e.stdout or "") + "\n" + (e.stderr or "")
-        ignored_packages: List[str] = [
-            pkg for pkg in constants.SAFE_TO_IGNORE_PACKAGES if pkg in full_msg
-        ]
         # Check if this is a safe-to-ignore error / marker issue
-        if ignored_packages and any(
-            msg in full_msg for msg in constants.SAFE_TO_IGNORE_ERROR_MESSAGES
-        ):
-            sys.stdout.write(
-                f"[INFO] Ignored safe-to-ignore packages due to Python version incompatibility: {', '.join(ignored_packages)}\n"
+        if ignored_packages := _get_safe_to_ignore_packages(e):
+            message = (
+                f"[INFO] Ignored safe-to-ignore packages due to Python version "
+                f"incompatibility: {', '.join(ignored_packages)}\n"
             )
-            return None
-        raise
+            rich.print(message)
+            return
+        raise FatalCommandError from e
 
 
 def download_wheels_from_requirements(
@@ -138,16 +152,14 @@ def download_wheels_from_requirements(
     command.extend(runtime_config)
 
     try:
-        if sys.platform == "win32":
-            run_pip_command(command, cwd=project_path)
-        else:
+        if not sys.platform.startswith("win"):
             command.extend([
                 "--platform",
                 "none-any",
                 "--platform",
                 "manylinux_2_17_x86_64",
             ])
-            run_pip_command(command, cwd=project_path)
+        run_pip_command(command, cwd=project_path)
     except sp.CalledProcessError as e:
         raise FatalCommandError(COMMAND_ERR_MSG.format(e)) from e
 
@@ -288,7 +300,7 @@ def run_script_on_paths(
     """
     script_full_path: str = f"{script_path.resolve().absolute()}"
 
-    if sys.platform != "win32":
+    if not sys.platform.startswith("win"):
         chmod_command: list[str] = ["chmod", "+x", script_full_path]
         sp.run(chmod_command, check=True)  # noqa: S603
 
@@ -302,6 +314,7 @@ def run_script_on_paths(
     )
 
     return result.returncode
+
 
 def execute_command_and_get_output(
     command: list[str],
@@ -333,8 +346,7 @@ def execute_command_and_get_output(
     try:
         process: sp.Popen[bytes] = sp.Popen(command)  # noqa: S603
         for line in _stream_process_output(process):
-            sys.stdout.write(str(line))
-
+            rich.print(str(line))
         return process.wait()
 
     except sp.CalledProcessError as e:

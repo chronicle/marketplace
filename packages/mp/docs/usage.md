@@ -4,7 +4,7 @@
 Below are the main commands and their usage.
 The commands can be run using the following:
 - `mp` – primary command-line interface.
-- `marketplace` – alternative alias to avoid default alias conflicts that may appear (on Windows only).
+- `wmp` – alternative alias to avoid default alias conflicts that may appear (on Windows only).
 
 ## Basic Commands
 
@@ -13,7 +13,7 @@ The commands can be run using the following:
 To see all available commands and general help:
 
 ```bash
-mp --help # or use 'marketplace' on Windows
+mp --help # or use 'wmp' on Windows
 ```
 
 To get help for a specific command:
