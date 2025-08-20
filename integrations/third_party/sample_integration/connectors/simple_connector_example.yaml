@@ -1,0 +1,149 @@
+name: Sample Integration - Simple Connector Example
+parameters:
+    -   name: DeviceProductField
+        default_value: Product Name
+        type: string
+        description: Enter the source field name in order to retrieve the Product Field name.
+        is_mandatory: true
+        is_advanced: false
+        mode: regular
+    -   name: EventClassId
+        default_value: base
+        type: string
+        description: Enter the source field name in order to retrieve the Event Field name.
+        is_mandatory: true
+        is_advanced: false
+        mode: regular
+    -   name: Environment Field Name
+        default_value: ''
+        type: string
+        description: Describes the name of the field where the environment name is stored.
+             If the environment field isn't found, the environment is the default environment.
+        is_mandatory: false
+        is_advanced: true
+        mode: regular
+    -   name: Environment Regex Pattern
+        default_value: .*
+        type: string
+        description: A regex pattern to run on the value found in the "Environment Field Name" field.
+            Default is .* to catch all and return the value unchanged. Used to allow the
+             user to manipulate the environment field via regex logic. If the regex pattern
+             is null or empty, or the environment value is null, the final environment result is the default environment.
+
+        is_mandatory: false
+        is_advanced: true
+        mode: regular
+    -   name: PythonProcessTimeout
+        default_value: '180'
+        type: string
+        description: The timeout limit (in seconds) for the python process running current
+            script
+        is_mandatory: true
+        is_advanced: true
+        mode: regular
+    -   name: API Root
+        default_value: https://api.vatcomply.com
+        type: string
+        description: API Root for the integration. In this case, we are integrating with "api.vatcomply.com" service.
+        is_mandatory: true
+        is_advanced: false
+        mode: script
+    -   name: Password Field
+        default_value: Google SecOps
+        type: password
+        description: Example of API password field parameter. API doesn't require authentication, this parameter is just for showcase purpose.
+        is_mandatory: false
+        is_advanced: false
+        mode: script
+    -   name: Currencies To Fetch
+        default_value: USD, EUR
+        type: string
+        description: Connector will fetch exchange rates for the provided currencies.
+        is_mandatory: false
+        is_advanced: false
+        mode: script
+    -   name: Create Alert Per Exchange Rate
+        default_value: false
+        type: boolean
+        description: If enabled, connector will create a separate Alert per each exchange rate.
+        is_mandatory: false
+        is_advanced: false
+        mode: script
+    -   name: Alert Severity
+        default_value: Informational
+        type: string
+        description: 'Possible values: Critical, High, Medium, Low, Informational'
+        is_mandatory: false
+        is_advanced: true
+        mode: script
+    -   name: Add Attachment
+        default_value: true
+        type: boolean
+        description: If enabled, connector will add JSON object to the alert.
+        is_mandatory: false
+        is_advanced: false
+        mode: script
+    -   name: Max Days Backwards
+        default_value: 30
+        type: integer
+        description: 'Amount of days from where to fetch alerts. Max: 30.'
+        is_mandatory: true
+        is_advanced: false
+        mode: script
+    -   name: Max Alerts To Fetch
+        default_value: 3
+        type: string
+        description: This parameter dictates how many alerts (in this case, dates) will be processed per 1 connector iteration.
+        is_mandatory: true
+        is_advanced: true
+        mode: script
+    -   name: Use dynamic list as blocklist
+        default_value: false
+        type: boolean
+        description: If enabled, the dynamic list will be used as a blocklist.
+        is_mandatory: true
+        is_advanced: true
+        mode: script
+    -   name: Disable Overflow
+        default_value: false
+        type: boolean
+        description: If enabled, connector will ignore the overflow mechanism.
+        is_mandatory: false
+        is_advanced: false
+        mode: script
+    -   name: Verify SSL
+        default_value: true
+        type: boolean
+        description: If enabled, verify the SSL certificate for the connection to the API Service server is valid.
+        is_mandatory: true
+        is_advanced: true
+        mode: script
+    -   name: Proxy Server Address
+        default_value: ''
+        type: string
+        description: The address of the proxy server to use.
+        is_mandatory: false
+        is_advanced: true
+        mode: regular
+    -   name: Proxy Username
+        default_value: ''
+        type: string
+        description: The proxy username to authenticate with.
+        is_mandatory: false
+        is_advanced: true
+        mode: regular
+    -   name: Proxy Password
+        default_value: ''
+        type: password
+        description: The proxy password to authenticate with.
+        is_mandatory: false
+        is_advanced: true
+        mode: regular
+description: "This is an example of a simple connector. It's integrated with
+    \"api.vatcomply.com\" service and provides all of the main design ideas necessary
+     to build a stable connector. Dynamic List defines what rates should be returned
+     for a given currency and expects input in the format \"EUR\" etc."
+integration: SampleIntegration
+rules: [ ]
+is_connector_rules_supported: true
+creator: Admin
