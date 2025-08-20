@@ -1,0 +1,342 @@
+name: Get-Graph-Info
+description: Used to get WHOIS information based on Domain or IP Address.
+integration_identifier: Group-IB-TI
+parameters: []
+dynamic_results_metadata:
+-   result_example: '{"ip_results": {"createdAt": null, "created_at": null, "end":
+        "8.8.8.255", "id": "8.8.8.0_8.8.8.255", "provider": "arin", "start": "8.8.8.0",
+        "updatedAt": null, "updated_at": null, "whoisHistory": [{"data": [{"firstSeen":
+        "2020-10-30T21:56:23+00:00", "first_seen": "2020-10-30T21:56:23+00:00", "lastSeen":
+        "2020-10-30T21:56:23+00:00", "last_seen": "2020-10-30T21:56:23+00:00", "md5":
+        "7faab6a18eb4ab1f5a0d6cd2ac831160", "parsed": [{"field": "inetnum", "value":
+        ["8.8.8.0 - 8.8.8.255"]}, {"field": "org-name", "value": ["Google LLC (GOGL)"]},
+        {"field": "netname", "value": ["LVLT-GOGL-8-8-8"]}, {"field": "descr", "value":
+        ["https://rdap.arin.net/registry/ip/8.8.8.0"]}, {"field": "status", "value":
+        ["Reallocated"]}, {"field": "parent", "value": ["LVLT-ORG-8-8 (NET-8-0-0-0-1)"]},
+        {"field": "nethandle", "value": ["NET-8-8-8-0-1"]}, {"field": "cidr", "value":
+        ["8.8.8.0/24"]}, {"field": "created", "value": ["2014-03-14T00:00:00Z"]},
+        {"field": "last-modified", "value": ["2014-03-14T00:00:00Z"]}, {"field": "type",
+        "value": ["inetnum"]}], "type": "inetnum", "values": {"address": [], "contact":
+        [], "country": [], "descr": ["https://rdap.arin.net/registry/ip/8.8.8.0"],
+        "email": [], "inetnum": ["8.8.8.0 - 8.8.8.255"], "nethandle": ["NET-8-8-8-0-1"],
+        "netname": ["LVLT-GOGL-8-8-8"], "org": [], "organisation": [], "origin": [],
+        "parent": ["LVLT-ORG-8-8 (NET-8-0-0-0-1)"], "phone": [], "role": [], "route":
+        [], "source": [], "status": ["Reallocated"], "type": ["inetnum"]}, "valuesRaw":
+        {"inetnum": ["8.8.8.0 - 8.8.8.255"], "org-name": ["Google LLC (GOGL)"], "netname":
+        ["LVLT-GOGL-8-8-8"], "descr": ["https://rdap.arin.net/registry/ip/8.8.8.0"],
+        "status": ["Reallocated"], "parent": ["LVLT-ORG-8-8 (NET-8-0-0-0-1)"], "nethandle":
+        ["NET-8-8-8-0-1"], "cidr": ["8.8.8.0/24"], "created": ["2014-03-14T00:00:00Z"],
+        "last-modified": ["2014-03-14T00:00:00Z"], "type": ["inetnum"]}}, {"firstSeen":
+        "2020-10-30T21:56:23+00:00", "first_seen": "2020-10-30T21:56:23+00:00", "lastSeen":
+        "2020-10-30T21:56:23+00:00", "last_seen": "2020-10-30T21:56:23+00:00", "md5":
+        "eff4d9d650e2f04bb875367fa6323416", "parsed": [{"field": "org-name", "value":
+        ["Google LLC"]}, {"field": "organisation", "value": ["GOGL"]}, {"field": "descr",
+        "value": ["Please note that the recommended way to file abuse complaints are
+        located in the following links.", "To report abuse and illegal activity: https://www.google.com/contact/",
+        "For legal requests: http://support.google.com/legal", "Regards,", "The Google
+        Team", "https://rdap.arin.net/registry/entity/GOGL"]}, {"field": "address",
+        "value": ["1600 Amphitheatre Parkway", "Mountain View", "CA", "94043", "US"]},
+        {"field": "country", "value": ["US"]}, {"field": "created", "value": ["2000-03-30T00:00:00Z"]},
+        {"field": "last-modified", "value": ["2019-10-31T00:00:00Z"]}, {"field": "type",
+        "value": ["organisation"]}], "type": "organisation", "values": {"address":
+        ["1600 Amphitheatre Parkway", "Mountain View", "CA", "94043", "US"], "contact":
+        [], "country": ["US"], "descr": ["Please note that the recommended way to
+        file abuse complaints are located in the following links.", "To report abuse
+        and illegal activity: https://www.google.com/contact/", "For legal requests:
+        http://support.google.com/legal", "Regards,", "The Google Team", "https://rdap.arin.net/registry/entity/GOGL"],
+        "email": [], "inetnum": [], "nethandle": [], "netname": [], "org": [], "organisation":
+        ["GOGL"], "origin": [], "parent": [], "phone": [], "role": [], "route": [],
+        "source": [], "status": [], "type": ["organisation"]}, "valuesRaw": {"org-name":
+        ["Google LLC"], "organisation": ["GOGL"], "descr": ["Please note that the
+        recommended way to file abuse complaints are located in the following links.",
+        "To report abuse and illegal activity: https://www.google.com/contact/", "For
+        legal requests: http://support.google.com/legal", "Regards,", "The Google
+        Team", "https://rdap.arin.net/registry/entity/GOGL"], "address": ["1600 Amphitheatre
+        Parkway", "Mountain View", "CA", "94043", "US"], "country": ["US"], "created":
+        ["2000-03-30T00:00:00Z"], "last-modified": ["2019-10-31T00:00:00Z"], "type":
+        ["organisation"]}}, {"firstSeen": "2020-10-30T21:56:23+00:00", "first_seen":
+        "2020-10-30T21:56:23+00:00", "lastSeen": "2020-10-30T21:56:23+00:00", "last_seen":
+        "2020-10-30T21:56:23+00:00", "md5": "19cbcd7ed53e9ff14d6ff98042e36642", "parsed":
+        [{"field": "contact", "value": ["ABUSE5250-ARIN"]}, {"field": "phone", "value":
+        ["+1-650-253-0000"]}, {"field": "e-mail", "value": ["network-abuse@google.com"]},
+        {"field": "type", "value": ["contact"]}], "type": "contact", "values": {"address":
+        [], "contact": ["ABUSE5250-ARIN"], "country": [], "descr": [], "email": ["network-abuse@google.com"],
+        "inetnum": [], "nethandle": [], "netname": [], "org": [], "organisation":
+        [], "origin": [], "parent": [], "phone": ["+1-650-253-0000"], "role": [],
+        "route": [], "source": [], "status": [], "type": ["contact"]}, "valuesRaw":
+        {"contact": ["ABUSE5250-ARIN"], "phone": ["+1-650-253-0000"], "e-mail": ["network-abuse@google.com"],
+        "type": ["contact"]}}, {"firstSeen": "2020-10-30T21:56:23+00:00", "first_seen":
+        "2020-10-30T21:56:23+00:00", "lastSeen": "2020-10-30T21:56:23+00:00", "last_seen":
+        "2020-10-30T21:56:23+00:00", "md5": "211f42527ab60c88276c4ffea25753f3", "parsed":
+        [{"field": "contact", "value": ["ZG39-ARIN"]}, {"field": "phone", "value":
+        ["+1-650-253-0000"]}, {"field": "e-mail", "value": ["arin-contact@google.com"]},
+        {"field": "type", "value": ["contact"]}], "type": "contact", "values": {"address":
+        [], "contact": ["ZG39-ARIN"], "country": [], "descr": [], "email": ["arin-contact@google.com"],
+        "inetnum": [], "nethandle": [], "netname": [], "org": [], "organisation":
+        [], "origin": [], "parent": [], "phone": ["+1-650-253-0000"], "role": [],
+        "route": [], "source": [], "status": [], "type": ["contact"]}, "valuesRaw":
+        {"contact": ["ZG39-ARIN"], "phone": ["+1-650-253-0000"], "e-mail": ["arin-contact@google.com"],
+        "type": ["contact"]}}, {"firstSeen": "2020-10-30T21:55:43+00:00", "first_seen":
+        "2020-10-30T21:55:43+00:00", "lastSeen": "2020-10-30T21:55:43+00:00", "last_seen":
+        "2020-10-30T21:55:43+00:00", "md5": "515b31214711398e3db988e1123b4bf0", "parsed":
+        [{"field": "route", "value": ["8.8.8.0/24"]}, {"field": "origin", "value":
+        ["AS15169"]}, {"field": "last-modified", "value": ["2015-07-28T00:00:00Z"]},
+        {"field": "type", "value": ["route"]}], "type": "route", "values": {"address":
+        [], "contact": [], "country": [], "descr": [], "email": [], "inetnum": [],
+        "nethandle": [], "netname": [], "org": [], "organisation": [], "origin": ["AS15169"],
+        "parent": [], "phone": [], "role": [], "route": ["8.8.8.0/24"], "source":
+        [], "status": [], "type": ["route"]}, "valuesRaw": {"route": ["8.8.8.0/24"],
+        "origin": ["AS15169"], "last-modified": ["2015-07-28T00:00:00Z"], "type":
+        ["route"]}}, {"firstSeen": "2021-03-16T04:19:22+00:00", "first_seen": "2021-03-16T04:19:22+00:00",
+        "lastSeen": "2021-03-16T04:19:22+00:00", "last_seen": "2021-03-16T04:19:22+00:00",
+        "md5": "62ad03e1e96d332e5fa5bb3e505f1a11", "parsed": [{"field": "route", "value":
+        ["8.0.0.0/9"]}, {"field": "descr", "value": ["Proxy-registered route object"]},
+        {"field": "origin", "value": ["AS3356"]}, {"field": "mnt-by", "value": ["LEVEL3-MNT"]},
+        {"field": "parsed_domains", "value": ["Level3.net", "Level3.net"]}, {"field":
+        "parsed_emails", "value": ["routing@Level3.net", "roy@Level3.net"]}, {"field":
+        "changed", "value": ["roy@Level3.net 20060203"]}, {"field": "source", "value":
+        ["RADB"]}, {"field": "type", "value": ["route"]}], "type": "route", "values":
+        {"address": [], "contact": [], "country": [], "descr": ["Proxy-registered
+        route object"], "email": [], "inetnum": [], "nethandle": [], "netname": [],
+        "org": [], "organisation": [], "origin": ["AS3356"], "parent": [], "phone":
+        [], "role": [], "route": ["8.0.0.0/9"], "source": ["RADB"], "status": [],
+        "type": ["route"]}, "valuesRaw": {"route": ["8.0.0.0/9"], "descr": ["Proxy-registered
+        route object"], "origin": ["AS3356"], "mnt-by": ["LEVEL3-MNT"], "parsed_domains":
+        ["Level3.net", "Level3.net"], "parsed_emails": ["routing@Level3.net", "roy@Level3.net"],
+        "changed": ["roy@Level3.net 20060203"], "source": ["RADB"], "type": ["route"]}},
+        {"firstSeen": "2021-03-16T04:19:22+00:00", "first_seen": "2021-03-16T04:19:22+00:00",
+        "lastSeen": "2021-03-16T04:19:22+00:00", "last_seen": "2021-03-16T04:19:22+00:00",
+        "md5": "5e1b092b1dab1f0b9c589fecc6b54739", "parsed": [{"field": "route", "value":
+        ["8.8.8.0/24"]}, {"field": "descr", "value": ["Google"]}, {"field": "origin",
+        "value": ["AS15169"]}, {"field": "mnt-by", "value": ["MAINT-AS15169"]}, {"field":
+        "parsed_domains", "value": ["google.com", "google.com"]}, {"field": "parsed_emails",
+        "value": ["radb-contact@google.com", "radb-contact@google.com"]}, {"field":
+        "notify", "value": ["radb-contact@google.com"]}, {"field": "changed", "value":
+        ["radb-contact@google.com 20150728"]}, {"field": "source", "value": ["RADB"]},
+        {"field": "type", "value": ["route"]}], "type": "route", "values": {"address":
+        [], "contact": [], "country": [], "descr": ["Google"], "email": [], "inetnum":
+        [], "nethandle": [], "netname": [], "org": [], "organisation": [], "origin":
+        ["AS15169"], "parent": [], "phone": [], "role": [], "route": ["8.8.8.0/24"],
+        "source": ["RADB"], "status": [], "type": ["route"]}, "valuesRaw": {"route":
+        ["8.8.8.0/24"], "descr": ["Google"], "origin": ["AS15169"], "mnt-by": ["MAINT-AS15169"],
+        "parsed_domains": ["google.com", "google.com"], "parsed_emails": ["radb-contact@google.com",
+        "radb-contact@google.com"], "notify": ["radb-contact@google.com"], "changed":
+        ["radb-contact@google.com 20150728"], "source": ["RADB"], "type": ["route"]}}],
+        "firstSeen": "2020-10-30", "first_seen": "2020-10-30", "lastSeen": "2021-03-16",
+        "last_seen": "2021-03-16"}], "whois_history": [{"data": [{"firstSeen": "2020-10-30T21:56:23+00:00",
+        "first_seen": "2020-10-30T21:56:23+00:00", "lastSeen": "2020-10-30T21:56:23+00:00",
+        "last_seen": "2020-10-30T21:56:23+00:00", "md5": "7faab6a18eb4ab1f5a0d6cd2ac831160",
+        "parsed": [{"field": "inetnum", "value": ["8.8.8.0 - 8.8.8.255"]}, {"field":
+        "org-name", "value": ["Google LLC (GOGL)"]}, {"field": "netname", "value":
+        ["LVLT-GOGL-8-8-8"]}, {"field": "descr", "value": ["https://rdap.arin.net/registry/ip/8.8.8.0"]},
+        {"field": "status", "value": ["Reallocated"]}, {"field": "parent", "value":
+        ["LVLT-ORG-8-8 (NET-8-0-0-0-1)"]}, {"field": "nethandle", "value": ["NET-8-8-8-0-1"]},
+        {"field": "cidr", "value": ["8.8.8.0/24"]}, {"field": "created", "value":
+        ["2014-03-14T00:00:00Z"]}, {"field": "last-modified", "value": ["2014-03-14T00:00:00Z"]},
+        {"field": "type", "value": ["inetnum"]}], "type": "inetnum", "values": {"address":
+        [], "contact": [], "country": [], "descr": ["https://rdap.arin.net/registry/ip/8.8.8.0"],
+        "email": [], "inetnum": ["8.8.8.0 - 8.8.8.255"], "nethandle": ["NET-8-8-8-0-1"],
+        "netname": ["LVLT-GOGL-8-8-8"], "org": [], "organisation": [], "origin": [],
+        "parent": ["LVLT-ORG-8-8 (NET-8-0-0-0-1)"], "phone": [], "role": [], "route":
+        [], "source": [], "status": ["Reallocated"], "type": ["inetnum"]}, "valuesRaw":
+        {"inetnum": ["8.8.8.0 - 8.8.8.255"], "org-name": ["Google LLC (GOGL)"], "netname":
+        ["LVLT-GOGL-8-8-8"], "descr": ["https://rdap.arin.net/registry/ip/8.8.8.0"],
+        "status": ["Reallocated"], "parent": ["LVLT-ORG-8-8 (NET-8-0-0-0-1)"], "nethandle":
+        ["NET-8-8-8-0-1"], "cidr": ["8.8.8.0/24"], "created": ["2014-03-14T00:00:00Z"],
+        "last-modified": ["2014-03-14T00:00:00Z"], "type": ["inetnum"]}}, {"firstSeen":
+        "2020-10-30T21:56:23+00:00", "first_seen": "2020-10-30T21:56:23+00:00", "lastSeen":
+        "2020-10-30T21:56:23+00:00", "last_seen": "2020-10-30T21:56:23+00:00", "md5":
+        "eff4d9d650e2f04bb875367fa6323416", "parsed": [{"field": "org-name", "value":
+        ["Google LLC"]}, {"field": "organisation", "value": ["GOGL"]}, {"field": "descr",
+        "value": ["Please note that the recommended way to file abuse complaints are
+        located in the following links.", "To report abuse and illegal activity: https://www.google.com/contact/",
+        "For legal requests: http://support.google.com/legal", "Regards,", "The Google
+        Team", "https://rdap.arin.net/registry/entity/GOGL"]}, {"field": "address",
+        "value": ["1600 Amphitheatre Parkway", "Mountain View", "CA", "94043", "US"]},
+        {"field": "country", "value": ["US"]}, {"field": "created", "value": ["2000-03-30T00:00:00Z"]},
+        {"field": "last-modified", "value": ["2019-10-31T00:00:00Z"]}, {"field": "type",
+        "value": ["organisation"]}], "type": "organisation", "values": {"address":
+        ["1600 Amphitheatre Parkway", "Mountain View", "CA", "94043", "US"], "contact":
+        [], "country": ["US"], "descr": ["Please note that the recommended way to
+        file abuse complaints are located in the following links.", "To report abuse
+        and illegal activity: https://www.google.com/contact/", "For legal requests:
+        http://support.google.com/legal", "Regards,", "The Google Team", "https://rdap.arin.net/registry/entity/GOGL"],
+        "email": [], "inetnum": [], "nethandle": [], "netname": [], "org": [], "organisation":
+        ["GOGL"], "origin": [], "parent": [], "phone": [], "role": [], "route": [],
+        "source": [], "status": [], "type": ["organisation"]}, "valuesRaw": {"org-name":
+        ["Google LLC"], "organisation": ["GOGL"], "descr": ["Please note that the
+        recommended way to file abuse complaints are located in the following links.",
+        "To report abuse and illegal activity: https://www.google.com/contact/", "For
+        legal requests: http://support.google.com/legal", "Regards,", "The Google
+        Team", "https://rdap.arin.net/registry/entity/GOGL"], "address": ["1600 Amphitheatre
+        Parkway", "Mountain View", "CA", "94043", "US"], "country": ["US"], "created":
+        ["2000-03-30T00:00:00Z"], "last-modified": ["2019-10-31T00:00:00Z"], "type":
+        ["organisation"]}}, {"firstSeen": "2020-10-30T21:56:23+00:00", "first_seen":
+        "2020-10-30T21:56:23+00:00", "lastSeen": "2020-10-30T21:56:23+00:00", "last_seen":
+        "2020-10-30T21:56:23+00:00", "md5": "19cbcd7ed53e9ff14d6ff98042e36642", "parsed":
+        [{"field": "contact", "value": ["ABUSE5250-ARIN"]}, {"field": "phone", "value":
+        ["+1-650-253-0000"]}, {"field": "e-mail", "value": ["network-abuse@google.com"]},
+        {"field": "type", "value": ["contact"]}], "type": "contact", "values": {"address":
+        [], "contact": ["ABUSE5250-ARIN"], "country": [], "descr": [], "email": ["network-abuse@google.com"],
+        "inetnum": [], "nethandle": [], "netname": [], "org": [], "organisation":
+        [], "origin": [], "parent": [], "phone": ["+1-650-253-0000"], "role": [],
+        "route": [], "source": [], "status": [], "type": ["contact"]}, "valuesRaw":
+        {"contact": ["ABUSE5250-ARIN"], "phone": ["+1-650-253-0000"], "e-mail": ["network-abuse@google.com"],
+        "type": ["contact"]}}, {"firstSeen": "2020-10-30T21:56:23+00:00", "first_seen":
+        "2020-10-30T21:56:23+00:00", "lastSeen": "2020-10-30T21:56:23+00:00", "last_seen":
+        "2020-10-30T21:56:23+00:00", "md5": "211f42527ab60c88276c4ffea25753f3", "parsed":
+        [{"field": "contact", "value": ["ZG39-ARIN"]}, {"field": "phone", "value":
+        ["+1-650-253-0000"]}, {"field": "e-mail", "value": ["arin-contact@google.com"]},
+        {"field": "type", "value": ["contact"]}], "type": "contact", "values": {"address":
+        [], "contact": ["ZG39-ARIN"], "country": [], "descr": [], "email": ["arin-contact@google.com"],
+        "inetnum": [], "nethandle": [], "netname": [], "org": [], "organisation":
+        [], "origin": [], "parent": [], "phone": ["+1-650-253-0000"], "role": [],
+        "route": [], "source": [], "status": [], "type": ["contact"]}, "valuesRaw":
+        {"contact": ["ZG39-ARIN"], "phone": ["+1-650-253-0000"], "e-mail": ["arin-contact@google.com"],
+        "type": ["contact"]}}, {"firstSeen": "2020-10-30T21:55:43+00:00", "first_seen":
+        "2020-10-30T21:55:43+00:00", "lastSeen": "2020-10-30T21:55:43+00:00", "last_seen":
+        "2020-10-30T21:55:43+00:00", "md5": "515b31214711398e3db988e1123b4bf0", "parsed":
+        [{"field": "route", "value": ["8.8.8.0/24"]}, {"field": "origin", "value":
+        ["AS15169"]}, {"field": "last-modified", "value": ["2015-07-28T00:00:00Z"]},
+        {"field": "type", "value": ["route"]}], "type": "route", "values": {"address":
+        [], "contact": [], "country": [], "descr": [], "email": [], "inetnum": [],
+        "nethandle": [], "netname": [], "org": [], "organisation": [], "origin": ["AS15169"],
+        "parent": [], "phone": [], "role": [], "route": ["8.8.8.0/24"], "source":
+        [], "status": [], "type": ["route"]}, "valuesRaw": {"route": ["8.8.8.0/24"],
+        "origin": ["AS15169"], "last-modified": ["2015-07-28T00:00:00Z"], "type":
+        ["route"]}}, {"firstSeen": "2021-03-16T04:19:22+00:00", "first_seen": "2021-03-16T04:19:22+00:00",
+        "lastSeen": "2021-03-16T04:19:22+00:00", "last_seen": "2021-03-16T04:19:22+00:00",
+        "md5": "62ad03e1e96d332e5fa5bb3e505f1a11", "parsed": [{"field": "route", "value":
+        ["8.0.0.0/9"]}, {"field": "descr", "value": ["Proxy-registered route object"]},
+        {"field": "origin", "value": ["AS3356"]}, {"field": "mnt-by", "value": ["LEVEL3-MNT"]},
+        {"field": "parsed_domains", "value": ["Level3.net", "Level3.net"]}, {"field":
+        "parsed_emails", "value": ["routing@Level3.net", "roy@Level3.net"]}, {"field":
+        "changed", "value": ["roy@Level3.net 20060203"]}, {"field": "source", "value":
+        ["RADB"]}, {"field": "type", "value": ["route"]}], "type": "route", "values":
+        {"address": [], "contact": [], "country": [], "descr": ["Proxy-registered
+        route object"], "email": [], "inetnum": [], "nethandle": [], "netname": [],
+        "org": [], "organisation": [], "origin": ["AS3356"], "parent": [], "phone":
+        [], "role": [], "route": ["8.0.0.0/9"], "source": ["RADB"], "status": [],
+        "type": ["route"]}, "valuesRaw": {"route": ["8.0.0.0/9"], "descr": ["Proxy-registered
+        route object"], "origin": ["AS3356"], "mnt-by": ["LEVEL3-MNT"], "parsed_domains":
+        ["Level3.net", "Level3.net"], "parsed_emails": ["routing@Level3.net", "roy@Level3.net"],
+        "changed": ["roy@Level3.net 20060203"], "source": ["RADB"], "type": ["route"]}},
+        {"firstSeen": "2021-03-16T04:19:22+00:00", "first_seen": "2021-03-16T04:19:22+00:00",
+        "lastSeen": "2021-03-16T04:19:22+00:00", "last_seen": "2021-03-16T04:19:22+00:00",
+        "md5": "5e1b092b1dab1f0b9c589fecc6b54739", "parsed": [{"field": "route", "value":
+        ["8.8.8.0/24"]}, {"field": "descr", "value": ["Google"]}, {"field": "origin",
+        "value": ["AS15169"]}, {"field": "mnt-by", "value": ["MAINT-AS15169"]}, {"field":
+        "parsed_domains", "value": ["google.com", "google.com"]}, {"field": "parsed_emails",
+        "value": ["radb-contact@google.com", "radb-contact@google.com"]}, {"field":
+        "notify", "value": ["radb-contact@google.com"]}, {"field": "changed", "value":
+        ["radb-contact@google.com 20150728"]}, {"field": "source", "value": ["RADB"]},
+        {"field": "type", "value": ["route"]}], "type": "route", "values": {"address":
+        [], "contact": [], "country": [], "descr": ["Google"], "email": [], "inetnum":
+        [], "nethandle": [], "netname": [], "org": [], "organisation": [], "origin":
+        ["AS15169"], "parent": [], "phone": [], "role": [], "route": ["8.8.8.0/24"],
+        "source": ["RADB"], "status": [], "type": ["route"]}, "valuesRaw": {"route":
+        ["8.8.8.0/24"], "descr": ["Google"], "origin": ["AS15169"], "mnt-by": ["MAINT-AS15169"],
+        "parsed_domains": ["google.com", "google.com"], "parsed_emails": ["radb-contact@google.com",
+        "radb-contact@google.com"], "notify": ["radb-contact@google.com"], "changed":
+        ["radb-contact@google.com 20150728"], "source": ["RADB"], "type": ["route"]}}],
+        "firstSeen": "2020-10-30", "first_seen": "2020-10-30", "lastSeen": "2021-03-16",
+        "last_seen": "2021-03-16"}], "whoisSummary": {"asn": "AS15169", "country":
+        "US", "descr": "Google", "isp": "Google", "netname": "LVLT-GOGL-8-8-8", "person":
+        null, "phone": "+1-650-253-0000"}, "whois_summary": {"asn": "AS15169", "country":
+        "US", "descr": "Google", "isp": "Google", "netname": "LVLT-GOGL-8-8-8", "person":
+        null, "phone": "+1-650-253-0000"}}, "domain_results": {"createdAt": "2015-12-10T20:40:01+00:00",
+        "created_at": "2015-12-10T20:40:01Z", "id": "google.com", "isSld": true, "is_sld":
+        true, "name": "google.com", "sld": null, "updatedAt": "2023-11-07T13:39:54+00:00",
+        "updated_at": "2023-11-07T13:39:54.023Z", "whois": [{"checkedAt": true, "checked_at":
+        "2023-11-06 22:12:39", "level": 1, "parsed": [{"field": "DomainName", "value":
+        ["google.com"]}, {"field": "Status", "value": ["clientdeleteprohibited https://icann.org/epp#clientdeleteprohibited",
+        "clienttransferprohibited https://icann.org/epp#clienttransferprohibited",
+        "clientupdateprohibited https://icann.org/epp#clientupdateprohibited", "serverdeleteprohibited
+        https://icann.org/epp#serverdeleteprohibited", "servertransferprohibited https://icann.org/epp#servertransferprohibited",
+        "serverupdateprohibited https://icann.org/epp#serverupdateprohibited"]}, {"field":
+        "Registrar", "value": ["markmonitor inc"]}, {"field": "CreationDate", "value":
+        ["1997-09-15 04:00:00"]}, {"field": "ExpirationDate", "value": ["2028-09-14
+        04:00:00"]}, {"field": "UpdatedDate", "value": ["2019-09-09 15:39:04"]}, {"field":
+        "Phone", "value": ["12086851750"]}, {"field": "NameServers", "value": ["ns1.google.com",
+        "ns2.google.com", "ns3.google.com", "ns4.google.com"]}, {"field": "WhoisServer",
+        "value": ["whois.markmonitor.com"]}], "response": "Domain Name: GOOGLE.COM\r\n   Registry
+        Domain ID: 2138514_DOMAIN_COM-VRSN\r\n   Registrar WHOIS Server: whois.markmonitor.com\r\n   Registrar
+        URL: http://www.markmonitor.com\r\n   Updated Date: 2019-09-09T15:39:04Z\r\n   Creation
+        Date: 1997-09-15T04:00:00Z\r\n   Registry Expiry Date: 2028-09-14T04:00:00Z\r\n   Registrar:
+        MarkMonitor Inc.\r\n   Registrar IANA ID: 292\r\n   Registrar Abuse Contact
+        Email: abusecomplaints@markmonitor.com\r\n   Registrar Abuse Contact Phone:
+        +1.2086851750\r\n   Domain Status: clientDeleteProhibited https://icann.org/epp#clientDeleteProhibited\r\n   Domain
+        Status: clientTransferProhibited https://icann.org/epp#clientTransferProhibited\r\n   Domain
+        Status: clientUpdateProhibited https://icann.org/epp#clientUpdateProhibited\r\n   Domain
+        Status: serverDeleteProhibited https://icann.org/epp#serverDeleteProhibited\r\n   Domain
+        Status: serverTransferProhibited https://icann.org/epp#serverTransferProhibited\r\n   Domain
+        Status: serverUpdateProhibited https://icann.org/epp#serverUpdateProhibited\r\n   Name
+        Server: NS1.GOOGLE.COM\r\n   Name Server: NS2.GOOGLE.COM\r\n   Name Server:
+        NS3.GOOGLE.COM\r\n   Name Server: NS4.GOOGLE.COM\r\n   DNSSEC: unsigned\r\n   URL
+        of the ICANN Whois Inaccuracy Complaint Form: https://www.icann.org/wicf/",
+        "server": "whois.crsnic.net", "values": {"address": [], "city": [], "country":
+        [], "creationDate": ["1997-09-15 04:00:00"], "domainName": ["google.com"],
+        "email": [], "expirationDate": ["2028-09-14 04:00:00"], "name": [], "nameServers":
+        ["ns1.google.com", "ns2.google.com", "ns3.google.com", "ns4.google.com"],
+        "org": [], "phone": ["12086851750"], "registrar": ["markmonitor inc"], "state":
+        [], "status": ["clientdeleteprohibited https://icann.org/epp#clientdeleteprohibited",
+        "clienttransferprohibited https://icann.org/epp#clienttransferprohibited",
+        "clientupdateprohibited https://icann.org/epp#clientupdateprohibited", "serverdeleteprohibited
+        https://icann.org/epp#serverdeleteprohibited", "servertransferprohibited https://icann.org/epp#servertransferprohibited",
+        "serverupdateprohibited https://icann.org/epp#serverupdateprohibited"], "updatedDate":
+        ["2019-09-09 15:39:04"], "whoisServer": ["whois.markmonitor.com"], "zipcode":
+        []}}, {"checkedAt": true, "checked_at": "2023-11-06 22:12:39", "level": 2,
+        "parsed": [{"field": "DomainName", "value": ["google.com"]}, {"field": "Status",
+        "value": ["clientdeleteprohibited (https://www.icann.org/epp#clientdeleteprohibited)",
+        "clienttransferprohibited (https://www.icann.org/epp#clienttransferprohibited)",
+        "clientupdateprohibited (https://www.icann.org/epp#clientupdateprohibited)",
+        "serverdeleteprohibited (https://www.icann.org/epp#serverdeleteprohibited)",
+        "servertransferprohibited (https://www.icann.org/epp#servertransferprohibited)",
+        "serverupdateprohibited (https://www.icann.org/epp#serverupdateprohibited)"]},
+        {"field": "Registrar", "value": ["markmonitor, inc"]}, {"field": "CreationDate",
+        "value": ["1997-09-15 07:00:00"]}, {"field": "ExpirationDate", "value": ["2028-09-13
+        07:00:00"]}, {"field": "UpdatedDate", "value": ["2019-09-09 15:39:04"]}, {"field":
+        "Org", "value": ["google llc"]}, {"field": "Phone", "value": ["12086851750"]},
+        {"field": "NameServers", "value": ["ns1.google.com", "ns2.google.com", "ns3.google.com",
+        "ns4.google.com"]}, {"field": "Country", "value": ["us"]}, {"field": "State",
+        "value": ["ca"]}, {"field": "WhoisServer", "value": ["whois.markmonitor.com"]}],
+        "response": "Domain Name: google.com\nRegistry Domain ID: 2138514_DOMAIN_COM-VRSN\nRegistrar
+        WHOIS Server: whois.markmonitor.com\nRegistrar URL: http://www.markmonitor.com\nUpdated
+        Date: 2019-09-09T15:39:04+0000\nCreation Date: 1997-09-15T07:00:00+0000\nRegistrar
+        Registration Expiration Date: 2028-09-13T07:00:00+0000\nRegistrar: MarkMonitor,
+        Inc.\nRegistrar IANA ID: 292\nRegistrar Abuse Contact Email: abusecomplaints@markmonitor.com\nRegistrar
+        Abuse Contact Phone: +1.2086851750\nDomain Status: clientUpdateProhibited
+        (https://www.icann.org/epp#clientUpdateProhibited)\nDomain Status: clientTransferProhibited
+        (https://www.icann.org/epp#clientTransferProhibited)\nDomain Status: clientDeleteProhibited
+        (https://www.icann.org/epp#clientDeleteProhibited)\nDomain Status: serverUpdateProhibited
+        (https://www.icann.org/epp#serverUpdateProhibited)\nDomain Status: serverTransferProhibited
+        (https://www.icann.org/epp#serverTransferProhibited)\nDomain Status: serverDeleteProhibited
+        (https://www.icann.org/epp#serverDeleteProhibited)\nRegistrant Organization:
+        Google LLC\nRegistrant State/Province: CA\nRegistrant Country: US\nRegistrant
+        Email: Select Request Email Form at https://domains.markmonitor.com/whois/google.com\nAdmin
+        Organization: Google LLC\nAdmin State/Province: CA\nAdmin Country: US\nAdmin
+        Email: Select Request Email Form at https://domains.markmonitor.com/whois/google.com\nTech
+        Organization: Google LLC\nTech State/Province: CA\nTech Country: US\nTech
+        Email: Select Request Email Form at https://domains.markmonitor.com/whois/google.com\nName
+        Server: ns4.google.com\nName Server: ns3.google.com\nName Server: ns2.google.com\nName
+        Server: ns1.google.com\nDNSSEC: unsigned\nURL of the ICANN WHOIS Data Problem
+        Reporting System: http://wdprs.internic.net/", "server": "whois.markmonitor.com",
+        "values": {"address": [], "city": [], "country": ["us"], "creationDate": ["1997-09-15
+        07:00:00"], "domainName": ["google.com"], "email": [], "expirationDate": ["2028-09-13
+        07:00:00"], "name": [], "nameServers": ["ns1.google.com", "ns2.google.com",
+        "ns3.google.com", "ns4.google.com"], "org": ["google llc"], "phone": ["12086851750"],
+        "registrar": ["markmonitor, inc"], "state": ["ca"], "status": ["clientdeleteprohibited
+        (https://www.icann.org/epp#clientdeleteprohibited)", "clienttransferprohibited
+        (https://www.icann.org/epp#clienttransferprohibited)", "clientupdateprohibited
+        (https://www.icann.org/epp#clientupdateprohibited)", "serverdeleteprohibited
+        (https://www.icann.org/epp#serverdeleteprohibited)", "servertransferprohibited
+        (https://www.icann.org/epp#servertransferprohibited)", "serverupdateprohibited
+        (https://www.icann.org/epp#serverupdateprohibited)"], "updatedDate": ["2019-09-09
+        15:39:04"], "whoisServer": ["whois.markmonitor.com"], "zipcode": []}}], "zone":
+        "com"}}'
+    result_name: JsonResult
+    show_result: true
+default_result_value: Timeout exceeded
+creator: a27bf531-e234-4aff-b717-18a554a6a8b9
+simulation_data_json: '{"Entities": null}'
+script_result_name: GIB_Graph
