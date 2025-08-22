@@ -1,6 +1,6 @@
 [project]
 name = "Houdin-io"
-version = "1.0"
+version = "2.0"
 description = "Houdin.io provides automated AI cyber threat analysis, reducing the time and effort required to analyze and respond to cyber threats.\n\nThis connector allows you to connect Houdin.io with your SOAR platform, enabling automated threat analysis and response workflows.\n\nSupport Contact: support@houdin.io"
 requires-python = ">=3.11,<3.12"
 dependencies = [
@@ -8,13 +8,11 @@ dependencies = [
 ]
 
 [tool.uv.sources]
-mp = { path = "../../../packages/mp" }
 soar-sdk = { git = "https://github.com/chronicle/soar-sdk.git" }
 
 [dependency-groups]
 dev = [
     "soar-sdk",
-    "mp",
     "mypy>=1.17.0",
     "pydantic>=2.11.7",
     "ruff>=0.12.5",

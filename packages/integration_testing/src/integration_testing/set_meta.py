@@ -85,12 +85,20 @@ def set_metadata(  # noqa: PLR0913, PLR0917
             fn = functools.partial(fn, external_context=ec)
 
         @functools.wraps(fn)
-        def wrapper(*args: Any, **kwargs: Any) -> None:  # noqa: ANN401
+        def wrapper(*args: Any, **kwargs: Any) -> None:  # noqa: ANN401, PLR0914
             json_context_path, mock_get_context = _get_json_context_patch_path_and_fn(
                 parameters,
                 input_context,
             )
+            json_context_path_2, mock_get_context_2 = _get_json_context_patch_path_and_fn_2(
+                parameters,
+                input_context,
+            )
             config_path, mock_get_config = _get_integration_config_path_and_fn(
+                integration_config_file_path,
+                integration_config,
+            )
+            config_path_2, mock_get_config_2 = _get_integration_config_path_and_fn_2(
                 integration_config_file_path,
                 integration_config,
             )
@@ -103,17 +111,25 @@ def set_metadata(  # noqa: PLR0913, PLR0917
                 parameters,
             )
             set_db_context_path, mock_set_db_context = _get_set_context_path_and_fn(ec)
+            set_db_context_path_2, mock_set_db_context_2 = _get_set_context_path_and_fn_2(ec)
             get_db_context_path, mock_get_db_context = _get_get_context_path_and_fn(ec)
+            get_db_context_path_2, mock_get_db_context_2 = _get_get_context_path_and_fn_2(ec)
             entities_path, get_entities = _get_entities_path_and_fn(entities)
+            entities_path_2, get_entities_2 = _get_entities_path_and_fn_2(entities)
 
             with (
                 unittest.mock.patch(json_context_path, mock_get_context),
+                unittest.mock.patch(json_context_path_2, mock_get_context_2),
                 unittest.mock.patch(config_path, mock_get_config),
+                unittest.mock.patch(config_path_2, mock_get_config_2),
                 unittest.mock.patch(set_db_context_path, mock_set_db_context),
+                unittest.mock.patch(set_db_context_path_2, mock_set_db_context_2),
                 unittest.mock.patch(get_db_context_path, mock_get_db_context),
+                unittest.mock.patch(get_db_context_path_2, mock_get_db_context_2),
                 unittest.mock.patch(job_params_path, mock_job_params),
                 unittest.mock.patch(connector_params_path, mock_connector_params),
                 unittest.mock.patch(entities_path, get_entities),
+                unittest.mock.patch(entities_path_2, get_entities_2),
             ):
                 fn(*args, **kwargs)
 
@@ -138,12 +154,48 @@ def _get_json_context_patch_path_and_fn(
     return context_path, mock_get_context
 
 
+def _get_json_context_patch_path_and_fn_2(
+    parameters: SingleJson,
+    json_context: SingleJson,
+) -> PatchParams:
+    if json_context.get("parameters") is None:
+        json_context["parameters"] = parameters
+
+    context_path: str = "soar_sdk.SiemplifyBase.SiemplifyBase.get_script_context"
+    mock_get_context: Supplier[SingleJson] = functools.partial(
+        get_mock_input_context,
+        context=json_context,
+    )
+
+    return context_path, mock_get_context
+
+
 def _get_entities_path_and_fn(entities: list[Entity] | None) -> tuple[str, list[Entity] | None]:
     path: str = "soar_sdk.SiemplifyAction.SiemplifyAction.target_entities"
     return path, entities
 
 
+def _get_entities_path_and_fn_2(entities: list[Entity] | None) -> tuple[str, list[Entity] | None]:
+    path: str = "SiemplifyAction.SiemplifyAction.target_entities"
+    return path, entities
+
+
 def _get_integration_config_path_and_fn(
+    file_path: str | pathlib.Path | None,
+    integration_config: SingleJson,
+) -> PatchParams:
+    path: str = "Siemplify.Siemplify.get_configuration_from_server"
+
+    def mock_get_configuration() -> SingleJson:
+        return integration_config
+
+    if not integration_config:
+        mock_get_configuration = functools.partial(get_def_file_content, def_file_path=file_path)
+
+    return path, lambda *_: mock_get_configuration()
+
+
+def _get_integration_config_path_and_fn_2(
     file_path: str | pathlib.Path | None,
     integration_config: SingleJson,
 ) -> PatchParams:
@@ -193,6 +245,16 @@ def _get_set_context_path_and_fn(db: MockExternalContext) -> PatchParams:
     return path, db.set_row_value
 
 
+def _get_set_context_path_and_fn_2(db: MockExternalContext) -> PatchParams:
+    path: str = "SiemplifyBase.SiemplifyBase.set_context_property_in_server"
+    return path, db.set_row_value
+
+
 def _get_get_context_path_and_fn(db: MockExternalContext) -> PatchParams:
     path: str = "SiemplifyBase.SiemplifyBase.get_context_property_from_server"
+    return path, db.get_row_value
+
+
+def _get_get_context_path_and_fn_2(db: MockExternalContext) -> PatchParams:
+    path: str = "soar_sdk.SiemplifyBase.SiemplifyBase.get_context_property_from_server"
     return path, db.get_row_value
