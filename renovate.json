@@ -2,5 +2,16 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
     "config:recommended"
+  ],
+  "labels": ["renovate-bot"],
+  "packageRules": [
+    {
+      "matchWorkspaces": ["packages/mp"],
+      "labels": ["mp-dependencies"]
+    },
+    {
+      "matchWorkspaces": ["integrations"],
+      "labels": ["integrations-dependencies"]
+    }
   ]
 }
