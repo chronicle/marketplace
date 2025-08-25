@@ -16,8 +16,8 @@ from __future__ import annotations
 
 from soar_sdk.SiemplifyAction import SiemplifyAction
 from soar_sdk.SiemplifyUtils import output_handler
+from TIPCommon.rest.soar_api import change_case_description
 
-DESC_URL = "{}/external/v1/cases/ChangeCaseDescription"
 ACTION_NAME = "UpdateCaseDescription"
 
 
@@ -27,12 +27,12 @@ def main():
     siemplify.script_name = ACTION_NAME
     description = siemplify.parameters["Case Description"]
     case_id = siemplify.case_id
-    json_payload = {"caseId": case_id, "description": description}
-    update_description = siemplify.session.post(
-        DESC_URL.format(siemplify.API_ROOT),
-        json=json_payload,
+
+    change_case_description(
+        chronicle_soar=siemplify,
+        case_id=case_id,
+        description=description,
     )
-    update_description.raise_for_status()
 
     output_message = f"The case description has been updated to: {description}"
     siemplify.end(output_message, True)
