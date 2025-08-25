@@ -171,7 +171,7 @@ def test_download_wheels_from_requirements(tmp_path: pathlib.Path) -> None:
     dependencies.mkdir()
     assert not list(dependencies.iterdir())
 
-    mp.core.unix.download_wheels_from_requirements(requirements, dependencies)
+    mp.core.unix.download_wheels_from_requirements(tmp_path, requirements, dependencies)
     wheels: list[str] = [str(p) for p in dependencies.iterdir()]
 
     assert wheels

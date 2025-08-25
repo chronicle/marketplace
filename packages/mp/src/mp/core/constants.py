@@ -75,6 +75,12 @@ RELEASE_NOTES_FILE: str = f"release_notes{DEF_FILE_SUFFIX}"
 IMAGE_FILE: str = f"image{IMAGE_FILE_SUFFIX}"
 LOGO_FILE: str = f"logo{SVG_FILE_SUFFIX}"
 SDK_PACKAGE_NAME: str = "soar_sdk"
+SAFE_TO_IGNORE_PACKAGES: tuple[str, ...] = ("win-unicode-console",)
+SAFE_TO_IGNORE_ERROR_MESSAGES: tuple[str, ...] = (
+    "Could not find a version that satisfies the requirement",
+    "No matching distribution found",
+)
+
 
 README_FILE: str = "README.md"
 LOCK_FILE: str = "uv.lock"

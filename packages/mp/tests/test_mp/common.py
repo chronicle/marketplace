@@ -15,6 +15,7 @@
 from __future__ import annotations
 
 import json
+import sys
 import tomllib
 from typing import TYPE_CHECKING, Any
 
@@ -101,4 +102,17 @@ def compare_dependencies(expected: pathlib.Path, actual: pathlib.Path) -> tuple[
 
     expected_dependencies: set[str] = {p.name for p in expected.iterdir()}
     actual_dependencies: set[str] = {p.name for p in actual.iterdir()}
+
+    if sys.platform == "win32":
+        expected_dependencies = {_normalize_wheel_name(name) for name in expected_dependencies}
+        actual_dependencies = {_normalize_wheel_name(name) for name in actual_dependencies}
+
     return actual_dependencies, expected_dependencies
+
+
+def _normalize_wheel_name(filename: str) -> str:
+    """
+    Strips platform-specific tags from a wheel filename,
+    returning only the package name and version.
+    """
+    return "-".join(filename.split("-")[:2])

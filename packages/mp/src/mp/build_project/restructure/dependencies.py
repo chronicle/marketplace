@@ -41,25 +41,29 @@ class Dependencies(Restructurable):
     def restructure(self) -> None:
         """Restructure an integration's dependencies, downloading them to `out_path`."""
         with (
-            tempfile.TemporaryDirectory(dir=self.path, prefix="dependencies_") as d,
             tempfile.NamedTemporaryFile(
                 mode="r",
-                dir=self.path,
                 suffix=".txt",
                 prefix="requirements_",
                 encoding="utf8",
+                delete=False,
             ) as f,
         ):
             requirements: pathlib.Path = pathlib.Path(f.name)
+        try:
             mp.core.unix.compile_core_integration_dependencies(
                 project_path=self.path,
                 requirements_path=requirements,
             )
 
-            deps: pathlib.Path = pathlib.Path(d)
-            mp.core.unix.download_wheels_from_requirements(
-                requirements_path=requirements,
-                dst_path=deps,
-            )
-            out_deps: pathlib.Path = self.out_path / mp.core.constants.OUT_DEPENDENCIES_DIR
-            shutil.copytree(deps, out_deps)
+            with tempfile.TemporaryDirectory(prefix="dependencies_") as d:
+                deps: pathlib.Path = pathlib.Path(d)
+                mp.core.unix.download_wheels_from_requirements(
+                    project_path=self.path,
+                    requirements_path=requirements,
+                    dst_path=deps,
+                )
+                out_deps: pathlib.Path = self.out_path / mp.core.constants.OUT_DEPENDENCIES_DIR
+                shutil.copytree(deps, out_deps)
+        finally:
+            requirements.unlink()

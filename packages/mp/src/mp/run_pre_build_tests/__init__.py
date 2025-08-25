@@ -17,6 +17,7 @@ from __future__ import annotations
 import dataclasses
 import multiprocessing
 import pathlib
+import sys
 import warnings
 from typing import TYPE_CHECKING, Annotated
 
@@ -37,8 +38,6 @@ if TYPE_CHECKING:
     from collections.abc import Iterable
 
     from mp.core.config import RuntimeParams
-
-RUN_PRE_BUILD_TESTS_PATH: pathlib.Path = pathlib.Path(__file__).parent / "run_pre_build_tests.sh"
 
 __all__: list[str] = ["TestIssue", "TestWarning", "app"]
 app: typer.Typer = typer.Typer()
@@ -213,10 +212,16 @@ def _test_groups(groups: Iterable[pathlib.Path]) -> list[IntegrationTestResults]
 def _test_integrations(integrations: Iterable[pathlib.Path]) -> list[IntegrationTestResults]:
     if integrations:
         return _run_script_on_paths(
-            script_path=RUN_PRE_BUILD_TESTS_PATH,
+            script_path=_get_tests_script_paths(),
             paths=integrations,
         )
     return []
+
+
+def _get_tests_script_paths() -> pathlib.Path:
+    if sys.platform.startswith("win"):
+        return pathlib.Path(__file__).parent / "run_pre_build_tests.bat"
+    return pathlib.Path(__file__).parent / "run_pre_build_tests.sh"
 
 
 def _run_script_on_paths(
