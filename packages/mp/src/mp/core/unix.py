@@ -378,7 +378,7 @@ def get_changed_files() -> list[str]:
 
     """
     command: list[str] = [
-        "/usr/bin/git",
+        "git",
         "diff",
         "HEAD^",
         "HEAD",

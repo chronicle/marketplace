@@ -16,7 +16,15 @@ on:
 jobs:
   test_mp:
     name: Test mp Package
-    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include:
+          - os: ubuntu-latest
+            pytest_path: .venv/bin/pytest
+          - os: windows-latest
+            pytest_path: .venv\Scripts\pytest.exe
+
+    runs-on: ${{ matrix.os }}
 
     steps:
     - name: Checkout repository
@@ -35,7 +43,7 @@ jobs:
       run: |
         uv sync --dev
 
-    - name: Run pytest
+    - name: Run pytest on ${{ matrix.os }}
       working-directory: packages/mp
       run: |
-        .venv/bin/pytest tests -n 10 --cov
+        ${{ matrix.pytest_path }} tests -n 10 --cov
