@@ -147,15 +147,20 @@ def download_wheels_from_requirements(
         python_version,
         "--implementation",
         "cp",
+        "--platform",
+        "none-any",
     ]
     runtime_config: list[str] = _get_runtime_config()
     command.extend(runtime_config)
 
     try:
-        if not sys.platform.startswith("win"):
+        if sys.platform.startswith("win"):
             command.extend([
                 "--platform",
-                "none-any",
+                "win_amd64",
+            ])
+        else:
+            command.extend([
                 "--platform",
                 "manylinux_2_17_x86_64",
             ])
@@ -378,7 +383,7 @@ def get_changed_files() -> list[str]:
 
     """
     command: list[str] = [
-        "/usr/bin/git",
+        "git",
         "diff",
         "HEAD^",
         "HEAD",

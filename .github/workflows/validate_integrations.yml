@@ -32,6 +32,7 @@ jobs:
     - name: Run Validations
       env:
         GITHUB_PR_SHA: ${{ github.event.pull_request.head.sha }}
+      shell: bash
       run: |
         mp config --marketplace-path . --processes 10 --display-config
         mp validate --repository third_party --only-pre-build
@@ -43,3 +44,41 @@ jobs:
         name: validation-report
         path: ./artifacts/validation_report.md
         retention-days: 2
+
+  validate_windows:
+    name: Run Validation On PR Code on windows
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout PR code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install mp package
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e ./packages/mp
+
+      - name: Run Validations
+        env:
+          GITHUB_PR_SHA: ${{ github.event.pull_request.head.sha }}
+          PYTHONIOENCODING: "utf-8"
+        shell: pwsh
+        run: |
+          wmp config --marketplace-path . --processes 10 --display-config
+          wmp validate --repository third_party --only-pre-build
+
+      - name: Upload Validation Report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: validation-report-windows
+          path: ./artifacts/validation_report.md
+          retention-days: 2

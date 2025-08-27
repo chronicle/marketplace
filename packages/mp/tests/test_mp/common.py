@@ -15,6 +15,7 @@
 from __future__ import annotations
 
 import json
+import sys
 import tomllib
 from typing import TYPE_CHECKING, Any
 
@@ -81,6 +82,30 @@ def get_json_content(
     return a, e
 
 
+def compare_files(expected: pathlib.Path, actual: pathlib.Path) -> tuple[set[str], set[str]]:
+    """Compare two directories' files.
+
+    Args:
+        expected: path to the expected dir
+        actual: path to the actual dir
+
+    Returns:
+        A tuple of the actual and expected file names from each dir to be compared
+        and asserted in a test
+
+    """
+    expected_dependencies: set[str] = {
+        p.name for p in expected.rglob("*.*") if ".venv" not in p.parts
+    }
+    actual_dependencies: set[str] = {p.name for p in actual.rglob("*.*") if ".venv" not in p.parts}
+
+    if sys.platform.startswith("win32"):
+        expected_dependencies = _normalize_wheel_names(expected_dependencies)
+        actual_dependencies = _normalize_wheel_names(actual_dependencies)
+
+    return actual_dependencies, expected_dependencies
+
+
 def compare_dependencies(expected: pathlib.Path, actual: pathlib.Path) -> tuple[set[str], set[str]]:
     """Compare two dependencies directories.
 
@@ -101,4 +126,20 @@ def compare_dependencies(expected: pathlib.Path, actual: pathlib.Path) -> tuple[
 
     expected_dependencies: set[str] = {p.name for p in expected.iterdir()}
     actual_dependencies: set[str] = {p.name for p in actual.iterdir()}
+
+    if sys.platform.startswith("win32"):
+        expected_dependencies = _normalize_wheel_names(expected_dependencies)
+        actual_dependencies = _normalize_wheel_names(actual_dependencies)
+
     return actual_dependencies, expected_dependencies
+
+
+def _normalize_wheel_names(file_names: set[str]) -> set[str]:
+    """
+    Normalizes a set of filenames by stripping platform-specific tags from
+    any wheel files, for testing-on-windows purposes only.
+    """
+    return {
+        "-".join(filename.split("-")[:2]) if filename.endswith(".whl") else filename
+        for filename in file_names
+    }

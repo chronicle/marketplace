@@ -94,12 +94,13 @@ def assert_build_integration(
         out_integration: pathlib.Path = marketplace.out_path / integration.name
         out_py_version: pathlib.Path = out_integration / mp.core.constants.PYTHON_VERSION_FILE
         out_py_version.unlink(missing_ok=True)
-        expected_file_names: set[str] = {
-            p.name for p in built_integration.rglob("*.*") if ".venv" not in p.parts
-        }
-        actual_file_names: set[str] = {
-            p.name for p in out_integration.rglob("*.*") if ".venv" not in p.parts
-        }
+
+        expected_file_names: set[str]
+        actual_file_names: set[str]
+
+        actual_file_names, expected_file_names = test_mp.common.compare_files(
+            expected=built_integration, actual=out_integration
+        )
         assert actual_file_names == expected_file_names
 
         actual_file_names, expected_file_names = test_mp.common.compare_dependencies(
