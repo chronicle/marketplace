@@ -114,4 +114,4 @@ def is_windows() -> bool:
         bool: True if the operating system is Windows, otherwise False.
 
     """
-    return WINDOWS_PLATFORM in sys.platform
+    return sys.platform.startswith(WINDOWS_PLATFORM)
