@@ -15,11 +15,11 @@
 from __future__ import annotations
 
 import json
-import sys
 import tomllib
 from typing import TYPE_CHECKING, Any
 
 import yaml
+from packages.mp.src.mp.core.utils import is_windows
 
 if TYPE_CHECKING:
     import pathlib
@@ -106,7 +106,7 @@ def compare_files(expected: pathlib.Path, actual: pathlib.Path) -> tuple[set[str
     expected_files: set[str] = {p.name for p in expected.rglob("*.*") if ".venv" not in p.parts}
     actual_files: set[str] = {p.name for p in actual.rglob("*.*") if ".venv" not in p.parts}
 
-    if sys.platform.startswith("win32"):
+    if is_windows():
         expected_files = _normalize_wheel_names(expected_files)
         actual_files = _normalize_wheel_names(actual_files)
 
@@ -134,7 +134,7 @@ def compare_dependencies(expected: pathlib.Path, actual: pathlib.Path) -> tuple[
     expected_dependencies: set[str] = {p.name for p in expected.iterdir()}
     actual_dependencies: set[str] = {p.name for p in actual.iterdir()}
 
-    if sys.platform.startswith("win32"):
+    if is_windows():
         expected_dependencies = _normalize_wheel_names(expected_dependencies)
         actual_dependencies = _normalize_wheel_names(actual_dependencies)
 

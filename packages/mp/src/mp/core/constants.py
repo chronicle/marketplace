@@ -297,3 +297,5 @@ PARAM_DISPLAY_NAME_REGEX: str = (
     r"|^logzio_token$"
     r"|^search_term$"
 )
+
+WINDOWS_PLATFORM: str = "win32"

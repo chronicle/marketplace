@@ -24,6 +24,7 @@ from typing import IO, TYPE_CHECKING
 import rich
 
 from mp.core.exceptions import FatalValidationError, NonFatalValidationError
+from mp.core.utils import is_windows
 
 from . import config, constants, file_utils
 
@@ -154,7 +155,7 @@ def download_wheels_from_requirements(
     command.extend(runtime_config)
 
     try:
-        platform: str = "win_amd64" if "win32" in sys.platform else "manylinux_2_17_x86_64"
+        platform: str = "win_amd64" if is_windows() else "manylinux_2_17_x86_64"
         command.extend(["--platform", platform])
         run_pip_command(command, cwd=project_path)
     except sp.CalledProcessError as e:
