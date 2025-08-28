@@ -19,7 +19,8 @@ import tomllib
 from typing import TYPE_CHECKING, Any
 
 import yaml
-from packages.mp.src.mp.core.utils import is_windows
+
+from mp.core.utils import is_windows
 
 if TYPE_CHECKING:
     import pathlib
