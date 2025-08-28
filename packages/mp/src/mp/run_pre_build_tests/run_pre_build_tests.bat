@@ -63,6 +63,7 @@ exit /b %ERRORLEVEL%
 
 :test_integration
     set "INTEG_PATH=%~1"
+    set "ORIGINAL_PYTHONPATH=%PYTHONPATH%"
     if not exist "%INTEG_PATH%" (
         call :log_error "%INTEG_PATH% does not exist"
         exit /b 1
@@ -82,14 +83,14 @@ exit /b %ERRORLEVEL%
     if errorlevel 1 (
         set "RC=%ERRORLEVEL%"
         call :log_error "Failed to sync venv for %INTEG_PATH%. Status: %RC%"
-        popd
+        call :cleanup_and_exit
         exit /b %RC%
     )
 
     call :add_sdk_to_pythonpath "%VENV%"
     if errorlevel 1 (
         set "RC=%ERRORLEVEL%"
-        popd
+        call :cleanup_and_exit
         exit /b %RC%
     )
 
@@ -97,7 +98,7 @@ exit /b %ERRORLEVEL%
     if errorlevel 1 (
         set "RC=%ERRORLEVEL%"
         call :log_error "Failed to activate venv for %INTEG_PATH%. Status: %RC%"
-        popd
+        call :cleanup_and_exit
         exit /b %RC%
     )
 
@@ -106,8 +107,9 @@ exit /b %ERRORLEVEL%
     set "TEST_RC=%ERRORLEVEL%"
     call :log_debug "Tests for %INTEG_PATH% finished with status %TEST_RC%."
 
-    popd
+    call :cleanup_and_exit
     exit /b %TEST_RC%
+
 
 :sync_venv
     set "VENV=%~1"
@@ -184,7 +186,6 @@ exit /b %ERRORLEVEL%
         ) else (
             set "PYTHONPATH=%ADD%"
         )
-        setx PYTHONPATH "%PYTHONPATH%" >nul 2>&1
         call :log_debug "Added %ADD% to PYTHONPATH"
     ) else (
         call :log_debug "%ADD% already in PYTHONPATH"
@@ -206,6 +207,19 @@ exit /b %ERRORLEVEL%
         "%VENV_PY%" -m pytest .\tests
     )
     exit /b %ERRORLEVEL%
+
+:cleanup_and_exit
+    call :deactivate_venv
+    set "PYTHONPATH=%ORIGINAL_PYTHONPATH%"
+    popd
+    exit /b
+
+:deactivate_venv
+    if defined VIRTUAL_ENV (
+        call :log_debug "Deactivating venv"
+        call deactivate >nul 2>&1
+    )
+    exit /b 0
 
 rem ======================
 rem Logging helpers

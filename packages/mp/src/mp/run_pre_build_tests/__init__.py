@@ -39,6 +39,10 @@ if TYPE_CHECKING:
 
     from mp.core.config import RuntimeParams
 
+WINDOWS_SCRIPT_NAME: str = "run_pre_build_tests.bat"
+UNIX_SCRIPT_NAME: str = "run_pre_build_tests.sh"
+
+
 __all__: list[str] = ["TestIssue", "TestWarning", "app"]
 app: typer.Typer = typer.Typer()
 
@@ -220,8 +224,8 @@ def _test_integrations(integrations: Iterable[pathlib.Path]) -> list[Integration
 
 def _get_tests_script_paths() -> pathlib.Path:
     if sys.platform.startswith("win"):
-        return pathlib.Path(__file__).parent / "run_pre_build_tests.bat"
-    return pathlib.Path(__file__).parent / "run_pre_build_tests.sh"
+        return pathlib.Path(__file__).parent / WINDOWS_SCRIPT_NAME
+    return pathlib.Path(__file__).parent / UNIX_SCRIPT_NAME
 
 
 def _run_script_on_paths(

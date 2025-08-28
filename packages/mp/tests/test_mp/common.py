@@ -23,6 +23,7 @@ import yaml
 
 if TYPE_CHECKING:
     import pathlib
+    from collections.abc import Iterable
 
 
 def get_toml_content(
@@ -94,16 +95,22 @@ def compare_files(expected: pathlib.Path, actual: pathlib.Path) -> tuple[set[str
         and asserted in a test
 
     """
-    expected_dependencies: set[str] = {
-        p.name for p in expected.rglob("*.*") if ".venv" not in p.parts
-    }
-    actual_dependencies: set[str] = {p.name for p in actual.rglob("*.*") if ".venv" not in p.parts}
+    msg: str
+    if not expected.is_dir():
+        msg = f"Expected path is not a directory or does not exist: {expected}"
+        raise ValueError(msg)
+    if not actual.is_dir():
+        msg = f"Actual path is not a directory or does not exist: {actual}"
+        raise ValueError(msg)
+
+    expected_files: set[str] = {p.name for p in expected.rglob("*.*") if ".venv" not in p.parts}
+    actual_files: set[str] = {p.name for p in actual.rglob("*.*") if ".venv" not in p.parts}
 
     if sys.platform.startswith("win32"):
-        expected_dependencies = _normalize_wheel_names(expected_dependencies)
-        actual_dependencies = _normalize_wheel_names(actual_dependencies)
+        expected_files = _normalize_wheel_names(expected_files)
+        actual_files = _normalize_wheel_names(actual_files)
 
-    return actual_dependencies, expected_dependencies
+    return actual_files, expected_files
 
 
 def compare_dependencies(expected: pathlib.Path, actual: pathlib.Path) -> tuple[set[str], set[str]]:
@@ -134,12 +141,16 @@ def compare_dependencies(expected: pathlib.Path, actual: pathlib.Path) -> tuple[
     return actual_dependencies, expected_dependencies
 
 
-def _normalize_wheel_names(file_names: set[str]) -> set[str]:
+def _normalize_wheel_names(file_names: Iterable[str]) -> set[str]:
     """
     Normalizes a set of filenames by stripping platform-specific tags from
     any wheel files, for testing-on-windows purposes only.
+
+    Example:
+        Input: {'test_project-1.0.0-cp310-cp310-win_amd64.whl'}
+        Output: {'test_project-1.0.0.whl'}
     """
     return {
-        "-".join(filename.split("-")[:2]) if filename.endswith(".whl") else filename
+        "-".join(filename.split("-")[:2]) + ".whl" if filename.endswith(".whl") else filename
         for filename in file_names
     }
