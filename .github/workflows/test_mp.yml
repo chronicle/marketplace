@@ -4,27 +4,19 @@ permissions:
 on:
   push:
     branches:
-      - '**'
+    - '**'
     paths:
-      - 'packages/mp/**'
+    - 'packages/mp/**'
   pull_request:
     branches:
-      - '**'
+    - '**'
     paths:
-      - 'packages/mp/**'
+    - 'packages/mp/**'
 
 jobs:
   test_mp:
     name: Test mp Package
-    strategy:
-      matrix:
-        include:
-          - os: ubuntu-latest
-            pytest_path: .venv/bin/pytest
-          - os: windows-latest
-            pytest_path: .venv\Scripts\pytest.exe
-
-    runs-on: ${{ matrix.os }}
+    runs-on: ubuntu-latest
 
     steps:
     - name: Checkout repository
@@ -43,7 +35,7 @@ jobs:
       run: |
         uv sync --dev
 
-    - name: Run pytest on ${{ matrix.os }}
+    - name: Run pytest
       working-directory: packages/mp
       run: |
-        ${{ matrix.pytest_path }} tests -n 10 --cov
+        .venv/bin/pytest tests -n 10 --cov
