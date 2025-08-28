@@ -20,7 +20,7 @@ import re
 import sys
 from typing import TypedDict
 
-from constants import WINDOWS_PLATFORM
+from mp.core.constants import WINDOWS_PLATFORM
 
 SNAKE_PATTERN_1 = re.compile(r"(.)([A-Z][a-z]+)")
 SNAKE_PATTERN_2 = re.compile(r"([a-z0-9])([A-Z])")

@@ -17,7 +17,6 @@ from __future__ import annotations
 import dataclasses
 import multiprocessing
 import pathlib
-import sys
 import warnings
 from typing import TYPE_CHECKING, Annotated
 
@@ -30,6 +29,7 @@ import mp.core.file_utils
 import mp.core.unix
 from mp.core.code_manipulation import TestWarning
 from mp.core.custom_types import Products, RepositoryType
+from mp.core.utils import is_windows
 
 from .display import display_test_reports
 from .process_test_output import IntegrationTestResults, TestIssue, process_pytest_json_report
@@ -223,9 +223,8 @@ def _test_integrations(integrations: Iterable[pathlib.Path]) -> list[Integration
 
 
 def _get_tests_script_paths() -> pathlib.Path:
-    if sys.platform.startswith("win"):
-        return pathlib.Path(__file__).parent / WINDOWS_SCRIPT_NAME
-    return pathlib.Path(__file__).parent / UNIX_SCRIPT_NAME
+    file_name: str = WINDOWS_SCRIPT_NAME if is_windows() else UNIX_SCRIPT_NAME
+    return pathlib.Path(__file__).parent / file_name
 
 
 def _run_script_on_paths(
