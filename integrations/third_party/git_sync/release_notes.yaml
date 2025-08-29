@@ -723,10 +723,10 @@
     regressive: false
     deprecated: false
     removed: false
--   description: Redact values or password type parameters in readmes
+-   description: Integration - Redact values or password type parameters in readmes.
     integration_version: 39.0
     item_name: GitSync
-    item_type: Jobs
+    item_type: Integration
     publish_time: '2025-08-29'
     ticket_number: '441711132'
     new: false
