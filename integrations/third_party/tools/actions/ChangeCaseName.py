@@ -15,6 +15,7 @@
 from __future__ import annotations
 
 from soar_sdk.SiemplifyAction import SiemplifyAction
+from TIPCommon.rest.soar_api import rename_case
 
 
 def main():
@@ -33,15 +34,11 @@ def main():
             ):
                 change = False
         if change:
-            res = siemplify.session.post(
-                f"{siemplify.API_ROOT}/external/v1/cases/RenameCase",
-                json={
-                    "caseId": siemplify.case_id,
-                    "title": siemplify.parameters["New Name"],
-                },
+            rename_case(
+                chronicle_soar=siemplify,
+                case_id=siemplify.case_id,
+                case_title=siemplify.parameters["New Name"]
             )
-
-            res.raise_for_status()
 
             output_message = (
                 f"Case's title changed to: {siemplify.parameters['New Name']}"

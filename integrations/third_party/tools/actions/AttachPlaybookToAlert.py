@@ -17,8 +17,7 @@ from __future__ import annotations
 from soar_sdk.ScriptResult import EXECUTION_STATE_COMPLETED
 from soar_sdk.SiemplifyAction import SiemplifyAction
 from soar_sdk.SiemplifyUtils import output_handler
-
-GET_ALERT_WFS = "{0}/external/v1/cases/GetWorkflowInstancesCards?format=camel"
+from TIPCommon.rest.soar_api import get_workflow_instance_card
 
 
 def get_attached_workflows(siemplify):
@@ -28,16 +27,12 @@ def get_attached_workflows(siemplify):
             alert_id = alert.additional_properties["AlertGroupIdentifier"]
             break
 
-    payload = {
-        "caseId": siemplify.case_id,
-        "alertIdentifier": alert_id,
-    }
-    alert_wfs_res = siemplify.session.post(
-        GET_ALERT_WFS.format(siemplify.API_ROOT),
-        json=payload,
+    alert_wfs_res = get_workflow_instance_card(
+        chronicle_soar=siemplify,
+        case_id=siemplify.case_id,
+        alert_identifier=alert_id,
     )
-    siemplify.validate_siemplify_error(alert_wfs_res)
-    return set(alert_wf["name"] for alert_wf in alert_wfs_res.json())
+    return set(alert_wf["name"] for alert_wf in alert_wfs_res)
 
 
 @output_handler

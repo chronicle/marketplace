@@ -17,8 +17,8 @@ from __future__ import annotations
 from soar_sdk.ScriptResult import EXECUTION_STATE_COMPLETED, EXECUTION_STATE_INPROGRESS
 from soar_sdk.SiemplifyAction import SiemplifyAction
 from soar_sdk.SiemplifyUtils import output_handler
+from TIPCommon.rest.soar_api import get_workflow_instance_card
 
-GET_ALERT_WFS = "{0}/external/v1/cases/GetWorkflowInstancesCards?format=camel"
 WF_STATUS_INPROGRESS = 1
 WF_STATUS_COMPLETED = 2
 WF_STATUS_FAILED = 3
@@ -37,16 +37,12 @@ def get_wf_status(siemplify: SiemplifyAction, workflow_name: str) -> int:
         int: playbook execution status.
 
     """
-    payload = {
-        "caseId": siemplify.case_id,
-        "alertIdentifier": siemplify.current_alert.alert_group_identifier,
-    }
-    alert_wfs_res = siemplify.session.post(
-        GET_ALERT_WFS.format(siemplify.API_ROOT),
-        json=payload,
+    alert_wfs_res = get_workflow_instance_card(
+        chronicle_soar=siemplify,
+        case_id=siemplify.case_id,
+        alert_identifier=siemplify.current_alert.alert_group_identifier,
     )
-    siemplify.validate_siemplify_error(alert_wfs_res)
-    for alert_wf in alert_wfs_res.json():
+    for alert_wf in alert_wfs_res:
         if alert_wf["name"] == workflow_name:
             return alert_wf["status"]
 
