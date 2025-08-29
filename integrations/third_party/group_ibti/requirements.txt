@@ -1,0 +1,15 @@
+validators==0.20.0
+decorator==5.2.1
+urllib3==2.5.0
+charset-normalizer==3.3.2
+requests==2.32.4
+idna==3.10
+certifi==2025.8.3
+pyaml==23.5.8
+PyYAML==6.0.2
+cyberintegrations==0.11.0
+./libs/TIPCommon-2.0.7-py2.py3-none-any.whl
+
+
+
+
