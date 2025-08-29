@@ -51,7 +51,6 @@ def main():
 
             add_comment_to_entity(
                 chronicle_soar=siemplify,
-                entity_id=0,
                 content=comment,
                 author=user,
                 entity_type=entity.entity_type,

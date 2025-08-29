@@ -18,7 +18,6 @@ from soar_sdk.SiemplifyAction import SiemplifyAction
 from soar_sdk.SiemplifyUtils import output_handler
 from TIPCommon.rest.soar_api import get_installed_integrations_of_environment
 
-INTEGRATION_IDENTIFIER = "-"
 
 
 @output_handler
@@ -32,7 +31,6 @@ def main():
         siemplify_integrations = get_installed_integrations_of_environment(
             chronicle_soar=siemplify,
             environment=env,
-            integration_identifier=INTEGRATION_IDENTIFIER,
         )
         instances.extend(
             [integration.to_json() for integration in siemplify_integrations]

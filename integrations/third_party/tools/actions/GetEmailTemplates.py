@@ -21,6 +21,19 @@ from soar_sdk.SiemplifyAction import SiemplifyAction
 from soar_sdk.SiemplifyUtils import output_handler
 from TIPCommon.rest.soar_api import get_email_template
 
+HTML_TYPES = {1, "HtmlFormat"}
+STANDARD_TYPES = {0, "Template"}
+
+
+def is_html_template(template_type: str, template_type_value: str | int) -> bool:
+    """Check if the template is of HTML type."""
+    return template_type == "HTML" and template_type_value in HTML_TYPES
+
+
+def is_standard_template(template_type: str, template_type_value: str | int) -> bool:
+    """Check if the template is of Standard type."""
+    return template_type == "Standard" and template_type_value in STANDARD_TYPES
+
 
 @output_handler
 def main():
@@ -35,19 +48,15 @@ def main():
     )
 
     email_templates = get_email_template(siemplify)
-    HTML_TYPES = {1, "HtmlFormat"}
-    STANDARD_TYPES = {0, "Template"}
     res = []
 
     for template in email_templates:
         template_json = template.to_json()
         template_type_value = template_json.get("type")
 
-        if (
-            (template_type == "HTML" and template_type_value in HTML_TYPES)
-            or
-            (template_type == "Standard" and template_type_value in STANDARD_TYPES)
-        ):
+        if is_html_template(
+            template_type, template_type_value
+        ) or is_standard_template(template_type, template_type_value):
             res.append(template_json)
 
     siemplify.result.add_result_json({"templates": res})
