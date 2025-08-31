@@ -118,7 +118,7 @@ def _create_data_for_version_bump_validation(
     try:
         old_toml_content = mp.core.unix.get_file_content_from_main_branch(toml_path)
         print("the problem is here: ")
-        print(old_toml_content)
+        print(repr(old_toml_content))
         print()
         print()
         print()
