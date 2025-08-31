@@ -117,6 +117,7 @@ def _create_data_for_version_bump_validation(
 
     try:
         old_toml_content = mp.core.unix.get_file_content_from_main_branch(toml_path)
+        print(old_toml_content)
         existing_files["toml"]["old"] = PyProjectToml.from_toml_str(old_toml_content)
         existing_files["toml"]["new"] = PyProjectToml.from_toml_str(
             toml_path.read_text(encoding="utf-8")
@@ -128,8 +129,7 @@ def _create_data_for_version_bump_validation(
             rn_path.read_text(encoding="utf-8"), old_rn_content
         )
 
-    except mp.core.unix.NonFatalCommandError as e:
-        print(e)
+    except mp.core.unix.NonFatalCommandError:
         new_files["toml"] = PyProjectToml.from_toml_str(toml_path.read_text(encoding="utf-8"))
         new_files["rn"] = ReleaseNote.from_non_built_str(rn_path.read_text(encoding="utf-8"))
 
