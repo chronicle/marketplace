@@ -536,7 +536,7 @@ def get_file_content_from_main_branch(file_path: pathlib.Path) -> str:
         NonFatalCommandError: If the git command fails (e.g., file not found on main).
 
     """
-    command: list[str] = ["git", "show", "origin/main", "--", str(file_path.as_posix())]
+    command: list[str] = ["git", "show", "origin/main", ":", file_path]
 
     try:
         results: sp.CompletedProcess[str] = sp.run(  # noqa: S603
