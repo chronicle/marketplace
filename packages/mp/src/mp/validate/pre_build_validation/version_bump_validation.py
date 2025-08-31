@@ -107,7 +107,8 @@ class VersionBumpValidation:
 
 
 def _create_data_for_version_bump_validation(
-    rn_path: pathlib.Path, toml_path: pathlib.Path
+    rn_path: pathlib.Path,
+    toml_path: pathlib.Path,
 ) -> VersionBumpValidationData:
     existing_files: ExistingIntegrationFiles = {
         "toml": TomlFileVersions(),
@@ -117,11 +118,6 @@ def _create_data_for_version_bump_validation(
 
     try:
         old_toml_content = mp.core.unix.get_file_content_from_main_branch(toml_path)
-        print("the problem is here: ")
-        print(repr(old_toml_content))
-        print()
-        print()
-        print()
         existing_files["toml"]["old"] = PyProjectToml.from_toml_str(old_toml_content)
         existing_files["toml"]["new"] = PyProjectToml.from_toml_str(
             toml_path.read_text(encoding="utf-8")
@@ -152,33 +148,35 @@ def _get_new_rn_notes(new_rn_content: str, old_rn_content: str) -> list[ReleaseN
 
 
 def _version_bump_validation_run_checks(
-    existing_files: ExistingIntegrationFiles, new_files: NewIntegrationFiles
+    existing_files: ExistingIntegrationFiles,
+    new_files: NewIntegrationFiles,
 ) -> None:
     msg: str
-    new_notes: list[ReleaseNote]
     if (new_toml := existing_files["toml"].get("new")) and (
         old_toml := existing_files["toml"].get("old")
     ):
-        toml_new_version = new_toml.project.version
-        toml_old_version = old_toml.project.version
+        toml_new_version: float = new_toml.project.version
+        toml_old_version: float = old_toml.project.version
 
         if toml_new_version != toml_old_version + 1.0:
             msg = "The project.toml Version must be incremented by exactly 1.0."
             raise NonFatalValidationError(msg)
 
-        new_notes = existing_files["rn"].get("new")
-        msg = (
-            "The release note's version must match the new version of the project.toml and be "
-            "consistent in all the newly added notes."
-        )
+        new_notes: list[ReleaseNote] | None = existing_files["rn"].get("new")
         if not _rn_is_valid(new_notes, toml_new_version):
+            msg = (
+                "The release note's version must match the new version of the project.toml and be"
+                " consistent in all the newly added notes."
+            )
             raise NonFatalValidationError(msg)
+
     elif (new_toml := new_files["toml"]) and (new_notes := new_files["rn"]):
-        toml_version = new_toml.project.version
-        msg = (
-            "New integration project.toml and release_note.yaml version must be initialize to 1.0."
-        )
+        toml_version: float = new_toml.project.version
         if toml_version != 1.0 or not _rn_is_valid(new_notes):
+            msg = (
+                "New integration project.toml and release_note.yaml version must be initialize to"
+                " 1.0"
+            )
             raise NonFatalValidationError(msg)
 
     else:
