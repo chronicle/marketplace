@@ -22,6 +22,21 @@ from soar_sdk.ScriptResult import EXECUTION_STATE_COMPLETED
 from soar_sdk.SiemplifyAction import SiemplifyAction
 from soar_sdk.SiemplifyUtils import output_handler
 
+PLACEHOLDER_MAP = {"_SPACE_": " "}
+
+
+def replace_placeholders(text_input: str) -> str:
+    """
+    Substitutes predefined placeholders in a string with their
+    corresponding literal values from the PLACEHOLDER_MAP.
+    """
+    # Make a mutable copy to modify
+    normalized_text = text_input
+    # Loop through the placeholder dictionary and replace each occurrence
+    for placeholder, replacement_value in PLACEHOLDER_MAP.items():
+        normalized_text = normalized_text.replace(placeholder, replacement_value)
+    return normalized_text
+
 
 @output_handler
 def main():
@@ -37,37 +52,27 @@ def main():
 
     if function == "Lower":
         result = input.lower()
-        output_message = (
-            f"{input} successfully converted to {result} with lower function"
-        )
+        output_message = f"{input} successfully converted to {result} with lower function"
 
     elif function == "Upper":
         result = input.upper()
-        output_message = (
-            f"{input} successfully converted to {result} with upper function"
-        )
+        output_message = f"{input} successfully converted to {result} with upper function"
 
     elif function == "Strip":
         result = input.strip()
-        output_message = (
-            f"{input} successfully converted to {result} with strip function"
-        )
+        output_message = f"{input} successfully converted to {result} with strip function"
 
     elif function == "Title":
         result = input.title()
-        output_message = (
-            f"{input} successfully converted to {result} with title function"
-        )
+        output_message = f"{input} successfully converted to {result} with title function"
 
     elif function == "Count":
         result = input.count(param_1)
         output_message = f"'{param_1}' was found {result} times in '{input}'"
 
     elif function == "Replace":
-        result = input.replace(param_1, param_2)
-        output_message = (
-            f"{input} successfully converted to {result} with replace function"
-        )
+        result = input.replace(replace_placeholders(param_1), replace_placeholders(param_2))
+        output_message = f"{input} successfully converted to {result} with replace function"
 
     elif function == "Find":
         result = input.find(param_1)
@@ -75,9 +80,7 @@ def main():
 
     elif function == "Upper":
         result = input.upper()
-        output_message = (
-            f"{input} successfully converted to {result} with upper function"
-        )
+        output_message = f"{input} successfully converted to {result} with upper function"
 
     elif function == "IsAlpha":
         result = input.isalpha()
@@ -96,10 +99,8 @@ def main():
             output_message = f"Not all characters in {input} are digits"
 
     elif function == "Regex Replace":
-        result = re.sub(param_1, param_2, input)
-        output_message = (
-            f"{input} successfully converted to {result} with regex replace function"
-        )
+        result = re.sub(replace_placeholders(param_1), replace_placeholders(param_2), input)
+        output_message = f"{input} successfully converted to {result} with regex replace function"
 
     elif function == "JSON Serialize":
         result = json.dumps(input)
@@ -141,9 +142,7 @@ def main():
             split = input.split(f"{param_1}")
             siemplify.result.add_result_json(json.dumps(split))
             result = str(split)
-            output_message = (
-                f'Successfully split string {input} with delimiter "{param_1}"'
-            )
+            output_message = f'Successfully split string {input} with delimiter "{param_1}"'
 
         else:
             split = input.split(",")
