@@ -14,18 +14,22 @@
 
 from __future__ import annotations
 
-import pathlib
-
-import toml
+import tomllib
+from typing import TYPE_CHECKING
 
 from mp.core.unix import NonFatalCommandError
 
+if TYPE_CHECKING:
+    import pathlib
+    from typing import Any
 
-class RequiredDependenciesValidation:
+
+class RequiredDevDependenciesValidation:
     name: str = "Required Dependencies"
 
-    def run(  # noqa: PLR6301
-        self, integration_path: pathlib.Path, required_dependencies: set[str] | None = None
+    @classmethod
+    def run(
+        cls, integration_path: pathlib.Path, required_dependencies: set[str] | None = None
     ) -> None:
         """Run the validation against the specified project.
 
@@ -39,10 +43,10 @@ class RequiredDependenciesValidation:
 
         """
         error_msg: str
-        pyproject_path = integration_path / "pyproject.toml"
+        pyproject_path: pathlib.Path = integration_path / "pyproject.toml"
 
-        with pathlib.Path.open(pyproject_path, encoding="utf-8") as f:
-            pyproject_toml = toml.load(f)
+        with pyproject_path.open("rb") as f:
+            pyproject_toml: dict[str, Any] = tomllib.load(f)
 
         if not required_dependencies:
             required_dependencies = {"soar-sdk", "pytest", "pytest-json-report"}
@@ -50,18 +54,20 @@ class RequiredDependenciesValidation:
         try:
             dev_dependencies_section = pyproject_toml["dependency-groups"]["dev"]
         except KeyError:
-            error_msg = "Could not find [dev-dependencies][dev] section in pyproject.toml."
+            error_msg = "Could not find [dev-dependencies]\ndev = [...] section in pyproject.toml."
             raise NonFatalCommandError(error_msg) from KeyError(error_msg)
 
-        actual_dependencies = {
+        actual_dependencies: set = {
             dep.split(">")[0].split("<")[0].split("=")[0] for dep in dev_dependencies_section
         }
 
         missing_dependencies = required_dependencies - actual_dependencies
 
-        if missing_dependencies:
-            missing_deps_str = ", ".join(sorted(missing_dependencies))
-            error_msg = (
-                f"Missing required development dependencies in pyproject.toml: {missing_deps_str}"
-            )
-            raise NonFatalCommandError(error_msg) from KeyError(error_msg)
+        if not missing_dependencies:
+            return
+
+        missing_deps_str = ", ".join(sorted(missing_dependencies))
+        error_msg = (
+            f"Missing required development dependencies in pyproject.toml: {missing_deps_str}"
+        )
+        raise NonFatalCommandError(error_msg) from KeyError(error_msg)

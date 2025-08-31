@@ -21,7 +21,7 @@ import typer
 from mp.core.exceptions import FatalValidationError, NonFatalValidationError
 from mp.validate.data_models import ValidationResults, ValidationTypes
 
-from .required_dependencies_validation import RequiredDependenciesValidation
+from .required_dependencies_validation import RequiredDevDependenciesValidation
 from .uv_lock_validation import UvLockValidation as UvLockValidation
 from .version_bump_validation import VersionBumpValidation as VersionBumpValidation
 
@@ -70,4 +70,4 @@ class PreBuildValidations:
 
     @classmethod
     def _get_validation(cls) -> list[Validator]:
-        return [UvLockValidation(), VersionBumpValidation(), RequiredDependenciesValidation()]
+        return [UvLockValidation(), VersionBumpValidation(), RequiredDevDependenciesValidation()]
