@@ -117,7 +117,11 @@ def _create_data_for_version_bump_validation(
 
     try:
         old_toml_content = mp.core.unix.get_file_content_from_main_branch(toml_path)
+        print("the problem is here: ")
         print(old_toml_content)
+        print()
+        print()
+        print()
         existing_files["toml"]["old"] = PyProjectToml.from_toml_str(old_toml_content)
         existing_files["toml"]["new"] = PyProjectToml.from_toml_str(
             toml_path.read_text(encoding="utf-8")
