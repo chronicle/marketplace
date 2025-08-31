@@ -251,7 +251,7 @@ def _run_tests_for_single_integration(
     status_code: int = mp.core.unix.run_script_on_paths(script_path, integration_path)
 
     json_report_path = integration_path / ".report.json"
-    if status_code == 0:
+    if status_code in {0, 2}:
         json_report_path.unlink(missing_ok=True)
         return None
 

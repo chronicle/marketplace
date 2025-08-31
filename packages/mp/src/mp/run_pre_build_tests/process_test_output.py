@@ -21,6 +21,11 @@ from typing import NamedTuple
 
 import rich
 
+from mp.core.unix import NonFatalCommandError
+from mp.validate.pre_build_validation.required_dependencies_validation import (
+    RequiredDependenciesValidation,
+)
+
 
 class TestIssue(NamedTuple):
     test_name: str
@@ -57,10 +62,19 @@ def process_pytest_json_report(
         json_report_path.unlink(missing_ok=True)
 
     except FileNotFoundError:
-        rich.print(
-            f"[bold red]Error:[/bold red] JSON report not found at {json_report_path}\n"
-            f"Make sure you have added pytest-json-report to your dev dependency"
-        )
+        rich.print(f"[bold red]Error:[/bold red] JSON report not found at {json_report_path}")
+        try:
+            RequiredDependenciesValidation().run(json_report_path.parent, {"pytest-json-report"})
+        except NonFatalCommandError as e:
+            error_msg: str = f"{e}"
+            temp_res: IntegrationTestResults = IntegrationTestResults(
+                integration_name=integration_name
+            )
+            temp_res.failed_tests_summary.append(
+                TestIssue(test_name="Missing Dependencies", stack_trace=error_msg)
+            )
+            temp_res.failed_tests += 1
+            return temp_res
         return None
     except json.JSONDecodeError as e:
         rich.print(
