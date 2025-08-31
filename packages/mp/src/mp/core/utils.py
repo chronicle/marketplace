@@ -17,7 +17,10 @@
 from __future__ import annotations
 
 import re
+import sys
 from typing import TypedDict
+
+from mp.core.constants import WINDOWS_PLATFORM
 
 SNAKE_PATTERN_1 = re.compile(r"(.)([A-Z][a-z]+)")
 SNAKE_PATTERN_2 = re.compile(r"([a-z0-9])([A-Z])")
@@ -102,3 +105,13 @@ def trim_values(s: str, /) -> str:
         return f"{s[: ERR_MSG_STRING_LIMIT - padding * 2]}{TRIM_CHARS}{s[len(s) - padding :]}"
 
     return s
+
+
+def is_windows() -> bool:
+    """Determine if the current operating system is Windows.
+
+    Returns:
+        bool: True if the operating system is Windows, otherwise False.
+
+    """
+    return sys.platform.startswith(WINDOWS_PLATFORM)
