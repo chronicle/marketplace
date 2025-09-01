@@ -11,8 +11,6 @@ from adapter import PlaybookAdapter
 from config import Config
 from utils_manager import EntityValidator, GIBConnector
 
-ev = EntityValidator()
-
 
 @output_handler
 def main():
@@ -91,7 +89,7 @@ def main():
 
         siemplify.LOGGER.info(parsed_portion)
 
-    # Add result to Gogle Chronicle base class
+    # Add result to Google Chronicle base class
     siemplify.result.add_result_json(result_json)
 
     siemplify.LOGGER.info('──── END THE TASK')

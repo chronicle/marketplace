@@ -1,6 +1,17 @@
 [project]
 name = "Group-IB-TI"
-version = "48.0"
+version = "2.0"
 description = "Group IB TI update "
-requires-python = ">=3.11"
-dependencies = []
+requires-python = "==3.11*"
+dependencies = [
+    "certifi==2025.8.3",
+    "charset-normalizer==3.3.2",
+    "cyberintegrations==0.11.0",
+    "decorator==5.2.1",
+    "idna==3.10",
+    "pyaml==23.5.8",
+    "pyyaml==6.0.2",
+    "requests==2.32.4",
+    "urllib3==2.5.0",
+    "validators==0.20.0",
+]
