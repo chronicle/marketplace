@@ -4,14 +4,14 @@ permissions:
 on:
   push:
     branches:
-      - '**'
+    - '**'
     paths:
-      - 'packages/mp/**'
+    - 'packages/mp/**'
   pull_request:
     branches:
-      - '**'
+    - '**'
     paths:
-      - 'packages/mp/**'
+    - 'packages/mp/**'
 
 jobs:
   test_mp:

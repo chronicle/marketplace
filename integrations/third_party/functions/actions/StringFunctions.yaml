@@ -5,11 +5,15 @@ description: "This action includes basic Pythonic string functions as mentioned 
     \ and trailing whitespaces from the input string.\nTitle: Converts the first character\
     \ of each word in the input string to uppercase.\nCount: Counts the occurrences\
     \ of `param_1` in the input string.\nReplace: Replaces occurrences of `param_1`\
-    \ with `param_2` in the input string.\nFind: Finds the first occurrence of `param_1`\
+    \ with `param_2` in the input string. It supports the placeholder code _SPACE_\
+    \ in both parameters, which is automatically converted to a standard space before\
+    \ the replacement is performed.\nFind: Finds the first occurrence of `param_1`\
     \ in the input string and returns its index.\nIsAlpha: Checks if all characters\
     \ in the input string are alphanumeric.\nIsDigit: Checks if all characters in\
     \ the input string are digits.\nRegex Replace: Performs a regex-based replacement\
-    \ of `param_1` with `param_2` in the input string.\nJSON Serialize: Converts the\
+    \ of `param_1` with `param_2` in the input string. It supports the placeholder code\
+    \ _SPACE_ in both parameters, which is automatically converted to a standard space\
+    \ before the replacement is performed.\nJSON Serialize: Converts the\
     \ input string to a JSON formatted string.\nRegex: Finds all occurrences of the\
     \ pattern `param_1` in the input string, joins them using `param_2` (defaulting\
     \ to \", \"), and returns the result.\nDecodeBase64: Decodes the input string\

@@ -19,7 +19,6 @@ from soar_sdk.SiemplifyUtils import output_handler
 from TIPCommon.rest.soar_api import get_installed_integrations_of_environment
 
 
-
 @output_handler
 def main():
     siemplify = SiemplifyAction()
