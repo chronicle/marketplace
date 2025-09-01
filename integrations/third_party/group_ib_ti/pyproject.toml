@@ -2,7 +2,7 @@
 name = "Group-IB-TI"
 version = "2.0"
 description = "Group IB TI update "
-requires-python = "==3.11*"
+requires-python =">=3.11,<3.12"
 dependencies = [
     "cyberintegrations==0.11.0",
     "pyaml==23.5.8",
