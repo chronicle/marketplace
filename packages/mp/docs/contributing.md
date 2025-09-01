@@ -66,6 +66,7 @@ All new features should include appropriate tests. Run the tests with:
 python -m pytest
 ```
 
+Additionally, you can use the pre-configured run/debug configurations. When using these, please ensure the correct Python interpreter from the project's virtual environment is selected in the specific run configuration you are using. See [ide_configuration](installation.md#ide-configuration) for the correct interpreter paths.
 ## License
 
 By contributing, you agree that your contributions will be licensed under the project's [Apache 2.0 License](../LICENSE).

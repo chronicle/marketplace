@@ -86,6 +86,15 @@ To find more about configurations, run
 mp config --help
 ```
 
+## IDE Configuration
+To run or debug the application from within an IDE, please make sure to set the project's Python interpreter to the executable located within the virtual environment created by uv. the relative path from packages/mp is:
+
+- Windows: .venv\Scripts\python.exe
+
+- macOS/Linux: .venv/bin/python
+
+This ensures that the IDE can correctly utilize any shared run/debug configurations.
+
 ## Dependencies
 
 If you need to update dependencies or re-sync your virtual environment:
