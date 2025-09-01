@@ -431,8 +431,8 @@ wheels = [
 
 [[package]]
 name = "integration-testing"
-version = "2.2.9"
-source = { path = "../../../packages/integration_testing_whls/integration_testing-2.2.9-py3-none-any.whl" }
+version = "2.2.11"
+source = { path = "../../../packages/integration_testing_whls/integration_testing-2.2.11-py3-none-any.whl" }
 dependencies = [
     { name = "aiohttp" },
     { name = "environmentcommon" },
@@ -443,7 +443,7 @@ dependencies = [
     { name = "yarl" },
 ]
 wheels = [
-    { filename = "integration_testing-2.2.9-py3-none-any.whl", hash = "sha256:43142e3a44028e89e365f19edf89ff2ba5bd2a6121dc328d7aee7bd9f09f8eec" },
+    { filename = "integration_testing-2.2.11-py3-none-any.whl", hash = "sha256:71a52fa1ade1b94f7b4397889991795eff5fca4d990c88ada39f0b92e752552b" },
 ]
 
 [package.metadata]
@@ -886,7 +886,7 @@ dependencies = [
     { name = "requests" },
 ]
 wheels = [
-    { filename = "tipcommon-2.2.11-py2.py3-none-any.whl", hash = "sha256:e444702c516ffc3aac729b166ef18256043361743352de8e1ea439b50bf47e29" },
+    { filename = "tipcommon-2.2.11-py2.py3-none-any.whl", hash = "sha256:0c67eb83a6a48f9b204400c42ae1c0f42d7e0e5e53e3a03d6ff10c7d7cf1700a" },
 ]
 
 [package.metadata]
@@ -957,7 +957,7 @@ requires-dist = [
 [package.metadata.requires-dev]
 dev = [
     { name = "environmentcommon", path = "../../../packages/envcommon/EnvironmentCommon-1.0.2/EnvironmentCommon-1.0.2-py2.py3-none-any.whl" },
-    { name = "integration-testing", path = "../../../packages/integration_testing_whls/integration_testing-2.2.9-py3-none-any.whl" },
+    { name = "integration-testing", path = "../../../packages/integration_testing_whls/integration_testing-2.2.11-py3-none-any.whl" },
     { name = "pytest", specifier = ">=8.3.5" },
     { name = "pytest-json-report", specifier = ">=1.5.0" },
     { name = "soar-sdk", git = "https://github.com/chronicle/soar-sdk.git" },
