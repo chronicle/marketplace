@@ -12,6 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+from __future__ import annotations
 
 import pathlib
 import shutil
@@ -22,7 +23,7 @@ import pytest
 
 
 @pytest.fixture
-def temp_integration() -> Iterator[pathlib.Path]:
+def temp_integration(mock_get_marketplace_path: str) -> Iterator[pathlib.Path]:
     """Create a temporary integration directory with mock files."""
     with tempfile.TemporaryDirectory() as temp_dir:
         temp_path = pathlib.Path(temp_dir)

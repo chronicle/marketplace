@@ -14,15 +14,16 @@
 
 from __future__ import annotations
 
-import re
 import tomllib
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, cast
 
 from mp.core.unix import NonFatalCommandError
+from mp.validate.utils import get_project_dependency_name
 
 if TYPE_CHECKING:
     import pathlib
-    from typing import Any
+
+    from mp.core.data_models.pyproject_toml import PyProjectTomlFile
 
 
 class RequiredDevDependenciesValidation:
@@ -49,7 +50,7 @@ class RequiredDevDependenciesValidation:
         pyproject_path: pathlib.Path = integration_path / "pyproject.toml"
 
         with pyproject_path.open("rb") as f:
-            pyproject_toml: dict[str, Any] = tomllib.load(f)
+            pyproject_toml: PyProjectTomlFile = cast("PyProjectTomlFile", tomllib.load(f))
 
         if not required_dependencies:
             required_dependencies = {"soar-sdk", "pytest", "pytest-json-report"}
@@ -60,9 +61,11 @@ class RequiredDevDependenciesValidation:
             error_msg = "Could not find [dev-dependencies]\ndev = [...] section in pyproject.toml."
             raise NonFatalCommandError(error_msg) from KeyError(error_msg)
 
-        actual_dependencies: set = {re.split(r"[<>=]", dep)[0] for dep in dev_dependencies_section}
+        actual_dependencies: set = {
+            get_project_dependency_name(dep) for dep in dev_dependencies_section
+        }
 
-        missing_dependencies = required_dependencies - actual_dependencies
+        missing_dependencies: set[str] = required_dependencies.difference(actual_dependencies)
 
         if not missing_dependencies:
             return
