@@ -22,6 +22,27 @@ from requests.exceptions import HTTPError
 from TIPCommon.rest.soar_api import (
     get_integration_instance_details_by_id,
     get_integration_instance_details_by_name,
+    get_installed_integrations_of_environment,
+    get_env_dynamic_parameters,
+    get_domains,
+    get_environments,
+    import_environment,
+    update_domain,
+    get_environment_names,
+    create_integrations_instance,
+    save_integration_instance_settings,
+    import_simulated_case,
+    add_case_tag,
+    add_case_stage,
+    get_case_alert,
+    add_close_reason,
+    get_networks,
+    update_network,
+    get_custom_lists,
+    update_custom_list,
+    update_blocklist,
+    update_sla_record,
+    save_playbook,
 )
 
 VERSION_6117 = version.parse("6.1.17")
@@ -53,6 +74,7 @@ class SiemplifyApiClient:
         smp_username=None,
         smp_password=None,
         use_ssl=False,
+        siemplify_soar=None,
     ) -> None:
         self.api_root = f"{api_root}/external/v1/"
         self.api_key = api_key
@@ -64,6 +86,7 @@ class SiemplifyApiClient:
         self.session.verify = use_ssl
         self._version = None
         self._bearer_token = None
+        self.siemplify_soar = siemplify_soar
         if smp_username and smp_password:
             self._bearer_token = self.get_bearer_token(smp_password, smp_username)
 
@@ -107,8 +130,8 @@ class SiemplifyApiClient:
         self.validate_response(res)
         return res.content.decode("utf-8").replace('"', "")
 
-    def get_environment_names(self):
-        return self.get_page_results("settings/GetEnvironmentNames")
+    def get_environment_names(self, siemplify):
+        return get_environment_names(siemplify)
 
     def get_environment_group_names(self):
         res = self.session.get("environment-groups")
@@ -116,10 +139,13 @@ class SiemplifyApiClient:
         result = [f"({group['name']})" for group in res.json()["groups"]]
         return result
 
-    def get_env_dynamic_parameters(self):
-        res = self.session.get("settings/GetDynamicParameters")
-        self.validate_response(res)
-        return res.json()
+    def get_env_dynamic_parameters(
+        self,
+        siemplify
+    ):
+        return get_env_dynamic_parameters(
+            siemplify
+        )
 
     def add_dynamic_env_param(self, param):
         res = self.session.post("settings/AddOrUpdateDynamicParameters", json=param)
@@ -133,17 +159,11 @@ class SiemplifyApiClient:
         self.validate_response(powerups)
         return store.json()["integrations"] + powerups.json()["integrations"]
 
-    def get_environments(self):
-        return self.get_page_results("settings/GetEnvironments")
+    def get_environments(self, siemplify):
+        return get_environments(siemplify)
 
-    def import_environment(self, env_payload):
-        res = self.session.post(
-            "settings/AddOrUpdateEnvironmentRecords",
-            json=env_payload,
-            verify=False,
-        )
-        self.validate_response(res)
-        return True
+    def import_environment(self, siemplify, env_payload):
+        return import_environment(siemplify, env_payload)
 
     def update_api_record(self, api_record):
         res = self.session.post("settings/addOrUpdateAPIKeyRecord", json=api_record)
@@ -189,12 +209,10 @@ class SiemplifyApiClient:
         return res.json()
 
     def get_integrations_instances(self, env):
-        res = self.session.post(
-            "integrations/GetEnvironmentInstalledIntegrations",
-            json={"name": env},
+        return get_installed_integrations_of_environment(
+            chronicle_soar=self.siemplify_soar,
+            environment=env,
         )
-        self.validate_response(res)
-        return res.json()["instances"]
 
     def get_integration_instance_settings(self, instance_id):
         res = self.session.get(
@@ -203,27 +221,20 @@ class SiemplifyApiClient:
         self.validate_response(res)
         return res.json()
 
-    def create_integrations_instance(self, integration, env):
-        data = {"environment": env, "integrationIdentifier": integration}
-        res = self.session.post("integrations/CreateIntegrationInstance", json=data)
-        self.validate_response(res)
-        return res.json()
-
-    def save_integration_instance_settings(self, instance_identifier, settings):
-        data = {"instanceIdentifier": instance_identifier, **settings}
-        res = self.session.post(
-            "store/SaveIntegrationConfigurationProperties",
-            json=data,
+    def create_integrations_instance(self, siemplify, integration, env):
+        return create_integrations_instance(
+            chronicle_soar=siemplify,
+            integration_identifier=integration,
+            environment=env,
         )
-        try:
-            res.raise_for_status()
-        except requests.HTTPError as e:
-            if res.json()["ErrorMessage"].endswith(
-                "already exists, please choose a different instance name.",
-            ):
-                return False
-            raise e
-        return True
+
+    def save_integration_instance_settings(self, siemplify, instance_identifier, env, settings):
+        return save_integration_instance_settings(
+            chronicle_soar=siemplify,
+            identifier=instance_identifier,
+            environment=env,
+            integration_data=settings,
+        )
 
     def get_ide_cards(self, include_staging=False):
         res = self.session.get("ide/GetIdeItemCards", verify=False)
@@ -318,41 +329,19 @@ class SiemplifyApiClient:
         return res.content
 
     def save_playbook(self, playbook):
-        original_headers = self.session.headers.copy()
-        try:
-            if self.smp_username and self._bearer_token:
-                self.session.headers = {"Authorization": self._bearer_token}
-            res = self.session.post("playbooks/SaveWorkflowDefinitions", json=playbook)
-            self.validate_response(res)
-            return res
+        return save_playbook(self.siemplify_soar, playbook)
 
-        finally:
-            self.session.headers = original_headers
+    def get_networks(self, siemplify):
+        return get_networks(siemplify)
 
-    def get_networks(self):
-        return self.get_page_results("settings/GetNetworkDetails")
+    def update_network(self, siemplify, network):
+        return update_network(siemplify, network)
 
-    def update_network(self, network):
-        res = self.session.post(
-            "settings/AddOrUpdateNetworkDetailsRecords",
-            json=network,
-        )
-        try:
-            res.raise_for_status()
-        except requests.HTTPError:
-            return False
-        return True
+    def get_domains(self, siemplify):
+        return get_domains(siemplify)
 
-    def get_domains(self):
-        return self.get_page_results("settings/GetDomainAliases")
-
-    def update_domain(self, domain):
-        res = self.session.post("settings/AddOrUpdateDomainAliasesRecords", json=domain)
-        try:
-            res.raise_for_status()
-        except requests.HTTPError:
-            return False
-        return True
+    def update_domain(self, siemplify, domain):
+        return update_domain(siemplify, domain)
 
     def get_connectors(self, env_name=None):
         res = self.session.get("connectors/GetConnectorsData")
@@ -371,17 +360,10 @@ class SiemplifyApiClient:
         return res
 
     def get_custom_lists(self):
-        res = self.session.get("settings/GetTrackingListRecords")
-        self.validate_response(res)
-        return res.json()
+        return get_custom_lists(siemplify)
 
-    def update_custom_list(self, tracking_list):
-        res = self.session.post(
-            "settings/AddorUpdateTrackingListRecords",
-            json=tracking_list,
-        )
-        self.validate_response(res)
-        return True
+    def update_custom_list(self, siemplify, tracking_list, tracking_id):
+        return update_custom_list(siemplify, tracking_list, tracking_id)
 
     def get_logo(self):
         res = self.session.get("settings/GetCompanyLogo")
@@ -406,10 +388,8 @@ class SiemplifyApiClient:
     def get_case_stages(self):
         return self.get_page_results("settings/GetCaseStageDefinitionRecords")
 
-    def add_case_stage(self, stage):
-        res = self.session.post("settings/AddCaseStageDefinitionRecord", json=stage)
-        self.validate_response(res)
-        return res.content
+    def add_case_stage(self, siemplify, stage):
+        return add_case_stage(siemplify, stage)
 
     def get_email_templates(self):
         res = self.session.get("settings/GetEmailTemplateRecords")
@@ -429,33 +409,30 @@ class SiemplifyApiClient:
         self.validate_response(res)
         return res.json()
 
-    def update_denylist(self, denylist):
-        if self.system_version > VERSION_6117:
-            return self.update_blocklist(denylist)
+    def update_denylist(self, siemplify, denylist):
+        return self.update_blocklist(siemplify, denylist)
 
-        res = self.session.post("settings/AddOrUpdateModelBlackRecords", json=denylist)
-        self.validate_response(res)
-        return res.content
+        # res = self.session.post("settings/AddOrUpdateModelBlackRecords", json=denylist)
+        # self.validate_response(res)
+        # return res.content
 
     # Version 6.1.17 +
     def get_blocklists(self):
         return self.get_page_results("settings/GetBlockListDetails")
 
     # Version 6.1.17 +
-    def update_blocklist(self, blocklist):
-        res = self.session.post("settings/AddOrUpdateModelBlockRecords", json=blocklist)
-        self.validate_response(res)
-        return res.content
+    def update_blocklist(self, siemplify, blocklist):
+        res = update_blocklist(siemplify, blocklist)
+        return res
 
     def get_sla_records(self):
         res = self.session.get("settings/GetSlaDefinitionsRecords")
         self.validate_response(res)
         return res.json()
 
-    def update_sla_record(self, definition):
-        res = self.session.post("settings/AddSlaDefinitionsRecord", json=definition)
-        self.validate_response(res)
-        return res.content
+    def update_sla_record(self, siemplify, definition):
+        res = update_sla_record(siemplify, definition)
+        return res
 
     def get_jobs(self):
         res = self.session.get("jobs/GetInstalledJobs")
@@ -470,20 +447,14 @@ class SiemplifyApiClient:
     def get_case_tags(self):
         return self.get_page_results("settings/GetTagDefinitionsRecords")
 
-    def add_case_tag(self, tag):
-        res = self.session.post("settings/AddTagDefinitionsRecords", json=tag)
-        self.validate_response(res)
-        return True
+    def add_case_tag(self, siemplify, tag):
+        return add_case_tag(siemplify, tag)
 
-    def get_close_reasons(self):
-        res = self.session.get("settings/GetRootCauseCloseRecords")
-        self.validate_response(res)
-        return res.json()
+    def get_close_reasons(self, siemplify):
+        return get_case_alert(siemplify)
 
-    def add_close_reason(self, cause):
-        res = self.session.post("settings/AddOrUpdateRootCauseClose", json=cause)
-        self.validate_response(res)
-        return res.json()
+    def add_close_reason(self, siemplify, cause):
+        return add_close_reason(siemplify, cause)
 
     def create_playbook_category(self, name):
         req = {
@@ -511,10 +482,8 @@ class SiemplifyApiClient:
         self.validate_response(res)
         return res.json()
 
-    def import_simulated_case(self, case):
-        res = self.session.post("attackssimulator/ImportCustomCase", json=case)
-        self.validate_response(res)
-        return True
+    def import_simulated_case(self, siemplify, case):
+        return import_simulated_case(siemplify, case)
 
     def get_integration_instance_name(
         self,
@@ -569,7 +538,7 @@ class SiemplifyApiClient:
                 chronicle_soar=chronicle_soar,
                 integration_identifier=integration_name,
                 instance_display_name=display_name,
-                environments=environments
+                environments=environments,
             )
         except HTTPError as e:
             if e.response and e.response.status_code == 404 and consider_404_to_none:

@@ -18,6 +18,7 @@ import re
 import tempfile
 import uuid
 from typing import TYPE_CHECKING, Any
+from TIPCommon.rest.soar_api import install_integration
 
 from jinja2 import Template
 
@@ -341,12 +342,10 @@ class GitSyncManager:
             + [ALL_ENVIRONMENTS_IDENTIFIER]
         )
         for p in workflows:
-            invalid_environments = [x for x in p.environments if x not in environments]
-            if invalid_environments:
+            if not all(x in environments for x in p.environments):
                 raise Exception(
-                    f"Playbook '{p.name}' is assigned to environment(s) that don't exist: "
-                    f"{', '.join(invalid_environments)}. "
-                    f"Available environments: {', '.join(environments)}"
+                    f"Playbook {p.name} is assigned to environment that doesn't exist - "
+                    f"{p.environments[0]}",
                 )
 
         # Remove duplicates and split by type
@@ -537,10 +536,12 @@ class GitSyncManager:
             )
             return False
         try:
-            self.api.install_integration(
-                integration_name,
-                store_integration["version"],
-                store_integration["isCertified"],
+            install_integration(
+                chronicle_soar=self._siemplify,
+                integration_identifier=integration_name,
+                integration_name="",
+                version=store_integration["version"],
+                is_certified=store_integration["isCertified"],
             )
             self.logger.info(f"{integration_name} installed successfully")
             return True
