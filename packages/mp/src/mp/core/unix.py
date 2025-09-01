@@ -21,7 +21,10 @@ import subprocess as sp  # noqa: S404
 import sys
 from typing import IO, TYPE_CHECKING
 
+import rich
+
 from mp.core.exceptions import FatalValidationError, NonFatalValidationError
+from mp.core.utils import is_windows
 
 from . import config, constants, file_utils
 
@@ -80,13 +83,49 @@ def compile_core_integration_dependencies(
         raise FatalCommandError(COMMAND_ERR_MSG.format(e)) from e
 
 
+def _get_safe_to_ignore_packages(e: sp.CalledProcessError, /) -> list[str]:
+    full_msg: str = f"{e.stdout or ''}\n{e.stderr or ''}"
+    ignored_packages: list[str] = [
+        pkg for pkg in constants.SAFE_TO_IGNORE_PACKAGES if pkg in full_msg
+    ]
+    ignored_messages: list[bool] = [
+        msg in full_msg for msg in constants.SAFE_TO_IGNORE_ERROR_MESSAGES
+    ]
+    if ignored_messages and ignored_packages:
+        return ignored_packages
+    return []
+
+
+def run_pip_command(command: list[str], cwd: pathlib.Path) -> None:
+    """Run a pip command and ignore safe-to-ignore errors.
+
+    Raises:
+        FatalCommandError: if a pip command fails.
+
+    """
+    try:
+        sp.run(command, cwd=cwd, capture_output=True, text=True, check=True)  # noqa: S603
+    except sp.CalledProcessError as e:
+        # Check if this is a safe-to-ignore error / marker issue
+        if ignored_packages := _get_safe_to_ignore_packages(e):
+            message = (
+                f"[INFO] Ignored safe-to-ignore packages due to Python version "
+                f"incompatibility: {', '.join(ignored_packages)}\n"
+            )
+            rich.print(message)
+            return
+        raise FatalCommandError from e
+
+
 def download_wheels_from_requirements(
+    project_path: pathlib.Path,
     requirements_path: pathlib.Path,
     dst_path: pathlib.Path,
 ) -> None:
     """Download `.whl` files from a requirements' file.
 
     Args:
+        project_path: the path of the project repository
         requirements_path: the path of the 'requirements.txt' file
         dst_path: the path to install the `.whl` files into
 
@@ -111,14 +150,14 @@ def download_wheels_from_requirements(
         "cp",
         "--platform",
         "none-any",
-        "--platform",
-        "manylinux_2_17_x86_64",
     ]
     runtime_config: list[str] = _get_runtime_config()
     command.extend(runtime_config)
 
     try:
-        sp.run(command, cwd=requirements_path.parent, check=True, text=True)  # noqa: S603
+        platform: str = "win_amd64" if is_windows() else "manylinux_2_17_x86_64"
+        command.extend(["--platform", platform])
+        run_pip_command(command, cwd=project_path)
     except sp.CalledProcessError as e:
         raise FatalCommandError(COMMAND_ERR_MSG.format(e)) from e
 
@@ -259,8 +298,9 @@ def run_script_on_paths(
     """
     script_full_path: str = f"{script_path.resolve().absolute()}"
 
-    chmod_command: list[str] = ["chmod", "+x", script_full_path]
-    sp.run(chmod_command, check=True)  # noqa: S603
+    if not sys.platform.startswith("win"):
+        chmod_command: list[str] = ["chmod", "+x", script_full_path]
+        sp.run(chmod_command, check=True)  # noqa: S603
 
     command: list[str] = [script_full_path] + [str(p) for p in test_paths]
 
@@ -304,8 +344,7 @@ def execute_command_and_get_output(
     try:
         process: sp.Popen[bytes] = sp.Popen(command)  # noqa: S603
         for line in _stream_process_output(process):
-            sys.stdout.write(str(line))
-
+            rich.print(str(line))
         return process.wait()
 
     except sp.CalledProcessError as e:
@@ -337,7 +376,7 @@ def get_changed_files() -> list[str]:
 
     """
     command: list[str] = [
-        "/usr/bin/git",
+        "git",
         "diff",
         "HEAD^",
         "HEAD",
@@ -497,7 +536,7 @@ def get_file_content_from_main_branch(file_path: pathlib.Path) -> str:
         NonFatalCommandError: If the git command fails (e.g., file not found on main).
 
     """
-    git_path_arg: str = f"origin/main:{file_path!s}"
+    git_path_arg: str = f"origin/main:{file_path.as_posix()}"
     command: list[str] = ["git", "show", git_path_arg]
 
     try:

@@ -29,6 +29,7 @@ import mp.core.file_utils
 import mp.core.unix
 from mp.core.code_manipulation import TestWarning
 from mp.core.custom_types import Products, RepositoryType
+from mp.core.utils import is_windows
 
 from .display import display_test_reports
 from .process_test_output import IntegrationTestResults, TestIssue, process_pytest_json_report
@@ -38,7 +39,9 @@ if TYPE_CHECKING:
 
     from mp.core.config import RuntimeParams
 
-RUN_PRE_BUILD_TESTS_PATH: pathlib.Path = pathlib.Path(__file__).parent / "run_pre_build_tests.sh"
+WINDOWS_SCRIPT_NAME: str = "run_pre_build_tests.bat"
+UNIX_SCRIPT_NAME: str = "run_pre_build_tests.sh"
+
 
 __all__: list[str] = ["TestIssue", "TestWarning", "app"]
 app: typer.Typer = typer.Typer()
@@ -213,10 +216,15 @@ def _test_groups(groups: Iterable[pathlib.Path]) -> list[IntegrationTestResults]
 def _test_integrations(integrations: Iterable[pathlib.Path]) -> list[IntegrationTestResults]:
     if integrations:
         return _run_script_on_paths(
-            script_path=RUN_PRE_BUILD_TESTS_PATH,
+            script_path=_get_tests_script_paths(),
             paths=integrations,
         )
     return []
+
+
+def _get_tests_script_paths() -> pathlib.Path:
+    file_name: str = WINDOWS_SCRIPT_NAME if is_windows() else UNIX_SCRIPT_NAME
+    return pathlib.Path(__file__).parent / file_name
 
 
 def _run_script_on_paths(
