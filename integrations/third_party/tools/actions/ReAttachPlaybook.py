@@ -108,7 +108,7 @@ def get_integration_instance(siemplify, integration_name, environment, instance_
         instance_display_name=instance_name,
         environments=[environment],
     )
-    return filtered[0] if filtered else {"identifier": "N/A"}
+    return filtered if filtered else {"identifier": "N/A"}
 
 
 @output_handler
