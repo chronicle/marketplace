@@ -14,6 +14,7 @@
 
 from __future__ import annotations
 
+import re
 import tomllib
 from typing import TYPE_CHECKING
 
@@ -29,7 +30,9 @@ class RequiredDevDependenciesValidation:
 
     @classmethod
     def run(
-        cls, integration_path: pathlib.Path, required_dependencies: set[str] | None = None
+        cls,
+        integration_path: pathlib.Path,
+        required_dependencies: set[str] | None = None,
     ) -> None:
         """Run the validation against the specified project.
 
@@ -57,9 +60,7 @@ class RequiredDevDependenciesValidation:
             error_msg = "Could not find [dev-dependencies]\ndev = [...] section in pyproject.toml."
             raise NonFatalCommandError(error_msg) from KeyError(error_msg)
 
-        actual_dependencies: set = {
-            dep.split(">")[0].split("<")[0].split("=")[0] for dep in dev_dependencies_section
-        }
+        actual_dependencies: set = {re.split(r"[<>=]", dep)[0] for dep in dev_dependencies_section}
 
         missing_dependencies = required_dependencies - actual_dependencies
 
