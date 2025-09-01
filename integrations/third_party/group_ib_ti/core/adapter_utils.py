@@ -1,18 +1,17 @@
-import os
 import json
+import os
 from enum import Enum
-from typing import Union, List, Dict, Any
 
 try:
     import pyaml
 except Exception:
     pass
 
-from cyberintegrations.exception import EmptyCredsError, BadProtocolError, EncryptionError
+from cyberintegrations.exception import BadProtocolError, EmptyCredsError, EncryptionError
 from cyberintegrations.utils import Validator as BaseValidator
 
-class ConfigParser:
 
+class ConfigParser:
     def get_creds(self, config, key="creds"):
         # type: (dict, Union[int, str]) -> __get_enum_creds
         """Collect credentials from **YAML config**, filtered by **key**"""
@@ -43,13 +42,15 @@ class ConfigParser:
             DATA_DIR = kwargs.get("data_dir", None)
         """
         return Enum(
-            'Creds',
-            list(zip(
-                # make each key uppercase by 'map' function, which apply 'upper' method to keys
-                list(map(lambda x: x.upper(), kwargs.keys())),
-                kwargs.values()
-            )),
-            module=__name__
+            "Creds",
+            list(
+                zip(
+                    # make each key uppercase by 'map' function, which apply 'upper' method to keys
+                    list(map(lambda x: x.upper(), kwargs.keys())),
+                    kwargs.values(),
+                )
+            ),
+            module=__name__,
         )
 
     @staticmethod
@@ -87,6 +88,7 @@ class ConfigParser:
 
 class FileHandler:
     """Singleton decorator for borg state logic"""
+
     # singleton state sharing
     _shared_borg_state = {}
 
@@ -267,19 +269,18 @@ class FileHandler:
 
 
 class ProxyConfigurator:
-
     @staticmethod
     def check_proxy_connection():
         pass
 
     @staticmethod
     def get_proxies(
-            proxy_protocol=None,
-            proxy_ip=None,
-            proxy_port=None,
-            proxy_username=None,
-            proxy_password=None,
-            encrypted_data_handler=None
+        proxy_protocol=None,
+        proxy_ip=None,
+        proxy_port=None,
+        proxy_username=None,
+        proxy_password=None,
+        encrypted_data_handler=None,
     ):
         # type: (str, str, str, str, str, Any) -> Union[Dict[str, str], None]
         """
@@ -308,14 +309,15 @@ class ProxyConfigurator:
         proxy_protocol = proxy_protocol.lower()
 
         if proxy_protocol not in protocol_allowed_list:
-            raise BadProtocolError("Bad protocol used for proxy: {protocol}! Expected: {allowed}".format(
-                protocol=proxy_protocol,
-                allowed=protocol_allowed_list
-            ))
+            raise BadProtocolError(
+                "Bad protocol used for proxy: {protocol}! Expected: {allowed}".format(
+                    protocol=proxy_protocol, allowed=protocol_allowed_list
+                )
+            )
 
         if encrypted_data_handler:
             try:
-                __proxy_password = encrypted_data_handler(label='proxy_password').decrypt()
+                __proxy_password = encrypted_data_handler(label="proxy_password").decrypt()
             except EncryptionError:
                 __proxy_password = None
         else:
@@ -328,34 +330,30 @@ class ProxyConfigurator:
                     username=proxy_username,
                     password=__proxy_password,
                     ip=proxy_ip,
-                    port=proxy_port
+                    port=proxy_port,
                 ),
                 "https": "{protocol}://{username}:{password}@{ip}:{port}".format(
                     protocol=proxy_protocol,
                     username=proxy_username,
                     password=__proxy_password,
                     ip=proxy_ip,
-                    port=proxy_port
-                )
+                    port=proxy_port,
+                ),
             }
             return __proxy_dict
 
         __proxy_dict = {
             "http": "{protocol}://{ip}:{port}".format(
-                protocol=proxy_protocol,
-                ip=proxy_ip,
-                port=proxy_port
+                protocol=proxy_protocol, ip=proxy_ip, port=proxy_port
             ),
             "https": "{protocol}://{ip}:{port}".format(
-                protocol=proxy_protocol,
-                ip=proxy_ip,
-                port=proxy_port
-            )
+                protocol=proxy_protocol, ip=proxy_ip, port=proxy_port
+            ),
         }
         return __proxy_dict
 
+
 class Validator(BaseValidator):
-    
     @classmethod
     def validate_keys(cls, config):
         """
@@ -374,7 +372,9 @@ class Validator(BaseValidator):
 
             for key in config[collection]:
                 if not config[collection][key]:
-                    raise ValueError(f"A key '{key}' in collection '{collection}' has an empty value.")
+                    raise ValueError(
+                        f"A key '{key}' in collection '{collection}' has an empty value."
+                    )
 
         return True
 

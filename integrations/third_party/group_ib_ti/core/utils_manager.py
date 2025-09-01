@@ -1,24 +1,21 @@
 import urllib.parse
 import uuid
 
-from SiemplifyDataModel import EntityTypes
-
 import validators
-from TIPCommon.extraction import extract_configuration_param
 from adapter import PlaybookAdapter
 
 # Import Managers
 from config import Config
 from mapping import mapping_config
+from SiemplifyDataModel import EntityTypes
+from TIPCommon.extraction import extract_configuration_param
 
 
 class EntityValidator(object):
-
     def __init__(self):
         pass
 
     def get_entity_type(self, entity):
-
         entity = entity.lower()
 
         if validators.domain(entity):
@@ -31,7 +28,6 @@ class EntityValidator(object):
             return entity, "hash"
 
         elif validators.url(entity):
-
             _address = urllib.parse.urlsplit(entity).netloc
 
             if validators.domain(_address):
@@ -51,29 +47,26 @@ class EntityValidator(object):
 
 
 class GIBConnector:
-
     def __init__(self, siemplify):
         self.siemplify = siemplify
-    
+
     def entity_processor(self):
         ev = EntityValidator()
-        
+
         # self.siemplify.LOGGER.info(self.siemplify.get_configuration(Config.PROVIDER_NAME))
         self.siemplify.LOGGER.info(self.siemplify.target_entities)
         self.siemplify.LOGGER.info(EntityTypes.__dict__)
         self.siemplify.LOGGER.info(EntityTypes.ADDRESS)
-        
+
         for entity in self.siemplify.target_entities:
             input_type = ev.get_entity_type(entity.identifier)
             self.siemplify.LOGGER.info("{}  {}".format(entity.identifier, input_type))
             self.siemplify.LOGGER.info("{}  {}".format(entity.identifier, entity.entity_type))
 
     def init_action_poller(self, creds=None):
-
         self.siemplify.LOGGER.info("Provider Name = " + Config.PROVIDER_NAME)
 
-
-        self.siemplify.LOGGER.info('──── GET USER PARAMS')
+        self.siemplify.LOGGER.info("──── GET USER PARAMS")
 
         # # Get GIB credentials
         if creds:
@@ -81,19 +74,29 @@ class GIBConnector:
             api_key = creds[1]
             api_url = creds[2]
         else:
-            username = extract_configuration_param(self.siemplify, provider_name=Config.PROVIDER_NAME, param_name="API login", print_value=True)
-            api_key = extract_configuration_param(self.siemplify, provider_name=Config.PROVIDER_NAME, param_name="API key", print_value=False)
-            api_url = extract_configuration_param(self.siemplify, provider_name=Config.PROVIDER_NAME, param_name="API URL", print_value=True)
+            username = extract_configuration_param(
+                self.siemplify,
+                provider_name=Config.PROVIDER_NAME,
+                param_name="API login",
+                print_value=True,
+            )
+            api_key = extract_configuration_param(
+                self.siemplify,
+                provider_name=Config.PROVIDER_NAME,
+                param_name="API key",
+                print_value=False,
+            )
+            api_url = extract_configuration_param(
+                self.siemplify,
+                provider_name=Config.PROVIDER_NAME,
+                param_name="API URL",
+                print_value=True,
+            )
 
         # Init set up
-        gib_creds = {
-            "creds": {
-                "api_key": api_key,
-                "username": username
-            }
-        }
+        gib_creds = {"creds": {"api_key": api_key, "username": username}}
 
-        self.siemplify.LOGGER.info('──── API INITIALIZATION')
+        self.siemplify.LOGGER.info("──── API INITIALIZATION")
 
         # Proxy initialization
         proxies = {}
@@ -109,7 +112,7 @@ class GIBConnector:
             config_obj=Config,
             collections=collections,
             mapping_config=mapping_config,
-            api_url=api_url
+            api_url=api_url,
         )
 
         # Poller initialization
@@ -119,7 +122,6 @@ class GIBConnector:
 
 
 class CaseProcessor:
-
     entity_types = {
         0: "SourceHostName",
         1: "SourceAddress",
@@ -131,7 +133,7 @@ class CaseProcessor:
         7: "DestinationUserName",
         8: "DestinationProcessName",
         9: "DestinationMacAddress",
-        "URL": "DestinationURL",            # 10
+        "URL": "DestinationURL",  # 10
         11: "Process",
         12: "FileName",
         "HASH": "FileHash",
@@ -150,23 +152,22 @@ class CaseProcessor:
         26: "ChildProcess",
         27: "ChildHash",
         28: "SourceDomain",
-        "DOMAIN": "DestinationDomain",      # 29
+        "DOMAIN": "DestinationDomain",  # 29
         30: "IPSet",
-        "IP": "ADDRESS"
+        "IP": "ADDRESS",
     }
 
     def __init__(self, siemplify):
         self.siemplify = siemplify
 
     def add_to_case(self, case_id, alert_id, entity, entity_type="URL", property_value="value2"):
-
         case_id = str(case_id)
         entity = str(entity)
         entity_type = self.entity_types.get(entity_type)
 
         if alert_id is None:
             alert_id = str(uuid.uuid4())
-        
+
         # Property value - is Group-IB feed ID to use it in Approve or Reject actions
         properties = {"property": property_value}
 
@@ -185,9 +186,5 @@ class CaseProcessor:
             # Group-IB ID
             alert_identifier=alert_id,
             # Environment
-            environment=None
+            environment=None,
         )
-        
-
-
-

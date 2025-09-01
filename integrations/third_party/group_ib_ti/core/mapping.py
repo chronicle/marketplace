@@ -1,14 +1,12 @@
-
-
 mapping_config = {
     "apt/threat": {
         "mitre_matrix": {
             "__description": "*MITRE Matrix Adversarial Tactics, Techniques & Common Knowledge",
-            "mitreMatrix": "mitreMatrix"
+            "mitreMatrix": "mitreMatrix",
         },
         "threat_actor": {
             "__description": "*Threat Actor short information",
-            "name": "threatActor.name"
+            "name": "threatActor.name",
         },
         "threat_info": {
             "__description": "*Threat Actor information from threat Report",
@@ -18,33 +16,30 @@ mapping_config = {
             "language": "langs",
             "region": "regions",
             "sector": "sectors",
-            "source": "sources"
+            "source": "sources",
         },
         "malware__list": {
             "__description": "*Malware short information",
-            "name": "malwareList.name"
+            "name": "malwareList.name",
         },
-        "victim_company": {
-            "__description": "*Targeted companies",
-            "name": "targetedCompany"
-        },
+        "victim_company": {"__description": "*Targeted companies", "name": "targetedCompany"},
         "file_ioc": {
             "__description": "*IoC File",
             "md5": "indicators.params.hashes.md5",
             "sha1": "indicators.params.hashes.sha1",
             "sha256": "indicators.params.hashes.sha256",
             "filename": "indicators.params.name",
-            "size-in-bytes": "indicators.params.size"
+            "size-in-bytes": "indicators.params.size",
         },
         "network_profile": {
             "__description": "*IoC Network",
             "domain": "indicators.params.domain",
             "url": "indicators.params.url",
-            "ip-address": "indicators.params.ipv4"
+            "ip-address": "indicators.params.ipv4",
         },
         "vulnerability": {
             "__description": "*List of CVEs connected to this threat",
-            "id": "cveList.name"
+            "id": "cveList.name",
         },
         "metadata": {
             "__description": "*Feed metadata",
@@ -52,14 +47,14 @@ mapping_config = {
             "portal-link": "portalLink",
             "source": "source",
             "source-url": "",
-            "path-to-file": "path"
+            "path-to-file": "path",
         },
         "evaluation": {
             "__description": "*Evaluation",
             "severity": "evaluation.severity",
             "tlp": "evaluation.tlp",
-            "admiralty_code": "evaluation.admiraltyCode"
-        }
+            "admiralty_code": "evaluation.admiraltyCode",
+        },
     },
     "apt/threat_actor": {
         "threat_actor_info": {
@@ -72,7 +67,7 @@ mapping_config = {
             "alias": "aliases",
             "goal": "goals",
             "language": "langs",
-            "role": "roles"
+            "role": "roles",
         },
         "metadata": {
             "__description": "*Feed metadata",
@@ -80,8 +75,8 @@ mapping_config = {
             "portal-link": "portalLink",
             "source": "source",
             "source-url": "",
-            "path-to-file": "path"
-        }
+            "path-to-file": "path",
+        },
     },
     "attacks/ddos": {
         "c2": {
@@ -92,7 +87,7 @@ mapping_config = {
             "country": "cnc.ipv4.countryName",
             "city": "cnc.ipv4.city",
             "provider": "cnc.ipv4.provider",
-            "platform": "platform"
+            "platform": "platform",
         },
         "ddos": {
             "__description": "*DDOS activity information",
@@ -101,16 +96,13 @@ mapping_config = {
             "dst-port": "port",
             "ip-dst": "target.ipv4.ip",
             "first-seen": "dateBegin",
-            "last-seen": "dateEnd"
+            "last-seen": "dateEnd",
         },
         "threat_actor": {
             "__description": "*Threat Actor short information",
-            "name": "threatActor.name"
+            "name": "threatActor.name",
         },
-        "malware": {
-            "__description": "*Malware short information",
-            "name": "malware.name"
-        },
+        "malware": {"__description": "*Malware short information", "name": "malware.name"},
         "victim_location": {
             "__description": "*The targeted victim information",
             "url": "target.url",
@@ -119,7 +111,7 @@ mapping_config = {
             "country": "target.ipv4.countryName",
             "city": "target.ipv4.city",
             "provider": "target.ipv4.provider",
-            "category": "target.category"
+            "category": "target.category",
         },
         "metadata": {
             "__description": "*Feed metadata",
@@ -127,19 +119,19 @@ mapping_config = {
             "portal-link": "portalLink",
             "source": "source",
             "source-url": "",
-            "path-to-file": "path"
+            "path-to-file": "path",
         },
         "evaluation": {
             "__description": "*Evaluation",
             "severity": "evaluation.severity",
             "tlp": "evaluation.tlp",
-            "admiralty_code": "evaluation.admiraltyCode"
-        }
+            "admiralty_code": "evaluation.admiraltyCode",
+        },
     },
     "attacks/deface": {
         "threat_actor": {
             "__description": "*Threat Actor short information",
-            "name": "threatActor.name"
+            "name": "threatActor.name",
         },
         "victim_location": {
             "__description": "*The targeted victim information",
@@ -149,26 +141,23 @@ mapping_config = {
             "country": "targetIp.countryName",
             "city": "targetIp.city",
             "provider": "targetIp.provider",
-            "category": ""
+            "category": "",
         },
-        "contacts": {
-            "__description": "*Contacts information",
-            "contact": "contacts"
-        },
+        "contacts": {"__description": "*Contacts information", "contact": "contacts"},
         "metadata": {
             "__description": "*Feed metadata",
             "object-id": "id",
             "portal-link": "portalLink",
             "source": "source",
             "source-url": "",
-            "path-to-file": "path"
+            "path-to-file": "path",
         },
         "evaluation": {
             "__description": "*Evaluation",
             "severity": "evaluation.severity",
             "tlp": "evaluation.tlp",
-            "admiralty_code": "evaluation.admiraltyCode"
-        }
+            "admiralty_code": "evaluation.admiraltyCode",
+        },
     },
     "attacks/phishing_group": {
         "phishing": {
@@ -176,7 +165,7 @@ mapping_config = {
             "domain": "phishing.phishing_domain.domain",
             "url": "phishing.url",
             "submission-time": "phishing.date.detected",
-            "takedown-time": "phishing.date.blocked"
+            "takedown-time": "phishing.date.blocked",
         },
         "ip": {
             "__description": "*Phishing IP address information",
@@ -184,52 +173,45 @@ mapping_config = {
             "country": "phishing.phishing_ip.country_name",
             "country-code": "phishing.phishing_ip.country_code",
             "city": "phishing.phishing_ip.city",
-            "provider": "phishing.phishing_ip.provider"
+            "provider": "phishing.phishing_ip.provider",
         },
         "threat_actor": {
             "__description": "*Threat Actor short information",
-            "name": "threatActor.name"
+            "name": "threatActor.name",
         },
-        "victim_brand": {
-            "__description": "*Phishing attack target",
-            "name": "brand"
-        },
+        "victim_brand": {"__description": "*Phishing attack target", "name": "brand"},
         "metadata": {
             "__description": "*Feed metadata",
             "object-id": "id",
             "portal-link": "portalLink",
             "source": "source",
             "source-url": "link",
-            "path-to-file": "path"
+            "path-to-file": "path",
         },
         "evaluation": {
             "__description": "*Evaluation",
             "severity": "evaluation.severity",
             "tlp": "evaluation.tlp",
-            "admiralty_code": "evaluation.admiraltyCode"
-        }
+            "admiralty_code": "evaluation.admiraltyCode",
+        },
     },
     "attacks/phishing_kit": {
         "phishing_kit_source": {
             "__description": "*Phishing kit source",
             "url": "downloadedFrom.url",
-            "domain": "downloadedFrom.domain"
+            "domain": "downloadedFrom.domain",
         },
-        "phishing_kit": {
-            "__description": "*Phishing kit",
-            "md5": "hash",
-            "fullpath": "path"
-        },
+        "phishing_kit": {"__description": "*Phishing kit", "md5": "hash", "fullpath": "path"},
         "phishing_kit_email": {
             "__description": "*Emails found in the phishing kit",
-            "to": "emails"
+            "to": "emails",
         },
         "victim_brand": {
             "__description": "*Targeted brand",
             "name": "targetBrand",
             "regions": "targetCountryName",
             "sectors": "targetCategory",
-            "domain": "targetDomain"
+            "domain": "targetDomain",
         },
         "metadata": {
             "__description": "*Feed metadata",
@@ -237,14 +219,14 @@ mapping_config = {
             "portal-link": "portalLink",
             "source": "source",
             "source-url": "",
-            "path-to-file": "path"
+            "path-to-file": "path",
         },
         "evaluation": {
             "__description": "*Evaluation",
             "severity": "evaluation.severity",
             "tlp": "evaluation.tlp",
-            "admiralty_code": "evaluation.admiraltyCode"
-        }
+            "admiralty_code": "evaluation.admiraltyCode",
+        },
     },
     "compromised/access": {
         "c2": {
@@ -255,7 +237,7 @@ mapping_config = {
             "country": "cnc.ipv4.countryName",
             "city": "cnc.ipv4.city",
             "provider": "cnc.ipv4.provider",
-            "platform": "platform"
+            "platform": "platform",
         },
         "ip_address_cnc": {
             "__description": "*Source IP address",
@@ -265,12 +247,9 @@ mapping_config = {
             "city": "cnc.ipv4.city",
             "asn": "cnc.ipv4.asn",
             "first-seen": "dateCompromised",
-            "last-seen": "dateDetected"
+            "last-seen": "dateDetected",
         },
-        "malware": {
-            "__description": "*Malware short information",
-            "name": "malware.name"
-        },
+        "malware": {"__description": "*Malware short information", "name": "malware.name"},
         "victim_location": {
             "__description": "*The targeted victim information",
             "url": "target.url",
@@ -279,7 +258,7 @@ mapping_config = {
             "country": "target.ipv4.countryName",
             "city": "target.ipv4.city",
             "provider": "target.ipv4.provider",
-            "category": "target.category"
+            "category": "target.category",
         },
         "metadata": {
             "__description": "*Feed metadata",
@@ -287,14 +266,14 @@ mapping_config = {
             "portal-link": "portalLink",
             "source": "source",
             "source-url": "",
-            "path-to-file": "path"
+            "path-to-file": "path",
         },
         "evaluation": {
             "__description": "*Evaluation",
             "severity": "evaluation.severity",
             "tlp": "evaluation.tlp",
-            "admiralty_code": "evaluation.admiraltyCode"
-        }
+            "admiralty_code": "evaluation.admiraltyCode",
+        },
     },
     "compromised/account_group": {
         "c2": {
@@ -305,29 +284,26 @@ mapping_config = {
             "country": "cnc.ipv4.countryName",
             "city": "cnc.ipv4.city",
             "provider": "cnc.ipv4.provider",
-            "platform": "platform"
+            "platform": "platform",
         },
         "threat_actor": {
             "__description": "*Threat Actor short information",
-            "name": "threatActor.name"
+            "name": "threatActor.name",
         },
-        "malware": {
-            "__description": "*Malware short information",
-            "name": "malware.name"
-        },
+        "malware": {"__description": "*Malware short information", "name": "malware.name"},
         "account": {
             "__description": "*Compromised account information",
             "service-domain": "service.domain",
             "service-url": "service.url",
             "username": "login",
-            "password": "password"
+            "password": "password",
         },
         "person": {
             "__description": "*Personal information",
             "address": "person.address",
             "full-name": "person.name",
             "e-mail": "person.email",
-            "phone-number": "person.phone"
+            "phone-number": "person.phone",
         },
         "victim_location": {
             "__description": "*The targeted victim information",
@@ -337,7 +313,7 @@ mapping_config = {
             "country": "client.ipv4.countryName",
             "city": "client.ipv4.city",
             "provider": "client.ipv4.provider",
-            "category": "client.category"
+            "category": "client.category",
         },
         "metadata": {
             "__description": "*Feed metadata",
@@ -345,14 +321,14 @@ mapping_config = {
             "portal-link": "portalLink",
             "source": "source",
             "source-url": "",
-            "path-to-file": "path"
+            "path-to-file": "path",
         },
         "evaluation": {
             "__description": "*Evaluation",
             "severity": "evaluation.severity",
             "tlp": "evaluation.tlp",
-            "admiralty_code": "evaluation.admiraltyCode"
-        }
+            "admiralty_code": "evaluation.admiraltyCode",
+        },
     },
     "compromised/bank_card_group": {
         "c2": {
@@ -363,16 +339,13 @@ mapping_config = {
             "country": "cnc.ipv4.countryName",
             "city": "cnc.ipv4.city",
             "provider": "cnc.ipv4.provider",
-            "platform": "platform"
+            "platform": "platform",
         },
         "threat_actor": {
             "__description": "*Threat Actor short information",
-            "name": "threatActor.name"
+            "name": "threatActor.name",
         },
-        "malware": {
-            "__description": "*Malware short information",
-            "name": "malware.name"
-        },
+        "malware": {"__description": "*Malware short information", "name": "malware.name"},
         "ip_address__client": {
             "__description": "*Source IP address",
             "ip-src": "client.ipv4.ip",
@@ -381,14 +354,14 @@ mapping_config = {
             "city": "client.ipv4.city",
             "asn": "client.ipv4.asn",
             "first-seen": "dateFirstSeen",
-            "last-seen": "dateDetected"
+            "last-seen": "dateDetected",
         },
         "person__owner": {
             "__description": "*Personal information",
             "address": "owner.address",
             "full-name": "owner.name",
             "e-mail": "owner.email",
-            "phone-number": "owner.phone"
+            "phone-number": "owner.phone",
         },
         "credit_card": {
             "__description": "*Compromised card",
@@ -399,7 +372,7 @@ mapping_config = {
             "expiration-dt": "events.cardInfo.validThruDate",
             "bank_name": "cardInfo.issuer.issuer",
             "payment-system": "cardInfo.system",
-            "type": "cardInfo.type"
+            "type": "cardInfo.type",
         },
         "metadata": {
             "__description": "*Feed metadata",
@@ -407,14 +380,14 @@ mapping_config = {
             "portal-link": "portalLink",
             "source": "source",
             "source-url": "",
-            "path-to-file": "path"
+            "path-to-file": "path",
         },
         "evaluation": {
             "__description": "*Evaluation",
             "severity": "evaluation.severity",
             "tlp": "evaluation.tlp",
-            "admiralty_code": "evaluation.admiraltyCode"
-        }
+            "admiralty_code": "evaluation.admiraltyCode",
+        },
     },
     "compromised/discord": {
         "chat__discord": {
@@ -424,14 +397,14 @@ mapping_config = {
             "chat-id": "channel.id",
             "tittle": "",
             "description": "channel.description",
-            "message": "text"
+            "message": "text",
         },
         "chat_user__discord": {
             "__description": "*Compromised chat user",
             "user-id": "author.id",
             "username": "author.name",
             "first-name": "",
-            "last-name": ""
+            "last-name": "",
         },
         "metadata": {
             "__description": "*Feed metadata",
@@ -439,8 +412,8 @@ mapping_config = {
             "portal-link": "portalLink",
             "source": "source",
             "source-url": "",
-            "path-to-file": "path"
-        }
+            "path-to-file": "path",
+        },
     },
     "compromised/masked_card": {
         "c2": {
@@ -451,16 +424,13 @@ mapping_config = {
             "country": "cnc.ipv4.countryName",
             "city": "cnc.ipv4.city",
             "provider": "cnc.ipv4.provider",
-            "platform": "platform"
+            "platform": "platform",
         },
         "threat_actor": {
             "__description": "*Threat Actor short information",
-            "name": "threatActor.name"
+            "name": "threatActor.name",
         },
-        "malware": {
-            "__description": "*Malware short information",
-            "name": "malware.name"
-        },
+        "malware": {"__description": "*Malware short information", "name": "malware.name"},
         "ip_address__client": {
             "__description": "*Source IP address",
             "ip-src": "client.ipv4.ip",
@@ -469,14 +439,14 @@ mapping_config = {
             "city": "client.ipv4.city",
             "asn": "client.ipv4.asn",
             "first-seen": "dateFirstSeen",
-            "last-seen": "dateDetected"
+            "last-seen": "dateDetected",
         },
         "person__owner": {
             "__description": "*Personal information",
             "address": "owner.address",
             "full-name": "owner.name",
             "e-mail": "owner.email",
-            "phone-number": "owner.phone"
+            "phone-number": "owner.phone",
         },
         "credit_card": {
             "__description": "*Compromised card",
@@ -487,7 +457,7 @@ mapping_config = {
             "expiration-dt": "events.cardInfo.validThruDate",
             "bank_name": "cardInfo.issuer.issuer",
             "payment-system": "cardInfo.system",
-            "type": "cardInfo.type"
+            "type": "cardInfo.type",
         },
         "metadata": {
             "__description": "*Feed metadata",
@@ -495,14 +465,14 @@ mapping_config = {
             "portal-link": "portalLink",
             "source": "source",
             "source-url": "",
-            "path-to-file": "path"
+            "path-to-file": "path",
         },
         "evaluation": {
             "__description": "*Evaluation",
             "severity": "evaluation.severity",
             "tlp": "evaluation.tlp",
-            "admiralty_code": "evaluation.admiraltyCode"
-        }
+            "admiralty_code": "evaluation.admiraltyCode",
+        },
     },
     "compromised/messenger": {
         "chat__telegram": {
@@ -512,14 +482,14 @@ mapping_config = {
             "chat-id": "chatStat.id",
             "tittle": "chatStat.title",
             "description": "",
-            "message": "message"
+            "message": "message",
         },
         "chat_user__telegram": {
             "__description": "*Compromised chat user",
             "user-id": "author.id",
             "username": "author.userName",
             "first-name": "author.firstName",
-            "last-name": "author.lastName"
+            "last-name": "author.lastName",
         },
         "metadata": {
             "__description": "*Feed metadata",
@@ -527,32 +497,28 @@ mapping_config = {
             "portal-link": "portalLink",
             "source": "source",
             "source-url": "",
-            "path-to-file": "path"
-        }
+            "path-to-file": "path",
+        },
     },
     "compromised/spd": {
         "threat_actor": {
             "__description": "*Threat Actor short information",
             "name": "threatActor.name",
-        
         },
-        "malware": {
-            "__description": "*Malware short information",
-            "name": "malware.name"
-        },
+        "malware": {"__description": "*Malware short information", "name": "malware.name"},
         "payment_details": {
             "__description": "*Suspicious payment method information",
             "type": "type",
             "owner_name": "ownerName",
             "illegal_score": "illegalScore",
-            "account": "value.value"
+            "account": "value.value",
         },
         "person": {
             "__description": "*Personal information",
             "address": "person.address",
             "full-name": "person.name",
             "e-mail": "person.email",
-            "phone-number": "person.phone"
+            "phone-number": "person.phone",
         },
         "metadata": {
             "__description": "*Feed metadata",
@@ -560,8 +526,7 @@ mapping_config = {
             "source_name": "sources.name",
             "source_type": "sources.type",
             "tags": "tags",
-            "country": "country"
-
+            "country": "country",
         },
         "evaluation": {
             "__description": "*Evaluation",
@@ -569,21 +534,21 @@ mapping_config = {
             "tlp": "evaluation.tlp",
             "admiralty_code": "evaluation.admiraltyCode",
             "credibility": "evaluation.credibility",
-            "reliability": "evaluation.reliability"
-        }
+            "reliability": "evaluation.reliability",
+        },
     },
     "hi/open_threats": {
         "threat_actor__list": {
             "__description": "*Threat Actor short information",
-            "name": "threatActors.name"
+            "name": "threatActors.name",
         },
         "malware__list": {
             "__description": "*Malware short information",
-            "name": "data.malware.name"
+            "name": "data.malware.name",
         },
         "vulnerability": {
             "__description": "*List of CVEs connected to this article",
-            "id": "data.cve.id"
+            "id": "data.cve.id",
         },
         "file_ioc": {
             "__description": "*IoC File",
@@ -591,28 +556,25 @@ mapping_config = {
             "sha1": "data.files.hashes.sha1",
             "sha256": "data.files.hashes.sha256",
             "filename": "data.files.name",
-            "size-in-bytes": "data.files.size"
+            "size-in-bytes": "data.files.size",
         },
-        "emails": {
-            "__description": "*Emails found in the article",
-            "to": "data.emails"
-        },
+        "emails": {"__description": "*Emails found in the article", "to": "data.emails"},
         "ip": {
             "__description": "*IP addresses found in the article",
             "ip-src": "data.ip.ip",
             "port": "data.ip.port",
-            "name": "data.ip.tags"
+            "name": "data.ip.tags",
         },
         "domain": {
             "__description": "*Domains found in the article",
-            "domain": "data.domains.value"
+            "domain": "data.domains.value",
         },
         "chat_user__article": {
             "__description": "*Article author",
             "user-id": "author.userId",
             "username": "author.screenName",
             "first-name": "author.name",
-            "last-name": ""
+            "last-name": "",
         },
         "metadata": {
             "__description": "*Feed metadata",
@@ -620,23 +582,23 @@ mapping_config = {
             "portal-link": "portalLink",
             "source": "source",
             "source-url": "link",
-            "path-to-file": "path"
+            "path-to-file": "path",
         },
         "evaluation": {
             "__description": "*Evaluation",
             "severity": "evaluation.severity",
             "tlp": "evaluation.tlp",
-            "admiralty_code": "evaluation.admiraltyCode"
-        }
+            "admiralty_code": "evaluation.admiraltyCode",
+        },
     },
     "hi/threat": {
         "mitre_matrix": {
             "__description": "*MITRE Matrix Adversarial Tactics, Techniques & Common Knowledge",
-            "mitreMatrix": "mitreMatrix"
+            "mitreMatrix": "mitreMatrix",
         },
         "threat_actor": {
             "__description": "*Threat Actor short information",
-            "name": "threatActor.name"
+            "name": "threatActor.name",
         },
         "threat_info": {
             "__description": "*Threat Actor information from threat Report",
@@ -646,33 +608,30 @@ mapping_config = {
             "language": "langs",
             "region": "regions",
             "sector": "sectors",
-            "source": "sources"
+            "source": "sources",
         },
         "malware__list": {
             "__description": "*Malware short information",
-            "name": "malwareList.name"
+            "name": "malwareList.name",
         },
-        "victim_company": {
-            "__description": "*Targeted companies",
-            "name": "targetedCompany"
-        },
+        "victim_company": {"__description": "*Targeted companies", "name": "targetedCompany"},
         "file_ioc": {
             "__description": "*IoC File",
             "md5": "indicators.params.hashes.md5",
             "sha1": "indicators.params.hashes.sha1",
             "sha256": "indicators.params.hashes.sha256",
             "filename": "indicators.params.name",
-            "size-in-bytes": "indicators.params.size"
+            "size-in-bytes": "indicators.params.size",
         },
         "network_profile": {
             "__description": "*IoC Network",
             "domain": "indicators.params.domain",
             "url": "indicators.params.url",
-            "ip-address": "indicators.params.ipv4"
+            "ip-address": "indicators.params.ipv4",
         },
         "vulnerability": {
             "__description": "*List of CVEs connected to this threat",
-            "id": "cveList.name"
+            "id": "cveList.name",
         },
         "metadata": {
             "__description": "*Feed metadata",
@@ -680,14 +639,14 @@ mapping_config = {
             "portal-link": "portalLink",
             "source": "source",
             "source-url": "",
-            "path-to-file": "path"
+            "path-to-file": "path",
         },
         "evaluation": {
             "__description": "*Evaluation",
             "severity": "evaluation.severity",
             "tlp": "evaluation.tlp",
-            "admiralty_code": "evaluation.admiraltyCode"
-        }
+            "admiralty_code": "evaluation.admiraltyCode",
+        },
     },
     "hi/threat_actor": {
         "threat_actor_info": {
@@ -700,7 +659,7 @@ mapping_config = {
             "alias": "aliases",
             "goal": "goals",
             "language": "langs",
-            "role": "roles"
+            "role": "roles",
         },
         "metadata": {
             "__description": "*Feed metadata",
@@ -708,27 +667,24 @@ mapping_config = {
             "portal-link": "portalLink",
             "source": "source",
             "source-url": "",
-            "path-to-file": "path"
-        }
+            "path-to-file": "path",
+        },
     },
     "ioc/common": {
         "threat_list": {
             "__description": "*Threat Actor short information",
-            "name": "threatList.name"
+            "name": "threatList.name",
         },
         "malware__list": {
             "__description": "*Malware short information",
-            "name": "malwareList.name"
+            "name": "malwareList.name",
         },
-        "file_ioc__hash": {
-            "__description": "*IoC File",
-            "hash": "hash"
-        },
+        "file_ioc__hash": {"__description": "*IoC File", "hash": "hash"},
         "network_profile": {
             "__description": "*IoC Network",
             "domain": "domain",
             "url": "url",
-            "ip-address": "ip"
+            "ip-address": "ip",
         },
         "metadata": {
             "__description": "*Feed metadata",
@@ -736,19 +692,19 @@ mapping_config = {
             "portal-link": "portalLink",
             "source": "source",
             "source-url": "",
-            "path-to-file": "path"
-        }
+            "path-to-file": "path",
+        },
     },
     "malware/cnc": {
         "c2_info": {
             "__description": "*Command and Control Server (C2) short",
             "url": "url",
             "domain": "domain",
-            "platform": "platform"
+            "platform": "platform",
         },
         "threat_actor": {
             "__description": "*Threat Actor short information",
-            "name": "threatActor.name"
+            "name": "threatActor.name",
         },
         "ip": {
             "__description": "*Source IP address",
@@ -758,11 +714,11 @@ mapping_config = {
             "city": "ipv4.city",
             "asn": "ipv4.asn",
             "first-seen": "dateFirstSeen",
-            "last-seen": "dateDetected"
+            "last-seen": "dateDetected",
         },
         "malware__list": {
             "__description": "*Malware short information",
-            "name": "malwareList.name"
+            "name": "malwareList.name",
         },
         "file_ioc": {
             "__description": "*IoC File",
@@ -770,7 +726,7 @@ mapping_config = {
             "sha1": "indicators.params.hashes.sha1",
             "sha256": "indicators.params.hashes.sha256",
             "filename": "indicators.params.name",
-            "size-in-bytes": "indicators.params.size"
+            "size-in-bytes": "indicators.params.size",
         },
         "metadata": {
             "__description": "*Feed metadata",
@@ -778,21 +734,18 @@ mapping_config = {
             "portal-link": "portalLink",
             "source": "source",
             "source-url": "",
-            "path-to-file": "path"
-        }
+            "path-to-file": "path",
+        },
     },
     "malware/config": {
-        "malware": {
-            "__description": "*Malware short information",
-            "name": "malware.name"
-        },
+        "malware": {"__description": "*Malware short information", "name": "malware.name"},
         "file_config": {
             "__description": "*IoC File",
             "md5": "*md5",
             "sha1": "*sha1",
             "sha256": "*sha256",
             "filename": "*name",
-            "size-in-bytes": "*size"
+            "size-in-bytes": "*size",
         },
         "metadata": {
             "__description": "*Feed metadata",
@@ -800,13 +753,13 @@ mapping_config = {
             "portal-link": "portalLink",
             "source": "source",
             "source-url": "",
-            "path-to-file": "path"
-        }
+            "path-to-file": "path",
+        },
     },
     "malware/malware": {
         "mitre_matrix": {
             "__description": "*MITRE Matrix Adversarial Tactics, Techniques & Common Knowledge",
-            "mitreMatrix": "mitreMatrix"
+            "mitreMatrix": "mitreMatrix",
         },
         "report": {
             "__description": "*Malware Report",
@@ -817,11 +770,11 @@ mapping_config = {
             "platform": "platform",
             "language": "langs",
             "category": "category",
-            "malware-alias": "malwareAliasList"
+            "malware-alias": "malwareAliasList",
         },
         "threat_actor__list": {
             "__description": "*Threat Actor short information",
-            "name": "taList.name"
+            "name": "taList.name",
         },
         "signature": {
             "__description": "*Signature",
@@ -829,13 +782,13 @@ mapping_config = {
             "signature": "name",
             "software": "malware.name",
             "text": "content",
-            "date-created": "createdAt"
+            "date-created": "createdAt",
         },
         "yara": {
             "__description": "*Yara rule",
             "yara": "name",
             "yara-rule-name": "sourceName",
-            "context": "content"
+            "context": "content",
         },
         "metadata": {
             "__description": "*Feed metadata",
@@ -843,8 +796,8 @@ mapping_config = {
             "portal-link": "portalLink",
             "source": "source",
             "source-url": "",
-            "path-to-file": "path"
-        }
+            "path-to-file": "path",
+        },
     },
     "malware/signature": {
         "signature": {
@@ -853,7 +806,7 @@ mapping_config = {
             "signature": "name",
             "software": "malware.name",
             "text": "content",
-            "date-created": "createdAt"
+            "date-created": "createdAt",
         },
         "metadata": {
             "__description": "*Feed metadata",
@@ -861,42 +814,39 @@ mapping_config = {
             "portal-link": "portalLink",
             "source": "source",
             "source-url": "",
-            "path-to-file": "path"
-        }
+            "path-to-file": "path",
+        },
     },
     "malware/yara": {
         "yara": {
             "__description": "*Yara rule",
             "yara": "name",
             "yara-rule-name": "sourceName",
-            "context": "content"
+            "context": "content",
         },
-        "malware": {
-            "__description": "*Malware short information",
-            "name": "malware.name"
-        },
+        "malware": {"__description": "*Malware short information", "name": "malware.name"},
         "metadata": {
             "__description": "*Feed metadata",
             "object-id": "id",
             "portal-link": "portalLink",
             "source": "source",
             "source-url": "",
-            "path-to-file": "path"
-        }
+            "path-to-file": "path",
+        },
     },
     "osi/git_repository": {
         "git_leak": {
             "__description": "*Git repository leak information",
             "repository": "name",
             "detection-date": "dateDetected",
-            "match-type": "matchesTypes"
+            "match-type": "matchesTypes",
         },
         "git_leak__revision": {
             "__description": "*GIT repository leak revision information",
             "file": "files.name",
             "hash": "files.revisions.hash",
             "author-name": "files.revisions.info.authorName",
-            "author-email": "files.revisions.info.authorEmail"
+            "author-email": "files.revisions.info.authorEmail",
         },
         "metadata": {
             "__description": "*Feed metadata",
@@ -904,14 +854,14 @@ mapping_config = {
             "portal-link": "portalLink",
             "source": "source",
             "source-url": "",
-            "path-to-file": "path"
+            "path-to-file": "path",
         },
         "evaluation": {
             "__description": "*Evaluation",
             "severity": "evaluation.severity",
             "tlp": "evaluation.tlp",
-            "admiralty_code": "evaluation.admiraltyCode"
-        }
+            "admiralty_code": "evaluation.admiraltyCode",
+        },
     },
     "osi/public_leak": {
         "public_leak__content": {
@@ -923,14 +873,14 @@ mapping_config = {
             "link": "linkList.link",
             "size": "linkList.size",
             "source": "linkList.source",
-            "title": "linkList.title"
+            "title": "linkList.title",
         },
         "public_leak__info": {
             "__description": "*Public leak common information",
             "syntax": "language",
             "hash": "hash",
             "size": "size",
-            "creation-date": "created"
+            "creation-date": "created",
         },
         "metadata": {
             "__description": "*Feed metadata",
@@ -938,14 +888,14 @@ mapping_config = {
             "portal-link": "portalLink",
             "source": "source",
             "source-url": "",
-            "path-to-file": "path"
+            "path-to-file": "path",
         },
         "evaluation": {
             "__description": "*Evaluation",
             "severity": "evaluation.severity",
             "tlp": "evaluation.tlp",
-            "admiralty_code": "evaluation.admiraltyCode"
-        }
+            "admiralty_code": "evaluation.admiraltyCode",
+        },
     },
     "osi/vulnerability": {
         "vulnerability_info": {
@@ -958,19 +908,19 @@ mapping_config = {
             "cvss-score": "extCvss.base",
             "cvss-string": "extCvss.vector",
             "vulnerable-configuration": "cpeTable.string23",
-            "references": "exploitList.href"
+            "references": "exploitList.href",
         },
         "cpe_table": {
             "__description": "*CPE table for vulnerability",
             "type": "cpeTable.type",
             "vendor": "cpeTable.vendor",
             "product": "cpeTable.product",
-            "version": "cpeTable.version"
+            "version": "cpeTable.version",
         },
         "cvssv2": {
             "__description": "*CVSSv2 information",
             "score": "cvss.score",
-            "vector": "cvss.vector"
+            "vector": "cvss.vector",
         },
         "metadata": {
             "__description": "*Feed metadata",
@@ -978,14 +928,14 @@ mapping_config = {
             "portal-link": "portalLink",
             "source": "source",
             "source-url": "",
-            "path-to-file": "path"
+            "path-to-file": "path",
         },
         "evaluation": {
             "__description": "*Evaluation",
             "severity": "evaluation.severity",
             "tlp": "evaluation.tlp",
-            "admiralty_code": "evaluation.admiraltyCode"
-        }
+            "admiralty_code": "evaluation.admiraltyCode",
+        },
     },
     "suspicious_ip/open_proxy": {
         "ip": {
@@ -996,13 +946,13 @@ mapping_config = {
             "city": "ipv4.city",
             "asn": "ipv4.asn",
             "first-seen": "dateFirstSeen",
-            "last-seen": "dateDetected"
+            "last-seen": "dateDetected",
         },
         "proxy_info": {
             "__description": "*Additional information about proxy",
             "anonymous": "anonymous",
             "port": "port",
-            "type": "type"
+            "type": "type",
         },
         "metadata": {
             "__description": "*Feed metadata",
@@ -1010,14 +960,14 @@ mapping_config = {
             "portal-link": "portalLink",
             "source": "source",
             "source-url": "",
-            "path-to-file": "path"
+            "path-to-file": "path",
         },
         "evaluation": {
             "__description": "*Evaluation",
             "severity": "evaluation.severity",
             "tlp": "evaluation.tlp",
-            "admiralty_code": "evaluation.admiraltyCode"
-        }
+            "admiralty_code": "evaluation.admiraltyCode",
+        },
     },
     "suspicious_ip/scanner": {
         "ip": {
@@ -1028,7 +978,7 @@ mapping_config = {
             "city": "ipv4.city",
             "asn": "ipv4.asn",
             "first-seen": "dateFirstSeen",
-            "last-seen": "dateDetected"
+            "last-seen": "dateDetected",
         },
         "metadata": {
             "__description": "*Feed metadata",
@@ -1036,14 +986,14 @@ mapping_config = {
             "portal-link": "portalLink",
             "source": "source",
             "source-url": "",
-            "path-to-file": "path"
+            "path-to-file": "path",
         },
         "evaluation": {
             "__description": "*Evaluation",
             "severity": "evaluation.severity",
             "tlp": "evaluation.tlp",
-            "admiralty_code": "evaluation.admiraltyCode"
-        }
+            "admiralty_code": "evaluation.admiraltyCode",
+        },
     },
     "suspicious_ip/socks_proxy": {
         "ip": {
@@ -1054,7 +1004,7 @@ mapping_config = {
             "city": "ipv4.city",
             "asn": "ipv4.asn",
             "first-seen": "dateFirstSeen",
-            "last-seen": "dateDetected"
+            "last-seen": "dateDetected",
         },
         "metadata": {
             "__description": "*Feed metadata",
@@ -1062,14 +1012,14 @@ mapping_config = {
             "portal-link": "portalLink",
             "source": "source",
             "source-url": "",
-            "path-to-file": "path"
+            "path-to-file": "path",
         },
         "evaluation": {
             "__description": "*Evaluation",
             "severity": "evaluation.severity",
             "tlp": "evaluation.tlp",
-            "admiralty_code": "evaluation.admiraltyCode"
-        }
+            "admiralty_code": "evaluation.admiraltyCode",
+        },
     },
     "suspicious_ip/tor_node": {
         "ip": {
@@ -1080,7 +1030,7 @@ mapping_config = {
             "city": "ipv4.city",
             "asn": "ipv4.asn",
             "first-seen": "dateFirstSeen",
-            "last-seen": "dateDetected"
+            "last-seen": "dateDetected",
         },
         "metadata": {
             "__description": "*Feed metadata",
@@ -1088,14 +1038,14 @@ mapping_config = {
             "portal-link": "portalLink",
             "source": "source",
             "source-url": "",
-            "path-to-file": "path"
+            "path-to-file": "path",
         },
         "evaluation": {
             "__description": "*Evaluation",
             "severity": "evaluation.severity",
             "tlp": "evaluation.tlp",
-            "admiralty_code": "evaluation.admiraltyCode"
-        }
+            "admiralty_code": "evaluation.admiraltyCode",
+        },
     },
     "suspicious_ip/vpn": {
         "ip": {
@@ -1106,7 +1056,7 @@ mapping_config = {
             "city": "ipv4.city",
             "asn": "ipv4.asn",
             "first-seen": "dateFirstSeen",
-            "last-seen": "dateDetected"
+            "last-seen": "dateDetected",
         },
         "metadata": {
             "__description": "*Feed metadata",
@@ -1114,13 +1064,13 @@ mapping_config = {
             "portal-link": "portalLink",
             "source": "source",
             "source-url": "",
-            "path-to-file": "path"
+            "path-to-file": "path",
         },
         "evaluation": {
             "__description": "*Evaluation",
             "severity": "evaluation.severity",
             "tlp": "evaluation.tlp",
-            "admiralty_code": "evaluation.admiraltyCode"
-        }
-    }
+            "admiralty_code": "evaluation.admiraltyCode",
+        },
+    },
 }

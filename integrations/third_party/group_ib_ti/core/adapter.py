@@ -2,19 +2,23 @@
 """
 Copyright (c) 2025 - present by Group-IB
 """
-import time
+
 import logging
+import time
 from datetime import datetime, timedelta
-from typing import Any
 
+from adapter_utils import ConfigParser, FileHandler, Validator
+from cyberintegrations import DRPPoller, TIPoller
 from cyberintegrations.exception import (
-    ConnectionException, ParserException, InputException,
-    FileTypeError, EmptyCredsError, MissingKeyError,
-    BadProtocolError, EmptyDataError
+    BadProtocolError,
+    ConnectionException,
+    EmptyCredsError,
+    EmptyDataError,
+    FileTypeError,
+    InputException,
+    MissingKeyError,
+    ParserException,
 )
-from cyberintegrations import TIPoller, DRPPoller
-from adapter_utils import  Validator, ConfigParser, FileHandler
-
 
 logger = logging.getLogger(__name__)
 
@@ -23,10 +27,13 @@ class PlaybookAdapter:
     """
     Group-IB TI Playbook Adapter
     """
+
     _mapping_config: dict = None  # JSON
     _poller: TIPoller = None
 
-    def __init__(self, gib_creds_dict, proxies, config_obj, collections, mapping_config, api_url=None):
+    def __init__(
+        self, gib_creds_dict, proxies, config_obj, collections, mapping_config, api_url=None
+    ):
         # type: (dict, dict, Any, list, dict, str) -> None
         self._gib_creds_dict = gib_creds_dict
         self._proxies = proxies
@@ -39,7 +46,6 @@ class PlaybookAdapter:
         self._cp = ConfigParser()
 
     def _set_up_poller(self, poller_obj):
-
         # Validate configs
         Validator.validate_keys(self._mapping_config)
 
@@ -51,12 +57,11 @@ class PlaybookAdapter:
             _mr_poller = poller_obj(
                 username=_gib_creds.USERNAME.value,
                 api_key=_gib_creds.API_KEY.value,
-                api_url=self._api_url
+                api_url=self._api_url,
             )
         else:
             _mr_poller = poller_obj(
-                username=_gib_creds.USERNAME.value,
-                api_key=_gib_creds.API_KEY.value
+                username=_gib_creds.USERNAME.value, api_key=_gib_creds.API_KEY.value
             )
 
         # Add TLS certificate check and proxy settings
@@ -70,16 +75,13 @@ class PlaybookAdapter:
             product_name=self.config.PRODUCT_NAME,
             product_version=self.config.PRODUCT_VERSION,
             integration_name=self.config.INTEGRATION,
-            integration_version=self.config.INTEGRATION_VERSION
+            integration_version=self.config.INTEGRATION_VERSION,
         )
 
         # Set mapping keys for collections
         for col in self.collections:
             keys = self._mapping_config.get(col, None)
-            _mr_poller.set_keys(
-                collection_name=col,
-                keys=keys
-            )
+            _mr_poller.set_keys(collection_name=col, keys=keys)
 
         return _mr_poller
 
@@ -98,6 +100,7 @@ class DRPPlaybookAdapter(PlaybookAdapter):
     """
     Group-IB DRP Playbook Adapter
     """
+
     _mapping_config: dict = None  # JSON
     _poller: DRPPoller = None
 
@@ -111,6 +114,7 @@ class GIBAdapter:
 
     IOC - indicator of compromise (indicator of compromentation)
     """
+
     _enabled_collections: list = None
     _endpoints_config: dict = None  # YAML
     _mapping_config: dict = None  # JSON
@@ -129,7 +133,6 @@ class GIBAdapter:
         self._cp = ConfigParser()
 
     def _set_up_poller(self):
-
         # Read configs before run
         self._endpoints_config = self._fh.read_yaml_config(config=self.config.CONFIG_YML)
         self._mapping_config = self._fh.read_json_config(config=self.config.CONFIG_JSON)
@@ -149,12 +152,11 @@ class GIBAdapter:
             _mr_poller = TIPoller(
                 username=_gib_creds.USERNAME.value,
                 api_key=_gib_creds.API_KEY.value,
-                api_url=self._api_url
+                api_url=self._api_url,
             )
         else:
             _mr_poller = TIPoller(
-                username=_gib_creds.USERNAME.value,
-                api_key=_gib_creds.API_KEY.value
+                username=_gib_creds.USERNAME.value, api_key=_gib_creds.API_KEY.value
             )
 
         # Add TLS certificate check and proxy settings
@@ -167,17 +169,16 @@ class GIBAdapter:
             product_name=self.config.PRODUCT_NAME,
             product_version=self.config.PRODUCT_VERSION,
             integration_name=self.config.INTEGRATION,
-            integration_version=self.config.INTEGRATION_VERSION
+            integration_version=self.config.INTEGRATION_VERSION,
         )
 
         return _mr_poller
 
     def _get_collection_date(self, collection):
         # Get collection default date
-        _current_date = self._endpoints_config. \
-            get("collections"). \
-            get(collection). \
-            get("default_date")
+        _current_date = (
+            self._endpoints_config.get("collections").get(collection).get("default_date")
+        )
         if not _current_date:
             _default_date = (datetime.now() - timedelta(days=3)).strftime("%Y-%m-%d")
             _current_date = _default_date
@@ -186,14 +187,15 @@ class GIBAdapter:
 
     def _get_collection_seq_update(self, collection, current_date):
         # Get collection sequence update number
-        _current_seq_update = self._endpoints_config. \
-            get("collections"). \
-            get(collection). \
-            get("seqUpdate", None)
+        _current_seq_update = (
+            self._endpoints_config.get("collections").get(collection).get("seqUpdate", None)
+        )
 
         # Get dict of seqUpdate for all collections
         if _current_seq_update is None:
-            _seq_update_dict = self._poller.get_seq_update_dict(date=current_date, collection=collection)
+            _seq_update_dict = self._poller.get_seq_update_dict(
+                date=current_date, collection=collection
+            )
             _current_seq_update = _seq_update_dict.get(collection, None)
 
         return _current_seq_update
@@ -203,22 +205,14 @@ class GIBAdapter:
 
     def _set_collection_keys(self, collection, keys):
         # Set finder keys
-        self._poller.set_keys(
-            collection_name=collection,
-            keys=keys
-        )
+        self._poller.set_keys(collection_name=collection, keys=keys)
 
     def _save_collection_info(self, collection, seq_update, date):
         # Save sequence update number and default date to config
-        prepared_data = {
-            "seqUpdate": seq_update,
-            "default_date": date
-        }
+        prepared_data = {"seqUpdate": seq_update, "default_date": date}
 
         self._fh.save_collection_info(
-            config=self.config.CONFIG_YML,
-            collection=collection,
-            **prepared_data
+            config=self.config.CONFIG_YML, collection=collection, **prepared_data
         )
 
     def _create_generator(self, collection, **kwargs):
@@ -232,9 +226,14 @@ class GIBAdapter:
             # Create Search Generator or Update Generator based on seqUpdate
             if current_seq_update is None:
                 logger.info("{}  {}  {}".format(current_date, collection, current_seq_update))
-                logger.exception("There is no data for last three days. Please increase {} default date!".format(
-                    collection))
-                logger.exception("Also check please access to this collections at GIB Treat Intelligence!")
+                logger.exception(
+                    "There is no data for last three days. Please increase {} default date!".format(
+                        collection
+                    )
+                )
+                logger.exception(
+                    "Also check please access to this collections at GIB Treat Intelligence!"
+                )
                 return None
                 # generator = self._poller.create_search_generator(
                 #     collection_name=slashed_collection_name)
@@ -242,9 +241,7 @@ class GIBAdapter:
                 logger.info("{}  {}  {}".format(current_date, collection, current_seq_update))
 
                 generator = self._poller.create_update_generator(
-                    collection_name=collection,
-                    sequpdate=current_seq_update,
-                    **kwargs
+                    collection_name=collection, sequpdate=current_seq_update, **kwargs
                 )
 
                 self._save_collection_info(collection, current_seq_update, current_date)
@@ -261,12 +258,12 @@ class GIBAdapter:
             logger.exception("Parsing error.")
             return None
         except (
-                FileTypeError,
-                EmptyCredsError,
-                MissingKeyError,
-                BadProtocolError,
-                EmptyDataError,
-                InputException
+            FileTypeError,
+            EmptyCredsError,
+            MissingKeyError,
+            BadProtocolError,
+            EmptyDataError,
+            InputException,
         ):
             logger.exception("Flaskyti error.")
             return None
@@ -278,18 +275,12 @@ class GIBAdapter:
         self._set_poller()
         generator_list = list()
 
-        logger.info('──── GATHER INFO')
+        logger.info("──── GATHER INFO")
         try:
             for slashed_collection_name in self._enabled_collections:
                 time.sleep(sleep_amount)
-                generator = self._create_generator(
-                    slashed_collection_name,
-                    **kwargs
-                )
-                generator_list.append((
-                    slashed_collection_name,
-                    generator
-                ))
+                generator = self._create_generator(slashed_collection_name, **kwargs)
+                generator_list.append((slashed_collection_name, generator))
 
         except Exception:
             logger.exception("Error while creating generators")
@@ -297,7 +288,7 @@ class GIBAdapter:
             if self._poller:
                 self._poller.close_session()
 
-        logger.info('──── GENERATOR CREATED')
+        logger.info("──── GENERATOR CREATED")
         return generator_list
 
     def send_request(self, endpoint, params, decode=True, **kwargs):
@@ -305,7 +296,6 @@ class GIBAdapter:
 
 
 class DRPAdapter(GIBAdapter):
-
     def __int__(self, gib_creds_dict, proxies, config_obj, api_url=None):
         super(DRPAdapter, self).__init__(gib_creds_dict, proxies, config_obj, api_url=api_url)
 
@@ -313,21 +303,15 @@ class DRPAdapter(GIBAdapter):
         self._set_poller()
         generator_list = list()
 
-        logger.info('──── GATHER INFO')
+        logger.info("──── GATHER INFO")
         try:
             for slashed_collection_name in self._enabled_collections:
                 if slashed_collection_name != "violation/list":
                     continue
 
                 time.sleep(sleep_amount)
-                generator = self._create_generator(
-                    slashed_collection_name,
-                    **kwargs
-                )
-                generator_list.append((
-                    slashed_collection_name,
-                    generator
-                ))
+                generator = self._create_generator(slashed_collection_name, **kwargs)
+                generator_list.append((slashed_collection_name, generator))
 
         except Exception:
             logger.exception("Error while creating generators")
@@ -335,6 +319,5 @@ class DRPAdapter(GIBAdapter):
             if self._poller:
                 self._poller.close_session()
 
-        logger.info('──── GENERATOR CREATED')
+        logger.info("──── GENERATOR CREATED")
         return generator_list
-

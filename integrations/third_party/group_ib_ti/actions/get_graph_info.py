@@ -1,11 +1,10 @@
 import time
 
-from SiemplifyAction import SiemplifyAction
-from SiemplifyUtils import unix_now, convert_unixtime_to_datetime, output_handler
-from ScriptResult import EXECUTION_STATE_COMPLETED, EXECUTION_STATE_FAILED, EXECUTION_STATE_TIMEDOUT
-
 # Import Managers
 from config import Config
+from ScriptResult import EXECUTION_STATE_COMPLETED
+from SiemplifyAction import SiemplifyAction
+from SiemplifyUtils import output_handler
 from utils_manager import EntityValidator, GIBConnector
 
 ev = EntityValidator()
@@ -22,12 +21,14 @@ def main():
     # Get poller
     poller = GIBConnector(siemplify).init_action_poller()
 
-    siemplify.LOGGER.info('──── GATHER ENTITIES')
+    siemplify.LOGGER.info("──── GATHER ENTITIES")
 
     # Gather received entities and detect their type return [(entity.identifier, type), ...]
-    received_entities = [ev.get_entity_type(entity.identifier) for entity in siemplify.target_entities]
+    received_entities = [
+        ev.get_entity_type(entity.identifier) for entity in siemplify.target_entities
+    ]
 
-    siemplify.LOGGER.info('──── PARSE DATA')
+    siemplify.LOGGER.info("──── PARSE DATA")
 
     # Create result holder
     result_json = {}
@@ -37,7 +38,6 @@ def main():
 
     # Gather data
     for _entity, _entity_type in received_entities:
-
         siemplify.LOGGER.info("entity: {}, type: {}".format(_entity, _entity_type))
 
         if _entity:
@@ -46,7 +46,9 @@ def main():
             #     _entity_type = "domain"
 
             if _entity_type not in allowed_list:
-                siemplify.LOGGER.info("type: {} - is not allowed, skipping {}".format(_entity_type, _entity))
+                siemplify.LOGGER.info(
+                    "type: {} - is not allowed, skipping {}".format(_entity_type, _entity)
+                )
                 continue
 
             # Data storage
@@ -68,14 +70,22 @@ def main():
     # Add result to Google Chronicle base class
     siemplify.result.add_result_json(result_json)
 
-    siemplify.LOGGER.info('──── END THE TASK')
+    siemplify.LOGGER.info("──── END THE TASK")
 
     # Prepare output message
-    output_message = "output message : All is done"  # human-readable message, showed in UI as the action result
+    output_message = (
+        "output message : All is done"  # human-readable message, showed in UI as the action result
+    )
     result_value = True  # Set a simple result value, used for playbook if\else and placeholders.
-    status = EXECUTION_STATE_COMPLETED  # used to flag back to siemplify system, the action final status
+    status = (
+        EXECUTION_STATE_COMPLETED  # used to flag back to siemplify system, the action final status
+    )
 
-    siemplify.LOGGER.info("\n  status: {}\n  result_value: {}\n  output_message: {}".format(status, result_value, output_message))
+    siemplify.LOGGER.info(
+        "\n  status: {}\n  result_value: {}\n  output_message: {}".format(
+            status, result_value, output_message
+        )
+    )
 
     # End the playbook
     siemplify.end(output_message, result_value=result_value, execution_state=status)

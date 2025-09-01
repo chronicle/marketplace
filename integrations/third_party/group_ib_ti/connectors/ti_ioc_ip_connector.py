@@ -1,16 +1,14 @@
-import uuid
 import time
+import uuid
 
-from SiemplifyConnectors import SiemplifyConnectorExecution
-from SiemplifyConnectorsDataModel import AlertInfo
-from SiemplifyUtils import output_handler, unix_now, convert_string_to_datetime
-from ScriptResult import EXECUTION_STATE_COMPLETED, EXECUTION_STATE_FAILED, EXECUTION_STATE_TIMEDOUT
-
-from TIPCommon.extraction import extract_connector_param
 from adapter import PlaybookAdapter
 
 # Import Managers
 from config import Config
+from SiemplifyConnectors import SiemplifyConnectorExecution
+from SiemplifyConnectorsDataModel import AlertInfo
+from SiemplifyUtils import output_handler, unix_now
+from TIPCommon.extraction import extract_connector_param
 from utils_manager import GIBConnector
 
 
@@ -25,7 +23,9 @@ def main():
     # Get basic alert configuration
     alert_name = extract_connector_param(siemplify, param_name="Case name", print_value=True)
     alert_type = extract_connector_param(siemplify, param_name="Case type", print_value=True)
-    alert_severity = extract_connector_param(siemplify, param_name="Case severity", print_value=True)
+    alert_severity = extract_connector_param(
+        siemplify, param_name="Case severity", print_value=True
+    )
     start_date = extract_connector_param(siemplify, param_name="Start date", print_value=True)
 
     # Create alerts holder (The main output of each connector run)
@@ -41,7 +41,7 @@ def main():
             alert_name=alert_name,
             alert_type=alert_type,
             alert_severity=alert_severity,
-            event_start_date=start_date
+            event_start_date=start_date,
         )
 
         if alert_instance:
@@ -59,20 +59,15 @@ def main():
 
 
 def fetch_alert(siemplify, alert_id, alert_name, alert_type, alert_severity, event_start_date):
-    """Returns an alert, which is an aggregation of basic events. (ie: Arcsight's correlation, QRadar's Offense)"""
+    """Returns an alert, which is an aggregation of basic events. (ie:
+    Arcsight's correlation, QRadar's Offense)"""
 
     siemplify.LOGGER.info("──── ALERT PROCESSING {}".format(alert_id), alert_id=alert_id)
 
     # Alert class initialization
     alert_info = AlertInfo()
 
-    severity_map = {
-        "Informative": -1,
-        "Low": 40,
-        "Medium": 60,
-        "High": 80,
-        "Critical": 100
-    }
+    severity_map = {"Informative": -1, "Low": 40, "Medium": 60, "High": 80, "Critical": 100}
 
     # Set Alert attributes
     alert_info.display_id = alert_id
@@ -98,11 +93,12 @@ def fetch_alert(siemplify, alert_id, alert_name, alert_type, alert_severity, eve
         # Extract necessary params from Portal API events
         alert_events = [
             (
-                str(uuid.uuid4()), 
-                _event.get("metadata").get("object-id"), 
-                _event.get("network_profile").get("ip-address")[0]
+                str(uuid.uuid4()),
+                _event.get("metadata").get("object-id"),
+                _event.get("network_profile").get("ip-address")[0],
             )
-            for _event in parsed_portion if _event.get("network_profile", {}).get("ip-address", None)
+            for _event in parsed_portion
+            if _event.get("network_profile", {}).get("ip-address", None)
         ]
 
         if not alert_events:
@@ -132,7 +128,6 @@ def fetch_alert(siemplify, alert_id, alert_name, alert_type, alert_severity, eve
 
 def fetch_event(alert_info, alert_event):
     event_id = alert_event[0]
-    uid = alert_event[1]
     ioc_ip = alert_event[2]
 
     event = {
@@ -142,8 +137,7 @@ def fetch_event(alert_info, alert_event):
         "event_type": "ADDRESS",  # alert_info.rule_generator,
         "device_product": alert_info.device_product,
         "ioc_ip": ioc_ip,
-        "severity": 9
-
+        "severity": 9,
         # "SourceHostName": "DummyHostSrc",
         # "DestinationHostName": "DummyHostDest",
         # "SourceAddress": "10.0.0." + str(randrange(254)),
@@ -156,7 +150,6 @@ def fetch_event(alert_info, alert_event):
 
 
 def gather_events(siemplify, start_date):
-
     # Base collection
     collection = "ioc/common"
 
@@ -165,11 +158,11 @@ def gather_events(siemplify, start_date):
     creds = (
         extract_connector_param(siemplify, param_name="API login", print_value=False),
         extract_connector_param(siemplify, param_name="API key", print_value=False),
-        extract_connector_param(siemplify, param_name="API URL", print_value=False)
+        extract_connector_param(siemplify, param_name="API URL", print_value=False),
     )
     poller = connector.init_action_poller(creds=creds)
 
-    siemplify.LOGGER.info('──── GATHER SEQUPDATE')
+    siemplify.LOGGER.info("──── GATHER SEQUPDATE")
 
     # Extract sequence update number from storage
     fetched_ts = siemplify.fetch_timestamp(datetime_format=False, timezone=False)
@@ -193,24 +186,18 @@ def gather_events(siemplify, start_date):
 
     # Create generator
     generator = poller.create_update_generator(
-        collection_name=collection,
-        sequpdate=init_seq_update
+        collection_name=collection, sequpdate=init_seq_update
     )
 
     # Sleep to keep API active
     time.sleep(1)
 
-    siemplify.LOGGER.info('──── PARSE DATA')
+    siemplify.LOGGER.info("──── PARSE DATA")
 
     # Parse data
     for portion in generator:
         # parsed_portion = portion.raw_dict.get("items")
-        parsed_portion = portion.parse_portion(
-            filter_map=[
-                ("ip", [""])
-            ],
-            check_existence=True
-        )
+        parsed_portion = portion.parse_portion(filter_map=[("ip", [""])], check_existence=True)
 
         # Sleep to keep API active
         time.sleep(1)
@@ -218,7 +205,9 @@ def gather_events(siemplify, start_date):
         siemplify.LOGGER.info(parsed_portion)
 
         # Save sequence update number to the Google Chronicle storage
-        siemplify.save_timestamp(datetime_format=False, timezone=False, new_timestamp=portion.sequpdate)
+        siemplify.save_timestamp(
+            datetime_format=False, timezone=False, new_timestamp=portion.sequpdate
+        )
 
         return parsed_portion
 
@@ -227,4 +216,3 @@ def gather_events(siemplify, start_date):
 
 if __name__ == "__main__":
     main()
-
