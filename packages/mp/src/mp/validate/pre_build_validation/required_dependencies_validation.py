@@ -27,7 +27,7 @@ if TYPE_CHECKING:
 
 
 class RequiredDevDependenciesValidation:
-    name: str = "Required Dependencies"
+    name: str = "Required Dev Dependencies"
 
     @classmethod
     def run(
