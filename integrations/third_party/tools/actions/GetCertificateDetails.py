@@ -15,6 +15,7 @@
 from __future__ import annotations
 
 import pprint
+import ssl
 from collections import namedtuple
 from datetime import datetime
 from socket import socket
@@ -22,7 +23,6 @@ from socket import socket
 import idna
 from cryptography import x509
 from cryptography.x509.oid import NameOID
-from OpenSSL import SSL
 from soar_sdk.ScriptResult import EXECUTION_STATE_COMPLETED
 from soar_sdk.SiemplifyAction import SiemplifyAction
 from soar_sdk.SiemplifyUtils import output_handler
@@ -30,29 +30,45 @@ from soar_sdk.SiemplifyUtils import output_handler
 HostInfo = namedtuple(field_names="cert hostname peername", typename="HostInfo")
 
 
-def get_certificate(hostname, port):
-    hostname_idna = idna.encode(hostname)
+def get_certificate(hostname: str, port: int) -> HostInfo:
+    """Retrieves the SSL certificate from the specified hostname and port.
+
+    Args:
+        hostname (str): The hostname to connect to.
+        port (int): The port to connect to.
+
+    Returns:
+        HostInfo: A named tuple containing the certificate, hostname, and peername.
+    """
+    hostname_idna = idna.encode(hostname).decode("utf-8")
     sock = socket()
+    crypto_cert = None
+    peername = None
 
-    sock.connect((hostname, port))
-    peername = sock.getpeername()
-    ctx = SSL.Context(SSL.TLS_METHOD)
-    ctx.check_hostname = False
-    ctx.verify_mode = SSL.VERIFY_NONE
+    try:
+        ctx = ssl.create_default_context()
+        ctx.minimum_version = ssl.TLSVersion.TLSv1_2
+        sock.connect((hostname, port))
+        peername = sock.getpeername()
+        sock_ssl = ctx.wrap_socket(sock, server_hostname=hostname_idna)
+        cert_binary = sock_ssl.getpeercert(binary_form=True)
+        crypto_cert = x509.load_der_x509_certificate(cert_binary)
 
-    sock_ssl = SSL.Connection(ctx, sock)
-    sock_ssl.set_connect_state()
-    sock_ssl.set_tlsext_host_name(hostname_idna)
-    sock_ssl.do_handshake()
-    cert = sock_ssl.get_peer_certificate()
-    crypto_cert = cert.to_cryptography()
-    sock_ssl.close()
-    sock.close()
+    except (ssl.SSLError, ConnectionRefusedError) as e:
+        pprint.pprint(f"Error connecting or getting certificate for {hostname}:{port} - {e}")
+
+    finally:
+        if 'sock_ssl' in locals():
+            sock_ssl.close()
+        elif 'sock' in locals():
+            sock.close()
 
     return HostInfo(cert=crypto_cert, peername=peername, hostname=hostname)
 
 
 def get_alt_names(cert):
+    if not cert:
+        return None
     try:
         ext = cert.extensions.get_extension_for_class(x509.SubjectAlternativeName)
         return ext.value.get_values_for_type(x509.DNSName)
@@ -61,6 +77,8 @@ def get_alt_names(cert):
 
 
 def get_common_name(cert):
+    if not cert:
+        return None
     try:
         names = cert.subject.get_attributes_for_oid(NameOID.COMMON_NAME)
         return names[0].value
@@ -69,6 +87,8 @@ def get_common_name(cert):
 
 
 def get_issuer(cert):
+    if not cert:
+        return None
     try:
         names = cert.issuer.get_attributes_for_oid(NameOID.COMMON_NAME)
         # cmp = cert.issuer.get_components()
@@ -78,8 +98,15 @@ def get_issuer(cert):
 
 
 def get_json_result(hostinfo):
+    if not hostinfo.cert:
+        return {
+            "hostname": hostinfo.hostname,
+            "ip": hostinfo.peername[0],
+            "error": "No valid certificate found for this host."
+        }
+
     common_name = get_common_name(hostinfo.cert)
-    san = (get_alt_names(hostinfo.cert),)
+    san = get_alt_names(hostinfo.cert)
     issuer = get_issuer(hostinfo.cert)
 
     now = datetime.now()
@@ -87,8 +114,6 @@ def get_json_result(hostinfo):
     days_to_expiration = delta.days
     is_expired = days_to_expiration < 0
     is_self_signed = common_name == issuer
-    date_time = hostinfo.cert.not_valid_before.strftime("%m/%d/%Y")
-
     cert_details = {
         "hostname": hostinfo.hostname,
         "ip": hostinfo.peername[0],
