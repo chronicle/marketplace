@@ -1,0 +1,26 @@
+identifier: CylusOne
+name: CylusOne
+parameters:
+- name: Base URL
+  default_value: https://<Base URL>
+  type: string
+  description: The base URL for the CylusOne Platform.
+  is_mandatory: true
+  integration_identifier: CylusOne
+- name: Cylus API Key
+  default_value: ''
+  type: password
+  description: API key for authenticating to the CylusOne Platform.
+  is_mandatory: true
+  integration_identifier: CylusOne
+- name: Verify SSL
+  default_value: true
+  type: boolean
+  description: Enable to validate SSL certificates for the CylusOne Platform API connections.
+  is_mandatory: true
+  integration_identifier: CylusOne
+categories: ["OT", "IoT", "Rail"]
+image_path: resources/image.png
+svg_logo_path: resources/logo.svg
+is_available_for_community: false
+
