@@ -31,7 +31,7 @@ def main():
     until = siemplify.extract_action_param("Until")
     date_range = siemplify.extract_action_param("Data_Range")
     incident_key = siemplify.extract_action_param("Incident_Key")
-    siemplify.extract_action_param("Sort_By")
+    sort_by = siemplify.extract_action_param("Sort_By")
     urgencies = siemplify.extract_action_param("Urgencies")
 
     service_ids_list = siemplify.extract_action_param("Service_IDS")
@@ -83,7 +83,7 @@ def main():
             filter_params_dic,
             "incident_key",
         )
-        filter_params_dic = add_filter_to_dict(date_range, filter_params_dic, "sort_by")
+        filter_params_dic = add_filter_to_dict(sort_by, filter_params_dic, "sort_by")
         filter_params_dic = add_filter_to_dict(
             urgencies,
             filter_params_dic,
