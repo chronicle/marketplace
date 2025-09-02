@@ -14,9 +14,6 @@
 
 from __future__ import annotations
 
-import pathlib
-import shutil
-import tempfile
 import unittest.mock
 from typing import TYPE_CHECKING
 
@@ -30,8 +27,7 @@ from mp.validate.pre_build_validation.version_bump_validation import (
 )
 
 if TYPE_CHECKING:
-    from collections.abc import Iterator
-
+    import pathlib
 
 PYPROJECT_TOML_TEMPLATE = """[project]
 name = "mock_integration"
@@ -74,19 +70,6 @@ def _setup_test_files(
     toml_path.write_text(new_toml_content, encoding="utf-8")
     rn_path.write_text(new_rn_content, encoding="utf-8")
     return rn_path, toml_path
-
-
-@pytest.fixture
-def temp_integration() -> Iterator[pathlib.Path]:
-    """Create a temporary integration directory with mock files."""
-    with tempfile.TemporaryDirectory() as temp_dir:
-        temp_path = pathlib.Path(temp_dir)
-        test_file_dir = pathlib.Path(__file__).parent
-        mock_path = (
-            test_file_dir.parent.parent / "mock_marketplace" / "third_party" / "mock_integration"
-        )
-        shutil.copytree(mock_path.resolve(), temp_path / "mock_integration")
-        yield temp_path / "mock_integration"
 
 
 class TestVersionBumpValidationFlow:

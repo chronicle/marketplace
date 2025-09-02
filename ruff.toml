@@ -100,6 +100,7 @@ preview = true
     "D",
     "DOC",
     "PLR6301",
+    "PLC1901",
 ]
 "**/integrations/**" = [
     "TID252",
