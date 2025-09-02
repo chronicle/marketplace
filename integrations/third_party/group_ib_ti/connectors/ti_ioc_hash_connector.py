@@ -1,15 +1,16 @@
+from __future__ import annotations
+
 import time
 import uuid
 
-from adapter import PlaybookAdapter
-
-# Import Managers
-from config import Config
-from SiemplifyConnectors import SiemplifyConnectorExecution
-from SiemplifyConnectorsDataModel import AlertInfo
-from SiemplifyUtils import output_handler, unix_now
+from soar_sdk.SiemplifyConnectors import SiemplifyConnectorExecution
+from soar_sdk.SiemplifyConnectorsDataModel import AlertInfo
+from soar_sdk.SiemplifyUtils import output_handler, unix_now
 from TIPCommon.extraction import extract_connector_param
-from utils_manager import GIBConnector
+
+from ..core.adapter import PlaybookAdapter
+from ..core.config import Config
+from ..core.utils_manager import GIBConnector
 
 
 @output_handler

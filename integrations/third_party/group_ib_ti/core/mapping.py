@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 mapping_config = {
     "apt/threat": {
         "mitre_matrix": {

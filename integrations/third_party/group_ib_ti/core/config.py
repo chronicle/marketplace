@@ -1,4 +1,7 @@
-class Config(object):
+from __future__ import annotations
+
+
+class Config:
     # Set application name
     PROVIDER_NAME = "Group-IB TI"
 

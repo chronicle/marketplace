@@ -1,19 +1,17 @@
+from __future__ import annotations
+
 import json
 import os
 from enum import Enum
 
-try:
-    import pyaml
-except Exception:
-    pass
-
+import pyaml
 from cyberintegrations.exception import BadProtocolError, EmptyCredsError, EncryptionError
 from cyberintegrations.utils import Validator as BaseValidator
 
 
 class ConfigParser:
     def get_creds(self, config, key="creds"):
-        # type: (dict, Union[int, str]) -> __get_enum_creds
+        # type: (dict, int | str) -> __get_enum_creds
         """Collect credentials from **YAML config**, filtered by **key**"""
 
         __creds = config.get(key, None)
@@ -67,7 +65,7 @@ class ConfigParser:
 
     @staticmethod
     def get_enabled_collections(config):
-        # type: (dict) -> List[str]
+        # type: (dict) -> list[str]
         """Check **YAML config** by *collection* key and gather enabled endpoints in list"""
         __collections = list()
         for collection in config["collections"].keys():
@@ -77,7 +75,7 @@ class ConfigParser:
 
     @staticmethod
     def get_disabled_collections(config):
-        # type: (dict) -> List[str]
+        # type: (dict) -> list[str]
         """Check **YAML config** by *collection* key and gather enabled endpoints in list"""
         __collections = list()
         for collection in config["collections"].keys():
@@ -131,7 +129,7 @@ class FileHandler:
     #     return self._magic.from_file(file)
 
     def save_collection_info(self, config, collection, source="Adapter", **kwargs):
-        # type: (str, Union[str, List], str, Dict) -> None
+        # type: (str, str | list, str, dict) -> None
         """
         Update collection metadata at YAML config.
 
@@ -180,7 +178,7 @@ class FileHandler:
         self._in_progress = False
 
     def read_yaml_config(self, config):
-        # type: (str) -> Dict[str, dict]
+        # type: (str) -> dict[str, dict]
         """Read **YAML config** data"""
         if not self.is_exist(config):
             raise FileExistsError("File not exist!")
@@ -203,7 +201,7 @@ class FileHandler:
         return _config
 
     def read_json_config(self, config):
-        # type: (str) -> Dict[str, dict]
+        # type: (str) -> dict[str, dict]
         """Read **JSON config** data"""
         if not self.is_exist(config):
             raise FileExistsError("File not exist!")
@@ -282,7 +280,7 @@ class ProxyConfigurator:
         proxy_password=None,
         encrypted_data_handler=None,
     ):
-        # type: (str, str, str, str, str, Any) -> Union[Dict[str, str], None]
+        # type: (str, str, str, str, str, Any) -> dict[str, str] | None
         """
         Method that returns proxies from given arguments. Only HTTP and HTTPS allowed.
 

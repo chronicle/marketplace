@@ -1,12 +1,14 @@
+from __future__ import annotations
+
 import time
 
-# Import Managers
-from config import Config
-from ScriptResult import EXECUTION_STATE_COMPLETED
-from SiemplifyAction import SiemplifyAction
-from SiemplifyUtils import output_handler
+from soar_sdk.ScriptResult import EXECUTION_STATE_COMPLETED
+from soar_sdk.SiemplifyAction import SiemplifyAction
+from soar_sdk.SiemplifyUtils import output_handler
 from TIPCommon.extraction import extract_action_param
-from utils_manager import EntityValidator, GIBConnector
+
+from ..core.config import Config
+from ..core.utils_manager import EntityValidator, GIBConnector
 
 ev = EntityValidator()
 

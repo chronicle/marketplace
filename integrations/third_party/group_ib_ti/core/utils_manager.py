@@ -1,14 +1,15 @@
+from __future__ import annotations
+
 import urllib.parse
 import uuid
 
 import validators
-from adapter import PlaybookAdapter
-
-# Import Managers
-from config import Config
-from mapping import mapping_config
-from SiemplifyDataModel import EntityTypes
+from soar_sdk.SiemplifyDataModel import EntityTypes
 from TIPCommon.extraction import extract_configuration_param
+
+from .adapter import PlaybookAdapter
+from .config import Config
+from .mapping import mapping_config
 
 
 class EntityValidator(object):

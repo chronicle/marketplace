@@ -1,10 +1,11 @@
+from __future__ import annotations
 
-# Import Managers
-from config import Config
-from ScriptResult import EXECUTION_STATE_COMPLETED, EXECUTION_STATE_FAILED
-from SiemplifyAction import SiemplifyAction
-from SiemplifyUtils import output_handler
-from utils_manager import GIBConnector
+from soar_sdk.ScriptResult import EXECUTION_STATE_COMPLETED, EXECUTION_STATE_FAILED
+from soar_sdk.SiemplifyAction import SiemplifyAction
+from soar_sdk.SiemplifyUtils import output_handler
+
+from ..core.config import Config
+from ..core.utils_manager import GIBConnector
 
 
 @output_handler

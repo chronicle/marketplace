@@ -1,13 +1,12 @@
-# -*- encoding: utf-8 -*-
 """
 Copyright (c) 2025 - present by Group-IB
 """
+from __future__ import annotations
 
 import logging
 import time
 from datetime import datetime, timedelta
 
-from adapter_utils import ConfigParser, FileHandler, Validator
 from cyberintegrations import DRPPoller, TIPoller
 from cyberintegrations.exception import (
     BadProtocolError,
@@ -19,6 +18,8 @@ from cyberintegrations.exception import (
     MissingKeyError,
     ParserException,
 )
+
+from .adapter_utils import ConfigParser, FileHandler, Validator
 
 logger = logging.getLogger(__name__)
 
