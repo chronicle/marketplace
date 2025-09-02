@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-from soar_sdk.ScriptResult import EXECUTION_STATE_COMPLETED, EXECUTION_STATE_FAILED
 from soar_sdk.SiemplifyAction import SiemplifyAction
 
 from ..core.constants import INTEGRATION_NAME, SCRIPT_NAME_INCIDENTID
@@ -31,17 +30,14 @@ def main():
         siemplify.result.add_result_json(incident)
         output_message = "Successfully retrieved Incident\n"
         result_value = True
-        status = EXECUTION_STATE_COMPLETED
 
     except PagerDutyException as e:
         output_message = f"No Incident Found {e!s}\n"
         result_value = False
-        status = EXECUTION_STATE_FAILED
 
     except Exception as e:
         output_message = f"There was a problem retrieveing the incident.{e!s}"
         result_value = False
-        status = EXECUTION_STATE_FAILED
 
     siemplify.LOGGER.info("----------------- Main - Finished -----------------")
     siemplify.end(output_message, result_value)

@@ -24,9 +24,7 @@ def main():
         user = pager_duty.get_user_by_email(user_email)
         user_name = user["name"]
         siemplify.result.add_result_json(user)
-        output_message = (
-            f"Successfully retrieved user {user_name} with the email {user_email}\n"
-        )
+        output_message = f"Successfully retrieved user {user_name} with the email {user_email}\n"
         result_value = True
         status = EXECUTION_STATE_COMPLETED
 

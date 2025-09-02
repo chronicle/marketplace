@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-from soar_sdk.ScriptResult import EXECUTION_STATE_COMPLETED, EXECUTION_STATE_FAILED
 from soar_sdk.SiemplifyAction import SiemplifyAction
 
 from ..core.constants import INTEGRATION_NAME, SCRIPT_NAME_LISTINCIDENTS
@@ -23,12 +22,10 @@ def main():
         siemplify.result.add_result_json(incidents)
         output_message = "Successfully retrieved Incidents\n"
         result_value = True
-        status = EXECUTION_STATE_COMPLETED
 
     except Exception as e:
         output_message = f"There was an error to retrieve all incidents.{e!s}"
         result_value = False
-        status = EXECUTION_STATE_FAILED
 
     siemplify.LOGGER.info("----------------- Main - Finished -----------------")
     siemplify.end(output_message, result_value)
