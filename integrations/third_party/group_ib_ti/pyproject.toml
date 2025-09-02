@@ -8,7 +8,7 @@ dependencies = [
     "environmentcommon",
     "pyaml==23.5.8",
     "tipcommon",
-    "validators",
+    "validators==0.35.0",
 ]
 
 [dependency-groups]
@@ -24,4 +24,4 @@ soar-sdk = { git = "https://github.com/chronicle/soar-sdk" }
 tipcommon = { path = "../../../packages/tipcommon/TIPCommon-2.2.10/TIPCommon-2.2.10-py2.py3-none-any.whl" }
 environmentcommon = { path = "../../../packages/envcommon/EnvironmentCommon-1.0.2/EnvironmentCommon-1.0.2-py2.py3-none-any.whl" }
 integration-testing = { path = "../../../packages/integration_testing_whls/integration_testing-2.2.10-py3-none-any.whl" }
-validators = { url = "https://files.pythonhosted.org/packages/95/14/ed0af6865d378cfc3c504aed0d278a890cbefb2f1934bf2dbe92ecf9d6b1/validators-0.20.0.tar.gz" }
+
