@@ -24,7 +24,4 @@ parameters:
     description: 'Base URL for Group-IB TI API '
     is_mandatory: true
     integration_identifier: Group-IB-TI
-categories: []
-svg_logo_path: resources/group_ib_logo.svg
-image_path: resources/Group_IB_cover.png
-is_available_for_community: false
+
