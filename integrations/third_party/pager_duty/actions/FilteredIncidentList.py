@@ -94,13 +94,14 @@ def main():
         siemplify.result.add_result_json(incidents)
         output_message = "Successfully retrieved Incidents\n"
         result_value = "true"
+        status = EXECUTION_STATE_COMPLETED
 
     except Exception as e:
         output_message = f"There was an error retrieving the filtered parameter list.{e!s}"
         result_value = False
 
     siemplify.LOGGER.info("----------------- Main - Finished -----------------")
-    siemplify.end(output_message, result_value)
+    siemplify.end(output_message, result_value, status)
 
 
 if __name__ == "__main__":
