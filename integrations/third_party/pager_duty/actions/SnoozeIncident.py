@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from soar_sdk.ScriptResult import EXECUTION_STATE_COMPLETED, EXECUTION_STATE_FAILED
 from soar_sdk.SiemplifyAction import SiemplifyAction
 
 from ..core.constants import INTEGRATION_NAME, SCRIPT_NAME_LISTUSERS
@@ -25,18 +26,21 @@ def main():
             incident = pager_duty.snooze_incident(email_from, incident_id)
             output_message = "Successfully Created Incident\n"
             result_value = True
+            status = EXECUTION_STATE_COMPLETED
 
         except PagerDutyException as e:
             output_message = f"Incident wasnt snoozed\n {e!s}"
             result_value = False
+            status = EXECUTION_STATE_FAILED
 
     except Exception as e:
         output_message = f"There was a problem finding and snoozing the incident. {e!s}"
         result_value = False
+        status = EXECUTION_STATE_FAILED
 
     siemplify.LOGGER.info("----------------- Main - Finished -----------------")
     siemplify.result.add_result_json(incident)
-    siemplify.end(output_message, result_value)
+    siemplify.end(output_message, result_value, status)
 
 
 if __name__ == "__main__":
