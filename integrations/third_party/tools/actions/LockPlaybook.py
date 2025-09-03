@@ -21,8 +21,8 @@ from soar_sdk.ScriptResult import (
 )
 from soar_sdk.SiemplifyAction import SiemplifyAction
 from soar_sdk.SiemplifyUtils import output_handler
+from TIPCommon.rest.soar_api import get_case_overview_details
 
-GET_CASE_DETAILS = "{0}/external/v1/dynamic-cases/GetCaseDetails/{1}"
 WF_STATUS_INPROGRESS = 1
 WF_STATUS_COMPLETED = 2
 WF_STATUS_FAILED = 3
@@ -34,11 +34,10 @@ WF_STATUS_TERMINATED = 5
 def main():
     siemplify = SiemplifyAction()
     siemplify.script_name = "Lock Playbook"
-    res = siemplify.session.get(
-        GET_CASE_DETAILS.format(siemplify.API_ROOT, siemplify.case_id),
-    )
-    siemplify.validate_siemplify_error(res)
-    case = res.json()
+    case = get_case_overview_details(
+        chronicle_soar=siemplify,
+        case_id=siemplify.case_id,
+    ).to_json()
     current_alert_index = None
     alerts = sorted(
         case["alertCards"],
@@ -46,7 +45,11 @@ def main():
         reverse=True,
     )
     if siemplify.current_alert.identifier == siemplify.case.alerts[-1].identifier:
-        output_message = f"Alert Index: {current_alert_index}. Alert Id: {siemplify.current_alert.identifier}: First alert - continuing playbook."
+        output_message = (
+            f"Alert Index: {current_alert_index}. "
+            f"Alert Id: {siemplify.current_alert.identifier}: First alert - "
+            "continuing playbook."
+        )
         result_value = "true"
         status = EXECUTION_STATE_COMPLETED
     else:
@@ -57,12 +60,16 @@ def main():
                     f"alert id: {siemplify.alert_id} alert index: {current_alert_index}",
                 )
                 break
-        if current_alert_index != None:
+        if current_alert_index is not None:
             if (
                 siemplify.current_alert.identifier
                 == siemplify.case.alerts[-1].identifier
             ):
-                output_message = f"Alert Index: {current_alert_index}. Alert Id: {siemplify.current_alert.identifier}: First alert - continuing playbook."
+                output_message = (
+                    f"Alert Index: {current_alert_index}. Alert Id: "
+                    f"{siemplify.current_alert.identifier}: "
+                    "First alert - continuing playbook."
+                )
                 result_value = "true"
                 status = EXECUTION_STATE_COMPLETED
             elif (
@@ -70,11 +77,18 @@ def main():
                 == WF_STATUS_INPROGRESS
             ):
                 prev_case = alerts[current_alert_index - 1]["identifier"]
-                output_message = f"Alert Index: {current_alert_index}. Alert Id: {siemplify.current_alert.identifier}: Playbook Locked. Waiting for alert # {prev_case} playbook to finish."
+                output_message = (
+                    f"Alert Index: {current_alert_index}. Alert Id: "
+                    f"{siemplify.current_alert.identifier}: Playbook Locked. "
+                    f"Waiting for alert # {prev_case} playbook to finish."
+                )
                 result_value = "false"
                 status = EXECUTION_STATE_INPROGRESS
             else:
-                output_message = f"Alert Index: {current_alert_index}. Alert Id: {siemplify.current_alert.identifier}: Lock Released. "
+                output_message = (
+                    f"Alert Index: {current_alert_index}. Alert Id: "
+                    f"{siemplify.current_alert.identifier}: Lock Released. "
+                )
                 result_value = "true"
                 status = EXECUTION_STATE_COMPLETED
         else:
