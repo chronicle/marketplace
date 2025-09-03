@@ -22,5 +22,3 @@ parameters:
 categories: ["OT", "IoT", "Rail"]
 image_path: resources/image.png
 svg_logo_path: resources/logo.svg
-is_available_for_community: false
-
