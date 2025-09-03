@@ -3,7 +3,7 @@ from __future__ import annotations
 from soar_sdk.ScriptResult import EXECUTION_STATE_COMPLETED, EXECUTION_STATE_FAILED
 from soar_sdk.SiemplifyAction import SiemplifyAction
 
-from ..core.Constants import INTEGRATION_NAME, SCRIPT_NAME_USEREMAIL
+from ..core.constants import INTEGRATION_NAME, SCRIPT_NAME_USEREMAIL
 from ..core.PagerDutyManager import PagerDutyManager
 
 
@@ -24,9 +24,7 @@ def main():
         user = pager_duty.get_user_by_email(user_email)
         user_name = user["name"]
         siemplify.result.add_result_json(user)
-        output_message = (
-            f"Successfully retrieved user {user_name} with the email {user_email}\n"
-        )
+        output_message = f"Successfully retrieved user {user_name} with the email {user_email}\n"
         result_value = True
         status = EXECUTION_STATE_COMPLETED
 

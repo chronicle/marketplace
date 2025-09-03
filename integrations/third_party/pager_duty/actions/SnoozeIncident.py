@@ -3,7 +3,7 @@ from __future__ import annotations
 from soar_sdk.ScriptResult import EXECUTION_STATE_COMPLETED, EXECUTION_STATE_FAILED
 from soar_sdk.SiemplifyAction import SiemplifyAction
 
-from ..core.Constants import INTEGRATION_NAME, SCRIPT_NAME_LISTUSERS
+from ..core.constants import INTEGRATION_NAME, SCRIPT_NAME_LISTUSERS
 from ..core.Exceptions import PagerDutyException
 from ..core.PagerDutyManager import PagerDutyManager
 
@@ -40,7 +40,7 @@ def main():
 
     siemplify.LOGGER.info("----------------- Main - Finished -----------------")
     siemplify.result.add_result_json(incident)
-    siemplify.end(output_message, result_value)
+    siemplify.end(output_message, result_value, status)
 
 
 if __name__ == "__main__":
