@@ -1,0 +1,12 @@
+name: Ping
+description: Test connectivity to the Stairwell API
+script: ping.py
+type: enrichment
+integration_identifier: Stairwell
+timeout_seconds: 600
+parameters: []
+results:
+  - name: JsonResult
+    description: JSON result containing connection status
+    type: json
+    example: "{\"status\": \"success\", \"message\": \"Connection Established\"}"

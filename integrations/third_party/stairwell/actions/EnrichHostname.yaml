@@ -1,0 +1,44 @@
+name: Enrich Hostname
+description: Enrich hostname entities with threat intelligence data from Stairwell
+script: EnrichHostname.py
+type: enrichment
+integration_identifier: Stairwell
+timeout_seconds: 600
+parameters: []
+dynamic_results_metadata:
+  - result_name: JsonResult
+    show_result: true
+    # language=json
+    result_example: |
+      {
+        "lookupARecords": [
+          {
+            "state": "string",
+            "address": "string",
+            "lookupTime": "2025-07-09T15:38:00Z"
+          }
+        ],
+        "lookupAaaaRecords": [
+          {
+            "state": "string",
+            "address": "string",
+            "lookupTime": "2025-07-09T15:38:00Z"
+          }
+        ],
+        "lookupMxRecords": [
+          {
+            "state": "string",
+            "address": "string",
+            "lookupTime": "2025-07-09T15:38:00Z"
+          }
+        ],
+        "opinionsMostRecent": [
+          {
+            "verdict": "string",
+            "environment": "string",
+            "email": "string",
+            "createTime": "2025-07-09T15:38:00Z"
+          }
+        ],
+        "commentsMostRecent": []
+      }
