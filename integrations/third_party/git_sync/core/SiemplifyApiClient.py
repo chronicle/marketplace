@@ -208,9 +208,9 @@ class SiemplifyApiClient:
         self.validate_response(res)
         return res.json()
 
-    def get_integrations_instances(self, env):
+    def get_integrations_instances(self, siemplify, env):
         return get_installed_integrations_of_environment(
-            chronicle_soar=self.siemplify_soar,
+            chronicle_soar=siemplify,
             environment=env,
         )
 
@@ -362,7 +362,7 @@ class SiemplifyApiClient:
     def get_custom_lists(self):
         return get_custom_lists(siemplify)
 
-    def update_custom_list(self, siemplify, tracking_list, tracking_id):
+    def update_custom_list(self, siemplify, tracking_list, tracking_id=0):
         return update_custom_list(siemplify, tracking_list, tracking_id)
 
     def get_logo(self):
@@ -411,10 +411,6 @@ class SiemplifyApiClient:
 
     def update_denylist(self, siemplify, denylist):
         return self.update_blocklist(siemplify, denylist)
-
-        # res = self.session.post("settings/AddOrUpdateModelBlackRecords", json=denylist)
-        # self.validate_response(res)
-        # return res.content
 
     # Version 6.1.17 +
     def get_blocklists(self):

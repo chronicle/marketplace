@@ -44,6 +44,7 @@ if TYPE_CHECKING:
     from soar_sdk.SiemplifyJob import SiemplifyJob
     from soar_sdk.SiemplifyLogger import SiemplifyLogger
     from TIPCommon.types import ChronicleSOAR
+    from TIPCommon.data_models import InstalledIntegrationInstance
 
 
 class MergeConflictError(Exception):
@@ -298,7 +299,7 @@ class GitSyncManager:
                 "Please upgrade the connector.",
             )
             connector.raw_data["isUpdateAvailable"] = True
-        if connector.environment not in self.api.get_environment_names():
+        if connector.environment not in self.api.get_environment_names(self._siemplify):
             self.logger.warn(
                 f"Connector is set to non-existing environment {connector.environment}. "
                 f"Using Default Environment instead",
@@ -337,7 +338,7 @@ class GitSyncManager:
         """
         # Validate all playbook environments exist as environments or environment groups
         environments = (
-            self.api.get_environment_names()
+            self.api.get_environment_names(self._siemplify)
             + self.api.get_environment_group_names()
             + [ALL_ENVIRONMENTS_IDENTIFIER]
         )
@@ -876,7 +877,7 @@ class WorkflowInstaller:
                 self._set_step_parameter_by_name(
                     step,
                     "IntegrationInstance",
-                    instance_id or integration_instances[0].get("identifier"),
+                    instance_id or integration_instances[0].identifier,
                 )
                 self._set_step_parameter_by_name(
                     step,
@@ -897,7 +898,7 @@ class WorkflowInstaller:
                 self._set_step_parameter_by_name(
                     step,
                     "FallbackIntegrationInstance",
-                    fallback_instance_id or integration_instances[0].get("identifier"),
+                    fallback_instance_id or integration_instances[0].identifier,
                 )
             else:
                 self._set_step_parameter_by_name(
@@ -924,7 +925,7 @@ class WorkflowInstaller:
         self,
         integration_name: str,
         environment: str,
-    ) -> list[dict]:
+    ) -> list[InstalledIntegrationInstance]:
         """Find integration instances available for integration per environment
 
         Args:
@@ -937,16 +938,16 @@ class WorkflowInstaller:
         """
         cache_key = f"integration_instances_{environment}"
         if cache_key not in self._cache:
-            self._cache[cache_key] = self.api.get_integrations_instances(environment)
+            self._cache[cache_key] = self.api.get_integrations_instances(env=environment,siemplify=self.chronicle_soar)
 
         instances = self._cache.get(cache_key)
-        instances.sort(key=lambda x: x.get("instanceName"))
+        instances.sort(key=lambda x: x.instance_name)
 
         return [
             x
             for x in instances
-            if x.get("integrationIdentifier") == integration_name
-            and x.get("isConfigured")
+            if x.integration_identifier == integration_name
+            and (x.instance.get("isConfigured") or x.instance.get("configured"))
         ]
 
     @staticmethod
