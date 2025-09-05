@@ -1,0 +1,6 @@
+Third-Party Components and Licenses
+The following components are used in this project. They are external dependencies and are NOT A CONTRIBUTION under the Google Contributor License Agreement (CLA). Each component remains under its original license. Copies of the licenses are included below or are available from the respective project repositories.
+
+cyberintegrations	MIT License
+validators	MIT License
+pyaml	Public Domain (WTFPL)

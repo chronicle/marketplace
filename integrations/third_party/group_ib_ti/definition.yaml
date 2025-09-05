@@ -1,0 +1,29 @@
+identifier: Group-IB-TI
+name: Group-IB-TI
+parameters:
+-   name: Verify SSL
+    default_value: true
+    type: boolean
+    description: Verify the server's SSL certificate
+    is_mandatory: true
+    integration_identifier: Group-IB-TI
+-   name: API login
+    default_value: None
+    type: email
+    description: 'The email used to login to Group-IB TI '
+    is_mandatory: true
+    integration_identifier: Group-IB-TI
+-   name: API key
+    type: password
+    description: 'API token generated in your Group-IB TI profile '
+    is_mandatory: true
+    integration_identifier: Group-IB-TI
+-   name: API URL
+    default_value: https://tap.group-ib.com/api/v2/
+    type: string
+    description: 'Base URL for Group-IB TI API '
+    is_mandatory: true
+    integration_identifier: Group-IB-TI
+categories: [ ]
+svg_logo_path: resources/group_ib_logo.svg
+image_path: resources/Group_IB_cover.png

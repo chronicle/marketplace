@@ -1,0 +1,96 @@
+name: TI IoC Hash Connector
+parameters:
+-   name: API key
+    default_value: Pa$$w0rd
+    type: password
+    description: API key - API key, generated at your Group-IB TI Profile
+    is_mandatory: true
+    is_advanced: false
+    mode: script
+-   name: API login
+    default_value: example@group-ib.com
+    type: email
+    description: API login - your email address used to enter the Group-IB TI Portal
+    is_mandatory: true
+    is_advanced: false
+    mode: script
+-   name: API URL
+    default_value: https://tap.group-ib.com/api/v2/
+    type: string
+    description: API URL - Group-IB TI Portal URL
+    is_mandatory: true
+    is_advanced: false
+    mode: script
+-   name: Case name
+    default_value: IoC Hash
+    type: string
+    description: Case name to display
+    is_mandatory: true
+    is_advanced: false
+    mode: script
+-   name: Case severity
+    default_value: Critical
+    type: string
+    description: 'Type one of the following:
+
+        Informative,
+
+        Low,
+
+        Medium,
+
+        High,
+
+        Critical'
+    is_mandatory: true
+    is_advanced: false
+    mode: script
+-   name: Case type
+    default_value: IoC
+    type: string
+    description: Case type to trigger an Action
+    is_mandatory: true
+    is_advanced: false
+    mode: script
+-   name: DeviceProductField
+    default_value: title
+    type: string
+    description: The field name used to determine the device product
+    is_mandatory: true
+    is_advanced: false
+    mode: regular
+-   name: EventClassId
+    default_value: id
+    type: string
+    description: The field name used to determine the event name (sub-type)
+    is_mandatory: true
+    is_advanced: false
+    mode: regular
+-   name: PythonProcessTimeout
+    default_value: '630'
+    type: string
+    description: The timeout limit (in seconds) for the python process running current
+        script
+    is_mandatory: true
+    is_advanced: false
+    mode: regular
+-   name: Start date
+    type: string
+    description: Set start date to download collection data. Date format YYYY-MM-DD
+        (2023-09-01). If None - one day back is set by default.
+    is_mandatory: false
+    is_advanced: true
+    mode: script
+-   name: Verify SSL
+    default_value: true
+    type: boolean
+    description: Whether to verify SSL certificates
+    is_mandatory: true
+    is_advanced: false
+    mode: regular
+description: TI Scheduled Connector to retrieve IoCs - Hash.
+integration: Group-IB-TI
+documentation_link: null
+rules: []
+is_connector_rules_supported: true
+creator: a27bf531-e234-4aff-b717-18a554a6a8b9
