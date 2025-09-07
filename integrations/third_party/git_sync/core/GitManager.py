@@ -20,6 +20,7 @@ import os
 import shutil
 import stat
 from io import StringIO
+import sys
 from typing import TYPE_CHECKING
 from urllib.parse import urlparse, urlunparse
 
@@ -187,12 +188,19 @@ class Git:
 
         """
         try:
+            error_capture = StringIO()
+            tee_stream = TeeStream(sys.stderr, error_capture)
+
             porcelain.push(
                 self.repo,
                 refspecs=[self.local_branch_ref],
                 force=force_push,
+                errstream=tee_stream,
                 **self.connection_args,
             )
+
+            self.raise_on_errors_during_push(error_capture)
+
         except porcelain.DivergedBranches:
             self.logger.error("Could not push updates to remote repository!")
             self.logger.warn(
@@ -204,6 +212,21 @@ class Git:
             self.logger.info(
                 "Updates will be pushed in the next python script execution",
             )
+
+    def raise_on_errors_during_push(self, error_capture):
+        error_content = error_capture.getvalue()
+        if error_content and any(
+                failure_indicator in error_content.lower()
+                for failure_indicator in [
+                    "pre-receive hook declined",
+                    "not allowed to push",
+                    "push rejected",
+                    "push of ref",
+                    "failed:",
+                ]
+        ):
+            self.logger.error(f"Push failed: {error_content}")
+            raise Exception(f"Push operation failed: {error_content}")
 
     def _checkout(self) -> None:
         """Checkout a branch
@@ -584,3 +607,16 @@ _mod_client.HttpGitClient = RequestsHttpGitClient
 _mod_client.get_ssh_vendor = SiemplifyParamikoSSHVendor
 # dulwich patch to newer paramiko versions returning string and not bytes
 _mod_client._remote_error_from_stderr = remote_error_from_stderr
+
+class TeeStream:
+    def __init__(self, *streams) -> None:
+        self.streams = streams
+    def write(self, data):
+        for s in self.streams:
+            try:
+                s.write(data)
+            except TypeError:
+                # Handle bytes -> string conversion for StringIO
+                s.write(data.decode('utf-8', errors='replace') if isinstance(data, bytes) else str(data))
+    def flush(self): [s.flush() for s in self.streams if hasattr(s, 'flush')]
+    def getvalue(self): return next((s.getvalue() for s in self.streams if hasattr(s, 'getvalue')), "")
