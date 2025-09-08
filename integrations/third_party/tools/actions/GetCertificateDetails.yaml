@@ -11,12 +11,21 @@ dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: true
         # language=json
-        result_example: "{\r\n  \"SAN\": [\r\n    \"*.badssl.com\",\r\n    \"badssl.com\"\
-        ],\r\n  \"commonName\": \"*.badssl.com\",\r\n  \"days_to_expiration\": 160,\r\
-        \n  \"hostname\": \"self-signed.badssl.com\",\r\n  \"ip\": \"1.1.1.1\",\r\n\
-        \  \"is_expired\": false,\r\n  \"is_self_signed\": true,\r\n  \"issuer\":\
-        \ \"*.badssl.com\",\r\n  \"not_valid_after\": \"10/08/2021\",\r\n  \"not_valid_before\"\
-        : \"10/09/2019\"\r\n}"
+        result_example: |
+            {
+                "hostname": "www.abc.com",
+                "ip": "127.0.0.1",
+                "commonName": "www.abc.com",
+                "is_self_signed": false,
+                "SAN": [
+                    "www.abc.com"
+                ],
+                "is_expired": false,
+                "issuer": "WR2",
+                "not_valid_before": "08/11/2025",
+                "not_valid_after": "11/03/2025",
+                "days_to_expiration": 63
+            }
 default_result_value: ''
 creator: use-cases
 script_result_name: ScriptResult

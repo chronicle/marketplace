@@ -1,0 +1,51 @@
+identifier: Stairwell
+name: Stairwell
+parameters:
+    - name: API Key
+      type: password
+      description: ''
+      is_mandatory: true
+      integration_identifier: Stairwell
+    - name: API Root
+      type: string
+      description: ''
+      is_mandatory: true
+      default_value: https://app.stairwell.com
+      integration_identifier: Stairwell
+    - name: Organization ID
+      type: string
+      description: ''
+      is_mandatory: false
+      integration_identifier: Stairwell
+    - name: User ID
+      type: string
+      description: ''
+      is_mandatory: false
+      integration_identifier: Stairwell
+    - name: SSL Verification
+      type: boolean
+      description: ''
+      is_mandatory: false
+      default_value: true
+      integration_identifier: Stairwell
+categories: [ ]
+image_path: resources/image.png
+svg_logo_path: resources/logo.svg
+description: Stairwell provides threat intelligence and malware analysis capabilities. This integration enables enrichment of file hashes, IP addresses, and hostnames with Stairwell's threat intelligence data.
+version: 1.0
+actions:
+  - Ping
+  - Enrich IP
+  - Enrich Hash
+  - Enrich Hostname
+widgets:
+  - EnrichIP
+  - EnrichHash
+  - EnrichHostname
+supported_entities:
+  - IP
+  - HOSTNAME
+  - FILEHASH
+tags:
+  - threat_intelligence
+  - malware_analysis

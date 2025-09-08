@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stairwell Hostname Enrichment</title>
+    <!-- Tailwind CSS for modern styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts for a clean look -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Use the Inter font family */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #111827; /* Dark gray background */
+        }
+        /* Style for table headers */
+        th {
+            text-align: left;
+            padding: 10px 14px;
+            background-color: #374151;
+            color: #F3F4F6;
+            font-weight: 600;
+            font-size: 0.75rem;
+            line-height: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        /* Style for table cells */
+        td {
+            padding: 10px 14px;
+            border-bottom: 1px solid #374151;
+            color: #D1D5DB;
+            font-size: 0.875rem;
+            line-height: 1.25rem;
+            word-break: break-all; /* Break long strings */
+        }
+        /* Alternating row colors for readability */
+        tr:nth-child(even) {
+            background-color: #1F2937;
+        }
+        /* Highlight for specific verdicts */
+        .verdict-malicious {
+            background-color: #991B1B;
+            color: #FEE2E2;
+        }
+        .verdict-cell-malicious {
+            color: #F87171; /* Bright red text */
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body class="text-white p-4 sm:p-6 md:p-8">
+
+    <div id="enrichment-container" class="max-w-7xl mx-auto space-y-12">
+        <!-- Data will be dynamically inserted here -->
+    </div>
+
+    <script>
+        let jsonData = [];
+        if ('[Stairwell_Enrich Hostname_1.is_success]' == 'true') {
+            jsonData = JSON.parse(`[Stairwell_Enrich Hostname_1.JsonResult]`);
+        }
+
+        const container = document.getElementById('enrichment-container');
+
+        /**
+         * Converts a camelCase string to a readable Title Case string.
+         */
+        function formatTitle(text) {
+            return text
+                .replace(/([A-Z])/g, ' $1')
+                .replace(/^./, (str) => str.toUpperCase());
+        }
+
+        /**
+         * Creates and returns a table element from an array of objects.
+         */
+        function createTable(records) {
+            if (!records || records.length === 0) {
+                const noData = document.createElement('p');
+                noData.className = 'text-gray-400 italic';
+                noData.textContent = 'No data available.';
+                return noData;
+            }
+
+            const table = document.createElement('table');
+            table.className = 'min-w-full rounded-lg overflow-hidden table-fixed';
+
+            // Create table header
+            const thead = document.createElement('thead');
+            const headerRow = document.createElement('tr');
+            const headers = Object.keys(records[0]);
+            headers.forEach(headerText => {
+                const th = document.createElement('th');
+                th.textContent = formatTitle(headerText);
+                const lowerHeader = headerText.toLowerCase();
+                if (lowerHeader.includes('state') || lowerHeader.includes('verdict')) {
+                    th.classList.add('w-40');
+                } else if (lowerHeader.includes('time')) {
+                    th.classList.add('w-56');
+                }
+                headerRow.appendChild(th);
+            });
+            thead.appendChild(headerRow);
+            table.appendChild(thead);
+
+            // Create table body
+            const tbody = document.createElement('tbody');
+            records.forEach(record => {
+                const row = document.createElement('tr');
+                const verdict = (record.verdict || '').toUpperCase();
+                if (verdict === 'MALICIOUS') {
+                    row.classList.add('verdict-malicious');
+                }
+
+                headers.forEach(header => {
+                    const cell = document.createElement('td');
+                    let value = record[header];
+
+                    if (header.toLowerCase().includes('time') && Date.parse(value)) {
+                        value = new Date(value).toLocaleString();
+                    }
+                    
+                    cell.textContent = value === '' ? 'N/A' : value;
+
+                    if (header === 'verdict' && verdict === 'MALICIOUS') {
+                        cell.classList.add('verdict-cell-malicious');
+                    }
+                    
+                    row.appendChild(cell);
+                });
+                tbody.appendChild(row);
+            });
+            table.appendChild(tbody);
+            
+            const tableWrapper = document.createElement('div');
+            tableWrapper.className = 'overflow-x-auto';
+            tableWrapper.appendChild(table);
+            return tableWrapper;
+        }
+
+        /**
+         * Renders a single enrichment report card.
+         * @param {Object} data - The result object for a single entity.
+         * @param {string} entity - The name of the entity (e.g., the hostname).
+         * @returns {HTMLDivElement} The complete card element.
+         */
+        function renderReportCard(data, entity) {
+            const entityCard = document.createElement('div');
+            entityCard.className = 'bg-gray-900 rounded-xl shadow-2xl overflow-hidden';
+            
+            // Card Header
+            const cardHeader = document.createElement('div');
+            cardHeader.className = 'p-4 sm:p-6 bg-gray-800 border-b border-gray-700 flex justify-between items-center';
+            const titleElement = document.createElement('h1');
+            titleElement.className = 'text-xl font-bold text-white';
+            titleElement.textContent = entity;
+            const logoContainer = document.createElement('div');
+            logoContainer.className = 'w-28 h-auto flex-shrink-0';
+            logoContainer.innerHTML = `<svg class="anchor_monogram" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 141 45"><path fill="url(#headerLogoGradient)" fill-rule="evenodd" d="M128.18.796v29.66l12.25-1.44v-5.26l-5.989.702V.063l-6.261.733Zm-14.352 31.339V2.477l6.262-.735V26.14l5.988-.703v5.258l-12.25 1.44Zm-26.48 3.101 4.976-.584 4.824-30.215-5.64.662-2.176 15.492-1.867-15.025-4.121.483-1.867 15.457L79.57 6.48l-6.144.72 4.781 29.11 5.25-.62 1.945-13.499 1.946 13.045ZM48.46 39.788v-29.66l6.223-.729v29.66l-6.223.73Zm-40.2 5.075C3.517 45.427.25 42.985.25 39.98v-3.966l5.832-.684v2.781c0 1.113.7 1.845 1.906 1.704.512-.06.903-.226 1.18-.503.215-.213.363-.492.45-.837l.027-.143.027-.162.023-.27.004-.212c0-2.443-1.672-4.253-4.394-6.494C2.504 28.853.602 25.962.602 22.587c0-4.04 2.8-7.555 7.816-8.143 1.848-.217 3.508.155 4.777.902 1.563.918 2.532 2.404 2.532 4.061v3.969l-5.872.688v-3.005c0-1.04-.62-1.634-1.437-1.539-.816.096-1.637.859-1.637 1.897 0 2.226.664 2.889 3.774 6.01l.375.376c2.398 2.386 4.953 4.924 4.953 8.937l-.012.455-.035.425-.059.396-.043.248a7.995 7.995 0 0 1-2.03 3.927 8.521 8.521 0 0 1-1.786 1.444 8.829 8.829 0 0 1-3.656 1.228ZM41.966 10.89l-7.426.869-4.125 30.141 5.516-.646.468-3.784-2.566-.595 5.488-.643.395 4.588 6.453-.75-4.203-29.18Zm-4.942 20.338 1.168-9.887.79 9.659-1.958.228Zm62.262-27.05 12.25-1.432v4.893l-9.101 1.066 3.074.72v5.668l3.965-.464v5.264l-3.965.463v7.49l6.027-.705v5.263l-12.25 1.436V4.178ZM69.613 22.964c1.594-.965 2.606-2.157 2.606-3.569V12.76c0-3.78-3.617-4.989-6.613-4.639l-7.622.892v29.66l6.223-.729V25.97l.816-.096c.856-.101 1.286.376 1.286.999v6.229l.011 4.595 6.012-.705v-11.08c0-.726-.297-1.329-.805-1.823-.476-.467-1.14-.838-1.914-1.126Zm-3.46-3.3c0 .852-.395 1.23-1.051 1.314l-.895.104v-6.627l-2.574-.603 3.469-.406c.66-.077 1.05.21 1.05 1.063v5.154Zm-49.34-.75v-5.079l14.503-1.698v5.078l-6.617.774 2.574.6v23.68l-6.222.728v-24.58l-4.238.496Z" clip-rule="evenodd"></path><defs><linearGradient id="headerLogoGradient" x1="3.429" x2="138.802" y1="30.407" y2="11.543" gradientUnits="userSpaceOnUse"><stop stop-color="#EB512A"></stop><stop offset=".25" stop-color="#EB5429"></stop><stop offset=".44" stop-color="#EC5E24"></stop><stop offset=".62" stop-color="#ED6F1D"></stop><stop offset=".79" stop-color="#EE8713"></stop><stop offset=".95" stop-color="#F0A505"></stop><stop offset="1" stop-color="#F1B100"></stop></linearGradient></defs></svg>`;
+            cardHeader.appendChild(titleElement);
+            cardHeader.appendChild(logoContainer);
+            entityCard.appendChild(cardHeader);
+
+            const cardBody = document.createElement('div');
+            cardBody.className = 'p-4 sm:p-6 space-y-8';
+
+            for (const key in data) {
+                const value = data[key];
+                if (Array.isArray(value)) {
+                    const section = document.createElement('div');
+                    section.innerHTML = `<h2 class="text-lg font-semibold mb-4 text-gray-200">${formatTitle(key)}</h2>`;
+                    section.appendChild(createTable(value));
+                    cardBody.appendChild(section);
+                }
+            }
+            
+            entityCard.appendChild(cardBody);
+            return entityCard;
+        }
+
+        // Initial render of the data
+        document.addEventListener('DOMContentLoaded', () => {
+             if (!jsonData || jsonData.length === 0) {
+                container.innerHTML = '<p class="text-center text-gray-400">No data to display.</p>';
+                return;
+            }
+
+            // Loop through each item in the array and render a card for it
+            jsonData.forEach(item => {
+                const card = renderReportCard(item.EntityResult, item.Entity);
+                container.appendChild(card);
+            });
+        });
+
+    </script>
+</body>
+</html>

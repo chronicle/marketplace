@@ -18,31 +18,39 @@ import nltk
 from soar_sdk.ScriptResult import EXECUTION_STATE_COMPLETED
 from soar_sdk.SiemplifyAction import SiemplifyAction
 from soar_sdk.SiemplifyUtils import convert_dict_to_json_result_dict, output_handler
+from TIPCommon.data_models import InternalDomain
+from TIPCommon.rest.soar_api import get_domain_alias
 
-ENV_DOMAIN_URL = "{}/external/v1/settings/GetDomainAliases?format=camel"
 THRESHOLD = 2
 
 
-def get_page_results(siemplify, url):
-    payload = {"searchTerm": "", "requestedPage": 0, "pageSize": 100}
-    res = siemplify.session.post(url.format(siemplify.API_ROOT), json=payload)
-    res.raise_for_status()
-    results = res.json()["objectsList"]
-    if res.json()["metadata"]["totalNumberOfPages"] > 1:
-        for page in range(res.json()["metadata"]["totalNumberOfPages"] - 1):
-            payload["requestedPage"] = page + 1
-            res = siemplify.session.post(url.format(siemplify.API_ROOT), json=payload)
-            res.raise_for_status()
-            results.extend(res.json()["objectsList"])
+def get_page_results(siemplify):
+    res = get_domain_alias(siemplify)
+    results = [
+        InternalDomain.from_json(res)
+        for res in res.get(
+            "objectsList", res.get("domains", [])
+        )
+    ]
+    if res.get("metadata", {}).get("totalNumberOfPages", 0) > 1:
+        for page in range(res.get("metadata", {}).get("totalNumberOfPages", 0) - 1):
+            res = get_domain_alias(siemplify, page + 1)
+            results.extend([
+                InternalDomain.from_json(res)
+                for res in res.get(
+                    "objectsList", res.get("domains", [])
+                )
+            ])
     return results
 
 
 def get_domains(siemplify):
-    res = get_page_results(siemplify, ENV_DOMAIN_URL)
+    res = get_page_results(siemplify)
     env_domains = []
-    for domain in res:
-        if siemplify._environment in domain["environments"]:
-            env_domains.append(domain)
+
+    for domain in res:  
+        if siemplify._environment in domain.environments_json:
+            env_domains.append(domain.to_json())
     return env_domains
 
 
@@ -67,7 +75,10 @@ def main():
                 )
                 if distance >= 1 and distance < 4:
                     look_a_like_domains.append(domain["domain"])
-                    output_message += f"Domain {entity.identifier} is a look alike to {domain['domain']} with a score of {distance}.  \n"
+                    output_message += (
+                        f"Domain {entity.identifier} is a look alike to"
+                        f" {domain['domain']} with a score of {distance}.  \n"
+                    )
                     entity.is_suspicious = True
                     entity.additional_properties["look_a_like_domain"] = domain[
                         "domain"
