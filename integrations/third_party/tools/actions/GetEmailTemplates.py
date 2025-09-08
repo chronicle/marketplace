@@ -19,8 +19,20 @@ import json
 from soar_sdk.ScriptResult import EXECUTION_STATE_COMPLETED
 from soar_sdk.SiemplifyAction import SiemplifyAction
 from soar_sdk.SiemplifyUtils import output_handler
+from TIPCommon.rest.soar_api import get_email_template
 
-GET_TEMPLATE_URL = "{}/external/v1/settings/GetEmailTemplateRecords?format=camel"
+HTML_TYPES = {1, "HtmlFormat"}
+STANDARD_TYPES = {0, "Template"}
+
+
+def is_html_template(template_type: str, template_type_value: str | int) -> bool:
+    """Check if the template is of HTML type."""
+    return template_type == "HTML" and template_type_value in HTML_TYPES
+
+
+def is_standard_template(template_type: str, template_type_value: str | int) -> bool:
+    """Check if the template is of Standard type."""
+    return template_type == "Standard" and template_type_value in STANDARD_TYPES
 
 
 @output_handler
@@ -30,22 +42,23 @@ def main():
 
     template_type = siemplify.extract_action_param("Template Type", print_value=True)
 
-    status = EXECUTION_STATE_COMPLETED  # used to flag back to siemplify system, the action final status
+    status = EXECUTION_STATE_COMPLETED
     output_message = (
         "output message :"  # human readable message, showed in UI as the action result
     )
-    result_value = (
-        None  # Set a simple result value, used for playbook if\else and placeholders.
-    )
 
-    email_templates = siemplify.session.get(GET_TEMPLATE_URL.format(siemplify.API_ROOT))
-    email_templates.raise_for_status()
+    email_templates = get_email_template(siemplify)
     res = []
-    for template in email_templates.json():
-        if (template["type"] == 1 and template_type == "HTML") or (
-            template["type"] == 0 and template_type == "Standard"
-        ):
-            res.append(template)
+
+    for template in email_templates:
+        template_json = template.to_json()
+        template_type_value = template_json.get("type")
+
+        if is_html_template(
+            template_type, template_type_value
+        ) or is_standard_template(template_type, template_type_value):
+            res.append(template_json)
+
     siemplify.result.add_result_json({"templates": res})
     siemplify.end(output_message, json.dumps(res), status)
 

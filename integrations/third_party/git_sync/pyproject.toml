@@ -1,6 +1,6 @@
 [project]
 name = "GitSync"
-version = "38.3"
+version = "39.0"
 description = "Sync Google SecOps integrations, playbooks, and settings with a GitHub, BitBucket or GitLab instance"
 requires-python = ">=3.11,<3.12"
 dependencies = [
@@ -27,3 +27,6 @@ soar-sdk = { git = "https://github.com/chronicle/soar-sdk.git" }
 integration-testing = { path = "../../../packages/integration_testing_whls/integration_testing-2.2.7-py3-none-any.whl" }
 tipcommon = { path = "../../../packages/tipcommon/TIPCommon-2.2.12/TIPCommon-2.2.12-py2.py3-none-any.whl" }
 environmentcommon = { path = "../../../packages/envcommon/EnvironmentCommon-1.0.2/EnvironmentCommon-1.0.2-py2.py3-none-any.whl" }
+
+[tool.ruff.lint.per-file-ignores]
+"constants.py" = ["E501"]

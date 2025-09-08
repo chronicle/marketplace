@@ -56,7 +56,7 @@ def main(is_test_run):
                 processed_alerts.append(siemplify_alert)
                 siemplify.LOGGER.info(f"Added incident {alert_id} to package results")
                 # `acknowledge_enabled` is a str, hence the str comparison below
-                if acknowledge_enabled == True:
+                if acknowledge_enabled:
                     incident_got = manager.acknowledge_incident(alert_id)
                     siemplify.LOGGER.info(
                         f"Incident {incident_got} acknowledged in PagerDuty",

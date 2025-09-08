@@ -219,7 +219,7 @@ Python Version - {{ integration.definition.PythonVersion }}
 |Name|Description|IsMandatory|Type|DefaultValue|
 |----|-----------|-----------|----|------------|
 {% for param in integration.definition.IntegrationProperties -%}
-|{{ param.PropertyDisplayName }}|{{ param.PropertyDescription|replace('\n', '') }}|{{ param.IsMandatory }}|{{ param.PropertyType|base_param_type }}|{{ param.Value }}|
+|{{ param.PropertyDisplayName }}|{{ param.PropertyDescription|replace('\n', '') }}|{{ param.IsMandatory }}|{{ param.PropertyType|base_param_type }}|{% if param.PropertyType != 3 %}{{ param.Value }}{% else %}*****{% endif %}|
 {% endfor -%}
 {% endif %}
 {% if integration.dependencies %}
@@ -240,7 +240,7 @@ Timeout - {{ action.TimeoutSeconds }} Seconds\n
 |Name|Description|IsMandatory|Type|DefaultValue|
 |----|-----------|-----------|----|------------|
 {% for param in action.Parameters -%}
-|{{ param.Name }}|{{ param.Description|replace('\n', '') }}|{{ param.IsMandatory }}|{{ param.Type|action_param_type }}|{{ param.Value }}|
+|{{ param.Name }}|{{ param.Description|replace('\n', '') }}|{{ param.IsMandatory }}|{{ param.Type|action_param_type }}|{% if param.Type != 12 %}{{ param.Value }}{% else %}*****{% endif %}|
 {% endfor %}
 {% endif %}
 {% if action.DynamicResultsMetadata %}
@@ -265,7 +265,7 @@ Timeout - {{ action.TimeoutSeconds }} Seconds\n
 |Name|IsMandatory|Type|DefaultValue|
 |----|-----------|----|------------|
 {% for param in job.Parameters -%}
-|{{ param.Name }}|{{ param.IsMandatory }}|{{ param.Type|base_param_type }}|{{ param.DefaultValue }}|
+|{{ param.Name }}|{{ param.IsMandatory }}|{{ param.Type|base_param_type }}|{% if param.Type != 3 %}{{ param.DefaultValue }}{% else %}*****{% endif %}|
 {% endfor -%}
 {% endif -%}
 {% endfor -%}
@@ -280,7 +280,7 @@ Timeout - {{ action.TimeoutSeconds }} Seconds\n
 |Name|Description|IsMandatory|Type|DefaultValue|
 |----|-----------|-----------|----|------------|
 {% for param in connector.Parameters -%}
-|{{ param.Name }}|{{ param.Description|replace('\n', '') }}|{{ param.IsMandatory }}|{{ param.Type|base_param_type }}|{{ param.DefaultValue }}|
+|{{ param.Name }}|{{ param.Description|replace('\n', '') }}|{{ param.IsMandatory }}|{{ param.Type|base_param_type }}|{% if param.Type != 3 %}{{ param.DefaultValue }}{% else %}*****{% endif %}|
 {% endfor -%}
 {% endif %}
 {% if connector.Rules %}
@@ -335,7 +335,7 @@ Event Name Field: {{ connector.eventNameField }}
 |----|-----------|------------|-----|
 {% for param in connector.params -%}
 {% if param.isDisplayed == True -%}
-|{{ param.paramName }}|{{ param.description }}|{{ param.isMandatory }}|{{ param.paramValue }}|
+|{{ param.paramName }}|{{ param.description }}|{{ param.isMandatory }}|{% if param.Type != 3 %}{{ param.paramValue }}{% else %}*****{% endif %}|
 {% endif -%}
 {% endfor -%}
 
@@ -360,7 +360,7 @@ JOB_README = """## {{ job.name }}
 |Name|Type|Is Mandatory|Value|
 |----|----|------------|-----|
 {% for param in job.parameters -%}
-|{{ param.name }}|{{ param.type|base_param_type }}|{{ param.isMandatory }}|{{ param.value }}|
+|{{ param.name }}|{{ param.type|base_param_type }}|{{ param.isMandatory }}|{% if param.type != 3 %}{{ param.value }}{% else %}*****{% endif %}|
 {% endfor -%}
 {% endif %}
 

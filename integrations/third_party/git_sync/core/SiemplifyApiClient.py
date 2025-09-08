@@ -359,7 +359,7 @@ class SiemplifyApiClient:
         self.validate_response(res)
         return res
 
-    def get_custom_lists(self):
+    def get_custom_lists(self, siemplify):
         return get_custom_lists(siemplify)
 
     def update_custom_list(self, siemplify, tracking_list, tracking_id=0):

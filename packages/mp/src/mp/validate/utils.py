@@ -14,6 +14,7 @@
 
 from __future__ import annotations
 
+import re
 from typing import TYPE_CHECKING, NamedTuple
 
 if TYPE_CHECKING:
@@ -47,3 +48,17 @@ def get_marketplace_paths_from_names(
         if (p := marketplace_path / n).exists():
             result.add(p)
     return result
+
+
+def get_project_dependency_name(dependency_name: str) -> str:
+    """Extract the dependency name from a version specifier string.
+
+    Args:
+        dependency_name: The full dependency string, which may include
+            version constraints like 'requests>=2.25.1'.
+
+    Returns:
+        The clean dependency name without any version specifiers.
+
+    """
+    return re.split(r"[<>=]", dependency_name)[0]
