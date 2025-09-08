@@ -44,7 +44,6 @@ if TYPE_CHECKING:
     from soar_sdk.SiemplifyJob import SiemplifyJob
     from soar_sdk.SiemplifyLogger import SiemplifyLogger
     from TIPCommon.types import ChronicleSOAR
-    from TIPCommon.data_models import InstalledIntegrationInstance
 
 
 class MergeConflictError(Exception):
@@ -877,7 +876,7 @@ class WorkflowInstaller:
                 self._set_step_parameter_by_name(
                     step,
                     "IntegrationInstance",
-                    instance_id or integration_instances[0].identifier,
+                    instance_id or integration_instances[0].get("identifier"),
                 )
                 self._set_step_parameter_by_name(
                     step,
@@ -898,7 +897,7 @@ class WorkflowInstaller:
                 self._set_step_parameter_by_name(
                     step,
                     "FallbackIntegrationInstance",
-                    fallback_instance_id or integration_instances[0].identifier,
+                    fallback_instance_id or integration_instances[0].get("identifier"),
                 )
             else:
                 self._set_step_parameter_by_name(
@@ -925,7 +924,7 @@ class WorkflowInstaller:
         self,
         integration_name: str,
         environment: str,
-    ) -> list[InstalledIntegrationInstance]:
+    ) -> list[dict]:
         """Find integration instances available for integration per environment
 
         Args:
@@ -941,13 +940,13 @@ class WorkflowInstaller:
             self._cache[cache_key] = self.api.get_integrations_instances(env=environment,siemplify=self.chronicle_soar)
 
         instances = self._cache.get(cache_key)
-        instances.sort(key=lambda x: x.instance_name)
+        instances.sort(key=lambda x: x.get("instanceName"))
 
         return [
             x
             for x in instances
-            if x.integration_identifier == integration_name
-            and (x.instance.get("isConfigured") or x.instance.get("configured"))
+            if x.get("integrationIdentifier") == integration_name
+            and x.get("isConfigured")
         ]
 
     @staticmethod

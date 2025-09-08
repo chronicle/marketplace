@@ -17,6 +17,9 @@ from __future__ import annotations
 from soar_sdk.SiemplifyJob import SiemplifyJob
 from soar_sdk.SiemplifyUtils import output_handler
 
+from TIPCommon.data_models import CaseTag
+from TIPCommon.utils import platform_supports_1p_api
+
 from ..core.constants import (
     ALL_ENVIRONMENTS_IDENTIFIER,
     AVAILABLE_CONTENT,
@@ -101,10 +104,15 @@ def main():
         if features["Integration Instances"]:
             siemplify.LOGGER.info("========== Integration instances ==========")
             current_instances = [
-                *gitsync.api.get_integrations_instances(ALL_ENVIRONMENTS_IDENTIFIER),
+                *gitsync.api.get_integrations_instances(
+                    siemplify,
+                    ALL_ENVIRONMENTS_IDENTIFIER
+                ),
             ]
             for env in gitsync.api.get_environment_names(siemplify):
-                current_instances.extend(gitsync.api.get_integrations_instances(env))
+                current_instances.extend(
+                    gitsync.api.get_integrations_instances(siemplify, env)
+                )
             for instance in gitsync.content.get_integration_instances():
                 if instance["integrationIdentifier"] not in IGNORED_INTEGRATIONS:
                     current = next(
@@ -166,7 +174,14 @@ def main():
             siemplify.LOGGER.info("Installing tags")
             current_tags = gitsync.api.get_case_tags()
             for tag in gitsync.content.get_tags():
-                gitsync.api.add_case_tag(siemplify, id_validator(tag, "name", "id", current_tags))
+                current_tag = id_validator(tag, "name", "id", current_tags)
+                current_tag = (
+                    CaseTag.from_json(current_tag).to_json_1p()
+                    if platform_supports_1p_api()
+                    else CaseTag.from_json(current_tag).to_json_legacy()
+                )
+
+                gitsync.api.add_case_tag(siemplify, current_tag)
 
         if features["Case Stages"]:
             siemplify.LOGGER.info("Installing stages")
@@ -234,7 +249,7 @@ def main():
 
         if features["Custom Lists"]:
             siemplify.LOGGER.info("Installing custom lists")
-            for lst in gitsync.content.get_custom_lists(siemplify):
+            for lst in gitsync.content.get_custom_lists():
                 gitsync.api.update_custom_list(siemplify, lst)
 
         if features["Email Templates"]:
