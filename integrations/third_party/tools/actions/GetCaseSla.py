@@ -17,10 +17,10 @@ from __future__ import annotations
 from soar_sdk.ScriptResult import EXECUTION_STATE_COMPLETED, EXECUTION_STATE_FAILED
 from soar_sdk.SiemplifyAction import SiemplifyAction
 from soar_sdk.SiemplifyUtils import convert_unixtime_to_datetime, output_handler
+from TIPCommon.rest.soar_api import get_case_overview_details
 
 ACTION_NAME = "Get Case SLA"
 DATETIME_FORMAT = "%Y-%m-%d %H:%M:%S"
-GET_CASE_DETAILS = "external/v1/dynamic-cases/GetCaseDetails"
 
 
 @output_handler
@@ -39,18 +39,23 @@ def main():
 
     siemplify.LOGGER.info("----------------- Main - Started -----------------")
     try:
-        url = (
-            f"{siemplify.API_ROOT}/{GET_CASE_DETAILS}/{siemplify.case_id}?format=snake"
+        response = get_case_overview_details(
+            chronicle_soar=siemplify,
+            case_id=siemplify.case_id,
         )
-        response = siemplify.session.get(url)
-        response.raise_for_status()
+        case_data = response.to_json()
 
-        case_data = response.json()
-        case_sla = int(case_data["stage_sla"]["sla_expiration_time"])
+        case_sla = int(
+            case_data.get("sla", {}).get("slaExpirationTime")
+            or case_data.get("stageSla", {}).get("slaExpirationTime")
+        )
         dt_case_sla = convert_unixtime_to_datetime(case_sla).strftime(dt_format)
         siemplify.LOGGER.info(f"stage SLA: {dt_case_sla}")
 
-        case_critical_sla = int(case_data["stage_sla"]["critical_expiration_time"])
+        case_critical_sla = int(
+            case_data.get("sla", {}).get("criticalExpirationTime")
+            or case_data.get("stageSla", {}).get("criticalExpirationTime")
+        )
         dt_case_critical_sla = convert_unixtime_to_datetime(case_critical_sla).strftime(
             dt_format,
         )

@@ -21,6 +21,11 @@ from typing import NamedTuple
 
 import rich
 
+from mp.core.unix import NonFatalCommandError
+from mp.validate.pre_build_validation.required_dependencies_validation import (
+    RequiredDevDependenciesValidation,
+)
+
 
 class TestIssue(NamedTuple):
     test_name: str
@@ -57,11 +62,8 @@ def process_pytest_json_report(
         json_report_path.unlink(missing_ok=True)
 
     except FileNotFoundError:
-        rich.print(
-            f"[bold red]Error:[/bold red] JSON report not found at {json_report_path}\n"
-            f"Make sure you have added pytest-json-report to your dev dependency"
-        )
-        return None
+        return _get_fnf_test_results(integration_name, json_report_path)
+
     except json.JSONDecodeError as e:
         rich.print(
             f"[bold red]Error:[/bold red] Failed to decode JSON report at {json_report_path}: {e}"
@@ -127,3 +129,20 @@ def _extract_skipped_test_issue(test_item: dict) -> TestIssue:
                     break
 
     return TestIssue(test_name=test_name, stack_trace=skip_reason)
+
+
+def _get_fnf_test_results(
+    integration_name: str, json_report_path: pathlib.Path
+) -> IntegrationTestResults | None:
+    rich.print(f"[bold red]Error:[/bold red] JSON report not found at {json_report_path}")
+    try:
+        RequiredDevDependenciesValidation.run(json_report_path.parent, {"pytest-json-report"})
+    except NonFatalCommandError as e:
+        error_msg: str = f"{e}"
+        result: IntegrationTestResults = IntegrationTestResults(integration_name=integration_name)
+        result.failed_tests_summary.append(
+            TestIssue(test_name="Missing Dependencies", stack_trace=error_msg)
+        )
+        result.failed_tests += 1
+        return result
+    return None

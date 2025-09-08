@@ -453,7 +453,7 @@ wheels = [
 
 [[package]]
 name = "pagerduty"
-version = "17.0"
+version = "18.0"
 source = { virtual = "." }
 dependencies = [
     { name = "pdpyras" },

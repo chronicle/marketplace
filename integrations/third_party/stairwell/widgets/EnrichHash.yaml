@@ -1,0 +1,17 @@
+action_identifier: Enrich Hash
+condition_group:
+    conditions:
+        -   field_name: '[{stepInstanceName}.is_success]'
+            match_type: equal
+            value: 'true'
+    logical_operator: and
+data_definition:
+    html_height: 600
+    safe_rendering: false
+    type: html
+    widget_definition_scope: both
+default_size: full_width
+description: Displays detailed hash enrichment data from Stairwell API.
+scope: alert
+title: Stairwell Hash Enrichment
+type: html

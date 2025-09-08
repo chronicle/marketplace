@@ -96,7 +96,7 @@ class PagerDutyManager:
         info_got = response.json().get("incidents")
 
         for incident in info_got:
-            if incident.get(incident_key) == incidentID:
+            if incident.get("incident_key") == incidentID:
                 incident_data = info_got[incident]
 
         return incident_data

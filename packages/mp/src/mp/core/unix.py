@@ -536,7 +536,7 @@ def get_file_content_from_main_branch(file_path: pathlib.Path) -> str:
         NonFatalCommandError: If the git command fails (e.g., file not found on main).
 
     """
-    git_path_arg: str = f"origin/main:{file_path!s}"
+    git_path_arg: str = f"origin/main:{file_path.as_posix()}"
     command: list[str] = ["git", "show", git_path_arg]
 
     try:
