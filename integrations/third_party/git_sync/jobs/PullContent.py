@@ -56,7 +56,7 @@ def main():
             siemplify.LOGGER.info(
                 "========== Environment Dynamic Parameters ==========",
             )
-            current_parameters = gitsync.api.get_env_dynamic_parameters(siemplify)
+            current_parameters = gitsync.api.get_env_dynamic_parameters(chronicle_soar=siemplify)
             for dynParam in gitsync.content.get_dynamic_parameters():
                 siemplify.LOGGER.info(
                     f"Adding dynamic parameter {dynParam.get('name')}",
@@ -73,7 +73,7 @@ def main():
 
         if features["Environments"]:
             siemplify.LOGGER.info("========== Environments ==========")
-            all_environments_names = gitsync.api.get_environment_names(siemplify)
+            all_environments_names = gitsync.api.get_environment_names(chronicle_soar=siemplify)
             for environment in gitsync.content.get_environments():
                 if environment.get("name") in all_environments_names:
                     existing_env_id = next(
@@ -100,20 +100,18 @@ def main():
 
         if features["Integration Instances"]:
             siemplify.LOGGER.info("========== Integration instances ==========")
-            current_instances = [
-                *gitsync.api.get_integrations_instances(ALL_ENVIRONMENTS_IDENTIFIER),
-            ]
-            for env in gitsync.api.get_environment_names(siemplify):
-                current_instances.extend(gitsync.api.get_integrations_instances(env))
+            current_instances = gitsync.api.get_integrations_instances(chronicle_soar=siemplify, environment=ALL_ENVIRONMENTS_IDENTIFIER)
+            for env in gitsync.api.get_environment_names(chronicle_soar=siemplify):
+                current_instances.extend(gitsync.api.get_integrations_instances(chronicle_soar=siemplify, environment=env))
             for instance in gitsync.content.get_integration_instances():
                 if instance["integrationIdentifier"] not in IGNORED_INTEGRATIONS:
                     current = next(
                         (
                             x
                             for x in current_instances
-                            if x["environmentIdentifier"] == instance["environment"]
-                            and x["integrationIdentifier"] == instance["integrationIdentifier"]
-                            and x["instanceName"] == instance["settings"]["instanceName"]
+                            if x.environment_identifier == instance["environment"]
+                            and x.integration_identifier == instance["integrationIdentifier"]
+                            and x.instance_name == instance["settings"]["instanceName"]
                         ),
                         None,
                     )
@@ -132,11 +130,11 @@ def main():
                             instance["environment"],
                         )
                     for i in instance["settings"]["settings"]:
-                        i["integrationInstance"] = instance_to_update["identifier"]
+                        i["integrationInstance"] = instance_to_update.identifier
 
                     gitsync.api.save_integration_instance_settings(
                         siemplify,
-                        instance_to_update["identifier"],
+                        instance_to_update.identifier,
                         instance["settings"],
                         instance["environment"],
                     )
@@ -164,13 +162,13 @@ def main():
 
         if features["Case Tags"]:
             siemplify.LOGGER.info("Installing tags")
-            current_tags = gitsync.api.get_case_tags()
+            current_tags = gitsync.api.get_case_tags(chronicle_soar=siemplify)
             for tag in gitsync.content.get_tags():
                 gitsync.api.add_case_tag(siemplify, id_validator(tag, "name", "id", current_tags))
 
         if features["Case Stages"]:
             siemplify.LOGGER.info("Installing stages")
-            current_stages = gitsync.api.get_case_stages()
+            current_stages = gitsync.api.get_case_stages(chronicle_soar=siemplify)
             for stage in gitsync.content.get_stages():
                 gitsync.api.add_case_stage(
                     siemplify,
@@ -179,7 +177,7 @@ def main():
 
         if features["Case Close Reasons"]:
             siemplify.LOGGER.info("Installing case close reasons")
-            current_causes = gitsync.api.get_close_reasons(siemplify)
+            current_causes = gitsync.api.get_close_reasons(chronicle_soar=siemplify)
             for cause in gitsync.content.get_case_close_causes():
                 gitsync.api.add_close_reason(
                     siemplify,
@@ -199,7 +197,7 @@ def main():
 
         if features["Visual Families"]:
             siemplify.LOGGER.info("Installing visual families")
-            current_vfs = gitsync.api.get_custom_families()
+            current_vfs = gitsync.api.get_custom_families(chronicle_soar=siemplify)
             for family in gitsync.content.get_visual_families():
                 gitsync.api.add_custom_family(
                     {
@@ -216,7 +214,7 @@ def main():
 
         if features["Networks"]:
             siemplify.LOGGER.info("Installing networks")
-            current_networks = gitsync.api.get_networks(siemplify)
+            current_networks = gitsync.api.get_networks(chronicle_soar=siemplify)
             for network in gitsync.content.get_networks():
                 gitsync.api.update_network(
                     siemplify,
@@ -225,7 +223,7 @@ def main():
 
         if features["Domains"]:
             siemplify.LOGGER.info("Installing domains")
-            current_domains = gitsync.api.get_domains(siemplify)
+            current_domains = gitsync.api.get_domains(chronicle_soar=siemplify)
             for domain in gitsync.content.get_domains():
                 gitsync.api.update_domain(
                     siemplify,
@@ -239,7 +237,7 @@ def main():
 
         if features["Email Templates"]:
             siemplify.LOGGER.info("Installing email templates")
-            current_templates = gitsync.api.get_email_templates()
+            current_templates = gitsync.api.get_email_templates(chronicle_soar=siemplify)
             for template in gitsync.content.get_email_templates():
                 gitsync.api.add_email_template(
                     id_validator(template, "name", "id", current_templates),

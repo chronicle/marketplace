@@ -406,7 +406,14 @@ class GitSyncManager:
             if job_def_id:
                 job.raw_data["jobDefinitionId"] = job_def_id.get("id")
 
-        job_id = next((x for x in self.api.get_jobs() if x["name"] == job.name), None)
+        job_id = next(
+            (
+                x
+                for x in self.api.get_jobs(chronicle_soar=self._siemplify)
+                if x.get("displayName", x.get("name")) == job.name
+            ),
+            None,
+        )
         if job_id:
             job.raw_data["id"] = job_id.get("id")
         self.api.add_job(job.raw_data)
@@ -782,7 +789,8 @@ class WorkflowInstaller:
         """Currently installed playbooks and blocks"""
         if "playbooks" not in self._cache:
             self._cache["playbooks"] = {
-                x.get("name"): x for x in self.api.get_playbooks()
+                x.get("name"): x
+                for x in self.api.get_playbooks(chronicle_soar=self.chronicle_soar)
             }
         return self._cache.get("playbooks")
 
@@ -938,7 +946,10 @@ class WorkflowInstaller:
         """
         cache_key = f"integration_instances_{environment}"
         if cache_key not in self._cache:
-            self._cache[cache_key] = self.api.get_integrations_instances(env=environment,siemplify=self.chronicle_soar)
+            self._cache[cache_key] = self.api.get_integrations_instances(
+                chronicle_soar=self.chronicle_soar,
+                environment=environment,
+            )
 
         instances = self._cache.get(cache_key)
         instances.sort(key=lambda x: x.instance_name)
@@ -946,8 +957,7 @@ class WorkflowInstaller:
         return [
             x
             for x in instances
-            if x.integration_identifier == integration_name
-            and (x.instance.get("isConfigured") or x.instance.get("configured"))
+            if x.integration_identifier == integration_name and x.is_configured
         ]
 
     @staticmethod
