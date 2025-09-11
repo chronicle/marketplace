@@ -1,0 +1,2453 @@
+name: Get-Collection-Info-Async
+description: Help to extract data from Group-IB TI database by chosen collection.
+  Can be used to run daily to get fresh updates only. This Action ignore any entities.
+  Use the input entity as the start trigger.
+integration_identifier: Group-IB-TI
+parameters:
+- name: Enable mapping parser
+  default_value: 'false'
+  type: boolean
+  description: Enable or Disable mapping parser before return JSON output
+  is_mandatory: false
+- name: Collection
+  default_value: apt/threat
+  type: ddl
+  optional_values:
+  - apt/threat
+  - apt/threat_actor
+  - attacks/ddos
+  - attacks/deface
+  - attacks/phishing_group
+  - attacks/phishing_kit
+  - compromised/access
+  - compromised/account_group
+  - compromised/bank_card_group
+  - compromised/discord
+  - compromised/imei
+  - compromised/masked_card
+  - compromised/messenger
+  - compromised/spd
+  - hi/open_threats
+  - hi/threat
+  - hi/threat_actor
+  - ioc/common
+  - malware/cnc
+  - malware/config
+  - malware/malware
+  - malware/signature
+  - malware/yara
+  - osi/git_repository
+  - osi/public_leak
+  - osi/vulnerability
+  - suspicious_ip/open_proxy
+  - suspicious_ip/scanner
+  - suspicious_ip/socks_proxy
+  - suspicious_ip/tor_node
+  - suspicious_ip/vpn
+  description: Choose required collection to download
+  is_mandatory: true
+- name: Start date
+  type: string
+  description: Set start date to download collection data. Date format YYYY-MM-DD
+    (2023-09-01).
+  is_mandatory: false
+- name: Portion limit
+  default_value: '100'
+  type: ddl
+  optional_values:
+  - '10'
+  - '50'
+  - '100'
+  - '500'
+  - '1000'
+  description: Each Action run return response from TI Portal API, which contains
+    portions. This parameter let you control the number of received portions.
+  is_mandatory: true
+dynamic_results_metadata:
+- result_name: JsonResult
+  show_result: true
+  # language=json
+  result_example: |
+    {
+      "apt_threat": [
+        {
+          "contacts": [
+            {
+              "account": "string",
+              "flag": "fake",
+              "service": "vk",
+              "type": "email"
+            }
+          ],
+          "countries": "AF",
+          "createdAt": "2019-08-24T14:15:22Z",
+          "cveList": [
+            {
+              "name": "string"
+            }
+          ],
+          "dateFirstSeen": "2019-08-24T14:15:22Z",
+          "dateLastSeen": "2019-08-24T14:15:22Z",
+          "datePublished": "2019-08-24T14:15:22Z",
+          "description": "string",
+          "displayOptions": {},
+          "evaluation": {
+            "admiraltyCode": "A1",
+            "credibility": 100,
+            "reliability": 100,
+            "severity": "red",
+            "tlp": "red",
+            "ttl": 0
+          },
+          "expertise": [
+            "string"
+          ],
+          "files": [
+            {
+              "hash": "string",
+              "mime": "string",
+              "name": "string",
+              "size": 0
+            }
+          ],
+          "forumsAccounts": [
+            {
+              "messageCount": 0,
+              "nickname": "string",
+              "registeredAt": "2019-08-24T14:15:22Z",
+              "url": "string"
+            }
+          ],
+          "id": "string",
+          "indicatorMalwareRelationships": [
+            {
+              "indicatorId": "string",
+              "malwareId": "string"
+            }
+          ],
+          "indicatorRelationships": [
+            {
+              "sourceId": "string",
+              "targetId": "string"
+            }
+          ],
+          "indicatorToolRelationships": [
+            {
+              "indicatorId": "string",
+              "toolId": "string"
+            }
+          ],
+          "indicators": [
+            {
+              "dateFirstSeen": "2019-08-24T14:15:22Z",
+              "dateLastSeen": "2019-08-24T14:15:22Z",
+              "deleted": true,
+              "description": "string",
+              "id": "string",
+              "langs": "en",
+              "malwareIdList": [
+                "string"
+              ],
+              "malwareList": [
+                {
+                  "category": [
+                    "string"
+                  ],
+                  "class": "string",
+                  "id": "string",
+                  "name": "string",
+                  "platform": [
+                    "string"
+                  ],
+                  "stixGuid": "string",
+                  "threatLevel": "string"
+                }
+              ],
+              "params": {
+                "address": "string",
+                "message": {
+                  "body": "string",
+                  "subject": "string"
+                },
+                "senderIp": "string",
+                "serverIp": "string",
+                "url": "string",
+                "hashes": {
+                  "md4": "string",
+                  "md5": "string",
+                  "md6": "string",
+                  "ripemd160": "string",
+                  "sha1": "string",
+                  "sha224": "string",
+                  "sha256": "string",
+                  "sha384": "string",
+                  "sha512": "string",
+                  "whirlpool": "string"
+                },
+                "name": "string",
+                "size": 0,
+                "domain": "string",
+                "ipv4": [
+                  "string"
+                ],
+                "ipv6": [
+                  "string"
+                ],
+                "ssl": [
+                  {
+                    "hashes": {
+                      "md5": "string",
+                      "sha1": "string",
+                      "sha224": "string",
+                      "sha256": "string",
+                      "sha384": "string",
+                      "sha512": "string"
+                    }
+                  }
+                ]
+              },
+              "seqUpdate": 0,
+              "sources": {},
+              "techSeqUpdate": 0,
+              "title": "string",
+              "type": "string",
+              "fileName": "string",
+              "hasPolygonReport": true,
+              "hash": [
+                "string"
+              ],
+              "domain": "string",
+              "ip": [
+                "string"
+              ],
+              "url": "string"
+            }
+          ],
+          "indicatorsIds": [
+            "string"
+          ],
+          "isPublished": true,
+          "labels": "threat-report",
+          "langs": "en",
+          "malwareList": [
+            {
+              "category": [
+                "string"
+              ],
+              "class": "string",
+              "id": "string",
+              "name": "string",
+              "platform": [
+                "string"
+              ],
+              "stixGuid": "string",
+              "threatLevel": "string"
+            }
+          ],
+          "mitreMatrix": [
+            {
+              "attackPatternId": "string",
+              "attackTactic": "string",
+              "attackType": "pre_attack_tactics",
+              "id": "string",
+              "params": {
+                "data": "string",
+                "sampleList": [
+                  "string"
+                ]
+              }
+            }
+          ],
+          "oldId": "string",
+          "regions": "africa:eastern_africa",
+          "relatedThreatActors": [
+            {
+              "id": "string",
+              "isAPT": true,
+              "name": "string",
+              "type": "client"
+            }
+          ],
+          "reportNumber": "string",
+          "sectors": "all",
+          "seqUpdate": 0,
+          "shortDescription": "string",
+          "shortTitle": "string",
+          "sources": [
+            "string"
+          ],
+          "targetedCompany": [
+            "string"
+          ],
+          "targetedPartnersAndClients": [
+            "string"
+          ],
+          "techSeqUpdate": 0,
+          "threatActor": {
+            "id": "string",
+            "isAPT": true,
+            "name": "string"
+          },
+          "title": "string",
+          "toolList": [
+            {
+              "id": "string",
+              "name": "string"
+            }
+          ],
+          "type": "threat",
+          "updatedAt": "2019-08-24T14:15:22Z"
+        }
+      ],
+      "apt_threat_actor": [
+        {
+          "aliases": [
+            "string"
+          ],
+          "country": "AF",
+          "createdAt": "2019-08-24T14:15:22Z",
+          "description": "string",
+          "displayOptions": {},
+          "files": [
+            {
+              "hash": "string",
+              "mime": "string",
+              "name": "string",
+              "size": 0
+            }
+          ],
+          "goals": "Financial",
+          "id": "string",
+          "isAPT": true,
+          "labels": "activist",
+          "langs": "en",
+          "name": "string",
+          "oldId": "string",
+          "roles": "agent",
+          "seqUpdate": 0,
+          "spokenOnLangs": [
+            "string"
+          ],
+          "techSeqUpdate": 0,
+          "updatedAt": "2019-08-24T14:15:22Z"
+        }
+      ],
+      "attacks_ddos": [
+        {
+          "cnc": {
+            "cnc": "string",
+            "domain": "string",
+            "ipv4": {
+              "asn": "string",
+              "city": "string",
+              "countryCode": "string",
+              "countryName": "string",
+              "ip": "string",
+              "provider": "string",
+              "region": "string"
+            },
+            "ipv6": {
+              "asn": "string",
+              "city": "string",
+              "countryCode": "string",
+              "countryName": "string",
+              "ip": "string",
+              "provider": "string",
+              "region": "string"
+            },
+            "url": "string"
+          },
+          "dateBegin": "2019-08-24T14:15:22Z",
+          "dateEnd": "2019-08-24T14:15:22Z",
+          "dateReg": "2019-08-24T14:15:22Z",
+          "evaluation": {
+            "admiraltyCode": "A1",
+            "credibility": 100,
+            "reliability": 100,
+            "severity": "red",
+            "tlp": "red",
+            "ttl": 0
+          },
+          "id": "string",
+          "malware": {
+            "category": [
+              "string"
+            ],
+            "class": "string",
+            "id": "string",
+            "name": "string",
+            "platform": [
+              "string"
+            ],
+            "stixGuid": "string",
+            "threatLevel": "string"
+          },
+          "messageLink": "string",
+          "oldId": "string",
+          "protocol": "string",
+          "seqUpdate": 0,
+          "sourceRowId": "string",
+          "target": {
+            "ipv4": {
+              "asn": "string",
+              "city": "string",
+              "countryCode": "string",
+              "countryName": "string",
+              "ip": "string",
+              "provider": "string",
+              "region": "string"
+            },
+            "category": "string",
+            "domainsCount": 0,
+            "port": 0,
+            "domain": "string",
+            "url": "string"
+          },
+          "threatActor": {
+            "id": "string",
+            "isAPT": true,
+            "name": "string"
+          },
+          "type": "string"
+        }
+      ],
+      "attacks_deface": [
+        {
+          "contacts": [
+            "string"
+          ],
+          "date": "2019-08-24T14:15:22Z",
+          "evaluation": {
+            "admiraltyCode": "A1",
+            "credibility": 100,
+            "reliability": 100,
+            "severity": "red",
+            "tlp": "red",
+            "ttl": 0
+          },
+          "id": "string",
+          "seqUpdate": 0,
+          "source": "string",
+          "targetDomain": "string",
+          "targetDomainProvider": "string",
+          "targetIp": {
+            "asn": "string",
+            "city": "string",
+            "countryCode": "string",
+            "countryName": "string",
+            "ip": "string",
+            "provider": "string",
+            "region": "string"
+          },
+          "threatActor": {
+            "id": "string",
+            "isAPT": true,
+            "name": "string"
+          },
+          "url": "string"
+        }
+      ],
+      "attacks_phishing": [
+        {
+          "dateBlocked": "2019-08-24T14:15:22Z",
+          "dateDetected": "2019-08-24T14:15:22Z",
+          "evaluation": {
+            "admiraltyCode": "A1",
+            "credibility": 100,
+            "reliability": 100,
+            "severity": "red",
+            "tlp": "red",
+            "ttl": 0
+          },
+          "history": [
+            {
+              "date": "2019-08-24T14:15:22Z",
+              "field": "string",
+              "reason": "string",
+              "reporter": "string",
+              "value": "string"
+            }
+          ],
+          "id": "string",
+          "ipv4": {
+            "asn": "string",
+            "city": "string",
+            "countryCode": "string",
+            "countryName": "string",
+            "ip": "string",
+            "provider": "string",
+            "region": "string"
+          },
+          "objective": "string",
+          "oldId": "string",
+          "phishingDomain": {
+            "domain": "string",
+            "local": "string",
+            "dateRegistered": "string",
+            "title": "string",
+            "registrar": "string"
+          },
+          "seqUpdate": 0,
+          "status": "string",
+          "targetBrand": "string",
+          "targetCategory": "string",
+          "targetCountryName": "string",
+          "targetDomain": "string",
+          "type": "string",
+          "url": "string"
+        }
+      ],
+      "attacks_phishing_kit": [
+        {
+          "dateDetected": "2019-08-24T14:15:22Z",
+          "dateFirstSeen": "2019-08-24T14:15:22Z",
+          "dateLastSeen": "2019-08-24T14:15:22Z",
+          "downloadedFrom": [
+            {
+              "date": "2019-08-24T14:15:22Z",
+              "url": "string",
+              "domain": "string",
+              "filename": "string"
+            }
+          ],
+          "emails": [
+            "string"
+          ],
+          "evaluation": {
+            "admiraltyCode": "A1",
+            "credibility": 100,
+            "reliability": 100,
+            "severity": "red",
+            "tlp": "red",
+            "ttl": 0
+          },
+          "hash": "string",
+          "id": "string",
+          "oldId": "string",
+          "path": "string",
+          "seqUpdate": 0,
+          "targetBrand": [
+            "string"
+          ],
+          "tsFirstSeen": "string",
+          "tsLastSeen": "string",
+          "variables": {}
+        }
+      ],
+      "compromised_access": [
+        {
+          "accessType": "string",
+          "cnc": {
+            "cnc": "string",
+            "domain": "string",
+            "ipv4": {
+              "asn": "string",
+              "city": "string",
+              "countryCode": "string",
+              "countryName": "string",
+              "ip": "string",
+              "provider": "string",
+              "region": "string"
+            },
+            "ipv6": {
+              "asn": "string",
+              "city": "string",
+              "countryCode": "string",
+              "countryName": "string",
+              "ip": "string",
+              "provider": "string",
+              "region": "string"
+            },
+            "url": "string"
+          },
+          "dateCompromised": "2019-08-24T14:15:22Z",
+          "dateDetected": "2019-08-24T14:15:22Z",
+          "description": "string",
+          "displayOptions": {},
+          "evaluation": {
+            "admiraltyCode": "A1",
+            "credibility": 100,
+            "reliability": 100,
+            "severity": "red",
+            "tlp": "red",
+            "ttl": 0
+          },
+          "id": "string",
+          "malware": {
+            "category": [
+              "string"
+            ],
+            "class": "string",
+            "id": "string",
+            "name": "string",
+            "platform": [
+              "string"
+            ],
+            "stixGuid": "string",
+            "threatLevel": "string"
+          },
+          "price": {
+            "currency": "string",
+            "value": "string"
+          },
+          "rawData": "string",
+          "rawDataHighlighted": "string",
+          "seqUpdate": 0,
+          "sourceInfo": {
+            "externalId": "string",
+            "name": "string",
+            "seller": "string"
+          },
+          "target": {
+            "device": {
+              "os": "string"
+            },
+            "domain": "string",
+            "geo": {
+              "city": "string",
+              "country": "string",
+              "state": "string",
+              "zip": "string"
+            },
+            "ipv4": {
+              "asn": "string",
+              "city": "string",
+              "countryCode": "string",
+              "countryName": "string",
+              "ip": "string",
+              "provider": "string",
+              "region": "string"
+            },
+            "ipv6": {
+              "asn": "string",
+              "city": "string",
+              "countryCode": "string",
+              "countryName": "string",
+              "ip": "string",
+              "provider": "string",
+              "region": "string"
+            },
+            "provider": "string",
+            "url": "string"
+          },
+          "techSeqUpdate": 0,
+          "type": "string"
+        }
+      ],
+      "compromised_account_group": [
+        {
+          "dateFirstCompromised": "2019-08-24T14:15:22Z",
+          "dateFirstSeen": "2019-08-24T14:15:22Z",
+          "dateLastCompromised": "2019-08-24T14:15:22Z",
+          "dateLastSeen": "2019-08-24T14:15:22Z",
+          "displayOptions": {},
+          "evaluation": {
+            "admiraltyCode": "A1",
+            "credibility": 100,
+            "reliability": 100,
+            "severity": "red",
+            "tlp": "red",
+            "ttl": 0
+          },
+          "eventCount": 0,
+          "events": [
+            {
+              "client": {
+                "ipv4": {
+                  "asn": "string",
+                  "city": "string",
+                  "countryCode": "string",
+                  "countryName": "string",
+                  "ip": "string",
+                  "provider": "string",
+                  "region": "string"
+                },
+                "ipv6": {
+                  "asn": "string",
+                  "city": "string",
+                  "countryCode": "string",
+                  "countryName": "string",
+                  "ip": "string",
+                  "provider": "string",
+                  "region": "string"
+                }
+              },
+              "cnc": {
+                "cnc": "string",
+                "domain": "string",
+                "ipv4": {
+                  "asn": "string",
+                  "city": "string",
+                  "countryCode": "string",
+                  "countryName": "string",
+                  "ip": "string",
+                  "provider": "string",
+                  "region": "string"
+                },
+                "ipv6": {
+                  "asn": "string",
+                  "city": "string",
+                  "countryCode": "string",
+                  "countryName": "string",
+                  "ip": "string",
+                  "provider": "string",
+                  "region": "string"
+                },
+                "url": "string"
+              },
+              "dateCompromised": "2019-08-24T14:15:22Z",
+              "dateDetected": "2019-08-24T14:15:22Z",
+              "id": "string",
+              "malware": {
+                "category": [
+                  "string"
+                ],
+                "class": "string",
+                "id": "string",
+                "name": "string",
+                "platform": [
+                  "string"
+                ],
+                "stixGuid": "string",
+                "threatLevel": "string"
+              },
+              "oldId": "string",
+              "person": {
+                "address": "string",
+                "birthday": "string",
+                "city": "string",
+                "countryCode": "string",
+                "email": "string",
+                "name": "string",
+                "passport": "string",
+                "phone": "string",
+                "state": "string",
+                "taxNumber": "string",
+                "zip": "string"
+              },
+              "source": {
+                "id": "string",
+                "idType": "string",
+                "type": "string"
+              },
+              "threatActor": {
+                "id": "string",
+                "isAPT": true,
+                "name": "string"
+              }
+            }
+          ],
+          "id": "string",
+          "login": "string",
+          "malware": [
+            {
+              "category": [
+                "string"
+              ],
+              "class": "string",
+              "id": "string",
+              "name": "string",
+              "platform": [
+                "string"
+              ],
+              "stixGuid": "string",
+              "threatLevel": "string"
+            }
+          ],
+          "parsedLogin": {
+            "domain": "string",
+            "ip": "string"
+          },
+          "password": "string",
+          "port": 0,
+          "seqUpdate": 0,
+          "service": {
+            "domain": "string",
+            "host": "string",
+            "ip": "string",
+            "url": "string"
+          },
+          "source": [
+            {
+              "id": "string",
+              "idType": "string",
+              "type": "string"
+            }
+          ],
+          "sourceId": [
+            "string"
+          ],
+          "sourceType": [
+            "string"
+          ],
+          "threatActor": [
+            {
+              "id": "string",
+              "isAPT": true,
+              "name": "string"
+            }
+          ]
+        }
+      ],
+      "compromised_bank_card_group": [
+        {
+          "baseName": "string",
+          "cardInfo": {
+            "bin": [
+              "string"
+            ],
+            "issuer": {
+              "countryCode": "string",
+              "countryName": "string",
+              "issuer": "string"
+            },
+            "number": "string",
+            "system": "string",
+            "type": "string"
+          },
+          "dateFirstCompromised": "2019-08-24T14:15:22Z",
+          "dateFirstSeen": "2019-08-24T14:15:22Z",
+          "dateLastCompromised": "2019-08-24T14:15:22Z",
+          "dateLastSeen": "2019-08-24T14:15:22Z",
+          "displayOptions": {},
+          "evaluation": {
+            "admiraltyCode": "A1",
+            "credibility": 100,
+            "reliability": 100,
+            "severity": "red",
+            "tlp": "red",
+            "ttl": 0
+          },
+          "eventCount": 0,
+          "events": [
+            {
+              "cardInfo": {
+                "cvv": "string",
+                "dump": "string",
+                "pin": "string",
+                "validThru": "string",
+                "validThruDate": "string"
+              },
+              "client": {
+                "ipv4": {
+                  "asn": "string",
+                  "city": "string",
+                  "countryCode": "string",
+                  "countryName": "string",
+                  "ip": "string",
+                  "provider": "string",
+                  "region": "string"
+                },
+                "ipv6": {
+                  "asn": "string",
+                  "city": "string",
+                  "countryCode": "string",
+                  "countryName": "string",
+                  "ip": "string",
+                  "provider": "string",
+                  "region": "string"
+                }
+              },
+              "cnc": {
+                "cnc": "string",
+                "domain": "string",
+                "ipv4": {
+                  "asn": "string",
+                  "city": "string",
+                  "countryCode": "string",
+                  "countryName": "string",
+                  "ip": "string",
+                  "provider": "string",
+                  "region": "string"
+                },
+                "ipv6": {
+                  "asn": "string",
+                  "city": "string",
+                  "countryCode": "string",
+                  "countryName": "string",
+                  "ip": "string",
+                  "provider": "string",
+                  "region": "string"
+                },
+                "url": "string"
+              },
+              "dateCompromised": "2019-08-24T14:15:22Z",
+              "dateDetected": "2019-08-24T14:15:22Z",
+              "externalId": "string",
+              "id": "string",
+              "malware": {
+                "category": [
+                  "string"
+                ],
+                "class": "string",
+                "id": "string",
+                "name": "string",
+                "platform": [
+                  "string"
+                ],
+                "stixGuid": "string",
+                "threatLevel": "string"
+              },
+              "oldId": "string",
+              "owner": {
+                "address": "string",
+                "city": "string",
+                "countryCode": "string",
+                "email": "string",
+                "passport": "string",
+                "phone": "string",
+                "state": "string",
+                "zip": {
+                  "coordinates": "string",
+                  "countryCode": "string",
+                  "zip": "string"
+                }
+              },
+              "source": {
+                "id": "string",
+                "idType": "string",
+                "type": "string"
+              },
+              "threatActor": {
+                "id": "string",
+                "isAPT": true,
+                "name": "string"
+              },
+              "track": [
+                "string"
+              ]
+            }
+          ],
+          "id": "string",
+          "malware": [
+            {
+              "category": [
+                "string"
+              ],
+              "class": "string",
+              "id": "string",
+              "name": "string",
+              "platform": [
+                "string"
+              ],
+              "stixGuid": "string",
+              "threatLevel": "string"
+            }
+          ],
+          "seqUpdate": 0,
+          "serviceCode": "string",
+          "source": [
+            {
+              "id": "string",
+              "idType": "string",
+              "type": "string"
+            }
+          ],
+          "sourceId": [
+            "string"
+          ],
+          "sourceType": [
+            "string"
+          ],
+          "threatActor": [
+            {
+              "id": "string",
+              "isAPT": true,
+              "name": "string"
+            }
+          ]
+        }
+      ],
+      "compromised_discord": [
+        {
+          "author": {
+            "avatar": "string",
+            "discriminator": "string",
+            "id": "string",
+            "name": "string"
+          },
+          "channel": {
+            "avatar": "string",
+            "description": {},
+            "id": "string",
+            "name": "string",
+            "parsedCounters": {
+              "channels": 0,
+              "domain": 0,
+              "files": 0,
+              "ip": 0,
+              "links": 0,
+              "media": 0
+            },
+            "server": "string",
+            "serverId": "string",
+            "stat": {
+              "firstMessageDate": "2019-08-24T14:15:22Z",
+              "id": "string",
+              "lastMessageDate": "2019-08-24T14:15:22Z",
+              "messageNum": 0,
+              "name": "string",
+              "userNum": 0
+            }
+          },
+          "deleted": "string",
+          "edits": {},
+          "highlight": [
+            "string"
+          ],
+          "id": "string",
+          "media": {
+            "name": "string",
+            "size": 0,
+            "type": "string"
+          },
+          "repliedMessage": {
+            "author": {
+              "avatar": "string",
+              "discriminator": "string",
+              "id": "string",
+              "name": "string"
+            },
+            "id": "string",
+            "text": "string",
+            "translation": "string"
+          },
+          "rules": [
+            0
+          ],
+          "seqUpdate": 0,
+          "text": "string",
+          "translation": "string",
+          "ts": "2019-08-24T14:15:22Z"
+        }
+      ],
+      "compromised_imei": [
+        {
+          "client": {
+            "ipv4": {
+              "asn": "string",
+              "city": "string",
+              "countryCode": "string",
+              "countryName": "string",
+              "ip": "string",
+              "provider": "string",
+              "region": "string"
+            },
+            "ipv6": {
+              "asn": "string",
+              "city": "string",
+              "countryCode": "string",
+              "countryName": "string",
+              "ip": "string",
+              "provider": "string",
+              "region": "string"
+            }
+          },
+          "cnc": {
+            "cnc": "string",
+            "domain": "string",
+            "ipv4": {
+              "asn": "string",
+              "city": "string",
+              "countryCode": "string",
+              "countryName": "string",
+              "ip": "string",
+              "provider": "string",
+              "region": "string"
+            },
+            "ipv6": {
+              "asn": "string",
+              "city": "string",
+              "countryCode": "string",
+              "countryName": "string",
+              "ip": "string",
+              "provider": "string",
+              "region": "string"
+            },
+            "url": "string"
+          },
+          "dateCompromised": "2019-08-24T14:15:22Z",
+          "dateDetected": "2019-08-24T14:15:22Z",
+          "device": {
+            "iccid": "string",
+            "imei": "string",
+            "imsi": "string",
+            "model": "string",
+            "os": "string"
+          },
+          "evaluation": {
+            "admiraltyCode": "A1",
+            "credibility": 100,
+            "reliability": 100,
+            "severity": "red",
+            "tlp": "red",
+            "ttl": 0
+          },
+          "id": "string",
+          "malware": {
+            "category": [
+              "string"
+            ],
+            "class": "string",
+            "id": "string",
+            "name": "string",
+            "platform": [
+              "string"
+            ],
+            "stixGuid": "string",
+            "threatLevel": "string"
+          },
+          "oldId": "string",
+          "operator": {
+            "countryCode": "string",
+            "name": "string",
+            "number": "string"
+          },
+          "seqUpdate": 0,
+          "sourceType": "string",
+          "threatActor": {
+            "id": "string",
+            "isAPT": true,
+            "name": "string"
+          }
+        }
+      ],
+      "compromised_masked_card": [
+        {
+          "baseName": "string",
+          "cardInfo": {
+            "cvv": "string",
+            "dump": "string",
+            "issuer": {
+              "countryCode": "string",
+              "countryName": "string",
+              "issuer": "string"
+            },
+            "number": "string",
+            "pin": "string",
+            "system": "string",
+            "type": "string",
+            "validThru": "string"
+          },
+          "client": {
+            "ipv4": {
+              "asn": "string",
+              "city": "string",
+              "countryCode": "string",
+              "countryName": "string",
+              "ip": "string",
+              "provider": "string",
+              "region": "string"
+            },
+            "ipv6": {
+              "asn": "string",
+              "city": "string",
+              "countryCode": "string",
+              "countryName": "string",
+              "ip": "string",
+              "provider": "string",
+              "region": "string"
+            }
+          },
+          "cnc": {
+            "cnc": "string",
+            "domain": "string",
+            "ipv4": {
+              "asn": "string",
+              "city": "string",
+              "countryCode": "string",
+              "countryName": "string",
+              "ip": "string",
+              "provider": "string",
+              "region": "string"
+            },
+            "ipv6": {
+              "asn": "string",
+              "city": "string",
+              "countryCode": "string",
+              "countryName": "string",
+              "ip": "string",
+              "provider": "string",
+              "region": "string"
+            },
+            "url": "string"
+          },
+          "dateCompromised": "2019-08-24T14:15:22Z",
+          "dateDetected": "2019-08-24T14:15:22Z",
+          "evaluation": {
+            "admiraltyCode": "A1",
+            "credibility": 100,
+            "reliability": 100,
+            "severity": "red",
+            "tlp": "red",
+            "ttl": 0
+          },
+          "externalId": "string",
+          "id": "string",
+          "malware": {
+            "category": [
+              "string"
+            ],
+            "class": "string",
+            "id": "string",
+            "name": "string",
+            "platform": [
+              "string"
+            ],
+            "stixGuid": "string",
+            "threatLevel": "string"
+          },
+          "oldId": "string",
+          "owner": {
+            "address": "string",
+            "birthday": "string",
+            "city": "string",
+            "countryCode": "string",
+            "email": "string",
+            "name": "string",
+            "passport": "string",
+            "phone": "string",
+            "state": "string",
+            "taxNumber": "string",
+            "zip": "string"
+          },
+          "price": {
+            "currency": "string",
+            "value": "string"
+          },
+          "seqUpdate": 0,
+          "serviceCode": "string",
+          "sourceLink": "string",
+          "sourceType": "string",
+          "threatActor": {
+            "id": "string",
+            "isAPT": true,
+            "name": "string"
+          },
+          "track": [
+            "string"
+          ]
+        }
+      ],
+      "compromised_messenger": [
+        {
+          "author": {
+            "id": "string",
+            "userName": "string"
+          },
+          "chatStat": {
+            "avatar": {
+              "detected": "2019-08-24T14:15:22Z",
+              "hash": "string",
+              "id": "string"
+            },
+            "firstMessageTs": "2019-08-24T14:15:22Z",
+            "id": 0,
+            "lastMessageTs": "2019-08-24T14:15:22Z",
+            "messageNum": 0,
+            "name": "string",
+            "title": "string",
+            "type": "string",
+            "userNum": 0
+          },
+          "edits": {},
+          "highlight": [
+            "string"
+          ],
+          "id": "string",
+          "isReply": true,
+          "lastEditTs": "2019-08-24T14:15:22Z",
+          "message": "string",
+          "messageTs": "2019-08-24T14:15:22Z",
+          "name": "string",
+          "replMes": {
+            "author": {
+              "id": "string",
+              "userName": "string"
+            },
+            "id": 0,
+            "text": "string"
+          },
+          "rules": [
+            0
+          ],
+          "seqUpdate": 0,
+          "translatedMessage": "string"
+        }
+      ],
+      "compromised_spd": [
+        {
+          "type": "string",
+          "serviceType": "string",
+          "ownerName": "string",
+          "illegalScore": 100,
+          "displayOptions": {
+            "isFavourite": false
+          },
+          "value": {
+            "value": "string",
+            "email": "string",
+            "bankCard": "string",
+            "iban": "string"
+          },
+          "events": [
+            {
+              "compromisedAt": "2025-02-22T17:55:23Z",
+              "detectedAt": "2025-02-22T17:55:23Z",
+              "source": {
+                "name": "string",
+                "type": "string"
+              },
+              "malware": [],
+              "threatActor": [],
+              "tags": [
+                "string"
+              ],
+              "illegalScore": 100
+            }
+          ],
+          "seqUpdate": 0,
+          "id": "string",
+          "createdAt": "2025-08-17T08:16:14.918Z",
+          "firstSeenAt": "2025-02-22T17:55:23Z",
+          "lastSeenAt": "2025-02-22T17:55:23Z",
+          "evaluation": {
+            "admiraltyCode": "string",
+            "credibility": 80,
+            "reliability": 100,
+            "severity": "string",
+            "tlp": "string",
+            "ttl": 30
+          },
+          "malware": [
+            {
+              "id": "string",
+              "name": "string",
+              "stixGuid": "string"
+            }
+          ],
+          "threatActor": [
+            {
+              "id": "string",
+              "name": "string",
+              "stixGuid": "string"
+            }
+          ],
+          "tags": [
+            "string"
+          ],
+          "sources": [
+            {
+              "name": "string",
+              "type": "string"
+            }
+          ],
+          "country": [
+            "string"
+          ]
+        }
+      ],
+      "hi_open_threats": [
+        {
+          "author": {
+            "name": "string",
+            "profileUrl": "string",
+            "screenName": "string",
+            "userId": "string"
+          },
+          "createdAt": "2019-08-24T14:15:22Z",
+          "data": {
+            "countries": [
+              {
+                "country": "string",
+                "countryCode": "string"
+              }
+            ],
+            "cryptoWallets": [
+              {
+                "walletType": "string",
+                "wallets": [
+                  "string"
+                ]
+              }
+            ],
+            "cve": [
+              {
+                "id": "string"
+              }
+            ],
+            "domains": [
+              {
+                "tags": [
+                  "string"
+                ],
+                "value": "string"
+              }
+            ],
+            "emails": [
+              "string"
+            ],
+            "files": [
+              {
+                "hashes": {
+                  "md4": "string",
+                  "md5": "string",
+                  "md6": "string",
+                  "ripemd160": "string",
+                  "sha1": "string",
+                  "sha224": "string",
+                  "sha256": "string",
+                  "sha384": "string",
+                  "sha512": "string",
+                  "whirlpool": "string"
+                },
+                "name": "string",
+                "size": 0,
+                "tags": [
+                  "string"
+                ],
+                "value": "string"
+              }
+            ],
+            "hashes": [
+              {
+                "value": "string"
+              }
+            ],
+            "ip": [
+              {
+                "ip": "string",
+                "port": "string",
+                "tags": [
+                  "string"
+                ]
+              }
+            ],
+            "malware": [
+              {
+                "category": [
+                  "string"
+                ],
+                "class": "string",
+                "id": "string",
+                "name": "string",
+                "platform": [
+                  "string"
+                ],
+                "stixGuid": "string",
+                "threatLevel": "string"
+              }
+            ],
+            "pdbPaths": [
+              "string"
+            ],
+            "tags": [
+              "string"
+            ],
+            "telegramApiKeys": [
+              "string"
+            ]
+          },
+          "dateDetected": "2019-08-24T14:15:22Z",
+          "evaluation": {
+            "admiraltyCode": "A1",
+            "credibility": 100,
+            "reliability": 100,
+            "severity": "red",
+            "tlp": "red",
+            "ttl": 0
+          },
+          "id": "string",
+          "link": "string",
+          "original": "string",
+          "seqUpdate": 0,
+          "source": "string",
+          "text": "string",
+          "threatActors": [
+            {
+              "id": "string",
+              "isAPT": true,
+              "name": "string"
+            }
+          ],
+          "title": "string",
+          "updatedAt": "2019-08-24T14:15:22Z"
+        }
+      ],
+      "hi_threat": [
+        {
+          "contacts": [
+            {
+              "account": "string",
+              "flag": "fake",
+              "service": "vk",
+              "type": "email"
+            }
+          ],
+          "countries": "AF",
+          "createdAt": "2019-08-24T14:15:22Z",
+          "cveList": [
+            {
+              "name": "string"
+            }
+          ],
+          "dateFirstSeen": "2019-08-24T14:15:22Z",
+          "dateLastSeen": "2019-08-24T14:15:22Z",
+          "datePublished": "2019-08-24T14:15:22Z",
+          "description": "string",
+          "displayOptions": {},
+          "evaluation": {
+            "admiraltyCode": "A1",
+            "credibility": 100,
+            "reliability": 100,
+            "severity": "red",
+            "tlp": "red",
+            "ttl": 0
+          },
+          "expertise": [
+            "string"
+          ],
+          "files": [
+            {
+              "hash": "string",
+              "mime": "string",
+              "name": "string",
+              "size": 0
+            }
+          ],
+          "forumsAccounts": [
+            {
+              "messageCount": 0,
+              "nickname": "string",
+              "registeredAt": "2019-08-24T14:15:22Z",
+              "url": "string"
+            }
+          ],
+          "id": "string",
+          "indicatorMalwareRelationships": [
+            {
+              "indicatorId": "string",
+              "malwareId": "string"
+            }
+          ],
+          "indicatorRelationships": [
+            {
+              "sourceId": "string",
+              "targetId": "string"
+            }
+          ],
+          "indicatorToolRelationships": [
+            {
+              "indicatorId": "string",
+              "toolId": "string"
+            }
+          ],
+          "indicators": [
+            {
+              "dateFirstSeen": "2019-08-24T14:15:22Z",
+              "dateLastSeen": "2019-08-24T14:15:22Z",
+              "deleted": true,
+              "description": "string",
+              "id": "string",
+              "langs": "en",
+              "malwareIdList": [
+                "string"
+              ],
+              "malwareList": [
+                {
+                  "category": [
+                    "string"
+                  ],
+                  "class": "string",
+                  "id": "string",
+                  "name": "string",
+                  "platform": [
+                    "string"
+                  ],
+                  "stixGuid": "string",
+                  "threatLevel": "string"
+                }
+              ],
+              "params": {
+                "address": "string",
+                "message": {
+                  "body": "string",
+                  "subject": "string"
+                },
+                "senderIp": "string",
+                "serverIp": "string",
+                "url": "string",
+                "hashes": {
+                  "md4": "string",
+                  "md5": "string",
+                  "md6": "string",
+                  "ripemd160": "string",
+                  "sha1": "string",
+                  "sha224": "string",
+                  "sha256": "string",
+                  "sha384": "string",
+                  "sha512": "string",
+                  "whirlpool": "string"
+                },
+                "name": "string",
+                "size": 0,
+                "domain": "string",
+                "ipv4": [
+                  "string"
+                ],
+                "ipv6": [
+                  "string"
+                ],
+                "ssl": [
+                  {
+                    "hashes": {
+                      "md5": "string",
+                      "sha1": "string",
+                      "sha224": "string",
+                      "sha256": "string",
+                      "sha384": "string",
+                      "sha512": "string"
+                    }
+                  }
+                ]
+              },
+              "seqUpdate": 0,
+              "sources": {},
+              "techSeqUpdate": 0,
+              "title": "string",
+              "type": "string",
+              "fileName": "string",
+              "hasPolygonReport": true,
+              "hash": [
+                "string"
+              ],
+              "domain": "string",
+              "ip": [
+                "string"
+              ],
+              "url": "string"
+            }
+          ],
+          "indicatorsIds": [
+            "string"
+          ],
+          "isPublished": true,
+          "labels": "threat-report",
+          "langs": "en",
+          "malwareList": [
+            {
+              "category": [
+                "string"
+              ],
+              "class": "string",
+              "id": "string",
+              "name": "string",
+              "platform": [
+                "string"
+              ],
+              "stixGuid": "string",
+              "threatLevel": "string"
+            }
+          ],
+          "mitreMatrix": [
+            {
+              "attackPatternId": "string",
+              "attackTactic": "string",
+              "attackType": "pre_attack_tactics",
+              "id": "string",
+              "params": {
+                "data": "string",
+                "sampleList": [
+                  "string"
+                ]
+              }
+            }
+          ],
+          "oldId": "string",
+          "regions": "africa:eastern_africa",
+          "relatedThreatActors": [
+            {
+              "id": "string",
+              "isAPT": true,
+              "name": "string",
+              "type": "client"
+            }
+          ],
+          "reportNumber": "string",
+          "sectors": "all",
+          "seqUpdate": 0,
+          "shortDescription": "string",
+          "shortTitle": "string",
+          "sources": [
+            "string"
+          ],
+          "targetedCompany": [
+            "string"
+          ],
+          "targetedPartnersAndClients": [
+            "string"
+          ],
+          "techSeqUpdate": 0,
+          "threatActor": {
+            "id": "string",
+            "isAPT": true,
+            "name": "string"
+          },
+          "title": "string",
+          "toolList": [
+            {
+              "id": "string",
+              "name": "string"
+            }
+          ],
+          "type": "threat",
+          "updatedAt": "2019-08-24T14:15:22Z"
+        }
+      ],
+      "hi_threat_actor": [
+        {
+          "aliases": [
+            "string"
+          ],
+          "country": "AF",
+          "createdAt": "2019-08-24T14:15:22Z",
+          "description": "string",
+          "displayOptions": {},
+          "files": [
+            {
+              "hash": "string",
+              "mime": "string",
+              "name": "string",
+              "size": 0
+            }
+          ],
+          "goals": "Financial",
+          "id": "string",
+          "isAPT": true,
+          "labels": "activist",
+          "langs": "en",
+          "name": "string",
+          "oldId": "string",
+          "roles": "agent",
+          "seqUpdate": 0,
+          "spokenOnLangs": [
+            "string"
+          ],
+          "techSeqUpdate": 0,
+          "updatedAt": "2019-08-24T14:15:22Z"
+        }
+      ],
+      "ioc_common": [
+        {
+          "ThreatActorList": [
+            {
+              "id": "string",
+              "isAPT": true,
+              "name": "string"
+            }
+          ],
+          "dateFirstSeen": "2019-08-24T14:15:22Z",
+          "dateLastSeen": "2019-08-24T14:15:22Z",
+          "domain": "string",
+          "hash": [
+            "string"
+          ],
+          "id": "string",
+          "ip": [
+            "string"
+          ],
+          "malwareList": [
+            {
+              "category": [
+                "string"
+              ],
+              "class": "string",
+              "id": "string",
+              "name": "string",
+              "platform": [
+                "string"
+              ],
+              "stixGuid": "string",
+              "threatLevel": "string"
+            }
+          ],
+          "seqUpdate": 0,
+          "sources": {},
+          "threatList": [
+            {
+              "name": "string",
+              "title": "string"
+            }
+          ],
+          "type": "string",
+          "url": "string"
+        }
+      ],
+      "malware_cnc": [
+        {
+          "cnc": "string",
+          "dateDetected": "2019-08-24T14:15:22Z",
+          "dateLastSeen": "2019-08-24T14:15:22Z",
+          "domain": "string",
+          "file": [
+            {
+              "hashes": {
+                "md4": "string",
+                "md5": "string",
+                "md6": "string",
+                "ripemd160": "string",
+                "sha1": "string",
+                "sha224": "string",
+                "sha256": "string",
+                "sha384": "string",
+                "sha512": "string",
+                "whirlpool": "string"
+              },
+              "name": "string",
+              "size": 0
+            }
+          ],
+          "id": "string",
+          "ipv4": [
+            {
+              "asn": "string",
+              "city": "string",
+              "countryCode": "string",
+              "countryName": "string",
+              "ip": "string",
+              "provider": "string",
+              "region": "string"
+            }
+          ],
+          "ipv6": [
+            {
+              "asn": "string",
+              "city": "string",
+              "countryCode": "string",
+              "countryName": "string",
+              "ip": "string",
+              "provider": "string",
+              "region": "string"
+            }
+          ],
+          "malwareList": [
+            {
+              "category": [
+                "string"
+              ],
+              "class": "string",
+              "id": "string",
+              "name": "string",
+              "platform": [
+                "string"
+              ],
+              "stixGuid": "string",
+              "threatLevel": "string"
+            }
+          ],
+          "oldId": "string",
+          "platform": "string",
+          "seqUpdate": 0,
+          "ssl": [
+            "string"
+          ],
+          "threatActor": {
+            "id": "string",
+            "isAPT": true,
+            "name": "string"
+          },
+          "url": "string"
+        }
+      ],
+      "malware_config": [
+        {
+          "configSummary": {
+            "cnc": {},
+            "meta": "string",
+            "targets": {}
+          },
+          "content": "string",
+          "contentLen": 0,
+          "dateFirstSeen": "2019-08-24T14:15:22Z",
+          "dateLastSeen": "2019-08-24T14:15:22Z",
+          "file": [
+            {
+              "md5": "string",
+              "name": "string",
+              "sha1": "string",
+              "sha256": "string",
+              "timestamp": "string"
+            }
+          ],
+          "hash": "string",
+          "id": "string",
+          "malwareId": "string",
+          "seqUpdate": 0
+        }
+      ],
+      "malware_malware": [
+        {
+          "attachedFile": [
+            {
+              "hash": "string",
+              "mime": "string",
+              "name": "string",
+              "size": 0
+            }
+          ],
+          "category": [
+            "string"
+          ],
+          "class": "string",
+          "deletedIocList": [
+            "string"
+          ],
+          "description": "string",
+          "fileIocIdList": [
+            "string"
+          ],
+          "geoRegion": [
+            "string"
+          ],
+          "id": "string",
+          "isPublished": true,
+          "langs": "en",
+          "linkedMalware": [
+            {
+              "id": "string",
+              "name": "string"
+            }
+          ],
+          "malwareAliasList": [
+            "string"
+          ],
+          "mitreMatrix": [
+            {
+              "attackPatternId": "string",
+              "attackTactic": "string",
+              "attackType": "pre_attack_tactics",
+              "id": "string",
+              "params": {
+                "data": "string",
+                "sampleList": [
+                  "string"
+                ]
+              },
+              "useCount": 0
+            }
+          ],
+          "name": "string",
+          "networkIocIdList": [
+            "string"
+          ],
+          "platform": [
+            "string"
+          ],
+          "seqUpdate": 0,
+          "sequenceId": 0,
+          "shortDescription": "string",
+          "signatureIdList": [
+            "string"
+          ],
+          "sourceCountry": [
+            "string"
+          ],
+          "taList": [
+            {
+              "id": "string",
+              "name": "string",
+              "url": "string"
+            }
+          ],
+          "threatLevel": "string",
+          "updatedAt": "2019-08-24T14:15:22Z",
+          "yaraIdList": [
+            "string"
+          ]
+        }
+      ],
+      "malware_signature": [
+        {
+          "alertHistory": [
+            {
+              "date": "2019-08-24T14:15:22Z",
+              "number": 0,
+              "type": "string"
+            }
+          ],
+          "alertNum": 0,
+          "class": "string",
+          "content": "string",
+          "createdAt": "2019-08-24T14:15:22Z",
+          "id": 0,
+          "name": "string",
+          "severity": 0,
+          "sid": 0,
+          "sourceName": "string"
+        }
+      ],
+      "malware_yara": [
+        {
+          "alertNum": 0,
+          "class": "string",
+          "content": "string",
+          "createdAt": "2019-08-24T14:15:22Z",
+          "id": 0,
+          "name": "string",
+          "sourceName": "string"
+        }
+      ],
+      "osi_git_repository": [
+        {
+          "contributors": [
+            {
+              "authorEmail": "string",
+              "authorName": "string"
+            }
+          ],
+          "dataFound": {
+            "property1": 0,
+            "property2": 0
+          },
+          "dateCreated": "2019-08-24T14:15:22Z",
+          "dateDetected": "2019-08-24T14:15:22Z",
+          "evaluation": {
+            "admiraltyCode": "A1",
+            "credibility": 100,
+            "reliability": 100,
+            "severity": "red",
+            "tlp": "red",
+            "ttl": 0
+          },
+          "files": [
+            {
+              "dataFound": {},
+              "dateCreated": "2019-08-24T14:15:22Z",
+              "dateDetected": "2019-08-24T14:15:22Z",
+              "evaluation": {
+                "admiraltyCode": "A1",
+                "credibility": 100,
+                "reliability": 100,
+                "severity": "red",
+                "tlp": "red",
+                "ttl": 0
+              },
+              "id": "string",
+              "matchesType": [
+                "string"
+              ],
+              "matchesTypeCount": {
+                "property1": 0,
+                "property2": 0
+              },
+              "name": "string",
+              "revisions": [
+                {
+                  "bind": [
+                    {
+                      "bindBy": "string",
+                      "companyId": 0,
+                      "data": "string",
+                      "ruleId": 0,
+                      "type": "string"
+                    }
+                  ],
+                  "data": {
+                    "property1": {
+                      "property1": [
+                        "string"
+                      ],
+                      "property2": [
+                        "string"
+                      ]
+                    },
+                    "property2": {
+                      "property1": [
+                        "string"
+                      ],
+                      "property2": [
+                        "string"
+                      ]
+                    }
+                  },
+                  "hash": "string",
+                  "info": {
+                    "authorEmail": "string",
+                    "authorName": "string",
+                    "timestamp": 0
+                  }
+                }
+              ],
+              "rules": {},
+              "url": "string"
+            }
+          ],
+          "id": "string",
+          "matchesTypes": [
+            "string"
+          ],
+          "name": "string",
+          "numberOf": {
+            "contributors": 0,
+            "files": 0
+          },
+          "relations": {
+            "property1": "string",
+            "property2": "string"
+          },
+          "seqUpdate": 0,
+          "source": "string"
+        }
+      ],
+      "osi_public_leak": [
+        {
+          "bind": [
+            {
+              "id": "string",
+              "key": "string",
+              "ruleValue": "string",
+              "type": "string"
+            }
+          ],
+          "created": "2019-08-24T14:15:22Z",
+          "data": "string",
+          "displayOptions": {},
+          "evaluation": {
+            "admiraltyCode": "A1",
+            "credibility": 100,
+            "reliability": 100,
+            "severity": "red",
+            "tlp": "red",
+            "ttl": 0
+          },
+          "hash": "string",
+          "id": "string",
+          "language": "string",
+          "linkList": [
+            {
+              "author": "string",
+              "dateDetected": "2019-08-24T14:15:22Z",
+              "datePublished": "2019-08-24T14:15:22Z",
+              "hash": "string",
+              "itemSource": "string",
+              "link": "string",
+              "sequenceUpdate": 0,
+              "size": 0,
+              "source": "string",
+              "status": 0,
+              "title": "string"
+            }
+          ],
+          "matches": {},
+          "oldId": "string",
+          "seqUpdate": 0,
+          "updated": "2019-08-24T14:15:22Z",
+          "useful": 0
+        }
+      ],
+      "osi_vulnerability": [
+        {
+          "bulletinFamily": "string",
+          "cpeTable": {},
+          "cveList": [
+            "string"
+          ],
+          "cvss": {
+            "score": 0,
+            "vector": "string"
+          },
+          "darkweb": {},
+          "dateLastSeen": "2019-08-24T14:15:22Z",
+          "dateModified": "2019-08-24T14:15:22Z",
+          "datePublished": "2019-08-24T14:15:22Z",
+          "description": "string",
+          "displayOptions": {},
+          "evaluation": {
+            "admiraltyCode": "A1",
+            "credibility": 100,
+            "reliability": 100,
+            "severity": "red",
+            "tlp": "red",
+            "ttl": 0
+          },
+          "exploitCount": 0,
+          "exploitList": [
+            {
+              "aix": "string",
+              "aixFileset": [
+                "string"
+              ],
+              "appercut": "string",
+              "assessment": "string",
+              "bounty": "string",
+              "bountyState": "string",
+              "bulletinFamily": "string",
+              "bulletinSequenceId": "string",
+              "cpe": [
+                "string"
+              ],
+              "cpe23": [
+                "string"
+              ],
+              "cvelist": [
+                "string"
+              ],
+              "cvss": {
+                "score": 0,
+                "vector": "string"
+              },
+              "cvss3": {},
+              "description": "string",
+              "edition": 0,
+              "h1reporter": "string",
+              "h1team": "string",
+              "hackapp": "string",
+              "href": "string",
+              "id": "string",
+              "ioc": "string",
+              "isBulletin": "string",
+              "lastseen": "string",
+              "metasploitHistory": "string",
+              "metasploitReliability": "string",
+              "modified": "string",
+              "naslFamily": "string",
+              "nmap": "string",
+              "objectType": "string",
+              "objectTypes": [
+                "string"
+              ],
+              "openbugbounty": "string",
+              "osvdbidlist": [
+                "string"
+              ],
+              "pluginID": "string",
+              "provider": "string",
+              "ptsecurityAffected": [
+                "string"
+              ],
+              "published": "string",
+              "references": [
+                "string"
+              ],
+              "reporter": "string",
+              "scanner": [
+                "string"
+              ],
+              "sequenceId": 0,
+              "sourceData": "string",
+              "sourceHref": "string",
+              "status": "string",
+              "taskMd5": "string",
+              "threatPostCategory": "string",
+              "title": "string",
+              "type": "string",
+              "vuldb": [
+                "string"
+              ],
+              "vulnerabilityCvedetails": "string",
+              "w3af": "string"
+            }
+          ],
+          "exploitation": {},
+          "extCvss": {
+            "base": 0,
+            "environmental": 0,
+            "exploitability": 0,
+            "impact": 0,
+            "mImpact": 0,
+            "overall": 0,
+            "temporal": 0,
+            "vector": "string"
+          },
+          "extDescription": "string",
+          "githubLinkList": {},
+          "href": "string",
+          "id": "string",
+          "lastseen": "2019-08-24T14:15:22Z",
+          "provider": "string",
+          "references": [
+            "string"
+          ],
+          "reporter": "string",
+          "seqUpdate": 0,
+          "softwareMixed": [
+            {
+              "arch": [
+                "string"
+              ],
+              "hardware": "string",
+              "hardwareVendor": "string",
+              "hardwareVersion": "string",
+              "os": "string",
+              "osVendor": "string",
+              "osVersion": "string",
+              "rel": {},
+              "softwareFileName": "string",
+              "softwareName": [
+                "string"
+              ],
+              "softwareType": [
+                "string"
+              ],
+              "softwareVersion": [
+                "string"
+              ],
+              "softwareVersionString": "string",
+              "vendor": "string",
+              "versionOperator": "string"
+            }
+          ],
+          "threats": {},
+          "threatsList": [
+            {
+              "date": "2019-08-24T14:15:22Z",
+              "editable": true,
+              "link": "string",
+              "name": "string",
+              "threatActor": [
+                "string"
+              ],
+              "threatActorLinks": [
+                {
+                  "label": "string",
+                  "link": "string"
+                }
+              ]
+            }
+          ],
+          "timeLineData": [
+            {
+              "date": "2019-08-24T14:15:22Z",
+              "label": "string",
+              "link": "string"
+            }
+          ],
+          "title": "string",
+          "twitter": {},
+          "type": "string"
+        }
+      ],
+      "suspicious_ip_open_proxy": [
+        {
+          "anonymous": "string",
+          "dateDetected": "2019-08-24T14:15:22Z",
+          "dateFirstSeen": "2019-08-24T14:15:22Z",
+          "dateLastSeen": "2019-08-24T14:15:22Z",
+          "evaluation": {
+            "admiraltyCode": "A1",
+            "credibility": 100,
+            "reliability": 100,
+            "severity": "red",
+            "tlp": "red",
+            "ttl": 0
+          },
+          "id": "string",
+          "ipv4": {
+            "asn": "string",
+            "city": "string",
+            "countryCode": "string",
+            "countryName": "string",
+            "ip": "string",
+            "provider": "string",
+            "region": "string"
+          },
+          "oldId": "string",
+          "port": 0,
+          "seqUpdate": 0,
+          "source": "string",
+          "sources": {},
+          "type": "string"
+        }
+      ],
+      "suspicious_ip_scanner": [
+        {
+          "categories": [
+            "string"
+          ],
+          "dateFirstSeen": "2019-08-24T14:15:22Z",
+          "dateLastSeen": "2019-08-24T14:15:22Z",
+          "evaluation": {
+            "admiraltyCode": "A1",
+            "credibility": 100,
+            "reliability": 100,
+            "severity": "red",
+            "tlp": "red",
+            "ttl": 0
+          },
+          "id": "string",
+          "ipv4": {
+            "asn": "string",
+            "city": "string",
+            "countryCode": "string",
+            "countryName": "string",
+            "ip": "string",
+            "provider": "string",
+            "region": "string"
+          },
+          "seqUpdate": 0,
+          "sources": {}
+        }
+      ],
+      "suspicious_ip_socks_proxy": [
+        {
+          "dateDetected": "2019-08-24T14:15:22Z",
+          "dateFirstSeen": "2019-08-24T14:15:22Z",
+          "dateLastSeen": "2019-08-24T14:15:22Z",
+          "evaluation": {
+            "admiraltyCode": "A1",
+            "credibility": 100,
+            "reliability": 100,
+            "severity": "red",
+            "tlp": "red",
+            "ttl": 0
+          },
+          "id": "string",
+          "ipv4": {
+            "asn": "string",
+            "city": "string",
+            "countryCode": "string",
+            "countryName": "string",
+            "ip": "string",
+            "provider": "string",
+            "region": "string"
+          },
+          "oldId": "string",
+          "seqUpdate": 0,
+          "source": "string"
+        }
+      ],
+      "suspicious_ip_tor_node": [
+        {
+          "dateDetected": "2019-08-24T14:15:22Z",
+          "dateFirstSeen": "2019-08-24T14:15:22Z",
+          "dateLastSeen": "2019-08-24T14:15:22Z",
+          "evaluation": {
+            "admiraltyCode": "A1",
+            "credibility": 100,
+            "reliability": 100,
+            "severity": "red",
+            "tlp": "red",
+            "ttl": 0
+          },
+          "id": "string",
+          "ipv4": {
+            "asn": "string",
+            "city": "string",
+            "countryCode": "string",
+            "countryName": "string",
+            "ip": "string",
+            "provider": "string",
+            "region": "string"
+          },
+          "oldId": "string",
+          "seqUpdate": 0,
+          "source": "string"
+        }
+      ],
+      "suspicious_ip_vpn": []
+    }
+default_result_value: Timeout exceeded
+creator: a27bf531-e234-4aff-b717-18a554a6a8b9
+is_async: true
+simulation_data_json: '{"Entities": null}'
+script_result_name: GIB_Collection
