@@ -823,3 +823,13 @@
   regressive: false
   deprecated: false
   removed: false
+- description: Integration - Wait for playbook to complete for manual action.
+  integration_version: 69.0
+  item_name: Tools
+  item_type: Integration
+  publish_time: '2025-09-12'
+  ticket_number: '442899376'
+  new: false
+  regressive: false
+  deprecated: false
+  removed: false
