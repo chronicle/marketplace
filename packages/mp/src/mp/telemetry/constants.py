@@ -40,5 +40,5 @@ ALLOWED_COMMAND_ARGUMENTS: set[str] = {
     "verbose",
     "raise_error_on_violations",
     "deconstruct",
-    "changed_files"
+    "changed_files",
 }

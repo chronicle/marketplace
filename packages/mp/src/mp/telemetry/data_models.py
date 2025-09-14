@@ -36,7 +36,7 @@ class EventPayload:
 
     """
 
-    def __init__(
+    def __init__(  # noqa: PLR0913, PLR0917
         self,
         install_id: str,
         tool: str,
@@ -45,9 +45,9 @@ class EventPayload:
         platform: str,
         platform_version: str,
         command: str,
-        command_args: dict,
+        command_args: dict[str, Any],
         duration_ms: int,
-        success: bool,
+        success: bool,  # noqa: FBT001
         error_type: str | None,
         stack: str | None,
         timestamp: datetime,

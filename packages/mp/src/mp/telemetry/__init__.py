@@ -22,7 +22,7 @@ import traceback
 import uuid
 from collections.abc import Callable
 from datetime import UTC, datetime
-from typing import TypeAlias
+from typing import Any, TypeAlias
 
 import requests
 import rich
@@ -50,7 +50,7 @@ def track_command(mp_command_function: Callable) -> Callable:
     """A_Decorator function to wrap Typer commands for telemetry reporting.
 
     Args:
-        func (Callable): The Typer command function to be decorated.
+        mp_command_function (Callable): The Typer command function to be decorated.
 
     Returns:
         Callable: The wrapped function which includes the telemetry logic.
@@ -58,7 +58,7 @@ def track_command(mp_command_function: Callable) -> Callable:
     """
 
     @functools.wraps(mp_command_function)
-    def wrapper(*args, **kwargs) -> None:  # noqa: ANN002
+    def wrapper(*args: tuple, **kwargs: dict) -> None:
         if is_github_actions() or not _is_telemetry_enabled():
             return mp_command_function(*args, **kwargs)
 
@@ -72,7 +72,7 @@ def track_command(mp_command_function: Callable) -> Callable:
             mp_command_function(*args, **kwargs)
         except typer.Exit as e:
             exit_code = e.exit_code
-        except Exception as e:
+        except Exception as e:  # noqa: BLE001
             unexpected_exit = True
             stack = traceback.format_exc()
             error = e
@@ -185,5 +185,5 @@ def _command_name_mapper(command_name: str) -> str:
     return NAME_MAPPER[command_name]
 
 
-def _filter_command_arguments(kwargs: dict) -> dict:
+def _filter_command_arguments(kwargs: dict) -> dict[str, Any]:
     return {key: value for key, value in kwargs.items() if key in ALLOWED_COMMAND_ARGUMENTS}
