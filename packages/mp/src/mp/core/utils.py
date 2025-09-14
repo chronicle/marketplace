@@ -16,6 +16,8 @@
 
 from __future__ import annotations
 
+import os
+import platform
 import re
 import sys
 from typing import TYPE_CHECKING, TypedDict
@@ -137,3 +139,40 @@ def ensure_valid_list(value: list[str] | list[RepositoryType] | type) -> list:
     if isinstance(value, type):
         return []
     return value
+
+
+def is_github_actions() -> bool:
+    """Determine if the current environment is GitHub Actions.
+
+    Returns:
+        bool: True if the code is running inside a GitHub Actions workflow,
+              False otherwise.
+
+    """
+    return os.getenv("GITHUB_ACTIONS") == "true"
+
+
+def get_current_platform() -> tuple[str, str]:
+    """Get the simplified operating system name and its version.
+
+    Returns:
+       A tuple containing two strings:
+       1. The simplified OS name ('macOS', 'Windows', 'Linux').
+       2. The OS's primary version string (e.g., '14.5', '11').
+
+    """
+    system_name: str = platform.system()
+    os_name: str = "Unknown"
+    version: str = "Unknown"
+
+    if system_name == "Darwin":
+        os_name = "macOS"
+        version = platform.mac_ver()[0]
+    elif system_name == "Windows":
+        os_name = "Windows"
+        version = platform.release()
+    elif system_name == "Linux":
+        os_name = "Linux"
+        version = platform.release()
+
+    return os_name, version

@@ -12,9 +12,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import os
-
 from mp.core.display_utils import DisplayReport, display_reports
+from mp.core.utils import is_github_actions
 from mp.validate.data_models import FullReport
 
 from .cli import CliDisplay
@@ -35,8 +34,7 @@ def display_validation_reports(validation_results: FullReport) -> None:
     """
     display_types_list: list[DisplayReport] = [CliDisplay(validation_results)]
 
-    is_github_actions = os.getenv("GITHUB_ACTIONS")
-    if is_github_actions == "true":
+    if is_github_actions():
         display_types_list.append(MarkdownFormat(validation_results))
     else:
         display_types_list.append(HtmlFormat(validation_results))
