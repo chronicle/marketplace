@@ -22,6 +22,8 @@ from typing import Annotated, NamedTuple
 import rich
 import typer
 
+from mp.telemetry import track_command
+
 from . import api, utils
 from .minor_version_bump import minor_version_bump
 
@@ -41,6 +43,7 @@ class DevEnvParams(NamedTuple):
         " to"
     )
 )
+@track_command
 def login(
     api_root: Annotated[
         str | None,
@@ -147,6 +150,7 @@ def login(
 
 
 @app.command(help="Deploy an integration to the SOAR environment configured by the login command.")
+@track_command
 def deploy(
     integration: str = typer.Argument(..., help="Integration to build and deploy."),
     *,

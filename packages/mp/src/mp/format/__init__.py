@@ -34,6 +34,7 @@ import mp.core.code_manipulation
 import mp.core.config
 import mp.core.file_utils
 import mp.core.unix
+from mp.telemetry import track_command
 
 if TYPE_CHECKING:
     from collections.abc import Iterable
@@ -45,6 +46,7 @@ app: typer.Typer = typer.Typer()
 
 
 @app.command(name="format", help="Format '.py' files.")
+@track_command
 def format_files(
     file_paths: Annotated[
         list[str] | None,

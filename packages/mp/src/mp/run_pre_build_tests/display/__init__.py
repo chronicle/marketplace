@@ -14,10 +14,10 @@
 
 from __future__ import annotations
 
-import os
 from typing import TYPE_CHECKING
 
 from mp.core.display_utils import DisplayReport, display_reports
+from mp.core.utils import is_github_actions
 
 from .cli import CliDisplay
 from .html.html import HtmlFormat
@@ -40,8 +40,7 @@ def display_test_reports(test_results: list[IntegrationTestResults]) -> None:
     """
     display_types_list: list[DisplayReport] = [CliDisplay(test_results)]
 
-    is_github_actions = os.getenv("GITHUB_ACTIONS")
-    if is_github_actions == "true":
+    if is_github_actions():
         display_types_list.append(MarkdownFormat(test_results))
     else:
         display_types_list.append(HtmlFormat(test_results))

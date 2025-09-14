@@ -36,6 +36,7 @@ import mp.core.constants
 import mp.core.file_utils
 from mp.core.custom_types import RepositoryType
 from mp.core.utils import ensure_valid_list
+from mp.telemetry import track_command
 
 from .marketplace import Marketplace
 from .post_build.duplicate_integrations import raise_errors_for_duplicate_integrations
@@ -97,6 +98,7 @@ class BuildParams:
 
 
 @app.command(name="build", help="Build the marketplace")
+@track_command
 def build(  # noqa: PLR0913
     repository: Annotated[
         list[RepositoryType],
