@@ -41,7 +41,7 @@ from .constants import (
     NAME_MAPPER,
     REQUEST_TIMEOUT,
 )
-from .data_models import EventPayload
+from .data_models import TelemetryPayload
 
 ConfigYaml: TypeAlias = dict[str, str | bool]
 
@@ -86,7 +86,7 @@ def track_command(mp_command_function: Callable) -> Callable:
 
             error_type = type(error).__name__ if error else None
 
-            payload = EventPayload(
+            payload = TelemetryPayload(
                 install_id=_get_install_id(),
                 tool="mp-tool",
                 tool_version=tool_version,
@@ -104,7 +104,7 @@ def track_command(mp_command_function: Callable) -> Callable:
 
             rich.print(payload.to_dict())
 
-            # send_telemetry_report(payload.to_dict())
+            # send_telemetry_report(payload)
 
             if error:
                 raise error
@@ -114,7 +114,7 @@ def track_command(mp_command_function: Callable) -> Callable:
     return wrapper
 
 
-def send_telemetry_report(event_payload: EventPayload) -> None:
+def send_telemetry_report(event_payload: TelemetryPayload) -> None:
     """Send a telemetry event to the cloud run endpoint.
 
     Args:

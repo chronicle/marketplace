@@ -17,7 +17,7 @@ from datetime import datetime
 from typing import Any
 
 
-class EventPayload:
+class TelemetryPayload:
     """A data container for a single telemetry event.
 
     Attributes:
