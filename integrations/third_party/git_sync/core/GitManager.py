@@ -19,7 +19,7 @@ import json
 import os
 import shutil
 import stat
-from io import StringIO
+from io import StringIO, IOBase
 import sys
 from typing import TYPE_CHECKING
 from urllib.parse import urlparse, urlunparse
@@ -42,6 +42,16 @@ from .definitions import File, Metadata
 if TYPE_CHECKING:
     from soar_sdk.SiemplifyLogger import SiemplifyLogger
 
+
+PUSH_FAILURE_INDICATORS = (
+        "pre-receive hook declined",
+        "not allowed to push",
+        "push rejected",
+        "failed to push",
+        "error: failed to push",
+        "! [rejected]",
+        "! [remote rejected]",
+    )
 
 class Git:
     """GitManager"""
@@ -187,19 +197,25 @@ class Git:
             equivalent to 'git push --force'. Defaults to False.
 
         """
+        error_content = ""
         try:
-            error_capture = StringIO()
-            tee_stream = TeeStream(sys.stderr, error_capture)
+            error_buffer = StringIO()
+            tee_stream = TeeStream(sys.stderr, error_buffer)
 
-            porcelain.push(
-                self.repo,
-                refspecs=[self.local_branch_ref],
-                force=force_push,
-                errstream=tee_stream,
-                **self.connection_args,
-            )
+            try:
+                porcelain.push(
+                    self.repo,
+                    refspecs=[self.local_branch_ref],
+                    force=force_push,
+                    errstream=tee_stream,
+                    **self.connection_args,
+                )
+            finally:
+                tee_stream.flush()
+                error_content = error_buffer.getvalue().strip()
+                tee_stream.close()
 
-            self.raise_on_errors_during_push(error_capture)
+            self._raise_on_push_errors(error_content)
 
         except porcelain.DivergedBranches:
             self.logger.error("Could not push updates to remote repository!")
@@ -213,19 +229,13 @@ class Git:
                 "Updates will be pushed in the next python script execution",
             )
 
-    def raise_on_errors_during_push(self, error_capture):
-        error_content = error_capture.getvalue()
-        if error_content and any(
-                failure_indicator in error_content.lower()
-                for failure_indicator in [
-                    "pre-receive hook declined",
-                    "not allowed to push",
-                    "push rejected",
-                    "push of ref",
-                    "failed:",
-                ]
-        ):
-            self.logger.error(f"Push failed: {error_content}")
+    def _raise_on_push_errors(self, error_content: str) -> None:
+        """Check for push failure indicators and raise exception."""
+        if not error_content:
+            return
+
+        if any(indicator in error_content for indicator in PUSH_FAILURE_INDICATORS):
+            self.logger.error(f"Push operation failed: {error_content}")
             raise Exception(f"Push operation failed: {error_content}")
 
     def _checkout(self) -> None:
@@ -608,15 +618,93 @@ _mod_client.get_ssh_vendor = SiemplifyParamikoSSHVendor
 # dulwich patch to newer paramiko versions returning string and not bytes
 _mod_client._remote_error_from_stderr = remote_error_from_stderr
 
-class TeeStream:
-    def __init__(self, *streams) -> None:
-        self.streams = streams
-    def write(self, data):
-        for s in self.streams:
+class TeeStream(IOBase):
+    """Stream multiplexer with protected system streams.
+    Duplicates writes to multiple streams while protecting
+    sys.stdout/stderr/stdin from accidental closure.
+    """
+
+    def __init__(self, *streams: IOBase) -> None:
+        super().__init__()
+        self._streams = tuple(streams)
+        self._closed = False
+        # Protect standard streams from closure
+        self._protected_streams = frozenset({sys.stdout, sys.stderr, sys.stdin})
+
+    @property
+    def closed(self) -> bool:
+        """Stream closed state."""
+        return self._closed
+
+    def write(self, data) -> int:
+        """Write to all streams, converting bytes to string if needed."""
+        if self._closed:
+            raise ValueError("I/O operation on closed stream")
+
+        content = self._normalize_content(data)
+
+        for stream in self._streams:
+            self._safe_write(stream, content)
+
+        return len(content)
+
+    def flush(self) -> None:
+        """Flush all streams that support flushing."""
+        if not self._closed:
+            for stream in self._streams:
+                self._safe_flush(stream)
+
+    def close(self) -> None:
+        """Close only non-protected streams, mark tee as closed."""
+        if self._closed:
+            return
+
+        # Close only streams we're allowed to close
+        for stream in self._streams:
+            if (stream not in self._protected_streams and
+                    hasattr(stream, 'close') and
+                    not getattr(stream, 'closed', False)):
+                try:
+                    stream.close()
+                except Exception:
+                    pass
+
+        self._closed = True
+        super().close()
+
+    def writable(self) -> bool:
+        """Check if stream is writable."""
+        return not self._closed
+
+    def __enter__(self) -> 'TeeStream':
+        """Context manager entry."""
+        return self
+
+    def __exit__(self, exc_type, exc_val, exc_tb) -> None:
+        """Context manager exit with guaranteed cleanup."""
+        self.close()
+
+    @staticmethod
+    def _normalize_content(data) -> str:
+        """Convert data to string format."""
+        if isinstance(data, bytes):
+            return data.decode('utf-8', errors='replace')
+        return str(data)
+
+    @staticmethod
+    def _safe_write(stream, content: str) -> None:
+        """Write to stream with error suppression."""
+        if not getattr(stream, 'closed', False):
             try:
-                s.write(data)
-            except TypeError:
-                # Handle bytes -> string conversion for StringIO
-                s.write(data.decode('utf-8', errors='replace') if isinstance(data, bytes) else str(data))
-    def flush(self): [s.flush() for s in self.streams if hasattr(s, 'flush')]
-    def getvalue(self): return next((s.getvalue() for s in self.streams if hasattr(s, 'getvalue')), "")
+                stream.write(content)
+            except Exception:
+                pass
+
+    @staticmethod
+    def _safe_flush(stream) -> None:
+        """Flush stream with error suppression."""
+        if hasattr(stream, 'flush') and not getattr(stream, 'closed', False):
+            try:
+                stream.flush()
+            except Exception:
+                pass
