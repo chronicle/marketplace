@@ -22,6 +22,7 @@ import traceback
 import uuid
 from collections.abc import Callable
 from datetime import UTC, datetime
+from enum import Enum
 from typing import Any, TypeAlias
 
 import requests
@@ -85,6 +86,8 @@ def track_command(mp_command_function: Callable) -> Callable:
             platform_name, platform_version = get_current_platform()
 
             error_type = type(error).__name__ if error else None
+            safe_args: dict[str, Any] = _filter_command_arguments(kwargs)
+            command_args_str: str = json.dumps(safe_args) if safe_args else None
 
             payload = TelemetryPayload(
                 install_id=_get_install_id(),
@@ -94,9 +97,10 @@ def track_command(mp_command_function: Callable) -> Callable:
                 platform=platform_name,
                 platform_version=platform_version,
                 command=_command_name_mapper(mp_command_function.__name__),
-                command_args=_filter_command_arguments(kwargs),
+                command_args=command_args_str,
                 duration_ms=duration_ms,
                 success=bool(not unexpected_exit),
+                exit_code=exit_code,
                 error_type=error_type,
                 stack=stack,
                 timestamp=datetime.now(UTC),
@@ -185,5 +189,25 @@ def _command_name_mapper(command_name: str) -> str:
     return NAME_MAPPER[command_name]
 
 
+def _sanitize_argument_value(value: Any) -> Any:
+    if isinstance(value, Enum):
+        return value.value
+
+    if isinstance(value, (list, tuple)):
+        if not value:
+            return None
+        if len(value) == 1:
+            return _sanitize_argument_value(value[0])
+        return [_sanitize_argument_value(item) for item in value]
+
+    return value
+
+
 def _filter_command_arguments(kwargs: dict) -> dict[str, Any]:
-    return {key: value for key, value in kwargs.items() if key in ALLOWED_COMMAND_ARGUMENTS}
+    sanitized_args = {}
+    for key, value in kwargs.items():
+        if key in ALLOWED_COMMAND_ARGUMENTS:
+            sanitized_value = _sanitize_argument_value(value)
+            if sanitized_value is not None:
+                sanitized_args[key] = sanitized_value
+    return sanitized_args

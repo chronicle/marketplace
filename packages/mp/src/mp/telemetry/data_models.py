@@ -45,9 +45,10 @@ class TelemetryPayload:
         platform: str,
         platform_version: str,
         command: str,
-        command_args: dict[str, Any],
+        command_args: str,
         duration_ms: int,
         success: bool,  # noqa: FBT001
+        exit_code: int,
         error_type: str | None,
         stack: str | None,
         timestamp: datetime,
@@ -62,6 +63,7 @@ class TelemetryPayload:
         self.command_args = command_args
         self.duration_ms = duration_ms
         self.success = success
+        self.exit_code = exit_code
         self.error_type = error_type
         self.stack = stack
         self.timestamp = timestamp
@@ -87,6 +89,7 @@ class TelemetryPayload:
             "command": self.command,
             "command_args": self.command_args,
             "success": self.success,
+            "exit_code": self.exit_code,
             "duration_ms": self.duration_ms,
             "error_type": self.error_type,
             "stack": self.stack,
