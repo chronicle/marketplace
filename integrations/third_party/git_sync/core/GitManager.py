@@ -21,7 +21,7 @@ import shutil
 import stat
 from io import StringIO, IOBase
 import sys
-from typing import TYPE_CHECKING, Union, IO, AnyStr
+from typing import TYPE_CHECKING, Union, TextIO
 from urllib.parse import urlparse, urlunparse
 
 import dulwich
@@ -229,14 +229,14 @@ class Git:
                 "Updates will be pushed in the next python script execution",
             )
 
-    def _raise_on_push_errors(self, error_content: str) -> None:
+    def _raise_on_push_errors(self, error_content: str |None) -> None:
         """Check for push failure indicators and raise exception."""
         if not error_content:
             return
 
         if any(indicator in error_content for indicator in PUSH_FAILURE_INDICATORS):
             self.logger.error(f"Push operation failed: {error_content}")
-            raise Exception(f"Push operation failed: {error_content}")
+            raise GitSyncException(f"Push operation failed: {error_content}")
 
     def _checkout(self) -> None:
         """Checkout a branch
@@ -624,7 +624,7 @@ class TeeStream(IOBase):
     sys.stdout/stderr/stdin from accidental closure.
     """
 
-    def __init__(self, *streams: IOBase) -> None:
+    def __init__(self, *streams: Union[TextIO, IOBase]) -> None:
         super().__init__()
         self._streams = tuple(streams)
         self._closed = False
@@ -692,7 +692,7 @@ class TeeStream(IOBase):
         return str(data)
 
     @staticmethod
-    def _safe_write(stream: IO[AnyStr], content: str) -> None:
+    def _safe_write(stream: Union[TextIO, IOBase], content: str) -> None:
         """Write to stream with error suppression."""
         if not getattr(stream, 'closed', False):
             try:
@@ -701,10 +701,21 @@ class TeeStream(IOBase):
                 pass
 
     @staticmethod
-    def _safe_flush(stream: IO[AnyStr]) -> None:
+    def _safe_flush(stream: Union[TextIO, IOBase]) -> None:
         """Flush stream with error suppression."""
         if hasattr(stream, 'flush') and not getattr(stream, 'closed', False):
             try:
                 stream.flush()
             except Exception:
                 pass
+
+
+class GitSyncException(Exception):
+    """Exception raised for GitSync operations failures."""
+
+    def __init__(self, message: str):
+        """
+        Args:
+            message: Error message from operation
+        """
+        super().__init__(message)
