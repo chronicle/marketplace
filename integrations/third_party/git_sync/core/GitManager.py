@@ -21,7 +21,7 @@ import shutil
 import stat
 from io import StringIO, IOBase
 import sys
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Union, IO, AnyStr
 from urllib.parse import urlparse, urlunparse
 
 import dulwich
@@ -636,7 +636,7 @@ class TeeStream(IOBase):
         """Stream closed state."""
         return self._closed
 
-    def write(self, data) -> int:
+    def write(self, data: Union[str, bytes]) -> int:
         """Write to all streams, converting bytes to string if needed."""
         if self._closed:
             raise ValueError("I/O operation on closed stream")
@@ -685,14 +685,14 @@ class TeeStream(IOBase):
         self.close()
 
     @staticmethod
-    def _normalize_content(data) -> str:
+    def _normalize_content(data: Union[str, bytes]) -> str:
         """Convert data to string format."""
         if isinstance(data, bytes):
             return data.decode('utf-8', errors='replace')
         return str(data)
 
     @staticmethod
-    def _safe_write(stream, content: str) -> None:
+    def _safe_write(stream: IO[AnyStr], content: str) -> None:
         """Write to stream with error suppression."""
         if not getattr(stream, 'closed', False):
             try:
@@ -701,7 +701,7 @@ class TeeStream(IOBase):
                 pass
 
     @staticmethod
-    def _safe_flush(stream) -> None:
+    def _safe_flush(stream: IO[AnyStr]) -> None:
         """Flush stream with error suppression."""
         if hasattr(stream, 'flush') and not getattr(stream, 'closed', False):
             try:
