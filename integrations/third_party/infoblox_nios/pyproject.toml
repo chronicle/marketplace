@@ -8,6 +8,7 @@ dependencies = [ "environmentcommon", "requests==2.32.3", "tipcommon",]
 [dependency-groups]
 dev = [
  "integration-testing",
+ "pytest-json-report>=1.5.0",
  "pytest>=8.4.0",
  "soar-sdk",
 ]
