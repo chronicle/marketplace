@@ -1,0 +1,64 @@
+name: Create RPZ CNAME Rule
+description: 'Adds a CNAME rule to an existing RPZ to override DNS behavior. '
+integration_identifier: InfobloxNIOS
+parameters:
+-   name: Substitute Name
+    type: string
+    description: 'The substitute name to assign (substitute domain only). '
+    is_mandatory: false
+-   name: Rule Type
+    default_value: Block (No data)
+    type: ddl
+    optional_values:
+    - Passthru
+    - Block (No such domain)
+    - Substitute (Domain name)
+    - Block (No data)
+    description: The type of the rule to create.
+    is_mandatory: true
+-   name: Object Type
+    default_value: Domain Name
+    type: ddl
+    optional_values:
+    - Domain Name
+    - IP Address
+    - Client IP Address
+    description: The type of the object for which to assign the rule.
+    is_mandatory: true
+-   name: Name
+    default_value: ''
+    type: string
+    description: The rule name in a FQDN format.
+    is_mandatory: true
+-   name: RP Zone
+    default_value: ''
+    type: string
+    description: The zone to assign the rule to.
+    is_mandatory: true
+-   name: Comment
+    type: string
+    description: Comment for this rule.
+    is_mandatory: false
+-   name: View
+    default_value: default
+    type: string
+    description: The DNS view in which the records are located. By default, the 'default'
+        DNS view is searched.
+    is_mandatory: false
+-   name: Additional Parameters
+    type: string
+    description: JSON object containing additional parameters to create rpz rule.
+    is_mandatory: false
+dynamic_results_metadata:
+-   result_example: '[{"_ref": "record:rpz:cname:ipaddress/ZG5zLmJpbmRfY25hbWUkLl9kZWZhdWx0LmNvbS5ycHoudGhyZWF0LnJwei1pcC4xMC4yLjIuMTEuMzI:10.2.2.11.threat.rpz.com/default",
+        "canonical": "*", "comment": "Block test1", "disable": false, "extattrs":
+        {}, "name": "10.2.2.11.threat.rpz.com", "rp_zone": "threat.rpz.com", "use_ttl":
+        false, "view": "default", "zone": "threat.rpz.com"}, {"_ref": "record:rpz:cname:clientipaddress/ZG5zLmJpbmRfY25hbWUkLl9kZWZhdWx0LmNvbS5ycHoudGhyZWF0LnJwei1jbGllbnQtaXAuMTAuMi4yLjE5LjMy:10.2.2.19.threat.rpz.com/default",
+        "canonical": "*", "comment": "Block test1", "disable": false, "extattrs":
+        {}, "is_ipv4": true, "name": "10.2.2.19.threat.rpz.com", "rp_zone": "threat.rpz.com",
+        "use_ttl": false, "view": "default", "zone": "threat.rpz.com"}]'
+    result_name: JsonResult
+    show_result: true
+default_result_value: ''
+creator: Admin
+script_result_name: ScriptResult

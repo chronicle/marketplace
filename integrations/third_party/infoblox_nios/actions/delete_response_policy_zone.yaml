@@ -1,0 +1,16 @@
+name: Delete Response Policy Zone
+description: Removes an existing Response Policy Zone from Infoblox.
+integration_identifier: InfobloxNIOS
+parameters:
+-   name: Reference ID
+    default_value: ''
+    type: string
+    description: The reference ID of the response policy zone.
+    is_mandatory: true
+dynamic_results_metadata:
+-   result_example: '{}'
+    result_name: JsonResult
+    show_result: true
+default_result_value: ''
+creator: Admin
+script_result_name: ScriptResult

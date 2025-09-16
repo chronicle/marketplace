@@ -1,0 +1,53 @@
+name: Create RPZ NAPTR Rule
+description: 'Adds a NAPTR override in RPZ to control DNS-based service discovery. '
+integration_identifier: InfobloxNIOS
+parameters:
+-   name: Name
+    default_value: ''
+    type: string
+    description: Specify the name of the rule.
+    is_mandatory: true
+-   name: RP Zone
+    default_value: ''
+    type: string
+    description: The zone to assign the rule to.
+    is_mandatory: true
+-   name: Order
+    default_value: ''
+    type: string
+    description: Order parameter in NAPTR record defines the sequence of rule application
+        when multiple rules exist.
+    is_mandatory: true
+-   name: Preference
+    default_value: ''
+    type: string
+    description: The preference of the Substitute (NAPTR Record) Rule record.
+    is_mandatory: true
+-   name: Replacement
+    default_value: ''
+    type: string
+    description: 'Substitute rule object `replacement` field of the NAPTR record.
+        For non-terminal NAPTR records, this field specifies the next domain name
+        to look up. '
+    is_mandatory: true
+-   name: Comment
+    default_value: ''
+    type: string
+    description: Comment for this rule.
+    is_mandatory: false
+-   name: Additional Parameters
+    type: string
+    description: 'JSON object containing additional parameters to create response
+        policy zone. '
+    is_mandatory: false
+dynamic_results_metadata:
+-   result_example: '{"_ref": "record:rpz:naptr/ZG5zLmJpbmRfbmFwdHIkLl9kZWZhdWx0LmNvbS5ycHoudGhyZWF0LG5pZ2h0bHkyLXRlc3Qtc3J2LXN1YiwxLDIsLCwsdGhyZWF0LnJwei5jb20:nightly2-test-srv-sub.threat.rpz.com/default",
+        "comment": "threat.rpz.com", "disable": false, "extattrs": {}, "flags": "",
+        "name": "nightly1-test-srv-sub.threat.rpz.com", "order": 1, "preference":
+        2, "regexp": "", "replacement": "threat.rpz.com", "rp_zone": "threat.rpz.com",
+        "services": "", "use_ttl": false, "view": "default", "zone": "threat.rpz.com"}'
+    result_name: JsonResult
+    show_result: true
+default_result_value: ''
+creator: Admin
+script_result_name: ScriptResult

@@ -1,0 +1,48 @@
+name: Search RPZ Rule
+description: Searches for a specific RPZ rule by its name.
+integration_identifier: InfobloxNIOS
+parameters:
+-   name: Object Type
+    default_value: record:rpz:cname
+    type: ddl
+    optional_values:
+    - record:rpz:a
+    - record:rpz:a:ipaddress
+    - record:rpz:aaaa
+    - record:rpz:aaaa:ipaddress
+    - record:rpz:cname
+    - record:rpz:cname:clientipaddress
+    - record:rpz:cname:clientipaddressdn
+    - record:rpz:cname:ipaddress
+    - record:rpz:cname:ipaddressdn
+    - record:rpz:mx
+    - record:rpz:naptr
+    - record:rpz:ptr
+    - record:rpz:srv
+    - 'record:rpz:txt '
+    description: The Infoblox object type.
+    is_mandatory: true
+-   name: Rule Name
+    type: string
+    description: The full rule name (usually the rule name followed by its zone.(e.g.
+        name.domain.com).
+    is_mandatory: false
+-   name: Output Fields
+    type: string
+    description: The comma-separated fields to include in the returned object (e.g.,
+        address, comment, etc.) .
+    is_mandatory: false
+-   name: Limit
+    default_value: '100'
+    type: string
+    description: 'Maximum number of objects to be returned. '
+    is_mandatory: false
+dynamic_results_metadata:
+-   result_example: '[{"canonical": "1.4.5.infoblow.com", "disable": false, "extattrs":
+        {}, "name": "1.4.5.infoblow.com", "_ref": "record:rpz:cname/ZG5zLmJpbmRfY25hbWUkLl9kZLmNvbS5pbmZvYmxvdy41LjQuNwew3:1.4.5.infoblow.com/default",
+        "use_ttl": false, "view": "default", "zone": "infoblow.com"}]'
+    result_name: JsonResult
+    show_result: true
+default_result_value: ''
+creator: Admin
+script_result_name: ScriptResult

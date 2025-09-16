@@ -1,0 +1,48 @@
+name: Create RPZ AAAA Rule
+description: 'Creates an RPZ Substitute rule which maps domain name (AAAA record)
+    or an IPv6 address to a substitute IPv6 address for DNS redirection or blocking. '
+integration_identifier: InfobloxNIOS
+parameters:
+-   name: Object Type
+    default_value: Domain Name
+    type: ddl
+    optional_values:
+    - Domain Name
+    - IP Address
+    description: The type of the object for which to create record.
+    is_mandatory: true
+-   name: Name
+    default_value: ''
+    type: string
+    description: Specify the name of the rule.
+    is_mandatory: true
+-   name: RP Zone
+    default_value: ''
+    type: string
+    description: The zone to assign the rule to.
+    is_mandatory: true
+-   name: IPv6 Address
+    default_value: ''
+    type: string
+    description: The IPv6 address of the substitute rule.
+    is_mandatory: true
+-   name: Comment
+    type: string
+    description: Comment for this rule.
+    is_mandatory: false
+-   name: Additional Parameters
+    type: string
+    description: JSON object containing additional parameters to create response policy
+        zone.
+    is_mandatory: false
+dynamic_results_metadata:
+-   result_example: '{"_ref": "record:rpz:aaaa:ipaddress/ZG5zLmJpbmRfYWFhYSQuX2RlZmF1bHQuY29tLnJwei50aHJlYXQscnB6LWlwLmQ2MC5lMzIuZjFiOS56ei4yLjEyOCwyMDAxOmRiODo4NWEzOjo4YTJlOjM3MDo3MzM0:d60%3Ae32%3Af1b9%3A%3A2.threat.rpz.com/default",
+        "comment": "nightly-test-a-sub", "disable": false, "extattrs": {}, "ipv6addr":
+        "2001:db8:85a3::8a2e:370:7334", "name": "d60:e32:f1b9::2.threat.rpz.com",
+        "rp_zone": "threat.rpz.com", "use_ttl": false, "view": "default", "zone":
+        "threat.rpz.com"}'
+    result_name: JsonResult
+    show_result: true
+default_result_value: ''
+creator: Admin
+script_result_name: ScriptResult

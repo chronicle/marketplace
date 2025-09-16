@@ -1,0 +1,71 @@
+name: Create Host Record
+description: Adds a host record to Infoblox with associated IP addresses. When configure_for_dns
+    is enabled, it also creates corresponding A/AAAA and PTR DNS records. Useful for
+    IPAM and DNS inventory management.
+integration_identifier: InfobloxNIOS
+parameters:
+-   name: Name
+    default_value: ''
+    type: string
+    description: The name of the host in FQDN format `{name}.{auth_zone}` (e.g. server1.auth.threat.zone).
+        It must belong to an existing DNS zone.
+    is_mandatory: true
+-   name: IPv4 Addresses
+    type: string
+    description: Array of IPv4 address objects in the following format. (e.g. [{"ipv4addr":"192.168.1.100","mac":"00:11:22:33:44:55","configure_for_dhcp":true},...]
+        ).
+    is_mandatory: false
+-   name: IPv6 Addresses
+    type: string
+    description: Array of IPv6 address objects in the following format. (e.g. [{"ipv6addr":"2001:db8::1"},{"ipv6addr":"2001:db8::2",
+        etc.}])
+    is_mandatory: false
+-   name: View
+    default_value: default
+    type: string
+    description: The DNS view in which the record resides (e.g., "default").
+    is_mandatory: false
+-   name: Comment
+    type: string
+    description: Additional information or notes about this host record.
+    is_mandatory: false
+-   name: Aliases
+    type: string
+    description: Comma-separated list of DNS aliases (CNAMEs) for this host (e.g.,
+        "alias1.auth zone,alias2.auth zone").
+    is_mandatory: false
+-   name: Configure for DNS
+    default_value: 'true'
+    type: boolean
+    description: When false, the host record doesn't have associated DNS records.
+    is_mandatory: false
+-   name: Extended Attributes
+    type: string
+    description: Comma-separated key/value formatted filter for extended attributes,
+        e.g. "Site=New York,OtherProp=MyValue"
+    is_mandatory: false
+-   name: Additional Parameters
+    type: string
+    description: Comma-separated key/value formatted string for additional parameters
+        supported by the API (e.g., "use_ttl=true,network_view=default").
+    is_mandatory: false
+dynamic_results_metadata:
+-   result_example: '{"_ref": "record:host/ZG5zLmhvc3QkLl9kZWZhdWx0LmF1dGggem9uZS5uaW9zLWhvc3QtYWRtaW4:nios-host-admin.auth%20zone/default",
+        "aliases": ["admin-1.auth zone", "ownder-1.auth zone"], "allow_telnet": false,
+        "configure_for_dns": true, "creation_time": 1754300315, "ddns_protected":
+        false, "disable": false, "disable_discovery": false, "dns_aliases": ["admin-1.auth
+        zone", "ownder-1.auth zone"], "dns_name": "nios-host-admin.auth zone", "extattrs":
+        {"IB Discovery Owned": {"value": "admin"}, "Site": {"value": "site-1"}}, "ipv4addrs":
+        [{"_ref": "record:host_ipv4addr/ZG5zLmhvc3RfYWRkcmVzcyQuX2RlZmF1bHQuYXV0aCB6b25lLm5pb3MtaG9zdC1hZG1pbi4xOTIuMTY4LjIwLjIwLg:192.168.20.20/nios-host-admin.auth%20zone/default",
+        "configure_for_dhcp": true, "host": "nios-host-admin.auth zone", "ipv4addr":
+        "192.168.20.20", "mac": "00:1a:2b:9c:7d:5e"}], "ipv6addrs": [{"_ref": "record:host_ipv6addr/ZG5zLmhvc3RfYWRkcmVzcyQuX2RlZmF1bHQuYXV0aCB6b25lLm5pb3MtaG9zdC1hZG1pbi4yMDAxOmRiODo4NWEzOjo4YTJlOjM3MDo3NjUu:2001%3Adb8%3A85a3%3A%3A8a2e%3A370%3A765/nios-host-admin.auth%20zone/default",
+        "configure_for_dhcp": false, "host": "nios-host-admin.auth zone", "ipv6addr":
+        "2001:db8:85a3::8a2e:370:765"}], "name": "nios-host-admin.auth zone", "network_view":
+        "default", "rrset_order": "cyclic", "use_cli_credentials": false, "use_dns_ea_inheritance":
+        false, "use_snmp3_credential": false, "use_snmp_credential": false, "use_ttl":
+        false, "view": "default", "zone": "auth zone"}'
+    result_name: JsonResult
+    show_result: true
+default_result_value: ''
+creator: Admin
+script_result_name: ScriptResult

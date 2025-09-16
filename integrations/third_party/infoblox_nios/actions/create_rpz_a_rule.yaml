@@ -1,0 +1,47 @@
+name: Create RPZ A Rule
+description: 'Creates an RPZ Substitute rule which maps domain name (A record) or
+    an IPv4 address to a substitute IPv4 address for DNS redirection or blocking. '
+integration_identifier: InfobloxNIOS
+parameters:
+-   name: Object Type
+    default_value: Domain Name
+    type: ddl
+    optional_values:
+    - IP Address
+    - Domain Name
+    description: The type of the object for which to create record.
+    is_mandatory: true
+-   name: Name
+    default_value: ''
+    type: string
+    description: Specify the name of the rule.
+    is_mandatory: true
+-   name: RP Zone
+    default_value: ''
+    type: string
+    description: The zone to assign the rule to.
+    is_mandatory: true
+-   name: IPv4 Address
+    default_value: ''
+    type: string
+    description: The IPv4 address of the substitute rule.
+    is_mandatory: true
+-   name: Comment
+    type: string
+    description: Comment for this rule.
+    is_mandatory: false
+-   name: Additional Parameters
+    type: string
+    description: JSON object containing additional parameters to create response policy
+        zone.
+    is_mandatory: false
+dynamic_results_metadata:
+-   result_example: '{"_ref": "record:rpz:a/ZG5zLmJpbmRfYSQuX2RlZmF1bHQuY29tLnJwei50aHJlYXQsMTEuMi4xMi4xMCwwLjAuMC4w:10.12.2.11.threat.rpz.com/default",
+        "comment": "nightly-test-a-sub", "disable": false, "extattrs": {}, "ipv4addr":
+        "0.0.0.0", "name": "10.12.2.11.threat.rpz.com", "rp_zone": "threat.rpz.com",
+        "use_ttl": false, "view": "default", "zone": "threat.rpz.com"}'
+    result_name: JsonResult
+    show_result: true
+default_result_value: ''
+creator: Admin
+script_result_name: ScriptResult

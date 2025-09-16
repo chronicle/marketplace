@@ -1,0 +1,18 @@
+[project]
+name = "InfobloxNIOS"
+version = "1.0"
+description = "This integration enables Google SecOps to retrieve IP metadata from Infoblox Grid Manager and manage DNS Firewall protections through RPZs. It allows security teams to define RPZ rules that block DNS resolution for malicious or unauthorized domains, or redirect users to a walled garden by modifying DNS responses."
+requires-python = ">=3.11"
+dependencies = [ "environmentcommon", "requests==2.32.3", "tipcommon",]
+
+[dependency-groups]
+dev = [ "pytest>=8.4.0", "soar-sdk",]
+
+[tool.uv.sources.soar-sdk]
+git = "https://github.com/chronicle/soar-sdk.git"
+
+[tool.uv.sources.tipcommon]
+path = "../../../packages/tipcommon/TIPCommon-2.2.9/TIPCommon-2.2.9-py2.py3-none-any.whl"
+
+[tool.uv.sources.environmentcommon]
+path = "../../../packages/envcommon/EnvironmentCommon-1.0.2/EnvironmentCommon-1.0.2-py2.py3-none-any.whl"
