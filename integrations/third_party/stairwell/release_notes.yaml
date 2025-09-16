@@ -48,3 +48,13 @@
   regressive: false
   deprecated: false
   removed: false
+- description: Updated integration categories to improve marketplace discovery.
+  integration_version: 2.0
+  item_name: Stairwell
+  item_type: Integration
+  publish_time: '2025-09-15'
+  ticket_number: xxx
+  new: false
+  regressive: false
+  deprecated: false
+  removed: false
