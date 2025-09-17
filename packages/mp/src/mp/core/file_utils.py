@@ -23,6 +23,7 @@ import base64
 import dataclasses
 import pathlib
 import shutil
+from collections.abc import Iterable
 from typing import TYPE_CHECKING, Any
 
 import yaml
@@ -33,20 +34,38 @@ from .validators import validate_png_content, validate_svg_content
 
 if TYPE_CHECKING:
     import pathlib
-    from collections.abc import Callable, Mapping, Sequence
+    from collections.abc import Callable, Iterable, Mapping, Sequence
 
 
 VALID_REPEATED_FILES: set[str] = {"__init__.py"}
 
 
-def get_community_path() -> pathlib.Path:
-    """Get the community integrations' path.
+def get_marketplace_path(marketplace_name: str) -> pathlib.Path:
+    """Get a marketplace integrations' path.
+
+    Args:
+        marketplace_name: the name of the marketplace
 
     Returns:
-        The community integrations' directory path
+        The marketplace's integrations' directory path
 
     """
-    return get_integrations_path() / constants.COMMUNITY_DIR_NAME
+    return get_integrations_path() / marketplace_name
+
+
+def get_marketplace_dirs(marketplace_dir: pathlib.Path) -> Iterable[pathlib.Path]:
+    """Get all marketplace sub-dirs paths.
+
+    Args:
+        marketplace_dir: the path to a marketplace
+
+    Returns:
+        The marketplace's integrations' directories paths
+
+    """
+    marketplace_name: str = marketplace_dir.name
+    marketplace_dir_names: tuple[str, ...] = constants.MARKETPLACES_DIR_NAMES[marketplace_name]
+    return [marketplace_dir.parent / dir_name for dir_name in marketplace_dir_names]
 
 
 def get_commercial_path() -> pathlib.Path:
@@ -157,6 +176,7 @@ def is_integration(path: pathlib.Path, *, group: str = "") -> bool:
     valid_base_dirs: set[str] = {
         constants.COMMUNITY_DIR_NAME,
         constants.COMMERCIAL_DIR_NAME,
+        constants.POWERUPS_DIR_NAME,
     }
 
     if group:
@@ -436,7 +456,10 @@ def is_commercial_integration(path: pathlib.Path) -> bool:
             otherwise.
 
     """
-    return is_integration(path) and path.parent.name == constants.COMMERCIAL_DIR_NAME
+    return (
+        is_integration(path)
+        and path.parent.name in constants.MARKETPLACES_DIR_NAMES[constants.COMMERCIAL_DIR_NAME]
+    )
 
 
 def base64_to_png_file(image_data: bytes, output_path: pathlib.Path) -> None:

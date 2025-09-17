@@ -25,6 +25,7 @@ import typer
 import mp.build_project.marketplace
 import mp.core.code_manipulation
 import mp.core.config
+import mp.core.constants
 import mp.core.file_utils
 import mp.core.unix
 from mp.core.code_manipulation import TestWarning
@@ -152,53 +153,63 @@ def run_pre_build_tests(  # noqa: PLR0913
     params: TestParams = TestParams(repository, integration, group)
     params.validate()
 
-    commercial_path: pathlib.Path = mp.core.file_utils.get_commercial_path()
-    community_path: pathlib.Path = mp.core.file_utils.get_community_path()
+    commercial_path: pathlib.Path = mp.core.file_utils.get_marketplace_path(
+        mp.core.constants.COMMERCIAL_DIR_NAME
+    )
+    community_path: pathlib.Path = mp.core.file_utils.get_marketplace_path(
+        mp.core.constants.COMMUNITY_DIR_NAME
+    )
+    commercial_paths: Iterable[pathlib.Path] = mp.core.file_utils.get_marketplace_dirs(
+        commercial_path
+    )
+    community_paths: Iterable[pathlib.Path] = mp.core.file_utils.get_marketplace_dirs(
+        community_path
+    )
 
     all_integration_results: list[IntegrationTestResults] = []
 
     if integration:
         commercial_integrations: set[pathlib.Path] = _get_mp_paths_from_names(
             names=integration,
-            marketplace_path=commercial_path,
+            marketplace_paths=commercial_paths,
         )
         all_integration_results.extend(_test_integrations(commercial_integrations))
 
         community_integrations: set[pathlib.Path] = _get_mp_paths_from_names(
             names=integration,
-            marketplace_path=community_path,
+            marketplace_paths=community_paths,
         )
         all_integration_results.extend(_test_integrations(community_integrations))
 
     elif group:
         commercial_groups: set[pathlib.Path] = _get_mp_paths_from_names(
             names=group,
-            marketplace_path=commercial_path,
+            marketplace_paths=commercial_paths,
         )
         all_integration_results.extend(_test_groups(commercial_groups))
 
         community_groups: set[pathlib.Path] = _get_mp_paths_from_names(
             names=group,
-            marketplace_path=community_path,
+            marketplace_paths=community_paths,
         )
         all_integration_results.extend(_test_groups(community_groups))
 
     elif repository:
         repos: set[RepositoryType] = set(repository)
         if RepositoryType.COMMERCIAL in repos:
-            all_integration_results.extend(_test_repository(commercial_path))
+            all_integration_results.extend(_test_repository(commercial_paths))
 
         if RepositoryType.COMMUNITY in repos:
-            all_integration_results.extend(_test_repository(community_path))
+            all_integration_results.extend(_test_repository(community_paths))
 
     display_test_reports(all_integration_results)
     if all_integration_results:
         raise typer.Exit(code=1)
 
 
-def _test_repository(repo: pathlib.Path) -> list[IntegrationTestResults]:
+def _test_repository(repo_paths: Iterable[pathlib.Path]) -> list[IntegrationTestResults]:
     products: Products[set[pathlib.Path]] = (
-        mp.core.file_utils.get_integrations_and_groups_from_paths(repo)
+        mp.core.file_utils.get_integrations_and_groups_from_paths(*repo_paths)
     )
     all_integration_results: list[IntegrationTestResults] = []
     if products.integrations:
@@ -264,14 +275,16 @@ def _run_tests_for_single_integration(
 
 def _get_mp_paths_from_names(
     names: Iterable[str | pathlib.Path],
-    marketplace_path: pathlib.Path,
+    marketplace_paths: Iterable[pathlib.Path],
 ) -> set[pathlib.Path]:
     results: set[pathlib.Path] = set()
-    for name in names:
-        if isinstance(name, str) and (p := marketplace_path / name).exists():
-            results.add(p)
 
-        elif isinstance(name, pathlib.Path) and name.exists():
-            results.add(name)
+    for path in marketplace_paths:
+        for name in names:
+            if isinstance(name, str) and (p := path / name).exists():
+                results.add(p)
+
+            elif isinstance(name, pathlib.Path) and name.exists():
+                results.add(name)
 
     return results

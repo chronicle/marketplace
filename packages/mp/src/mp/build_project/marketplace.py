@@ -50,16 +50,21 @@ if TYPE_CHECKING:
 
 
 class Marketplace:
-    def __init__(self, integrations_dir: pathlib.Path) -> None:
+    def __init__(self, marketplace_dir: pathlib.Path) -> None:
         """Class constructor.
 
         Args:
-            integrations_dir: The path to a marketplace - where folders of integrations
+            marketplace_dir: The path to a marketplace - where folders of integrations
                 and groups exist
 
         """
-        self.path: pathlib.Path = integrations_dir
-        self.path.mkdir(exist_ok=True)
+        self.marketplace_name: str = marketplace_dir.name
+        self.paths: Iterable[pathlib.Path] = mp.core.file_utils.get_marketplace_dirs(
+            marketplace_dir
+        )
+
+        for dir_name in self.paths:
+            dir_name.mkdir(exist_ok=True)
 
         mp_path: pathlib.Path = mp.core.config.get_marketplace_path()
         out_path: pathlib.Path = mp_path / mp.core.constants.OUT_DIR_NAME
@@ -68,7 +73,7 @@ class Marketplace:
         self.out_path: pathlib.Path = out_path / mp.core.constants.OUT_INTEGRATIONS_DIR_NAME
         self.out_path.mkdir(exist_ok=True)
 
-        self.out_path /= integrations_dir.name
+        self.out_path /= self.marketplace_name
         self.out_path.mkdir(exist_ok=True)
 
     def write_marketplace_json(self) -> None:
@@ -78,7 +83,7 @@ class Marketplace:
     def build(self) -> None:
         """Build all integrations and groups in the marketplace."""
         products: Products[set[pathlib.Path]] = (
-            mp.core.file_utils.get_integrations_and_groups_from_paths(self.path)
+            mp.core.file_utils.get_integrations_and_groups_from_paths(*self.paths)
         )
         self.build_groups(products.groups)
         self.build_integrations(products.integrations)
