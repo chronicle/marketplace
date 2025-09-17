@@ -28,26 +28,27 @@ class Configurations(NamedTuple):
 
 def get_marketplace_paths_from_names(
     names: Iterable[str],
-    marketplace_path: pathlib.Path,
+    marketplace_paths: Iterable[pathlib.Path],
 ) -> set[pathlib.Path]:
     """Retrieve existing marketplace paths from a list of names.
 
     Args:
         names: An iterable of names, where each name can be a string
             representing a file/directory name of integration or group.
-        marketplace_path: The base `pathlib.Path` object representing the
-            root directory of the marketplace.
+        marketplace_paths: The base `pathlib.Path` objects representing the
+            integrations directories of the marketplace.
 
     Returns:
         A `set` of `pathlib.Path` objects representing the paths that
         were found to exist within the `marketplace_path`.
 
     """
-    result: set[pathlib.Path] = set()
-    for n in names:
-        if (p := marketplace_path / n).exists():
-            result.add(p)
-    return result
+    results: set[pathlib.Path] = set()
+    for path in marketplace_paths:
+        for n in names:
+            if (p := path / n).exists():
+                results.add(p)
+    return results
 
 
 def get_project_dependency_name(dependency_name: str) -> str:

@@ -81,7 +81,7 @@ def assert_build_integration(
     built_integration: pathlib.Path,
 ) -> Callable[[pathlib.Path], None]:
     def wrapper(integration_path: pathlib.Path) -> None:
-        commercial: pathlib.Path = tmp_path / built_integration.parent.name
+        commercial: pathlib.Path = tmp_path / mp.core.constants.COMMUNITY_DIR_NAME
         shutil.copytree(integration_path.parent, commercial)
         integration: pathlib.Path = commercial / built_integration.name
         py_version: pathlib.Path = integration / mp.core.constants.PYTHON_VERSION_FILE
