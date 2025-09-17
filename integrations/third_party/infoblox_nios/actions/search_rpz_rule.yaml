@@ -38,11 +38,21 @@ parameters:
     description: 'Maximum number of objects to be returned. '
     is_mandatory: false
 dynamic_results_metadata:
--   result_example: '[{"canonical": "1.4.5.infoblow.com", "disable": false, "extattrs":
-        {}, "name": "1.4.5.infoblow.com", "_ref": "record:rpz:cname/ZG5zLmJpbmRfY25hbWUkLl9kZLmNvbS5pbmZvYmxvdy41LjQuNwew3:1.4.5.infoblow.com/default",
-        "use_ttl": false, "view": "default", "zone": "infoblow.com"}]'
-    result_name: JsonResult
+-   result_name: JsonResult
     show_result: true
+    result_example: |
+        [
+            {
+                "canonical": "1.4.5.infoblow.com",
+                "disable": false,
+                "extattrs": {},
+                "name": "1.4.5.infoblow.com",
+                "_ref": "record:rpz:cname/ZG5zLmJpbmRfY25hbWUkLl9kZLmNvbS5pbmZvYmxvdy41LjQuNwew3:1.4.5.infoblow.com/default",
+                "use_ttl": false,
+                "view": "default",
+                "zone": "infoblow.com"
+            }
+        ]
 default_result_value: ''
 creator: Admin
 script_result_name: ScriptResult

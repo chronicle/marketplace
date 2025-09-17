@@ -41,13 +41,26 @@ parameters:
         policy zone. '
     is_mandatory: false
 dynamic_results_metadata:
--   result_example: '{"_ref": "record:rpz:naptr/ZG5zLmJpbmRfbmFwdHIkLl9kZWZhdWx0LmNvbS5ycHoudGhyZWF0LG5pZ2h0bHkyLXRlc3Qtc3J2LXN1YiwxLDIsLCwsdGhyZWF0LnJwei5jb20:nightly2-test-srv-sub.threat.rpz.com/default",
-        "comment": "threat.rpz.com", "disable": false, "extattrs": {}, "flags": "",
-        "name": "nightly1-test-srv-sub.threat.rpz.com", "order": 1, "preference":
-        2, "regexp": "", "replacement": "threat.rpz.com", "rp_zone": "threat.rpz.com",
-        "services": "", "use_ttl": false, "view": "default", "zone": "threat.rpz.com"}'
-    result_name: JsonResult
+-   result_name: JsonResult
     show_result: true
+    result_example: |
+        {
+            "_ref": "record:rpz:naptr/ZG5zLmJpbmRfbmFwdHIkLl9kZWZhdWx0LmNvbS5ycHoudGhyZWF0LG5pZ2h0bHkyLXRlc3Qtc3J2LXN1YiwxLDIsLCwsdGhyZWF0LnJwei5jb20:nightly2-test-srv-sub.threat.rpz.com/default",
+            "comment": "threat.rpz.com",
+            "disable": false,
+            "extattrs": {},
+            "flags": "",
+            "name": "nightly1-test-srv-sub.threat.rpz.com",
+            "order": 1,
+            "preference": 2,
+            "regexp": "",
+            "replacement": "threat.rpz.com",
+            "rp_zone": "threat.rpz.com",
+            "services": "",
+            "use_ttl": false,
+            "view": "default",
+            "zone": "threat.rpz.com"
+        }
 default_result_value: ''
 creator: Admin
 script_result_name: ScriptResult

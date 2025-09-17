@@ -44,20 +44,50 @@ parameters:
         e.g. "Site=New York,OtherProp=MyValue".
     is_mandatory: false
 dynamic_results_metadata:
--   result_example: '[{"_ref": "ipv4address/Li5pcHY0X2FkZHJlc3MkMTkyLjE2OC4xLjAvMA:192.168.1.0",
-        "comment": "", "conflict_types": ["NONE"], "discover_now_status": "NONE",
-        "extattrs": {}, "ip_address": "192.168.1.0", "is_conflict": false, "is_invalid_mac":
-        false, "mac_address": "", "names": [], "network": "192.168.1.0/24", "network_view":
-        "default", "objects": [], "status": "USED", "types": ["NETWORK"], "usage":
-        []}, {"_ref": "ipv6address/Li5pcHY2X2FkZHJlc3MkMjAwMTpkYjg6MTIzNDo6MS8w:2001%3Adb8%3A1234%3A%3A1",
-        "comment": "HOS T Wizard", "conflict_types": ["NONE"], "discover_now_status":
-        "NONE", "duid": "", "extattrs": {"IB Discovery Owned": {"value": "host-wiz"},
-        "Site": {"value": "host-site"}}, "ip_address": "2001:db8:1234::1", "is_conflict":
-        false, "lease_state": "FREE", "names": ["auth zone"], "network": "2001:db8:1234::/64",
-        "network_view": "default", "objects": ["record:host/ZG5zLmhvc3QkLl9kZWZhdWx0LmF1dGggem9uZS4:auth%20zone/default"],
-        "status": "USED", "types": ["HOST", "RESERVED_RANGE"], "usage": ["DNS"]}]'
-    result_name: JsonResult
+-   result_name: JsonResult
     show_result: true
+    result_example: |
+        [
+            {
+                "_ref": "ipv4address/Li5pcHY0X2FkZHJlc3MkMTkyLjE2OC4xLjAvMA:192.168.1.0",
+                "comment": "",
+                "conflict_types": ["NONE"],
+                "discover_now_status": "NONE",
+                "extattrs": {},
+                "ip_address": "192.168.1.0",
+                "is_conflict": false,
+                "is_invalid_mac": false,
+                "mac_address": "",
+                "names": [],
+                "network": "192.168.1.0/24",
+                "network_view": "default",
+                "objects": [],
+                "status": "USED",
+                "types": ["NETWORK"],
+                "usage": []
+            },
+            {
+                "_ref": "ipv6address/Li5pcHY2X2FkZHJlc3MkMjAwMTpkYjg6MTIzNDo6MS8w:2001%3Adb8%3A1234%3A%3A1",
+                "comment": "HOST Wizard",
+                "conflict_types": ["NONE"],
+                "discover_now_status": "NONE",
+                "duid": "",
+                "extattrs": {
+                    "IB Discovery Owned": {"value": "host-wiz"},
+                    "Site": {"value": "host-site"}
+                },
+                "ip_address": "2001:db8:1234::1",
+                "is_conflict": false,
+                "lease_state": "FREE",
+                "names": ["auth zone"],
+                "network": "2001:db8:1234::/64",
+                "network_view": "default",
+                "objects": ["record:host/ZG5zLmhvc3QkLl9kZWZhdWx0LmF1dGggem9uZS4:auth%20zone/default"],
+                "status": "USED",
+                "types": ["HOST", "RESERVED_RANGE"],
+                "usage": ["DNS"]
+            }
+        ]
 default_result_value: ''
 creator: d28f2b46-9f0f-4c38-8509-0416748b77d9
 script_result_name: ScriptResult

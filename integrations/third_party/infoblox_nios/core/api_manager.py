@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import time
 import urllib.parse
+from typing import Any, Dict, List, Optional
 
 import requests
 from requests.auth import HTTPBasicAuth
@@ -48,7 +49,14 @@ from .infoblox_exceptions import RateLimitException
 
 
 class APIManager:
-    def __init__(self, api_root, username, password, verify_ssl=False, siemplify=None):
+    def __init__(
+        self,
+        api_root: str,
+        username: str,
+        password: str,
+        verify_ssl: bool = False,
+        siemplify: Optional[Any] = None,
+    ) -> None:
         """
         Initializes an object of the APIManager class.
 
@@ -69,7 +77,7 @@ class APIManager:
         self.session.verify = verify_ssl
         self.session.auth = HTTPBasicAuth(username, password)
 
-    def _get_full_url(self, url_id, **kwargs):
+    def _get_full_url(self, url_id: str, **kwargs: Any) -> str:
         """
         Get full URL from URL identifier.
 
@@ -82,7 +90,7 @@ class APIManager:
         """
         return urllib.parse.urljoin(self.api_root, ENDPOINTS[url_id].format(**kwargs))
 
-    def _get_return_fields(self, api_identifier):
+    def _get_return_fields(self, api_identifier: str) -> str:
         """
         Get return fields for the API identifier.
 
@@ -96,14 +104,14 @@ class APIManager:
 
     def _paginator(
         self,
-        api_name,
-        method,
-        url,
-        result_key="result",
-        params=None,
-        body=None,
-        limit=DEFAULT_RESULTS_LIMIT,
-    ):
+        api_name: str,
+        method: str,
+        url: str,
+        result_key: str = "result",
+        params: Optional[Dict[str, Any]] = None,
+        body: Optional[Dict[str, Any]] = None,
+        limit: int = DEFAULT_RESULTS_LIMIT,
+    ) -> List[Dict[str, Any]]:
         """
         Paginate results using Infoblox WAPI paging (_paging, _max_results, _page_id).
 
@@ -157,13 +165,13 @@ class APIManager:
 
     def _make_rest_call(
         self,
-        api_identifier,
-        method,
-        url,
-        params=None,
-        body=None,
-        retry_count=RETRY_COUNT,
-    ):
+        api_identifier: str,
+        method: str,
+        url: str,
+        params: Optional[Dict[str, Any]] = None,
+        body: Optional[Dict[str, Any]] = None,
+        retry_count: int = RETRY_COUNT,
+    ) -> Dict[str, Any]:
         """
         Make a rest call to the Infoblox.
 
@@ -210,7 +218,9 @@ class APIManager:
             return {}
 
     @staticmethod
-    def validate_response(api_identifier, response, error_msg="An error occurred"):
+    def validate_response(
+        api_identifier: str, response: requests.Response, error_msg: str = "An error occurred"
+    ) -> bool:
         """
         Validate the response from the API.
 
@@ -235,7 +245,7 @@ class APIManager:
 
         return True
 
-    def test_connectivity(self):
+    def test_connectivity(self) -> bool:
         """
         Test connectivity to the Infoblox.
 
@@ -246,7 +256,7 @@ class APIManager:
         _ = self._make_rest_call(PING_ACTION_IDENTIFIER, "GET", request_url)
         return True
 
-    def delete_response_policy_zone(self, reference_id):
+    def delete_response_policy_zone(self, reference_id: str) -> Dict[str, Any]:
         """
         Delete a Response Policy Zone (RPZ) by reference ID.
 
@@ -265,7 +275,7 @@ class APIManager:
         )
         return response
 
-    def delete_rpz_rule(self, reference_id):
+    def delete_rpz_rule(self, reference_id: str) -> Dict[str, Any]:
         """
         Delete a RPZ Rule by reference ID.
 
@@ -281,7 +291,9 @@ class APIManager:
         response = self._make_rest_call(DELETE_RPZ_RULE_ACTION_IDENTIFIER, "DELETE", url)
         return response
 
-    def search_rpz_rule(self, object_type, rule_name, output_fields, limit):
+    def search_rpz_rule(
+        self, object_type: str, rule_name: str, output_fields: str, limit: int
+    ) -> List[Dict[str, Any]]:
         """
         Search RPZ Rules by name.
 
@@ -308,14 +320,14 @@ class APIManager:
 
     def ip_lookup(
         self,
-        ip_address,
-        network,
-        from_ip,
-        to_ip,
-        ip_status,
-        extended_attributes,
-        limit=DEFAULT_RESULTS_LIMIT,
-    ):
+        ip_address: Optional[str],
+        network: Optional[str],
+        from_ip: Optional[str],
+        to_ip: Optional[str],
+        ip_status: Optional[str],
+        extended_attributes: Optional[str],
+        limit: int = DEFAULT_RESULTS_LIMIT,
+    ) -> List[Dict[str, Any]]:
         """
         Look up an IP address in the Infoblox.
 
@@ -356,7 +368,9 @@ class APIManager:
         )
         return response
 
-    def get_rp_zone_details(self, fqdn, view, comment, limit):
+    def get_rp_zone_details(
+        self, fqdn: Optional[str], view: Optional[str], comment: Optional[str], limit: int
+    ) -> List[Dict[str, Any]]:
         """
         Retrieve Response Policy Zones (RPZ) with optional filtering.
 
@@ -382,7 +396,12 @@ class APIManager:
 
         return response
 
-    def list_network_info(self, network, extended_attributes, limit=DEFAULT_RESULTS_LIMIT):
+    def list_network_info(
+        self,
+        network: Optional[str],
+        extended_attributes: Optional[str],
+        limit: int = DEFAULT_RESULTS_LIMIT,
+    ) -> List[Dict[str, Any]]:
         """
         List network information.
 
@@ -411,7 +430,14 @@ class APIManager:
 
         return response
 
-    def create_rpz_txt_rule(self, rp_zone, name, text, comment, additional_params):
+    def create_rpz_txt_rule(
+        self,
+        rp_zone: str,
+        name: str,
+        text: str,
+        comment: Optional[str],
+        additional_params: Dict[str, Any],
+    ) -> Dict[str, Any]:
         """
         Create a new RPZ TXT rule.
 
@@ -445,15 +471,15 @@ class APIManager:
 
     def dhcp_lease_lookup(
         self,
-        ip_address,
-        hardware,
-        hostname,
-        ipv6_duid,
-        fingerprint,
-        username,
-        protocol="BOTH",
-        limit=DEFAULT_RESULTS_LIMIT,
-    ):
+        ip_address: Optional[str],
+        hardware: Optional[str],
+        hostname: Optional[str],
+        ipv6_duid: Optional[str],
+        fingerprint: Optional[str],
+        username: Optional[str],
+        protocol: str = "BOTH",
+        limit: int = DEFAULT_RESULTS_LIMIT,
+    ) -> List[Dict[str, Any]]:
         """
         Look up a DHCP lease in the Infoblox.
 
@@ -485,15 +511,15 @@ class APIManager:
 
     def create_rp_zone(
         self,
-        fqdn,
-        rpz_policy,
-        rpz_severity,
-        rpz_type,
-        substitute_name,
-        comment,
-        fireeye_rule_mapping,
-        additional_parameters,
-    ):
+        fqdn: str,
+        rpz_policy: str,
+        rpz_severity: str,
+        rpz_type: str,
+        substitute_name: Optional[str],
+        comment: Optional[str],
+        fireeye_rule_mapping: Optional[Dict[str, Any]],
+        additional_parameters: Dict[str, Any],
+    ) -> Dict[str, Any]:
         """
         Create a new Response Policy Zone (RPZ) in Infoblox.
 
@@ -528,8 +554,14 @@ class APIManager:
         return response
 
     def create_rpz_a_rule(
-        self, object_type, name, rp_zone, ipv4addr, comment, additional_parameters
-    ):
+        self,
+        object_type: str,
+        name: str,
+        rp_zone: str,
+        ipv4addr: str,
+        comment: Optional[str],
+        additional_parameters: Dict[str, Any],
+    ) -> Dict[str, Any]:
         """
         Create an RPZ A rule (Domain Name or IP address) in Infoblox.
 
@@ -558,8 +590,14 @@ class APIManager:
         return response
 
     def create_rpz_aaaa_rule(
-        self, object_type, name, rp_zone, ipv6addr, comment, additional_parameters
-    ):
+        self,
+        object_type: str,
+        name: str,
+        rp_zone: str,
+        ipv6addr: str,
+        comment: Optional[str],
+        additional_parameters: Dict[str, Any],
+    ) -> Dict[str, Any]:
         """
         Create an RPZ A rule (Domain Name or IP address) in Infoblox.
 
@@ -588,8 +626,14 @@ class APIManager:
         return response
 
     def create_rpz_mx_rule(
-        self, rp_zone, name, mail_exchanger, preference, comment, additional_params
-    ):
+        self,
+        rp_zone: str,
+        name: str,
+        mail_exchanger: str,
+        preference: int,
+        comment: Optional[str],
+        additional_params: Dict[str, Any],
+    ) -> Dict[str, Any]:
         """
         Create a new RPZ MX rule.
 
@@ -624,14 +668,14 @@ class APIManager:
 
     def create_rpz_ptr_rule(
         self,
-        rp_zone,
-        ptrdname,
-        name,
-        comment,
-        ipv4addr,
-        ipv6addr,
-        additional_parameters,
-    ):
+        rp_zone: str,
+        ptrdname: str,
+        name: Optional[str],
+        comment: Optional[str],
+        ipv4addr: Optional[str],
+        ipv6addr: Optional[str],
+        additional_parameters: Dict[str, Any],
+    ) -> Dict[str, Any]:
         """
         Create a new RPZ PTR rule.
 
@@ -668,12 +712,12 @@ class APIManager:
 
     def list_host_info(
         self,
-        name,
-        ipv4addrs,
-        ipv6addrs,
-        extended_attributes,
-        limit=DEFAULT_RESULTS_LIMIT,
-    ):
+        name: Optional[str],
+        ipv4addrs: Optional[str],
+        ipv6addrs: Optional[str],
+        extended_attributes: Optional[str],
+        limit: int = DEFAULT_RESULTS_LIMIT,
+    ) -> List[Dict[str, Any]]:
         """
         List host information.
 
@@ -711,14 +755,14 @@ class APIManager:
 
     def create_rpz_naptr_rule(
         self,
-        rp_zone,
-        name,
-        order,
-        preference,
-        replacement,
-        comment,
-        additional_parameters,
-    ):
+        rp_zone: str,
+        name: str,
+        order: int,
+        preference: int,
+        replacement: str,
+        comment: Optional[str],
+        additional_parameters: Dict[str, Any],
+    ) -> Dict[str, Any]:
         """
         Create a new RPZ NAPTR rule.
 
@@ -754,15 +798,15 @@ class APIManager:
 
     def create_rpz_srv_rule(
         self,
-        rp_zone,
-        name,
-        priority,
-        port,
-        weight,
-        target,
-        comment,
-        additional_parameters,
-    ):
+        rp_zone: str,
+        name: str,
+        priority: int,
+        port: int,
+        weight: int,
+        target: str,
+        comment: Optional[str],
+        additional_parameters: Dict[str, Any],
+    ) -> Dict[str, Any]:
         """
         Create a new RPZ SRV rule.
 
@@ -800,15 +844,15 @@ class APIManager:
 
     def create_rpz_cname_rule(
         self,
-        rule_type,
-        object_type,
-        name,
-        rp_zone,
-        comment,
-        substitute_name,
-        view,
-        additional_params,
-    ):
+        rule_type: str,
+        object_type: str,
+        name: str,
+        rp_zone: str,
+        comment: Optional[str],
+        substitute_name: Optional[str],
+        view: Optional[str],
+        additional_params: Dict[str, Any],
+    ) -> Dict[str, Any]:
         """
         Create a CNAME RPZ Rule.
         """
@@ -856,15 +900,15 @@ class APIManager:
 
     def update_rpz_cname_rule(
         self,
-        reference_id,
-        rule_type,
-        name,
-        rp_zone,
-        comment,
-        substitute_name,
-        view,
-        additional_params,
-    ):
+        reference_id: str,
+        rule_type: str,
+        name: str,
+        rp_zone: str,
+        comment: Optional[str],
+        substitute_name: Optional[str],
+        view: Optional[str],
+        additional_params: Dict[str, Any],
+    ) -> Dict[str, Any]:
         """
         Update a CNAME RPZ Rule.
         """
@@ -905,16 +949,16 @@ class APIManager:
 
     def create_host_record(
         self,
-        name,
-        ipv4_addresses,
-        ipv6_addresses,
-        view,
-        comment,
-        aliases,
-        configure_for_dns,
-        extended_attributes,
-        additional_params,
-    ):
+        name: str,
+        ipv4_addresses: Optional[List[Dict[str, Any]]],
+        ipv6_addresses: Optional[List[Dict[str, Any]]],
+        view: Optional[str],
+        comment: Optional[str],
+        aliases: Optional[List[str]],
+        configure_for_dns: bool,
+        extended_attributes: Optional[Dict[str, Any]],
+        additional_params: Dict[str, Any],
+    ) -> Dict[str, Any]:
         """
         Create a host record in Infoblox.
 

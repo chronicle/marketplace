@@ -50,22 +50,52 @@ parameters:
         supported by the API (e.g., "use_ttl=true,network_view=default").
     is_mandatory: false
 dynamic_results_metadata:
--   result_example: '{"_ref": "record:host/ZG5zLmhvc3QkLl9kZWZhdWx0LmF1dGggem9uZS5uaW9zLWhvc3QtYWRtaW4:nios-host-admin.auth%20zone/default",
-        "aliases": ["admin-1.auth zone", "ownder-1.auth zone"], "allow_telnet": false,
-        "configure_for_dns": true, "creation_time": 1754300315, "ddns_protected":
-        false, "disable": false, "disable_discovery": false, "dns_aliases": ["admin-1.auth
-        zone", "ownder-1.auth zone"], "dns_name": "nios-host-admin.auth zone", "extattrs":
-        {"IB Discovery Owned": {"value": "admin"}, "Site": {"value": "site-1"}}, "ipv4addrs":
-        [{"_ref": "record:host_ipv4addr/ZG5zLmhvc3RfYWRkcmVzcyQuX2RlZmF1bHQuYXV0aCB6b25lLm5pb3MtaG9zdC1hZG1pbi4xOTIuMTY4LjIwLjIwLg:192.168.20.20/nios-host-admin.auth%20zone/default",
-        "configure_for_dhcp": true, "host": "nios-host-admin.auth zone", "ipv4addr":
-        "192.168.20.20", "mac": "00:1a:2b:9c:7d:5e"}], "ipv6addrs": [{"_ref": "record:host_ipv6addr/ZG5zLmhvc3RfYWRkcmVzcyQuX2RlZmF1bHQuYXV0aCB6b25lLm5pb3MtaG9zdC1hZG1pbi4yMDAxOmRiODo4NWEzOjo4YTJlOjM3MDo3NjUu:2001%3Adb8%3A85a3%3A%3A8a2e%3A370%3A765/nios-host-admin.auth%20zone/default",
-        "configure_for_dhcp": false, "host": "nios-host-admin.auth zone", "ipv6addr":
-        "2001:db8:85a3::8a2e:370:765"}], "name": "nios-host-admin.auth zone", "network_view":
-        "default", "rrset_order": "cyclic", "use_cli_credentials": false, "use_dns_ea_inheritance":
-        false, "use_snmp3_credential": false, "use_snmp_credential": false, "use_ttl":
-        false, "view": "default", "zone": "auth zone"}'
-    result_name: JsonResult
+-   result_name: JsonResult
     show_result: true
+    result_example: |
+        {
+            "_ref": "record:host/ZG5zLmhvc3QkLl9kZWZhdWx0LmF1dGggem9uZS5uaW9zLWhvc3QtYWRtaW4:nios-host-admin.auth%20zone/default",
+            "aliases": ["admin-1.auth zone", "ownder-1.auth zone"],
+            "allow_telnet": false,
+            "configure_for_dns": true,
+            "creation_time": 1754300315,
+            "ddns_protected": false,
+            "disable": false,
+            "disable_discovery": false,
+            "dns_aliases": ["admin-1.auth zone", "ownder-1.auth zone"],
+            "dns_name": "nios-host-admin.auth zone",
+            "extattrs": {
+                "IB Discovery Owned": {"value": "admin"},
+                "Site": {"value": "site-1"}
+            },
+            "ipv4addrs": [
+                {
+                    "_ref": "record:host_ipv4addr/ZG5zLmhvc3RfYWRkcmVzcyQuX2RlZmF1bHQuYXV0aCB6b25lLm5pb3MtaG9zdC1hZG1pbi4xOTIuMTY4LjIwLjIwLg:192.168.20.20/nios-host-admin.auth%20zone/default",
+                    "configure_for_dhcp": true,
+                    "host": "nios-host-admin.auth zone",
+                    "ipv4addr": "192.168.20.20",
+                    "mac": "00:1a:2b:9c:7d:5e"
+                }
+            ],
+            "ipv6addrs": [
+                {
+                    "_ref": "record:host_ipv6addr/ZG5zLmhvc3RfYWRkcmVzcyQuX2RlZmF1bHQuYXV0aCB6b25lLm5pb3MtaG9zdC1hZG1pbi4yMDAxOmRiODo4NWEzOjo4YTJlOjM3MDo3NjUu:2001%3Adb8%3A85a3%3A%3A8a2e%3A370%3A765/nios-host-admin.auth%20zone/default",
+                    "configure_for_dhcp": false,
+                    "host": "nios-host-admin.auth zone",
+                    "ipv6addr": "2001:db8:85a3::8a2e:370:765"
+                }
+            ],
+            "name": "nios-host-admin.auth zone",
+            "network_view": "default",
+            "rrset_order": "cyclic",
+            "use_cli_credentials": false,
+            "use_dns_ea_inheritance": false,
+            "use_snmp3_credential": false,
+            "use_snmp_credential": false,
+            "use_ttl": false,
+            "view": "default",
+            "zone": "auth zone"
+        }
 default_result_value: ''
 creator: Admin
 script_result_name: ScriptResult

@@ -44,13 +44,24 @@ parameters:
         zone.
     is_mandatory: false
 dynamic_results_metadata:
--   result_example: '{"_ref": "record:rpz:srv/ZG5zLmJpbmRfc3J2JC5fZGVmYXVsdC5jb20ucnB6LnRocmVhdC9uaWdodGx5My10ZXN0LXNydi1zdWIvMTAvMTAvMjIvdGhyZWF0LnJwei5jb20:nightly3-test-srv-sub.threat.rpz.com/default",
-        "comment": "nightly-test-srv-sub", "disable": false, "extattrs": {}, "name":
-        "nightly3-test-srv-sub.threat.rpz.com", "port": 22, "priority": 10, "rp_zone":
-        "threat.rpz.com", "target": "threat.rpz.com", "use_ttl": false, "view": "default",
-        "weight": 10, "zone": "threat.rpz.com"}'
-    result_name: JsonResult
+-   result_name: JsonResult
     show_result: true
+    result_example: |
+        {
+            "_ref": "record:rpz:srv/ZG5zLmJpbmRfc3J2JC5fZGVmYXVsdC5jb20ucnB6LnRocmVhdC9uaWdodGx5My10ZXN0LXNydi1zdWIvMTAvMTAvMjIvdGhyZWF0LnJwei5jb20:nightly3-test-srv-sub.threat.rpz.com/default",
+            "comment": "nightly-test-srv-sub",
+            "disable": false,
+            "extattrs": {},
+            "name": "nightly3-test-srv-sub.threat.rpz.com",
+            "port": 22,
+            "priority": 10,
+            "rp_zone": "threat.rpz.com",
+            "target": "threat.rpz.com",
+            "use_ttl": false,
+            "view": "default",
+            "weight": 10,
+            "zone": "threat.rpz.com"
+        }
 default_result_value: ''
 creator: Admin
 script_result_name: ScriptResult

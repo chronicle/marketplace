@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+from typing import Any, Dict, List, Optional
 
 from TIPCommon.transformation import dict_to_flat
 
@@ -10,13 +11,13 @@ class BaseModel(object):
     Base model for all Infoblox datamodels.
     """
 
-    def __init__(self, raw_data):
+    def __init__(self, raw_data: Dict[str, Any]) -> None:
         self.raw_data = raw_data
 
-    def to_json(self):
+    def to_json(self) -> Dict[str, Any]:
         return self.raw_data
 
-    def to_csv(self):
+    def to_csv(self) -> Dict[str, Any]:
         return dict_to_flat(self.to_json())
 
 
@@ -25,7 +26,7 @@ class RPZRule(BaseModel):
     RPZ Rule model.
     """
 
-    def __init__(self, raw_data, output_fields=None):
+    def __init__(self, raw_data: Dict[str, Any], output_fields: Optional[List[str]] = None) -> None:
         super().__init__(raw_data)
         self.raw_data = raw_data
         self.reference_id = raw_data.get("_ref")
@@ -34,7 +35,7 @@ class RPZRule(BaseModel):
         self.view = raw_data.get("view")
         self.output_fields = output_fields
 
-    def to_csv(self):
+    def to_csv(self) -> Dict[str, Any]:
         base_fields = {"_ref", "name", "canonical", "view"}
         payload = {
             "Reference ID": self.reference_id,
@@ -52,7 +53,7 @@ class RPZRule(BaseModel):
 
 
 class IPLookup(BaseModel):
-    def __init__(self, raw_data):
+    def __init__(self, raw_data: Dict[str, Any]) -> None:
         super().__init__(raw_data)
         self.ip_address = raw_data.get("ip_address")
         self.status = raw_data.get("status")
@@ -66,7 +67,7 @@ class IPLookup(BaseModel):
         self.is_conflict = raw_data.get("is_conflict")
         self.extattrs = raw_data.get("extattrs", {})
 
-    def to_csv(self):
+    def to_csv(self) -> Dict[str, Any]:
         return {
             "Reference ID": self.ref,
             "IP Address": self.ip_address,
@@ -99,7 +100,7 @@ class RPZone(BaseModel):
         self.substitute_name = raw_data.get("substitute_name")
         self.rpz_priority = raw_data.get("rpz_priority")
 
-    def to_csv(self):
+    def to_csv(self) -> Dict[str, Any]:
         return {
             "Reference ID": self.reference_id,
             "FQDN": self.fqdn,
@@ -118,7 +119,7 @@ class Network(BaseModel):
     Network model.
     """
 
-    def __init__(self, raw_data):
+    def __init__(self, raw_data: Dict[str, Any]) -> None:
         super().__init__(raw_data)
         self.raw_data = raw_data
         self.reference_id = raw_data.get("_ref")
@@ -129,7 +130,7 @@ class Network(BaseModel):
         self.utilization = raw_data.get("utilization")
         self.authority = raw_data.get("authority")
 
-    def to_csv(self):
+    def to_csv(self) -> Dict[str, Any]:
         return {
             "Reference ID": self.reference_id,
             "Network": self.network,
@@ -142,7 +143,7 @@ class Network(BaseModel):
 
 
 class RPZRuleRecord(BaseModel):
-    def __init__(self, raw_data, object_type):
+    def __init__(self, raw_data: Dict[str, Any], object_type: str) -> None:
         super().__init__(raw_data)
         self.raw_data = raw_data
         self.reference_id = raw_data.get("_ref")
@@ -153,7 +154,7 @@ class RPZRuleRecord(BaseModel):
         self.view = raw_data.get("view")
         self.rp_zone = raw_data.get("rp_zone")
 
-    def _common(self):
+    def _common(self) -> Dict[str, Any]:
         return {
             "Reference ID": self.reference_id,
             "Object Type": self.object_type,
@@ -164,28 +165,28 @@ class RPZRuleRecord(BaseModel):
             "RP Zone": self.rp_zone,
         }
 
-    def create_txt_rule_csv(self):
+    def create_txt_rule_csv(self) -> Dict[str, Any]:
         return {
             **self._common(),
             "Text": self.raw_data.get("text"),
         }
 
-    def create_a_rule_csv(self):
+    def create_a_rule_csv(self) -> Dict[str, Any]:
         return {
             **self._common(),
             "IPv4 Address": self.raw_data.get("ipv4addr"),
         }
 
-    def create_aaaa_rule_csv(self):
+    def create_aaaa_rule_csv(self) -> Dict[str, Any]:
         return {
             **self._common(),
             "IPv6 Address": self.raw_data.get("ipv6addr"),
         }
 
-    def create_naptr_rule_csv(self):
+    def create_naptr_rule_csv(self) -> Dict[str, Any]:
         return {**self._common(), "Replacement": self.raw_data.get("replacement")}
 
-    def create_srv_rule_csv(self):
+    def create_srv_rule_csv(self) -> Dict[str, Any]:
         return {
             **self._common(),
             "Target": self.raw_data.get("target"),
@@ -194,19 +195,19 @@ class RPZRuleRecord(BaseModel):
             "Weight": self.raw_data.get("weight"),
         }
 
-    def create_mx_rule_csv(self):
+    def create_mx_rule_csv(self) -> Dict[str, Any]:
         return {
             **self._common(),
             "Mail Exchanger": self.raw_data.get("mail_exchanger"),
             "Preference": self.raw_data.get("preference"),
         }
 
-    def create_ptr_rule_csv(self):
+    def create_ptr_rule_csv(self) -> Dict[str, Any]:
         return {**self._common(), "PTR Dname": self.raw_data.get("ptrdname")}
 
 
 class DHCPLeaseLookup(BaseModel):
-    def __init__(self, raw_data):
+    def __init__(self, raw_data: Dict[str, Any]) -> None:
         super().__init__(raw_data)
         self.ref = raw_data.get("_ref")
         self.ip_address = raw_data.get("address")
@@ -217,7 +218,7 @@ class DHCPLeaseLookup(BaseModel):
         self.fingerprint = raw_data.get("fingerprint")
         self.network = raw_data.get("network")
 
-    def to_csv(self):
+    def to_csv(self) -> Dict[str, Any]:
         return {
             "Reference ID": self.ref,
             "IP Address": self.ip_address,
@@ -231,7 +232,7 @@ class DHCPLeaseLookup(BaseModel):
 
 
 class Host(BaseModel):
-    def __init__(self, raw_data):
+    def __init__(self, raw_data: Dict[str, Any]) -> None:
         super().__init__(raw_data)
         self.ref = raw_data.get("_ref")
         self.name = raw_data.get("name")
@@ -245,7 +246,7 @@ class Host(BaseModel):
         self.ipv4addrs = raw_data.get("ipv4addrs", [])
         self.ipv6addrs = raw_data.get("ipv6addrs", [])
 
-    def to_csv(self):
+    def to_csv(self) -> Dict[str, Any]:
         return {
             "Reference ID": self.ref,
             "Name": self.name,
@@ -262,7 +263,7 @@ class Host(BaseModel):
 
 
 class RPZCNAMERule(BaseModel):
-    def __init__(self, raw_data, rule_type):
+    def __init__(self, raw_data: Dict[str, Any], rule_type: str) -> None:
         super().__init__(raw_data)
         self.ref = raw_data.get("_ref")
         self.disabled = raw_data.get("disable")
@@ -272,7 +273,7 @@ class RPZCNAMERule(BaseModel):
         self.view = raw_data.get("view")
         self.rule_type = rule_type
 
-    def to_csv(self):
+    def to_csv(self) -> Dict[str, Any]:
         return {
             "Reference ID": self.ref,
             "Disabled": self.disabled,

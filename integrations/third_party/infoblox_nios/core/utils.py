@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import ipaddress
 import json
+from typing import Any, Dict, List, Optional, Tuple, Union
 
 from .constants import (
     CREATE_HOST_RECORD_ACTION_IDENTIFIER,
@@ -20,7 +21,7 @@ from .infoblox_exceptions import (
 )
 
 
-def get_integration_params(siemplify):
+def get_integration_params(siemplify: Any) -> Tuple[str, str, str, bool]:
     """
     Retrieve the integration parameters from Siemplify configuration.
 
@@ -52,18 +53,18 @@ def get_integration_params(siemplify):
     return api_root, username, password, verify_ssl
 
 
-def clean_params(params):
+def clean_params(params: Dict[str, Any]) -> Dict[str, Any]:
     """Remove keys with None values from a dictionary."""
     return {k: v for k, v in params.items() if v is not None}
 
 
-def validate_required_string(value, param_name):
+def validate_required_string(value: Optional[str], param_name: str) -> str:
     if not value or not value.strip():
         raise ValueError(f"{param_name} must be a non-empty string.")
     return value
 
 
-def validate_additional_params(additional_params):
+def validate_additional_params(additional_params: Optional[str]) -> Dict[str, Any]:
     """
     Validate additional_params.
     """
@@ -82,8 +83,12 @@ def validate_additional_params(additional_params):
 
 
 def validate_integer_param(
-    value, param_name, zero_allowed=False, allow_negative=False, max_value=None
-):
+    value: Union[int, str],
+    param_name: str,
+    zero_allowed: bool = False,
+    allow_negative: bool = False,
+    max_value: Optional[int] = None,
+) -> int:
     """
     Validates if the given value is an integer and meets the specified requirements.
 
@@ -113,13 +118,13 @@ def validate_integer_param(
     return int_value
 
 
-def string_to_list(items_str):
+def string_to_list(items_str: Optional[str]) -> List[str]:
     if not items_str:
         return []
     return [item.strip() for item in items_str.split(",") if item.strip()]
 
 
-def truncate_json_for_display(data, max_chars=MAX_JSON_CHARS):
+def truncate_json_for_display(data: Any, max_chars: int = MAX_JSON_CHARS) -> str:
     """
     Convert JSON to a string. If it's too long, truncate and add a suffix.
     """
@@ -133,13 +138,15 @@ def truncate_json_for_display(data, max_chars=MAX_JSON_CHARS):
     return json_str
 
 
-def validate_enum(value, allowed_values, param_name):
+def validate_enum(
+    value: Optional[str], allowed_values: List[str], param_name: str
+) -> Optional[str]:
     if value is not None and value not in allowed_values:
         raise ValueError(f"{param_name} must be one of {allowed_values}. Got: {value}")
     return value
 
 
-def create_rpz_rule_name(name, rp_zone):
+def create_rpz_rule_name(name: str, rp_zone: str) -> str:
     if name.endswith(rp_zone):
         return name
     return f"{name}.{rp_zone}"
@@ -150,7 +157,13 @@ class HandleExceptions(object):
     A class to handle exceptions based on different actions.
     """
 
-    def __init__(self, api_identifier, error, response, error_msg="An error occurred"):
+    def __init__(
+        self,
+        api_identifier: str,
+        error: Exception,
+        response: Any,
+        error_msg: str = "An error occurred",
+    ) -> None:
         """
         Initializes the HandleExceptions class.
 
@@ -164,7 +177,7 @@ class HandleExceptions(object):
         self.response = response
         self.error_msg = error_msg
 
-    def do_process(self):
+    def do_process(self) -> None:
         """
         Processes the error by calling the appropriate handler.
         """
@@ -182,7 +195,7 @@ class HandleExceptions(object):
 
         raise _exception(_error_msg)
 
-    def get_handler(self):
+    def get_handler(self) -> callable:
         """
         Retrieves the appropriate handler function based on the api_name.
 
@@ -197,7 +210,7 @@ class HandleExceptions(object):
             UPDATE_RPZ_CNAME_ACTION_IDENTIFIER: self._handle_update_rpz_cname_error,
         }.get(self.api_identifier, self.common_exception)
 
-    def common_exception(self):
+    def common_exception(self) -> Tuple[type, str]:
         """
         Handles common exceptions that don't have a specific handler.
 
@@ -208,7 +221,7 @@ class HandleExceptions(object):
             return self._handle_api_error()
         return self._handle_general_error()
 
-    def _handle_api_error(self):
+    def _handle_api_error(self) -> Tuple[type, str]:
         """
         Extracts and formats error messages from API responses (400/404/409).
         Returns:
@@ -228,7 +241,7 @@ class HandleExceptions(object):
         # fallback to general error
         return self._handle_general_error()
 
-    def _handle_general_error(self):
+    def _handle_general_error(self) -> Tuple[type, str]:
         """
         Handles general errors by formatting the error message and returning the appropriate
         exception.
@@ -243,10 +256,10 @@ class HandleExceptions(object):
         return InfobloxException, error_msg
 
     # For sample only, we need to remove this
-    def ping(self):
+    def ping(self) -> Tuple[type, str]:
         return self._handle_general_error()
 
-    def _handle_rp_zone_error(self):
+    def _handle_rp_zone_error(self) -> Tuple[type, str]:
         """
         Handle 404,400 errors for invalid reference ID.
         Returns a tuple (ExceptionClass, message) as per project convention.
@@ -260,7 +273,7 @@ class HandleExceptions(object):
 
         return self._handle_general_error()
 
-    def _handle_rpz_rule_error(self):
+    def _handle_rpz_rule_error(self) -> Tuple[type, str]:
         """
         Handle 404,400 errors for invalid reference ID.
         Returns a tuple (ExceptionClass, message) as per project convention.
@@ -274,7 +287,7 @@ class HandleExceptions(object):
 
         return self._handle_general_error()
 
-    def _handle_update_rpz_cname_error(self):
+    def _handle_update_rpz_cname_error(self) -> Tuple[type, str]:
         """
         Handle 404,400 errors for invalid reference ID.
         Returns a tuple (ExceptionClass, message) as per project convention.
@@ -291,7 +304,7 @@ class HandleExceptions(object):
 
         return self._handle_general_error()
 
-    def _handle_host_record_error(self):
+    def _handle_host_record_error(self) -> Tuple[type, str]:
         """
         Handle 400 errors for invalid input parameters.
         Returns a tuple (ExceptionClass, message) as per project convention.
@@ -307,7 +320,7 @@ class HandleExceptions(object):
         return self._handle_general_error()
 
 
-def parse_extended_attributes(ext_attrs: str) -> list:
+def parse_extended_attributes(ext_attrs: str) -> Dict[str, str]:
     """
     Helper function to transform the extension attributes.
     The user supplies a string of key/value pairs separated by commas.
@@ -358,7 +371,9 @@ def parse_extended_attributes(ext_attrs: str) -> list:
     return parsed_ext_attrs
 
 
-def validate_ip_address_objects_params(ip_address_objects, name):
+def validate_ip_address_objects_params(
+    ip_address_objects: Optional[str], name: str
+) -> List[Dict[str, Any]]:
     """
     Validate the IP address objects parameter.
     """
@@ -379,7 +394,7 @@ def validate_ip_address_objects_params(ip_address_objects, name):
         raise ValueError(f"Invalid {name} format: {str(e)}")
 
 
-def parse_extended_attributes_to_dict(ext_attrs: str) -> dict:
+def parse_extended_attributes_to_dict(ext_attrs: str) -> Dict[str, Dict[str, str]]:
     """
     Parses extended attributes from a string to a dictionary format.
 
@@ -421,7 +436,7 @@ def validate_ip_address(ip_address: str, name: str = "IP Address", version: int 
             raise ValueError(f"Invalid IP address format for {name} parameter.")
 
 
-def validate_network_address(network: str) -> bool:
+def validate_network_address(network: Optional[str]) -> bool:
     """
     Validates if the given string is a valid network address (IP with subnet information).
     Supports both IPv4 and IPv6 networks.

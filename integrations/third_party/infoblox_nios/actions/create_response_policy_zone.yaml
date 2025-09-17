@@ -57,20 +57,43 @@ parameters:
         zone.
     is_mandatory: false
 dynamic_results_metadata:
--   result_example: '{"_ref": "zone_rp/ZG5zLnpvbmUkLl9kZWZhdWx0LmlwMTI5LnRocmVhdC5kbnM:dns.threat.ip129/default",
-        "comment": "Malicious domain blocking zone", "disable": false, "display_domain":
-        "dns.threat.ip", "extattrs": {}, "external_primaries": [], "external_secondaries":
-        [], "fireeye_rule_mapping": null, "fqdn": "dns.threat.ip129", "grid_primary":
-        [], "grid_secondaries": [], "locked": false, "log_rpz": true, "member_soa_mnames":
-        [], "member_soa_serials": [], "network_view": "default", "parent": "", "primary_type":
-        "None", "rpz_drop_ip_rule_enabled": false, "rpz_drop_ip_rule_min_prefix_length_ipv4":
-        29, "rpz_drop_ip_rule_min_prefix_length_ipv6": 112, "rpz_policy": "SUBSTITUTE",
-        "rpz_priority": 1005, "rpz_priority_end": 999, "rpz_severity": "MAJOR", "rpz_type":
-        "LOCAL", "substitute_name": "dns.threat.ip", "use_external_primary": false,
-        "use_log_rpz": false, "use_record_name_policy": false, "use_rpz_drop_ip_rule":
-        false, "view": "default"}'
-    result_name: JsonResult
+-   result_name: JsonResult
     show_result: true
+    result_example: |
+        {
+            "_ref": "zone_rp/ZG5zLnpvbmUkLl9kZWZhdWx0LmlwMTI5LnRocmVhdC5kbnM:dns.threat.ip129/default",
+            "comment": "Malicious domain blocking zone",
+            "disable": false,
+            "display_domain": "dns.threat.ip",
+            "extattrs": {},
+            "external_primaries": [],
+            "external_secondaries": [],
+            "fireeye_rule_mapping": null,
+            "fqdn": "dns.threat.ip129",
+            "grid_primary": [],
+            "grid_secondaries": [],
+            "locked": false,
+            "log_rpz": true,
+            "member_soa_mnames": [],
+            "member_soa_serials": [],
+            "network_view": "default",
+            "parent": "",
+            "primary_type": "None",
+            "rpz_drop_ip_rule_enabled": false,
+            "rpz_drop_ip_rule_min_prefix_length_ipv4": 29,
+            "rpz_drop_ip_rule_min_prefix_length_ipv6": 112,
+            "rpz_policy": "SUBSTITUTE",
+            "rpz_priority": 1005,
+            "rpz_priority_end": 999,
+            "rpz_severity": "MAJOR",
+            "rpz_type": "LOCAL",
+            "substitute_name": "dns.threat.ip",
+            "use_external_primary": false,
+            "use_log_rpz": false,
+            "use_record_name_policy": false,
+            "use_rpz_drop_ip_rule": false,
+            "view": "default"
+        }
 default_result_value: ''
 creator: Admin
 script_result_name: ScriptResult
