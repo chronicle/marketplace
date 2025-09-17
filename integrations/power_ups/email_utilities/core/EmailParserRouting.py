@@ -79,9 +79,9 @@ def get_domain_ip(line: str) -> list[str]:
 
     """
     m = (
-        EmailParserRegex.dom_regex.findall(" " + line)
-        + EmailParserRegex.ipv4_regex.findall(line)
-        + EmailParserRegex.ipv6_regex.findall(line)
+            EmailParserRegex.dom_regex.findall(" " + line)
+            + EmailParserRegex.ipv4_regex.findall(line)
+            + EmailParserRegex.ipv6_regex.findall(line)
     )
 
     return list(set(m))
