@@ -712,10 +712,3 @@ class TeeStream(IOBase):
 
 class GitSyncException(Exception):
     """Exception raised for GitSync operations failures."""
-
-    def __init__(self, message: str):
-        """
-        Args:
-            message: Error message from operation
-        """
-        super().__init__(message)
