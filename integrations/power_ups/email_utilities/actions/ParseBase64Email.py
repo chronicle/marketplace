@@ -103,10 +103,10 @@ def string_sliding_window_loop(
         for ptr_end in range(slice_step, body_length, slice_step):
             if " " in body[ptr_end - 1 : ptr_end]:
                 while not (
-                    EmailParserRegex.window_slice_regex.match(
+                        EmailParserRegex.window_slice_regex.match(
                         body[ptr_end - 1 : ptr_end],
                     )
-                    or ptr_end > body_length
+                        or ptr_end > body_length
                 ):
                     if ptr_end > body_length:
                         ptr_end = body_length
