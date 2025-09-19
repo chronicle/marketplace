@@ -94,7 +94,7 @@ def main():
             f"Alert Id: {siemplify.current_alert.identifier}: "
             f"Playbook {playbook_name} Waiting. Current playbook locked."
         )
-        result_value = "false"
+        result_value = False
         status = EXECUTION_STATE_INPROGRESS
 
     else:
