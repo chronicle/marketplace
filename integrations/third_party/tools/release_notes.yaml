@@ -823,7 +823,7 @@
   regressive: false
   deprecated: false
   removed: false
-- description: Wait for Playbook to Complete - Updated waiting mechanism..
+- description: Wait for Playbook to Complete - Updated waiting mechanism.
   integration_version: 69.0
   item_name: Wait for Playbook to Complete
   item_type: Action
