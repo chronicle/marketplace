@@ -81,13 +81,13 @@ class BuiltReleaseNote(TypedDict):
 
 class NonBuiltReleaseNote(TypedDict):
     description: str
-    deprecated: bool
+    deprecated: NotRequired[bool]
     integration_version: float
     item_name: str
     item_type: str
     publish_time: NotRequired[str | None]
-    regressive: bool
-    removed: bool
+    regressive: NotRequired[bool]
+    removed: NotRequired[bool]
     ticket_number: NotRequired[str | None]
     new: bool
 
@@ -99,13 +99,13 @@ class ReleaseNote(
         str,
         pydantic.Field(max_length=mp.core.constants.LONG_DESCRIPTION_MAX_LENGTH),
     ]
-    deprecated: bool
+    deprecated: bool = False
     new: bool
     item_name: str
     item_type: str
     publish_time: int | None
-    regressive: bool
-    removed: bool
+    regressive: bool = False
+    removed: bool = False
     ticket: str | None
     version: Annotated[
         pydantic.PositiveFloat,
@@ -167,13 +167,13 @@ class ReleaseNote(
 
         return cls(
             description=non_built["description"],
-            deprecated=non_built["deprecated"],
+            deprecated=non_built.get("deprecated", False),
             version=non_built["integration_version"],
             item_name=non_built["item_name"],
             item_type=non_built["item_type"],
             new=non_built["new"],
-            regressive=non_built["regressive"],
-            removed=non_built["removed"],
+            regressive=non_built.get("regressive", False),
+            removed=non_built.get("removed", False),
             ticket=non_built.get("ticket_number"),
             publish_time=convert_iso_to_epoch(publish_time) if publish_time is not None else None,
         )
