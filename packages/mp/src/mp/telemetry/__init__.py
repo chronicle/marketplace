@@ -36,8 +36,8 @@ from .constants import (
     ALLOWED_COMMAND_ARGUMENTS as ALLOWED_COMMAND_ARGUMENTS,
 )
 from .constants import (
-    CLOUD_RUN_ENDPOINT,
     CONFIG_FILE_PATH,
+    ENDPOINT,
     MP_CACHE_DIR,
     NAME_MAPPER,
     REQUEST_TIMEOUT,
@@ -108,7 +108,7 @@ def track_command(mp_command_function: Callable) -> Callable:
 
             rich.print(payload.to_dict())
 
-            # send_telemetry_report(payload)
+            send_telemetry_report(payload)
 
             if error:
                 raise error
@@ -119,19 +119,22 @@ def track_command(mp_command_function: Callable) -> Callable:
 
 
 def send_telemetry_report(event_payload: TelemetryPayload) -> None:
-    """Send a telemetry event to the cloud run endpoint.
-
-    Args:
-        event_payload (EventPayload): The JSON-serializable event payload to send.
-
-    """
+    """Send a telemetry event to the cloud run endpoint."""
     try:
-        requests.post(
-            CLOUD_RUN_ENDPOINT,
+        headers = {
+            "Content-Type": "application/json",
+        }
+        response = requests.post(
+            ENDPOINT,
             data=json.dumps(event_payload.to_dict()),
-            headers={"Content-Type": "application/json"},
+            headers=headers,
             timeout=REQUEST_TIMEOUT,
         )
+        print(response)
+
+    except requests.RequestException as e:
+        rich.print(f"Failed to send telemetry report to cloud run endpoint: {e}")
+
     except requests.RequestException as e:
         rich.print(f"Failed to send telemetry report to cloud run endpoint: {e}")
 
