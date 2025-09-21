@@ -27,6 +27,7 @@ def is_number(s):
 
 
 def main():
+    x: int = 6
     siemplify = SiemplifyAction()
     siemplify.script_name = "Convert Time Format"
     params = siemplify.parameters
