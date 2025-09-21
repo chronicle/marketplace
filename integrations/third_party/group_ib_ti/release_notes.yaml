@@ -1,10 +1,10 @@
-- description: 'This integration connects Group-IB Threat Intelligence (GIB TI) with the Google Chronicle platform. It automatically ingests threat feeds from GIB TI and transforms them into rich Chronicle alerts, populated with corresponding entities.'
+- description: This integration connects Group-IB Threat Intelligence (GIB TI) with
+    the Google Chronicle platform. It automatically ingests threat feeds from GIB
+    TI and transforms them into rich Chronicle alerts, populated with corresponding
+    entities.
   integration_version: 1.0
   item_name: Group-IB TI
   item_type: Integration
   publish_time: '2025-09-01'
   ticket_number: ''
   new: true
-  regressive: false
-  deprecated: false
-  removed: false

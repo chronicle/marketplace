@@ -5,9 +5,6 @@
   publish_time: '2022-11-14'
   ticket_number: xxx
   new: false
-  regressive: false
-  deprecated: false
-  removed: false
 - description: Fixed the version alignment
   integration_version: 13.0
   item_name: PagerDuty
@@ -15,9 +12,6 @@
   publish_time: '2022-11-16'
   ticket_number: xxx
   new: false
-  regressive: false
-  deprecated: false
-  removed: false
 - description: 'Added the following actions: Get User By Email, List Incidents, Filtered
     Incident List, Get User By ID, List All OnCall, List Users, Get Incident By ID,
     Snooze Incident, Create Incident, Run Response Play'
@@ -27,9 +21,6 @@
   publish_time: '2022-11-16'
   ticket_number: xxx
   new: false
-  regressive: false
-  deprecated: false
-  removed: false
 - description: 'Important - Updated the integration code to work with Python version
     3.11. To ensure compatibility and avoid disruptions, follow the upgrade best practices
     described in the following document: https://cloud.google.com/chronicle/docs/soar/respond/integrations-setup/upgrade-python-versions'
@@ -39,9 +30,6 @@
   publish_time: '2024-12-26'
   ticket_number: ''
   new: false
-  regressive: false
-  deprecated: false
-  removed: false
 - description: Integration - Regressive! All integration items were updated to comply
     with Marketplace requirements. If you've made any custom changes to the official
     integration items, make sure to copy them before upgrading as they will be irreversible
@@ -53,8 +41,6 @@
   ticket_number: '405144847'
   new: false
   regressive: true
-  deprecated: false
-  removed: false
 - description: Create Ticket - Updated exception handling
   integration_version: 17.0
   item_name: PagerDuty
@@ -62,9 +48,6 @@
   publish_time: '2025-04-16'
   ticket_number: '406216953'
   new: false
-  regressive: false
-  deprecated: false
-  removed: false
 - description: Integration - Fixed SDK compatibility
   integration_version: 18.0
   item_name: PagerDuty
@@ -72,6 +55,3 @@
   publish_time: '2025-09-02'
   ticket_number: '442405312'
   new: false
-  regressive: false
-  deprecated: false
-  removed: false
