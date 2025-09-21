@@ -29,7 +29,7 @@ import mp.core.file_utils
 import mp.core.unix
 from mp.core.code_manipulation import TestWarning
 from mp.core.custom_types import Products, RepositoryType
-from mp.core.utils import is_windows
+from mp.core.utils import ensure_valid_list, is_windows
 
 from .display import display_test_reports
 from .process_test_output import IntegrationTestResults, TestIssue, process_pytest_json_report
@@ -141,6 +141,10 @@ def run_pre_build_tests(  # noqa: PLR0913
     """
     if raise_error_on_violations:
         warnings.filterwarnings("error")
+
+    repository = ensure_valid_list(repository)
+    integration = ensure_valid_list(integration)
+    group = ensure_valid_list(group)
 
     run_params: RuntimeParams = mp.core.config.RuntimeParams(quiet, verbose)
     run_params.set_in_config()
