@@ -45,7 +45,7 @@ class TelemetryPayload:
         platform: str,
         platform_version: str,
         command: str,
-        command_args: str,
+        command_args: str | None,
         duration_ms: int,
         success: bool,  # noqa: FBT001
         exit_code: int,

@@ -16,7 +16,7 @@ import pathlib
 
 from mp.core.config import get_marketplace_path
 
-CLOUD_RUN_ENDPOINT: str = "CHANGE FOR LATER USE"  # TODO ADD REAL ENDPOINT
+ENDPOINT: str = "https://34.111.87.69.sslip.io/v1/ingest"
 REQUEST_TIMEOUT: int = 3
 MP_CACHE_DIR: pathlib.Path = get_marketplace_path() / ".mp_cache"
 CONFIG_FILE_PATH: pathlib.Path = MP_CACHE_DIR / "config.yaml"
