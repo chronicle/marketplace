@@ -106,8 +106,6 @@ def track_command(mp_command_function: Callable) -> Callable:
                 timestamp=datetime.now(UTC),
             )
 
-            rich.print(payload.to_dict())
-
             send_telemetry_report(payload)
 
             if error:
@@ -130,13 +128,9 @@ def send_telemetry_report(event_payload: TelemetryPayload) -> None:
             headers=headers,
             timeout=REQUEST_TIMEOUT,
         )
-        print(response)
 
-    except requests.RequestException as e:
-        rich.print(f"Failed to send telemetry report to cloud run endpoint: {e}")
-
-    except requests.RequestException as e:
-        rich.print(f"Failed to send telemetry report to cloud run endpoint: {e}")
+    except requests.RequestException:
+        pass
 
 
 def _is_telemetry_enabled() -> bool:
