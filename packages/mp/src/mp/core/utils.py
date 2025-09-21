@@ -18,9 +18,12 @@ from __future__ import annotations
 
 import re
 import sys
-from typing import TypedDict
+from typing import TYPE_CHECKING, TypedDict
 
 from mp.core.constants import WINDOWS_PLATFORM
+
+if TYPE_CHECKING:
+    from .custom_types import RepositoryType
 
 SNAKE_PATTERN_1 = re.compile(r"(.)([A-Z][a-z]+)")
 SNAKE_PATTERN_2 = re.compile(r"([a-z0-9])([A-Z])")
@@ -115,3 +118,22 @@ def is_windows() -> bool:
 
     """
     return sys.platform.startswith(WINDOWS_PLATFORM)
+
+
+def ensure_valid_list(value: list[str] | list[RepositoryType] | type) -> list:
+    """Ensure that the input is a valid list.
+
+    This function checks whether the given value is a valid list. If the value is
+    the `type` object (e.g., `<class 'list'>`), which can happen in github actions.
+    it returns an empty list Otherwise, it returns the value as-is.
+
+    Args:
+        value (list[str] | list[RepositoryType] | type): The value to validate.
+
+    Returns:
+        list: A valid list object. Returns an empty list if the input was of type `type`.
+
+    """
+    if isinstance(value, type):
+        return []
+    return value

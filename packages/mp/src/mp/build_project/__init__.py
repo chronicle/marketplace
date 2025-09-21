@@ -35,6 +35,7 @@ import mp.core.config
 import mp.core.constants
 import mp.core.file_utils
 from mp.core.custom_types import RepositoryType
+from mp.core.utils import ensure_valid_list
 
 from .marketplace import Marketplace
 from .post_build.duplicate_integrations import raise_errors_for_duplicate_integrations
@@ -152,6 +153,10 @@ def build(  # noqa: PLR0913
         verbose: Verbose log options
 
     """
+    repository = ensure_valid_list(repository)
+    integration = ensure_valid_list(integration)
+    group = ensure_valid_list(group)
+
     run_params: RuntimeParams = mp.core.config.RuntimeParams(quiet, verbose)
     run_params.set_in_config()
 
