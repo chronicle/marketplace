@@ -4,40 +4,24 @@
   item_type: Integration
   publish_time: '2020-10-12'
   ticket_number: xxx
-  new: false
-  regressive: false
-  deprecated: false
-  removed: false
 - description: Fixed integration Manager.
   integration_version: 2.0
   item_name: Asana
   item_type: Manager
   publish_time: '2021-05-18'
   ticket_number: xxx
-  new: false
-  regressive: false
-  deprecated: false
-  removed: false
 - description: Fixed integration parameters.
   integration_version: 3.0
   item_name: Asana
   item_type: Integration
   publish_time: '2021-05-20'
   ticket_number: xxx
-  new: false
-  regressive: false
-  deprecated: false
-  removed: false
 - description: Fixed integration Manager + Mandatory Params
   integration_version: 4.0
   item_name: Asana
   item_type: Integration
   publish_time: '2021-09-20'
   ticket_number: xxx
-  new: false
-  regressive: false
-  deprecated: false
-  removed: false
 - description: 'Important - Updated the integration code to work with Python version
     3.11. To ensure compatibility and avoid disruptions, follow the upgrade best practices
     described in the following document: https://cloud.google.com/chronicle/docs/soar/respond/integrations-setup/upgrade-python-versions'
@@ -46,7 +30,3 @@
   item_type: Integration
   publish_time: '2024-12-26'
   ticket_number: ''
-  new: false
-  regressive: false
-  deprecated: false
-  removed: false

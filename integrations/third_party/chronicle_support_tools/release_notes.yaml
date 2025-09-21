@@ -5,19 +5,12 @@
   publish_time: '2024-07-16'
   ticket_number: '340223061'
   new: true
-  regressive: false
-  deprecated: false
-  removed: false
 - description: Improvements and bug fixes.
   integration_version: 2.0
   item_name: ChronicleSupportTools
   item_type: Integration
   publish_time: '2024-09-04'
   ticket_number: '356850285'
-  new: false
-  regressive: false
-  deprecated: false
-  removed: false
 - description: 'Important - Updated the integration code to work with Python version
     3.11. To ensure compatibility and avoid disruptions, follow the upgrade best practices
     described in the following document: https://cloud.google.com/chronicle/docs/soar/respond/integrations-setup/upgrade-python-versions'
@@ -26,10 +19,6 @@
   item_type: Integration
   publish_time: '2024-12-26'
   ticket_number: ''
-  new: false
-  regressive: false
-  deprecated: false
-  removed: false
 - description: Integration - Regressive! All integration items were updated to comply
     with Marketplace requirements. If you've made any custom changes to the official
     integration items, make sure to copy them before upgrading as they will be irreversible
@@ -39,17 +28,10 @@
   item_type: Integration
   publish_time: '2025-03-24'
   ticket_number: '405144847'
-  new: false
   regressive: true
-  deprecated: false
-  removed: false
 - description: Update Integration Display images.
   integration_version: 5.0
   item_name: ChronicleSupportTools
   item_type: Integration
   publish_time: '2025-07-23'
   ticket_number: '433768611'
-  new: false
-  regressive: false
-  deprecated: false
-  removed: false

@@ -3,20 +3,12 @@
   item_name: EmailUtilities
   item_type: Integration
   ticket_number: xxx
-  new: false
-  regressive: false
-  deprecated: false
-  removed: false
 - description: NEW! Parse Base64 Email action.
   integration_version: 2.0
   item_name: Parse Base64 Email
   item_type: Action
   publish_time: '2020-11-19'
   ticket_number: xxx
-  new: false
-  regressive: false
-  deprecated: false
-  removed: false
 - description: '"Parse Base64 Email" is an updated version of "Parse EML Base64 Blob"
     which accepts a Base64 encoded string of an EML or MSG file. The action will parse
     the message and return headers, body content, attachments, and any nested EML
@@ -26,10 +18,6 @@
   item_type: Action
   publish_time: '2021-01-17'
   ticket_number: xxx
-  new: false
-  regressive: false
-  deprecated: false
-  removed: false
 - description: 'NEW! "Analyze Headers" action added to Email Utilities. The action
     accepts a JSON object containing a list of email headers and will validate the
     SPF, DMARC, ARC, and DKIM records in the email. It will also check to see if any
@@ -39,10 +27,6 @@
   item_type: Action
   publish_time: '2021-01-17'
   ticket_number: xxx
-  new: false
-  regressive: false
-  deprecated: false
-  removed: false
 - description: '"Parse Base64 Email" action has been updated to improve the parsing
     of observables in the email.  Previous version may have produced incorrect domains,
     urls, or emails.'
@@ -51,10 +35,6 @@
   item_type: Action
   publish_time: '2021-05-20'
   ticket_number: xxx
-  new: false
-  regressive: false
-  deprecated: false
-  removed: false
 - description: '"Analyze Headers" action has been updated to fix a bug when parsing
     routes in the header.'
   integration_version: 5.0
@@ -62,20 +42,12 @@
   item_type: Action
   publish_time: '2021-10-08'
   ticket_number: xxx
-  new: false
-  regressive: false
-  deprecated: false
-  removed: false
 - description: Fixed bug in Analyze Headers.
   integration_version: 6.0
   item_name: Analyze Headers
   item_type: Action
   publish_time: '2021-10-15'
   ticket_number: xxx
-  new: false
-  regressive: false
-  deprecated: false
-  removed: false
 - description: 'Fixed - Parse Base64 Email: Updated the format of headers from MSG
     files to match the format from EML files.'
   integration_version: 7.0
@@ -83,10 +55,6 @@
   item_type: Action
   publish_time: '2021-12-06'
   ticket_number: xxx
-  new: false
-  regressive: false
-  deprecated: false
-  removed: false
 - description: Update! Analyze Headers - The action will now add geo-location and
     IP whois information to the relay servers.
   integration_version: 8.0
@@ -94,20 +62,12 @@
   item_type: Action
   publish_time: '2022-02-04'
   ticket_number: xxx
-  new: false
-  regressive: false
-  deprecated: false
-  removed: false
 - description: Code cleanup and removal of unused dependencies.
   integration_version: 10.0
   item_name: Analyze Headers
   item_type: Action
   publish_time: '2022-02-11'
   ticket_number: xxx
-  new: false
-  regressive: false
-  deprecated: false
-  removed: false
 - description: NEW! "Parse Case Wall Email" action added to Email Utilities. This
     action will parse an EML or MSG file that is on the case wall.
   integration_version: 11.0
@@ -116,9 +76,6 @@
   publish_time: '2022-02-18'
   ticket_number: xxx
   new: true
-  regressive: false
-  deprecated: false
-  removed: false
 - description: Update! "Parse Case Wall Email" Fixed bug that caused some DNS lookups
     to fail.
   integration_version: 12.0
@@ -126,20 +83,12 @@
   item_type: Action
   publish_time: '2022-03-30'
   ticket_number: xxx
-  new: false
-  regressive: false
-  deprecated: false
-  removed: false
 - description: Version increase.
   integration_version: 13.0
   item_name: Parse Case Wall Email
   item_type: Action
   publish_time: '2022-03-30'
   ticket_number: xxx
-  new: false
-  regressive: false
-  deprecated: false
-  removed: false
 - description: Update! "Parse Case Wall Email" - Added support for rewriting Proofpoint
     URLs and fix for ICS files.
   integration_version: 14.0
@@ -147,10 +96,6 @@
   item_type: Action
   publish_time: '2022-05-24'
   ticket_number: xxx
-  new: false
-  regressive: false
-  deprecated: false
-  removed: false
 - description: Update! "Parse Case Wall Email" - Added support for rewriting Microsoft
     Safelink URLs and a fix to incorrect URL extracting.
   integration_version: 15.0
@@ -158,10 +103,6 @@
   item_type: Action
   publish_time: '2022-06-14'
   ticket_number: xxx
-  new: false
-  regressive: false
-  deprecated: false
-  removed: false
 - description: Update! "Analyze Headers" - Fixed a bug that caused the action to crash
     when parsing expired DKIM records.
   integration_version: 16.0
@@ -169,10 +110,6 @@
   item_type: Action
   publish_time: '2022-12-02'
   ticket_number: xxx
-  new: false
-  regressive: false
-  deprecated: false
-  removed: false
 - description: Update! "Parse Case Wall Email" - Fixed a bug causing the action to
     crash when a URL has already been added to the case.
   integration_version: 17.0
@@ -180,10 +117,6 @@
   item_type: Action
   publish_time: '2022-12-15'
   ticket_number: xxx
-  new: false
-  regressive: false
-  deprecated: false
-  removed: false
 - description: Fix! "Analyze Headers" - Fixed a bug causing the action to crash when
     an email header was missing a return-path key.
   integration_version: 18.0
@@ -191,50 +124,30 @@
   item_type: Action
   publish_time: '2023-01-20'
   ticket_number: xxx
-  new: false
-  regressive: false
-  deprecated: false
-  removed: false
 - description: Fix! - Fixed a bug causing the integration to fail to load.
   integration_version: 19.0
   item_name: EmailUtilities
   item_type: Integration
   publish_time: '2023-02-21'
   ticket_number: xxx
-  new: false
-  regressive: false
-  deprecated: false
-  removed: false
 - description: Update! - Updated an internal library.
   integration_version: 20.0
   item_name: EmailUtilities
   item_type: Integration
   publish_time: '2023-02-23'
   ticket_number: xxx
-  new: false
-  regressive: false
-  deprecated: false
-  removed: false
 - description: Fixed bug that was causing JSON results not to display.
   integration_version: 21.0
   item_name: Parse Case Wall Email
   item_type: Action
   publish_time: '2023-08-21'
   ticket_number: xxx
-  new: false
-  regressive: false
-  deprecated: false
-  removed: false
 - description: Fix! - Fixed a bug that was causing some EML files to fail to parse..
   integration_version: 22.0
   item_name: Parse Case Wall Email
   item_type: Action
   publish_time: '2023-11-01'
   ticket_number: xxx
-  new: false
-  regressive: false
-  deprecated: false
-  removed: false
 - description: Parse Case Wall Email - Fixed a bug that was causing some URL to fail
     to parse.
   integration_version: 23.0
@@ -242,10 +155,6 @@
   item_type: Action
   publish_time: '2024-02-21'
   ticket_number: '322127919'
-  new: false
-  regressive: false
-  deprecated: false
-  removed: false
 - description: Parse Case Wall Email - Fixed a bug that was causing entity creation
     with empty identifier
   integration_version: 24.0
@@ -253,10 +162,6 @@
   item_type: Action
   publish_time: '2024-04-04'
   ticket_number: '328665334'
-  new: false
-  regressive: false
-  deprecated: false
-  removed: false
 - description: Parse Case Wall Email - Action improvements for working with attached
     eml files and handling email's display name field.
   integration_version: 25.0
@@ -264,10 +169,6 @@
   item_type: Action
   publish_time: '2024-05-15'
   ticket_number: 335715794, 338638289
-  new: false
-  regressive: false
-  deprecated: false
-  removed: false
 - description: Parse Case Wall Email Action - REGRESSIVE! Action updated to not automatically
     convert entities "Original Identifier" field to upper case.
   integration_version: 26.0
@@ -275,10 +176,7 @@
   item_type: Action
   publish_time: '2024-05-29'
   ticket_number: '325014872'
-  new: false
   regressive: true
-  deprecated: false
-  removed: false
 - description: Parse Case Wall Email Action - Updated Entity creation logic to better
     parse all Case Wall Email's URLs.
   integration_version: 26.0
@@ -286,10 +184,6 @@
   item_type: Action
   publish_time: '2024-05-29'
   ticket_number: '331692190'
-  new: false
-  regressive: false
-  deprecated: false
-  removed: false
 - description: Parse Case Wall Email Action - Updated logic for handling of "Original
     EML Only" parameter.
   integration_version: 27.0
@@ -297,50 +191,30 @@
   item_type: Action
   publish_time: '2024-07-31'
   ticket_number: '347007733'
-  new: false
-  regressive: false
-  deprecated: false
-  removed: false
 - description: Parse Case Wall Email - Updated the JSON Result structure.
   integration_version: 28.0
   item_name: Parse Case Wall Email
   item_type: Action
   publish_time: '2024-08-21'
   ticket_number: '351365335'
-  new: false
-  regressive: false
-  deprecated: false
-  removed: false
 - description: Parse Case Wall Email - Updated parser logic.
   integration_version: 29.0
   item_name: Parse Case Wall Email
   item_type: Action
   publish_time: '2024-08-26'
   ticket_number: '351365335'
-  new: false
-  regressive: false
-  deprecated: false
-  removed: false
 - description: Parse Case Wall Email - Updated handling for malformed eml content-type.
   integration_version: 30.0
   item_name: Parse Case Wall Email
   item_type: Action
   publish_time: '2024-09-04'
   ticket_number: '356792519'
-  new: false
-  regressive: false
-  deprecated: false
-  removed: false
 - description: Parse Case Wall Email - Updated handling for exclude regex entity creation.
   integration_version: 31.0
   item_name: Parse Case Wall Email
   item_type: Action
   publish_time: '2024-10-16'
   ticket_number: '362364528'
-  new: false
-  regressive: false
-  deprecated: false
-  removed: false
 - description: Parse Case Wall Email - Action updated to better handle the markdown
     characters.
   integration_version: 31.0
@@ -348,20 +222,12 @@
   item_type: Action
   publish_time: '2024-10-16'
   ticket_number: '359822982'
-  new: false
-  regressive: false
-  deprecated: false
-  removed: false
 - description: Parse Case Wall Email - Action updated to better handle eml parsing.
   integration_version: 32.0
   item_name: Parse Case Wall Email
   item_type: Action
   publish_time: '2024-11-27'
   ticket_number: '377660882'
-  new: false
-  regressive: false
-  deprecated: false
-  removed: false
 - description: 'Important - Updated the integration code to work with Python version
     3.11. To ensure compatibility and avoid disruptions, follow the upgrade best practices
     described in the following document: https://cloud.google.com/chronicle/docs/soar/respond/integrations-setup/upgrade-python-versions'
@@ -370,40 +236,24 @@
   item_type: Integration
   publish_time: '2024-12-26'
   ticket_number: ''
-  new: false
-  regressive: false
-  deprecated: false
-  removed: false
 - description: Parse Case Wall Email, Analyze Headers - Actions Updates.
   integration_version: 34.0
   item_name: Parse Case Wall Email, Analyze Headers
   item_type: Action
   publish_time: '2025-02-19'
   ticket_number: 393134934, 393611630
-  new: false
-  regressive: false
-  deprecated: false
-  removed: false
 - description: Parse Case Wall Email - Actions Updates.
   integration_version: 35.0
   item_name: Parse Case Wall Email
   item_type: Action
   publish_time: '2025-06-25'
   ticket_number: '425443762'
-  new: false
-  regressive: false
-  deprecated: false
-  removed: false
 - description: Parse Case Wall Email - Improved entity extraction mechanism.
   integration_version: 36.0
   item_name: Parse Case Wall Email
   item_type: Action
   publish_time: '2025-07-09'
   ticket_number: '426659486'
-  new: false
-  regressive: false
-  deprecated: false
-  removed: false
 - description: Parse Case Wall Email - Updated the logic for IP Address type entity
     creation.
   integration_version: 37.0
@@ -411,37 +261,21 @@
   item_type: Action
   publish_time: '2025-07-16'
   ticket_number: '429253906'
-  new: false
-  regressive: false
-  deprecated: false
-  removed: false
 - description: Parse Case Wall Email - Updated entity processing logic.
   integration_version: 38.0
   item_name: Parse Case Wall Email
   item_type: Action
   publish_time: '2025-08-04'
   ticket_number: '433043714'
-  new: false
-  regressive: false
-  deprecated: false
-  removed: false
 - description: Integration - Updated dependencies.
   integration_version: 39.0
   item_name: EmailUtilities
   item_type: Integration
   publish_time: '2025-08-13'
-  ticket_number: '433361672, 434658560'
-  new: false
-  regressive: false
-  deprecated: false
-  removed: false
+  ticket_number: 433361672, 434658560
 - description: Parse Case Wall Email - Updated entity creation logic.
   integration_version: 40.0
   item_name: Parse Case Wall Email
   item_type: Action
   publish_time: '2025-08-20'
   ticket_number: '432241464'
-  new: false
-  regressive: false
-  deprecated: false
-  removed: false

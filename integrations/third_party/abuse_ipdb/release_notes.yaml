@@ -4,10 +4,6 @@
   item_type: Integration
   publish_time: '2020-12-17'
   ticket_number: xxx
-  new: false
-  regressive: false
-  deprecated: false
-  removed: false
 - description: '- Entity Explorer: Added functionality to update the entity properties/metadata
     under the relevant prefix.
 
@@ -18,20 +14,12 @@
   item_type: Integration
   publish_time: '2021-08-27'
   ticket_number: xxx
-  new: false
-  regressive: false
-  deprecated: false
-  removed: false
 - description: Updated Integration SVG
   integration_version: 3.0
   item_name: Abuse IPDB
   item_type: Integration
   publish_time: '2021-11-01'
   ticket_number: xxx
-  new: false
-  regressive: false
-  deprecated: false
-  removed: false
 - description: 'Important - Updated the integration code to work with Python version
     3.11. To ensure compatibility and avoid disruptions, follow the upgrade best practices
     described in the following document: https://cloud.google.com/chronicle/docs/soar/respond/integrations-setup/upgrade-python-versions'
@@ -40,7 +28,3 @@
   item_type: Integration
   publish_time: '2024-12-26'
   ticket_number: ''
-  new: false
-  regressive: false
-  deprecated: false
-  removed: false

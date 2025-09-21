@@ -89,7 +89,7 @@ class NonBuiltReleaseNote(TypedDict):
     regressive: NotRequired[bool]
     removed: NotRequired[bool]
     ticket_number: NotRequired[str | None]
-    new: bool
+    new: NotRequired[bool]
 
 
 class ReleaseNote(
@@ -100,7 +100,7 @@ class ReleaseNote(
         pydantic.Field(max_length=mp.core.constants.LONG_DESCRIPTION_MAX_LENGTH),
     ]
     deprecated: bool = False
-    new: bool
+    new: bool = False
     item_name: str
     item_type: str
     publish_time: int | None
@@ -171,7 +171,7 @@ class ReleaseNote(
             version=non_built["integration_version"],
             item_name=non_built["item_name"],
             item_type=non_built["item_type"],
-            new=non_built["new"],
+            new=non_built.get("new", False),
             regressive=non_built.get("regressive", False),
             removed=non_built.get("removed", False),
             ticket=non_built.get("ticket_number"),

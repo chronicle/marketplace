@@ -1,20 +1,13 @@
--   description: New Integration Added - Wiz.
-    integration_version: 1.0
-    item_name: Wiz
-    item_type: Integration
-    publish_time: '2025-08-04'
-    ticket_number: '393985746'
-    new: true
-    regressive: false
-    deprecated: false
-    removed: false
--   description: Integration - Updated description.
-    integration_version: 2.0
-    item_name: Wiz
-    item_type: Integration
-    publish_time: '2025-08-13'
-    ticket_number: '438101649'
-    new: false
-    regressive: false
-    deprecated: false
-    removed: false
+- description: New Integration Added - Wiz.
+  integration_version: 1.0
+  item_name: Wiz
+  item_type: Integration
+  publish_time: '2025-08-04'
+  ticket_number: '393985746'
+  new: true
+- description: Integration - Updated description.
+  integration_version: 2.0
+  item_name: Wiz
+  item_type: Integration
+  publish_time: '2025-08-13'
+  ticket_number: '438101649'
