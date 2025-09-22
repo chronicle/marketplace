@@ -26,6 +26,7 @@ import mp.core.config
 import mp.core.file_utils
 from mp.build_project.marketplace import Marketplace
 from mp.core.custom_types import RepositoryType
+from mp.core.utils import ensure_valid_list
 
 from .data_models import FullReport, ValidationResults
 from .display import display_validation_reports
@@ -150,6 +151,10 @@ def validate(  # noqa: PLR0913
             typer.Exit: If one of the validations during the run failed
 
     """
+    repository = ensure_valid_list(repository)
+    integration = ensure_valid_list(integration)
+    group = ensure_valid_list(group)
+
     run_params: RuntimeParams = mp.core.config.RuntimeParams(quiet, verbose)
     run_params.set_in_config()
 

@@ -1,0 +1,32 @@
+identifier: InfobloxNIOS
+name: Infoblox NIOS
+parameters:
+-   name: API Root
+    default_value: https://{address}:{port}
+    type: string
+    description: The base URL of the API, used as the entry point for all API requests.
+    is_mandatory: true
+    integration_identifier: InfobloxNIOS
+-   name: Username
+    default_value: ''
+    type: string
+    description: The Infoblox account name used to authenticate API access.
+    is_mandatory: true
+    integration_identifier: InfobloxNIOS
+-   name: Password
+    type: password
+    description: The corresponding password for the provided Infoblox username.
+    is_mandatory: true
+    integration_identifier: InfobloxNIOS
+-   name: Verify SSL
+    default_value: true
+    type: boolean
+    description: Verify SSL
+    is_mandatory: false
+    integration_identifier: InfobloxNIOS
+documentation_link: https://docs.infoblox.com/space/DeploymentGuideNIOSforGoogleSecOps
+categories:
+- Network Security
+svg_logo_path: resources/logo.svg
+image_path: resources/image.png
+is_available_for_community: false
