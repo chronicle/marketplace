@@ -81,11 +81,7 @@ def main():
         result_value = "true"
         status = EXECUTION_STATE_COMPLETED
 
-    elif (
-        wf_status == WF_STATUS_INPROGRESS
-        or wf_status == WF_STATUS_PENDING
-        or wf_status == WF_STATUS_WAITING
-    ):
+    elif wf_status in (WF_STATUS_INPROGRESS, WF_STATUS_PENDING, WF_STATUS_WAITING):
         output_message = (
             f"Alert Id: {siemplify.current_alert.identifier}: "
             f"Playbook {playbook_name} Inprogress. Current playbook locked."
