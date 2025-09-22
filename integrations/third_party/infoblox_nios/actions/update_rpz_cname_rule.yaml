@@ -1,0 +1,66 @@
+name: Update RPZ CNAME Rule
+description: 'Updates an existing rule in RPZ CNAME to modify DNS behavior. '
+integration_identifier: InfobloxNIOS
+parameters:
+-   name: Reference ID
+    default_value: ''
+    type: string
+    description: The reference ID of the existing RPZ rule to update.
+    is_mandatory: true
+-   name: Rule Type
+    default_value: Block (No such Domain)
+    type: ddl
+    optional_values:
+    - Passthru
+    - Block (No such Domain)
+    - Block (No data)
+    - Substitute (Domain name)
+    description: The type of the rule to update.
+    is_mandatory: true
+-   name: Name
+    default_value: ''
+    type: string
+    description: The rule name in a FQDN format.
+    is_mandatory: true
+-   name: RP Zone
+    default_value: ''
+    type: string
+    description: The zone to assign the rule to.
+    is_mandatory: true
+-   name: Comment
+    type: string
+    description: Comment for this rule.
+    is_mandatory: false
+-   name: Substitute Name
+    type: string
+    description: 'The substitute name to assign (substitute domain only). '
+    is_mandatory: false
+-   name: View
+    default_value: default
+    type: string
+    description: The DNS view in which the records are located. By default, the 'default'
+        DNS view is searched.
+    is_mandatory: false
+-   name: Additional Parameters
+    type: string
+    description: JSON object containing additional parameters to create rpz rule.
+    is_mandatory: false
+dynamic_results_metadata:
+-   result_name: JsonResult
+    show_result: true
+    result_example: |
+        {
+            "_ref": "record:rpz:cname/ZG5zLmJpbmRfY25hbWUkLl9kZWZhdWx0LmlwLnRocmVhdC5kbnMuMS4xLjEwLjEw:10.10.1.1.dns.threat.ip/default",
+            "canonical": "",
+            "comment": "Block IP",
+            "disable": false,
+            "extattrs": {},
+            "name": "10.10.1.1.dns.threat.ip",
+            "rp_zone": "dns.threat.ip",
+            "use_ttl": false,
+            "view": "default",
+            "zone": "dns.threat.ip"
+        }
+default_result_value: ''
+creator: Admin
+script_result_name: ScriptResult
