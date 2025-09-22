@@ -23,6 +23,7 @@ from typing import TYPE_CHECKING, Annotated, TypeAlias
 import typer
 
 import mp.core.config
+import mp.core.constants
 import mp.core.file_utils
 from mp.build_project.marketplace import Marketplace
 from mp.core.custom_types import RepositoryType
@@ -161,8 +162,14 @@ def validate(  # noqa: PLR0913
     params: ValidateParams = ValidateParams(repository, integration, group)
     params.validate()
 
-    commercial_mp: Marketplace = Marketplace(mp.core.file_utils.get_commercial_path())
-    community_mp: Marketplace = Marketplace(mp.core.file_utils.get_community_path())
+    commercial_path: pathlib.Path = mp.core.file_utils.get_marketplace_path(
+        mp.core.constants.COMMERCIAL_DIR_NAME
+    )
+    community_path: pathlib.Path = mp.core.file_utils.get_marketplace_path(
+        mp.core.constants.COMMUNITY_DIR_NAME
+    )
+    commercial_mp: Marketplace = Marketplace(commercial_path)
+    community_mp: Marketplace = Marketplace(community_path)
 
     run_configurations: Configurations = Configurations(only_pre_build=only_pre_build)
 
@@ -172,13 +179,13 @@ def validate(  # noqa: PLR0913
 
     if integration:
         commercial_output = _validate_integrations(
-            get_marketplace_paths_from_names(integration, commercial_mp.path),
+            get_marketplace_paths_from_names(integration, commercial_mp.paths),
             commercial_mp,
             run_configurations,
         )
 
         community_output = _validate_integrations(
-            get_marketplace_paths_from_names(integration, community_mp.path),
+            get_marketplace_paths_from_names(integration, community_mp.paths),
             community_mp,
             run_configurations,
         )
@@ -187,13 +194,13 @@ def validate(  # noqa: PLR0913
 
     elif group:
         commercial_output = _validate_groups(
-            get_marketplace_paths_from_names(group, commercial_mp.path),
+            get_marketplace_paths_from_names(group, commercial_mp.paths),
             commercial_mp,
             run_configurations,
         )
 
         community_output = _validate_groups(
-            get_marketplace_paths_from_names(group, community_mp.path),
+            get_marketplace_paths_from_names(group, community_mp.paths),
             community_mp,
             run_configurations,
         )
@@ -219,7 +226,7 @@ def validate(  # noqa: PLR0913
 
 def _validate_repo(marketplace: Marketplace, configurations: Configurations) -> FullReport:
     products: Products[set[pathlib.Path]] = (
-        mp.core.file_utils.get_integrations_and_groups_from_paths(marketplace.path)
+        mp.core.file_utils.get_integrations_and_groups_from_paths(*marketplace.paths)
     )
 
     validation_outputs: FullReport

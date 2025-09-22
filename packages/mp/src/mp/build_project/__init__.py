@@ -32,6 +32,7 @@ import rich
 import typer
 
 import mp.core.config
+import mp.core.constants
 import mp.core.file_utils
 from mp.core.custom_types import RepositoryType
 from mp.core.utils import ensure_valid_list
@@ -162,8 +163,16 @@ def build(  # noqa: PLR0913
     params: BuildParams = BuildParams(repository, integration, group, deconstruct)
     params.validate()
 
-    commercial_mp: Marketplace = Marketplace(mp.core.file_utils.get_commercial_path())
-    community_mp: Marketplace = Marketplace(mp.core.file_utils.get_community_path())
+    commercial_path: pathlib.Path = mp.core.file_utils.get_marketplace_path(
+        mp.core.constants.COMMERCIAL_DIR_NAME
+    )
+    community_path: pathlib.Path = mp.core.file_utils.get_marketplace_path(
+        mp.core.constants.COMMUNITY_DIR_NAME
+    )
+
+    commercial_mp: Marketplace = Marketplace(commercial_path)
+    community_mp: Marketplace = Marketplace(community_path)
+
     if integration:
         rich.print("Building integrations...")
         _build_integrations(set(integration), commercial_mp, deconstruct=deconstruct)
@@ -207,19 +216,19 @@ def _build_integrations(
 ) -> None:
     valid_integrations_: set[pathlib.Path] = _get_marketplace_paths_from_names(
         integrations,
-        marketplace_.path,
+        marketplace_.paths,
     )
     valid_integration_names: set[str] = {i.name for i in valid_integrations_}
     not_found: set[str] = set(integrations).difference(valid_integration_names)
     if not_found:
         rich.print(
             "The following integrations could not be found in"
-            f" the {marketplace_.path.name} marketplace: {', '.join(not_found)}",
+            f" the {marketplace_.marketplace_name} marketplace: {', '.join(not_found)}",
         )
     if valid_integrations_:
         rich.print(
             "Building the following integrations in the"
-            f" the {marketplace_.path.name} marketplace:"
+            f" the {marketplace_.marketplace_name} marketplace:"
             f" {', '.join(valid_integration_names)}"
         )
         if deconstruct:
@@ -232,7 +241,7 @@ def _build_integrations(
 def _build_groups(groups: Iterable[str], marketplace_: Marketplace) -> None:
     valid_groups: set[pathlib.Path] = _get_marketplace_paths_from_names(
         names=groups,
-        marketplace_path=marketplace_.path,
+        marketplace_paths=marketplace_.paths,
     )
     valid_group_names: set[str] = {g.name for g in valid_groups}
     not_found: set[str] = set(groups).difference(valid_group_names)
@@ -246,9 +255,13 @@ def _build_groups(groups: Iterable[str], marketplace_: Marketplace) -> None:
 
 def _get_marketplace_paths_from_names(
     names: Iterable[str],
-    marketplace_path: pathlib.Path,
+    marketplace_paths: Iterable[pathlib.Path],
 ) -> set[pathlib.Path]:
-    return {p for n in names if (p := marketplace_path / n).exists()}
+    results: set[pathlib.Path] = set()
+    for path in marketplace_paths:
+        results.update({p for n in names if (p := path / n).exists()})
+
+    return results
 
 
 def is_full_build(repositories: Sequence[RepositoryType]) -> bool:
