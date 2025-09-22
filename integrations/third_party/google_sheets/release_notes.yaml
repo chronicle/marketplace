@@ -5,9 +5,6 @@
   publish_time: '2020-10-13'
   ticket_number: xxx
   new: false
-  regressive: false
-  deprecated: false
-  removed: false
 - description: Updated Ping action.
   integration_version: 2.0
   item_name: Ping
@@ -15,9 +12,6 @@
   publish_time: '2020-10-18'
   ticket_number: xxx
   new: false
-  regressive: false
-  deprecated: false
-  removed: false
 - description: NEW! Add or Update Rows action.
   integration_version: 3.0
   item_name: Add or Update Rows
@@ -25,9 +19,6 @@
   publish_time: '2020-11-10'
   ticket_number: xxx
   new: false
-  regressive: false
-  deprecated: false
-  removed: false
 - description: NEW! Update Rows action.
   integration_version: 4.0
   item_name: Update Rows
@@ -35,9 +26,6 @@
   publish_time: '2020-11-15'
   ticket_number: xxx
   new: false
-  regressive: false
-  deprecated: false
-  removed: false
 - description: Fixed bug
   integration_version: 5.0
   item_name: Google Sheets
@@ -45,9 +33,6 @@
   publish_time: '2020-12-01'
   ticket_number: xxx
   new: false
-  regressive: false
-  deprecated: false
-  removed: false
 - description: New! Google Sheets connector
   integration_version: 6.0
   item_name: Google Sheet Connector
@@ -55,9 +40,6 @@
   publish_time: '2021-05-05'
   ticket_number: xxx
   new: false
-  regressive: false
-  deprecated: false
-  removed: false
 - description: Google Sheets connector
   integration_version: 7.0
   item_name: Google Sheet Connector
@@ -65,9 +47,6 @@
   publish_time: '2021-06-30'
   ticket_number: xxx
   new: false
-  regressive: false
-  deprecated: false
-  removed: false
 - description: Google Sheets update
   integration_version: 8.0
   item_name: Google Sheet New Action 'Get All'
@@ -75,9 +54,6 @@
   publish_time: '2021-07-08'
   ticket_number: xxx
   new: false
-  regressive: false
-  deprecated: false
-  removed: false
 - description: Fixed Category
   integration_version: 10.0
   item_name: Google Sheet New Action 'Get All'
@@ -85,9 +61,6 @@
   publish_time: '2021-08-23'
   ticket_number: xxx
   new: false
-  regressive: false
-  deprecated: false
-  removed: false
 - description: 'Action improvements: file system based authentication was replaced
     with in-memory'
   integration_version: 11.0
@@ -96,9 +69,6 @@
   publish_time: '2023-02-27'
   ticket_number: xxx
   new: false
-  regressive: false
-  deprecated: false
-  removed: false
 - description: Updated the handling of integration credentials.
   integration_version: 12.0
   item_name: Google Sheets
@@ -106,9 +76,6 @@
   publish_time: '2024-07-10'
   ticket_number: '345129323'
   new: false
-  regressive: false
-  deprecated: false
-  removed: false
 - description: 'Important - Updated the integration code to work with Python version
     3.11. To ensure compatibility and avoid disruptions, follow the upgrade best practices
     described in the following document: https://cloud.google.com/chronicle/docs/soar/respond/integrations-setup/upgrade-python-versions'
@@ -118,6 +85,3 @@
   publish_time: '2024-12-26'
   ticket_number: ''
   new: false
-  regressive: false
-  deprecated: false
-  removed: false

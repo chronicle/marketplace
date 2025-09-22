@@ -4,9 +4,6 @@
   item_type: Integration
   ticket_number: xxx
   new: false
-  regressive: false
-  deprecated: false
-  removed: false
 - description: Update! Create Entity Insight From JSON - Brackets have been removed
     from output and insights are enabled.
   integration_version: 2.0
@@ -14,9 +11,6 @@
   item_type: Integration
   ticket_number: xxx
   new: false
-  regressive: false
-  deprecated: false
-  removed: false
 - description: Update! Create Entity Insight From Enrichment - Now pulls additional
     enrichment data.
   integration_version: 3.0
@@ -24,9 +18,6 @@
   item_type: Action
   ticket_number: xxx
   new: false
-  regressive: false
-  deprecated: false
-  removed: false
 - description: Insights - Updated integration's descriptions to reflect renaming to
     Google SecOps.
   integration_version: 4.0
@@ -35,9 +26,6 @@
   publish_time: '2024-04-25'
   ticket_number: '332545706'
   new: false
-  regressive: false
-  deprecated: false
-  removed: false
 - description: 'Important - Updated the integration code to work with Python version
     3.11. To ensure compatibility and avoid disruptions, follow the upgrade best practices
     described in the following document: https://cloud.google.com/chronicle/docs/soar/respond/integrations-setup/upgrade-python-versions'
@@ -47,6 +35,3 @@
   publish_time: '2024-12-26'
   ticket_number: ''
   new: false
-  regressive: false
-  deprecated: false
-  removed: false
