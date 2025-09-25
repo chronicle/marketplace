@@ -26,7 +26,6 @@ from enum import Enum
 from typing import Any, TypeAlias
 
 import requests
-import rich
 import typer
 import yaml
 
