@@ -827,7 +827,7 @@
   integration_version: 69.0
   item_name: Wait for Playbook to Complete
   item_type: Action
-  publish_time: '2025-09-24'
+  publish_time: '2025-09-25'
   ticket_number: '442899376'
   new: false
   regressive: false
