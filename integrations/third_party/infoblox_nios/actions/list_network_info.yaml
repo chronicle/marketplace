@@ -1,0 +1,141 @@
+name: List Network Info
+description: Lists defined IPv4/IPv6 networks and subnets in IPAM.
+integration_identifier: InfobloxNIOS
+parameters:
+-   name: Network
+    default_value: ''
+    type: string
+    description: The network address in CIDR notation (e.g., "192.168.1.0/24") .
+    is_mandatory: false
+-   name: Limit
+    default_value: '100'
+    type: string
+    description: Maximum numbers of objects to be returned.
+    is_mandatory: false
+-   name: Extended Attributes
+    type: string
+    description: 'The comma-separated key/value formatted filter for extended attributes,
+        e.g. "Site=New York,OtherProp=MyValue". '
+    is_mandatory: false
+dynamic_results_metadata:
+-   result_name: JsonResult
+    show_result: true
+    result_example: |
+        [
+            {
+                "_ref": "network/ZG5zLm5ldHdvcmskMTAuNTAuMC4wLzIwLzA:10.50.0.0/20/default",
+                "authority": false,
+                "conflict_count": 1,
+                "ddns_generate_hostname": false,
+                "ddns_server_always_updates": true,
+                "ddns_ttl": 0,
+                "ddns_update_fixed_addresses": false,
+                "ddns_use_option81": false,
+                "deny_bootp": false,
+                "dhcp_utilization": 818,
+                "dhcp_utilization_status": "NORMAL",
+                "disable": false,
+                "discover_now_status": "NONE",
+                "discovered_bgp_as": null,
+                "discovered_bridge_domain": null,
+                "discovered_tenant": null,
+                "discovered_vlan_id": null,
+                "discovered_vlan_name": null,
+                "discovered_vrf_description": null,
+                "discovered_vrf_name": null,
+                "discovered_vrf_rd": null,
+                "discovery_basic_poll_settings": {
+                    "auto_arp_refresh_before_switch_port_polling": true,
+                    "cli_collection": true,
+                    "complete_ping_sweep": false,
+                    "device_profile": false,
+                    "netbios_scanning": false,
+                    "port_scanning": false,
+                    "smart_subnet_ping_sweep": false,
+                    "snmp_collection": true,
+                    "switch_port_data_collection_polling": "PERIODIC",
+                    "switch_port_data_collection_polling_interval": 3600
+                },
+                "discovery_blackout_setting": {"enable_blackout": false},
+                "discovery_engine_type": "NONE",
+                "dynamic_hosts": 9,
+                "email_list": [],
+                "enable_ddns": false,
+                "enable_dhcp_thresholds": false,
+                "enable_discovery": false,
+                "enable_email_warnings": false,
+                "enable_ifmap_publishing": false,
+                "enable_pxe_lease_time": false,
+                "enable_snmp_warnings": false,
+                "extattrs": {},
+                "high_water_mark": 95,
+                "high_water_mark_reset": 85,
+                "ignore_dhcp_option_list_request": false,
+                "ignore_id": "NONE",
+                "ignore_mac_addresses": [],
+                "ipam_email_addresses": [],
+                "ipam_threshold_settings": {"reset_value": 85, "trigger_value": 95},
+                "ipam_trap_settings": {"enable_email_warnings": false, "enable_snmp_warnings": true},
+                "ipv4addr": "10.50.0.0",
+                "lease_scavenge_time": -1,
+                "logic_filter_rules": [],
+                "low_water_mark": 0,
+                "low_water_mark_reset": 10,
+                "members": [{"_struct": "dhcpmember", "ipv4addr": "10.50.3.71", "ipv6addr": null, "name": "infoblox.localdomain"}],
+                "mgm_private": false,
+                "mgm_private_overridable": true,
+                "netmask": 20,
+                "network": "10.50.0.0/20",
+                "network_container": "/",
+                "network_view": "default",
+                "options": [{"name": "dhcp-lease-time", "num": 51, "use_option": false, "value": "43200", "vendor_class": "DHCP"}],
+                "port_control_blackout_setting": {"enable_blackout": false},
+                "recycle_leases": true,
+                "rir": "NONE",
+                "rir_registration_status": "NOT_REGISTERED",
+                "same_port_control_discovery_blackout": false,
+                "static_hosts": 0,
+                "subscribe_settings": null,
+                "total_hosts": 11,
+                "unmanaged": false,
+                "unmanaged_count": 1148,
+                "update_dns_on_lease_renewal": false,
+                "use_authority": false,
+                "use_blackout_setting": false,
+                "use_bootfile": false,
+                "use_bootserver": false,
+                "use_ddns_domainname": false,
+                "use_ddns_generate_hostname": false,
+                "use_ddns_ttl": false,
+                "use_ddns_update_fixed_addresses": false,
+                "use_ddns_use_option81": false,
+                "use_deny_bootp": false,
+                "use_discovery_basic_polling_settings": false,
+                "use_email_list": false,
+                "use_enable_ddns": false,
+                "use_enable_dhcp_thresholds": false,
+                "use_enable_discovery": false,
+                "use_enable_ifmap_publishing": false,
+                "use_ignore_dhcp_option_list_request": false,
+                "use_ignore_id": false,
+                "use_ipam_email_addresses": false,
+                "use_ipam_threshold_settings": false,
+                "use_ipam_trap_settings": false,
+                "use_lease_scavenge_time": false,
+                "use_logic_filter_rules": false,
+                "use_mgm_private": false,
+                "use_nextserver": false,
+                "use_options": false,
+                "use_pxe_lease_time": false,
+                "use_recycle_leases": false,
+                "use_subscribe_settings": false,
+                "use_update_dns_on_lease_renewal": false,
+                "use_zone_associations": true,
+                "utilization": 283,
+                "utilization_update": 1754052846,
+                "zone_associations": []
+            }
+        ]
+default_result_value: ''
+creator: Admin
+script_result_name: ScriptResult

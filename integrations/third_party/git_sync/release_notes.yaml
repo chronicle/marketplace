@@ -713,13 +713,13 @@
     regressive: false
     deprecated: false
     removed: false
--   description: Integration - Refactored the code to work with updated API.
+-   description: Bug fix - now failing job in case of git push failure
     integration_version: 40.0
     item_name: GitSync
     item_type: Integration
-    publish_time: '2025-09-17'
-    ticket_number: 'xxxx'
+    publish_time: '2025-09-14'
+    ticket_number: '438790199'
     new: false
-    regressive: true
+    regressive: false
     deprecated: false
     removed: false

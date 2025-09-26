@@ -24,6 +24,7 @@ WF_STATUS_COMPLETED = 2
 WF_STATUS_FAILED = 3
 WF_STATUS_PENDING = 4
 WF_STATUS_TERMINATED = 5
+WF_STATUS_WAITING = 6
 
 
 def get_wf_status(siemplify: SiemplifyAction, workflow_name: str) -> int:
@@ -80,7 +81,7 @@ def main():
         result_value = "true"
         status = EXECUTION_STATE_COMPLETED
 
-    elif wf_status == WF_STATUS_INPROGRESS or wf_status == WF_STATUS_PENDING:
+    elif wf_status in (WF_STATUS_INPROGRESS, WF_STATUS_PENDING, WF_STATUS_WAITING):
         output_message = (
             f"Alert Id: {siemplify.current_alert.identifier}: "
             f"Playbook {playbook_name} Inprogress. Current playbook locked."
@@ -90,8 +91,7 @@ def main():
 
     else:
         output_message = (
-            f"Alert Id: {siemplify.current_alert.identifier}: "
-            f"Playbook {playbook_name} not found."
+            f"Alert Id: {siemplify.current_alert.identifier}: Playbook {playbook_name} not found."
         )
         result_value = "true"
         status = status = EXECUTION_STATE_COMPLETED

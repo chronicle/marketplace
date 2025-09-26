@@ -28,7 +28,11 @@ parameters:
       is_mandatory: false
       default_value: true
       integration_identifier: Stairwell
-categories: [ ]
+categories:
+  - Threat Intelligence
+  - Malware Analysis
+  - Data Enrichment
+  - Security
 image_path: resources/image.png
 svg_logo_path: resources/logo.svg
 description: Stairwell provides threat intelligence and malware analysis capabilities. This integration enables enrichment of file hashes, IP addresses, and hostnames with Stairwell's threat intelligence data.
@@ -46,6 +50,3 @@ supported_entities:
   - IP
   - HOSTNAME
   - FILEHASH
-tags:
-  - threat_intelligence
-  - malware_analysis
