@@ -185,7 +185,17 @@ def _command_name_mapper(command_name: str) -> str:
     return NAME_MAPPER[command_name]
 
 
-def _sanitize_argument_value(value: Any) -> Any:
+def _filter_command_arguments(kwargs: dict) -> dict[str, Any]:
+    sanitized_args = {}
+    for key, value in kwargs.items():
+        if key in ALLOWED_COMMAND_ARGUMENTS:
+            sanitized_value = _sanitize_argument_value(value)
+            if sanitized_value is not None:
+                sanitized_args[key] = sanitized_value
+    return sanitized_args
+
+
+def _sanitize_argument_value(value: Any) -> Any:  # noqa: ANN401
     if isinstance(value, Enum):
         return value.value
 
@@ -197,13 +207,3 @@ def _sanitize_argument_value(value: Any) -> Any:
         return [_sanitize_argument_value(item) for item in value]
 
     return value
-
-
-def _filter_command_arguments(kwargs: dict) -> dict[str, Any]:
-    sanitized_args = {}
-    for key, value in kwargs.items():
-        if key in ALLOWED_COMMAND_ARGUMENTS:
-            sanitized_value = _sanitize_argument_value(value)
-            if sanitized_value is not None:
-                sanitized_args[key] = sanitized_value
-    return sanitized_args
