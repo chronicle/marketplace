@@ -50,21 +50,21 @@ if TYPE_CHECKING:
 
 
 class Marketplace:
-    def __init__(self, marketplace_dir: pathlib.Path) -> None:
+    def __init__(self, integrations_dir: pathlib.Path) -> None:
         """Class constructor.
 
         Args:
-            marketplace_dir: The path to a marketplace - where folders of integrations
+            integrations_dir: The path to a marketplace's integrations folders
                 and groups exist
 
         """
-        self.marketplace_name: str = marketplace_dir.name
-        self.paths: Iterable[pathlib.Path] = mp.core.file_utils.get_marketplace_dirs(
-            marketplace_dir
+        self.marketplace_name: str = integrations_dir.name
+        self.paths: list[pathlib.Path] = mp.core.file_utils.get_all_integrations_paths(
+            self.marketplace_name
         )
 
         for dir_name in self.paths:
-            dir_name.mkdir(exist_ok=True)
+            dir_name.mkdir(exist_ok=True, parents=True)
 
         mp_path: pathlib.Path = mp.core.config.get_marketplace_path()
         out_path: pathlib.Path = mp_path / mp.core.constants.OUT_DIR_NAME

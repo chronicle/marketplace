@@ -153,17 +153,11 @@ def run_pre_build_tests(  # noqa: PLR0913
     params: TestParams = TestParams(repository, integration, group)
     params.validate()
 
-    commercial_path: pathlib.Path = mp.core.file_utils.get_marketplace_path(
+    commercial_paths: Iterable[pathlib.Path] = mp.core.file_utils.get_all_integrations_paths(
         mp.core.constants.COMMERCIAL_DIR_NAME
     )
-    community_path: pathlib.Path = mp.core.file_utils.get_marketplace_path(
+    community_paths: Iterable[pathlib.Path] = mp.core.file_utils.get_all_integrations_paths(
         mp.core.constants.COMMUNITY_DIR_NAME
-    )
-    commercial_paths: Iterable[pathlib.Path] = mp.core.file_utils.get_marketplace_dirs(
-        commercial_path
-    )
-    community_paths: Iterable[pathlib.Path] = mp.core.file_utils.get_marketplace_dirs(
-        community_path
     )
 
     all_integration_results: list[IntegrationTestResults] = []

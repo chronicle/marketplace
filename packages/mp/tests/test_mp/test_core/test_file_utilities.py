@@ -72,15 +72,30 @@ def test_get_integrations_and_groups_from_paths(tmp_path: pathlib.Path) -> None:
     (community_dir / "group2" / "integration4").mkdir()
     (community_dir / "group2" / "integration4" / mp.core.constants.PROJECT_FILE).touch()
 
+    powerups_dir: pathlib.Path = tmp_path / mp.core.constants.POWERUPS_DIR_NAME
+    powerups_dir.mkdir()
+    (powerups_dir / "integration5").mkdir()
+    (powerups_dir / "integration5" / mp.core.constants.PROJECT_FILE).touch()
+    (powerups_dir / "group3").mkdir()
+    (powerups_dir / "group3" / "integration6").mkdir()
+    (powerups_dir / "group3" / "integration6" / mp.core.constants.PROJECT_FILE).touch()
+
     products: Products[set[pathlib.Path]] = (
-        mp.core.file_utils.get_integrations_and_groups_from_paths(commercial_dir, community_dir)
+        mp.core.file_utils.get_integrations_and_groups_from_paths(
+            commercial_dir, community_dir, powerups_dir
+        )
     )
 
     assert products.integrations == {
         commercial_dir / "integration1",
         community_dir / "integration3",
+        powerups_dir / "integration5",
     }
-    assert products.groups == {commercial_dir / "group1", community_dir / "group2"}
+    assert products.groups == {
+        commercial_dir / "group1",
+        community_dir / "group2",
+        powerups_dir / "group3",
+    }
 
 
 def test_is_python_file(tmp_path: pathlib.Path) -> None:
@@ -95,40 +110,82 @@ def test_is_python_file(tmp_path: pathlib.Path) -> None:
 def test_is_integration(tmp_path: pathlib.Path) -> None:
     commercial_dir: pathlib.Path = tmp_path / mp.core.constants.COMMERCIAL_DIR_NAME
     community_dir: pathlib.Path = tmp_path / mp.core.constants.COMMUNITY_DIR_NAME
+    powerups_dir: pathlib.Path = tmp_path / mp.core.constants.POWERUPS_DIR_NAME
+
     integration_dir_comm: pathlib.Path = community_dir / "integration"
     integration_dir_com: pathlib.Path = commercial_dir / "integration"
+    integration_dir_power: pathlib.Path = powerups_dir / "integration"
 
     commercial_dir.mkdir()
     community_dir.mkdir()
+    powerups_dir.mkdir()
+
     integration_dir_comm.mkdir()
     integration_dir_com.mkdir()
+    integration_dir_power.mkdir()
+
     (integration_dir_comm / mp.core.constants.PROJECT_FILE).touch()
     (integration_dir_com / mp.core.constants.PROJECT_FILE).touch()
+    (integration_dir_power / mp.core.constants.PROJECT_FILE).touch()
 
     assert mp.core.file_utils.is_integration(integration_dir_com)
     assert mp.core.file_utils.is_integration(integration_dir_comm)
+    assert mp.core.file_utils.is_integration(integration_dir_power)
     assert not mp.core.file_utils.is_integration(tmp_path)
 
 
 def test_is_group(tmp_path: pathlib.Path) -> None:
     commercial_dir: pathlib.Path = tmp_path / mp.core.constants.COMMERCIAL_DIR_NAME
     community_dir: pathlib.Path = tmp_path / mp.core.constants.COMMUNITY_DIR_NAME
+    powerups_dir: pathlib.Path = tmp_path / mp.core.constants.POWERUPS_DIR_NAME
+
     commercial_dir.mkdir()
     community_dir.mkdir()
+    powerups_dir.mkdir()
 
     group_dir_commercial: pathlib.Path = commercial_dir / "group"
     group_dir_community: pathlib.Path = community_dir / "group"
+    group_dir_power: pathlib.Path = powerups_dir / "group"
     group_dir_commercial.mkdir()
     group_dir_community.mkdir()
+    group_dir_power.mkdir()
 
     (group_dir_community / "integration1").mkdir()
     (group_dir_community / "integration1" / mp.core.constants.PROJECT_FILE).touch()
     (group_dir_commercial / "integration2").mkdir()
     (group_dir_commercial / "integration2" / mp.core.constants.PROJECT_FILE).touch()
+    (group_dir_power / "integration3").mkdir()
+    (group_dir_power / "integration3" / mp.core.constants.PROJECT_FILE).touch()
 
     assert mp.core.file_utils.is_group(group_dir_commercial)
     assert mp.core.file_utils.is_group(group_dir_community)
+    assert mp.core.file_utils.is_group(group_dir_power)
     assert not mp.core.file_utils.is_group(tmp_path)
+
+
+def test_get_all_integrations_paths(tmp_path: pathlib.Path) -> None:
+    with unittest.mock.patch("mp.core.file_utils._get_integrations_path", return_value=tmp_path):
+        community_paths = mp.core.file_utils.get_all_integrations_paths(
+            mp.core.constants.COMMUNITY_DIR_NAME
+        )
+        commercial_paths = mp.core.file_utils.get_all_integrations_paths(
+            mp.core.constants.COMMERCIAL_DIR_NAME
+        )
+
+        expected_community_paths = [
+            tmp_path / dir_name
+            for dir_name in mp.core.constants.INTEGRATIONS_DIRS_NAMES_DICT[
+                mp.core.constants.COMMUNITY_DIR_NAME
+            ]
+        ]
+        expected_commercial_paths = [
+            tmp_path / dir_name
+            for dir_name in mp.core.constants.INTEGRATIONS_DIRS_NAMES_DICT[
+                mp.core.constants.COMMERCIAL_DIR_NAME
+            ]
+        ]
+        assert community_paths == expected_community_paths
+        assert commercial_paths == expected_commercial_paths
 
 
 def test_replace_file_content(tmp_path: pathlib.Path) -> None:

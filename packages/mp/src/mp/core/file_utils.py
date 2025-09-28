@@ -21,12 +21,12 @@ from __future__ import annotations
 
 import base64
 import dataclasses
-import pathlib
 import shutil
-from collections.abc import Iterable
 from typing import TYPE_CHECKING, Any
 
 import yaml
+
+import mp.core.constants
 
 from . import config, constants
 from .custom_types import ManagerName, Products
@@ -34,51 +34,25 @@ from .validators import validate_png_content, validate_svg_content
 
 if TYPE_CHECKING:
     import pathlib
-    from collections.abc import Callable, Iterable, Mapping, Sequence
-
+    from collections.abc import Callable, Mapping, Sequence
 
 VALID_REPEATED_FILES: set[str] = {"__init__.py"}
 
 
-def get_marketplace_path(marketplace_name: str) -> pathlib.Path:
+def get_integrations_path(integrations_classification: str) -> pathlib.Path:
     """Get a marketplace integrations' path.
 
     Args:
-        marketplace_name: the name of the marketplace
+        integrations_classification: the name of the marketplace
 
     Returns:
         The marketplace's integrations' directory path
 
     """
-    return get_integrations_path() / marketplace_name
+    return _get_integrations_path() / integrations_classification
 
 
-def get_marketplace_dirs(marketplace_dir: pathlib.Path) -> Iterable[pathlib.Path]:
-    """Get all marketplace sub-dirs paths.
-
-    Args:
-        marketplace_dir: the path to a marketplace
-
-    Returns:
-        The marketplace's integrations' directories paths
-
-    """
-    marketplace_name: str = marketplace_dir.name
-    marketplace_dir_names: tuple[str, ...] = constants.MARKETPLACES_DIR_NAMES[marketplace_name]
-    return [marketplace_dir.parent / dir_name for dir_name in marketplace_dir_names]
-
-
-def get_commercial_path() -> pathlib.Path:
-    """Get the commercial integrations' path.
-
-    Returns:
-        The commercial integrations' directory path
-
-    """
-    return get_integrations_path() / constants.COMMERCIAL_DIR_NAME
-
-
-def get_integrations_path() -> pathlib.Path:
+def _get_integrations_path() -> pathlib.Path:
     """Get the integrations' path.
 
     Returns:
@@ -86,6 +60,22 @@ def get_integrations_path() -> pathlib.Path:
 
     """
     return config.get_marketplace_path() / constants.INTEGRATIONS_DIR_NAME
+
+
+def get_all_integrations_paths(integrations_classification: str) -> list[pathlib.Path]:
+    """Get all marketplace integrations sub-dirs paths.
+
+    Args:
+        integrations_classification: the name of the marketplace
+
+    Returns:
+        The marketplace's integrations' directories paths
+
+    """
+    marketplace_dir_names: tuple[str, ...] = constants.INTEGRATIONS_DIRS_NAMES_DICT[
+        integrations_classification
+    ]
+    return [_get_integrations_path() / dir_name for dir_name in marketplace_dir_names]
 
 
 def get_out_integrations_path() -> pathlib.Path:
@@ -173,11 +163,7 @@ def is_integration(path: pathlib.Path, *, group: str = "") -> bool:
 
     """
     parents: set[str] = {p.name for p in (path, *path.parents)}
-    valid_base_dirs: set[str] = {
-        constants.COMMUNITY_DIR_NAME,
-        constants.COMMERCIAL_DIR_NAME,
-        constants.POWERUPS_DIR_NAME,
-    }
+    valid_base_dirs: set[str] = set(mp.core.constants.INTEGRATIONS_TYPES)
 
     if group:
         valid_base_dirs.add(group)
@@ -458,7 +444,8 @@ def is_commercial_integration(path: pathlib.Path) -> bool:
     """
     return (
         is_integration(path)
-        and path.parent.name in constants.MARKETPLACES_DIR_NAMES[constants.COMMERCIAL_DIR_NAME]
+        and path.parent.name
+        in constants.INTEGRATIONS_DIRS_NAMES_DICT[constants.COMMERCIAL_DIR_NAME]
     )
 
 

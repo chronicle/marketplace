@@ -163,10 +163,10 @@ def build(  # noqa: PLR0913
     params: BuildParams = BuildParams(repository, integration, group, deconstruct)
     params.validate()
 
-    commercial_path: pathlib.Path = mp.core.file_utils.get_marketplace_path(
+    commercial_path: pathlib.Path = mp.core.file_utils.get_integrations_path(
         mp.core.constants.COMMERCIAL_DIR_NAME
     )
-    community_path: pathlib.Path = mp.core.file_utils.get_marketplace_path(
+    community_path: pathlib.Path = mp.core.file_utils.get_integrations_path(
         mp.core.constants.COMMUNITY_DIR_NAME
     )
 
