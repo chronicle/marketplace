@@ -9,8 +9,7 @@
     regressive: false
     deprecated: false
     removed: false
--   description: 'Added: README.md file in the root directory of the repo, specifying
-    it''s contents.'
+-   description: 'Added: README.md file in the root directory of the repo, specifyingit''s contents.'
     integration_version: 4.0
     item_name: GitSync
     item_type: Integration
@@ -30,8 +29,7 @@
     regressive: false
     deprecated: false
     removed: false
--   description: 'Fixed: Commit author must be set even when it''s not mandatory. Added
-    validation to correct format when set.'
+-   description: 'Fixed: Commit author must be set even when it''s not mandatory. Added validation to correct format when set.'
     integration_version: 4.0
     item_name: GitSync
     item_type: Integration
@@ -41,8 +39,7 @@
     regressive: false
     deprecated: false
     removed: false
--   description: 'Fixed: Error when pulling an environment and it already exists in
-    the system.'
+-   description: 'Fixed: Error when pulling an environment and it already exists in the system.'
     integration_version: 4.0
     item_name: GitSync
     item_type: Integration
@@ -92,8 +89,7 @@
     regressive: false
     deprecated: false
     removed: false
--   description: 'Added: Support for empty remote repositories (The integration will
-    work even when no file is committed to the remote repository)'
+-   description: 'Added: Support for empty remote repositories (The integration will work even when no file is committed to the remote repository)'
     integration_version: 6.0
     item_name: GitSync
     item_type: Integration
@@ -133,8 +129,7 @@
     regressive: false
     deprecated: false
     removed: false
--   description: 'IMPORTANT NOTICE: Push and Pull Environment name was changed to push
-    and pull content'
+-   description: 'IMPORTANT NOTICE: Push and Pull Environment name was changed to push and pull content'
     integration_version: 8.0
     item_name: GitSync
     item_type: Integration
@@ -164,8 +159,7 @@
     regressive: false
     deprecated: false
     removed: false
--   description: 'Updated: Dependencies - (dulwich, urllib3, cryptography, paramiko
-    and jinja)'
+-   description: 'Updated: Dependencies - (dulwich, urllib3, cryptography, paramiko and jinja)'
     integration_version: 8.0
     item_name: GitSync
     item_type: Integration
@@ -185,8 +179,7 @@
     regressive: false
     deprecated: false
     removed: false
--   description: 'Fixed: Pushing content will no longer creates unnecessary commits
-    because of timestamps changes'
+-   description: 'Fixed: Pushing content will no longer creates unnecessary commits because of timestamps changes'
     integration_version: 10.0
     item_name: GitSync
     item_type: Integration
@@ -216,8 +209,7 @@
     regressive: false
     deprecated: false
     removed: false
--   description: 'Updated: Improved branch handling when switching branches or working
-    outside remote HEAD'
+-   description: 'Updated: Improved branch handling when switching branches or working outside remote HEAD'
     integration_version: 10.0
     item_name: GitSync
     item_type: Integration
@@ -227,8 +219,7 @@
     regressive: false
     deprecated: false
     removed: false
--   description: 'Updated: Dependencies - (dulwich: 0.20.45, paramiko: 2.12.0, jinja2:
-    3.1.2, packaging: 23.0)'
+-   description: 'Updated: Dependencies - (dulwich: 0.20.45, paramiko: 2.12.0, jinja2: 3.1.2, packaging: 23.0)'
     integration_version: 10.0
     item_name: GitSync
     item_type: Integration
@@ -328,8 +319,7 @@
     regressive: false
     deprecated: false
     removed: false
--   description: 'Updated: Readme addons for playbooks is now based on playbook name
-    and not identifier'
+-   description: 'Updated: Readme addons for playbooks is now based on playbook name and not identifier'
     integration_version: 12.0
     item_name: GitSync
     item_type: Integration
@@ -339,9 +329,7 @@
     regressive: false
     deprecated: false
     removed: false
--   description: 'Fixed: Added an option to include involved blocks when pushing or
-    pulling a playbook. To guarantee a link between playbooks and blocks, It is recommended
-    to only specify the playbook name and set this flag to True'
+-   description: 'Fixed: Added an option to include involved blocks when pushing or pulling a playbook. To guarantee a link between playbooks and blocks, It is recommended to only specify the playbook name and set this flag to True'
     integration_version: 13.0
     item_name: GitSync
     item_type: Integration
@@ -381,8 +369,7 @@
     regressive: false
     deprecated: false
     removed: false
--   description: 'Added: Option to disable the automatic update of the root README file
-    (Available from the metadata file)'
+-   description: 'Added: Option to disable the automatic update of the root README file (Available from the metadata file)'
     integration_version: 15.0
     item_name: GitSync
     item_type: Integration
@@ -412,8 +399,7 @@
     regressive: false
     deprecated: false
     removed: false
--   description: 'Fixed: Custom code from commercial integrations is not updated if
-    py file is directly edited'
+-   description: 'Fixed: Custom code from commercial integrations is not updated if py file is directly edited'
     integration_version: 15.0
     item_name: GitSync
     item_type: Integration
@@ -423,8 +409,7 @@
     regressive: false
     deprecated: false
     removed: false
--   description: 'Updated: system_version is written to the metadata file on every push
-    operation'
+-   description: 'Updated: system_version is written to the metadata file on every push operation'
     integration_version: 15.0
     item_name: GitSync
     item_type: Integration
@@ -525,8 +510,7 @@
     regressive: false
     deprecated: false
     removed: false
--   description: 'Updated: Instead of cloning the entire repository, GitSync now creates
-    a shallow clone with a depth of 1'
+-   description: 'Updated: Instead of cloning the entire repository, GitSync now creates a shallow clone with a depth of 1'
     integration_version: 21.0
     item_name: GitManager
     item_type: Manager
@@ -536,9 +520,7 @@
     regressive: false
     deprecated: false
     removed: false
--   description: 'GitSync - Important - Updated the integration code to work with Python
-    version 3.11. To ensure compatibility and avoid disruptions, follow the upgrade
-    best practices described in the following document: https://cloud.google.com/chronicle/docs/soar/respond/integrations-setup/upgrade-python-versions'
+-   description: 'GitSync - Important - Updated the integration code to work with Python version 3.11. To ensure compatibility and avoid disruptions, follow the upgrade best practices described in the following document: https://cloud.google.com/chronicle/docs/soar/respond/integrations-setup/upgrade-python-versions'
     integration_version: 22.0
     item_name: GitSync
     item_type: Integration
@@ -579,9 +561,7 @@
     regressive: false
     deprecated: false
     removed: false
--   description: 'Important - Updated the integration code to work with Python version
-    3.11. To ensure compatibility and avoid disruptions, follow the upgrade best practices
-    described in the following document: https://cloud.google.com/chronicle/docs/soar/respond/integrations-setup/upgrade-python-versions'
+-   description: 'Important - Updated the integration code to work with Python version 3.11. To ensure compatibility and avoid disruptions, follow the upgrade best practices described in the following document: https://cloud.google.com/chronicle/docs/soar/respond/integrations-setup/upgrade-python-versions'
     integration_version: 25.0
     item_name: GitSync
     item_type: Integration
