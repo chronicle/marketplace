@@ -121,7 +121,7 @@ def send_telemetry_report(event_payload: TelemetryPayload) -> None:
         headers = {
             "Content-Type": "application/json",
         }
-        response = requests.post(
+        _ = requests.post(
             ENDPOINT,
             data=json.dumps(event_payload.to_dict()),
             headers=headers,
