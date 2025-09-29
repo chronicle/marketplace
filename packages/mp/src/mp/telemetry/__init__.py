@@ -12,6 +12,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+from __future__ import annotations
+
 import functools
 import importlib.metadata
 import json
@@ -20,21 +22,18 @@ import sys
 import time
 import traceback
 import uuid
-from collections.abc import Callable
 from datetime import UTC, datetime
 from enum import Enum
-from typing import Any, TypeAlias
+from typing import TYPE_CHECKING, Any, TypeAlias
 
 import requests
 import typer
 import yaml
 
-from mp.core.utils import get_current_platform, is_github_actions
+from mp.core.utils import get_current_platform, is_ci_cd
 
 from .constants import (
-    ALLOWED_COMMAND_ARGUMENTS as ALLOWED_COMMAND_ARGUMENTS,
-)
-from .constants import (
+    ALLOWED_COMMAND_ARGUMENTS,
     CONFIG_FILE_PATH,
     ENDPOINT,
     MP_CACHE_DIR,
@@ -42,6 +41,9 @@ from .constants import (
     REQUEST_TIMEOUT,
 )
 from .data_models import TelemetryPayload
+
+if TYPE_CHECKING:
+    from collections.abc import Callable
 
 ConfigYaml: TypeAlias = dict[str, str | bool]
 
@@ -58,8 +60,8 @@ def track_command(mp_command_function: Callable) -> Callable:
     """
 
     @functools.wraps(mp_command_function)
-    def wrapper(*args: tuple, **kwargs: dict) -> None:
-        if is_github_actions() or not _is_telemetry_enabled():
+    def wrapper(*args: Any, **kwargs: Any) -> None:  # noqa: ANN401
+        if is_ci_cd() or not _is_telemetry_enabled():
             return mp_command_function(*args, **kwargs)
 
         start_time = time.monotonic()
@@ -90,7 +92,7 @@ def track_command(mp_command_function: Callable) -> Callable:
 
             payload = TelemetryPayload(
                 install_id=_get_install_id(),
-                tool="mp-tool",
+                tool="mp",
                 tool_version=tool_version,
                 python_version=f"{sys.version_info.major}.{sys.version_info.minor}.{sys.version_info.micro}",
                 platform=platform_name,
@@ -185,7 +187,7 @@ def _command_name_mapper(command_name: str) -> str:
     return NAME_MAPPER[command_name]
 
 
-def _filter_command_arguments(kwargs: dict) -> dict[str, Any]:
+def _filter_command_arguments(kwargs: dict[Any, Any]) -> dict[str, Any]:
     sanitized_args = {}
     for key, value in kwargs.items():
         if key in ALLOWED_COMMAND_ARGUMENTS:
@@ -195,7 +197,7 @@ def _filter_command_arguments(kwargs: dict) -> dict[str, Any]:
     return sanitized_args
 
 
-def _sanitize_argument_value(value: Any) -> Any:  # noqa: ANN401
+def _sanitize_argument_value(value: Enum | list[Any] | tuple[Any] | Any) -> Any:  # noqa: ANN401
     if isinstance(value, Enum):
         return value.value
 
