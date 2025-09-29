@@ -4,10 +4,6 @@
   item_type: Integration
   publish_time: '2020-10-26'
   ticket_number: xxx
-  new: false
-  regressive: false
-  deprecated: false
-  removed: false
 - description: NEW! "Cron Scheduled Connector" is a connector that will create a dummy
     case based off a cron schedule
   integration_version: 2.0
@@ -16,9 +12,6 @@
   publish_time: '2021-09-20'
   ticket_number: PRS-5353
   new: true
-  regressive: false
-  deprecated: false
-  removed: false
 - description: Fix! Environmnet handling in Cron Scheduled Connector. Connector will
     send alert to the assigned environemmt, instead of default environment
   integration_version: 3.0
@@ -26,10 +19,6 @@
   item_type: Connector
   publish_time: '2024-02-14'
   ticket_number: '323307492'
-  new: false
-  regressive: false
-  deprecated: false
-  removed: false
 - description: Connectors - Updated integration's descriptions to reflect renaming
     to Google SecOps.
   integration_version: 4.0
@@ -37,10 +26,6 @@
   item_type: Integration
   publish_time: '2024-04-25'
   ticket_number: '332545706'
-  new: false
-  regressive: false
-  deprecated: false
-  removed: false
 - description: 'Important - Updated the integration code to work with Python version
     3.11. To ensure compatibility and avoid disruptions, follow the upgrade best practices
     described in the following document: https://cloud.google.com/chronicle/docs/soar/respond/integrations-setup/upgrade-python-versions'
@@ -49,7 +34,3 @@
   item_type: Integration
   publish_time: '2024-12-26'
   ticket_number: ''
-  new: false
-  regressive: false
-  deprecated: false
-  removed: false

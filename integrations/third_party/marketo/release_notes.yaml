@@ -4,30 +4,18 @@
   item_type: Integration
   publish_time: '2021-08-05'
   ticket_number: xxx
-  new: false
-  regressive: false
-  deprecated: false
-  removed: false
 - description: Bug fix - Marketo Integrations
   integration_version: 14.0
   item_name: Marketo
   item_type: Integration
   publish_time: '2021-08-05'
   ticket_number: xxx
-  new: false
-  regressive: false
-  deprecated: false
-  removed: false
 - description: Bug fix - Request Campaign Action
   integration_version: 15.0
   item_name: Marketo
   item_type: Integration
   publish_time: '2021-08-22'
   ticket_number: xxx
-  new: false
-  regressive: false
-  deprecated: false
-  removed: false
 - description: 'Important - Updated the integration code to work with Python version
     3.11. To ensure compatibility and avoid disruptions, follow the upgrade best practices
     described in the following document: https://cloud.google.com/chronicle/docs/soar/respond/integrations-setup/upgrade-python-versions'
@@ -36,7 +24,3 @@
   item_type: Integration
   publish_time: '2024-12-26'
   ticket_number: ''
-  new: false
-  regressive: false
-  deprecated: false
-  removed: false

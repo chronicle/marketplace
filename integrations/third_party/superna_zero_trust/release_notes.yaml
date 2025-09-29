@@ -5,9 +5,6 @@
   publish_time: '2024-06-23'
   ticket_number: xxx
   new: true
-  regressive: false
-  deprecated: false
-  removed: false
 - description: 'Important - Updated the integration code to work with Python version
     3.11. To ensure compatibility and avoid disruptions, follow the upgrade best practices
     described in the following document: https://cloud.google.com/chronicle/docs/soar/respond/integrations-setup/upgrade-python-versions'
@@ -16,20 +13,12 @@
   item_type: Integration
   publish_time: '2024-12-26'
   ticket_number: ''
-  new: false
-  regressive: false
-  deprecated: false
-  removed: false
 - description: SupernaZeroTrust - Added SSL Support.
   integration_version: 3.0
   item_name: SupernaZeroTrust
   item_type: Integration
   publish_time: '2025-03-19'
   ticket_number: 401031717, 401031578, 401031947, 401031455
-  new: false
-  regressive: false
-  deprecated: false
-  removed: false
 - description: Integration - Regressive! All integration items were updated to comply
     with Marketplace requirements. If you've made any custom changes to the official
     integration items, make sure to copy them before upgrading as they will be irreversible
@@ -39,7 +28,4 @@
   item_type: Integration
   publish_time: '2025-03-24'
   ticket_number: '405144847'
-  new: false
   regressive: true
-  deprecated: false
-  removed: false

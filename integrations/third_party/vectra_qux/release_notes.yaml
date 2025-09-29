@@ -5,9 +5,6 @@
   publish_time: '2025-02-03'
   ticket_number: ''
   new: true
-  regressive: false
-  deprecated: false
-  removed: false
 - description: Integration - Regressive! All integration items were updated to comply
     with Marketplace requirements. If you've made any custom changes to the official
     integration items, make sure to copy them before upgrading as they will be irreversible
@@ -17,7 +14,4 @@
   item_type: Integration
   publish_time: '2025-03-24'
   ticket_number: '405144847'
-  new: false
   regressive: true
-  deprecated: false
-  removed: false

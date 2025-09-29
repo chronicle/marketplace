@@ -5,9 +5,6 @@
   publish_time: '2024-09-30'
   ticket_number: ''
   new: true
-  regressive: false
-  deprecated: false
-  removed: false
 - description: New actions added - Get Playbook Alert Details, Refresh Playbook Alert,
     Update Playbook Alert.
   integration_version: 2.0
@@ -16,9 +13,6 @@
   publish_time: '2024-12-19'
   ticket_number: '384148342'
   new: true
-  regressive: false
-  deprecated: false
-  removed: false
 - description: New connectors added - Playbook Alerts Connector, Playbook Alerts Tracking
     Connector.
   integration_version: 2.0
@@ -27,9 +21,6 @@
   publish_time: '2024-12-19'
   ticket_number: '384148342'
   new: true
-  regressive: false
-  deprecated: false
-  removed: false
 - description: 'Important - Updated the integration code to work with Python version
     3.11. To ensure compatibility and avoid disruptions, follow the upgrade best practices
     described in the following document: https://cloud.google.com/chronicle/docs/soar/respond/integrations-setup/upgrade-python-versions'
@@ -38,20 +29,12 @@
   item_type: Integration
   publish_time: '2024-12-26'
   ticket_number: ''
-  new: false
-  regressive: false
-  deprecated: false
-  removed: false
 - description: Integration update
   integration_version: 4.0
   item_name: RecordedFutureIntelligence
   item_type: Integration
   publish_time: '2025-03-19'
   ticket_number: '393405339'
-  new: false
-  regressive: false
-  deprecated: false
-  removed: false
 - description: Integration - Regressive! All integration items were updated to comply
     with Marketplace requirements. If you've made any custom changes to the official
     integration items, make sure to copy them before upgrading as they will be irreversible
@@ -61,10 +44,7 @@
   item_type: Integration
   publish_time: '2025-03-24'
   ticket_number: '405144847'
-  new: false
   regressive: true
-  deprecated: false
-  removed: false
 - description: Integration - Regressive! All integration items were updated to comply
     with Marketplace requirements. If you've made any custom changes to the official
     integration items, make sure to copy them before upgrading as they will be irreversible
@@ -74,20 +54,16 @@
   item_type: Integration
   publish_time: '2025-04-20'
   ticket_number: '405144847'
-  new: false
   regressive: true
-  deprecated: false
-  removed: false
-- description: |
-        Fix legacy Classic Alert status parameter in connector and actions.
-        Fix missing Playbook Alert category parameter for Update Playbook Alert action.
-        Fix Recorded Future API SDK logging issue preventing actions from exiting successfully.
+- description: 'Fix legacy Classic Alert status parameter in connector and actions.
+
+    Fix missing Playbook Alert category parameter for Update Playbook Alert action.
+
+    Fix Recorded Future API SDK logging issue preventing actions from exiting successfully.
+
+    '
   integration_version: 7.0
   item_name: RecordedFutureIntelligence
   item_type: Integration
   publish_time: '2025-08-01'
   ticket_number: ''
-  new: false
-  regressive: false
-  deprecated: false
-  removed: false

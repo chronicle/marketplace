@@ -4,70 +4,42 @@
   item_type: Integration
   publish_time: '2021-02-01'
   ticket_number: xxx
-  new: false
-  regressive: false
-  deprecated: false
-  removed: false
 - description: Default timestamp has been updated in the Connector.
   integration_version: 2.0
   item_name: DataDog Connector
   item_type: Connector
   publish_time: '2021-02-02'
   ticket_number: xxx
-  new: false
-  regressive: false
-  deprecated: false
-  removed: false
 - description: Bug fixed in the Connector.
   integration_version: 3.0
   item_name: DataDog Connector
   item_type: Connector
   publish_time: '2021-02-10'
   ticket_number: xxx
-  new: false
-  regressive: false
-  deprecated: false
-  removed: false
 - description: Bug fixed in the Connector test run.
   integration_version: 4.0
   item_name: DataDog Connector
   item_type: Connector
   publish_time: '2021-03-03'
   ticket_number: xxx
-  new: false
-  regressive: false
-  deprecated: false
-  removed: false
 - description: NEW! Get Event Details Action.
   integration_version: 5.0
   item_name: Get Event Details
   item_type: Action
   publish_time: '2021-03-03'
   ticket_number: xxx
-  new: false
-  regressive: false
-  deprecated: false
-  removed: false
 - description: Removed Manager.
   integration_version: 6.0
   item_name: Utils
   item_type: Manager
   publish_time: '2021-03-08'
   ticket_number: xxx
-  new: false
-  regressive: false
-  deprecated: false
-  removed: false
 - description: Fixed bug in the connector.
   integration_version: 7.0
   item_name: Datadog Connector
   item_type: Connector
   publish_time: '2021-06-17'
   ticket_number: xxx
-  new: false
-  regressive: false
-  deprecated: false
-  removed: false
 - description: 'Important - Updated the integration code to work with Python version
     3.11. To ensure compatibility and avoid disruptions, follow the upgrade best practices
     described in the following document: https://cloud.google.com/chronicle/docs/soar/respond/integrations-setup/upgrade-python-versions'
@@ -76,7 +48,3 @@
   item_type: Integration
   publish_time: '2024-12-26'
   ticket_number: ''
-  new: false
-  regressive: false
-  deprecated: false
-  removed: false

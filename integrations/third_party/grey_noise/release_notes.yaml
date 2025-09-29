@@ -4,10 +4,6 @@
   item_type: Integration
   publish_time: '2021-02-17'
   ticket_number: xxx
-  new: false
-  regressive: false
-  deprecated: false
-  removed: false
 - description: "Fixed incorrect visualizer link in Context IP Lookup Command. \n Added\
     \ support for new Quick Lookup endpoint or codes. \n Added new Action for Community\
     \ IP Lookup, which allows for IP lookups via the free Community API"
@@ -16,10 +12,6 @@
   item_type: Integration
   publish_time: '2021-06-24'
   ticket_number: xxx
-  new: false
-  regressive: false
-  deprecated: false
-  removed: false
 - description: 'Updated the integration''s categories.
 
     '
@@ -28,10 +20,6 @@
   item_type: Integration
   publish_time: '2021-08-29'
   ticket_number: xxx
-  new: false
-  regressive: false
-  deprecated: false
-  removed: false
 - description: "- Update integration to use official GreyNoise SDK \n - Added Full\
     \ IP Lookup command to allow for simplified IP looks against both datasets \n\
     \ - Added IP Similarity Lookup \n - Added IP Timeline Lookup \n - Fixed output\
@@ -43,10 +31,6 @@
   item_type: Integration
   publish_time: '2023-08-29'
   ticket_number: '294803051'
-  new: false
-  regressive: false
-  deprecated: false
-  removed: false
 - description: 'Important - Updated the integration code to work with Python version
     3.11. To ensure compatibility and avoid disruptions, follow the upgrade best practices
     described in the following document: https://cloud.google.com/chronicle/docs/soar/respond/integrations-setup/upgrade-python-versions'
@@ -55,10 +39,6 @@
   item_type: Integration
   publish_time: '2024-12-26'
   ticket_number: ''
-  new: false
-  regressive: false
-  deprecated: false
-  removed: false
 - description: Integration - Regressive! All integration items were updated to comply
     with Marketplace requirements. If you've made any custom changes to the official
     integration items, make sure to copy them before upgrading as they will be irreversible
@@ -68,7 +48,4 @@
   item_type: Integration
   publish_time: '2025-03-24'
   ticket_number: '405144847'
-  new: false
   regressive: true
-  deprecated: false
-  removed: false

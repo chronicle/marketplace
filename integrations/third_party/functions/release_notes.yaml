@@ -4,30 +4,18 @@
   item_type: Integration
   publish_time: '2020-08-01'
   ticket_number: xxx
-  new: false
-  regressive: false
-  deprecated: false
-  removed: false
 - description: NEW! Convert Time Format Action added to Functions.
   integration_version: 2.0
   item_name: Convert Time Format
   item_type: Action
   publish_time: '2020-10-27'
   ticket_number: xxx
-  new: false
-  regressive: false
-  deprecated: false
-  removed: false
 - description: NEW! EncodeBase64 and DecodeBase64 Actions added to Functions.
   integration_version: 3.0
   item_name: EncodeBase64 and DecodeBase64
   item_type: Action
   publish_time: '2021-01-08'
   ticket_number: xxx
-  new: false
-  regressive: false
-  deprecated: false
-  removed: false
 - description: NEW! "Run JSONPath Query" action added to Functions. Runs a JSONPath
     Query on a given json and extracts values according to the expression.  View https://github.com/h2non/jsonpath-ng
     for more information on JSONPath
@@ -36,10 +24,6 @@
   item_type: Action
   publish_time: '2021-01-17'
   ticket_number: xxx
-  new: false
-  regressive: false
-  deprecated: false
-  removed: false
 - description: Added "RemoveNewLines" function to "String Functions" action which
     will remove any nested newlines from within a string.
   integration_version: 4.0
@@ -47,40 +31,24 @@
   item_type: Action
   publish_time: '2021-01-17'
   ticket_number: xxx
-  new: false
-  regressive: false
-  deprecated: false
-  removed: false
 - description: NEW! IP to Integer action.
   integration_version: 5.0
   item_name: IP to Integer
   item_type: Action
   publish_time: '2021-05-16'
   ticket_number: xxx
-  new: false
-  regressive: false
-  deprecated: false
-  removed: false
 - description: Added LogicOperators which will add AND or OR to comma separated list.
   integration_version: 5.0
   item_name: String Functions
   item_type: Action
   publish_time: '2021-05-16'
   ticket_number: xxx
-  new: false
-  regressive: false
-  deprecated: false
-  removed: false
 - description: 'Fix: Run JSONPath Query was using an incorrect parameter name.'
   integration_version: 6.0
   item_name: Run JSONPath Query
   item_type: Action
   publish_time: '2021-05-20'
   ticket_number: xxx
-  new: false
-  regressive: false
-  deprecated: false
-  removed: false
 - description: 'NEW!: Create Thumbnail - Will create a thumbnail out of a image encoded
     as base64.'
   integration_version: 7.0
@@ -89,19 +57,12 @@
   publish_time: '2021-06-14'
   ticket_number: xxx
   new: true
-  regressive: false
-  deprecated: false
-  removed: false
 - description: 'Fix!: Create Thumbnail - Locked action.'
   integration_version: 8.0
   item_name: Create Thumbnail
   item_type: Action
   publish_time: '2021-06-14'
   ticket_number: xxx
-  new: false
-  regressive: false
-  deprecated: false
-  removed: false
 - description: NEW! "Time Duration Calculator" action added to Functions. The Time
     Duration Calculator will calculate the time that has elapsed/difference between
     two dates with time.
@@ -111,9 +72,6 @@
   publish_time: '2021-06-18'
   ticket_number: xxx
   new: true
-  regressive: false
-  deprecated: false
-  removed: false
 - description: 'BUG FIX!: "Math Arithmetic" - Addition of integers now creates an
     integer.'
   integration_version: 10.0
@@ -121,10 +79,6 @@
   item_type: Action
   publish_time: '2021-06-23'
   ticket_number: xxx
-  new: false
-  regressive: false
-  deprecated: false
-  removed: false
 - description: 'NEW!: "SanitizeHTML" - Given a fragment of HTML, SantizeHTML will
     parse it according to the HTML5 parsing algorithm and sanitize any disallowed
     tags or attributes. This algorithm also takes care of things like unclosed and
@@ -135,9 +89,6 @@
   publish_time: '2021-07-13'
   ticket_number: xxx
   new: true
-  regressive: false
-  deprecated: false
-  removed: false
 - description: 'UPDATE!: "Time Duration Calculator" - Made the now variable timezone
     aware.'
   integration_version: 13.0
@@ -145,70 +96,42 @@
   item_type: Action
   publish_time: '2021-07-14'
   ticket_number: xxx
-  new: false
-  regressive: false
-  deprecated: false
-  removed: false
 - description: 'UPDATE!: "Time Duration Calculator" - Bugfix for timezones.'
   integration_version: 14.0
   item_name: Time Duration Calculator
   item_type: Action
   publish_time: '2021-07-15'
   ticket_number: xxx
-  new: false
-  regressive: false
-  deprecated: false
-  removed: false
 - description: Updated SVG.
   integration_version: 15.0
   item_name: Time Duration Calculator
   item_type: Action
   publish_time: '2021-11-24'
   ticket_number: xxx
-  new: false
-  regressive: false
-  deprecated: false
-  removed: false
 - description: Added Split method.
   integration_version: 16.0
   item_name: String Functions
   item_type: Action
   publish_time: '2022-02-04'
   ticket_number: xxx
-  new: false
-  regressive: false
-  deprecated: false
-  removed: false
 - description: Fix for String Functions.  Added Split to options.
   integration_version: 17.0
   item_name: String Functions
   item_type: Action
   publish_time: '2022-04-22'
   ticket_number: xxx
-  new: false
-  regressive: false
-  deprecated: false
-  removed: false
 - description: Added base64 encode and decode to String Functions action.
   integration_version: 18.0
   item_name: String Functions
   item_type: Action
   publish_time: '2022-07-10'
   ticket_number: xxx
-  new: false
-  regressive: false
-  deprecated: false
-  removed: false
 - description: Fix parameters description in Convert Time Format action.
   integration_version: 18.0
   item_name: Convert Time Format
   item_type: Action
   publish_time: '2022-07-10'
   ticket_number: xxx
-  new: false
-  regressive: false
-  deprecated: false
-  removed: false
 - description: New Action! - XMLtoJSON
   integration_version: 19.0
   item_name: XMLtoJSON
@@ -216,9 +139,6 @@
   publish_time: '2022-10-14'
   ticket_number: xxx
   new: true
-  regressive: false
-  deprecated: false
-  removed: false
 - description: 'NEW! Detect Hash Type: This action detects the most likely hash type
     of entities. Supported types are SHA256, MD5, SHA1, SHA-512.'
   integration_version: 20.0
@@ -227,9 +147,6 @@
   publish_time: '2023-01-20'
   ticket_number: xxx
   new: true
-  regressive: false
-  deprecated: false
-  removed: false
 - description: 'NEW! Detect IP Type: This action checks if an IP is an IPv4 address
     or IPv6 address.  IP Address entities will be enriched with IPType field.'
   integration_version: 20.0
@@ -238,9 +155,6 @@
   publish_time: '2023-01-20'
   ticket_number: xxx
   new: true
-  regressive: false
-  deprecated: false
-  removed: false
 - description: 'NEW! Extract IOCs: This action extracts IPs, domains, emails, and
     URLs from an input string.'
   integration_version: 21.0
@@ -249,9 +163,6 @@
   publish_time: '2023-09-28'
   ticket_number: xxx
   new: true
-  regressive: false
-  deprecated: false
-  removed: false
 - description: 'Update! Extract IOCs: Fixed bug which caused action to crash when
     URL had an ampersand character.'
   integration_version: 22.0
@@ -259,10 +170,6 @@
   item_type: Action
   publish_time: '2023-10-27'
   ticket_number: '308063187'
-  new: false
-  regressive: false
-  deprecated: false
-  removed: false
 - description: 'Update! String Functions: DecodeBase64 and EncodeBase64 now support
     encoding type as param_1.'
   integration_version: 23.0
@@ -270,10 +177,6 @@
   item_type: Action
   publish_time: '2023-11-21'
   ticket_number: ''
-  new: false
-  regressive: false
-  deprecated: false
-  removed: false
 - description: Functions - Updated integration's descriptions to reflect renaming
     to Google SecOps.
   integration_version: 24.0
@@ -281,20 +184,12 @@
   item_type: Integration
   publish_time: '2024-04-25'
   ticket_number: '332545706'
-  new: false
-  regressive: false
-  deprecated: false
-  removed: false
 - description: String Functions Action - Action updates.
   integration_version: 25.0
   item_name: String Functions
   item_type: Action
   publish_time: '2024-07-24'
   ticket_number: '341602848'
-  new: false
-  regressive: false
-  deprecated: false
-  removed: false
 - description: 'Important - Updated the integration code to work with Python version
     3.11. To ensure compatibility and avoid disruptions, follow the upgrade best practices
     described in the following document: https://cloud.google.com/chronicle/docs/soar/respond/integrations-setup/upgrade-python-versions'
@@ -303,48 +198,29 @@
   item_type: Integration
   publish_time: '2024-12-26'
   ticket_number: ''
-  new: false
-  regressive: false
-  deprecated: false
-  removed: false
 - description: SanitizeHTML - Refactored the code.
   integration_version: 27.0
   item_name: Sanitize HTML
   item_type: Action
   publish_time: '2025-02-19'
   ticket_number: '393215713'
-  new: false
-  regressive: false
-  deprecated: false
-  removed: false
 - description: Extract IOCs - Refactored the code.
   integration_version: 28.0
   item_name: Extrac Iocs
   item_type: Action
   publish_time: '2025-04-23'
   ticket_number: '411096892'
-  new: false
-  regressive: false
-  deprecated: false
-  removed: false
 - description: Functions - minor fixes to DDL parameters.
   integration_version: 29.0
   item_name: Functions
   item_type: Integration
   publish_time: '2025-07-07'
   ticket_number: '426240792'
-  new: false
-  regressive: false
-  deprecated: false
-  removed: false
-- description: 'Update! String Functions: Replace and Regex Replace now recognize the placeholder code _SPACE_ in the pattern and replacement fields. 
-    It automatically converts this code into a standard space before performing the replacement.'
+- description: 'Update! String Functions: Replace and Regex Replace now recognize
+    the placeholder code _SPACE_ in the pattern and replacement fields. It automatically
+    converts this code into a standard space before performing the replacement.'
   integration_version: 30.0
   item_name: String Functions
   item_type: Action
   publish_time: '2025-11-20'
   ticket_number: '434644419'
-  new: false
-  regressive: false
-  deprecated: false
-  removed: false
