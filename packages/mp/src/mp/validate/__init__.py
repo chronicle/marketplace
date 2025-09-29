@@ -163,10 +163,10 @@ def validate(  # noqa: PLR0913
     params.validate()
 
     commercial_path: pathlib.Path = mp.core.file_utils.get_integrations_path(
-        mp.core.constants.COMMERCIAL_DIR_NAME
+        RepositoryType.COMMERCIAL
     )
     community_path: pathlib.Path = mp.core.file_utils.get_integrations_path(
-        mp.core.constants.COMMUNITY_DIR_NAME
+        RepositoryType.COMMUNITY
     )
     commercial_mp: Marketplace = Marketplace(commercial_path)
     community_mp: Marketplace = Marketplace(community_path)

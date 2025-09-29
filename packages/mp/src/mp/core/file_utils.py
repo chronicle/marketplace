@@ -39,7 +39,9 @@ if TYPE_CHECKING:
 VALID_REPEATED_FILES: set[str] = {"__init__.py"}
 
 
-def get_integrations_path(integrations_classification: str) -> pathlib.Path:
+def get_integrations_path(
+    integrations_classification: mp.core.custom_types.RepositoryType,
+) -> pathlib.Path:
     """Get a marketplace integrations' path.
 
     Args:
@@ -49,7 +51,7 @@ def get_integrations_path(integrations_classification: str) -> pathlib.Path:
         The marketplace's integrations' directory path
 
     """
-    return _get_integrations_path() / integrations_classification
+    return _get_integrations_path() / integrations_classification.value
 
 
 def _get_integrations_path() -> pathlib.Path:
