@@ -31,6 +31,7 @@ import mp.core.unix
 from mp.core.code_manipulation import TestWarning
 from mp.core.custom_types import Products, RepositoryType
 from mp.core.utils import ensure_valid_list, is_windows
+from mp.telemetry import track_command
 
 from .display import display_test_reports
 from .process_test_output import IntegrationTestResults, TestIssue, process_pytest_json_report
@@ -84,6 +85,7 @@ class TestParams:
 
 
 @app.command(name="test", help="Run integration pre_build tests")
+@track_command
 def run_pre_build_tests(  # noqa: PLR0913
     repository: Annotated[
         list[RepositoryType],

@@ -28,6 +28,7 @@ import mp.core.file_utils
 from mp.build_project.marketplace import Marketplace
 from mp.core.custom_types import RepositoryType
 from mp.core.utils import ensure_valid_list
+from mp.telemetry import track_command
 
 from .data_models import FullReport, ValidationResults
 from .display import display_validation_reports
@@ -87,6 +88,7 @@ class ValidateParams:
 
 
 @app.command(help="Validate the marketplace")
+@track_command
 def validate(  # noqa: PLR0913
     repository: Annotated[
         list[RepositoryType],
@@ -219,7 +221,6 @@ def validate(  # noqa: PLR0913
         validations_output = _combine_results(commercial_output, community_output)
 
     display_validation_reports(validations_output)
-
     if _should_fail_program(validations_output):
         raise typer.Exit(code=1)
 
