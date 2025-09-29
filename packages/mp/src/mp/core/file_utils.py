@@ -21,11 +21,12 @@ from __future__ import annotations
 
 import base64
 import dataclasses
-import pathlib
 import shutil
 from typing import TYPE_CHECKING, Any
 
 import yaml
+
+import mp.core.constants
 
 from . import config, constants
 from .custom_types import ManagerName, Products
@@ -35,31 +36,25 @@ if TYPE_CHECKING:
     import pathlib
     from collections.abc import Callable, Mapping, Sequence
 
-
 VALID_REPEATED_FILES: set[str] = {"__init__.py"}
 
 
-def get_community_path() -> pathlib.Path:
-    """Get the community integrations' path.
+def get_integrations_path(
+    integrations_classification: mp.core.custom_types.RepositoryType,
+) -> pathlib.Path:
+    """Get a marketplace integrations' path.
+
+    Args:
+        integrations_classification: the name of the marketplace
 
     Returns:
-        The community integrations' directory path
+        The marketplace's integrations' directory path
 
     """
-    return get_integrations_path() / constants.COMMUNITY_DIR_NAME
+    return _get_integrations_path() / integrations_classification.value
 
 
-def get_commercial_path() -> pathlib.Path:
-    """Get the commercial integrations' path.
-
-    Returns:
-        The commercial integrations' directory path
-
-    """
-    return get_integrations_path() / constants.COMMERCIAL_DIR_NAME
-
-
-def get_integrations_path() -> pathlib.Path:
+def _get_integrations_path() -> pathlib.Path:
     """Get the integrations' path.
 
     Returns:
@@ -67,6 +62,22 @@ def get_integrations_path() -> pathlib.Path:
 
     """
     return config.get_marketplace_path() / constants.INTEGRATIONS_DIR_NAME
+
+
+def get_all_integrations_paths(integrations_classification: str) -> list[pathlib.Path]:
+    """Get all marketplace integrations sub-dirs paths.
+
+    Args:
+        integrations_classification: the name of the marketplace
+
+    Returns:
+        The marketplace's integrations' directories paths
+
+    """
+    marketplace_dir_names: tuple[str, ...] = constants.INTEGRATIONS_DIRS_NAMES_DICT[
+        integrations_classification
+    ]
+    return [_get_integrations_path() / dir_name for dir_name in marketplace_dir_names]
 
 
 def get_out_integrations_path() -> pathlib.Path:
@@ -154,10 +165,7 @@ def is_integration(path: pathlib.Path, *, group: str = "") -> bool:
 
     """
     parents: set[str] = {p.name for p in (path, *path.parents)}
-    valid_base_dirs: set[str] = {
-        constants.COMMUNITY_DIR_NAME,
-        constants.COMMERCIAL_DIR_NAME,
-    }
+    valid_base_dirs: set[str] = set(mp.core.constants.INTEGRATIONS_TYPES)
 
     if group:
         valid_base_dirs.add(group)
@@ -436,7 +444,11 @@ def is_commercial_integration(path: pathlib.Path) -> bool:
             otherwise.
 
     """
-    return is_integration(path) and path.parent.name == constants.COMMERCIAL_DIR_NAME
+    return (
+        is_integration(path)
+        and path.parent.name
+        in constants.INTEGRATIONS_DIRS_NAMES_DICT[constants.COMMERCIAL_DIR_NAME]
+    )
 
 
 def base64_to_png_file(image_data: bytes, output_path: pathlib.Path) -> None:
