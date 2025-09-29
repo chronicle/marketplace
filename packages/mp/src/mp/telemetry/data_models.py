@@ -12,12 +12,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-
 from datetime import datetime
 from typing import Any
 
+import pydantic
 
-class TelemetryPayload:
+
+class TelemetryPayload(pydantic.BaseModel):
     """A data container for a single telemetry event.
 
     Attributes:
@@ -36,37 +37,20 @@ class TelemetryPayload:
 
     """
 
-    def __init__(  # noqa: PLR0913, PLR0917
-        self,
-        install_id: str,
-        tool: str,
-        tool_version: str,
-        python_version: str,
-        platform: str,
-        platform_version: str,
-        command: str,
-        command_args: str | None,
-        duration_ms: int,
-        success: bool,  # noqa: FBT001
-        exit_code: int,
-        error_type: str | None,
-        stack: str | None,
-        timestamp: datetime,
-    ) -> None:
-        self.install_id = install_id
-        self.tool = tool
-        self.tool_version = tool_version
-        self.python_version = python_version
-        self.platform = platform
-        self.platform_version = platform_version
-        self.command = command
-        self.command_args = command_args
-        self.duration_ms = duration_ms
-        self.success = success
-        self.exit_code = exit_code
-        self.error_type = error_type
-        self.stack = stack
-        self.timestamp = timestamp
+    install_id: str
+    tool: str
+    tool_version: str
+    python_version: str
+    platform: str
+    platform_version: str
+    command: str
+    command_args: str | None
+    duration_ms: int
+    success: bool
+    exit_code: int
+    error_type: str | None
+    stack: str | None
+    timestamp: datetime
 
     def to_dict(self) -> dict[str, Any]:
         """Serialize the event payload into a dictionary.

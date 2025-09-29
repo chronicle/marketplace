@@ -152,6 +152,28 @@ def is_github_actions() -> bool:
     return os.getenv("GITHUB_ACTIONS") == "true"
 
 
+def is_louhi() -> bool:
+    """Determine if the current environment is running in the context of louhi flow.
+
+    Returns:
+        bool: True if the code is running inside louhi,
+              False otherwise.
+
+    """
+    return any(key.startswith("_LOUHI_") for key in os.environ)
+
+
+def is_ci_cd() -> bool:
+    """Determine if the current environment is running in the context of CI CD.
+
+    Returns:
+        bool: True if the code is running inside in the context of CI CD,
+              False otherwise.
+
+    """
+    return is_github_actions() or is_louhi()
+
+
 def get_current_platform() -> tuple[str, str]:
     """Get the simplified operating system name and its version.
 
