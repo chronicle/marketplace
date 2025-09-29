@@ -22,7 +22,7 @@ PROJECT_FILE: str = "pyproject.toml"
 INTEGRATIONS_DIR_NAME: str = "integrations"
 COMMUNITY_DIR_NAME: str = "third_party"
 COMMERCIAL_DIR_NAME: str = "commercial"
-POWERUPS_DIR_NAME: str = "powerups"
+POWERUPS_DIR_NAME: str = "power_ups"
 INTEGRATIONS_DIRS_NAMES_DICT: dict[str, tuple[str, ...]] = {
     COMMUNITY_DIR_NAME: (
         COMMUNITY_DIR_NAME,

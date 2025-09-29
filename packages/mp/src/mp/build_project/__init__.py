@@ -175,8 +175,21 @@ def build(  # noqa: PLR0913
 
     if integration:
         rich.print("Building integrations...")
-        _build_integrations(set(integration), commercial_mp, deconstruct=deconstruct)
-        _build_integrations(set(integration), community_mp, deconstruct=deconstruct)
+        commercial_not_found: set[str] = _build_integrations(
+            set(integration), commercial_mp, deconstruct=deconstruct
+        )
+        community_not_found: set[str] = _build_integrations(
+            set(integration), community_mp, deconstruct=deconstruct
+        )
+        if commercial_not_found.intersection(community_not_found):
+            rich.print(
+                "Please ensure the marketplace path is properly configured.\n"
+                "You can verify your configuration by running [bold]mp config "
+                "--display-config[/bold].\n"
+                "If the path is incorrect, re-configure it by running [bold]mp config "
+                "--marketplace-path <your_path>[/bold]."
+            )
+
         rich.print("Done building integrations.")
 
     elif group:
@@ -213,7 +226,7 @@ def _build_integrations(
     marketplace_: Marketplace,
     *,
     deconstruct: bool,
-) -> None:
+) -> set[str]:
     valid_integrations_: set[pathlib.Path] = _get_marketplace_paths_from_names(
         integrations,
         marketplace_.paths,
@@ -223,7 +236,7 @@ def _build_integrations(
     if not_found:
         rich.print(
             "The following integrations could not be found in"
-            f" the {marketplace_.marketplace_name} marketplace: {', '.join(not_found)}",
+            f" the {marketplace_.marketplace_name} marketplace: {', '.join(not_found)}\n"
         )
     if valid_integrations_:
         rich.print(
@@ -236,6 +249,7 @@ def _build_integrations(
 
         else:
             marketplace_.build_integrations(valid_integrations_)
+    return not_found
 
 
 def _build_groups(groups: Iterable[str], marketplace_: Marketplace) -> None:
