@@ -47,7 +47,7 @@ def json_serial(obj):
 def main():
     siemplify = SiemplifyAction()
 
-    status = EXECUTION_STATE_COMPLETED  # used to flag back to siemplify system, the action final status
+    status = EXECUTION_STATE_COMPLETED  # used to flag back to siemplify system
     output_message = ""  # human readable message, showed in UI as the action result
     result_value = (
         True  # Set a simple result value, used for playbook if\else and placeholders.
@@ -71,7 +71,8 @@ def main():
 
     try:
         custom_regex = json.loads(custom_regex)
-    except:
+    except Exception as e:
+        siemplify.LOGGER.error(e)
         output_message += "\nFailed to load custom regex mappings."
         custom_regex = {}
 
