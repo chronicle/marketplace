@@ -1,0 +1,14 @@
+{
+    "matches": [
+        {
+            "search": "input",
+            "input": "This is the input test. I want to find a few things.",
+            "match": true
+        },
+        {
+            "search": "few",
+            "input": "This is the input test. I want to find a few things.",
+            "match": true
+        }
+    ]
+}

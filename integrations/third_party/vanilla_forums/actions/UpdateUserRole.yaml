@@ -2,31 +2,20 @@ name: Update User Role
 description: Change the role of a user.
 integration_identifier: VanillaForums
 parameters:
-    -   name: RoleID
-        default_value: '2'
-        type: string
-        description: ID of role to be assigned to the user
-        is_mandatory: true
-    -   name: UserID
-        default_value: '0'
-        type: string
-        description: The user ID who's role is to be chenged
-        is_mandatory: true
+- name: RoleID
+  default_value: '2'
+  type: string
+  description: ID of role to be assigned to the user
+  is_mandatory: true
+- name: UserID
+  default_value: '0'
+  type: string
+  description: The user ID who's role is to be chenged
+  is_mandatory: true
 dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: "{\r\n\t\"banned\": 0,\r\n\t\"bypassSpam\": false,\r\n\t\"email\"\
-        : \"Siem@plify.com\",\r\n\t\"emailConfirmed\": true,\r\n\t\"dateInserted\"\
-        : \"2021-08-01T11:46:39+00:0\",\r\n\t\"dateLastActive\": \"2021-08-01T11:46:39+00:00\"\
-        ,\r\n\t\"dateUpdated\": \"2021-08-09T12:24:40+00:00\",\r\n\t\"name\": \"Siem\
-        \ Ply\",\r\n\t\"photoUrl\": \"https://we.vanillicon.com/v2/e5ceb39e1c5d3c36eadb06ce5bc66c00.svg\"\
-        ,\r\n\t\"url\": \"https://community.siemplify.co/profile/Siem%20Ply\",\r\n\
-        \t\"points\": 137,\r\n\t\"roles\": [{\r\n\t\t\"roleID\": 2,\r\n\t\t\"name\"\
-        : \"Guest\"\r\n\t}],\r\n\t\"showEmail\": false,\r\n\t\"userID\": 0,\r\n\t\"\
-        countDiscussions\": 0,\r\n\t\"countComments\": 0,\r\n\t\"countPosts\": 0,\r\
-        \n\t\"label\": \"Siemplify Gold Member\",\r\n\t\"private\": false,\r\n\t\"\
-        rankID\": 113\r\n}"
+- result_name: JsonResult
+  show_result: true
+  result_example_path: resources/UpdateUserRole_JsonResult_example.json
 default_result_value: ''
 creator: Admin
 script_result_name: ScriptResult

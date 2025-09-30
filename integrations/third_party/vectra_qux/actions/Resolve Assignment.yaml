@@ -2,57 +2,37 @@ name: Resolve Assignment
 description: Resolve assignment based on the given assignment ID and outcome ID.
 integration_identifier: VectraQUX
 parameters:
-    -   name: Outcome ID
-        default_value: '1'
-        type: string
-        description: "Outcome for resolving an assignment. \n1(Benign True Positive),\
-        \ \n2(Malicious True Positive), \n3(False Positive), \n(Custom outcome is\
-        \ allowed)."
-        is_mandatory: true
-    -   name: Note Title
-        default_value: ' '
-        type: string
-        description: A note to be added for resolving an assignment in the entity
-        is_mandatory: false
-    -   name: Triage As
-        default_value: ' '
-        type: string
-        description: Triage rule for resolving an assignment in the entity
-        is_mandatory: false
-    -   name: Detection IDs
-        default_value: ' '
-        type: string
-        description: Provide a list of Integer detection IDs separated by commas or a
-            single detection ID in the list.
-        is_mandatory: false
-    -   name: Assignment ID
-        default_value: '0'
-        type: string
-        description: Specify the ID of the assignment.
-        is_mandatory: true
+- name: Outcome ID
+  default_value: '1'
+  type: string
+  description: "Outcome for resolving an assignment. \n1(Benign True Positive), \n\
+    2(Malicious True Positive), \n3(False Positive), \n(Custom outcome is allowed)."
+  is_mandatory: true
+- name: Note Title
+  default_value: ' '
+  type: string
+  description: A note to be added for resolving an assignment in the entity
+  is_mandatory: false
+- name: Triage As
+  default_value: ' '
+  type: string
+  description: Triage rule for resolving an assignment in the entity
+  is_mandatory: false
+- name: Detection IDs
+  default_value: ' '
+  type: string
+  description: Provide a list of Integer detection IDs separated by commas or a 
+    single detection ID in the list.
+  is_mandatory: false
+- name: Assignment ID
+  default_value: '0'
+  type: string
+  description: Specify the ID of the assignment.
+  is_mandatory: true
 dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: "{\n  \"assignment\": {\n    \"id\": 256,\n    \"assigned_by\"\
-        : {\n      \"id\": 58,\n      \"username\": \"cds-gaurang\"\n    },\n    \"\
-        date_assigned\": \"2024-12-03T12:24:40Z\",\n    \"date_resolved\": \"2024-12-04T06:07:34Z\"\
-        ,\n    \"events\": [\n      {\n        \"assignment_id\": 256,\n        \"\
-        actor\": 58,\n        \"event_type\": \"resolved\",\n        \"datetime\"\
-        : \"2024-12-04T06:07:34Z\",\n        \"context\": {\n          \"entity_t_score\"\
-        : 0,\n          \"entity_c_score\": 0,\n          \"triage_as\": null,\n \
-        \         \"triaged_detection_ids\": null,\n          \"fixed_detection_ids\"\
-        : null,\n          \"created_rule_ids\": null\n        }\n      },\n     \
-        \ {\n        \"assignment_id\": 256,\n        \"actor\": 58,\n        \"event_type\"\
-        : \"created\",\n        \"datetime\": \"2024-12-03T12:24:40Z\",\n        \"\
-        context\": {\n          \"to\": 20,\n          \"entity_t_score\": 0,\n  \
-        \        \"entity_c_score\": 0\n        }\n      }\n    ],\n    \"outcome\"\
-        : {\n      \"id\": 1,\n      \"builtin\": true,\n      \"user_selectable\"\
-        : true,\n      \"title\": \"Benign True Positive\",\n      \"category\": \"\
-        benign_true_positive\"\n    },\n    \"resolved_by\": {\n      \"id\": 58,\n\
-        \      \"username\": \"cds-gaurang\"\n    },\n    \"triaged_detections\":\
-        \ {},\n    \"host_id\": 35518,\n    \"account_id\": null,\n    \"assigned_to\"\
-        : {\n      \"id\": 20,\n      \"username\": \"admin\"\n    }\n  }\n}"
+- result_name: JsonResult
+  show_result: true
+  result_example_path: resources/Resolve Assignment_JsonResult_example.json
 default_result_value: ''
 creator: Admin
 script_result_name: ScriptResult

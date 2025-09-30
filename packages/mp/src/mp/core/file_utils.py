@@ -21,12 +21,15 @@ from __future__ import annotations
 
 import base64
 import dataclasses
+import json
+import pathlib
 import shutil
 from typing import TYPE_CHECKING, Any
 
 import yaml
 
 import mp.core.constants
+import mp.core.validators
 
 from . import config, constants
 from .custom_types import ManagerName, Products
@@ -508,3 +511,42 @@ def png_path_to_bytes(file_path: pathlib.Path) -> str | None:
     if file_path.exists():
         return base64.b64encode(validate_png_content(file_path)).decode("utf-8")
     return None
+
+
+def read_json_example(actions_dir_path: pathlib.Path, example_file_name: str) -> str:
+    """Read the content of a json_example file and validate it's a valid JSON.
+
+    Returns:
+        The raw string content of the file if it is valid JSON.
+        If the file does not exist it returns a valid empty JSON
+
+    Raises:
+        ValueError: If the file content is not a valid JSON document.
+
+    """
+    result_example: str = "{}"
+
+    try:
+        json_path: pathlib.Path = actions_dir_path.parent / example_file_name
+
+        result_example = json_path.read_text(encoding="utf-8")
+        json.loads(result_example)
+    except (FileNotFoundError, TypeError):
+        pass
+
+    except json.JSONDecodeError as e:
+        msg = f"Invalid JSON content in file: {json_path}"
+        raise ValueError(msg) from e
+    return result_example
+
+
+def write_str_to_json_file(json_path: pathlib.Path, json_content: str) -> None:
+    """Write a JSON string to a file.
+
+    Args:
+        json_path: The path to the output file.
+        json_content: The JSON content as a string.
+
+    """
+    with json_path.open("w", encoding="utf-8") as f_json:
+        json.dump(json_content, f_json, indent=4)

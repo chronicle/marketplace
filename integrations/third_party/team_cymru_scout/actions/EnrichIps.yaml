@@ -1,33 +1,12 @@
 name: Enrich IPs
-description: Enriches the IP Address Entities from the information available in Team
-    Cymru Scout platform.
+description: Enriches the IP Address Entities from the information available in 
+  Team Cymru Scout platform.
 integration_identifier: TeamCymruScout
-parameters: [ ]
+parameters: []
 dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: "{\r\n    \"1.1.1.1\": {\r\n        \"ip\": \"1.1.1.1\",\r\n \
-        \       \"country_code\": \"US\",\r\n        \"as_info\": [\r\n          \
-        \  {\r\n                \"asn\": 13335,\r\n                \"as_name\": \"\
-        CLOUDFLARENET, US\"\r\n            }\r\n        ],\r\n        \"insights\"\
-        : {\r\n            \"overall_rating\": \"no_rating\",\r\n            \"insights\"\
-        : [\r\n                {\r\n                    \"rating\": \"no_rating\"\
-        ,\r\n                    \"message\": \"1.1.1.1 has been identified as a Cloudflare\
-        \ content delivery network (CDN) IP. CDNs are distributed network of servers\
-        \ strategically placed around the world to efficiently deliver content.\"\r\
-        \n                }\r\n            ]\r\n        },\r\n        \"tags\": [\r\
-        \n            {\r\n                \"id\": 176,\r\n                \"name\"\
-        : \"cdn\",\r\n                \"children\": [\r\n                    {\r\n\
-        \                        \"id\": 210,\r\n                        \"name\"\
-        : \"cloudflare\",\r\n                        \"children\": null\r\n      \
-        \              }\r\n                ]\r\n            }\r\n        ]\r\n  \
-        \  },\r\n    \"9.9.9.9\": {\r\n        \"ip\": \"9.9.9.9\",\r\n        \"\
-        country_code\": \"CH\",\r\n        \"as_info\": [\r\n            {\r\n   \
-        \             \"asn\": 19281,\r\n                \"as_name\": \"QUAD9-AS-1,\
-        \ CH\"\r\n            }\r\n        ],\r\n        \"insights\": {\r\n     \
-        \       \"overall_rating\": \"no_rating\",\r\n            \"insights\": null\r\
-        \n        },\r\n        \"tags\": null\r\n    }\r\n}"
+- result_name: JsonResult
+  show_result: true
+  result_example_path: resources/EnrichIps_JsonResult_example.json
 default_result_value: ''
 creator: d28f2b46-9f0f-4c38-8509-0416748b77d9
 script_result_name: ScriptResult

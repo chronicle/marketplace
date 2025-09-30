@@ -2,35 +2,35 @@ name: Delete Rows
 description: 'Deletes rows in a given worksheet '
 integration_identifier: Google Sheets
 parameters:
-    -   name: Sheet Id
-        default_value: <Sheet-Id>
-        type: string
-        description: 'The sheet id can be found in the sheet url.
+- name: Sheet Id
+  default_value: <Sheet-Id>
+  type: string
+  description: 'The sheet id can be found in the sheet url.
 
-        https://docs.google.com/spreadsheets/d/{YourSpreadSheetId}/edit#gid=0'
-        is_mandatory: true
-    -   name: Worksheet Name
-        default_value: <Sheet-Name>
-        type: string
-        description: 'The worksheet name is the Sheet tab name. The default Sheet name
-        is "Sheet1". Note: it is case sensitive. '
-        is_mandatory: false
-    -   name: From Row
-        default_value: '2'
-        type: string
-        description: The row number from which you would like to start deleting the rows.
-        is_mandatory: true
-    -   name: To Row
-        default_value: '3'
-        type: string
-        description: 'The row number that will define the range of the rows that will
-        be deleted. '
-        is_mandatory: true
+    https://docs.google.com/spreadsheets/d/{YourSpreadSheetId}/edit#gid=0'
+  is_mandatory: true
+- name: Worksheet Name
+  default_value: <Sheet-Name>
+  type: string
+  description: 'The worksheet name is the Sheet tab name. The default Sheet name is
+    "Sheet1". Note: it is case sensitive. '
+  is_mandatory: false
+- name: From Row
+  default_value: '2'
+  type: string
+  description: The row number from which you would like to start deleting the 
+    rows.
+  is_mandatory: true
+- name: To Row
+  default_value: '3'
+  type: string
+  description: 'The row number that will define the range of the rows that will be
+    deleted. '
+  is_mandatory: true
 dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: false
-        # language=json
-        result_example: '{}'
+- result_name: JsonResult
+  show_result: false
+  result_example_path:
 default_result_value: ''
 creator: Admin
 script_result_name: ScriptResult

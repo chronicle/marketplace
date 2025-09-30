@@ -3,7 +3,7 @@ description: Retrieves IP address information from Infoblox.
 integration_identifier: InfobloxThreatDefenseWithDDI
 parameters:
 - name: IP Filter
-  default_value: null
+  default_value:
   type: string
   description: 'Filter IP addresses by specific criteria (e.g., address=="192.168.1.100"
     or state=="USED").'
@@ -18,14 +18,15 @@ parameters:
   - Free
   - Used
 - name: Scope
-  default_value: null
+  default_value:
   type: string
   description: Specify the scope for IP address lookup.
   is_mandatory: false
 - name: Tag Filter
-  default_value: null
+  default_value:
   type: string
-  description: Filter IP addresses by specific tags (e.g. 'Tenable_scan'=='true').
+  description: Filter IP addresses by specific tags (e.g. 
+    'Tenable_scan'=='true').
   is_mandatory: false
 - name: Offset
   default_value: '0'
@@ -38,51 +39,16 @@ parameters:
   description: Specify the maximum number of results to return.
   is_mandatory: false
 - name: Order By
-  default_value: null
+  default_value:
   type: string
-  description: Comma-separated JSON fields to sort the results. Use asc or desc for
-    sort direction. Defaults to ascending. Supports dot notation for nested fields.
+  description: Comma-separated JSON fields to sort the results. Use asc or desc 
+    for sort direction. Defaults to ascending. Supports dot notation for nested 
+    fields.
   is_mandatory: false
 dynamic_results_metadata:
 - result_name: JsonResult
   show_result: true
-  result_example: "{\r\n    \"results\": [\r\n        {\r\n            \"address\"\
-    : \"10.50.8.13\",\r\n            \"comment\": \"\",\r\n            \"compartment_id\"\
-    : \"\",\r\n            \"created_at\": \"2024-09-04T12:20:38.326472Z\",\r\n  \
-    \          \"dhcp_info\": null,\r\n            \"disable_dhcp\": false,\r\n  \
-    \          \"discovery_attrs\": null,\r\n            \"discovery_metadata\": null,\r\
-    \n            \"external_keys\": null,\r\n            \"host\": null,\r\n    \
-    \        \"hwaddr\": \"\",\r\n            \"id\": \"ipam/address/182225cf-6ab8-11ef-8d2e-669fd47b53f9\"\
-    ,\r\n            \"interface\": \"\",\r\n            \"names\": [\r\n        \
-    \        {\r\n                    \"name\": \"gigavue-fm-6501\",\r\n         \
-    \           \"type\": \"lease\"\r\n                }\r\n            ],\r\n   \
-    \         \"parent\": \"ipam/subnet/8abe72ce-fcad-11ee-9624-4a0e9455f8d2\",\r\n\
-    \            \"protocol\": \"ip4\",\r\n            \"range\": \"ipam/range/fb7bfaf8-24d1-11ef-9e44-e26969575d2b\"\
-    ,\r\n            \"space\": \"ipam/ip_space/29b07f2d-fca7-11ee-952b-26d521eb7155\"\
-    ,\r\n            \"state\": \"used\",\r\n            \"tags\": {\r\n         \
-    \       \"Snow_cmdb_table_name\": \"cmdb_ci_ip_device\",\r\n                \"\
-    Snow_sys_id\": \"1d9b1bde9316121027d9369d1dba1091\"\r\n            },\r\n    \
-    \        \"updated_at\": \"2024-12-08T12:45:50.421331Z\",\r\n            \"usage\"\
-    : [\r\n                \"DHCP LEASED\",\r\n                \"DHCP RANGE\"\r\n\
-    \            ]\r\n        },\r\n        {\r\n            \"address\": \"10.50.7.89\"\
-    ,\r\n            \"comment\": \"\",\r\n            \"compartment_id\": \"\",\r\
-    \n            \"created_at\": \"2024-09-25T06:33:34.317431Z\",\r\n           \
-    \ \"dhcp_info\": null,\r\n            \"disable_dhcp\": false,\r\n           \
-    \ \"discovery_attrs\": null,\r\n            \"discovery_metadata\": null,\r\n\
-    \            \"external_keys\": null,\r\n            \"host\": null,\r\n     \
-    \       \"hwaddr\": \"\",\r\n            \"id\": \"ipam/address/16bb0923-7b08-11ef-8e4b-861b01ad009b\"\
-    ,\r\n            \"interface\": \"\",\r\n            \"names\": [\r\n        \
-    \        {\r\n                    \"name\": \"ce\",\r\n                    \"\
-    type\": \"lease\"\r\n                }\r\n            ],\r\n            \"parent\"\
-    : \"ipam/subnet/8abe72ce-fcad-11ee-9624-4a0e9455f8d2\",\r\n            \"protocol\"\
-    : \"ip4\",\r\n            \"range\": \"ipam/range/c391412b-fcad-11ee-9624-4a0e9455f8d2\"\
-    ,\r\n            \"space\": \"ipam/ip_space/29b07f2d-fca7-11ee-952b-26d521eb7155\"\
-    ,\r\n            \"state\": \"used\",\r\n            \"tags\": {\r\n         \
-    \       \"Snow_cmdb_table_name\": \"cmdb_ci_ip_device\",\r\n                \"\
-    Snow_sys_id\": \"0f8b5756479212106f74bc8f016d43ed\"\r\n            },\r\n    \
-    \        \"updated_at\": \"2024-12-08T12:45:41.024987Z\",\r\n            \"usage\"\
-    : [\r\n                \"DHCP LEASED\",\r\n                \"DHCP RANGE\"\r\n\
-    \            ]\r\n        }\r\n    ]\r\n}"
+  result_example_path: resources/ip_lookup_JsonResult_example.json
 default_result_value: ''
 creator: Admin
 script_result_name: ScriptResult

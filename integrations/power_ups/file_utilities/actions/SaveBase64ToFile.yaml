@@ -1,33 +1,28 @@
 name: Save Base64 to File
-description: The action saves a base64 string to a file.  It supports comma separated
-    lists for Filename and Base64 Input.  The optional File Extension parameter is
-    used to add an extension to the output filename.
+description: The action saves a base64 string to a file.  It supports comma 
+  separated lists for Filename and Base64 Input.  The optional File Extension 
+  parameter is used to add an extension to the output filename.
 integration_identifier: FileUtilities
 parameters:
-    -   name: File Extension
-        type: string
-        description: 'Optional: this will add the supplied extension to the filename.'
-        is_mandatory: false
-    -   name: Base64 Input
-        default_value: <base64_encoded_string>
-        type: string
-        description: 'The base64 string that will be converted to a file.  Supports comma
-        separation. '
-        is_mandatory: true
-    -   name: Filename
-        default_value: ''
-        type: string
-        description: The filename the base64 string will be saved as.
-        is_mandatory: true
+- name: File Extension
+  type: string
+  description: 'Optional: this will add the supplied extension to the filename.'
+  is_mandatory: false
+- name: Base64 Input
+  default_value: <base64_encoded_string>
+  type: string
+  description: 'The base64 string that will be converted to a file.  Supports comma
+    separation. '
+  is_mandatory: true
+- name: Filename
+  default_value: ''
+  type: string
+  description: The filename the base64 string will be saved as.
+  is_mandatory: true
 dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: "{\n  \"files\": [\n    {\n      \"file_name\": \"ABCDE.COM\"\
-        ,\n      \"file_path\": \"/opt/siemplify/siemplify_server/Scripting/downloads/HTTPSACCOUNT.LIVE.COMSECURITYNOTIFICATIONSUPDATE\"\
-        ,\n      \"extension\": \".COM\"\n    },\n    {\n      \"file_name\": \"archive1.zip\"\
-        ,\n      \"file_path\": \"/opt/siemplify/siemplify_server/Scripting/downloads/archive1.zip\"\
-        ,\n      \"extension\": \".zip\"\n    }\n  ]\n}"
+- result_name: JsonResult
+  show_result: true
+  result_example_path: resources/SaveBase64ToFile_JsonResult_example.json
 default_result_value: ''
 creator: Robert
 script_result_name: ScriptResult

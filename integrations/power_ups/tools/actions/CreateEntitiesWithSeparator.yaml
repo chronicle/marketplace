@@ -2,40 +2,39 @@ name: Create Entities with Separator
 description: Creates entities and adds them to the requested alert.
 integration_identifier: Tools
 parameters:
-    -   name: Entities Identifiers
-        default_value: <insert string>
-        type: string
-        description: The entity or entities to be added to the alert.
-        is_mandatory: true
-    -   name: Entity Type
-        default_value: HOSTNAME
-        type: entity_type
-        description: 'Siemplify entity type. Example: HOSTNAME / USERNAME / etc.'
-        is_mandatory: true
-    -   name: Is Internal
-        default_value: 'false'
-        type: boolean
-        description: Mark if entities are part of an internal network.
-        is_mandatory: false
-    -   name: Entities Separator
-        default_value: ','
-        type: string
-        description: The character to split the Entities Identifiers field by.
-        is_mandatory: true
-    -   name: Enrichment JSON
-        default_value: ''
-        type: code
-        description: Enrichment JSOn data
-        is_mandatory: false
-    -   name: PrefixForEnrichment
-        type: string
-        description: The prefix to be added to the enrichment data.
-        is_mandatory: false
+- name: Entities Identifiers
+  default_value: <insert string>
+  type: string
+  description: The entity or entities to be added to the alert.
+  is_mandatory: true
+- name: Entity Type
+  default_value: HOSTNAME
+  type: entity_type
+  description: 'Siemplify entity type. Example: HOSTNAME / USERNAME / etc.'
+  is_mandatory: true
+- name: Is Internal
+  default_value: 'false'
+  type: boolean
+  description: Mark if entities are part of an internal network.
+  is_mandatory: false
+- name: Entities Separator
+  default_value: ','
+  type: string
+  description: The character to split the Entities Identifiers field by.
+  is_mandatory: true
+- name: Enrichment JSON
+  default_value: ''
+  type: code
+  description: Enrichment JSOn data
+  is_mandatory: false
+- name: PrefixForEnrichment
+  type: string
+  description: The prefix to be added to the enrichment data.
+  is_mandatory: false
 dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: '{}'
+- result_name: JsonResult
+  show_result: true
+  result_example_path:
 default_result_value: ''
 creator: Rob
 script_result_name: ScriptResult

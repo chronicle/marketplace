@@ -2,26 +2,20 @@ name: Assign Group
 description: Add members to the given group ID.
 integration_identifier: VectraRUX
 parameters:
-    -   name: Group ID
-        default_value: '1'
-        type: string
-        description: ID of specific group
-        is_mandatory: true
-    -   name: Members
-        default_value: test
-        type: string
-        description: 'Comma separated members to assign to group '
-        is_mandatory: true
+- name: Group ID
+  default_value: '1'
+  type: string
+  description: ID of specific group
+  is_mandatory: true
+- name: Members
+  default_value: test
+  type: string
+  description: 'Comma separated members to assign to group '
+  is_mandatory: true
 dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: "{\n    \"id\": 73,\n    \"name\": \"New Group test domain\",\n\
-        \    \"description\": \"Group description\",\n    \"last_modified\": \"2024-11-29T10:58:54Z\"\
-        ,\n    \"last_modified_by\": \"API Client 25cb417a\",\n    \"type\": \"domain\"\
-        ,\n    \"members\": null,\n    \"rules\": null,\n    \"importance\": \"high\"\
-        ,\n    \"regex\": null,\n    \"membership_evaluation_ongoing\": false,\n \
-        \   \"member_count\": 3,\n    \"built_using\": \"static_members\"\n}"
+- result_name: JsonResult
+  show_result: true
+  result_example_path: resources/Assign Group_JsonResult_example.json
 default_result_value: ''
 creator: Admin
 script_result_name: ScriptResult

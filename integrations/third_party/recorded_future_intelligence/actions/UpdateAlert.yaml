@@ -2,39 +2,36 @@ name: Update Alert
 description: Update alert in Recorded Future.
 integration_identifier: RecordedFutureIntelligence
 parameters:
-    -   name: Alert ID
-        default_value: ''
-        type: string
-        description: Specify the ID of the alert that needs to be updated.
-        is_mandatory: true
-    -   name: Assign To
-        default_value: ''
-        type: string
-        description: Specify to whom to assign the alert. You can provide id, username,
-            user hash, or email.
-        is_mandatory: false
-    -   name: Note
-        default_value: ''
-        type: string
-        description: Specify a note that should be updated on the alert.
-        is_mandatory: false
-    -   name: Status
-        default_value: Select One
-        type: ddl
-        optional_values:
-            - Select One
-            - New
-            - Pending
-            - Dismissed
-            - Resolved
-            - Flag for Tuning
-        description: Specify the new status for the alert.
-        is_mandatory: true
+- name: Alert ID
+  default_value: ''
+  type: string
+  description: Specify the ID of the alert that needs to be updated.
+  is_mandatory: true
+- name: Assign To
+  default_value: ''
+  type: string
+  description: Specify to whom to assign the alert. You can provide id, 
+    username, user hash, or email.
+  is_mandatory: false
+- name: Note
+  default_value: ''
+  type: string
+  description: Specify a note that should be updated on the alert.
+  is_mandatory: false
+- name: Status
+  default_value: Select One
+  type: ddl
+  optional_values:
+  - Select One
+  - New
+  - Pending
+  - Dismissed
+  - Resolved
+  - Flag for Tuning
+  description: Specify the new status for the alert.
+  is_mandatory: true
 dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: '[{"id": "jU2F_w", "status": "tuning", "assignee": "3NgaozZRYw",
-        "note": {"text": "testing", "author": "3CvPUmFtSX", "date": "2021-08-09T11:21:16Z"},
-        "reviewDate": "2021-08-09T11:20:31Z"}]'
+- result_name: JsonResult
+  show_result: true
+  result_example_path: resources/UpdateAlert_JsonResult_example.json
 creator: admin

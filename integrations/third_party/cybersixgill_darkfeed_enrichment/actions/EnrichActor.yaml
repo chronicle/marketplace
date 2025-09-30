@@ -1,42 +1,13 @@
 name: Enrich Actor
-description: Enrich a Threat Actor using Sixgill Information (Unpack a threat actor’s
-    activity in the underground by seeing all IOCs they shared in the last 90 days.
-    Understand their areas of activity, choice of targets and techniques.)
+description: Enrich a Threat Actor using Sixgill Information (Unpack a threat 
+  actor’s activity in the underground by seeing all IOCs they shared in the last
+  90 days. Understand their areas of activity, choice of targets and 
+  techniques.)
 integration_identifier: Cybersixgill Darkfeed Enrichment
-parameters: [ ]
+parameters: []
 dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: "[\r\n  {\r\n    \"entityIdentifier\": \"bark6222\",\r\n    \"\
-        entityResult\": [\r\n      {\r\n        \"created\": \"2021-06-10T12:51:30.329Z\"\
-        ,\r\n        \"description\": \"Virustotal link that appeared on a dark web\
-        \ site, generally to show malware that is undetected\",\r\n        \"external_reference\"\
-        : [\r\n          {\r\n            \"positive_rate\": \"medium\",\r\n     \
-        \       \"source_name\": \"VirusTotal\",\r\n            \"url\": \"https://virustotal.com/#/file/d6a1e3d3e46c70498627e962de19a7dcd2cb123fcaa35d009b9c66c47a40fcbb\"\
-        \r\n          },\r\n          {\r\n            \"description\": \"Mitre attack\
-        \ tactics and technique reference\",\r\n            \"mitre_attack_tactic\"\
-        : \"Test capabilities\",\r\n            \"mitre_attack_tactic_id\": \"TA0025\"\
-        ,\r\n            \"mitre_attack_tactic_url\": \"https://attack.mitre.org/tactics/TA0025/\"\
-        ,\r\n            \"mitre_attack_technique\": \"Test signature detection for\
-        \ file upload/email filters\",\r\n            \"mitre_attack_technique_id\"\
-        : \"T1361\",\r\n            \"mitre_attack_technique_url\": \"https://attack.mitre.org/techniques/T1361/\"\
-        ,\r\n            \"source_name\": \"mitre-attack\"\r\n          }\r\n    \
-        \    ],\r\n        \"id\": \"indicator--87cd4f82-cb3e-4007-af23-1d0aef7f3dd3\"\
-        ,\r\n        \"labels\": [\r\n          \"malicious-activity\",\r\n      \
-        \    \"malware\",\r\n          \"malicious\",\r\n          \"Test capabilities\"\
-        ,\r\n          \"Test signature detection for file upload/email filters\"\r\
-        \n        ],\r\n        \"lang\": \"en\",\r\n        \"modified\": \"2021-06-10T12:51:30.329Z\"\
-        ,\r\n        \"pattern\": \"[file:hashes.MD5 = 'df4e15c025e713ce2a1e0d4d469bfb6e'\
-        \ OR file:hashes.'SHA-1' = 'e495786e288558c4bcf1ceb9f69ec57651e5d4a8' OR file:hashes.'SHA-256'\
-        \ = 'd6a1e3d3e46c70498627e962de19a7dcd2cb123fcaa35d009b9c66c47a40fcbb']\"\
-        ,\r\n        \"sixgill_actor\": \"bark6222\",\r\n        \"sixgill_confidence\"\
-        : 80,\r\n        \"sixgill_feedid\": \"darkfeed_002\",\r\n        \"sixgill_feedname\"\
-        : \"darkweb_vt_links\",\r\n        \"sixgill_postid\": \"ebabcac98cd9b00216149ba42ee5716c36c2cc5a\"\
-        ,\r\n        \"sixgill_posttitle\": \"The complete cracking tutorial [including\
-        \ the tools] - every single step explained\",\r\n        \"sixgill_severity\"\
-        : 70,\r\n        \"sixgill_source\": \"forum_cracked\",\r\n        \"spec_version\"\
-        : \"2.0\",\r\n        \"type\": \"indicator\",\r\n        \"valid_from\":\
-        \ \"2021-06-07T20:12:00Z\"\r\n      }\r\n    ]\r\n  }\r\n]"
+- result_name: JsonResult
+  show_result: true
+  result_example_path: resources/EnrichActor_JsonResult_example.json
 default_result_value: ''
 creator: System

@@ -2,63 +2,29 @@ name: Get Response Policy Zone Details
 description: Retrieves configuration details for a specified RPZ.
 integration_identifier: InfobloxNIOS
 parameters:
--   name: FQDN
-    type: string
-    description: The name of this DNS zone in FQDN format.
-    is_mandatory: false
--   name: View
-    type: string
-    description: The name of the DNS view in which the zone resides ( e.g. “external”).
-    is_mandatory: false
--   name: Comment
-    type: string
-    description: Comment for the zone.
-    is_mandatory: false
--   name: Limit
-    default_value: '100'
-    type: string
-    description: Maximum number of objects to be returned.
-    is_mandatory: false
+- name: FQDN
+  type: string
+  description: The name of this DNS zone in FQDN format.
+  is_mandatory: false
+- name: View
+  type: string
+  description: The name of the DNS view in which the zone resides ( e.g. 
+    “external”).
+  is_mandatory: false
+- name: Comment
+  type: string
+  description: Comment for the zone.
+  is_mandatory: false
+- name: Limit
+  default_value: '100'
+  type: string
+  description: Maximum number of objects to be returned.
+  is_mandatory: false
 dynamic_results_metadata:
--   result_name: JsonResult
-    show_result: true
-    result_example: |
-        [
-            {
-                "_ref": "zone_rp/ZG5zLnpvbmUkLl9kZWZhdWx0LmlwLnRocmVhdC5kbnM:dns.threat.ip/default",
-                "comment": "Malicious domain blocking zone",
-                "disable": false,
-                "display_domain": "dns.threat.ip",
-                "extattrs": {},
-                "external_primaries": [],
-                "external_secondaries": [],
-                "fireeye_rule_mapping": null,
-                "fqdn": "dns.threat.ip",
-                "grid_primary": [],
-                "grid_secondaries": [],
-                "locked": false,
-                "log_rpz": true,
-                "member_soa_mnames": [],
-                "member_soa_serials": [],
-                "network_view": "default",
-                "parent": "",
-                "primary_type": "None",
-                "rpz_drop_ip_rule_enabled": false,
-                "rpz_drop_ip_rule_min_prefix_length_ipv4": 29,
-                "rpz_drop_ip_rule_min_prefix_length_ipv6": 112,
-                "rpz_policy": "SUBSTITUTE",
-                "rpz_priority": 1001,
-                "rpz_priority_end": 999,
-                "rpz_severity": "CRITICAL",
-                "rpz_type": "LOCAL",
-                "substitute_name": "blocked.example.com",
-                "use_external_primary": false,
-                "use_log_rpz": false,
-                "use_record_name_policy": false,
-                "use_rpz_drop_ip_rule": false,
-                "view": "default"
-            }
-        ]
+- result_name: JsonResult
+  show_result: true
+  result_example_path: 
+    resources/get_response_policy_zone_details_JsonResult_example.json
 default_result_value: ''
 creator: Admin
 script_result_name: ScriptResult

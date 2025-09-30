@@ -1,26 +1,25 @@
 name: Send Invitation
-description: Sending an invitation to a new employee in order to invite them to log
-    in the Hibob system for the first time or reinvite the user after he was disabled
+description: Sending an invitation to a new employee in order to invite them to 
+  log in the Hibob system for the first time or reinvite the user after he was 
+  disabled
 integration_identifier: Hibob
 parameters:
-    -   name: Employee's Email
-        default_value: email@gmail.com
-        type: string
-        description: The email of the employee that you want to send the invitation in
-            order to start using Hibob system.
-        is_mandatory: true
-    -   name: Welcome Wizard Name
-        default_value: Welcome!
-        type: string
-        description: "The wizard name found in Hibob (Setting-> Flows), for example: \"\
-        Welcome!\". \nPlease note: this is case sensitive!\n"
-        is_mandatory: true
+- name: Employee's Email
+  default_value: email@gmail.com
+  type: string
+  description: The email of the employee that you want to send the invitation in
+    order to start using Hibob system.
+  is_mandatory: true
+- name: Welcome Wizard Name
+  default_value: Welcome!
+  type: string
+  description: "The wizard name found in Hibob (Setting-> Flows), for example: \"\
+    Welcome!\". \nPlease note: this is case sensitive!\n"
+  is_mandatory: true
 dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: "{\r\n\t\"exists\": \"True\",\r\n\t\"invitationWasSent\": \"False\"\
-        ,\r\n\t\"wizardName\": \"Welcome!\",\r\n\t\"wizardId\": \"954554\"\r\n}"
+- result_name: JsonResult
+  show_result: true
+  result_example_path: resources/SendInvitation_JsonResult_example.json
 default_result_value: ''
 creator: Admin
 script_result_name: ScriptResult

@@ -2,40 +2,39 @@ name: Add  Permission
 description: 'Adds permission to a Google Sheet for a single user or multiple users
 
 
-    '
+  '
 integration_identifier: Google Sheets
 parameters:
-    -   name: Sheet Id
-        default_value: <Sheet-Id>
-        type: string
-        description: 'The sheet id can be found in the sheet url.
+- name: Sheet Id
+  default_value: <Sheet-Id>
+  type: string
+  description: 'The sheet id can be found in the sheet url.
 
-        https://docs.google.com/spreadsheets/d/{YourSpreadSheetId}/edit#gid=0'
-        is_mandatory: true
-    -   name: Role
-        default_value: Writer
-        type: ddl
-        optional_values:
-            - Owner
-            - Writer
-            - Reader
-        description: '"Owner"- allows to make any changes to the document
+    https://docs.google.com/spreadsheets/d/{YourSpreadSheetId}/edit#gid=0'
+  is_mandatory: true
+- name: Role
+  default_value: Writer
+  type: ddl
+  optional_values:
+  - Owner
+  - Writer
+  - Reader
+  description: '"Owner"- allows to make any changes to the document
 
-        "Reader"- allows to open and view the document
+    "Reader"- allows to open and view the document
 
-        "Writer"- allows to leave comments in the document'
-        is_mandatory: true
-    -   name: Emails
-        default_value: email1@gmail.com;email2@gmail.com
-        type: string
-        description: 'Email address of the person you would like to add permission to
-        the Spreadsheet. You can add multiple emails by adding ";" as a separator. '
-        is_mandatory: true
+    "Writer"- allows to leave comments in the document'
+  is_mandatory: true
+- name: Emails
+  default_value: email1@gmail.com;email2@gmail.com
+  type: string
+  description: 'Email address of the person you would like to add permission to the
+    Spreadsheet. You can add multiple emails by adding ";" as a separator. '
+  is_mandatory: true
 dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: false
-        # language=json
-        result_example: '{}'
+- result_name: JsonResult
+  show_result: false
+  result_example_path:
 default_result_value: ''
 creator: Admin
 script_result_name: ScriptResult

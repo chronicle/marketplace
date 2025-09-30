@@ -1,104 +1,30 @@
 name: Get Pod Metric
 description: 'Gets a Pod metric (CPU, Memory and processes).
 
-    For more information about Metrics: https://docs.datadoghq.com/api/latest/metrics/#query-timeseries-points
+  For more information about Metrics: https://docs.datadoghq.com/api/latest/metrics/#query-timeseries-points
 
-    For more information about Kubernetes metrics: https://docs.datadoghq.com/agent/kubernetes/data_collected/'
+  For more information about Kubernetes metrics: https://docs.datadoghq.com/agent/kubernetes/data_collected/'
 integration_identifier: DataDog
 parameters:
-    -   name: Pod Name
-        default_value: pod_namespace
-        type: string
-        description: The Pod Namespace
-        is_mandatory: true
-    -   name: End Time
-        default_value: '1610557457'
-        type: string
-        description: The end time of the Pod metric in Unixtime.
-        is_mandatory: true
-    -   name: Start Time
-        default_value: '1507040000'
-        type: string
-        description: The start time of the Pod metric in Unixtime.
-        is_mandatory: true
+- name: Pod Name
+  default_value: pod_namespace
+  type: string
+  description: The Pod Namespace
+  is_mandatory: true
+- name: End Time
+  default_value: '1610557457'
+  type: string
+  description: The end time of the Pod metric in Unixtime.
+  is_mandatory: true
+- name: Start Time
+  default_value: '1507040000'
+  type: string
+  description: The start time of the Pod metric in Unixtime.
+  is_mandatory: true
 dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: "{\r\n\t\"pod_name_X\": {\r\n\t\t\"pod_CPU\": {\r\n\t\t\t\"status\"\
-        : \"ok\",\r\n\t\t\t\"res_type\": \"time_series\",\r\n\t\t\t\"from_date\":\
-        \ 1507040000000,\r\n\t\t\t\"series\": [{\r\n\t\t\t\t\"end\": 1610668799000,\r\
-        \n\t\t\t\t\"attributes\": {},\r\n\t\t\t\t\"metric\": \"kubernetes.cpu.system.total\"\
-        ,\r\n\t\t\t\t\"interval\": 604800,\r\n\t\t\t\t\"tag_set\": [\"kube_namespace:y\"\
-        , \"pod_name:x\"],\r\n\t\t\t\t\"start\": 1602201600000,\r\n\t\t\t\t\"length\"\
-        : 14,\r\n\t\t\t\t\"query_index\": 0,\r\n\t\t\t\t\"aggr\": \"avg\",\r\n\t\t\
-        \t\t\"scope\": \"kube_namespace:y,pod_name:x\",\r\n\t\t\t\t\"pointlist\":\
-        \ [\r\n\t\t\t\t\t[1602201600000.0, 0.0003853833283493937],\r\n\t\t\t\t\t[1602806400000.0,\
-        \ 0.00036236030051059264],\r\n\t\t\t\t\t[1603411200000.0, 0.0004022896314672298],\r\
-        \n\t\t\t\t\t[1604016000000.0, 0.00036836003994138866],\r\n\t\t\t\t\t[1604620800000.0,\
-        \ 0.00039237702930315773]\r\n\t\t\t\t],\r\n\t\t\t\t\"expression\": \"avg:kubernetes.cpu.system.total{kube_namespace:y,pod_name:x}\"\
-        ,\r\n\t\t\t\t\"unit\": [{\r\n\t\t\t\t\t\"family\": \"cpu\",\r\n\t\t\t\t\t\"\
-        scale_factor\": 1.0,\r\n\t\t\t\t\t\"name\": \"core\",\r\n\t\t\t\t\t\"short_name\"\
-        : null,\r\n\t\t\t\t\t\"plural\": \"cores\",\r\n\t\t\t\t\t\"id\": 31\r\n\t\t\
-        \t\t}, null],\r\n\t\t\t\t\"display_name\": \"kubernetes.cpu.system.total\"\
-        \r\n\t\t\t}],\r\n\t\t\t\"to_date\": 1610557457000,\r\n\t\t\t\"resp_version\"\
-        : 1,\r\n\t\t\t\"query\": \"avg:kubernetes.cpu.system.total{pod_name:x}by{pod_name,kube_namespace}\"\
-        ,\r\n\t\t\t\"message\": \"\",\r\n\t\t\t\"group_by\": [\"kube_namespace\",\
-        \ \"pod_name\"]\r\n\t\t},\r\n\t\t\"pod_memory\": {\r\n\t\t\t\"status\": \"\
-        ok\",\r\n\t\t\t\"res_type\": \"time_series\",\r\n\t\t\t\"from_date\": 1507040000000,\r\
-        \n\t\t\t\"series\": [{\r\n\t\t\t\t\"end\": 1610668799000,\r\n\t\t\t\t\"attributes\"\
-        : {},\r\n\t\t\t\t\"metric\": \"kubernetes.memory.usage_pct\",\r\n\t\t\t\t\"\
-        interval\": 604800,\r\n\t\t\t\t\"tag_set\": [\"kube_namespace:y\", \"pod_name:x\"\
-        ],\r\n\t\t\t\t\"start\": 1602201600000,\r\n\t\t\t\t\"length\": 14,\r\n\t\t\
-        \t\t\"query_index\": 0,\r\n\t\t\t\t\"aggr\": \"avg\",\r\n\t\t\t\t\"scope\"\
-        : \"kube_namespace:y,pod_name:x\",\r\n\t\t\t\t\"pointlist\": [\r\n\t\t\t\t\
-        \t[1602201600000.0, 0.17388684940859045],\r\n\t\t\t\t\t[1602806400000.0, 0.20004428429430668],\r\
-        \n\t\t\t\t\t[1603411200000.0, 0.18134797875370298],\r\n\t\t\t\t\t[1604016000000.0,\
-        \ 0.25646502505858065],\r\n\t\t\t\t\t[1604620800000.0, 0.2630635437274736]\r\
-        \n\t\t\t\t],\r\n\t\t\t\t\"expression\": \"avg:kubernetes.memory.usage_pct{kube_namespace:y,pod_name:x}\"\
-        ,\r\n\t\t\t\t\"unit\": [{\r\n\t\t\t\t\t\"family\": \"percentage\",\r\n\t\t\
-        \t\t\t\"scale_factor\": 100.0,\r\n\t\t\t\t\t\"name\": \"fraction\",\r\n\t\t\
-        \t\t\t\"short_name\": null,\r\n\t\t\t\t\t\"plural\": \"fractions\",\r\n\t\t\
-        \t\t\t\"id\": 16\r\n\t\t\t\t}, null],\r\n\t\t\t\t\"display_name\": \"kubernetes.memory.usage_pct\"\
-        \r\n\t\t\t}],\r\n\t\t\t\"to_date\": 1610557457000,\r\n\t\t\t\"resp_version\"\
-        : 1,\r\n\t\t\t\"query\": \"avg:kubernetes.memory.usage_pct{pod_name:x}by{pod_name,kube_namespace}\"\
-        ,\r\n\t\t\t\"message\": \"\",\r\n\t\t\t\"group_by\": [\"kube_namespace\",\
-        \ \"pod_name\"]\r\n\t\t},\r\n\t\t\"pod_processes\": {\r\n\t\t\t\"meta\": {\r\
-        \n\t\t\t\t\"page\": {\r\n\t\t\t\t\t\"after\": \"abcdef\",\r\n\t\t\t\t\t\"\
-        size\": 6\r\n\t\t\t\t}\r\n\t\t\t},\r\n\t\t\t\"data\": [{\r\n\t\t\t\t\"type\"\
-        : \"process\",\r\n\t\t\t\t\"id\": \"123456\",\r\n\t\t\t\t\"attributes\": {\r\
-        \n\t\t\t\t\t\"cmdline\": \"\",\r\n\t\t\t\t\t\"timestamp\": \"2021-01-21T13:50:33\"\
-        ,\r\n\t\t\t\t\t\"start\": \"2020-10-24T04:28:57\",\r\n\t\t\t\t\t\"user\":\
-        \ \"root\",\r\n\t\t\t\t\t\"pid\": 1234,\r\n\t\t\t\t\t\"ppid\": 1111,\r\n\t\
-        \t\t\t\t\"host\": \"i-12345\",\r\n\t\t\t\t\t\"tags\": [\"\"]\r\n\t\t\t\t}\r\
-        \n\t\t\t}, {\r\n\t\t\t\t\"type\": \"process\",\r\n\t\t\t\t\"id\": \"123456\"\
-        ,\r\n\t\t\t\t\"attributes\": {\r\n\t\t\t\t\t\"cmdline\": \"\",\r\n\t\t\t\t\
-        \t\"timestamp\": \"2021-01-21T13:45:03\",\r\n\t\t\t\t\t\"start\": \"2020-12-23T12:35:52\"\
-        ,\r\n\t\t\t\t\t\"user\": \"root\",\r\n\t\t\t\t\t\"pid\": 1234,\r\n\t\t\t\t\
-        \t\"ppid\": 1111,\r\n\t\t\t\t\t\"host\": \"i-123456789\",\r\n\t\t\t\t\t\"\
-        tags\": [\"\"]\r\n\t\t\t\t}\r\n\t\t\t}, {\r\n\t\t\t\t\"type\": \"process\"\
-        ,\r\n\t\t\t\t\"id\": \"123456\",\r\n\t\t\t\t\"attributes\": {\r\n\t\t\t\t\t\
-        \"cmdline\": \"\",\r\n\t\t\t\t\t\"timestamp\": \"2021-01-21T13:50:33\",\r\n\
-        \t\t\t\t\t\"start\": \"2020-12-23T13:23:30\",\r\n\t\t\t\t\t\"user\": \"root\"\
-        ,\r\n\t\t\t\t\t\"pid\": 1234,\r\n\t\t\t\t\t\"ppid\": 1111,\r\n\t\t\t\t\t\"\
-        host\": \"i-123456\",\r\n\t\t\t\t\t\"tags\": [\"\"]\r\n\t\t\t\t}\r\n\t\t\t\
-        }, {\r\n\t\t\t\t\"type\": \"process\",\r\n\t\t\t\t\"id\": \"123456\",\r\n\t\
-        \t\t\t\"attributes\": {\r\n\t\t\t\t\t\"cmdline\": \"\",\r\n\t\t\t\t\t\"timestamp\"\
-        : \"2021-01-21T13:42:03\",\r\n\t\t\t\t\t\"start\": \"2020-12-29T15:57:01\"\
-        ,\r\n\t\t\t\t\t\"user\": \"root\",\r\n\t\t\t\t\t\"pid\": 1234,\r\n\t\t\t\t\
-        \t\"ppid\": 1111,\r\n\t\t\t\t\t\"host\": \"i-123456\",\r\n\t\t\t\t\t\"tags\"\
-        : [\"\"]\r\n\t\t\t\t}\r\n\t\t\t}, {\r\n\t\t\t\t\"type\": \"process\",\r\n\t\
-        \t\t\t\"id\": \"123456\",\r\n\t\t\t\t\"attributes\": {\r\n\t\t\t\t\t\"cmdline\"\
-        : \".log\",\r\n\t\t\t\t\t\"timestamp\": \"2021-01-21T13:44:33\",\r\n\t\t\t\
-        \t\t\"start\": \"2020-12-29T18:12:04\",\r\n\t\t\t\t\t\"user\": \"root\",\r\
-        \n\t\t\t\t\t\"pid\": 1234,\r\n\t\t\t\t\t\"ppid\": 1111,\r\n\t\t\t\t\t\"host\"\
-        : \"i-123456\",\r\n\t\t\t\t\t\"tags\": [\"\"]\r\n\t\t\t\t}\r\n\t\t\t}, {\r\
-        \n\t\t\t\t\"type\": \"process\",\r\n\t\t\t\t\"id\": \"123456\",\r\n\t\t\t\t\
-        \"attributes\": {\r\n\t\t\t\t\t\"cmdline\": \"\",\r\n\t\t\t\t\t\"timestamp\"\
-        : \"2021-01-21T13:43:03\",\r\n\t\t\t\t\t\"start\": \"2020-12-30T10:57:17\"\
-        ,\r\n\t\t\t\t\t\"user\": \"root\",\r\n\t\t\t\t\t\"pid\": 1234,\r\n\t\t\t\t\
-        \t\"ppid\": 1111,\r\n\t\t\t\t\t\"host\": \"i-123456\",\r\n\t\t\t\t\t\"tags\"\
-        : [\"\"]\r\n\t\t\t\t}\r\n\t\t\t}]\r\n\t\t}\r\n\t}\r\n}"
+- result_name: JsonResult
+  show_result: true
+  result_example_path: resources/GetPodMetric_JsonResult_example.json
 default_result_value: ''
 creator: Admin
 script_result_name: ScriptResult

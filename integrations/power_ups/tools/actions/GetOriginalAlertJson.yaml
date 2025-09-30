@@ -1,84 +1,12 @@
 name: Get Original Alert Json
-description:
-    "The action gets the original alert Json (raw data) and presents it as
-    a Json result. "
+description: "The action gets the original alert Json (raw data) and presents it as
+  a Json result. "
 integration_identifier: Tools
 parameters: []
 dynamic_results_metadata:
-    - result_name: JsonResult
-      show_result: true
-      # language=json
-      result_example: |-
-        {
-          "CreatorUserId": null,
-          "Events": [
-            {
-              "_fields": {
-                "BaseEventIds": "[]",
-                "ParentEventId": -1,
-                "deviceEventClassId": "Email check",
-                "DeviceProduct": "Phishing email detector",
-                "StartTime": "12345",
-                "EndTime": "12345"
-              },
-              "_rawDataFields": {
-                "sourcetype": "Phishing email detector",
-                "DeviceVendor": "Email server",
-                "StartTime": "12345",
-                "EndTime": "12345",
-                "EventId": "220",
-                "Name": "Your New Salary Notification",
-                "Mail_OriginalEmailBody": "Hello",
-                "Severity": "High",
-                "CategoryOutcome": "allowed",
-                "DeviceEventClassId": "Email check",
-                "SourceUserName": "f.xx@xx.com",
-                "DestinationUserName": "xx.x@xx.co",
-                "DestinationURL": "http://xx.com/xx.php",
-                "sentTime": "12345",
-                "message_id": "000",
-                "subject": "Your New Salary Notification",
-                "body": "Hello"
-              },
-              "Environment": null,
-              "SourceSystemName": null,
-              "Extensions": []
-            }
-          ],
-          "Environment": "Default Environment",
-          "SourceSystemName": "xxxx",
-          "TicketId": "xxxxxxxxxx-xxxxxxxxxx-xxxxxxxxxx-xxxxxxxxxx-xxxxxxxxxx",
-          "Description": "The email from <f.xx@xx.com> to <xx.x@xx.co> detected as phishing email.",
-          "DisplayId": "xxxxxxxxxx-xxxxxxxxxx-xxxxxxxxxx-xxxxxxxxxx-xxxxxxxxxx",
-          "Reason": "Phishing email detector",
-          "Name": "Suspicious phishing email",
-          "DeviceVendor": "Email server",
-          "DeviceProduct": "Phishing email detector",
-          "StartTime": 12345,
-          "EndTime": 12345,
-          "Type": 0,
-          "Priority": 80,
-          "RuleGenerator": "Phishing email detector",
-          "SourceGroupingIdentifier": null,
-          "PlaybookTriggerKeywords": [],
-          "Extensions": [],
-          "Attachments": null,
-          "IsTrimmed": false,
-          "DataType": 1,
-          "SourceType": 1,
-          "SourceSystemUrl": null,
-          "SourceRuleIdentifier": null,
-          "SiemAlertId": null,
-          "UpdatedFields": [],
-          "AlertUpdateSupported": false,
-          "AlertMetadata": {},
-          "DataAccessScope": null,
-          "__TraceContext": {
-            "traceparent": "xx-xx-xx-xx",
-            "baggage": "xx"
-          },
-          "__CorrelationId": "xxxxx"
-        }
+- result_name: JsonResult
+  show_result: true
+  result_example_path: resources/GetOriginalAlertJson_JsonResult_example.json
 default_result_value: ""
 creator: Robert
 script_result_name: ScriptResult

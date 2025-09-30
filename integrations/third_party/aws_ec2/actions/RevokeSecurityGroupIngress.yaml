@@ -1,51 +1,41 @@
 name: Revoke Security Group ingress
 description: 'Revokes the specified inbound IP permissions to a specific security
-    group in a VPC.
+  group in a VPC.
 
-    For more information:
+  For more information:
 
-    https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/ec2.html#EC2.Client.revoke_security_group_ingress'
+  https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/ec2.html#EC2.Client.revoke_security_group_ingress'
 integration_identifier: AWS - EC2
 parameters:
-    -   name: Group ID
-        default_value: sg-1a2b3c4d
-        type: string
-        description: 'The security group ID which you want to revoke outbound IP permissions
-        in a VPC (Virtual Private Cloud) egress.
+- name: Group ID
+  default_value: sg-1a2b3c4d
+  type: string
+  description: 'The security group ID which you want to revoke outbound IP permissions
+    in a VPC (Virtual Private Cloud) egress.
 
-        '
-        is_mandatory: false
-    -   name: IP Permissions
-        default_value: '{"FromPort": 80,
+    '
+  is_mandatory: false
+- name: IP Permissions
+  default_value: '{"FromPort": 80,
 
-        "IpProtocol": "tcp",
+    "IpProtocol": "tcp",
 
-        "IpRanges": [{"CidrIp": "1.1.1.1/16"}],
+    "IpRanges": [{"CidrIp": "1.1.1.1/16"}],
 
-        "ToPort": 80}'
-        type: code
-        description: 'The IP permissions in a JSON format.
+    "ToPort": 80}'
+  type: code
+  description: 'The IP permissions in a JSON format.
 
-        For example:
+    For example:
 
-        {"FromPort": 80,"IpProtocol": "tcp","IpRanges": [{"CidrIp": "1.1.1.1/16"}],"ToPort":
-        80}'
-        is_mandatory: false
+    {"FromPort": 80,"IpProtocol": "tcp","IpRanges": [{"CidrIp": "1.1.1.1/16"}],"ToPort":
+    80}'
+  is_mandatory: false
 dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: "{\r\n\t\"Return\": \"True\",\r\n\t\"UnknownIpPermissions\": [{\r\
-        \n\t\t\"FromPort\": 123,\r\n\t\t\"IpProtocol\": \"string\",\r\n\t\t\"IpRanges\"\
-        : [{\r\n\t\t\t\"CidrIp\": \"string\",\r\n\t\t\t\"Description\": \"string\"\
-        \r\n\t\t}],\r\n\t\t\"Ipv6Ranges\": [{\r\n\t\t\t\"CidrIpv6\": \"string\",\r\
-        \n\t\t\t\"Description\": \"string\"\r\n\t\t}],\r\n\t\t\"PrefixListIds\": [{\r\
-        \n\t\t\t\"Description\": \"string\",\r\n\t\t\t\"PrefixListId\": \"string\"\
-        \r\n\t\t}],\r\n\t\t\"ToPort\": 123,\r\n\t\t\"UserIdGroupPairs\": [{\r\n\t\t\
-        \t\"Description\": \"string\",\r\n\t\t\t\"GroupId\": \"string\",\r\n\t\t\t\
-        \"GroupName\": \"string\",\r\n\t\t\t\"PeeringStatus\": \"string\",\r\n\t\t\
-        \t\"UserId\": \"string\",\r\n\t\t\t\"VpcId\": \"string\",\r\n\t\t\t\"VpcPeeringConnectionId\"\
-        : \"string\"\r\n\t\t}]\r\n\t}]\r\n}"
+- result_name: JsonResult
+  show_result: true
+  result_example_path: 
+    resources/RevokeSecurityGroupIngress_JsonResult_example.json
 default_result_value: ''
 creator: Admin
 script_result_name: ScriptResult

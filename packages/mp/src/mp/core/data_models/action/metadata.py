@@ -17,9 +17,11 @@ from __future__ import annotations
 from typing import TYPE_CHECKING, Annotated, NotRequired, Self, TypedDict
 
 import pydantic
+import yaml
 
 import mp.core.constants
 import mp.core.data_models.abc
+import mp.core.file_utils
 import mp.core.utils
 
 from .dynamic_results_metadata import (
@@ -145,11 +147,16 @@ class ActionMetadata(
         meta_path: pathlib.Path = path / mp.core.constants.ACTIONS_DIR
         if not meta_path.exists():
             return []
+        metadata_objects: list[Self] = []
 
-        return [
-            cls._from_non_built_integration_path(p)
-            for p in meta_path.rglob(f"*{mp.core.constants.DEF_FILE_SUFFIX}")
-        ]
+        for p in meta_path.rglob(f"*{mp.core.constants.DEF_FILE_SUFFIX}"):
+            metadata_content: str = p.read_text(encoding="utf-8")
+            action_metadata_json: NonBuiltActionMetadata = yaml.safe_load(metadata_content)
+            _read_json_examples(action_metadata_json, meta_path)
+            metadata_object: Self = cls.from_non_built(p.stem, action_metadata_json)
+            metadata_objects.append(metadata_object)
+
+        return metadata_objects
 
     @classmethod
     def _from_built(cls, file_name: str, built: BuiltActionMetadata) -> ActionMetadata:
@@ -250,6 +257,7 @@ class ActionMetadata(
             A non-built version of the action metadata dict
 
         """
+        self._change_result_example_fields_to_paths()
         non_built: NonBuiltActionMetadata = NonBuiltActionMetadata(
             name=self.name,
             description=self.description,
@@ -270,3 +278,26 @@ class ActionMetadata(
 
         mp.core.utils.remove_none_entries_from_mapping(non_built)
         return non_built
+
+    def _change_result_example_fields_to_paths(self) -> None:
+        action_name = self.name
+        for drm in self.dynamic_results_metadata:
+            if drm.result_example:
+                json_file_name: str = f"{action_name}_{drm.result_name}_example.json"
+                json_file_path: str = f"{mp.core.constants.RESOURCES_DIR}/{json_file_name}"
+                drm.result_example = json_file_path
+            else:
+                drm.result_example = None
+
+
+def _read_json_examples(
+    metadata_content: NonBuiltActionMetadata, actions_dir_path: pathlib.Path
+) -> None:
+    """Read JSON example files and update the metadata dictionary in place."""
+    for drm in metadata_content.get("dynamic_results_metadata", []):
+        result_name: str = drm["result_name"]
+        example_file_path: str = drm.get("result_example_path", result_name)
+
+        drm["result_example_path"] = mp.core.file_utils.read_json_example(
+            actions_dir_path, example_file_path
+        )

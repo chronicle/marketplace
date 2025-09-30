@@ -2,286 +2,36 @@ name: List Entity Detections
 description: List all the detections for the given entity ID.
 integration_identifier: VectraQUX
 parameters:
-    -   name: Entity ID
-        default_value: '0'
-        type: string
-        description: Unique ID for Account/Host
-        is_mandatory: true
-    -   name: Entity Type
-        default_value: Host
-        type: ddl
-        optional_values:
-            - Account
-            - Host
-        description: Type of Entity. Either Account or Host
-        is_mandatory: true
-    -   name: Limit
-        type: string
-        description: Specify limit for fetching records.
-        is_mandatory: false
-    -   name: State
-        default_value: Active
-        type: ddl
-        optional_values:
-            - Active
-            - Inactive
-            - Fixed
-        description: States to filter detections.
-        is_mandatory: true
+- name: Entity ID
+  default_value: '0'
+  type: string
+  description: Unique ID for Account/Host
+  is_mandatory: true
+- name: Entity Type
+  default_value: Host
+  type: ddl
+  optional_values:
+  - Account
+  - Host
+  description: Type of Entity. Either Account or Host
+  is_mandatory: true
+- name: Limit
+  type: string
+  description: Specify limit for fetching records.
+  is_mandatory: false
+- name: State
+  default_value: Active
+  type: ddl
+  optional_values:
+  - Active
+  - Inactive
+  - Fixed
+  description: States to filter detections.
+  is_mandatory: true
 dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: "[\n    {\n        \"id\": 7153,\n        \"category\": \"EXFILTRATION\"\
-        ,\n        \"detection\": \"Data Smuggler\",\n        \"detection_category\"\
-        : \"EXFILTRATION\",\n        \"detection_type\": \"Data Smuggler\",\n    \
-        \    \"custom_detection\": \"AI-Filtered\",\n        \"description\": null,\n\
-        \        \"src_ip\": \"1.1.1.1\",\n        \"state\": \"active\",\n      \
-        \  \"certainty\": 0,\n        \"threat\": 0,\n        \"created_timestamp\"\
-        : \"2025-01-02T03:08:34Z\",\n        \"first_timestamp\": \"2025-01-02T02:59:53Z\"\
-        ,\n        \"last_timestamp\": \"2025-01-02T03:11:03Z\",\n        \"targets_key_asset\"\
-        : false,\n        \"is_targeting_key_asset\": false,\n        \"src_account\"\
-        : null,\n        \"src_host\": {\n            \"id\": 40613,\n           \
-        \ \"ip\": \"1.1.1.1\",\n            \"name\": \"IP-1.1.1.1\",\n          \
-        \  \"is_key_asset\": false,\n            \"groups\": [],\n            \"threat\"\
-        : 30,\n            \"certainty\": 90\n        },\n        \"note\": null,\n\
-        \        \"note_modified_by\": null,\n        \"note_modified_timestamp\"\
-        : null,\n        \"sensor\": \"whx12u9g\",\n        \"sensor_name\": \"FGU-lab-vcenter\"\
-        ,\n        \"tags\": [],\n        \"triage_rule_id\": 2511,\n        \"assigned_to\"\
-        : null,\n        \"assigned_date\": null,\n        \"groups\": [\n       \
-        \     {\n                \"id\": 12,\n                \"name\": \"Cognito\
-        \ - Dropbox\",\n                \"description\": \"Domains used by the Dropbox\
-        \ service\",\n                \"type\": \"domain\",\n                \"last_modified\"\
-        : \"2021-09-23T18:28:31Z\",\n                \"last_modified_by\": \"cognito\"\
-        \n            }\n        ],\n        \"is_marked_custom\": false,\n      \
-        \  \"is_custom_model\": false,\n        \"src_linked_account\": null,\n  \
-        \      \"grouped_details\": [\n            {\n                \"events\":\
-        \ [\n                    {\n                        \"grouping_field\": \"\
-        multi_fields\",\n                        \"multi_fields\": \"KrCyO4DV\",\n\
-        \                        \"id\": 192093,\n                        \"subtype\"\
-        : \"pull\",\n                        \"first_timestamp\": \"2025-01-02T02:59:53Z\"\
-        ,\n                        \"last_timestamp\": \"2025-01-02T03:00:23Z\",\n\
-        \                        \"couch_note_id\": [\n                          \
-        \  \"KrCyO4DV\"\n                        ],\n                        \"flex5\"\
-        : [],\n                        \"app_protocol\": null,\n                 \
-        \       \"target_domains\": [],\n                        \"bytes_received\"\
-        : 786614643,\n                        \"bytes_sent\": 199119,\n          \
-        \              \"proxy_ip\": null,\n                        \"sessions\":\
-        \ [\n                            {\n                                \"target_host\"\
-        : null,\n                                \"dst_ip\": \"1.1.1.1\",\n      \
-        \                          \"dst_port\": 445,\n                          \
-        \      \"protocol\": \"tcp\",\n                                \"app_protocol\"\
-        : \"smb\",\n                                \"bytes_received\": 786614643,\n\
-        \                                \"first_timestamp\": \"2025-01-02T02:59:53Z\"\
-        ,\n                                \"duration\": 30\n                    \
-        \        }\n                        ],\n                        \"origin_ips\"\
-        : [\n                            \"1.1.1.1\"\n                        ],\n\
-        \                        \"target_summary\": {\n                         \
-        \   \"dst_port\": 443,\n                            \"protocol\": \"tcp\"\
-        ,\n                            \"app_protocol\": \"tls\",\n              \
-        \              \"bytes_sent\": 105044371,\n                            \"\
-        first_timestamp\": \"2025-01-02T03:06:09Z\",\n                           \
-        \ \"last_timestamp\": \"2025-01-02T03:06:58Z\"\n                        }\n\
-        \                    },\n                    {\n                        \"\
-        grouping_field\": \"multi_fields\",\n                        \"multi_fields\"\
-        : \"KrCyO4G1\",\n                        \"id\": 192103,\n               \
-        \         \"subtype\": \"pull\",\n                        \"first_timestamp\"\
-        : \"2025-01-02T02:59:53Z\",\n                        \"last_timestamp\": \"\
-        2025-01-02T03:00:23Z\",\n                        \"couch_note_id\": [\n  \
-        \                          \"KrCyO4G1\"\n                        ],\n    \
-        \                    \"flex5\": [],\n                        \"app_protocol\"\
-        : null,\n                        \"target_domains\": [],\n               \
-        \         \"bytes_received\": 786614643,\n                        \"bytes_sent\"\
-        : 199119,\n                        \"proxy_ip\": null,\n                 \
-        \       \"sessions\": [\n                            {\n                 \
-        \               \"target_host\": null,\n                                \"\
-        dst_ip\": \"1.1.1.1\",\n                                \"dst_port\": 445,\n\
-        \                                \"protocol\": \"tcp\",\n                \
-        \                \"app_protocol\": \"smb\",\n                            \
-        \    \"bytes_received\": 786614643,\n                                \"first_timestamp\"\
-        : \"2025-01-02T02:59:53Z\",\n                                \"duration\"\
-        : 30\n                            }\n                        ],\n        \
-        \                \"origin_ips\": [\n                            \"1.1.1.1\"\
-        \n                        ],\n                        \"target_summary\":\
-        \ {\n                            \"dst_port\": 443,\n                    \
-        \        \"protocol\": \"tcp\",\n                            \"app_protocol\"\
-        : \"tls\",\n                            \"bytes_sent\": 105044347,\n     \
-        \                       \"first_timestamp\": \"2025-01-02T03:10:30Z\",\n \
-        \                           \"last_timestamp\": \"2025-01-02T03:11:03Z\"\n\
-        \                        }\n                    },\n                    {\n\
-        \                        \"grouping_field\": \"multi_fields\",\n         \
-        \               \"multi_fields\": \"KrCyO4E-\",\n                        \"\
-        id\": 192099,\n                        \"subtype\": \"pull\",\n          \
-        \              \"first_timestamp\": \"2025-01-02T02:59:53Z\",\n          \
-        \              \"last_timestamp\": \"2025-01-02T03:00:23Z\",\n           \
-        \             \"couch_note_id\": [\n                            \"KrCyO4E-\"\
-        \n                        ],\n                        \"flex5\": [],\n   \
-        \                     \"app_protocol\": null,\n                        \"\
-        target_domains\": [],\n                        \"bytes_received\": 786614643,\n\
-        \                        \"bytes_sent\": 199119,\n                       \
-        \ \"proxy_ip\": null,\n                        \"sessions\": [\n         \
-        \                   {\n                                \"target_host\": null,\n\
-        \                                \"dst_ip\": \"1.1.1.1\",\n              \
-        \                  \"dst_port\": 445,\n                                \"\
-        protocol\": \"tcp\",\n                                \"app_protocol\": \"\
-        smb\",\n                                \"bytes_received\": 786614643,\n \
-        \                               \"first_timestamp\": \"2025-01-02T02:59:53Z\"\
-        ,\n                                \"duration\": 30\n                    \
-        \        }\n                        ],\n                        \"origin_ips\"\
-        : [\n                            \"1.1.1.1\"\n                        ],\n\
-        \                        \"target_summary\": {\n                         \
-        \   \"dst_port\": 443,\n                            \"protocol\": \"tcp\"\
-        ,\n                            \"app_protocol\": \"tls\",\n              \
-        \              \"bytes_sent\": 105044347,\n                            \"\
-        first_timestamp\": \"2025-01-02T03:06:58Z\",\n                           \
-        \ \"last_timestamp\": \"2025-01-02T03:07:27Z\"\n                        }\n\
-        \                    },\n                    {\n                        \"\
-        grouping_field\": \"multi_fields\",\n                        \"multi_fields\"\
-        : \"KrCyO4FZ\",\n                        \"id\": 192101,\n               \
-        \         \"subtype\": \"pull\",\n                        \"first_timestamp\"\
-        : \"2025-01-02T02:59:53Z\",\n                        \"last_timestamp\": \"\
-        2025-01-02T03:00:23Z\",\n                        \"couch_note_id\": [\n  \
-        \                          \"KrCyO4FZ\"\n                        ],\n    \
-        \                    \"flex5\": [],\n                        \"app_protocol\"\
-        : null,\n                        \"target_domains\": [],\n               \
-        \         \"bytes_received\": 786614643,\n                        \"bytes_sent\"\
-        : 199119,\n                        \"proxy_ip\": null,\n                 \
-        \       \"sessions\": [\n                            {\n                 \
-        \               \"target_host\": null,\n                                \"\
-        dst_ip\": \"1.1.1.1\",\n                                \"dst_port\": 445,\n\
-        \                                \"protocol\": \"tcp\",\n                \
-        \                \"app_protocol\": \"smb\",\n                            \
-        \    \"bytes_received\": 786614643,\n                                \"first_timestamp\"\
-        : \"2025-01-02T02:59:53Z\",\n                                \"duration\"\
-        : 30\n                            }\n                        ],\n        \
-        \                \"origin_ips\": [\n                            \"1.1.1.1\"\
-        \n                        ],\n                        \"target_summary\":\
-        \ {\n                            \"dst_port\": 443,\n                    \
-        \        \"protocol\": \"tcp\",\n                            \"app_protocol\"\
-        : \"tls\",\n                            \"bytes_sent\": 210088273,\n     \
-        \                       \"first_timestamp\": \"2025-01-02T03:08:01Z\",\n \
-        \                           \"last_timestamp\": \"2025-01-02T03:09:34Z\"\n\
-        \                        }\n                    },\n                    {\n\
-        \                        \"grouping_field\": \"multi_fields\",\n         \
-        \               \"multi_fields\": \"KrCyO4Ds\",\n                        \"\
-        id\": 192097,\n                        \"subtype\": \"pull\",\n          \
-        \              \"first_timestamp\": \"2025-01-02T02:59:53Z\",\n          \
-        \              \"last_timestamp\": \"2025-01-02T03:00:23Z\",\n           \
-        \             \"couch_note_id\": [\n                            \"KrCyO4Ds\"\
-        \n                        ],\n                        \"flex5\": [],\n   \
-        \                     \"app_protocol\": null,\n                        \"\
-        target_domains\": [],\n                        \"bytes_received\": 786614643,\n\
-        \                        \"bytes_sent\": 199119,\n                       \
-        \ \"proxy_ip\": null,\n                        \"sessions\": [\n         \
-        \                   {\n                                \"target_host\": null,\n\
-        \                                \"dst_ip\": \"1.1.1.1\",\n              \
-        \                  \"dst_port\": 445,\n                                \"\
-        protocol\": \"tcp\",\n                                \"app_protocol\": \"\
-        smb\",\n                                \"bytes_received\": 786614643,\n \
-        \                               \"first_timestamp\": \"2025-01-02T02:59:53Z\"\
-        ,\n                                \"duration\": 30\n                    \
-        \        }\n                        ],\n                        \"origin_ips\"\
-        : [\n                            \"1.1.1.1\"\n                        ],\n\
-        \                        \"target_summary\": {\n                         \
-        \   \"dst_port\": 443,\n                            \"protocol\": \"tcp\"\
-        ,\n                            \"app_protocol\": \"tls\",\n              \
-        \              \"bytes_sent\": 105044371,\n                            \"\
-        first_timestamp\": \"2025-01-02T03:05:01Z\",\n                           \
-        \ \"last_timestamp\": \"2025-01-02T03:05:37Z\"\n                        }\n\
-        \                    },\n                    {\n                        \"\
-        grouping_field\": \"multi_fields\",\n                        \"multi_fields\"\
-        : \"KrCyO4Dk\",\n                        \"id\": 192095,\n               \
-        \         \"subtype\": \"pull\",\n                        \"first_timestamp\"\
-        : \"2025-01-02T02:59:53Z\",\n                        \"last_timestamp\": \"\
-        2025-01-02T03:00:23Z\",\n                        \"couch_note_id\": [\n  \
-        \                          \"KrCyO4Dk\"\n                        ],\n    \
-        \                    \"flex5\": [],\n                        \"app_protocol\"\
-        : null,\n                        \"target_domains\": [],\n               \
-        \         \"bytes_received\": 786614643,\n                        \"bytes_sent\"\
-        : 199119,\n                        \"proxy_ip\": null,\n                 \
-        \       \"sessions\": [\n                            {\n                 \
-        \               \"target_host\": null,\n                                \"\
-        dst_ip\": \"1.1.1.1\",\n                                \"dst_port\": 445,\n\
-        \                                \"protocol\": \"tcp\",\n                \
-        \                \"app_protocol\": \"smb\",\n                            \
-        \    \"bytes_received\": 786614643,\n                                \"first_timestamp\"\
-        : \"2025-01-02T02:59:53Z\",\n                                \"duration\"\
-        : 30\n                            }\n                        ],\n        \
-        \                \"origin_ips\": [\n                            \"1.1.1.1\"\
-        \n                        ],\n                        \"target_summary\":\
-        \ {\n                            \"dst_port\": 443,\n                    \
-        \        \"protocol\": \"tcp\",\n                            \"app_protocol\"\
-        : \"tls\",\n                            \"bytes_sent\": 105044371,\n     \
-        \                       \"first_timestamp\": \"2025-01-02T03:02:59Z\",\n \
-        \                           \"last_timestamp\": \"2025-01-02T03:03:26Z\"\n\
-        \                        }\n                    }\n                ],\n  \
-        \              \"multi_fields\": [\n                    \"content.dropboxapi.com\"\
-        ,\n                    \"1.1.1.1\"\n                ],\n                \"\
-        first_timestamp\": \"2025-01-02T03:02:59Z\",\n                \"last_timestamp\"\
-        : \"2025-01-02T03:11:03Z\",\n                \"app_protocol\": null,\n   \
-        \             \"dst_ips\": [\n                    \"1.1.1.1\"\n          \
-        \      ],\n                \"target_domains\": [\n                    \"content.dropboxapi.com\"\
-        \n                ],\n                \"bytes_received\": 6412,\n        \
-        \        \"bytes_sent\": 735310080,\n                \"proxy_ip\": null\n\
-        \            }\n        ],\n        \"summary\": {\n            \"dst_ports\"\
-        : [\n                443\n            ],\n            \"protocols\": [\n \
-        \               \"tcp\"\n            ],\n            \"bytes_sent\": 735310080,\n\
-        \            \"dst_ips\": [\n                \"content.dropboxapi.com\"\n\
-        \            ]\n        },\n        \"campaign_summaries\": [],\n        \"\
-        is_triaged\": true,\n        \"filtered_by_ai\": true,\n        \"filtered_by_user\"\
-        : false,\n        \"filtered_by_rule\": false,\n        \"_doc_modified_ts\"\
-        : \"2025-01-02T08:41:49.317653\",\n        \"detection_url\": \"\",\n    \
-        \    \"url\": \"\"\n    },\n    {\n        \"summary\": {\n            \"\
-        accounts\": [\n                \"\"\n            ],\n            \"function_uuids\"\
-        : [\n                \"wkssvc\",\n                \"srvsvc\"\n           \
-        \ ],\n            \"dst_ips\": [\n                \"1.1.1.1\"\n          \
-        \  ]\n        },\n        \"id\": 7152,\n        \"category\": \"RECONNAISSANCE\"\
-        ,\n        \"detection\": \"RPC Targeted Recon\",\n        \"detection_category\"\
-        : \"RECONNAISSANCE\",\n        \"detection_type\": \"RPC Targeted Recon\"\
-        ,\n        \"custom_detection\": null,\n        \"description\": null,\n \
-        \       \"src_ip\": \"1.1.1.1\",\n        \"state\": \"active\",\n       \
-        \ \"certainty\": 33,\n        \"threat\": 54,\n        \"created_timestamp\"\
-        : \"2025-01-02T01:42:04Z\",\n        \"first_timestamp\": \"2025-01-02T01:30:26Z\"\
-        ,\n        \"last_timestamp\": \"2025-01-02T03:13:19Z\",\n        \"targets_key_asset\"\
-        : false,\n        \"is_targeting_key_asset\": false,\n        \"src_account\"\
-        : null,\n        \"src_host\": {\n            \"id\": 40613,\n           \
-        \ \"ip\": \"1.1.1.1\",\n            \"name\": \"IP-1.1.1.1\",\n          \
-        \  \"is_key_asset\": false,\n            \"groups\": [],\n            \"threat\"\
-        : 30,\n            \"certainty\": 90\n        },\n        \"note\": null,\n\
-        \        \"note_modified_by\": null,\n        \"note_modified_timestamp\"\
-        : null,\n        \"sensor\": \"whx12u9g\",\n        \"sensor_name\": \"FGU-lab-vcenter\"\
-        ,\n        \"tags\": [],\n        \"triage_rule_id\": null,\n        \"assigned_to\"\
-        : null,\n        \"assigned_date\": null,\n        \"groups\": [],\n     \
-        \   \"is_marked_custom\": false,\n        \"is_custom_model\": false,\n  \
-        \      \"src_linked_account\": null,\n        \"grouped_details\": [\n   \
-        \         {\n                \"dst_profiles\": [],\n                \"src_profiles\"\
-        : [],\n                \"anomalous_profiles\": [\n                    {\n\
-        \                        \"account\": \"\",\n                        \"function_call\"\
-        : \"NetrWkstaGetInfo\",\n                        \"function_uuid\": \"wkssvc\"\
-        ,\n                        \"count\": 2,\n                        \"first_timestamp\"\
-        : \"2025-01-02T01:30:26.897Z\",\n                        \"last_timestamp\"\
-        : \"2025-01-02T03:13:19.275Z\"\n                    },\n                 \
-        \   {\n                        \"account\": \"\",\n                      \
-        \  \"function_call\": \"NetrServerGetInfo\",\n                        \"function_uuid\"\
-        : \"srvsvc\",\n                        \"count\": 2,\n                   \
-        \     \"first_timestamp\": \"2025-01-02T01:30:26.897Z\",\n               \
-        \         \"last_timestamp\": \"2025-01-02T03:13:19.275Z\"\n             \
-        \       },\n                    {\n                        \"account\": \"\
-        \",\n                        \"function_call\": \"NetrShareEnum\",\n     \
-        \                   \"function_uuid\": \"srvsvc\",\n                     \
-        \   \"count\": 4,\n                        \"first_timestamp\": \"2025-01-02T01:30:26.897Z\"\
-        ,\n                        \"last_timestamp\": \"2025-01-02T03:13:19.275Z\"\
-        \n                    }\n                ],\n                \"first_timestamp\"\
-        : \"2025-01-02T01:30:26Z\",\n                \"last_timestamp\": \"2025-01-02T03:13:19Z\"\
-        ,\n                \"dst_hosts\": [\n                    {\n             \
-        \           \"id\": 40611,\n                        \"name\": \"IP-1.1.1.1\"\
-        ,\n                        \"ip\": \"1.1.1.1\"\n                    }\n  \
-        \              ],\n                \"dst_ips\": [\n                    \"\
-        1.1.1.1\"\n                ]\n            }\n        ],\n        \"campaign_summaries\"\
-        : [],\n        \"is_triaged\": false,\n        \"filtered_by_ai\": false,\n\
-        \        \"filtered_by_user\": false,\n        \"filtered_by_rule\": false,\n\
-        \        \"_doc_modified_ts\": \"2025-01-02T08:41:49.317887\",\n        \"\
-        detection_url\": \"\",\n        \"url\": \"\"\n    }\n]"
+- result_name: JsonResult
+  show_result: true
+  result_example_path: resources/List Entity Detections_JsonResult_example.json
 default_result_value: ''
 creator: Admin
 script_result_name: ScriptResult

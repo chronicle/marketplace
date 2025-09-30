@@ -2,104 +2,42 @@ name: Get Webhook Response
 description: 'Fetch data of requests for the URL: {Base URL}/{Token ID}'
 integration_identifier: Webhook
 parameters:
-    -   name: Pending Condition
-        default_value: TimeFrame
-        type: ddl
-        optional_values:
-            - AwaitClick
-            - TimeFrame
-        description: 'TimeFrame - Choose the custom timeout condition.
+- name: Pending Condition
+  default_value: TimeFrame
+  type: ddl
+  optional_values:
+  - AwaitClick
+  - TimeFrame
+  description: 'TimeFrame - Choose the custom timeout condition.
 
-        AwaitClick - Wait for first click before ending script.'
-        is_mandatory: true
-    -   name: TimeFrame
-        default_value: '5'
-        type: string
-        description: 'Minutes to wait for requests for URL (by token ID), before ending
-        the action.
+    AwaitClick - Wait for first click before ending script.'
+  is_mandatory: true
+- name: TimeFrame
+  default_value: '5'
+  type: string
+  description: 'Minutes to wait for requests for URL (by token ID), before ending
+    the action.
 
-        Relevant only if "Timeout" is chosen as parameter.'
-        is_mandatory: true
-    -   name: Responses To Retrieve
-        default_value: All
-        type: ddl
-        optional_values:
-            - Latest
-            - All
-        description: Choose All to retrieve all responses data, or Latest to retrieve
-            only the latest responses data.
-        is_mandatory: true
-    -   name: Token ID
-        default_value: '111'
-        type: string
-        description: The ID of the token to read requests for
-        is_mandatory: true
+    Relevant only if "Timeout" is chosen as parameter.'
+  is_mandatory: true
+- name: Responses To Retrieve
+  default_value: All
+  type: ddl
+  optional_values:
+  - Latest
+  - All
+  description: Choose All to retrieve all responses data, or Latest to retrieve 
+    only the latest responses data.
+  is_mandatory: true
+- name: Token ID
+  default_value: '111'
+  type: string
+  description: The ID of the token to read requests for
+  is_mandatory: true
 dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: "{\n  \"requests_type\": \"all\",\n  \"data\": [\n    {\n    \
-        \  \"uuid\": \"6ddee14c-24fb-4d0b-9935-4f98ba6e1154\",\n      \"type\": \"\
-        web\",\n      \"token_id\": \"9ed2d078-a4c5-43e1-b4df-a13216b28880\",\n  \
-        \    \"ip\": \"2a00:a040:18b:a750:7d6f:cb5e:7429:9954\",\n      \"hostname\"\
-        : \"webhook.site\",\n      \"method\": \"GET\",\n      \"user_agent\": \"\
-        Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like\
-        \ Gecko) Chrome/92.0.4515.159 Safari/537.36\",\n      \"content\": \"\",\n\
-        \      \"query\": {\n        \"Answer\": \"No\"\n      },\n      \"headers\"\
-        : {\n        \"connection\": [\n          \"close\"\n        ],\n        \"\
-        cookie\": [\n          \"_ga=GA1.2.649972760.1629009059; laravel_session=ZPOdEUcNuJVptxdDI0TD4KeLTh9NYsbeuBzKyaS2;\
-        \ _gid=GA1.2.1103043972.1630219432; io=Wd4KThVKkUKhiW0eEExZ; _gat=1; XSRF-TOKEN=eyJpdiI6ImRuOXZoM1BCTjdPd0tHT3NPTGVZZXc9PSIsInZhbHVlIjoiSThSQ1wvUlFaWUlRdjJMcEVqRDBMUGZQYlprNjZ1TSsrcDVkMVNKSlwvV0ZVYTZybFhHS0ZDN0lTclI2MEI0WDg5IiwibWFjIjoiMzNlOTdhZjJmYTE3NjU4MGUxZjA3YjM4YzQzMjFkOGMwY2JiN2E4NTNjZTM1OGNiNTcyOGU0YTI5NzU1YmZhYSJ9\"\
-        \n        ],\n        \"accept-language\": [\n          \"en-US,en;q=0.9\"\
-        \n        ],\n        \"accept-encoding\": [\n          \"gzip, deflate, br\"\
-        \n        ],\n        \"referer\": [\n          \"https://webhook.site/\"\n\
-        \        ],\n        \"sec-fetch-dest\": [\n          \"document\"\n     \
-        \   ],\n        \"sec-fetch-user\": [\n          \"?1\"\n        ],\n    \
-        \    \"sec-fetch-mode\": [\n          \"navigate\"\n        ],\n        \"\
-        sec-fetch-site\": [\n          \"same-origin\"\n        ],\n        \"accept\"\
-        : [\n          \"text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9\"\
-        \n        ],\n        \"user-agent\": [\n          \"Mozilla/5.0 (Windows\
-        \ NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.159\
-        \ Safari/537.36\"\n        ],\n        \"upgrade-insecure-requests\": [\n\
-        \          \"1\"\n        ],\n        \"sec-ch-ua-mobile\": [\n          \"\
-        ?0\"\n        ],\n        \"sec-ch-ua\": [\n          \"'Chromium';v = '92',\
-        \ ' Not A;Brand';v = '99', 'Google Chrome';v = '92'\"\n        ],\n      \
-        \  \"host\": [\n          \"webhook.site\"\n        ],\n        \"content-length\"\
-        : [\n          \"\"\n        ],\n        \"content-type\": [\n          \"\
-        \"\n        ]\n      },\n      \"url\": \"https://webhook.site/9ed2d078-a4c5-43e1-b4df-a13216b28880\"\
-        ,\n      \"size\": 0,\n      \"files\": [],\n      \"created_at\": \"2021-08-29\
-        \ 08:18:56\",\n      \"updated_at\": \"2021-08-29 08:18:56\",\n      \"sorting\"\
-        : 1630225136454993,\n      \"custom_action_output\": []\n    },\n    {\n \
-        \     \"uuid\": \"47ecad4d-2aaf-48c4-a034-440599dde882\",\n      \"type\"\
-        : \"web\",\n      \"token_id\": \"9ed2d078-a4c5-43e1-b4df-a13216b28880\",\n\
-        \      \"ip\": \"2a00:a040:18b:a750:7d6f:cb5e:7429:9954\",\n      \"hostname\"\
-        : \"webhook.site\",\n      \"method\": \"GET\",\n      \"user_agent\": \"\
-        Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like\
-        \ Gecko) Chrome/92.0.4515.159 Safari/537.36\",\n      \"content\": \"\",\n\
-        \      \"query\": {\n        \"Answer\": \"Yes\"\n      },\n      \"headers\"\
-        : {\n        \"connection\": [\n          \"close\"\n        ],\n        \"\
-        cookie\": [\n          \"_ga=GA1.2.649972760.1629009059; laravel_session=ZPOdEUcNuJVptxdDI0TD4KeLTh9NYsbeuBzKyaS2;\
-        \ _gid=GA1.2.1103043972.1630219432; io=Wd4KThVKkUKhiW0eEExZ; _gat=1; XSRF-TOKEN=eyJpdiI6ImRuOXZoM1BCTjdPd0tHT3NPTGVZZXc9PSIsInZhbHVlIjoiSThSQ1wvUlFaWUlRdjJMcEVqRDBMUGZQYlprNjZ1TSsrcDVkMVNKSlwvV0ZVYTZybFhHS0ZDN0lTclI2MEI0WDg5IiwibWFjIjoiMzNlOTdhZjJmYTE3NjU4MGUxZjA3YjM4YzQzMjFkOGMwY2JiN2E4NTNjZTM1OGNiNTcyOGU0YTI5NzU1YmZhYSJ9\"\
-        \n        ],\n        \"accept-language\": [\n          \"en-US,en;q=0.9\"\
-        \n        ],\n        \"accept-encoding\": [\n          \"gzip, deflate, br\"\
-        \n        ],\n        \"sec-fetch-dest\": [\n          \"document\"\n    \
-        \    ],\n        \"sec-fetch-user\": [\n          \"?1\"\n        ],\n   \
-        \     \"sec-fetch-mode\": [\n          \"navigate\"\n        ],\n        \"\
-        sec-fetch-site\": [\n          \"none\"\n        ],\n        \"accept\": [\n\
-        \          \"text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9\"\
-        \n        ],\n        \"user-agent\": [\n          \"Mozilla/5.0 (Windows\
-        \ NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.159\
-        \ Safari/537.36\"\n        ],\n        \"upgrade-insecure-requests\": [\n\
-        \          \"1\"\n        ],\n        \"sec-ch-ua-mobile\": [\n          \"\
-        ?0\"\n        ],\n        \"sec-ch-ua\": [\n          \"'Chromium': = '92',\
-        \ ' Not A;Brand': = '99', 'Google Chrome': = '92'\"\n        ],\n        \"\
-        host\": [\n          \"webhook.site\"\n        ],\n        \"content-length\"\
-        : [\n          \"\"\n        ],\n        \"content-type\": [\n          \"\
-        \"\n        ]\n      },\n      \"url\": \"https://webhook.site/9ed2d078-a4c5-43e1-b4df-a13216b28880?name=Shir.Savion\"\
-        ,\n      \"size\": 0,\n      \"files\": [],\n      \"created_at\": \"2021-08-29\
-        \ 08:19:05\",\n      \"updated_at\": \"2021-08-29 08:19:05\",\n      \"sorting\"\
-        : 1630225145943913,\n      \"custom_action_output\": []\n    }\n  ],\n  \"\
-        total\": 2,\n  \"per_page\": 50,\n  \"current_page\": 1,\n  \"is_last_page\"\
-        : true,\n  \"from\": 1,\n  \"to\": 2\n}"
+- result_name: JsonResult
+  show_result: true
+  result_example_path: resources/GetWebhookResponse_JsonResult_example.json
 default_result_value: ''
 creator: community
 is_async: true

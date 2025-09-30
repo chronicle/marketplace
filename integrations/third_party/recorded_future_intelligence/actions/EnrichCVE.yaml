@@ -2,128 +2,27 @@ name: Enrich CVE
 description: Query Recorded Future to get intelligence about the CVE.
 integration_identifier: RecordedFutureIntelligence
 parameters:
-    -   name: Risk Score Threshold
-        default_value: '25'
-        type: string
-        description: "Represents the minimum malicious risk score for a CVE to be marked\
-        \ malicious. Has a range of 0-99. Has the following levels: \n Very Critical:\
-        \ 90-99 \n Critical: 80-89 \n High: 65-79 \n Medium: 25-64 \n Low: 5-24 \n\
-        \ None: 0"
-        is_mandatory: true
-    -   name: Include Links
-        default_value: 'false'
-        type: boolean
-        description: If enabled, action will get information about links.
-        is_mandatory: false
-    -   name: Enable Collective Insights
-        default_value: 'true'
-        type: boolean
-        description: If enabled, contribute detections back to Recorded Future.
-        is_mandatory: false
+- name: Risk Score Threshold
+  default_value: '25'
+  type: string
+  description: "Represents the minimum malicious risk score for a CVE to be marked
+    malicious. Has a range of 0-99. Has the following levels: \n Very Critical: 90-99\
+    \ \n Critical: 80-89 \n High: 65-79 \n Medium: 25-64 \n Low: 5-24 \n None: 0"
+  is_mandatory: true
+- name: Include Links
+  default_value: 'false'
+  type: boolean
+  description: If enabled, action will get information about links.
+  is_mandatory: false
+- name: Enable Collective Insights
+  default_value: 'true'
+  type: boolean
+  description: If enabled, contribute detections back to Recorded Future.
+  is_mandatory: false
 dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: '[{"Entity": "CVE-2014-0160", "EntityResult": [{"entity": {"id":
-        "K5GW38", "name": "CVE-2014-0160", "type": "CyberVulnerability", "description":
-        "The (1) TLS and (2) DTLS implementations in OpenSSL 1.0.1 before 1.0.1g do
-        not properly handle Heartbeat Extension packets, which allows remote attackers
-        to obtain sensitive information from process memory via crafted packets that
-        trigger a buffer over-read, as demonstrated by reading private keys, related
-        to d1_both.c and t1_lib.c, aka the Heartbleed bug."}, "intelCard": "https://app.recordedfuture.com/live/sc/entity/K5GW38",
-        "risk": {"criticalityLabel": "High", "riskString": "13/23", "rules": 13, "criticality":
-        3, "riskSummary": "13 of 23 Risk Rules currently observed.", "score": 79,
-        "evidenceDetails": [{"mitigationString": "", "evidenceString": "38 sightings
-        on 19 sources including: eurosecglobal.de, infura-ipfs.io, AlienVault | Indicators,
-        DOCPlayer, MyNavi News. 10 related malware families including AsyncRAT, PittyTiger,
-        njRAT, Orcus RAT, Revenge RAT. Most recent link (Mar 17, 2024): https://otx.alienvault.com/indicator/ip/1.1.1.1",
-        "rule": "Historically Linked to Remote Access Trojan", "criticality": 1, "timestamp":
-        "2024-03-17T02:50:54.334Z", "criticalityLabel": "Low"}, {"mitigationString":
-        "", "evidenceString": "161 sightings on 93 sources including: BitCity, weebly.com,
-        Slashdot, TMCnet | IT Security News, Image OCR. 16 related malware families
-        including Ryuk Ransomware, Simplelocker, GandCrab, Life Ransomware, Cryptolocker.
-        Most recent tweet: Module 13: Case Studies Target: Equifax Breach Target:
-        Stuxnet Attack Target: Sony Pictures Hack Target: Ashley Madison Data Breach
-        Target: NotPetya Target: WannaCry Ransomware Target: TJX Hack Target: Heartbleed
-        Vulnerability Target: OPM Data Breach Target: DNC Hack. Most recent link (Feb
-        23, 2024): https://twitter.com/cybercitad31/statuses/1760898086849630391",
-        "rule": "Historically Linked to Ransomware", "criticality": 1, "timestamp":
-        "2024-02-23T05:23:14.000Z", "criticalityLabel": "Low"}, {"mitigationString":
-        "", "evidenceString": "1256 sightings on 485 sources including: PasteBin,
-        Reddit InfoSec Comments, FreeBufCOM, F5 Labs All, venafi.com. Most recent
-        tweet: Exploit Shellshock vulnerability CVE 2014-6271 using Metasploit #bash
-        #DHCP #heartbleed #metasploit #openssh #qmail #shellshock https://t.co/IPRcyXU7pm.
-        Most recent link (Jul 11, 2024): https://twitter.com/neoslabsec/statuses/1811473637981192578",
-        "rule": "Linked to Historical Cyber Exploit", "criticality": 1, "timestamp":
-        "2024-07-11T18:52:25.000Z", "criticalityLabel": "Low"}, {"mitigationString":
-        "", "evidenceString": "1388 sightings on 309 sources including: PasteBin,
-        Reddit InfoSec Comments, FreeBufCOM, XSS (ex DamageLab) Forum, GlobeNewswire
-        | UNITED STATES. 138 related malware families including Blood, Loader, denial
-        of service, CryptoGraphic, ICS Malware. Most recent tweet: Exploit Shellshock
-        vulnerability CVE 2014-6271 using Metasploit #bash #DHCP #heartbleed #metasploit
-        #openssh #qmail #shellshock https://t.co/IPRcyXU7pm. Most recent link (Jul
-        11, 2024): https://twitter.com/neoslabsec/statuses/1811473637981192578", "rule":
-        "Historically Linked to Malware", "criticality": 1, "timestamp": "2024-07-11T18:52:25.000Z",
-        "criticalityLabel": "Low"}, {"mitigationString": "", "evidenceString": "344
-        sightings on 71 sources including: PasteBin, Reddit InfoSec Comments, Telegram
-        - Other Channels, CSOonline.com | Security News, tuxcare.com. Most recent
-        tweet: @mualafjelita @mx00711 @AryBandung seingetnya ya, winnt unicode remote
-        exec scanner, nmap sudah pasti, bbrp tools buat nuke, openssl heartbleed bug
-        (bikin ssh vulnerable), phishing tools, kalo nama2nya ya lupa, suka war pake
-        IRC bots, koleksi zombie servers, bbrp bikin sendiri krn awal2nya suka programming.
-        Most recent link (Sep 16, 2022): https://twitter.com/gggbxng/statuses/1570838542515052544",
-        "rule": "Historically Linked to Penetration Testing Tools", "criticality":
-        1, "timestamp": "2022-09-16T18:14:27.000Z", "criticalityLabel": "Low"}, {"mitigationString":
-        "", "evidenceString": "2 sightings on 2 sources: Embedded Computing Design
-        | Latest Updates, @vladris. Most recent tweet: CrowdStrike does sound like
-        a named zero-day, eg. HeartBleed Most recent link (Jul 20, 2024): https://twitter.com/vladris/statuses/1814485317899923823",
-        "rule": "Linked to Recent Cyber Exploit", "criticality": 1, "timestamp": "2024-07-20T02:19:45.000Z",
-        "criticalityLabel": "Low"}, {"mitigationString": "", "evidenceString": "2
-        sightings on 1 source: Insikt Group. 2 reports including Anony0wor is soliciting
-        forum members for the Onliner Spambot database dump. Most recent link (Sep
-        01, 2017): https://app.recordedfuture.com/portal/analyst-note/doc:VaN5BG",
-        "rule": "Historically Reported by Insikt Group", "criticality": 1, "timestamp":
-        "2017-09-01T00:00:00.000Z", "criticalityLabel": "Low"}, {"mitigationString":
-        "", "evidenceString": "8 sightings on 1 source: Insikt Group. 8 reports including
-        Recorded Future CVE Monthly | October 2022. Most recent link (Nov 08, 2022):
-        https://app.recordedfuture.com/portal/analyst-note/doc:otlc2P", "rule": "Historically
-        Referenced by Insikt Group", "criticality": 1, "timestamp": "2022-11-08T00:00:00.000Z",
-        "criticalityLabel": "Low"}, {"mitigationString": "", "evidenceString": "3
-        sightings on 2 sources: Telegram - Other Channels, @TaylorGerring. 6 related
-        malware families including DDOS Toolkit, WebShell, Offensive Security Tools
-        (OST), Metasploit Framework, Backdoor Shell. Most recent tweet: News of CrowdStrike
-        makes me feel thankful to have exited IT While at Ethereum in April 2014,
-        HeartBleed was disclosed during a flight from Zurich to Toronto Around the
-        same time, I began leading security initiatives for the crowdsale and planned
-        for DDoS mitigation https://t.co/SEFDiypoKU. Most recent link (Jul 19, 2024):
-        https://twitter.com/TaylorGerring/statuses/1814275982536159557", "rule": "Recently
-        Linked to Malware", "criticality": 2, "timestamp": "2024-07-19T12:27:56.000Z",
-        "criticalityLabel": "Medium"}, {"mitigationString": "", "evidenceString":
-        "3 sightings on 2 sources: Telegram - Other Channels, GitHub. Most recent
-        link (Jul 25, 2024): https://github.com/Abkhalid17/inter-peak_CS-EH_03/commit/0d62f1af6f1fd6770240ac3e1dc4938739241285",
-        "rule": "Recently Linked to Penetration Testing Tools", "criticality": 2,
-        "timestamp": "2024-07-25T08:20:41.344Z", "criticalityLabel": "Medium"}, {"mitigationString":
-        "", "evidenceString": "4 sightings on 1 source: ExploitDB. 1 execution type:
-        Remote. Most recent link (Apr 24, 2014): https://www.exploit-db.com/exploits/32998",
-        "rule": "Historical Verified Proof of Concept Available Using Remote Execution",
-        "criticality": 2, "timestamp": "2014-04-24T00:00:00.000Z", "criticalityLabel":
-        "Medium"}, {"mitigationString": "", "evidenceString": "1 sighting on 1 source:
-        Recorded Future Vulnerability Analysis via National Vulnerability Database.
-        CVSS v3.1 Score (6.7) calculated using NIST reported CVSS Base Score (7.5)
-        and Recorded Future Temporal Metrics. Base vector string: CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N.
-        Temporal vector string: E:F/RL:X/RC:U. Most recent link (Jul 2, 2024): https://web.nvd.nist.gov/view/vuln/detail?vulnId=CVE-2014-0160",
-        "rule": "NIST Severity: Medium", "criticality": 2, "timestamp": "2024-07-02T17:50:53.614Z",
-        "criticalityLabel": "Medium"}, {"mitigationString": "", "evidenceString":
-        "1 sighting on 1 source: Recorded Future Vulnerability Analysis. 1 all-time
-        daily sighting. Last observed on Jul 2, 2023. Sample hash: 54ec999997684bcc48b86b172316f698adcad178255118ea2eb3d9f3f434f676.",
-        "rule": "Historically Exploited in the Wild by Malware", "criticality": 3,
-        "timestamp": "2023-07-02T00:00:00.000Z", "criticalityLabel": "High"}]}, "timestamps":
-        {"lastSeen": "2024-07-25T18:30:11.752Z", "firstSeen": "2014-04-07T22:55:03.893Z"},
-        "links": {"Actors, Tools & TTPs": [{"id": "oPC3f7", "name": "APT24", "type":
-        "Organization"}, {"id": "T_2DVa", "name": "anony0wor", "type": "Person"},
-        {"id": "Omzj-U", "name": "Credential Dumping", "type": "AttackVector"}, {"id":
-        "LShz7z", "name": "MM RAT", "type": "Malware"}, {"id": "Sn0YNg", "name": "Onliner",
-        "type": "Malware"}, {"id": "LShz7p", "name": "Paladin RAT", "type": "Malware"}]}}]}]'
+- result_name: JsonResult
+  show_result: true
+  result_example_path: resources/EnrichCVE_JsonResult_example.json
 creator: admin
 simulation_data_json: '{"Entities": ["CVE"]}'
 script_result_name: is_risky

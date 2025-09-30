@@ -2,31 +2,15 @@ name: Upload Image From Base64
 description: Upload base64 to Imgbb ( the outcome is the image URL)
 integration_identifier: Imgbb
 parameters:
-    -   name: Image in base64
-        default_value: ' '
-        type: string
-        description: The base64 of the image you would like to upload to Imgbb
-        is_mandatory: true
+- name: Image in base64
+  default_value: ' '
+  type: string
+  description: The base64 of the image you would like to upload to Imgbb
+  is_mandatory: true
 dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: "{\r\n\t\"data\": {\r\n\t\t\"id\": \"Ln3jtww\",\r\n\t\t\"title\"\
-        : \"80e65c37e8d2\",\r\n\t\t\"url_viewer\": \"https://ibb.co/Ln3tww\",\r\n\t\
-        \t\"url\": \"https://i.ibb.co/2qMWcc/80e65c37e8d2.png\",\r\n\t\t\"display_url\"\
-        : \"https://i.ibb.co/MMmwTT/80e6c37e8d2.png\",\r\n\t\t\"size\": 52056,\r\n\
-        \t\t\"time\": \"1600338508\",\r\n\t\t\"expiration\": \"600\",\r\n\t\t\"image\"\
-        : {\r\n\t\t\t\"filename\": \"80e65ce8d2.png\",\r\n\t\t\t\"name\": \"80e65c37e8d2\"\
-        ,\r\n\t\t\t\"mime\": \"image/png\",\r\n\t\t\t\"extension\": \"png\",\r\n\t\
-        \t\t\"url\": \"https://i.ibb.co/72qWcc/80e657e8d2.png\"\r\n\t\t},\r\n\t\t\"\
-        thumb\": {\r\n\t\t\t\"filename\": \"80e65c37e8d2.png\",\r\n\t\t\t\"name\"\
-        : \"80e65c37e8d2\",\r\n\t\t\t\"mime\": \"image/png\",\r\n\t\t\t\"extension\"\
-        : \"png\",\r\n\t\t\t\"url\": \"https://i.ib.co/Ln3jtww/80ec37ed2.png\"\r\n\
-        \t\t},\r\n\t\t\"medium\": {\r\n\t\t\t\"filename\": \"80e637e8d2.png\",\r\n\
-        \t\t\t\"name\": \"80e65c38d2\",\r\n\t\t\t\"mime\": \"image/png\",\r\n\t\t\t\
-        \"extension\": \"png\",\r\n\t\t\t\"url\": \"https://i.ibb.co/MMwVTT/80ec37e8d2.png\"\
-        \r\n\t\t},\r\n\t\t\"delete_url\": \"https://ibb.co/Ln3jw/ef3fed8a0e9b987a04a25e86ef8bd9\"\
-        \r\n\t},\r\n\t\"success\": true,\r\n\t\"status\": 200\r\n}"
+- result_name: JsonResult
+  show_result: true
+  result_example_path: resources/UploadImageFromBase64_JsonResult_example.json
 default_result_value: ''
 creator: TehilaGourary
 script_result_name: ScriptResult

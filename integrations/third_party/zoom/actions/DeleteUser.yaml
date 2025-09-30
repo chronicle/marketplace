@@ -2,42 +2,41 @@ name: Delete User
 description: Deleting a user permanently from Zoom
 integration_identifier: Zoom
 parameters:
-    -   name: Transfer Meeting
-        default_value: 'false'
-        type: boolean
-        description: Will transfer all the future meetings scheduled for the user you
-            are deleting to a selected user.
-        is_mandatory: false
-    -   name: Deleted User Email
-        default_value: email@gmail.com
-        type: string
-        description: 'The email address of the user you would like to permanently delete
+- name: Transfer Meeting
+  default_value: 'false'
+  type: boolean
+  description: Will transfer all the future meetings scheduled for the user you 
+    are deleting to a selected user.
+  is_mandatory: false
+- name: Deleted User Email
+  default_value: email@gmail.com
+  type: string
+  description: 'The email address of the user you would like to permanently delete
 
-        '
-        is_mandatory: true
-    -   name: Transfer Recordings
-        default_value: 'false'
-        type: boolean
-        description: Will transfer all the past recordings associated with the user you
-            are deleting to a chosen user.
-        is_mandatory: false
-    -   name: Transfer Webinar
-        default_value: 'false'
-        type: boolean
-        description: Will transfer all the future webinars scheduled for the user you
-            are deleting to a selected user.
-        is_mandatory: false
-    -   name: Transfer Email
-        default_value: email@gmail.com
-        type: string
-        description: The user's email to which all the associated data of the deleted
-            user is transferred
-        is_mandatory: false
+    '
+  is_mandatory: true
+- name: Transfer Recordings
+  default_value: 'false'
+  type: boolean
+  description: Will transfer all the past recordings associated with the user 
+    you are deleting to a chosen user.
+  is_mandatory: false
+- name: Transfer Webinar
+  default_value: 'false'
+  type: boolean
+  description: Will transfer all the future webinars scheduled for the user you 
+    are deleting to a selected user.
+  is_mandatory: false
+- name: Transfer Email
+  default_value: email@gmail.com
+  type: string
+  description: The user's email to which all the associated data of the deleted 
+    user is transferred
+  is_mandatory: false
 dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: '{}'
+- result_name: JsonResult
+  show_result: true
+  result_example_path:
 default_result_value: ''
 creator: TehilaGourary
 script_result_name: ScriptResult

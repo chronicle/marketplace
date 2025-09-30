@@ -2,158 +2,113 @@ name: List Entities
 description: List all the entities based on the query parameters.
 integration_identifier: VectraRUX
 parameters:
-    -   name: Entity Type
-        default_value: ''
-        type: ddl
-        optional_values:
-            - Host
-            - Account
-        description: 'Request entities of a specific type, valid values: “account”, “host”.
+- name: Entity Type
+  default_value: ''
+  type: ddl
+  optional_values:
+  - Host
+  - Account
+  description: 'Request entities of a specific type, valid values: “account”, “host”.
 
 
-        '
-        is_mandatory: true
-    -   name: Order By
-        default_value: ''
-        type: ddl
-        optional_values:
-            - urgency_score
-            - last_detection_timestamp
-            - name
-            - last_modified_timestamp
-        description: Sorts records by fields like last_timestamp, threat_score, and certainty_score.
-            Use “-” for descending order.
-        is_mandatory: false
-    -   name: Fields
-        default_value: ''
-        type: multi_choice_parameter
-        optional_values:
-            - id
-            - name
-            - breadth_contrib
-            - importance
-            - type
-            - is_prioritized
-            - severity
-            - urgency_score
-            - velocity_contrib
-            - detection_set
-            - last_detection_timestamp
-            - last_modified_timestamp
-            - notes
-            - attack_rating
-            - privilege_level
-            - privilege_category
-            - attack_profile
-            - sensors
-            - state
-            - tags
-            - url
-            - host_type
-            - account_type
-            - ip
-            - entity_type
-        description: filter the fields wanted to show
-        is_mandatory: false
-    -   name: Name
-        type: string
-        description: filter based on entity Name
-        is_mandatory: false
-    -   name: State
-        default_value: ''
-        type: ddl
-        optional_values:
-            - Active
-            - Inactive
-        description: filter based on State
-        is_mandatory: false
-    -   name: Last Detection Timestamp GTE
-        type: string
-        description: filter based on Last Detection Timestamp GTE
-        is_mandatory: false
-    -   name: Last Detection Timestamp LTE
-        type: string
-        description: filter based on Last Detection Timestamp LTE
-        is_mandatory: false
-    -   name: Tags
-        type: string
-        description: filter based on Tags(pass comma separated values)
-        is_mandatory: false
-    -   name: Note Modified Timestamp GTE
-        type: string
-        description: filter based on Note Modified Timestamp GTE
-        is_mandatory: false
-    -   name: Prioritized
-        default_value: ''
-        type: ddl
-        optional_values:
-            - "True"
-            - "False"
-        description: filter based on if the entity is prioritized or not
-        is_mandatory: false
-    -   name: Limit
-        type: string
-        description: 'Fetch this number of Entities
+    '
+  is_mandatory: true
+- name: Order By
+  default_value: ''
+  type: ddl
+  optional_values:
+  - urgency_score
+  - last_detection_timestamp
+  - name
+  - last_modified_timestamp
+  description: Sorts records by fields like last_timestamp, threat_score, and 
+    certainty_score. Use “-” for descending order.
+  is_mandatory: false
+- name: Fields
+  default_value: ''
+  type: multi_choice_parameter
+  optional_values:
+  - id
+  - name
+  - breadth_contrib
+  - importance
+  - type
+  - is_prioritized
+  - severity
+  - urgency_score
+  - velocity_contrib
+  - detection_set
+  - last_detection_timestamp
+  - last_modified_timestamp
+  - notes
+  - attack_rating
+  - privilege_level
+  - privilege_category
+  - attack_profile
+  - sensors
+  - state
+  - tags
+  - url
+  - host_type
+  - account_type
+  - ip
+  - entity_type
+  description: filter the fields wanted to show
+  is_mandatory: false
+- name: Name
+  type: string
+  description: filter based on entity Name
+  is_mandatory: false
+- name: State
+  default_value: ''
+  type: ddl
+  optional_values:
+  - Active
+  - Inactive
+  description: filter based on State
+  is_mandatory: false
+- name: Last Detection Timestamp GTE
+  type: string
+  description: filter based on Last Detection Timestamp GTE
+  is_mandatory: false
+- name: Last Detection Timestamp LTE
+  type: string
+  description: filter based on Last Detection Timestamp LTE
+  is_mandatory: false
+- name: Tags
+  type: string
+  description: filter based on Tags(pass comma separated values)
+  is_mandatory: false
+- name: Note Modified Timestamp GTE
+  type: string
+  description: filter based on Note Modified Timestamp GTE
+  is_mandatory: false
+- name: Prioritized
+  default_value: ''
+  type: ddl
+  optional_values:
+  - "True"
+  - "False"
+  description: filter based on if the entity is prioritized or not
+  is_mandatory: false
+- name: Limit
+  type: string
+  description: 'Fetch this number of Entities
 
-        '
-        is_mandatory: false
-    -   name: Order
-        default_value: ''
-        type: ddl
-        optional_values:
-            - Ascending
-            - Descending
-        description: filter based on ascending or descending
-        is_mandatory: false
+    '
+  is_mandatory: false
+- name: Order
+  default_value: ''
+  type: ddl
+  optional_values:
+  - Ascending
+  - Descending
+  description: filter based on ascending or descending
+  is_mandatory: false
 dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: "[\n    {\n        \"id\": 64512,\n        \"name\": \"deltics-2\"\
-        ,\n        \"breadth_contrib\": 0,\n        \"importance\": 1,\n        \"\
-        type\": \"host\",\n        \"is_prioritized\": false,\n        \"severity\"\
-        : \"Low\",\n        \"urgency_score\": 0,\n        \"velocity_contrib\": 0,\n\
-        \        \"detection_set\": [\n            \"https://308714519558.cc1.portal.vectra.ai/detections/33009\"\
-        ,\n            \"https://308714519558.cc1.portal.vectra.ai/detections/33010\"\
-        ,\n            \"https://308714519558.cc1.portal.vectra.ai/detections/33011\"\
-        ,\n            \"https://308714519558.cc1.portal.vectra.ai/detections/33012\"\
-        ,\n            \"https://308714519558.cc1.portal.vectra.ai/detections/33013\"\
-        ,\n            \"https://308714519558.cc1.portal.vectra.ai/detections/33014\"\
-        ,\n            \"https://308714519558.cc1.portal.vectra.ai/detections/33015\"\
-        ,\n            \"https://308714519558.cc1.portal.vectra.ai/detections/33016\"\
-        ,\n            \"https://308714519558.cc1.portal.vectra.ai/detections/33198\"\
-        ,\n            \"https://308714519558.cc1.portal.vectra.ai/detections/33199\"\
-        ,\n            \"https://308714519558.cc1.portal.vectra.ai/detections/33200\"\
-        ,\n            \"https://308714519558.cc1.portal.vectra.ai/detections/33201\"\
-        ,\n            \"https://308714519558.cc1.portal.vectra.ai/detections/33202\"\
-        ,\n            \"https://308714519558.cc1.portal.vectra.ai/detections/33203\"\
-        ,\n            \"https://308714519558.cc1.portal.vectra.ai/detections/33204\"\
-        ,\n            \"https://308714519558.cc1.portal.vectra.ai/detections/33205\"\
-        \n        ],\n        \"last_detection_timestamp\": \"2024-11-13T18:19:57Z\"\
-        ,\n        \"last_modified_timestamp\": \"2024-11-28T07:50:34Z\",\n      \
-        \  \"notes\": [\n            {\n                \"id\": 9436,\n          \
-        \      \"date_created\": \"2024-11-27T20:58:34Z\",\n                \"date_modified\"\
-        : null,\n                \"created_by\": \"api_client_8b3947c3c3ed4995a29fe3b0028be6d5\"\
-        ,\n                \"modified_by\": null,\n                \"note\": \"This\
-        \ entity_name is deltics-2  and the entity_id is 64512. The entity_type is\
-        \ a(n) host.\"\n            },\n            {\n                \"id\": 9434,\n\
-        \                \"date_created\": \"2024-11-27T20:58:33Z\",\n           \
-        \     \"date_modified\": null,\n                \"created_by\": \"api_client_8b3947c3c3ed4995a29fe3b0028be6d5\"\
-        ,\n                \"modified_by\": null,\n                \"note\": \"This\
-        \ entity has been processed by ServiceNow SIR.\\nThe incident can be tracked\
-        \ in ServiceNow with this incident number: SIR0010096\"\n            },\n\
-        \            {\n                \"id\": 9157,\n                \"date_created\"\
-        : \"2024-11-27T20:39:32Z\",\n                \"date_modified\": null,\n  \
-        \              \"created_by\": \"api_client_8b3947c3c3ed4995a29fe3b0028be6d5\"\
-        ,\n                \"modified_by\": null,\n                \"note\": \"This\
-        \ entity has been processed by ServiceNow SIR.\\nThe incident can be tracked\
-        \ in ServiceNow with this incident number: SIR0010030\"\n            }\n \
-        \       ],\n        \"attack_rating\": 0,\n        \"privilege_level\": null,\n\
-        \        \"privilege_category\": null,\n        \"attack_profile\": null,\n\
-        \        \"sensors\": [\n            \"w4ftj0a8\"\n        ],\n        \"\
-        state\": \"suspended\",\n        \"tags\": [],\n        \"url\": \"https://308714519558.cc1.portal.vectra.ai/hosts/64512\"\
-        ,\n        \"host_type\": [\n            \"normal\"\n        ],\n        \"\
-        account_type\": null,\n        \"ip\": \"1.1.1.1\"\n    }\n]"
+- result_name: JsonResult
+  show_result: true
+  result_example_path: resources/List Entities_JsonResult_example.json
 default_result_value: ''
 creator: Admin
 script_result_name: ScriptResult

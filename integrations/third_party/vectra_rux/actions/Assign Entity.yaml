@@ -2,41 +2,29 @@ name: Assign Entity
 description: Assign an entity to the given user ID.
 integration_identifier: VectraRUX
 parameters:
-    -   name: Entity ID
-        default_value: ' '
-        type: string
-        description: Entity ID which will be assigned. Entity can be of type Account or
-            Host.
-        is_mandatory: true
-    -   name: Entity Type
-        default_value: Account
-        type: ddl
-        optional_values:
-            - Account
-            - Host
-        description: Entity can be of type Account or Host.
-        is_mandatory: true
-    -   name: User ID
-        default_value: ' '
-        type: string
-        description: User to which assignment will be assigned.
-        is_mandatory: true
+- name: Entity ID
+  default_value: ' '
+  type: string
+  description: Entity ID which will be assigned. Entity can be of type Account 
+    or Host.
+  is_mandatory: true
+- name: Entity Type
+  default_value: Account
+  type: ddl
+  optional_values:
+  - Account
+  - Host
+  description: Entity can be of type Account or Host.
+  is_mandatory: true
+- name: User ID
+  default_value: ' '
+  type: string
+  description: User to which assignment will be assigned.
+  is_mandatory: true
 dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: "{\n    \"id\": 559,\n    \"assigned_by\": {\n        \"id\":\
-        \ 22237,\n        \"username\": \"api_client_25cb417aab214139ae8c7394e2b1a3db\"\
-        \n    },\n    \"date_assigned\": \"2024-11-21T08:26:26.766207Z\",\n    \"\
-        date_resolved\": null,\n    \"events\": [\n        {\n            \"assignment_id\"\
-        : 559,\n            \"actor\": 22237,\n            \"event_type\": \"created\"\
-        ,\n            \"datetime\": \"2024-11-21T08:26:26Z\",\n            \"context\"\
-        : {\n                \"to\": 31,\n                \"entity_t_score\": 0,\n\
-        \                \"entity_c_score\": 0\n            }\n        }\n    ],\n\
-        \    \"outcome\": null,\n    \"resolved_by\": null,\n    \"triaged_detections\"\
-        : null,\n    \"host_id\": null,\n    \"account_id\": 485,\n    \"assigned_to\"\
-        : {\n        \"id\": 31,\n        \"username\": \"samir.hadfa@crestdatasys.com\"\
-        \n    }\n}"
+- result_name: JsonResult
+  show_result: true
+  result_example_path: resources/Assign Entity_JsonResult_example.json
 default_result_value: ''
 creator: Admin
 script_result_name: ScriptResult

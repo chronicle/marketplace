@@ -3,7 +3,7 @@ description: Modifies entries in an existing custom list.
 integration_identifier: InfobloxThreatDefenseWithDDI
 parameters:
 - name: Name
-  default_value: null
+  default_value:
   type: string
   description: Specify the name of the custom list to update.
   is_mandatory: false
@@ -13,10 +13,10 @@ parameters:
   description: Specify the ID of the custom list to update.
   is_mandatory: true
 - name: Description
-  default_value: null
+  default_value:
   type: string
-  description: Specify description of custom list. Use keyword `empty` to remove the
-    description
+  description: Specify description of custom list. Use keyword `empty` to remove
+    the description
   is_mandatory: false
 - name: Confidence Level
   default_value: ''
@@ -38,20 +38,15 @@ parameters:
   - Low
   - Info
 - name: Tags
-  default_value: null
+  default_value:
   type: string
-  description: Add tags to categorize and organize the custom list. Use keyword `empty`
-    to remove the tags
+  description: Add tags to categorize and organize the custom list. Use keyword 
+    `empty` to remove the tags
   is_mandatory: false
 dynamic_results_metadata:
 - result_name: JsonResult
   show_result: true
-  result_example: "{\n    \"confidence_level\": \"HIGH\",\n    \"created_time\": \"\
-    2025-07-09T10:08:24Z\",\n    \"description\": \"Test Desc\",\n    \"id\": 832273,\n\
-    \    \"item_count\": 0,\n    \"items\": [],\n    \"items_described\": [],\n  \
-    \  \"name\": \"Test-1\",\n    \"policies\": [],\n    \"tags\": {\n        \"Test1\"\
-    : \"S2\"\n    },\n    \"threat_level\": \"INFO\",\n    \"type\": \"custom_list\"\
-    ,\n    \"updated_time\": \"2025-07-09T10:33:46Z\"\n}"
+  result_example_path: resources/update_custom_list_JsonResult_example.json
 default_result_value: ''
 creator: Admin
 script_result_name: ScriptResult

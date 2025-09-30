@@ -2,25 +2,25 @@ name: AddVulnerabilities
 description: Add vulnerability information from xDome to entities.
 integration_identifier: clarotyxdome
 parameters:
--   name: xdomeHost
-    default_value: ''
-    type: playbook_name
-    description: Base URL for Claroty xDome instance.
-    is_mandatory: true
--   name: xdomeApiToken
-    default_value: ''
-    type: playbook_name
-    description: API token for authenticating to Claroty xDome.
-    is_mandatory: true
--   name: Verify SSL
-    default_value: true
-    type: string
-    description: Enable to validate SSL certificates for xDome API connections.
-    is_mandatory: false
+- name: xdomeHost
+  default_value: ''
+  type: playbook_name
+  description: Base URL for Claroty xDome instance.
+  is_mandatory: true
+- name: xdomeApiToken
+  default_value: ''
+  type: playbook_name
+  description: API token for authenticating to Claroty xDome.
+  is_mandatory: true
+- name: Verify SSL
+  default_value: true
+  type: string
+  description: Enable to validate SSL certificates for xDome API connections.
+  is_mandatory: false
 dynamic_results_metadata:
--   result_example: '{}'
-    result_name: JsonResult
-    show_result: true
+- result_name: JsonResult
+  show_result: true
+  result_example_path:
 default_result_value: ''
 creator: 01510cf5-bc5e-4a6c-b91d-1facfab4ce0f
 script_result_name: vulns

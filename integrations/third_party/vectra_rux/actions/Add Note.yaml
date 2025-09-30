@@ -2,32 +2,29 @@ name: Add Note
 description: Add a note to the given entity ID.
 integration_identifier: VectraRUX
 parameters:
-    -   name: Note
-        default_value: This is test note
-        type: string
-        description: Note to be added to provided entity id and entity type
-        is_mandatory: true
-    -   name: Entity ID
-        default_value: '101'
-        type: string
-        description: Entity ID in which the note will be added
-        is_mandatory: true
-    -   name: Entity Type
-        default_value: Account
-        type: ddl
-        optional_values:
-            - Account
-            - Host
-            - Detection
-        description: Type of the entity in which the note will be added
-        is_mandatory: true
+- name: Note
+  default_value: This is test note
+  type: string
+  description: Note to be added to provided entity id and entity type
+  is_mandatory: true
+- name: Entity ID
+  default_value: '101'
+  type: string
+  description: Entity ID in which the note will be added
+  is_mandatory: true
+- name: Entity Type
+  default_value: Account
+  type: ddl
+  optional_values:
+  - Account
+  - Host
+  - Detection
+  description: Type of the entity in which the note will be added
+  is_mandatory: true
 dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: "{\n    \"id\": 9118,\n    \"date_created\": \"2024-11-26T06:37:32.043936Z\"\
-        ,\n    \"date_modified\": null,\n    \"created_by\": \"api_client_25cb417aab214139ae8c7394e2b1a3db\"\
-        ,\n    \"modified_by\": null,\n    \"note\": \"This is test note\"\n}"
+- result_name: JsonResult
+  show_result: true
+  result_example_path: resources/Add Note_JsonResult_example.json
 default_result_value: ''
 creator: Admin
 script_result_name: ScriptResult

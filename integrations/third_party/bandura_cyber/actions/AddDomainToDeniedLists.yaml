@@ -2,36 +2,25 @@ name: Add Domain to Denied Lists
 description: Add URL to Domain Denied List in Bandura
 integration_identifier: Bandura Cyber
 parameters:
-    -   name: List Name
-        default_value: List
-        type: string
-        description: Name of Denied List to add the entity. (The List Name is Case Sensitive)
-        is_mandatory: true
-    -   name: Description
-        type: string
-        description: Denied List Entity Description
-        is_mandatory: false
-    -   name: Expiration Date
-        type: string
-        description: 'Date you would like this entity to be removed from the list. Example
-        Format: 2020-01-01T12:00:00.000+00:00'
-        is_mandatory: false
+- name: List Name
+  default_value: List
+  type: string
+  description: Name of Denied List to add the entity. (The List Name is Case 
+    Sensitive)
+  is_mandatory: true
+- name: Description
+  type: string
+  description: Denied List Entity Description
+  is_mandatory: false
+- name: Expiration Date
+  type: string
+  description: 'Date you would like this entity to be removed from the list. Example
+    Format: 2020-01-01T12:00:00.000+00:00'
+  is_mandatory: false
 dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: |
-            [
-                {
-                    "EntityResult": {
-                        "domain": "unpeopled-keyword.000webhostapp.com",
-                        "insertedDatetime": "2021-07-06T16:46:54+00:00",
-                        "expiresDatetime": null,
-                        "id": "unpeopled-keyword.000webhostapp.com"
-                    },
-                    "Entity": "unpeopled-keyword.000webhostapp.com"
-                }
-            ]
+- result_name: JsonResult
+  show_result: true
+  result_example_path: resources/AddDomainToDeniedLists_JsonResult_example.json
 default_result_value: ''
 creator: Admin
 script_result_name: ScriptResult

@@ -2,46 +2,23 @@ name: Describe Entity
 description: Show all the details of an entity for the given ID.
 integration_identifier: VectraRUX
 parameters:
-    -   name: Entity ID
-        default_value: '0'
-        type: string
-        description: Unique id for Entity to get entity
-        is_mandatory: true
-    -   name: Entity Type
-        default_value: Account
-        type: ddl
-        optional_values:
-            - Account
-            - Host
-        description: Type of entity either Account or Host
-        is_mandatory: true
+- name: Entity ID
+  default_value: '0'
+  type: string
+  description: Unique id for Entity to get entity
+  is_mandatory: true
+- name: Entity Type
+  default_value: Account
+  type: ddl
+  optional_values:
+  - Account
+  - Host
+  description: Type of entity either Account or Host
+  is_mandatory: true
 dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: "{\n    \"id\": 68599,\n    \"name\": \"csoarqa-12\",\n    \"\
-        breadth_contrib\": 1,\n    \"importance\": 1,\n    \"type\": \"host\",\n \
-        \   \"is_prioritized\": true,\n    \"severity\": \"High\",\n    \"urgency_score\"\
-        : 76,\n    \"velocity_contrib\": 2,\n    \"detection_set\": [\n        \"\
-        https://308714519558.cc1.portal.vectra.ai/detections/34338\",\n        \"\
-        https://308714519558.cc1.portal.vectra.ai/detections/34339\",\n        \"\
-        https://308714519558.cc1.portal.vectra.ai/detections/34340\",\n        \"\
-        https://308714519558.cc1.portal.vectra.ai/detections/34341\",\n        \"\
-        https://308714519558.cc1.portal.vectra.ai/detections/34342\",\n        \"\
-        https://308714519558.cc1.portal.vectra.ai/detections/34343\",\n        \"\
-        https://308714519558.cc1.portal.vectra.ai/detections/34344\",\n        \"\
-        https://308714519558.cc1.portal.vectra.ai/detections/34345\"\n    ],\n   \
-        \ \"last_detection_timestamp\": \"2024-12-20T01:12:51Z\",\n    \"last_modified_timestamp\"\
-        : \"2025-01-02T09:39:17Z\",\n    \"notes\": [\n        {\n            \"id\"\
-        : 9763,\n            \"date_created\": \"2024-12-31T06:40:27Z\",\n       \
-        \     \"date_modified\": null,\n            \"created_by\": \"api_client_ec19d57481ba402ab807e87010dde796\"\
-        ,\n            \"modified_by\": null,\n            \"note\": \"[Explore Case](https://vctrr.backstory.chronicle.security/cases/5046)\"\
-        \n        }\n    ],\n    \"attack_rating\": 7,\n    \"privilege_level\": null,\n\
-        \    \"privilege_category\": null,\n    \"attack_profile\": \"Insider Threat:\
-        \ Admin\",\n    \"sensors\": [\n        \"w4ftj0a8\"\n    ],\n    \"state\"\
-        : \"active\",\n    \"tags\": [],\n    \"url\": \"https://308714519558.cc1.portal.vectra.ai/hosts/68599\"\
-        ,\n    \"host_type\": [\n        \"normal\"\n    ],\n    \"account_type\"\
-        : null,\n    \"ip\": \"1.1.1.1\"\n}"
+- result_name: JsonResult
+  show_result: true
+  result_example_path: resources/Describe Entity_JsonResult_example.json
 default_result_value: ''
 creator: Admin
 script_result_name: ScriptResult

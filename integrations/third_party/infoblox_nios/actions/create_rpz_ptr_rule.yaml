@@ -2,55 +2,42 @@ name: Create RPZ PTR Rule
 description: Adds a reverse DNS lookup override in RPZ for an IP.
 integration_identifier: InfobloxNIOS
 parameters:
--   name: PTR DName
-    default_value: ''
-    type: string
-    description: The domain name of the RPZ substitute rule object of the PTR record.
-    is_mandatory: true
--   name: RP Zone
-    default_value: ''
-    type: string
-    description: The zone to assign the rule to.
-    is_mandatory: true
--   name: Name
-    type: string
-    description: The name of the RPZ Substitute rule object of the PTR record.
-    is_mandatory: false
--   name: Comment
-    type: string
-    description: Comment for this rule.
-    is_mandatory: false
--   name: IPv4 Address
-    type: string
-    description: The IPv4 address of the substitute rule.
-    is_mandatory: false
--   name: IPv6 Address
-    type: string
-    description: The IPv6 address of the substitute rule.
-    is_mandatory: false
--   name: Additional Parameters
-    type: string
-    description: JSON object containing additional parameters to create response policy
-        zone.
-    is_mandatory: false
+- name: PTR DName
+  default_value: ''
+  type: string
+  description: The domain name of the RPZ substitute rule object of the PTR 
+    record.
+  is_mandatory: true
+- name: RP Zone
+  default_value: ''
+  type: string
+  description: The zone to assign the rule to.
+  is_mandatory: true
+- name: Name
+  type: string
+  description: The name of the RPZ Substitute rule object of the PTR record.
+  is_mandatory: false
+- name: Comment
+  type: string
+  description: Comment for this rule.
+  is_mandatory: false
+- name: IPv4 Address
+  type: string
+  description: The IPv4 address of the substitute rule.
+  is_mandatory: false
+- name: IPv6 Address
+  type: string
+  description: The IPv6 address of the substitute rule.
+  is_mandatory: false
+- name: Additional Parameters
+  type: string
+  description: JSON object containing additional parameters to create response 
+    policy zone.
+  is_mandatory: false
 dynamic_results_metadata:
--   result_name: JsonResult
-    show_result: true
-    result_example: |
-        {
-            "_ref": "record:rpz:ptr/ZG5zLmJpbmRfcHRyJC5fZGVmYXVsdC5jb20ucnB6LnRocmVhdC5hcnBhLmlwNi5mLmQuNi4wLjAuZS4zLjIuZi4xLmIuOS4wLjAuMC4wLjAuMC4wLjAuMC4wLjAuMC4wLjAuMC4wLjAuMC4wLjIuYWJjczEudGhyZWF0LnJwei5jb20:2.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.9.b.1.f.2.3.e.0.0.6.d.f.ip6.arpa.threat.rpz.com/default",
-            "comment": "nightly-test-mx-sub",
-            "disable": false,
-            "extattrs": {},
-            "ipv4addr": "",
-            "ipv6addr": "fd60:e32:f1b9::2",
-            "name": "2.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.9.b.1.f.2.3.e.0.0.6.d.f.ip6.arpa.threat.rpz.com",
-            "ptrdname": "abcs1.threat.rpz.com",
-            "rp_zone": "threat.rpz.com",
-            "use_ttl": false,
-            "view": "default",
-            "zone": "threat.rpz.com"
-        }
+- result_name: JsonResult
+  show_result: true
+  result_example_path: resources/create_rpz_ptr_rule_JsonResult_example.json
 default_result_value: ''
 creator: Admin
 script_result_name: ScriptResult

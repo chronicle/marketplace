@@ -2,36 +2,24 @@ name: Quarantine - Add File
 description: This method creates a new task to add a file to quarantine.
 integration_identifier: Bitdefender GravityZone
 parameters:
-    -   name: File Path
-        default_value: C:\Users\Public\malicious.exe
-        type: string
-        description: The absolute file path on disk. This can be at most 4096 characters
-            in length and should have the format suitable to the target's operating system.
-        is_mandatory: true
-    -   name: Endpoint IDs
-        default_value: targetId1,targetId2
-        type: string
-        description: A list with the IDs of the target endpoints. Max 100 targets at once.
-            Only endpoints having the EDR Sensor module active are considered valid targets.
-        is_mandatory: true
+- name: File Path
+  default_value: C:\Users\Public\malicious.exe
+  type: string
+  description: The absolute file path on disk. This can be at most 4096 
+    characters in length and should have the format suitable to the target's 
+    operating system.
+  is_mandatory: true
+- name: Endpoint IDs
+  default_value: targetId1,targetId2
+  type: string
+  description: A list with the IDs of the target endpoints. Max 100 targets at 
+    once. Only endpoints having the EDR Sensor module active are considered 
+    valid targets.
+  is_mandatory: true
 dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: false
-        # language=json
-        result_example: "{\n    \"items\":[\n        {   \n            \"id\" : \"21a295eeb1a43d8b497b23b7\"\
-        , \"name\" : \"Endpoint 1\",\n            \"label\" : \"endpoint 1\",\n  \
-        \          \"fqdn\": \"endpoint1.local\",\n            \"groupId\": \"5a5f4d36b1a43d5f097b23bb\"\
-        , \"isManaged\": true,\n            \"isManaged\": true,\n            \"machineType\"\
-        : 1,\n            \"operatingSystemVersion\": \"Windows Server 2016\",\n \
-        \           \"ip\": \"1.1.1.1\",\n            \"macs\": [\n              \
-        \  \"324935237225\"\n            ],\n            \"ssid\": \"\"\n        },\n\
-        \        {\n            \"id\" : \"23a295d8b1a43d7c4a7b23c9\",\n         \
-        \   \"name\" : \"Endpoint 2\",\n            \"machineType\": 2,\n        \
-        \    \"label\" : \"endpoint 2\",\n            \"fqdn\": \"endpoint2.local\"\
-        ,\n            \"groupId\": \"5a4f4d46b1a53d5f197b23aa\", \"isManaged\": true,\n\
-        \            \"machineType\": 1, \"operatingSystemVersion\": \"Windows 7\"\
-        , \"ip\": \"1.1.1.1\",\n            \"macs\": [\n                \"325935237445\"\
-        \n            ],\n            \"ssid\": \"\"\n        }    \n    ]\n}"
+- result_name: JsonResult
+  show_result: false
+  result_example_path: resources/QuarantineAddFile_JsonResult_example.json
 default_result_value: ''
 creator: daniel.harvey
 script_result_name: ScriptResult

@@ -1,16 +1,11 @@
 name: Get Lead By Entity Email
 description: Get lead data from Marketo by email type entities
 integration_identifier: Marketo
-parameters: [ ]
+parameters: []
 dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: "{\r\n\t\"entites\": [{\r\n\t\t\"Entity\": \"email@siemplify.co\"\
-        ,\r\n\t\t\"EntityResult\": {\r\n\t\t\t\"Marketo_firstName\": \"Marketo_firstName\"\
-        ,\r\n\t\t\t\"Marketo_lastName\": \"Marketo_lastName\",\r\n\t\t\t\"Marketo_email\"\
-        : \"email@siemplify.co\",\r\n\t\t\t\"LeadID\": 1111\r\n\t\t}\r\n\t}],\r\n\t\
-        \"leads_count\": 1\r\n}"
+- result_name: JsonResult
+  show_result: true
+  result_example_path: resources/GetLeadByEntityEmail_JsonResult_example.json
 default_result_value: ''
 creator: Admin
 script_result_name: ScriptResult

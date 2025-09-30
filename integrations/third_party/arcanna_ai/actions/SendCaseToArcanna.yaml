@@ -2,30 +2,27 @@ name: Send Case to Arcanna
 description: ''
 integration_identifier: ArcannaAI
 parameters:
-    -   name: Case identifier field
-        default_value: identifier
-        type: string
-        description: Identifier field that will be used as an ID in Arcanna.ai when ingesting
-            the case. Default value for Google SecOps Cases is "identifier".
-        is_mandatory: false
-    -   name: Use case ID as ID in Arcanna
-        default_value: 'false'
-        type: boolean
-        description: 'If False, Arcanna generates a new unique ID for the case.
+- name: Case identifier field
+  default_value: identifier
+  type: string
+  description: Identifier field that will be used as an ID in Arcanna.ai when 
+    ingesting the case. Default value for Google SecOps Cases is "identifier".
+  is_mandatory: false
+- name: Use case ID as ID in Arcanna
+  default_value: 'false'
+  type: boolean
+  description: 'If False, Arcanna generates a new unique ID for the case.
 
-        If True, Arcanna uses the id found in the "Case identifier field".'
-        is_mandatory: false
-    -   name: Job ID
-        default_value: ' '
-        type: string
-        description: Job ID used for sending event to Arcanna.ai
-        is_mandatory: true
+    If True, Arcanna uses the id found in the "Case identifier field".'
+  is_mandatory: false
+- name: Job ID
+  default_value: ' '
+  type: string
+  description: Job ID used for sending event to Arcanna.ai
+  is_mandatory: true
 dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: false
-        # language=json
-        result_example: '{"event_id": "12223273231449", "job_id": 1222, "ingest_timestamp":
-        "2024-08-07T14:38:43.327323Z", "status": "pending_inference", "error_message":
-        ""}'
+- result_name: JsonResult
+  show_result: false
+  result_example_path: resources/SendCaseToArcanna_JsonResult_example.json
 default_result_value: ''
 creator: 57861f63-e407-4200-90d4-a03bed1eb07e

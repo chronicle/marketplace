@@ -2,54 +2,46 @@ name: Turn On Light and Color
 description: Turns on light by light ID, with the chosen color and effect.
 integration_identifier: PhilipsHUE
 parameters:
-    -   name: Light ID
-        default_value: '1'
-        type: string
-        description: 'The ID of the light you want to turn on.
+- name: Light ID
+  default_value: '1'
+  type: string
+  description: 'The ID of the light you want to turn on.
 
 
-        How to view hue lights:
+    How to view hue lights:
 
-        https://developers.meethue.com/develop/get-started-2/#turning-a-light-on-and-off'
-        is_mandatory: true
-    -   name: Color
-        default_value: Green
-        type: ddl
-        optional_values:
-            - Red
-            - Orange
-            - Yellow
-            - Green
-            - Blue
-            - Purple
-            - Pink
-        description: Color of the light.
-        is_mandatory: true
-    -   name: Alert effect
-        default_value: "None"
-        type: ddl
-        optional_values:
-            - "None"
-            - Flicker-Once
-            - Flicker-Loop
-        description: 'None: Light just turns on
+    https://developers.meethue.com/develop/get-started-2/#turning-a-light-on-and-off'
+  is_mandatory: true
+- name: Color
+  default_value: Green
+  type: ddl
+  optional_values:
+  - Red
+  - Orange
+  - Yellow
+  - Green
+  - Blue
+  - Purple
+  - Pink
+  description: Color of the light.
+  is_mandatory: true
+- name: Alert effect
+  default_value: "None"
+  type: ddl
+  optional_values:
+  - "None"
+  - Flicker-Once
+  - Flicker-Loop
+  description: 'None: Light just turns on
 
-        Flicker-Once: Light flickers once, then stays on
+    Flicker-Once: Light flickers once, then stays on
 
-        Flicker-Loop: Light fickers 15s (or until turned off), then stays on.'
-        is_mandatory: true
+    Flicker-Loop: Light fickers 15s (or until turned off), then stays on.'
+  is_mandatory: true
 dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: "{\n  \"light_id\": \"2\",\n  \"info\": {\n    \"light reachability\"\
-        : true,\n    \"results\": [\n      {\n        \"success\": {\n          \"\
-        /lights/2/state/on\": true\n        }\n      },\n      {\n        \"success\"\
-        : {\n          \"/lights/2/state/hue\": 17500\n        }\n      },\n     \
-        \ {\n        \"success\": {\n          \"/lights/2/state/sat\": 254\n    \
-        \    }\n      },\n      {\n        \"success\": {\n          \"/lights/2/state/bri\"\
-        : 254\n        }\n      },\n      {\n        \"success\": {\n          \"\
-        /lights/3/state/alert\": \"select\"\n        }\n      }\n    ]\n  }\n}"
+- result_name: JsonResult
+  show_result: true
+  result_example_path: resources/TurnOnLightAndColor_JsonResult_example.json
 default_result_value: ''
 creator: Admin
 script_result_name: ScriptResult

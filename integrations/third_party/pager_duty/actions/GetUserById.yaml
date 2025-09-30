@@ -2,16 +2,15 @@ name: Get User By ID
 description: Get The user details by providing the user ID.
 integration_identifier: PagerDuty
 parameters:
-    -   name: UserID
-        default_value: test
-        type: string
-        description: ''
-        is_mandatory: true
+- name: UserID
+  default_value: test
+  type: string
+  description: ''
+  is_mandatory: true
 dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: '{}'
+- result_name: JsonResult
+  show_result: true
+  result_example_path:
 default_result_value: ''
 creator: Admin
 script_result_name: ScriptResult

@@ -1,25 +1,24 @@
 name: logzio-get-logs-by-event-id
-description: Fetches the logs that triggered a security event. The logs are returned
-    as a paginated list in JSON format.
+description: Fetches the logs that triggered a security event. The logs are 
+  returned as a paginated list in JSON format.
 integration_identifier: Logzio
 parameters:
-    -   name: alert_event_id
-        default_value: ''
-        type: string
-        description: Unique GUID of the security event in your Logz.io security account.
-            This is the ID of the event you want to investigate.
-        is_mandatory: true
-    -   name: page_size
-        default_value: '25'
-        type: string
-        description: Controls the number of results per page. Valid inputs are 1 to 1000.
-            Defaults to 25.
-        is_mandatory: false
+- name: alert_event_id
+  default_value: ''
+  type: string
+  description: Unique GUID of the security event in your Logz.io security 
+    account. This is the ID of the event you want to investigate.
+  is_mandatory: true
+- name: page_size
+  default_value: '25'
+  type: string
+  description: Controls the number of results per page. Valid inputs are 1 to 
+    1000. Defaults to 25.
+  is_mandatory: false
 dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: '{}'
+- result_name: JsonResult
+  show_result: true
+  result_example_path:
 default_result_value: ''
 creator: Admin
 script_result_name: ScriptResult

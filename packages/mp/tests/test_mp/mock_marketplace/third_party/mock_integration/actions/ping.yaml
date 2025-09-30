@@ -16,17 +16,14 @@ creator: admin
 description: This action will do something.
 dynamic_results_metadata:
     # language=json
-    -   result_example: |
-            {
-                "Example": "Json Example"
-            }
-        result_name: JsonResult
-        show_result: true
+- result_name: JsonResult
+  show_result: true
+  result_example_path: resources/ping_JsonResult_example.json
 integration_identifier: MockIntegration
 name: Mock Integration Action
 parameters:
-    -   description: A Description.
-        is_mandatory: true
-        name: API Root
-        type: string
-        default_value: ''
+- description: A Description.
+  is_mandatory: true
+  name: API Root
+  type: string
+  default_value: ''

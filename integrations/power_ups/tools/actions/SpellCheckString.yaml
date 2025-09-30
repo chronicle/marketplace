@@ -1,25 +1,19 @@
 name: Spell Check String
-description: The Spell Check String action will check the spelling of an input string.  It
-    will output the percent accurate, total words, amount of misspelled words, list
-    of each misspelled word and the correction, and a corrected version of the input
-    string.
+description: The Spell Check String action will check the spelling of an input 
+  string.  It will output the percent accurate, total words, amount of 
+  misspelled words, list of each misspelled word and the correction, and a 
+  corrected version of the input string.
 integration_identifier: Tools
 parameters:
-    -   name: String
-        default_value: ''
-        type: string
-        description: 'The string that will be checked for spelling errors. '
-        is_mandatory: true
+- name: String
+  default_value: ''
+  type: string
+  description: 'The string that will be checked for spelling errors. '
+  is_mandatory: true
 dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: "{\n  \"input_string\": \"STRING\",\n  \"total_words\": 112,\n\
-        \  \"total_misspelled_words\": 5,\n  \"misspelled_words\": [\n    {\n    \
-        \  \"misspelled_word\": \"worda\",\n      \"correction\": \"word\"\n    },\n\
-        \    {\n      \"misspelled_word\": \"wordb\",\n      \"correction\": \"word\"\
-        \n    }\n  ],\n  \"accuracy\": 95,\n  \"corrected_string\": \"CORRECTED STRING\"\
-        \n}"
+- result_name: JsonResult
+  show_result: true
+  result_example_path: resources/SpellCheckString_JsonResult_example.json
 default_result_value: ''
 creator: Rob
 script_result_name: accuracy_percent

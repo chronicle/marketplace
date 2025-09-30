@@ -3,18 +3,18 @@ description: Retrieves all configured security policies and their metadata.
 integration_identifier: InfobloxThreatDefenseWithDDI
 parameters:
 - name: Security Policy Filter
-  default_value: null
+  default_value:
   type: string
-  description: A logical expression string to filter security policies (e.g., name==
-    'sec_policy_a').
+  description: A logical expression string to filter security policies (e.g., 
+    name== 'sec_policy_a').
   is_mandatory: false
 - name: Tag Filter
-  default_value: null
+  default_value:
   type: string
   description: "Filter security policy by specific tags format: '<tag_name>'='<tag_value>'."
   is_mandatory: false
 - name: Tag Sort Filter
-  default_value: null
+  default_value:
   type: string
   description: Sort security policy list by Tags.
   is_mandatory: false
@@ -31,31 +31,7 @@ parameters:
 dynamic_results_metadata:
 - result_name: JsonResult
   show_result: true
-  result_example: "{\n    \"results\": [\n        {\n            \"access_codes\"\
-    : [],\n            \"block_dns_rebind_attack\": false,\n            \"created_time\"\
-    : \"2024-04-26T13:44:41Z\",\n            \"default_action\": \"action_allow\"\
-    ,\n            \"default_redirect_name\": \"\",\n            \"description\":\
-    \ \"\",\n            \"dfp_services\": [],\n            \"dfps\": [],\n      \
-    \      \"doh_enabled\": false,\n            \"doh_fqdn\": \"\",\n            \"\
-    ecs\": true,\n            \"id\": 207665,\n            \"is_default\": false,\n\
-    \            \"migration_status\": {\n                \"uses_legacy_feeds\": false\n\
-    \            },\n            \"name\": \"CDS_Block\",\n            \"net_address_dfps\"\
-    : [\n                {\n                    \"addr_net\": \"\",\n            \
-    \        \"dfp_ids\": [],\n                    \"dfp_service_ids\": [],\n    \
-    \                \"end\": \"10.50.7.90\",\n                    \"external_scope_id\"\
-    : \"c391412b-fcad-11ee-9624-4a0e9455f8d2\",\n                    \"host_id\":\
-    \ \"\",\n                    \"ip_space_id\": \"29b07f2d-fca7-11ee-952b-26d521eb7155\"\
-    ,\n                    \"scope_type\": \"RANGE\",\n                    \"start\"\
-    : \"10.50.7.83\"\n                }\n            ],\n            \"network_lists\"\
-    : [\n                1527535\n            ],\n            \"onprem_resolve\":\
-    \ true,\n            \"precedence\": 8,\n            \"roaming_device_groups\"\
-    : [],\n            \"rules\": [\n                {\n                    \"action\"\
-    : \"action_block\",\n                    \"data\": \"Default Block\",\n      \
-    \              \"description\": \"Auto-generated\",\n                    \"type\"\
-    : \"custom_list\"\n                }\n            ],\n            \"safe_search\"\
-    : true,\n            \"scope_expr\": \"\",\n            \"scope_tags\": [],\n\
-    \            \"tags\": {},\n            \"updated_time\": \"2025-06-26T12:28:08Z\"\
-    ,\n            \"user_groups\": []\n        }\n    ]\n}"
+  result_example_path: resources/get_security_policies_JsonResult_example.json
 default_result_value: ''
 creator: Admin
 script_result_name: ScriptResult

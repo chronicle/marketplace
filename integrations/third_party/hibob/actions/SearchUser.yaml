@@ -2,91 +2,15 @@ name: Search User
 description: Search if a specific user exists in Hibob
 integration_identifier: Hibob
 parameters:
-    -   name: Employee's Email
-        default_value: email@gmail.com
-        type: string
-        description: The employee's email to check if it exists
-        is_mandatory: true
+- name: Employee's Email
+  default_value: email@gmail.com
+  type: string
+  description: The employee's email to check if it exists
+  is_mandatory: true
 dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: "{\r\n\t\"fullName\": \"Amy Miles\",\r\n\t\"creationDate\": \"\
-        2020-08-18\",\r\n\t\"displayName\": \"Amy Miles\",\r\n\t\"payroll\": {\r\n\
-        \t\t\"additionalPensionContribution\": null,\r\n\t\t\"nin\": null,\r\n\t\t\
-        \"timeSinceLastSalaryChange\": {\r\n\t\t\t\"humanize\": \"5 years, 5 months\
-        \ and 10 days\",\r\n\t\t\t\"sortFactor\": 1960,\r\n\t\t\t\"periodISO\": \"\
-        P5Y5M10D\"\r\n\t\t},\r\n\t\t\"salary\": {\r\n\t\t\t\"monthlyPayment\": {\r\
-        \n\t\t\t\t\"currency\": \"USD\",\r\n\t\t\t\t\"value\": 3333.3333333333335\r\
-        \n\t\t\t},\r\n\t\t\t\"payPeriod\": \"Annual\",\r\n\t\t\t\"yearlyPayment\"\
-        : {\r\n\t\t\t\t\"currency\": \"USD\",\r\n\t\t\t\t\"value\": 40000\r\n\t\t\t\
-        },\r\n\t\t\t\"payment\": {\r\n\t\t\t\t\"currency\": \"USD\",\r\n\t\t\t\t\"\
-        value\": 40000\r\n\t\t\t},\r\n\t\t\t\"activeEffectiveDate\": \"2015-03-20\"\
-        ,\r\n\t\t\t\"payFrequency\": \"Every two weeks\"\r\n\t\t},\r\n\t\t\"taxCode\"\
-        : null,\r\n\t\t\"employment\": {\r\n\t\t\t\"fte\": 100,\r\n\t\t\t\"type\"\
-        : null,\r\n\t\t\t\"flsaCode\": null,\r\n\t\t\t\"contract\": \"Full time\"\
-        ,\r\n\t\t\t\"salaryPayType\": null,\r\n\t\t\t\"weeklyHours\": 45,\r\n\t\t\t\
-        \"workingPattern\": {\r\n\t\t\t\t\"raw\": null\r\n\t\t\t},\r\n\t\t\t\"activeEffectiveDate\"\
-        : \"2015-03-20\",\r\n\t\t\t\"siteWorkingPattern\": {\r\n\t\t\t\t\"hoursPerDay\"\
-        : 9,\r\n\t\t\t\t\"days\": {\r\n\t\t\t\t\t\"wednesday\": true,\r\n\t\t\t\t\t\
-        \"sunday\": false,\r\n\t\t\t\t\t\"tuesday\": true,\r\n\t\t\t\t\t\"saturday\"\
-        : false,\r\n\t\t\t\t\t\"monday\": true,\r\n\t\t\t\t\t\"friday\": true,\r\n\
-        \t\t\t\t\t\"thursday\": true\r\n\t\t\t\t},\r\n\t\t\t\t\"workingPatternType\"\
-        : \"partial_week\"\r\n\t\t\t}\r\n\t\t}\r\n\t},\r\n\t\"address\": {\r\n\t\t\
-        \"city\": \"New York\",\r\n\t\t\"line2\": null,\r\n\t\t\"country\": \"United\
-        \ States\",\r\n\t\t\"line1\": \"1335 Grove Street\",\r\n\t\t\"fullAddress\"\
-        : \"1335 Grove Street  New York  11757 NY United States\",\r\n\t\t\"zipCode\"\
-        : \"11757\",\r\n\t\t\"usaState\": \"NY\",\r\n\t\t\"activeEffectiveDate\":\
-        \ \"2015-03-20\",\r\n\t\t\"postCode\": null\r\n\t},\r\n\t\"state\": \"uninvited\"\
-        ,\r\n\t\"personal\": {\r\n\t\t\"shortBirthDate\": \"11-25\",\r\n\t\t\"communication\"\
-        : {\r\n\t\t\t\"skypeUsername\": null,\r\n\t\t\t\"slackUsername\": null\r\n\
-        \t\t},\r\n\t\t\"pronouns\": null,\r\n\t\t\"honorific\": \"Ms\",\r\n\t\t\"\
-        nationality\": [\"American\"],\r\n\t\t\"age\": 28,\r\n\t\t\"birthDate\": \"\
-        1991-11-25\"\r\n\t},\r\n\t\"creationDateTime\": \"2020-08-18T10:02:42.44441\"\
-        ,\r\n\t\"work\": {\r\n\t\t\"shortStartDate\": \"03-20\",\r\n\t\t\"startDate\"\
-        : \"2015-03-20\",\r\n\t\t\"manager\": \"2378379584279150891\",\r\n\t\t\"workPhone\"\
-        : null,\r\n\t\t\"reportsToIdInCompany\": 1,\r\n\t\t\"durationOfEmployment\"\
-        : {\r\n\t\t\t\"humanize\": \"5 years, 5 months and 11 days\",\r\n\t\t\t\"\
-        sortFactor\": 1961,\r\n\t\t\t\"periodISO\": \"P5Y5M11D\"\r\n\t\t},\r\n\t\t\
-        \"employeeIdInCompany\": 39,\r\n\t\t\"reportsTo\": {\r\n\t\t\t\"displayName\"\
-        : \"Zoe Clark\",\r\n\t\t\t\"email\": \"zoe.clark_200519@samplebob.com\",\r\
-        \n\t\t\t\"surname\": \"Clark\",\r\n\t\t\t\"firstName\": \"Zoe\",\r\n\t\t\t\
-        \"id\": \"2378379584279150891\"\r\n\t\t},\r\n\t\t\"workMobile\": null,\r\n\
-        \t\t\"siteId\": 708868,\r\n\t\t\"department\": \"Product\",\r\n\t\t\"title\"\
-        : \"Designer\",\r\n\t\t\"site\": \"New York (Demo)\",\r\n\t\t\"activeEffectiveDate\"\
-        : \"2015-03-20\",\r\n\t\t\"secondLevelManager\": \"2378379548686287126\",\r\
-        \n\t\t\"yearsOfService\": 5.417\r\n\t},\r\n\t\"internal\": {\r\n\t\t\"periodSinceTermination\"\
-        : null,\r\n\t\t\"yearsSinceTermination\": null,\r\n\t\t\"terminationReason\"\
-        : null,\r\n\t\t\"probationEndDate\": null,\r\n\t\t\"terminationDate\": null,\r\
-        \n\t\t\"status\": \"Active\",\r\n\t\t\"terminationType\": null,\r\n\t\t\"\
-        notice\": null,\r\n\t\t\"lifecycleStatus\": \"employed\"\r\n\t},\r\n\t\"secondName\"\
-        : null,\r\n\t\"avatarUrl\": \"https://cdn.filestackcontent.com/nxUwWkpZS1Scg9EjqA7K?policy=eyJoYW5kbGUiOiJueFV3V2twWlMxU2NnOUVqcUE3SyIsImV4cGlyeSI6NDYzNTkxODcwNH0=&signature=52ba8596c28ea66305882d6a6aa583487476207d72bf4499dcfc865d3bfa4e74\"\
-        ,\r\n\t\"emergency\": {\r\n\t\t\"city\": null,\r\n\t\t\"address\": null,\r\
-        \n\t\t\"mobilePhone\": null,\r\n\t\t\"country\": null,\r\n\t\t\"relation\"\
-        : null,\r\n\t\t\"secondName\": null,\r\n\t\t\"email\": null,\r\n\t\t\"surname\"\
-        : null,\r\n\t\t\"phone\": null,\r\n\t\t\"firstName\": null,\r\n\t\t\"postCode\"\
-        : null\r\n\t},\r\n\t\"eeo\": {\r\n\t\t\"ethnicity\": null,\r\n\t\t\"jobCategory\"\
-        : null\r\n\t},\r\n\t\"about\": {\r\n\t\t\"foodPreferences\": [\"vegan\"],\r\
-        \n\t\t\"socialData\": {\r\n\t\t\t\"linkedin\": null,\r\n\t\t\t\"twitter\"\
-        : null,\r\n\t\t\t\"facebook\": null\r\n\t\t},\r\n\t\t\"hobbies\": [\"yoga\"\
-        , \"cooking\", \"film\"],\r\n\t\t\"superpowers\": [\"excel\"],\r\n\t\t\"about\"\
-        : \"The most important thing is to enjoy your life - to be happy - it's all\
-        \ that matters.\",\r\n\t\t\"avatar\": \"https://cdn.filestackcontent.com/nxUwWkpZS1Scg9EjqA7K?policy=eyJoYW5kbGUiOiJueFV3V2twWlMxU2NnOUVqcUE3SyIsImV4cGlyeSI6NDYzNTkxODcwNH0=&signature=52ba8596c28ea66305882d6a6aa583487476207d72bf4499dcfc865d3bfa4e74\"\
-        \r\n\t},\r\n\t\"companyId\": 200519,\r\n\t\"email\": \"amy.miles_200519@samplebob.com\"\
-        ,\r\n\t\"surname\": \"Miles\",\r\n\t\"home\": {\r\n\t\t\"familyStatus\": \"\
-        Single\",\r\n\t\t\"mobilePhone\": \"914-963-9202\",\r\n\t\t\"privateEmail\"\
-        : \"AMiles@dayrep.com\",\r\n\t\t\"legalGender\": \"Female\",\r\n\t\t\"privatePhone\"\
-        : null,\r\n\t\t\"numberOfKids\": 0,\r\n\t\t\"spouse\": {\r\n\t\t\t\"shortBirthDate\"\
-        : null,\r\n\t\t\t\"gender\": null,\r\n\t\t\t\"birthDate\": null,\r\n\t\t\t\
-        \"surname\": null,\r\n\t\t\t\"firstName\": null\r\n\t\t}\r\n\t},\r\n\t\"identification\"\
-        : {\r\n\t\t\"ssn\": \"084-52-6155\",\r\n\t\t\"ssnSerialNumber\": \"***-**-6155\"\
-        \r\n\t},\r\n\t\"financial\": {\r\n\t\t\"iban\": null,\r\n\t\t\"swift\": null,\r\
-        \n\t\t\"routingNumber\": null,\r\n\t\t\"bankName\": \"Chase\",\r\n\t\t\"rightToWorkExpiryDate\"\
-        : null,\r\n\t\t\"passportNumber\": null,\r\n\t\t\"identificationNumber\":\
-        \ null,\r\n\t\t\"accountnumber\": null,\r\n\t\t\"bankAddress\": null,\r\n\t\
-        \t\"bankAccountType\": null,\r\n\t\t\"accountType\": null,\r\n\t\t\"sortcode\"\
-        : null,\r\n\t\t\"accountName\": null\r\n\t},\r\n\t\"firstName\": \"Amy\",\r\
-        \n\t\"id\": \"2378379585948483884\"\r\n}"
+- result_name: JsonResult
+  show_result: true
+  result_example_path: resources/SearchUser_JsonResult_example.json
 default_result_value: ''
 creator: Admin
 script_result_name: ScriptResult

@@ -1,28 +1,13 @@
 name: Enrich Entities
 description: 'Enrich entities with Zoom properties
 
-    '
+  '
 integration_identifier: Zoom
-parameters: [ ]
+parameters: []
 dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: "{\r\n\t\"created_at\": \"2018-11-15T01:10:08Z\",\r\n\t\"custom_attributes\"\
-        : [{\r\n\t\t\"key\": \"cb3674544gexq\",\r\n\t\t\"name\": \"Country of Citizenship\"\
-        ,\r\n\t\t\"value\": \"Nepal\"\r\n\t}],\r\n\t\"id\": \"z8dsdsdsdsdCfp8uQ\"\
-        ,\r\n\t\"first_name\": \"Harry\",\r\n\t\"last_name\": \"Grande\",\r\n\t\"\
-        email\": \"harryg@dfkjdslfjkdsfjkdsf.fsdfdfd\",\r\n\t\"type\": 2,\r\n\t\"\
-        role_name\": \"Owner\",\r\n\t\"pmi\": \"000000000\",\r\n\t\"use_pmi\": false,\r\
-        \n\t\"personal_meeting_url\": \"https://zoom.us/j/6352635623323434343443\"\
-        ,\r\n\t\"timezone\": \"America/Los_Angeles\",\r\n\t\"verified\": 1,\r\n\t\"\
-        dept\": \"\",\r\n\t\"last_login_time\": \"2019-09-13T21:08:52Z\",\r\n\t\"\
-        last_client_version\": \"1.1.1.1(android)\",\r\n\t\"pic_url\": \"https://lh4.googleusercontent.com/-hsgfhdgsfghdsfghfd-photo.jpg\"\
-        ,\r\n\t\"host_key\": \"0000\",\r\n\t\"jid\": \"hghghfghdfghdfhgh@xmpp.zoom.us\"\
-        ,\r\n\t\"group_ids\": [],\r\n\t\"im_group_ids\": [\r\n\t\t\"CcSAAAAAAABBBVoQ\"\
-        \r\n\t],\r\n\t\"account_id\": \"EAAAAAbbbbbCCCCHMA\",\r\n\t\"language\": \"\
-        en-US\",\r\n\t\"phone_country\": \"USA\",\r\n\t\"phone_number\": \"00000000\"\
-        ,\r\n\t\"status\": \"active\"\r\n}"
+- result_name: JsonResult
+  show_result: true
+  result_example_path: resources/EnrichEntities_JsonResult_example.json
 default_result_value: ''
 creator: TehilaGourary
 script_result_name: ScriptResult

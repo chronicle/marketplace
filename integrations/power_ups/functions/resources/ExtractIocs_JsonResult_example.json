@@ -1,0 +1,14 @@
+{
+    "domains": [
+        "google.com"
+    ],
+    "ips": [
+        "1.1.1.1"
+    ],
+    "urls": [
+        "www.google.com"
+    ],
+    "emails": [
+        "user@user.com"
+    ]
+}

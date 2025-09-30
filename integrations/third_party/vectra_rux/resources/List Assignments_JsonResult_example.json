@@ -1,0 +1,62 @@
+[
+    {
+        "id": 554,
+        "assigned_by": {
+            "id": 22231,
+            "username": "crest.phantom@crestdata.ai"
+        },
+        "date_assigned": "2024-11-20T09:48:55Z",
+        "date_resolved": "2024-11-20T09:52:26Z",
+        "events": [
+            {
+                "assignment_id": 554,
+                "actor": 33,
+                "event_type": "resolved",
+                "datetime": "2024-11-20T09:52:26Z",
+                "context": {
+                    "entity_t_score": 76,
+                    "entity_c_score": 88,
+                    "triage_as": "My triage rule",
+                    "triaged_detection_ids": [
+                        33810
+                    ],
+                    "fixed_detection_ids": null,
+                    "created_rule_ids": [
+                        478
+                    ]
+                }
+            },
+            {
+                "assignment_id": 554,
+                "actor": 22231,
+                "event_type": "created",
+                "datetime": "2024-11-20T09:48:55Z",
+                "context": {
+                    "to": 22227,
+                    "entity_t_score": 76,
+                    "entity_c_score": 88
+                }
+            }
+        ],
+        "outcome": {
+            "id": 1,
+            "builtin": true,
+            "user_selectable": true,
+            "title": "Benign True Positive",
+            "category": "benign_true_positive"
+        },
+        "resolved_by": {
+            "id": 33,
+            "username": "api_client_a7f5be37ee144f3495ec08c150146c7a"
+        },
+        "triaged_detections": [
+            33810
+        ],
+        "host_id": null,
+        "account_id": 471,
+        "assigned_to": {
+            "id": 22227,
+            "username": "gaurang.delavadiya@crestdata.ai"
+        }
+    }
+]

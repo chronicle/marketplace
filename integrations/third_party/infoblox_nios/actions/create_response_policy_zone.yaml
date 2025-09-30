@@ -1,99 +1,67 @@
 name: Create Response Policy Zone
-description: Creates a new Response Policy Zone (RPZ) to define custom DNS responses.
+description: Creates a new Response Policy Zone (RPZ) to define custom DNS 
+  responses.
 integration_identifier: InfobloxNIOS
 parameters:
--   name: FQDN
-    default_value: ''
-    type: string
-    description: The name of this DNS zone is in FQDN format.
-    is_mandatory: true
--   name: Substitute Name
-    type: string
-    description: The alternative name of the redirect target is a substitute response
-        policy zone.
-    is_mandatory: false
--   name: Comment
-    type: string
-    description: Comment for the zone.
-    is_mandatory: false
--   name: RPZ Policy
-    default_value: GIVEN
-    type: ddl
-    optional_values:
-    - DISABLED
-    - GIVEN
-    - NODATA
-    - NXDOMAIN
-    - PASSTHRU
-    - SUBSTITUTE
-    description: 'The override policy of the response policy zone. '
-    is_mandatory: false
--   name: RPZ Severity
-    default_value: MAJOR
-    type: ddl
-    optional_values:
-    - CRITICAL
-    - MAJOR
-    - WARNING
-    - INFORMATIONAL
-    description: The severity of the response policy zone.
-    is_mandatory: false
--   name: RPZ Type
-    default_value: LOCAL
-    type: ddl
-    optional_values:
-    - FEED
-    - FIREEYE
-    - LOCAL
-    description: The type of the Response Policy Zone.
-    is_mandatory: false
--   name: Fireeye Rule Mapping
-    type: string
-    description: Rules to map fireeye alerts.
-    is_mandatory: false
--   name: Additional Parameters
-    type: string
-    description: JSON object containing additional parameters to create response policy
-        zone.
-    is_mandatory: false
+- name: FQDN
+  default_value: ''
+  type: string
+  description: The name of this DNS zone is in FQDN format.
+  is_mandatory: true
+- name: Substitute Name
+  type: string
+  description: The alternative name of the redirect target is a substitute 
+    response policy zone.
+  is_mandatory: false
+- name: Comment
+  type: string
+  description: Comment for the zone.
+  is_mandatory: false
+- name: RPZ Policy
+  default_value: GIVEN
+  type: ddl
+  optional_values:
+  - DISABLED
+  - GIVEN
+  - NODATA
+  - NXDOMAIN
+  - PASSTHRU
+  - SUBSTITUTE
+  description: 'The override policy of the response policy zone. '
+  is_mandatory: false
+- name: RPZ Severity
+  default_value: MAJOR
+  type: ddl
+  optional_values:
+  - CRITICAL
+  - MAJOR
+  - WARNING
+  - INFORMATIONAL
+  description: The severity of the response policy zone.
+  is_mandatory: false
+- name: RPZ Type
+  default_value: LOCAL
+  type: ddl
+  optional_values:
+  - FEED
+  - FIREEYE
+  - LOCAL
+  description: The type of the Response Policy Zone.
+  is_mandatory: false
+- name: Fireeye Rule Mapping
+  type: string
+  description: Rules to map fireeye alerts.
+  is_mandatory: false
+- name: Additional Parameters
+  type: string
+  description: JSON object containing additional parameters to create response 
+    policy zone.
+  is_mandatory: false
 dynamic_results_metadata:
--   result_name: JsonResult
-    show_result: true
-    result_example: |
-        {
-            "_ref": "zone_rp/ZG5zLnpvbmUkLl9kZWZhdWx0LmlwMTI5LnRocmVhdC5kbnM:dns.threat.ip129/default",
-            "comment": "Malicious domain blocking zone",
-            "disable": false,
-            "display_domain": "dns.threat.ip",
-            "extattrs": {},
-            "external_primaries": [],
-            "external_secondaries": [],
-            "fireeye_rule_mapping": null,
-            "fqdn": "dns.threat.ip129",
-            "grid_primary": [],
-            "grid_secondaries": [],
-            "locked": false,
-            "log_rpz": true,
-            "member_soa_mnames": [],
-            "member_soa_serials": [],
-            "network_view": "default",
-            "parent": "",
-            "primary_type": "None",
-            "rpz_drop_ip_rule_enabled": false,
-            "rpz_drop_ip_rule_min_prefix_length_ipv4": 29,
-            "rpz_drop_ip_rule_min_prefix_length_ipv6": 112,
-            "rpz_policy": "SUBSTITUTE",
-            "rpz_priority": 1005,
-            "rpz_priority_end": 999,
-            "rpz_severity": "MAJOR",
-            "rpz_type": "LOCAL",
-            "substitute_name": "dns.threat.ip",
-            "use_external_primary": false,
-            "use_log_rpz": false,
-            "use_record_name_policy": false,
-            "use_rpz_drop_ip_rule": false,
-            "view": "default"
-        }
+- result_name: JsonResult
+  show_result: true
+  result_example_path: 
+    resources/create_response_policy_zone_JsonResult_example.json
 default_result_value: ''
 creator: Admin
 script_result_name: ScriptResult

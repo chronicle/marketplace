@@ -2,22 +2,21 @@ name: Trigger Azure Build
 description: Trigger a pipeline for a given build definition ID and variables
 integration_identifier: Azure DevOps
 parameters:
-    -   name: Build Definition Id
-        default_value: '111'
-        type: string
-        description: The build definition ID of the pipeline you want to trigger.
-        is_mandatory: true
-    -   name: Build Variables
-        default_value: "{\n\t\"CUSTOMER\": \"testprod\",\n\t\"DB_IDENTIFIER\": \"testprod\"\
-        ,\n\t\"DNS_NAME\": \"test.com\",\n\t\"ENV\": \"test\"\n}"
-        type: code
-        description: The variables to pass for the given pipeline.
-        is_mandatory: true
+- name: Build Definition Id
+  default_value: '111'
+  type: string
+  description: The build definition ID of the pipeline you want to trigger.
+  is_mandatory: true
+- name: Build Variables
+  default_value: "{\n\t\"CUSTOMER\": \"testprod\",\n\t\"DB_IDENTIFIER\": \"testprod\"\
+    ,\n\t\"DNS_NAME\": \"test.com\",\n\t\"ENV\": \"test\"\n}"
+  type: code
+  description: The variables to pass for the given pipeline.
+  is_mandatory: true
 dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: '{"build_status":"success","build_result":"result","cloud_customer_id":"customerA","build_id":"351"}'
+- result_name: JsonResult
+  show_result: true
+  result_example_path: resources/TriggerAzureBuild_JsonResult_example.json
 default_result_value: ''
 creator: community-automation
 is_async: true

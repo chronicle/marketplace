@@ -1,33 +1,13 @@
 name: Full IP Lookup
-description: Query an IP in the GreyNoise Noise AND RIOT Dataset. Consumes up to 3
-    Searches per valid IP submitted.  Leverages the Quick, IP Context and IP RIOT
-    lookups in a single command for simplified use.
+description: Query an IP in the GreyNoise Noise AND RIOT Dataset. Consumes up to
+  3 Searches per valid IP submitted.  Leverages the Quick, IP Context and IP 
+  RIOT lookups in a single command for simplified use.
 integration_identifier: GreyNoise
-parameters: [ ]
+parameters: []
 dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: '{"results": [{"Entity": "1.1.1.1", "EntityResult": {"ip": "1.1.1.1",
-        "first_seen": "2019-01-31", "last_seen": "2023-08-15", "seen": true, "tags":
-        ["GoogleBot", "Web Crawler"], "actor": "GoogleBot", "spoofable": false, "classification":
-        "benign", "cve": [], "bot": false, "vpn": false, "vpn_service": "N/A", "metadata":
-        {"asn": "AS15169", "city": "Dallas", "country": "United States", "country_code":
-        "US", "organization": "Google LLC", "category": "hosting", "tor": false, "rdns":
-        "crawl-66-249-65-163.googlebot.com", "os": "unknown", "sensor_count": 1, "sensor_hits":
-        4, "region": "Texas", "destination_countries": ["United States"], "destination_country_codes":
-        ["US"], "source_country": "United States", "source_country_code": "US"}, "raw_data":
-        {"scan": [{"port": 80, "protocol": "TCP"}], "web": {"paths": ["/robots.txt",
-        "/index.php"]}, "ja3": [], "hassh": []}, "riot": true, "category": "software",
-        "name": "Google APIs and Services", "description": "Google LLC is an American
-        multinational technology company that specializes in Internet-related services
-        and products, which include online advertising technologies, a search engine,
-        cloud computing, software, and hardware.", "explanation": "Trusted commercial
-        software commonly used by individuals and businesses for collaboration, content
-        creation, entertainment, or various other functions. You may see devices communicating
-        with Google APIs and Services during authentication, system/application update,
-        cloud storage access, or resource retrieval.", "last_updated": "2023-08-15T13:11:03Z",
-        "reference": "https://google.com/", "trust_level": "1", "noise": true}}]}'
+- result_name: JsonResult
+  show_result: true
+  result_example_path: resources/FullIpLookup_JsonResult_example.json
 default_result_value: ''
 creator: 5773731e-9b72-438e-893d-ad4b9a297423
 script_result_name: ScriptResult

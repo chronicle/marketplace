@@ -1,214 +1,46 @@
 name: Create Instance
 description: 'Creates new instance for a specific AMI (Amazon Machine Image).
 
-    For more information:
+  For more information:
 
-    https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/ec2.html#EC2.Client.run_instances'
+  https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/ec2.html#EC2.Client.run_instances'
 integration_identifier: AWS - EC2
 parameters:
-    -   name: Image ID
-        default_value: ami-12345
-        type: string
-        description: 'The AMI ID which you want to create a new instance to.
+- name: Image ID
+  default_value: ami-12345
+  type: string
+  description: 'The AMI ID which you want to create a new instance to.
 
-        For example: ami-12345'
-        is_mandatory: false
-    -   name: Instance Type
-        default_value: m1.small
-        type: string
-        description: 'The hardware of the host computer to use in your instance.
+    For example: ami-12345'
+  is_mandatory: false
+- name: Instance Type
+  default_value: m1.small
+  type: string
+  description: 'The hardware of the host computer to use in your instance.
 
-        For example :m1.small'
-        is_mandatory: false
-    -   name: Max Count
-        default_value: ' '
-        type: string
-        description: The maximum amount of instances to create.
-        is_mandatory: true
-    -   name: Min Count
-        default_value: ' '
-        type: string
-        description: The minimum number of instances to create.
-        is_mandatory: true
-    -   name: Security Group ID
-        default_value: sg-12345,sg-6789
-        type: string
-        description: 'The IDs of the security groups you want to assign to the instance
+    For example :m1.small'
+  is_mandatory: false
+- name: Max Count
+  default_value: ' '
+  type: string
+  description: The maximum amount of instances to create.
+  is_mandatory: true
+- name: Min Count
+  default_value: ' '
+  type: string
+  description: The minimum number of instances to create.
+  is_mandatory: true
+- name: Security Group ID
+  default_value: sg-12345,sg-6789
+  type: string
+  description: 'The IDs of the security groups you want to assign to the instance
 
-        For example: sg-12345,sg-6789 (comma seperated).'
-        is_mandatory: false
+    For example: sg-12345,sg-6789 (comma seperated).'
+  is_mandatory: false
 dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: "{\r\n\t\"Groups\": [],\r\n\t\"Instances\": [{\r\n\t\t\t\"AmiLaunchIndex\"\
-        : \"0\",\r\n\t\t\t\"ImageId\": \"ami-11\",\r\n\t\t\t\"InstanceId\": \"11111\"\
-        ,\r\n\t\t\t\"InstanceType\": \"m1.small\",\r\n\t\t\t\"LaunchTime\": \"\",\r\
-        \n\t\t\t\"Monitoring\": {\r\n\t\t\t\t\"State\": \"disabled\"\r\n\t\t\t},\r\
-        \n\t\t\t\"Placement\": {\r\n\t\t\t\t\"AvailabilityZone\": \"us-east-1c\",\r\
-        \n\t\t\t\t\"GroupName\": \"\",\r\n\t\t\t\t\"Tenancy\": \"default\"\r\n\t\t\
-        \t},\r\n\t\t\t\"PrivateDnsName\": \"ip-.ec2.internal\",\r\n\t\t\t\"PrivateIpAddress\"\
-        : \"1.1.1.1\",\r\n\t\t\t\"ProductCodes\": [],\r\n\t\t\t\"PublicDnsName\":\
-        \ \"\",\r\n\t\t\t\"State\": {\r\n\t\t\t\t\"Code\": 0,\r\n\t\t\t\t\"Name\"\
-        : \"pending\"\r\n\t\t\t},\r\n\t\t\t\"StateTransitionReason\": \"\",\r\n\t\t\
-        \t\"SubnetId\": \"subnet-1111\",\r\n\t\t\t\"VpcId\": \"vpc-1111\",\r\n\t\t\
-        \t\"Architecture\": \"x86_64\",\r\n\t\t\t\"BlockDeviceMappings\": [],\r\n\t\
-        \t\t\"ClientToken\": \"12345678\",\r\n\t\t\t\"EbsOptimized\": \"False\",\r\
-        \n\t\t\t\"EnaSupport\": \"True\",\r\n\t\t\t\"Hypervisor\": \"xen\",\r\n\t\t\
-        \t\"NetworkInterfaces\": [{\r\n\t\t\t\t\"Attachment\": {\r\n\t\t\t\t\t\"AttachTime\"\
-        : \"\",\r\n\t\t\t\t\t\"AttachmentId\": \"eni-attach-11111\",\r\n\t\t\t\t\t\
-        \"DeleteOnTermination\": \"True\",\r\n\t\t\t\t\t\"DeviceIndex\": \"0\",\r\n\
-        \t\t\t\t\t\"Status\": \"attaching\",\r\n\t\t\t\t\t\"NetworkCardIndex\": \"\
-        0\"\r\n\t\t\t\t},\r\n\t\t\t\t\"Description\": \"\",\r\n\t\t\t\t\"Groups\"\
-        : [{\r\n\t\t\t\t\t\"GroupName\": \"EC2-demo-instance\",\r\n\t\t\t\t\t\"GroupId\"\
-        : \"sg-11111\"\r\n\t\t\t\t}],\r\n\t\t\t\t\"Ipv6Addresses\": [],\r\n\t\t\t\t\
-        \"MacAddress\": \"02:7e:13:89:2e:a1\",\r\n\t\t\t\t\"NetworkInterfaceId\":\
-        \ \"eni-11111\",\r\n\t\t\t\t\"OwnerId\": \"582302349248\",\r\n\t\t\t\t\"PrivateDnsName\"\
-        : \"ip-172-1-1-1.ec2.internal\",\r\n\t\t\t\t\"PrivateIpAddress\": \"1.1.1.1\"\
-        ,\r\n\t\t\t\t\"PrivateIpAddresses\": [{\r\n\t\t\t\t\t\"Primary\": \"True\"\
-        ,\r\n\t\t\t\t\t\"PrivateDnsName\": \"ip-172-1-1-1.ec2.internal\",\r\n\t\t\t\
-        \t\t\"PrivateIpAddress\": \"1.1.1.1\"\r\n\t\t\t\t}],\r\n\t\t\t\t\"SourceDestCheck\"\
-        : \"True\",\r\n\t\t\t\t\"Status\": \"in-use\",\r\n\t\t\t\t\"SubnetId\": \"\
-        subnet-1111\",\r\n\t\t\t\t\"VpcId\": \"vpc-1111\",\r\n\t\t\t\t\"InterfaceType\"\
-        : \"interface\"\r\n\t\t\t}],\r\n\t\t\t\"RootDeviceName\": \"/dev/sda1\",\r\
-        \n\t\t\t\"RootDeviceType\": \"ebs\",\r\n\t\t\t\"SecurityGroups\": [{\r\n\t\
-        \t\t\t\"GroupName\": \"EC2-demo-instance\",\r\n\t\t\t\t\"GroupId\": \"sg-1111\"\
-        \r\n\t\t\t}],\r\n\t\t\t\"SourceDestCheck\": \"True\",\r\n\t\t\t\"StateReason\"\
-        : {\r\n\t\t\t\t\"Code\": \"pending\",\r\n\t\t\t\t\"Message\": \"pending\"\r\
-        \n\t\t\t},\r\n\t\t\t\"VirtualizationType\": \"hvm\",\r\n\t\t\t\"CpuOptions\"\
-        : {\r\n\t\t\t\t\"CoreCount\": 1,\r\n\t\t\t\t\"ThreadsPerCore\": 1\r\n\t\t\t\
-        },\r\n\t\t\t\"CapacityReservationSpecification\": {\r\n\t\t\t\t\"CapacityReservationPreference\"\
-        : \"open\"\r\n\t\t\t},\r\n\t\t\t\"MetadataOptions\": {\r\n\t\t\t\t\"State\"\
-        : \"pending\",\r\n\t\t\t\t\"HttpTokens\": \"optional\",\r\n\t\t\t\t\"HttpPutResponseHopLimit\"\
-        : 1,\r\n\t\t\t\t\"HttpEndpoint\": \"enabled\"\r\n\t\t\t},\r\n\t\t\t\"EnclaveOptions\"\
-        : {\r\n\t\t\t\t\"Enabled\": \"False\"\r\n\t\t\t}\r\n\t\t},\r\n\t\t{\r\n\t\t\
-        \t\"AmiLaunchIndex\": 1,\r\n\t\t\t\"ImageId\": \"ami-1111\",\r\n\t\t\t\"InstanceId\"\
-        : \"i-1111\",\r\n\t\t\t\"InstanceType\": \"m1.small\",\r\n\t\t\t\"LaunchTime\"\
-        : \"\",\r\n\t\t\t\"Monitoring\": {\r\n\t\t\t\t\"State\": \"disabled\"\r\n\t\
-        \t\t},\r\n\t\t\t\"Placement\": {\r\n\t\t\t\t\"AvailabilityZone\": \"us-east-1c\"\
-        ,\r\n\t\t\t\t\"GroupName\": \"\",\r\n\t\t\t\t\"Tenancy\": \"default\"\r\n\t\
-        \t\t},\r\n\t\t\t\"PrivateDnsName\": \"ip-172-1-1-1.ec2.internal\",\r\n\t\t\
-        \t\"PrivateIpAddress\": \"1.1.1.1\",\r\n\t\t\t\"ProductCodes\": [],\r\n\t\t\
-        \t\"PublicDnsName\": \"\",\r\n\t\t\t\"State\": {\r\n\t\t\t\t\"Code\": 0,\r\
-        \n\t\t\t\t\"Name\": \"pending\"\r\n\t\t\t},\r\n\t\t\t\"StateTransitionReason\"\
-        : \"\",\r\n\t\t\t\"SubnetId\": \"subnet-1111\",\r\n\t\t\t\"VpcId\": \"vpc-1111\"\
-        ,\r\n\t\t\t\"Architecture\": \"x86_64\",\r\n\t\t\t\"BlockDeviceMappings\"\
-        : [],\r\n\t\t\t\"ClientToken\": \"1111\",\r\n\t\t\t\"EbsOptimized\": \"False\"\
-        ,\r\n\t\t\t\"EnaSupport\": \"True\",\r\n\t\t\t\"Hypervisor\": \"xen\",\r\n\
-        \t\t\t\"NetworkInterfaces\": [{\r\n\t\t\t\t\"Attachment\": {\r\n\t\t\t\t\t\
-        \"AttachTime\": \"\",\r\n\t\t\t\t\t\"AttachmentId\": \"eni-attach-1111\",\r\
-        \n\t\t\t\t\t\"DeleteOnTermination\": \"True\",\r\n\t\t\t\t\t\"DeviceIndex\"\
-        : \"0\",\r\n\t\t\t\t\t\"Status\": \"attaching\",\r\n\t\t\t\t\t\"NetworkCardIndex\"\
-        : \"0\"\r\n\t\t\t\t},\r\n\t\t\t\t\"Description\": \"\",\r\n\t\t\t\t\"Groups\"\
-        : [{\r\n\t\t\t\t\t\"GroupName\": \"EC2-demo-instance\",\r\n\t\t\t\t\t\"GroupId\"\
-        : \"sg-1111\"\r\n\t\t\t\t}],\r\n\t\t\t\t\"Ipv6Addresses\": [],\r\n\t\t\t\t\
-        \"MacAddress\": \"02:fc:4b:be:8d:d7\",\r\n\t\t\t\t\"NetworkInterfaceId\":\
-        \ \"eni-1111\",\r\n\t\t\t\t\"OwnerId\": \"123456\",\r\n\t\t\t\t\"PrivateDnsName\"\
-        : \"ip-172-31-12-93.ec2.internal\",\r\n\t\t\t\t\"PrivateIpAddress\": \"1.1.1.1\"\
-        ,\r\n\t\t\t\t\"PrivateIpAddresses\": [{\r\n\t\t\t\t\t\"Primary\": \"True\"\
-        ,\r\n\t\t\t\t\t\"PrivateDnsName\": \"ip-172-1-1-1.ec2.internal\",\r\n\t\t\t\
-        \t\t\"PrivateIpAddress\": \"1.1.1.1\"\r\n\t\t\t\t}],\r\n\t\t\t\t\"SourceDestCheck\"\
-        : \"True\",\r\n\t\t\t\t\"Status\": \"in-use\",\r\n\t\t\t\t\"SubnetId\": \"\
-        subnet-1111\",\r\n\t\t\t\t\"VpcId\": \"vpc-1111\",\r\n\t\t\t\t\"InterfaceType\"\
-        : \"interface\"\r\n\t\t\t}],\r\n\t\t\t\"RootDeviceName\": \"/dev/sda1\",\r\
-        \n\t\t\t\"RootDeviceType\": \"ebs\",\r\n\t\t\t\"SecurityGroups\": [{\r\n\t\
-        \t\t\t\"GroupName\": \"EC2-demo-instance\",\r\n\t\t\t\t\"GroupId\": \"sg-1111\"\
-        \r\n\t\t\t}],\r\n\t\t\t\"SourceDestCheck\": \"True\",\r\n\t\t\t\"StateReason\"\
-        : {\r\n\t\t\t\t\"Code\": \"pending\",\r\n\t\t\t\t\"Message\": \"pending\"\r\
-        \n\t\t\t},\r\n\t\t\t\"VirtualizationType\": \"hvm\",\r\n\t\t\t\"CpuOptions\"\
-        : {\r\n\t\t\t\t\"CoreCount\": 1,\r\n\t\t\t\t\"ThreadsPerCore\": 1\r\n\t\t\t\
-        },\r\n\t\t\t\"CapacityReservationSpecification\": {\r\n\t\t\t\t\"CapacityReservationPreference\"\
-        : \"open\"\r\n\t\t\t},\r\n\t\t\t\"MetadataOptions\": {\r\n\t\t\t\t\"State\"\
-        : \"pending\",\r\n\t\t\t\t\"HttpTokens\": \"optional\",\r\n\t\t\t\t\"HttpPutResponseHopLimit\"\
-        : 1,\r\n\t\t\t\t\"HttpEndpoint\": \"enabled\"\r\n\t\t\t},\r\n\t\t\t\"EnclaveOptions\"\
-        : {\r\n\t\t\t\t\"Enabled\": \"False\"\r\n\t\t\t}\r\n\t\t},\r\n\t\t{\r\n\t\t\
-        \t\"AmiLaunchIndex\": 2,\r\n\t\t\t\"ImageId\": \"ami-1111\",\r\n\t\t\t\"InstanceId\"\
-        : \"i-1111\",\r\n\t\t\t\"InstanceType\": \"m1.small\",\r\n\t\t\t\"LaunchTime\"\
-        : \"\",\r\n\t\t\t\"Monitoring\": {\r\n\t\t\t\t\"State\": \"disabled\"\r\n\t\
-        \t\t},\r\n\t\t\t\"Placement\": {\r\n\t\t\t\t\"AvailabilityZone\": \"us-east-1c\"\
-        ,\r\n\t\t\t\t\"GroupName\": \"\",\r\n\t\t\t\t\"Tenancy\": \"default\"\r\n\t\
-        \t\t},\r\n\t\t\t\"PrivateDnsName\": \"ip-172-1-1-1.ec2.internal\",\r\n\t\t\
-        \t\"PrivateIpAddress\": \"1.1.1.1\",\r\n\t\t\t\"ProductCodes\": [],\r\n\t\t\
-        \t\"PublicDnsName\": \"\",\r\n\t\t\t\"State\": {\r\n\t\t\t\t\"Code\": \"\"\
-        ,\r\n\t\t\t\t\"Name\": \"pending\"\r\n\t\t\t},\r\n\t\t\t\"StateTransitionReason\"\
-        : \"\",\r\n\t\t\t\"SubnetId\": \"subnet-1111\",\r\n\t\t\t\"VpcId\": \"vpc-1111\"\
-        ,\r\n\t\t\t\"Architecture\": \"x86_64\",\r\n\t\t\t\"BlockDeviceMappings\"\
-        : [],\r\n\t\t\t\"ClientToken\": \"1111\",\r\n\t\t\t\"EbsOptimized\": \"False\"\
-        ,\r\n\t\t\t\"EnaSupport\": \"True\",\r\n\t\t\t\"Hypervisor\": \"xen\",\r\n\
-        \t\t\t\"NetworkInterfaces\": [{\r\n\t\t\t\t\"Attachment\": {\r\n\t\t\t\t\t\
-        \"AttachTime\": \"\",\r\n\t\t\t\t\t\"AttachmentId\": \"eni-attach-1111\",\r\
-        \n\t\t\t\t\t\"DeleteOnTermination\": \"True\",\r\n\t\t\t\t\t\"DeviceIndex\"\
-        : \"\",\r\n\t\t\t\t\t\"Status\": \"attaching\",\r\n\t\t\t\t\t\"NetworkCardIndex\"\
-        : \"\"\r\n\t\t\t\t},\r\n\t\t\t\t\"Description\": \"\",\r\n\t\t\t\t\"Groups\"\
-        : [{\r\n\t\t\t\t\t\"GroupName\": \"EC2-demo-instance\",\r\n\t\t\t\t\t\"GroupId\"\
-        : \"sg-1111\"\r\n\t\t\t\t}],\r\n\t\t\t\t\"Ipv6Addresses\": [],\r\n\t\t\t\t\
-        \"MacAddress\": \"02:14:93:3b:f3:5b\",\r\n\t\t\t\t\"NetworkInterfaceId\":\
-        \ \"eni-1111\",\r\n\t\t\t\t\"OwnerId\": \"123456\",\r\n\t\t\t\t\"PrivateDnsName\"\
-        : \"ip-172-1-1-1.ec2.internal\",\r\n\t\t\t\t\"PrivateIpAddress\": \"1.1.1.1\"\
-        ,\r\n\t\t\t\t\"PrivateIpAddresses\": [{\r\n\t\t\t\t\t\"Primary\": \"True\"\
-        ,\r\n\t\t\t\t\t\"PrivateDnsName\": \"ip-172-1-1-1.ec2.internal\",\r\n\t\t\t\
-        \t\t\"PrivateIpAddress\": \"1.1.1.1\"\r\n\t\t\t\t}],\r\n\t\t\t\t\"SourceDestCheck\"\
-        : \"True\",\r\n\t\t\t\t\"Status\": \"in-use\",\r\n\t\t\t\t\"SubnetId\": \"\
-        subnet-1111\",\r\n\t\t\t\t\"VpcId\": \"vpc-1111\",\r\n\t\t\t\t\"InterfaceType\"\
-        : \"interface\"\r\n\t\t\t}],\r\n\t\t\t\"RootDeviceName\": \"/dev/sda1\",\r\
-        \n\t\t\t\"RootDeviceType\": \"ebs\",\r\n\t\t\t\"SecurityGroups\": [{\r\n\t\
-        \t\t\t\"GroupName\": \"EC2-demo-instance\",\r\n\t\t\t\t\"GroupId\": \"sg-1111\"\
-        \r\n\t\t\t}],\r\n\t\t\t\"SourceDestCheck\": \"True\",\r\n\t\t\t\"StateReason\"\
-        : {\r\n\t\t\t\t\"Code\": \"pending\",\r\n\t\t\t\t\"Message\": \"pending\"\r\
-        \n\t\t\t},\r\n\t\t\t\"VirtualizationType\": \"hvm\",\r\n\t\t\t\"CpuOptions\"\
-        : {\r\n\t\t\t\t\"CoreCount\": 1,\r\n\t\t\t\t\"ThreadsPerCore\": 1\r\n\t\t\t\
-        },\r\n\t\t\t\"CapacityReservationSpecification\": {\r\n\t\t\t\t\"CapacityReservationPreference\"\
-        : \"open\"\r\n\t\t\t},\r\n\t\t\t\"MetadataOptions\": {\r\n\t\t\t\t\"State\"\
-        : \"pending\",\r\n\t\t\t\t\"HttpTokens\": \"optional\",\r\n\t\t\t\t\"HttpPutResponseHopLimit\"\
-        : 1,\r\n\t\t\t\t\"HttpEndpoint\": \"enabled\"\r\n\t\t\t},\r\n\t\t\t\"EnclaveOptions\"\
-        : {\r\n\t\t\t\t\"Enabled\": \"False\"\r\n\t\t\t}\r\n\t\t},\r\n\t\t{\r\n\t\t\
-        \t\"AmiLaunchIndex\": 3,\r\n\t\t\t\"ImageId\": \"ami-1111\",\r\n\t\t\t\"InstanceId\"\
-        : \"i-1111\",\r\n\t\t\t\"InstanceType\": \"m1.small\",\r\n\t\t\t\"LaunchTime\"\
-        : \"\",\r\n\t\t\t\"Monitoring\": {\r\n\t\t\t\t\"State\": \"disabled\"\r\n\t\
-        \t\t},\r\n\t\t\t\"Placement\": {\r\n\t\t\t\t\"AvailabilityZone\": \"us-east-1c\"\
-        ,\r\n\t\t\t\t\"GroupName\": \"\",\r\n\t\t\t\t\"Tenancy\": \"default\"\r\n\t\
-        \t\t},\r\n\t\t\t\"PrivateDnsName\": \"ip-172-1-1-1.ec2.internal\",\r\n\t\t\
-        \t\"PrivateIpAddress\": \"1.1.1.1\",\r\n\t\t\t\"ProductCodes\": [],\r\n\t\t\
-        \t\"PublicDnsName\": \"\",\r\n\t\t\t\"State\": {\r\n\t\t\t\t\"Code\": 0,\r\
-        \n\t\t\t\t\"Name\": \"pending\"\r\n\t\t\t},\r\n\t\t\t\"StateTransitionReason\"\
-        : \"\",\r\n\t\t\t\"SubnetId\": \"subnet-1111\",\r\n\t\t\t\"VpcId\": \"vpc-1111\"\
-        ,\r\n\t\t\t\"Architecture\": \"x86_64\",\r\n\t\t\t\"BlockDeviceMappings\"\
-        : [],\r\n\t\t\t\"ClientToken\": \"1111\",\r\n\t\t\t\"EbsOptimized\": \"False\"\
-        ,\r\n\t\t\t\"EnaSupport\": \"True\",\r\n\t\t\t\"Hypervisor\": \"xen\",\r\n\
-        \t\t\t\"NetworkInterfaces\": [{\r\n\t\t\t\t\"Attachment\": {\r\n\t\t\t\t\t\
-        \"AttachTime\": \"\",\r\n\t\t\t\t\t\"AttachmentId\": \"eni-attach-1111\",\r\
-        \n\t\t\t\t\t\"DeleteOnTermination\": \"True\",\r\n\t\t\t\t\t\"DeviceIndex\"\
-        : \"\",\r\n\t\t\t\t\t\"Status\": \"attaching\",\r\n\t\t\t\t\t\"NetworkCardIndex\"\
-        : \"\"\r\n\t\t\t\t},\r\n\t\t\t\t\"Description\": \"\",\r\n\t\t\t\t\"Groups\"\
-        : [{\r\n\t\t\t\t\t\"GroupName\": \"EC2-demo-instance\",\r\n\t\t\t\t\t\"GroupId\"\
-        : \"sg-1111\"\r\n\t\t\t\t}],\r\n\t\t\t\t\"Ipv6Addresses\": [],\r\n\t\t\t\t\
-        \"MacAddress\": \"02:4c:0c:d0:5b:cf\",\r\n\t\t\t\t\"NetworkInterfaceId\":\
-        \ \"eni-1111\",\r\n\t\t\t\t\"OwnerId\": \"582302349248\",\r\n\t\t\t\t\"PrivateDnsName\"\
-        : \"ip-172-1-1-1.ec2.internal\",\r\n\t\t\t\t\"PrivateIpAddress\": \"1.1.1.1\"\
-        ,\r\n\t\t\t\t\"PrivateIpAddresses\": [{\r\n\t\t\t\t\t\"Primary\": \"True\"\
-        ,\r\n\t\t\t\t\t\"PrivateDnsName\": \"ip-172-1-1-1.ec2.internal\",\r\n\t\t\t\
-        \t\t\"PrivateIpAddress\": \"1.1.1.1\"\r\n\t\t\t\t}],\r\n\t\t\t\t\"SourceDestCheck\"\
-        : \"True\",\r\n\t\t\t\t\"Status\": \"in-use\",\r\n\t\t\t\t\"SubnetId\": \"\
-        subnet-1111\",\r\n\t\t\t\t\"VpcId\": \"vpc-1111\",\r\n\t\t\t\t\"InterfaceType\"\
-        : \"interface\"\r\n\t\t\t}],\r\n\t\t\t\"RootDeviceName\": \"/dev/sda1\",\r\
-        \n\t\t\t\"RootDeviceType\": \"ebs\",\r\n\t\t\t\"SecurityGroups\": [{\r\n\t\
-        \t\t\t\"GroupName\": \"EC2-demo-instance\",\r\n\t\t\t\t\"GroupId\": \"sg-1111\"\
-        \r\n\t\t\t}],\r\n\t\t\t\"SourceDestCheck\": \"True\",\r\n\t\t\t\"StateReason\"\
-        : {\r\n\t\t\t\t\"Code\": \"pending\",\r\n\t\t\t\t\"Message\": \"pending\"\r\
-        \n\t\t\t},\r\n\t\t\t\"VirtualizationType\": \"hvm\",\r\n\t\t\t\"CpuOptions\"\
-        : {\r\n\t\t\t\t\"CoreCount\": \"\",\r\n\t\t\t\t\"ThreadsPerCore\": \"\"\r\n\
-        \t\t\t},\r\n\t\t\t\"CapacityReservationSpecification\": {\r\n\t\t\t\t\"CapacityReservationPreference\"\
-        : \"open\"\r\n\t\t\t},\r\n\t\t\t\"MetadataOptions\": {\r\n\t\t\t\t\"State\"\
-        : \"pending\",\r\n\t\t\t\t\"HttpTokens\": \"optional\",\r\n\t\t\t\t\"HttpPutResponseHopLimit\"\
-        : \"\",\r\n\t\t\t\t\"HttpEndpoint\": \"enabled\"\r\n\t\t\t},\r\n\t\t\t\"EnclaveOptions\"\
-        : {\r\n\t\t\t\t\"Enabled\": \"False\"\r\n\t\t\t}\r\n\t\t}\r\n\t],\r\n\t\"\
-        OwnerId\": \"123456\",\r\n\t\"ReservationId\": \"r-1111\",\r\n\t\"ResponseMetadata\"\
-        : {\r\n\t\t\"RequestId\": \"1111\",\r\n\t\t\"HTTPStatusCode\": \"200\",\r\n\
-        \t\t\"HTTPHeaders\": {\r\n\t\t\t\"x-amzn-requestid\": \"1111\",\r\n\t\t\t\"\
-        content-type\": \"text/xml;charset=UTF-8\",\r\n\t\t\t\"transfer-encoding\"\
-        : \"chunked\",\r\n\t\t\t\"vary\": \"accept-encoding\",\r\n\t\t\t\"date\":\
-        \ \"Thu, 03 Dec 2020 11:44:12 GMT\",\r\n\t\t\t\"server\": \"AmazonEC2\"\r\n\
-        \t\t},\r\n\t\t\"RetryAttempts\": \"\"\r\n\t}\r\n}"
+- result_name: JsonResult
+  show_result: true
+  result_example_path: resources/CreateInstance_JsonResult_example.json
 default_result_value: ''
 creator: TehilaGourary
 is_async: true

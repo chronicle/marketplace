@@ -1,0 +1,35 @@
+[
+    {
+        "id": 1,
+        "name": "Cognito - Box",
+        "description": "Domains used by the Box service",
+        "last_modified": "2023-08-29T21:39:50Z",
+        "last_modified_by": "cognito",
+        "type": "domain",
+        "members": [
+            "*.box.com",
+            "*.box.net",
+            "*.boxcdn.net",
+            "*.boxcloud.com",
+            "*.boxrelay.com"
+        ],
+        "rules": [
+            {
+                "triage_category": "Box Exfil",
+                "id": 175,
+                "description": "Exfil or data storage to Box service"
+            },
+            {
+                "triage_category": "Box Exfil",
+                "id": 178,
+                "description": "Exfil or data storage to Box service"
+            }
+        ],
+        "importance": "medium",
+        "regex": null,
+        "membership_evaluation_ongoing": false,
+        "member_count": 5,
+        "built_using": "static_members",
+        "cognito_managed": true
+    }
+]

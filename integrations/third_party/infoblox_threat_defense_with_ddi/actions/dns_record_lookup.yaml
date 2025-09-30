@@ -3,15 +3,16 @@ description: Performs a DNS record query to retrieve associated IPs or domains.
 integration_identifier: InfobloxThreatDefenseWithDDI
 parameters:
 - name: DNS Record Filter
-  default_value: null
+  default_value:
   type: string
-  description: Filter DNS records by specific criteria (e.g., type==”PTR” and absolute_zone_name
-    == “Test”).
+  description: Filter DNS records by specific criteria (e.g., type==”PTR” and 
+    absolute_zone_name == “Test”).
   is_mandatory: false
 - name: Tag Filter
-  default_value: null
+  default_value:
   type: string
-  description: Filter DNS records by specific tags (e.g., 'nios/federation_enabled'==true).
+  description: Filter DNS records by specific tags (e.g., 
+    'nios/federation_enabled'==true).
   is_mandatory: false
 - name: Offset
   default_value: '0'
@@ -24,70 +25,16 @@ parameters:
   description: Specify the maximum number of results to return.
   is_mandatory: false
 - name: Order By
-  default_value: null
+  default_value:
   type: string
-  description: Comma-separated JSON fields to sort the results. Use asc or desc for
-    sort direction. Defaults to ascending. Supports dot notation for nested fields.
+  description: Comma-separated JSON fields to sort the results. Use asc or desc 
+    for sort direction. Defaults to ascending. Supports dot notation for nested 
+    fields.
   is_mandatory: false
 dynamic_results_metadata:
 - result_name: JsonResult
   show_result: true
-  result_example: "{\r\n    \"results\": [\r\n        {\r\n            \"absolute_name_spec\"\
-    : \"crest.\",\r\n            \"absolute_zone_name\": \"crest.\",\r\n         \
-    \   \"comment\": \"Auto-created by Add Zone\",\r\n            \"compartment_id\"\
-    : \"\",\r\n            \"created_at\": \"2025-05-07T09:51:55.056896Z\",\r\n  \
-    \          \"delegation\": null,\r\n            \"disabled\": false,\r\n     \
-    \       \"dns_absolute_name_spec\": \"crest.\",\r\n            \"dns_absolute_zone_name\"\
-    : \"crest.\",\r\n            \"dns_name_in_zone\": \"\",\r\n            \"dns_rdata\"\
-    : \"infoblox.localdomain.\",\r\n            \"id\": \"dns/record/9fa2075a-5ec7-40af-8498-6e5d5a50dbce\"\
-    ,\r\n            \"inheritance_sources\": null,\r\n            \"ipam_host\":\
-    \ null,\r\n            \"last_queried\": null,\r\n            \"name_in_zone\"\
-    : \"\",\r\n            \"nios_metadata\": {\r\n                \"federation\"\
-    : true,\r\n                \"gridId\": \"92b54f9e010e44c68cede2f69206b6f1\",\r\
-    \n                \"niosKey\": [\r\n                    \".com.infoblox.dns.bind_ns$._default.crest..infoblox.localdomain\"\
-    \r\n                ],\r\n                \"objType\": \"record_ns\"\r\n     \
-    \       },\r\n            \"options\": null,\r\n            \"provider_metadata\"\
-    : null,\r\n            \"rdata\": {\r\n                \"dname\": \"infoblox.localdomain.\"\
-    \r\n            },\r\n            \"source\": [\r\n                \"SYSTEM\"\r\
-    \n            ],\r\n            \"subtype\": \"\",\r\n            \"tags\": {\r\
-    \n                \"nios/federation_enabled\": \"true\",\r\n                \"\
-    nios/grid_name\": \"crest_Infoblox_ise\",\r\n                \"nios/import_timestamp\"\
-    : \"2025-05-07T09:51:42Z\",\r\n                \"nios/imported\": \"true\"\r\n\
-    \            },\r\n            \"ttl\": 28800,\r\n            \"type\": \"NS\"\
-    ,\r\n            \"updated_at\": \"2025-05-07T09:51:55.056896Z\",\r\n        \
-    \    \"view\": \"dns/view/157bbb3c-2643-4e65-a671-fb3140def66b\",\r\n        \
-    \    \"view_name\": \"default-crest_Infoblox_ise\",\r\n            \"zone\": \"\
-    dns/auth_zone/45bfdc4b-dcb5-4013-9dcc-8825d2cbd391\"\r\n        },\r\n       \
-    \ {\r\n            \"absolute_name_spec\": \"crest.\",\r\n            \"absolute_zone_name\"\
-    : \"crest.\",\r\n            \"comment\": \"Auto-created by Add Zone\",\r\n  \
-    \          \"compartment_id\": \"\",\r\n            \"created_at\": \"2025-05-07T09:51:40.371930Z\"\
-    ,\r\n            \"delegation\": null,\r\n            \"disabled\": false,\r\n\
-    \            \"dns_absolute_name_spec\": \"crest.\",\r\n            \"dns_absolute_zone_name\"\
-    : \"crest.\",\r\n            \"dns_name_in_zone\": \"\",\r\n            \"dns_rdata\"\
-    : \"ns.b1ddi.crest. hostmaster.crest. 1 10800 3600 2419200 900\",\r\n        \
-    \    \"id\": \"dns/record/e58593cc-3ff6-4dd8-817c-8d02d9fd7b9f\",\r\n        \
-    \    \"inheritance_sources\": null,\r\n            \"ipam_host\": null,\r\n  \
-    \          \"last_queried\": null,\r\n            \"name_in_zone\": \"\",\r\n\
-    \            \"nios_metadata\": {\r\n                \"federation\": true,\r\n\
-    \                \"gridId\": \"92b54f9e010e44c68cede2f69206b6f1\",\r\n       \
-    \         \"niosKey\": [\r\n                    \".com.infoblox.dns.bind_soa$._default.crest\"\
-    \r\n                ],\r\n                \"objType\": \"record_soa\"\r\n    \
-    \        },\r\n            \"options\": null,\r\n            \"provider_metadata\"\
-    : null,\r\n            \"rdata\": {\r\n                \"expire\": 2419200,\r\n\
-    \                \"mname\": \"ns.b1ddi.crest.\",\r\n                \"negative_ttl\"\
-    : 900,\r\n                \"refresh\": 10800,\r\n                \"retry\": 3600,\r\
-    \n                \"rname\": \"hostmaster@crest\",\r\n                \"serial\"\
-    : 1\r\n            },\r\n            \"source\": [\r\n                \"SYSTEM\"\
-    \r\n            ],\r\n            \"subtype\": \"\",\r\n            \"tags\":\
-    \ {\r\n                \"nios/federation_enabled\": \"true\",\r\n            \
-    \    \"nios/grid_name\": \"crest_Infoblox_ise\",\r\n                \"nios/import_timestamp\"\
-    : \"2025-05-07T09:51:42Z\",\r\n                \"nios/imported\": \"true\"\r\n\
-    \            },\r\n            \"ttl\": 28800,\r\n            \"type\": \"SOA\"\
-    ,\r\n            \"updated_at\": \"2025-05-07T09:51:55.075214Z\",\r\n        \
-    \    \"view\": \"dns/view/157bbb3c-2643-4e65-a671-fb3140def66b\",\r\n        \
-    \    \"view_name\": \"default-crest_Infoblox_ise\",\r\n            \"zone\": \"\
-    dns/auth_zone/45bfdc4b-dcb5-4013-9dcc-8825d2cbd391\"\r\n        }\r\n    ]\r\n\
-    }"
+  result_example_path: resources/dns_record_lookup_JsonResult_example.json
 default_result_value: ''
 creator: Admin
 script_result_name: ScriptResult

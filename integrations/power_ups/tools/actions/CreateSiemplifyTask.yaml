@@ -1,33 +1,33 @@
 name: Create Siemplify Task
-description: This action will assign a task to a user or a role.  The task will be
-    related to the case the action ran on.
+description: This action will assign a task to a user or a role.  The task will 
+  be related to the case the action ran on.
 integration_identifier: Tools
 parameters:
-    -   name: SLA (in minutes)
-        default_value: '480'
-        type: string
-        description: The amount of time (in minutes) the assigned user/role has to respond
-            to the task.
-        is_mandatory: true
-    -   name: Task Content
-        default_value: ' '
-        type: content
-        description: The details of the task.
-        is_mandatory: true
-    -   name: Assign To
-        default_value: Admin
-        type: user
-        description: The user or the role the task will be assigned to.
-        is_mandatory: true
-    -   name: Task Title
-        type: string
-        description: The title of the task.  Supports Siemplify versions 6.0.0.0 and higher.
-        is_mandatory: false
+- name: SLA (in minutes)
+  default_value: '480'
+  type: string
+  description: The amount of time (in minutes) the assigned user/role has to 
+    respond to the task.
+  is_mandatory: true
+- name: Task Content
+  default_value: ' '
+  type: content
+  description: The details of the task.
+  is_mandatory: true
+- name: Assign To
+  default_value: Admin
+  type: user
+  description: The user or the role the task will be assigned to.
+  is_mandatory: true
+- name: Task Title
+  type: string
+  description: The title of the task.  Supports Siemplify versions 6.0.0.0 and 
+    higher.
+  is_mandatory: false
 dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: '{}'
+- result_name: JsonResult
+  show_result: true
+  result_example_path:
 default_result_value: ''
 creator: Robert
 script_result_name: ScriptResult

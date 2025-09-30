@@ -2,16 +2,15 @@ name: Get Current Time
 description: 'Returns the current date and time '
 integration_identifier: Tools
 parameters:
-    -   name: Datetime Format
-        default_value: '%d/%m/%Y %H:%M'
-        type: string
-        description: The format of the date and time
-        is_mandatory: true
+- name: Datetime Format
+  default_value: '%d/%m/%Y %H:%M'
+  type: string
+  description: The format of the date and time
+  is_mandatory: true
 dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: '{}'
+- result_name: JsonResult
+  show_result: true
+  result_example_path:
 default_result_value: ''
 creator: Robert
 script_result_name: ScriptResult

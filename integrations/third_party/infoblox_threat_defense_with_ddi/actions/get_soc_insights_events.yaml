@@ -8,31 +8,31 @@ parameters:
   description: ID of the insight to retrieve events from.
   is_mandatory: true
 - name: Device IP
-  default_value: null
+  default_value:
   type: string
   description: Filter assets by Device IP.
   is_mandatory: false
 - name: Query
-  default_value: null
+  default_value:
   type: string
   description: Filter by query string.
   is_mandatory: false
 - name: Query Type
-  default_value: null
+  default_value:
   type: string
   description: Filter events by DNS query type (e.g., TXT, A, MX).
   is_mandatory: false
 - name: Source
-  default_value: null
+  default_value:
   type: string
-  description: Filter events by the threat intelligence source or feed (e.g., DFP
-    (DFP)).
+  description: Filter events by the threat intelligence source or feed (e.g., 
+    DFP (DFP)).
   is_mandatory: false
 - name: Indicator
-  default_value: null
+  default_value:
   type: string
-  description: Filter events by a specific threat indicator such as a domain, IP,
-    or hash (e.g., hmdns.top).
+  description: Filter events by a specific threat indicator such as a domain, 
+    IP, or hash (e.g., hmdns.top).
   is_mandatory: false
 - name: Threat Level
   default_value: All
@@ -61,7 +61,7 @@ parameters:
   description: Specify the maximum number of results to return.
   is_mandatory: false
 - name: From
-  default_value: null
+  default_value:
   type: string
   description: 'Filter by events detected after this time in this format: YYYY-MM-DDTHH:mm:ss.SSS'
   is_mandatory: false
@@ -73,15 +73,7 @@ parameters:
 dynamic_results_metadata:
 - result_name: JsonResult
   show_result: true
-  result_example: "{\r\n    \"events\": [\r\n        {\r\n            \"confidenceLevel\"\
-    : \"High\",\r\n            \"source\": \"unknown\",\r\n            \"action\"\
-    : \"Allow - No Log\",\r\n            \"policy\": \"DoH\",\r\n            \"deviceIp\"\
-    : \"34.96.34.26\",\r\n            \"query\": \"soc-botnet.xhexriya.ru\",\r\n \
-    \           \"queryType\": \"ANY\",\r\n            \"class\": \"TI-BOTNET\",\r\
-    \n            \"threatFamily\": \"QTYPEANY\",\r\n            \"detected\": \"\
-    2025-07-09 11:42:30 +0000 UTC\",\r\n            \"property\": \"soc-botnet.xhexriya.ru\"\
-    ,\r\n            \"user\": \"unknown\",\r\n            \"threatLevel\": \"Medium\"\
-    \r\n        }\r\n    ]\r\n}"
+  result_example_path: resources/get_soc_insights_events_JsonResult_example.json
 default_result_value: ''
 creator: Admin
 script_result_name: ScriptResult

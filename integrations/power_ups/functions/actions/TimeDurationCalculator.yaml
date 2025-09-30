@@ -1,37 +1,36 @@
 name: Time Duration Calculator
-description: The Time Duration Calculator will calculate the time that has elapsed/difference
-    between two dates with time.
+description: The Time Duration Calculator will calculate the time that has 
+  elapsed/difference between two dates with time.
 integration_identifier: Functions
 parameters:
-    -   name: Input DateTime 1
-        default_value: ''
-        type: string
-        description: The first input datetime value.  Supports either strftime format
-            or "now" for the current time.
-        is_mandatory: true
-    -   name: Input DateTime 1 Format
-        default_value: '%Y-%m-%dT%H:%M:%S%z'
-        type: string
-        description: 'The strftime format of the DateTime string.
+- name: Input DateTime 1
+  default_value: ''
+  type: string
+  description: The first input datetime value.  Supports either strftime format 
+    or "now" for the current time.
+  is_mandatory: true
+- name: Input DateTime 1 Format
+  default_value: '%Y-%m-%dT%H:%M:%S%z'
+  type: string
+  description: 'The strftime format of the DateTime string.
 
-        https://strftime.org/'
-        is_mandatory: true
-    -   name: Input DateTime 2
-        default_value: now
-        type: string
-        description: The second input datetime value.  Supports either strftime format
-            or "now" for the current time.
-        is_mandatory: true
-    -   name: Input DateTime 2 Format
-        default_value: '%Y-%m-%dT%H:%M:%S%z'
-        type: string
-        description: The strftime format of Input DateTime 2.
-        is_mandatory: true
+    https://strftime.org/'
+  is_mandatory: true
+- name: Input DateTime 2
+  default_value: now
+  type: string
+  description: The second input datetime value.  Supports either strftime format
+    or "now" for the current time.
+  is_mandatory: true
+- name: Input DateTime 2 Format
+  default_value: '%Y-%m-%dT%H:%M:%S%z'
+  type: string
+  description: The strftime format of Input DateTime 2.
+  is_mandatory: true
 dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: '{}'
+- result_name: JsonResult
+  show_result: true
+  result_example_path:
 default_result_value: ''
 creator: Rob
 script_result_name: seconds

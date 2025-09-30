@@ -1,67 +1,52 @@
 name: Wipe Managed Device
-description: Remotely erase/wipe a managed computer using Jamf Pro ERASE_DEVICE MDM command.
+description: Remotely erase/wipe a managed computer using Jamf Pro ERASE_DEVICE 
+  MDM command.
 script: WipeManagedDevice.py
 type: containment
 integration_identifier: Jamf
 timeout_seconds: 300
 parameters:
-  - name: Computer ID
-    type: string
-    description: The ID of the computer to erase (required)
-    is_mandatory: true
-    default_value: ""
-  - name: PIN
-    type: string
-    description: Optional 6-digit PIN for the erase command (leave empty if not needed)
-    is_mandatory: true
-    default_value: ""
-  - name: Obliteration Behavior
-    type: ddl
-    description: How the device should be obliterated during erase
-    is_mandatory: true
-    default_value: "Default"
-    optional_values:
-      - "Default"
-      - "DoNotObliterate"
-      - "ObliterateWithWarning"
-      - "Always"
-  - name: Return to Service
-    type: boolean
-    description: Whether to enable return to service after erase (requires MDM profile data)
-    is_mandatory: true
-    default_value: false
-  - name: MDM Profile Data
-    type: string
-    description: Base64-encoded MDM profile data for return to service (optional, only used if Return to Service is enabled)
-    is_mandatory: false
-    default_value: ""
-  - name: WiFi Profile Data
-    type: string
-    description: Base64-encoded WiFi profile data for return to service (optional, only used if Return to Service is enabled)
-    is_mandatory: false
-    default_value: ""
+- name: Computer ID
+  type: string
+  description: The ID of the computer to erase (required)
+  is_mandatory: true
+  default_value: ""
+- name: PIN
+  type: string
+  description: Optional 6-digit PIN for the erase command (leave empty if not 
+    needed)
+  is_mandatory: true
+  default_value: ""
+- name: Obliteration Behavior
+  type: ddl
+  description: How the device should be obliterated during erase
+  is_mandatory: true
+  default_value: "Default"
+  optional_values:
+  - "Default"
+  - "DoNotObliterate"
+  - "ObliterateWithWarning"
+  - "Always"
+- name: Return to Service
+  type: boolean
+  description: Whether to enable return to service after erase (requires MDM 
+    profile data)
+  is_mandatory: true
+  default_value: false
+- name: MDM Profile Data
+  type: string
+  description: Base64-encoded MDM profile data for return to service (optional, 
+    only used if Return to Service is enabled)
+  is_mandatory: false
+  default_value: ""
+- name: WiFi Profile Data
+  type: string
+  description: Base64-encoded WiFi profile data for return to service (optional,
+    only used if Return to Service is enabled)
+  is_mandatory: false
+  default_value: ""
 dynamic_results_metadata:
-  - result_name: JsonResult
-    show_result: true
-    # language=json
-    result_example: |
-      {
-        "erase_command_result": [
-          {
-            "id": "1",
-            "href": "https://yourJamfProUrl.jamf/api/v1/resource/1"
-          }
-        ],
-        "command_details": {
-          "computer_id": "12345",
-          "command_type": "ERASE_DEVICE",
-          "obliteration_behavior": "Default",
-          "return_to_service": false,
-          "pin_used": true,
-          "mdm_profile_provided": true,
-          "wifi_profile_provided": false,
-          "timestamp": 1641234567,
-          "status": "initiated"
-        }
-      }
+- result_name: JsonResult
+  show_result: true
+  result_example_path: resources/WipeManagedDevice_JsonResult_example.json
 default_result_value: ""

@@ -1,35 +1,23 @@
 name: Search User By Email and Name
-description: Checks if a user exists by email and username, and returns indication
-    for the existence of each in the platform.
+description: Checks if a user exists by email and username, and returns 
+  indication for the existence of each in the platform.
 integration_identifier: VanillaForums
 parameters:
-    -   name: User Email
-        default_value: mail@mail.com
-        type: string
-        description: the email address of the user
-        is_mandatory: true
-    -   name: User Name
-        default_value: Co Mmunity
-        type: string
-        description: the full name of the user
-        is_mandatory: true
+- name: User Email
+  default_value: mail@mail.com
+  type: string
+  description: the email address of the user
+  is_mandatory: true
+- name: User Name
+  default_value: Co Mmunity
+  type: string
+  description: the full name of the user
+  is_mandatory: true
 dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: "{\r\n\t\"Email\": true,\r\n\t\"UserName\": true,\r\n\t\"UserDetails\"\
-        : {\r\n\t\t\"banned\": 0,\r\n\t\t\"bypassSpam\": false,\r\n\t\t\"email\":\
-        \ \"mail@mail.co\",\r\n\t\t\"emailConfirmed\": true,\r\n\t\t\"dateInserted\"\
-        : \"2021-07-20T10:14:57+00:00\",\r\n\t\t\"dateLastActive\": \"2021-09-05T10:54:58+00:00\"\
-        ,\r\n\t\t\"dateUpdated\": \"2021-08-01T15:48:06+00:00\",\r\n\t\t\"name\":\
-        \ \"Mail Mail\",\r\n\t\t\"photoUrl\": \"https://wb.vanillicon.com/v2/bc5f30c1d3425047c142fd94c7e2a8f3.svg\"\
-        ,\r\n\t\t\"url\": \"https://community.siemplify.co/profile/Mail%20Mail\",\r\
-        \n\t\t\"points\": 10,\r\n\t\t\"roles\": [{\r\n\t\t\t\"roleID\": 8,\r\n\t\t\
-        \t\"name\": \"Member\"\r\n\t\t}, {\r\n\t\t\t\"roleID\": 16,\r\n\t\t\t\"name\"\
-        : \"Community Team\"\r\n\t\t}],\r\n\t\t\"showEmail\": false,\r\n\t\t\"userID\"\
-        : 1,\r\n\t\t\"countDiscussions\": 0,\r\n\t\t\"countComments\": 0,\r\n\t\t\"\
-        countPosts\": 0,\r\n\t\t\"label\": \"Community Team\",\r\n\t\t\"private\"\
-        : false,\r\n\t\t\"rankID\": 110\r\n\t}\r\n}"
+- result_name: JsonResult
+  show_result: true
+  result_example_path: 
+    resources/SearchUserByEmailAndName_JsonResult_example.json
 default_result_value: ''
 creator: shirsavion
 script_result_name: ScriptResult

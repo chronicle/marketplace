@@ -1,80 +1,72 @@
 name: Set User Permissions
 description: "Adds or revokes user permissions in a supergroup or a channel. \nNote:\
-    \  The bot must be an administrator in the chat for this to work and must have\
-    \ the appropriate admin permissions."
+  \  The bot must be an administrator in the chat for this to work and must have the
+  appropriate admin permissions."
 integration_identifier: Telegram
 parameters:
-    -   name: Can Pin Messages
-        default_value: 'true'
-        type: boolean
-        description: 'The user can pin messages.
+- name: Can Pin Messages
+  default_value: 'true'
+  type: boolean
+  description: 'The user can pin messages.
 
-        (Relevant for supergroups only)'
-        is_mandatory: false
-    -   name: Can Promote Members
-        default_value: 'true'
-        type: boolean
-        description: The user can add new administrators or revoke them.
-        is_mandatory: false
-    -   name: Can Restrict Members
-        default_value: 'true'
-        type: boolean
-        description: The user can restrict, ban or unban chat members
-        is_mandatory: false
-    -   name: Can Post Messages
-        default_value: 'true'
-        type: boolean
-        description: 'The user can post messages.
+    (Relevant for supergroups only)'
+  is_mandatory: false
+- name: Can Promote Members
+  default_value: 'true'
+  type: boolean
+  description: The user can add new administrators or revoke them.
+  is_mandatory: false
+- name: Can Restrict Members
+  default_value: 'true'
+  type: boolean
+  description: The user can restrict, ban or unban chat members
+  is_mandatory: false
+- name: Can Post Messages
+  default_value: 'true'
+  type: boolean
+  description: 'The user can post messages.
 
-        (Relevant for channel chats only)'
-        is_mandatory: false
-    -   name: Can Edit The Info
-        default_value: 'true'
-        type: boolean
-        description: The user can edit chat title, photo and other settings.
-        is_mandatory: false
-    -   name: Is Anonymous
-        default_value: 'true'
-        type: boolean
-        description: The user's presence in the chat is hidden
-        is_mandatory: false
-    -   name: User ID
-        default_value: '123456'
-        type: string
-        description: The user  ID of you want to set the permissions to.
-        is_mandatory: true
-    -   name: Chat ID
-        default_value: '123456'
-        type: string
-        description: The chat ID which you want the bot to set the permissions to.
-        is_mandatory: true
-    -   name: Can Invite Users
-        default_value: 'true'
-        type: boolean
-        description: The user can invite new users to the chat
-        is_mandatory: false
-    -   name: Can Delete Messages
-        default_value: 'true'
-        type: boolean
-        description: The user can delete messages of other users
-        is_mandatory: false
-    -   name: Can Edit Messages
-        default_value: 'true'
-        type: boolean
-        description: The user can edit messages of other users.
-        is_mandatory: false
+    (Relevant for channel chats only)'
+  is_mandatory: false
+- name: Can Edit The Info
+  default_value: 'true'
+  type: boolean
+  description: The user can edit chat title, photo and other settings.
+  is_mandatory: false
+- name: Is Anonymous
+  default_value: 'true'
+  type: boolean
+  description: The user's presence in the chat is hidden
+  is_mandatory: false
+- name: User ID
+  default_value: '123456'
+  type: string
+  description: The user  ID of you want to set the permissions to.
+  is_mandatory: true
+- name: Chat ID
+  default_value: '123456'
+  type: string
+  description: The chat ID which you want the bot to set the permissions to.
+  is_mandatory: true
+- name: Can Invite Users
+  default_value: 'true'
+  type: boolean
+  description: The user can invite new users to the chat
+  is_mandatory: false
+- name: Can Delete Messages
+  default_value: 'true'
+  type: boolean
+  description: The user can delete messages of other users
+  is_mandatory: false
+- name: Can Edit Messages
+  default_value: 'true'
+  type: boolean
+  description: The user can edit messages of other users.
+  is_mandatory: false
 dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: "{\r\n\t\"ok\": true,\r\n\t\"result\": {\r\n\t\t\"message_id\"\
-        : 5,\r\n\t\t\"from\": {\r\n\t\t\t\"id\": 123456,\r\n\t\t\t\"is_bot\": true,\r\
-        \n\t\t\t\"first_name\": \"test_test\",\r\n\t\t\t\"username\": \"test_bot\"\
-        \r\n\t\t},\r\n\t\t\"chat\": {\r\n\t\t\t\"id\": -1111111,\r\n\t\t\t\"title\"\
-        : \"Test\",\r\n\t\t\t\"type\": \"supergroup\"\r\n\t\t},\r\n\t\t\"date\": 1605531666,\r\
-        \n\t\t\"photo\": [{\r\n\t\t\t\"file_id\": \"fuewAAABBBB-AgABHgQ\",\r\n\t\t\
-        \t\"file_unique_id\": \"AAAAAAAAA\",\r\n\t\t\t\"file_size\": 3074,\r\n\t\t\
-        \t\"width\": 120,\r\n\t\t\t\"height\": 120\r\n\t\t}]\r\n\t}\r\n}"
+- result_name: JsonResult
+  show_result: true
+  result_example_path: resources/SetUserPermissions_JsonResult_example.json
 default_result_value: ''
 creator: TehilaGourary
 script_result_name: ScriptResult

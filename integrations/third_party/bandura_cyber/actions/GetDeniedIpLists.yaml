@@ -2,17 +2,15 @@ name: Get Denied IP Lists
 description: Get a list of IPs in Denied IPv4 List
 integration_identifier: Bandura Cyber
 parameters:
-    -   name: List Name
-        default_value: List Name
-        type: string
-        description: Name of the list to add the IP. (The List Name is Case Sensitive)
-        is_mandatory: false
+- name: List Name
+  default_value: List Name
+  type: string
+  description: Name of the list to add the IP. (The List Name is Case Sensitive)
+  is_mandatory: false
 dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: '[{"count":1,"isPublic":false,"description":"Manual List","lastUpdateDatetime":"2021-07-06T16:47:13+00:00","pluginParameters":{},"pluginUuid":"00000000-6714-4000-8000-000000000000","interval":60,"enabled":true,"isHealthy":true,"name":"My
-        Manual List","lastSyncDatetime":null,"type":"manual","uuid":"58ad80e8-e50d-473c-8e6c-ba284b73778b"}]'
+- result_name: JsonResult
+  show_result: true
+  result_example_path: resources/GetDeniedIpLists_JsonResult_example.json
 default_result_value: ''
 creator: Admin
 script_result_name: denied_ip_list

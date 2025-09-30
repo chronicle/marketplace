@@ -2,31 +2,30 @@ name: Create Thumbnail
 description: Creates a Base64 Thumbnail of an image.
 integration_identifier: Functions
 parameters:
-    -   name: Base64 Image
-        default_value: ''
-        type: string
-        description: The Base64 string of the image.
-        is_mandatory: false
-    -   name: Thumbnail Size
-        default_value: 250,250
-        type: string
-        description: Comma separated.  Pixels.   X , Y
-        is_mandatory: true
-    -   name: Input JSON
-        default_value: ''
-        type: string
-        description: Input JSON
-        is_mandatory: false
-    -   name: Image Key Path
-        default_value: ''
-        type: string
-        description: If using Input JSON, the keypath for the image field.
-        is_mandatory: false
+- name: Base64 Image
+  default_value: ''
+  type: string
+  description: The Base64 string of the image.
+  is_mandatory: false
+- name: Thumbnail Size
+  default_value: 250,250
+  type: string
+  description: Comma separated.  Pixels.   X , Y
+  is_mandatory: true
+- name: Input JSON
+  default_value: ''
+  type: string
+  description: Input JSON
+  is_mandatory: false
+- name: Image Key Path
+  default_value: ''
+  type: string
+  description: If using Input JSON, the keypath for the image field.
+  is_mandatory: false
 dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: '{}'
+- result_name: JsonResult
+  show_result: true
+  result_example_path:
 default_result_value: ''
 creator: Rob
 script_result_name: ScriptResult

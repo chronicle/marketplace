@@ -1,19 +1,11 @@
 name: Policies - List All
 description: This method retrieves the list of available policies.
 integration_identifier: Bitdefender GravityZone
-parameters: [ ]
+parameters: []
 dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: "{\r\n    \"items\": [\r\n        {\r\n            \"id\" : \"\
-        21a295eeb1a43d8b497b23b7\",\r\n            \"name\" : \"Policy 1\",\r\n  \
-        \          \"companyId\" : \"55896b87b7894d0f367b23c6\",\r\n            \"\
-        companyName\" : \"Company Test\"\r\n        },\r\n        {\r\n          \
-        \  \"id\" : \"23a295d8b1a43d7c4a7b23c9\",\r\n            \"name\" : \"Policy\
-        \ 2\",\r\n            \"companyId\" : \"55896b87b7894d0f367b23c6\",\r\n  \
-        \          \"companyName\" : \"Company Test\"\r\n\r\n        }\r\n    ]\r\n\
-        \r\n}"
+- result_name: JsonResult
+  show_result: true
+  result_example_path: resources/PoliciesListAll_JsonResult_example.json
 default_result_value: ''
 creator: daniel.harvey
 script_result_name: ScriptResult

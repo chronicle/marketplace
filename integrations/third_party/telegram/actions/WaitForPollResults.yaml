@@ -2,44 +2,35 @@ name: Wait for poll results
 description: Waits and retrieves a given poll's answers.
 integration_identifier: Telegram
 parameters:
-    -   name: Scan back Limit
-        default_value: '300'
-        type: string
-        description: "Top amount of polls' answers to be scanned. \n(Only for polls sent\
-        \ by this bot)"
-        is_mandatory: true
-    -   name: Waiting Timeframe
-        default_value: '0'
-        type: string
-        description: 'The amount of time (in minutes) to wait for votes.
+- name: Scan back Limit
+  default_value: '300'
+  type: string
+  description: "Top amount of polls' answers to be scanned. \n(Only for polls sent
+    by this bot)"
+  is_mandatory: true
+- name: Waiting Timeframe
+  default_value: '0'
+  type: string
+  description: 'The amount of time (in minutes) to wait for votes.
 
-        (After which, action will stop even if threshold wasn''t met)'
-        is_mandatory: true
-    -   name: Answer Votes Threshold
-        default_value: '1'
-        type: string
-        description: 'The number of votes to some answer that suffices
+    (After which, action will stop even if threshold wasn''t met)'
+  is_mandatory: true
+- name: Answer Votes Threshold
+  default_value: '1'
+  type: string
+  description: 'The number of votes to some answer that suffices
 
-        (After an option gets this many votes, action will stop waiting)'
-        is_mandatory: true
-    -   name: Poll ID
-        default_value: '1'
-        type: string
-        description: The ID of the poll to fetch answers to.
-        is_mandatory: true
+    (After an option gets this many votes, action will stop waiting)'
+  is_mandatory: true
+- name: Poll ID
+  default_value: '1'
+  type: string
+  description: The ID of the poll to fetch answers to.
+  is_mandatory: true
 dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: '{"raw": {"ok": true, "result": [{"update_id": 115324421, "poll":
-        {"id": "5958708562703155223", "question": "BISMILLAH no?", "options": [{"text":
-        "NO", "voter_count": 0}, {"text": "YES", "voter_count": 1}], "total_voter_count":
-        1, "is_closed": false, "is_anonymous": true, "type": "regular", "allows_multiple_answers":
-        false}}, {"update_id": 115324422, "poll": {"id": "5958708562703155223", "question":
-        "BISMILLAH no?", "options": [{"text": "NO", "voter_count": 0}, {"text": "YES",
-        "voter_count": 2}], "total_voter_count": 2, "is_closed": false, "is_anonymous":
-        true, "type": "regular", "allows_multiple_answers": false}}]}, "answers":
-        [{"text": "NO", "voter_count": 0}, {"text": "YES", "voter_count": 2}]}'
+- result_name: JsonResult
+  show_result: true
+  result_example_path: resources/WaitForPollResults_JsonResult_example.json
 default_result_value: ''
 creator: community
 is_async: true

@@ -2,18 +2,15 @@ name: Get User Image
 description: Get the image base64 and URL for a specific employee
 integration_identifier: Hibob
 parameters:
-    -   name: Employee's Email
-        default_value: email@gmail.com
-        type: string
-        description: The employee's email you want to upload a photo.
-        is_mandatory: true
+- name: Employee's Email
+  default_value: email@gmail.com
+  type: string
+  description: The employee's email you want to upload a photo.
+  is_mandatory: true
 dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: "{\r\n\t\"exists\": \"True\",\r\n\t\"imageBase64\": \"aHR0cHM6Ly9jZG4uZmlsZXN0YWNrY29udGVudC5jb20vWWE0dHhkWjRReUtjd0NCUkE2MUs/cG9saWN5PWV5Sm9ZVzVrYkdVaU9pSlpZVFIwZUdSYU5GRjVTMk4zUTBKU1FUWXhTeUlzSW1WNGNHbHllU0k2TkRZek5Ua3hPRGN3TkgwPSZzaWduYXR1cmU9ODhjM2ZhYTliN2RkMTE0ZWM2MmQwM2I2Y2I2OTFmNjM5ZWM0ODYxM2JlZGYyOGQwZjRlZDg3MTI5MmY0YjA1Mw==\"\
-        ,\r\n\t\"imageUrl\": \"https://cdn.filestackcontent.com/Ya4txdZ4QyKcwCBRA61K?policy=eyJoYW5kbGUiOiJZYTR0eGRaNFF5S2N3Q0JSQTYxSyIsImV4cGlyeSI6NDYzNTkxODcwNH0=&signature=88c3faa9b7dd114ec62d03b6cb691f639ec48613bedf28d0f4ed871292f4b053\"\
-        \r\n}"
+- result_name: JsonResult
+  show_result: true
+  result_example_path: resources/GetUserImage_JsonResult_example.json
 default_result_value: ''
 creator: Admin
 script_result_name: ScriptResult

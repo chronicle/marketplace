@@ -1,34 +1,35 @@
 name: Enrich Phone
-description: This action accurately verify phone numbers worldwide and retrieve a
-    combination of carrier and line type details with risk analysis data to assess
-    phone number reputation. IPQS collects phone validation and verification data
-    from a wide variety of carriers and tier 1 telecommunication providers, with support
-    for all regions. Detect inactive and disconnected phone numbers for easy user
-    validation similar to HLR & LRN lookups. Accurately identify virtual and disposable
-    phone numbers along with numbers associated with abusive behavior online.
+description: This action accurately verify phone numbers worldwide and retrieve 
+  a combination of carrier and line type details with risk analysis data to 
+  assess phone number reputation. IPQS collects phone validation and 
+  verification data from a wide variety of carriers and tier 1 telecommunication
+  providers, with support for all regions. Detect inactive and disconnected 
+  phone numbers for easy user validation similar to HLR & LRN lookups. 
+  Accurately identify virtual and disposable phone numbers along with numbers 
+  associated with abusive behavior online.
 integration_identifier: IPQS Fraud and Risk Scoring
 parameters:
-    -   name: Strictness
-        default_value: '0'
-        type: ddl
-        optional_values:
-            - '0'
-            - '1'
-            - '2'
-        description: How in depth (strict) do you want this reputation check to be? Stricter
-            checks may provide a higher false-positive rate.
-        is_mandatory: true
-    -   name: Country(For multiple countries, provide comma-separated values)
-        default_value: null
-        type: string
-        description: You can optionally provide us with the default country or countries(comma
-            separated) this phone number is suspected to be associated with.
-        is_mandatory: false
+- name: Strictness
+  default_value: '0'
+  type: ddl
+  optional_values:
+  - '0'
+  - '1'
+  - '2'
+  description: How in depth (strict) do you want this reputation check to be? 
+    Stricter checks may provide a higher false-positive rate.
+  is_mandatory: true
+- name: Country(For multiple countries, provide comma-separated values)
+  default_value:
+  type: string
+  description: You can optionally provide us with the default country or 
+    countries(comma separated) this phone number is suspected to be associated 
+    with.
+  is_mandatory: false
 dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: '{}'
+- result_name: JsonResult
+  show_result: true
+  result_example_path:
 default_result_value: ''
 creator: IPQS
 script_result_name: ScriptResult

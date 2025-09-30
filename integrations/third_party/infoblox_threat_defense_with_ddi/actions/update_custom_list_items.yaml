@@ -24,10 +24,8 @@ parameters:
 dynamic_results_metadata:
 - result_name: JsonResult
   show_result: true
-  result_example: '{"deleted_items": [], "inserted_items": [{"description": "", "item":
-    "193.56.2.11/32", "status": -1, "status_details": ""}, {"description": "", "item":
-    "2001:db8:ffff:ffff:ffff:ffff:ffff:fff1/128", "status": -1, "status_details":
-    ""}], "updated_items": []}'
+  result_example_path: 
+    resources/update_custom_list_items_JsonResult_example.json
 default_result_value: ''
 creator: Admin
 script_result_name: ScriptResult

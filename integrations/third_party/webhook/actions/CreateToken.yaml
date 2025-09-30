@@ -2,36 +2,27 @@ name: Create Token
 description: Creates token for a new webhook.
 integration_identifier: Webhook
 parameters:
-    -   name: Default Content
-        default_value: Hello world
-        type: string
-        description: Content to be presented upon the webhook URL click, if successful.
-        is_mandatory: true
-    -   name: Default Content Type
-        default_value: text/html
-        type: string
-        description: Type of content to be presented upon the new webhook URL click
-        is_mandatory: true
-    -   name: Timeout
-        default_value: '0'
-        type: string
-        description: "Amount of seconds to wait before returning the response (intended\
-        \ for testing timeouts). \nMax is 10."
-        is_mandatory: false
+- name: Default Content
+  default_value: Hello world
+  type: string
+  description: Content to be presented upon the webhook URL click, if 
+    successful.
+  is_mandatory: true
+- name: Default Content Type
+  default_value: text/html
+  type: string
+  description: Type of content to be presented upon the new webhook URL click
+  is_mandatory: true
+- name: Timeout
+  default_value: '0'
+  type: string
+  description: "Amount of seconds to wait before returning the response (intended
+    for testing timeouts). \nMax is 10."
+  is_mandatory: false
 dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: "{\r\n\t\"uuid\": \"7fc8d86a-280a-4308-9cb4-48a8070cfe81\",\r\n\
-        \t\"redirect\": false,\r\n\t\"alias\": null,\r\n\t\"actions\": true,\r\n\t\
-        \"cors\": false,\r\n\t\"expiry\": true,\r\n\t\"timeout\": 0,\r\n\t\"premium\"\
-        : false,\r\n\t\"user_id\": null,\r\n\t\"password\": false,\r\n\t\"ip\": \"\
-        1.1.1.1\",\r\n\t\"user_agent\": \"python-requests/2.26.0\",\r\n\t\"default_content\"\
-        : \"On the hook\",\r\n\t\"default_status\": 200,\r\n\t\"default_content_type\"\
-        : \"text/html\",\r\n\t\"premium_expires_at\": null,\r\n\t\"created_at\": \"\
-        2021-08-23 14:34:53\",\r\n\t\"updated_at\": \"2021-08-23 14:34:53\",\r\n\t\
-        \"webhookURL\": \"https://webhook.site/7fc8d86a-280a-4308-9cb4-48a8070cfe81\"\
-        \r\n}"
+- result_name: JsonResult
+  show_result: true
+  result_example_path: resources/CreateToken_JsonResult_example.json
 default_result_value: ''
 creator: shakedalontest
 script_result_name: ScriptResult

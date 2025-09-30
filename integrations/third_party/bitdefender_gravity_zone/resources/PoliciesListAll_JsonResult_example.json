@@ -1,0 +1,16 @@
+{
+    "items": [
+        {
+            "id": "21a295eeb1a43d8b497b23b7",
+            "name": "Policy 1",
+            "companyId": "55896b87b7894d0f367b23c6",
+            "companyName": "Company Test"
+        },
+        {
+            "id": "23a295d8b1a43d7c4a7b23c9",
+            "name": "Policy 2",
+            "companyId": "55896b87b7894d0f367b23c6",
+            "companyName": "Company Test"
+        }
+    ]
+}

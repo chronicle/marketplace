@@ -1,33 +1,12 @@
 name: Enrich IP
-description: Enrich an IP using Sixgill Information (C&C server IP addresses for most
-    prevalent malware and for servers involved in botnets, DDoS attacks, proxy anonymization,
-    compromised RDP addresses and more.)
+description: Enrich an IP using Sixgill Information (C&C server IP addresses for
+  most prevalent malware and for servers involved in botnets, DDoS attacks, 
+  proxy anonymization, compromised RDP addresses and more.)
 integration_identifier: Cybersixgill Darkfeed Enrichment
-parameters: [ ]
+parameters: []
 dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: "[\r\n  {\r\n    \"entityIdentifier\": \"1.1.1.1\",\r\n    \"\
-        entityResult\": [\r\n      {\r\n        \"created\": \"2021-05-22T00:35:14.615Z\"\
-        ,\r\n        \"description\": \"IP address was listed as a C2 server for a\
-        \ ddos attack\",\r\n        \"external_reference\": [\r\n          {\r\n \
-        \           \"description\": \"Mitre attack tactics and technique reference\"\
-        ,\r\n            \"mitre_attack_tactic\": \"Command and Control\",\r\n   \
-        \         \"mitre_attack_tactic_id\": \"TA0011\",\r\n            \"mitre_attack_tactic_url\"\
-        : \"https://attack.mitre.org/tactics/TA0011/\",\r\n            \"source_name\"\
-        : \"mitre-attack\"\r\n          }\r\n        ],\r\n        \"id\": \"indicator--612aa514-4918-4f4d-9c24-924f83a7adc9\"\
-        ,\r\n        \"labels\": [\r\n          \"malicious-activity\",\r\n      \
-        \    \"cnc\",\r\n          \"c2\",\r\n          \"ddos\",\r\n          \"\
-        Command and Control\"\r\n        ],\r\n        \"lang\": \"zh\",\r\n     \
-        \   \"modified\": \"2021-05-22T00:35:14.615Z\",\r\n        \"pattern\": \"\
-        [ipv4-addr:value = '198.74.51.69']\",\r\n        \"sixgill_actor\": \"Admin\"\
-        ,\r\n        \"sixgill_confidence\": 90,\r\n        \"sixgill_feedid\": \"\
-        darkfeed_008\",\r\n        \"sixgill_feedname\": \"ddos_c2s\",\r\n       \
-        \ \"sixgill_postid\": \"7781c67d2e19daff8789323eb53d300859e85750\",\r\n  \
-        \      \"sixgill_posttitle\": \"Mirai\",\r\n        \"sixgill_severity\":\
-        \ 80,\r\n        \"sixgill_source\": \"blog_hackdig\",\r\n        \"spec_version\"\
-        : \"2.0\",\r\n        \"type\": \"indicator\",\r\n        \"valid_from\":\
-        \ \"2021-05-21T21:26:19Z\"\r\n      }\r\n    ]\r\n  }\r\n]"
+- result_name: JsonResult
+  show_result: true
+  result_example_path: resources/EnrichIp_JsonResult_example.json
 default_result_value: ''
 creator: System

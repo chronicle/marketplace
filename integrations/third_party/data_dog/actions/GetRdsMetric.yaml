@@ -1,88 +1,34 @@
 name: Get RDS Metric
 description: 'Gets AWS RDS metrics for a given Database instance identifier (CPU,
-    memory and storage)
+  memory and storage)
 
-    For more information about Metrics: https://docs.datadoghq.com/api/latest/metrics/#query-timeseries-points
+  For more information about Metrics: https://docs.datadoghq.com/api/latest/metrics/#query-timeseries-points
 
-    For more information about AWS RDS metrics: https://docs.datadoghq.com/integrations/amazon_rds/?tab=standard'
+  For more information about AWS RDS metrics: https://docs.datadoghq.com/integrations/amazon_rds/?tab=standard'
 integration_identifier: DataDog
 parameters:
-    -   name: End Time
-        default_value: '1610557457'
-        type: string
-        description: The end time of the Pod metric in Unixtime.
-        is_mandatory: true
-    -   name: Start Time
-        default_value: '1507040000'
-        type: string
-        description: The start time of the RDS metric in Unixtime.
-        is_mandatory: true
-    -   name: Database Instance Identifier
-        default_value: identifier1
-        type: string
-        description: 'The identifier of the data base which you want to get the metrics
-        to.
+- name: End Time
+  default_value: '1610557457'
+  type: string
+  description: The end time of the Pod metric in Unixtime.
+  is_mandatory: true
+- name: Start Time
+  default_value: '1507040000'
+  type: string
+  description: The start time of the RDS metric in Unixtime.
+  is_mandatory: true
+- name: Database Instance Identifier
+  default_value: identifier1
+  type: string
+  description: 'The identifier of the data base which you want to get the metrics
+    to.
 
-        identifier1, identifier2'
-        is_mandatory: true
+    identifier1, identifier2'
+  is_mandatory: true
 dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: "{\r\n\t\"founded_db_instance_identifier\": {\r\n\t\t\"db_instance_identifier:\
-        \ db_instance\": {\r\n\t\t\t\"db_CPU\": {\r\n\t\t\t\t\"status\": \"ok\",\r\
-        \n\t\t\t\t\"res_type\": \"time_series\",\r\n\t\t\t\t\"from_date\": 1507040000000,\r\
-        \n\t\t\t\t\"series\": [{\r\n\t\t\t\t\t\"end\": 1587686399000,\r\n\t\t\t\t\t\
-        \"attributes\": {},\r\n\t\t\t\t\t\"metric\": \"aws.rds.cpuutilization\",\r\
-        \n\t\t\t\t\t\"interval\": 604800,\r\n\t\t\t\t\t\"tag_set\": [\"dbinstanceidentifier:db_instance\"\
-        ],\r\n\t\t\t\t\t\"start\": 1587081600000,\r\n\t\t\t\t\t\"length\": 1,\r\n\t\
-        \t\t\t\t\"query_index\": 0,\r\n\t\t\t\t\t\"aggr\": \"avg\",\r\n\t\t\t\t\t\"\
-        scope\": \"dbinstanceidentifier:db_instance\",\r\n\t\t\t\t\t\"pointlist\"\
-        : [\r\n\t\t\t\t\t\t[1587081600000.0, 2.742857142857143]\r\n\t\t\t\t\t],\r\n\
-        \t\t\t\t\t\"expression\": \"avg:aws.rds.cpuutilization{dbinstanceidentifier:db_instance}\"\
-        ,\r\n\t\t\t\t\t\"unit\": [{\r\n\t\t\t\t\t\t\"family\": \"percentage\",\r\n\
-        \t\t\t\t\t\t\"scale_factor\": 1.0,\r\n\t\t\t\t\t\t\"name\": \"percent\",\r\
-        \n\t\t\t\t\t\t\"short_name\": \"%\",\r\n\t\t\t\t\t\t\"plural\": \"percent\"\
-        ,\r\n\t\t\t\t\t\t\"id\": 17\r\n\t\t\t\t\t}, null],\r\n\t\t\t\t\t\"display_name\"\
-        : \"aws.rds.cpuutilization\"\r\n\t\t\t\t}],\r\n\t\t\t\t\"to_date\": 1610557457000,\r\
-        \n\t\t\t\t\"resp_version\": 1,\r\n\t\t\t\t\"query\": \"avg:aws.rds.cpuutilization{dbinstanceidentifier:db_instance}by{dbinstanceidentifier}\"\
-        ,\r\n\t\t\t\t\"message\": \"\",\r\n\t\t\t\t\"group_by\": [\"dbinstanceidentifier\"\
-        ]\r\n\t\t\t},\r\n\t\t\t\"db_memory\": {\r\n\t\t\t\t\"status\": \"ok\",\r\n\
-        \t\t\t\t\"res_type\": \"time_series\",\r\n\t\t\t\t\"from_date\": 1507040000000,\r\
-        \n\t\t\t\t\"series\": [{\r\n\t\t\t\t\t\"end\": 1587686399000,\r\n\t\t\t\t\t\
-        \"attributes\": {},\r\n\t\t\t\t\t\"metric\": \"aws.rds.freeable_memory\",\r\
-        \n\t\t\t\t\t\"interval\": 604800,\r\n\t\t\t\t\t\"tag_set\": [\"dbinstanceidentifier:db_instance\"\
-        ],\r\n\t\t\t\t\t\"start\": 1587081600000,\r\n\t\t\t\t\t\"length\": 1,\r\n\t\
-        \t\t\t\t\"query_index\": 0,\r\n\t\t\t\t\t\"aggr\": \"avg\",\r\n\t\t\t\t\t\"\
-        scope\": \"dbinstanceidentifier:db_instance\",\r\n\t\t\t\t\t\"pointlist\"\
-        : [\r\n\t\t\t\t\t\t[1587081600000.0, 5265705327.589744]\r\n\t\t\t\t\t],\r\n\
-        \t\t\t\t\t\"expression\": \"avg:aws.rds.freeable_memory{dbinstanceidentifier:db_instance}\"\
-        ,\r\n\t\t\t\t\t\"unit\": [{\r\n\t\t\t\t\t\t\"family\": \"bytes\",\r\n\t\t\t\
-        \t\t\t\"scale_factor\": 1.0,\r\n\t\t\t\t\t\t\"name\": \"byte\",\r\n\t\t\t\t\
-        \t\t\"short_name\": \"B\",\r\n\t\t\t\t\t\t\"plural\": \"bytes\",\r\n\t\t\t\
-        \t\t\t\"id\": 2\r\n\t\t\t\t\t}, null],\r\n\t\t\t\t\t\"display_name\": \"aws.rds.freeable_memory\"\
-        \r\n\t\t\t\t}],\r\n\t\t\t\t\"to_date\": 1610557457000,\r\n\t\t\t\t\"resp_version\"\
-        : 1,\r\n\t\t\t\t\"query\": \"avg:aws.rds.freeable_memory{dbinstanceidentifier:db_instance}by{dbinstanceidentifier}\"\
-        ,\r\n\t\t\t\t\"message\": \"\",\r\n\t\t\t\t\"group_by\": [\"dbinstanceidentifier\"\
-        ]\r\n\t\t\t},\r\n\t\t\t\"db_free_storage\": {\r\n\t\t\t\t\"status\": \"ok\"\
-        ,\r\n\t\t\t\t\"res_type\": \"time_series\",\r\n\t\t\t\t\"from_date\": 1507040000000,\r\
-        \n\t\t\t\t\"series\": [{\r\n\t\t\t\t\t\"end\": 1587686399000,\r\n\t\t\t\t\t\
-        \"attributes\": {},\r\n\t\t\t\t\t\"metric\": \"aws.rds.free_storage_space\"\
-        ,\r\n\t\t\t\t\t\"interval\": 604800,\r\n\t\t\t\t\t\"tag_set\": [\"dbinstanceidentifier:db_instance\"\
-        ],\r\n\t\t\t\t\t\"start\": 1587081600000,\r\n\t\t\t\t\t\"length\": 1,\r\n\t\
-        \t\t\t\t\"query_index\": 0,\r\n\t\t\t\t\t\"aggr\": \"avg\",\r\n\t\t\t\t\t\"\
-        scope\": \"dbinstanceidentifier:db_instance\",\r\n\t\t\t\t\t\"pointlist\"\
-        : [\r\n\t\t\t\t\t\t[1587081600000.0, 32846995456.0]\r\n\t\t\t\t\t],\r\n\t\t\
-        \t\t\t\"expression\": \"avg:aws.rds.free_storage_space{dbinstanceidentifier:db_instance}\"\
-        ,\r\n\t\t\t\t\t\"unit\": [{\r\n\t\t\t\t\t\t\"family\": \"bytes\",\r\n\t\t\t\
-        \t\t\t\"scale_factor\": 1.0,\r\n\t\t\t\t\t\t\"name\": \"byte\",\r\n\t\t\t\t\
-        \t\t\"short_name\": \"B\",\r\n\t\t\t\t\t\t\"plural\": \"bytes\",\r\n\t\t\t\
-        \t\t\t\"id\": 2\r\n\t\t\t\t\t}, null],\r\n\t\t\t\t\t\"display_name\": \"aws.rds.free_storage_space\"\
-        \r\n\t\t\t\t}],\r\n\t\t\t\t\"to_date\": 1610557457000,\r\n\t\t\t\t\"resp_version\"\
-        : 1,\r\n\t\t\t\t\"query\": \"avg:aws.rds.free_storage_space{dbinstanceidentifier:db_instance}by{dbinstanceidentifier}\"\
-        ,\r\n\t\t\t\t\"message\": \"\",\r\n\t\t\t\t\"group_by\": [\"dbinstanceidentifier\"\
-        ]\r\n\t\t\t}\r\n\t\t}\r\n\t},\r\n\t\"not_found_db_instance_identifier\": []\r\
-        \n}"
+- result_name: JsonResult
+  show_result: true
+  result_example_path: resources/GetRdsMetric_JsonResult_example.json
 default_result_value: ''
 creator: Admin
 script_result_name: ScriptResult

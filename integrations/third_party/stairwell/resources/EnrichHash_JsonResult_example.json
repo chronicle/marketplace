@@ -1,0 +1,58 @@
+{
+    "fileSize": 0,
+    "fileEntropy": 0.0,
+    "fileHashSha256": "string",
+    "fileHashSha1": "string",
+    "fileHashMd5": "string",
+    "fileHashImphash": "string",
+    "fileHashSortedImphash": "string",
+    "fileHashTlsh": "string",
+    "fileMagic": "string",
+    "fileMimeType": "string",
+    "signature": {
+        "x509Certificates": [
+            {
+                "signature": "string",
+                "issuer": "string",
+                "subject": "string",
+                "earliestValidTime": "2025-07-09T14:39:00Z",
+                "latestValidTime": "2025-07-09T14:39:00Z"
+            }
+        ],
+        "pkcs7VerificationResult": "string"
+    },
+    "sightingsFirst": "2025-07-09T14:39:00Z",
+    "sightingsPrevalence": [],
+    "verdictIsWellKnown": false,
+    "verdictMalevalMaliciousProbability": "string",
+    "verdictMalevalLabels": [
+        "string"
+    ],
+    "verdictYaraRuleMatches": [
+        "string"
+    ],
+    "indicatorsIpsLikely": [],
+    "indicatorsHostnamesLikely": [
+        "string"
+    ],
+    "indicatorsHostnamesPrivate": [],
+    "variants": [],
+    "summaryAi": "string",
+    "summaryRtg": "string",
+    "opinionsMostRecent": [
+        {
+            "verdict": "string",
+            "environment": "string",
+            "email": "string",
+            "createTime": "2025-07-09T14:39:00Z"
+        }
+    ],
+    "commentsMostRecent": [
+        {
+            "body": "string",
+            "email": "string",
+            "createTime": "2025-07-09T14:39:00Z",
+            "environment": "string"
+        }
+    ]
+}

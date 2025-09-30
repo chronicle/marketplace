@@ -2,259 +2,137 @@ name: Search Detections
 description: List detections based on query parameters.
 integration_identifier: VectraQUX
 parameters:
-    -   name: Last Timestamp GTE
-        type: string
-        description: filter by last timestamp that greater or equal to given timestamp
-        is_mandatory: false
-    -   name: Host ID
-        type: string
-        description: filter by host ID
-        is_mandatory: false
-    -   name: Tags
-        type: string
-        description: filter by coma separated tags
-        is_mandatory: false
-    -   name: Is Targeting Key Asset
-        default_value: ''
-        type: ddl
-        optional_values:
-            - "True"
-            - "False"
-        description: filter if detections are targeting key asset or not
-        is_mandatory: false
-    -   name: Note Modified Timestamp GTE
-        type: string
-        description: filter based on note modified by timestamp
-        is_mandatory: false
-    -   name: Order
-        default_value: ''
-        type: ddl
-        optional_values:
-            - Ascending
-            - Descending
-        description: filter detections in ascending or descending order
-        is_mandatory: false
-    -   name: Limit
-        type: string
-        description: fetch given number of records
-        is_mandatory: false
-    -   name: Order By
-        default_value: ''
-        type: ddl
-        optional_values:
-            - last_timestamp
-            - created_datetime
-            - t_score
-            - c_score
-            - id
-        description: order by created_datetime, last_timestamp, t_score, c_score, id
-        is_mandatory: false
-    -   name: Fields
-        default_value: ''
-        type: multi_choice_parameter
-        optional_values:
-            - id
-            - url
-            - detection_url
-            - category
-            - detection
-            - detection_category
-            - detection_type
-            - custom_detection
-            - src_ip
-            - state
-            - t_score
-            - c_score
-            - certainty
-            - threat
-            - created_timestamp
-            - last_timestamp
-            - targets_key_asset
-            - is_targeting_key_asset
-            - src_account
-            - src_host
-            - note
-            - notes
-            - note_modified_by
-            - note_modified_timestamp
-            - sensor
-            - sensor_name
-            - tags
-            - triage_rule_id
-            - assigned_to
-            - assigned_date
-            - groups
-            - is_marked_custom
-            - is_custom_model
-            - grouped_details
-            - summary
-        description: get only given fields
-        is_mandatory: false
-    -   name: State
-        default_value: ''
-        type: ddl
-        optional_values:
-            - Active
-            - Inactive
-            - Fixed
-        description: 'filter by state
+- name: Last Timestamp GTE
+  type: string
+  description: filter by last timestamp that greater or equal to given timestamp
+  is_mandatory: false
+- name: Host ID
+  type: string
+  description: filter by host ID
+  is_mandatory: false
+- name: Tags
+  type: string
+  description: filter by coma separated tags
+  is_mandatory: false
+- name: Is Targeting Key Asset
+  default_value: ''
+  type: ddl
+  optional_values:
+  - "True"
+  - "False"
+  description: filter if detections are targeting key asset or not
+  is_mandatory: false
+- name: Note Modified Timestamp GTE
+  type: string
+  description: filter based on note modified by timestamp
+  is_mandatory: false
+- name: Order
+  default_value: ''
+  type: ddl
+  optional_values:
+  - Ascending
+  - Descending
+  description: filter detections in ascending or descending order
+  is_mandatory: false
+- name: Limit
+  type: string
+  description: fetch given number of records
+  is_mandatory: false
+- name: Order By
+  default_value: ''
+  type: ddl
+  optional_values:
+  - last_timestamp
+  - created_datetime
+  - t_score
+  - c_score
+  - id
+  description: order by created_datetime, last_timestamp, t_score, c_score, id
+  is_mandatory: false
+- name: Fields
+  default_value: ''
+  type: multi_choice_parameter
+  optional_values:
+  - id
+  - url
+  - detection_url
+  - category
+  - detection
+  - detection_category
+  - detection_type
+  - custom_detection
+  - src_ip
+  - state
+  - t_score
+  - c_score
+  - certainty
+  - threat
+  - created_timestamp
+  - last_timestamp
+  - targets_key_asset
+  - is_targeting_key_asset
+  - src_account
+  - src_host
+  - note
+  - notes
+  - note_modified_by
+  - note_modified_timestamp
+  - sensor
+  - sensor_name
+  - tags
+  - triage_rule_id
+  - assigned_to
+  - assigned_date
+  - groups
+  - is_marked_custom
+  - is_custom_model
+  - grouped_details
+  - summary
+  description: get only given fields
+  is_mandatory: false
+- name: State
+  default_value: ''
+  type: ddl
+  optional_values:
+  - Active
+  - Inactive
+  - Fixed
+  description: 'filter by state
 
-        '
-        is_mandatory: false
-    -   name: Detection Type
-        type: string
-        description: filter by detection type
-        is_mandatory: false
-    -   name: Detection Category
-        default_value: ''
-        type: ddl
-        optional_values:
-            - Command and Control
-            - Botnet
-            - Reconnaissance
-            - Lateral Movement
-            - Exfiltration
-            - Info
-        description: filter by detection category
-        is_mandatory: false
-    -   name: Src IP
-        type: string
-        description: filter by source IP
-        is_mandatory: false
-    -   name: Threat GTE
-        type: string
-        description: filter by threat
-        is_mandatory: false
-    -   name: Certainty GTE
-        type: string
-        description: filter by certainty
-        is_mandatory: false
+    '
+  is_mandatory: false
+- name: Detection Type
+  type: string
+  description: filter by detection type
+  is_mandatory: false
+- name: Detection Category
+  default_value: ''
+  type: ddl
+  optional_values:
+  - Command and Control
+  - Botnet
+  - Reconnaissance
+  - Lateral Movement
+  - Exfiltration
+  - Info
+  description: filter by detection category
+  is_mandatory: false
+- name: Src IP
+  type: string
+  description: filter by source IP
+  is_mandatory: false
+- name: Threat GTE
+  type: string
+  description: filter by threat
+  is_mandatory: false
+- name: Certainty GTE
+  type: string
+  description: filter by certainty
+  is_mandatory: false
 dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: "[\n    {\n        \"summary\": {\n            \"accounts\": [\n\
-        \                \"\"\n            ],\n            \"function_uuids\": [\n\
-        \                \"wkssvc\",\n                \"srvsvc\"\n            ],\n\
-        \            \"dst_ips\": [\n                \"1.1.1.1\"\n            ]\n\
-        \        },\n        \"id\": 7177,\n        \"url\": \"https://hc2024.vectracloudlab.com/detections/7177\"\
-        ,\n        \"detection_url\": \"https://hc2024.vectracloudlab.com/detections/7177\"\
-        ,\n        \"category\": \"RECONNAISSANCE\",\n        \"detection\": \"RPC\
-        \ Targeted Recon\",\n        \"detection_category\": \"RECONNAISSANCE\",\n\
-        \        \"detection_type\": \"RPC Targeted Recon\",\n        \"custom_detection\"\
-        : null,\n        \"description\": null,\n        \"src_ip\": \"1.1.1.1\",\n\
-        \        \"state\": \"active\",\n        \"t_score\": 54,\n        \"c_score\"\
-        : 33,\n        \"certainty\": 33,\n        \"threat\": 54,\n        \"created_timestamp\"\
-        : \"2025-01-05T01:42:02Z\",\n        \"first_timestamp\": \"2025-01-05T01:30:24Z\"\
-        ,\n        \"last_timestamp\": \"2025-01-05T03:13:17Z\",\n        \"targets_key_asset\"\
-        : false,\n        \"is_targeting_key_asset\": false,\n        \"src_account\"\
-        : null,\n        \"src_host\": {\n            \"id\": 40875,\n           \
-        \ \"ip\": \"1.1.1.1\",\n            \"name\": \"IP-1.1.1.1\",\n          \
-        \  \"url\": \"https://hc2024.vectracloudlab.com/hosts/40875\",\n         \
-        \   \"is_key_asset\": false,\n            \"groups\": [],\n            \"\
-        threat\": 30,\n            \"certainty\": 90\n        },\n        \"note\"\
-        : null,\n        \"notes\": [],\n        \"note_modified_by\": null,\n   \
-        \     \"note_modified_timestamp\": null,\n        \"sensor\": \"whx12u9g\"\
-        ,\n        \"sensor_name\": \"FGU-lab-vcenter\",\n        \"tags\": [],\n\
-        \        \"triage_rule_id\": null,\n        \"assigned_to\": null,\n     \
-        \   \"assigned_date\": null,\n        \"groups\": [],\n        \"is_marked_custom\"\
-        : false,\n        \"is_custom_model\": false,\n        \"filtered_by_ai\"\
-        : false,\n        \"filtered_by_user\": false,\n        \"filtered_by_rule\"\
-        : false,\n        \"grouped_details\": [\n            {\n                \"\
-        dst_profiles\": [],\n                \"src_profiles\": [],\n             \
-        \   \"anomalous_profiles\": [\n                    {\n                   \
-        \     \"account\": \"\",\n                        \"function_call\": \"NetrWkstaGetInfo\"\
-        ,\n                        \"function_uuid\": \"wkssvc\",\n              \
-        \          \"count\": 2,\n                        \"first_timestamp\": \"\
-        2025-01-05T01:30:24.763Z\",\n                        \"last_timestamp\": \"\
-        2025-01-05T03:13:17.632Z\"\n                    },\n                    {\n\
-        \                        \"account\": \"\",\n                        \"function_call\"\
-        : \"NetrServerGetInfo\",\n                        \"function_uuid\": \"srvsvc\"\
-        ,\n                        \"count\": 2,\n                        \"first_timestamp\"\
-        : \"2025-01-05T01:30:24.763Z\",\n                        \"last_timestamp\"\
-        : \"2025-01-05T03:13:17.632Z\"\n                    },\n                 \
-        \   {\n                        \"account\": \"\",\n                      \
-        \  \"function_call\": \"NetrShareEnum\",\n                        \"function_uuid\"\
-        : \"srvsvc\",\n                        \"count\": 4,\n                   \
-        \     \"first_timestamp\": \"2025-01-05T01:30:24.763Z\",\n               \
-        \         \"last_timestamp\": \"2025-01-05T03:13:17.632Z\"\n             \
-        \       }\n                ],\n                \"first_timestamp\": \"2025-01-05T01:30:24Z\"\
-        ,\n                \"last_timestamp\": \"2025-01-05T03:13:17Z\",\n       \
-        \         \"dst_hosts\": [\n                    {\n                      \
-        \  \"id\": 40872,\n                        \"name\": \"IP-1.1.1.1\",\n   \
-        \                     \"ip\": \"1.1.1.1\"\n                    }\n       \
-        \         ],\n                \"dst_ips\": [\n                    \"1.1.1.1\"\
-        \n                ]\n            }\n        ]\n    },\n    {\n        \"summary\"\
-        : {\n            \"accounts\": [\n                \"\"\n            ],\n \
-        \           \"function_uuids\": [\n                \"wkssvc\",\n         \
-        \       \"srvsvc\"\n            ],\n            \"dst_ips\": [\n         \
-        \       \"1.1.1.1\"\n            ]\n        },\n        \"id\": 7176,\n  \
-        \      \"url\": \"https://hc2024.vectracloudlab.com/detections/7176\",\n \
-        \       \"detection_url\": \"https://hc2024.vectracloudlab.com/detections/7176\"\
-        ,\n        \"category\": \"RECONNAISSANCE\",\n        \"detection\": \"RPC\
-        \ Targeted Recon\",\n        \"detection_category\": \"RECONNAISSANCE\",\n\
-        \        \"detection_type\": \"RPC Targeted Recon\",\n        \"custom_detection\"\
-        : null,\n        \"description\": null,\n        \"src_ip\": \"1.1.1.1\",\n\
-        \        \"state\": \"active\",\n        \"t_score\": 54,\n        \"c_score\"\
-        : 33,\n        \"certainty\": 33,\n        \"threat\": 54,\n        \"created_timestamp\"\
-        : \"2025-01-05T01:41:00Z\",\n        \"first_timestamp\": \"2025-01-05T01:29:38Z\"\
-        ,\n        \"last_timestamp\": \"2025-01-05T03:12:31Z\",\n        \"targets_key_asset\"\
-        : false,\n        \"is_targeting_key_asset\": false,\n        \"src_account\"\
-        : null,\n        \"src_host\": {\n            \"id\": 40860,\n           \
-        \ \"ip\": \"1.1.1.1\",\n            \"name\": \"IP-1.1.1.1\",\n          \
-        \  \"url\": \"https://hc2024.vectracloudlab.com/hosts/40860\",\n         \
-        \   \"is_key_asset\": false,\n            \"groups\": [],\n            \"\
-        threat\": 36,\n            \"certainty\": 90\n        },\n        \"note\"\
-        : null,\n        \"notes\": [],\n        \"note_modified_by\": null,\n   \
-        \     \"note_modified_timestamp\": null,\n        \"sensor\": \"whx12u9g\"\
-        ,\n        \"sensor_name\": \"FGU-lab-vcenter\",\n        \"tags\": [],\n\
-        \        \"triage_rule_id\": null,\n        \"assigned_to\": null,\n     \
-        \   \"assigned_date\": null,\n        \"groups\": [],\n        \"is_marked_custom\"\
-        : false,\n        \"is_custom_model\": false,\n        \"filtered_by_ai\"\
-        : false,\n        \"filtered_by_user\": false,\n        \"filtered_by_rule\"\
-        : false,\n        \"grouped_details\": [\n            {\n                \"\
-        dst_profiles\": [],\n                \"src_profiles\": [],\n             \
-        \   \"anomalous_profiles\": [\n                    {\n                   \
-        \     \"account\": \"\",\n                        \"function_call\": \"NetrWkstaGetInfo\"\
-        ,\n                        \"function_uuid\": \"wkssvc\",\n              \
-        \          \"count\": 1,\n                        \"first_timestamp\": \"\
-        2025-01-05T03:12:16.670Z\",\n                        \"last_timestamp\": \"\
-        2025-01-05T03:12:31.109Z\"\n                    },\n                    {\n\
-        \                        \"account\": \"\",\n                        \"function_call\"\
-        : \"NetrServerGetInfo\",\n                        \"function_uuid\": \"srvsvc\"\
-        ,\n                        \"count\": 1,\n                        \"first_timestamp\"\
-        : \"2025-01-05T03:12:16.670Z\",\n                        \"last_timestamp\"\
-        : \"2025-01-05T03:12:31.109Z\"\n                    },\n                 \
-        \   {\n                        \"account\": \"\",\n                      \
-        \  \"function_call\": \"NetrShareEnum\",\n                        \"function_uuid\"\
-        : \"srvsvc\",\n                        \"count\": 2,\n                   \
-        \     \"first_timestamp\": \"2025-01-05T03:12:16.670Z\",\n               \
-        \         \"last_timestamp\": \"2025-01-05T03:12:31.109Z\"\n             \
-        \       }\n                ],\n                \"first_timestamp\": \"2025-01-05T03:12:16Z\"\
-        ,\n                \"last_timestamp\": \"2025-01-05T03:12:31Z\",\n       \
-        \         \"dst_hosts\": [\n                    {\n                      \
-        \  \"id\": 40872,\n                        \"name\": \"IP-1.1.1.1\",\n   \
-        \                     \"ip\": \"1.1.1.1\"\n                    }\n       \
-        \         ],\n                \"dst_ips\": [\n                    \"1.1.1.1\"\
-        \n                ]\n            },\n            {\n                \"dst_profiles\"\
-        : [],\n                \"src_profiles\": [],\n                \"anomalous_profiles\"\
-        : [\n                    {\n                        \"account\": \"\",\n \
-        \                       \"function_call\": \"NetrServerGetInfo\",\n      \
-        \                  \"function_uuid\": \"srvsvc\",\n                      \
-        \  \"count\": 1,\n                        \"first_timestamp\": \"2025-01-05T01:29:38.484Z\"\
-        ,\n                        \"last_timestamp\": \"2025-01-05T01:29:52.809Z\"\
-        \n                    },\n                    {\n                        \"\
-        account\": \"\",\n                        \"function_call\": \"NetrShareEnum\"\
-        ,\n                        \"function_uuid\": \"srvsvc\",\n              \
-        \          \"count\": 2,\n                        \"first_timestamp\": \"\
-        2025-01-05T01:29:38.484Z\",\n                        \"last_timestamp\": \"\
-        2025-01-05T01:29:52.809Z\"\n                    }\n                ],\n  \
-        \              \"first_timestamp\": \"2025-01-05T01:29:38Z\",\n          \
-        \      \"last_timestamp\": \"2025-01-05T01:29:52Z\",\n                \"dst_hosts\"\
-        : [\n                    {\n                        \"ip\": \"1.1.1.1\"\n\
-        \                    }\n                ],\n                \"dst_ips\": [\n\
-        \                    \"1.1.1.1\"\n                ]\n            }\n     \
-        \   ]\n    }\n]"
+- result_name: JsonResult
+  show_result: true
+  result_example_path: resources/Search Detections_JsonResult_example.json
 default_result_value: ''
 creator: Admin
 script_result_name: ScriptResult

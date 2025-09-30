@@ -2,23 +2,22 @@ name: Delete All Records
 description: Deletes all the records in a given table
 integration_identifier: AirTable
 parameters:
-    -   name: Base Id
-        default_value: <base_id>
-        type: string
-        description: Base is a database in Airtable in which you store data. The base
-            ID can be found in the URL of the API page of the base.
-        is_mandatory: true
-    -   name: Table name
-        default_value: <table_name>
-        type: string
-        description: Each Base can include multiple tables. The parameter indicates the
-            name of the table within the base.
-        is_mandatory: true
+- name: Base Id
+  default_value: <base_id>
+  type: string
+  description: Base is a database in Airtable in which you store data. The base 
+    ID can be found in the URL of the API page of the base.
+  is_mandatory: true
+- name: Table name
+  default_value: <table_name>
+  type: string
+  description: Each Base can include multiple tables. The parameter indicates 
+    the name of the table within the base.
+  is_mandatory: true
 dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: false
-        # language=json
-        result_example: '{}'
+- result_name: JsonResult
+  show_result: false
+  result_example_path:
 default_result_value: ''
 creator: Admin
 script_result_name: ScriptResult

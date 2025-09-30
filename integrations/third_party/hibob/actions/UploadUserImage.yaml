@@ -2,21 +2,20 @@ name: Upload User Image
 description: Uploading an image (URL image) to a specific employee
 integration_identifier: Hibob
 parameters:
-    -   name: Employee's Email
-        default_value: email@gmail.com
-        type: string
-        description: The email of the employee that you want to upload an image to.
-        is_mandatory: true
-    -   name: Url Image
-        default_value: https://
-        type: string
-        description: The employee URL image
-        is_mandatory: true
+- name: Employee's Email
+  default_value: email@gmail.com
+  type: string
+  description: The email of the employee that you want to upload an image to.
+  is_mandatory: true
+- name: Url Image
+  default_value: https://
+  type: string
+  description: The employee URL image
+  is_mandatory: true
 dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: '{}'
+- result_name: JsonResult
+  show_result: true
+  result_example_path:
 default_result_value: ''
 creator: Admin
 script_result_name: ScriptResult

@@ -1,37 +1,36 @@
 name: Append to Context Value
-description: Append a value to an existing context property or create a new context
-    property and add the value.
+description: Append a value to an existing context property or create a new 
+  context property and add the value.
 integration_identifier: Tools
 parameters:
-    -   name: Scope
-        default_value: Alert
-        type: ddl
-        optional_values:
-            - Case
-            - Alert
-            - Global
-        description: 'The scope of the context value. Options: Alert or Case or Global'
-        is_mandatory: true
-    -   name: Key
-        default_value: ''
-        type: string
-        description: The context property key.
-        is_mandatory: true
-    -   name: Value
-        default_value: ''
-        type: string
-        description: The value to append to the context property.
-        is_mandatory: true
-    -   name: Delimiter
-        default_value: ','
-        type: string
-        description: The delimiter for the value of the context property.
-        is_mandatory: true
+- name: Scope
+  default_value: Alert
+  type: ddl
+  optional_values:
+  - Case
+  - Alert
+  - Global
+  description: 'The scope of the context value. Options: Alert or Case or Global'
+  is_mandatory: true
+- name: Key
+  default_value: ''
+  type: string
+  description: The context property key.
+  is_mandatory: true
+- name: Value
+  default_value: ''
+  type: string
+  description: The value to append to the context property.
+  is_mandatory: true
+- name: Delimiter
+  default_value: ','
+  type: string
+  description: The delimiter for the value of the context property.
+  is_mandatory: true
 dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: '{}'
+- result_name: JsonResult
+  show_result: true
+  result_example_path:
 default_result_value: ''
 creator: Rob
 script_result_name: ScriptResult

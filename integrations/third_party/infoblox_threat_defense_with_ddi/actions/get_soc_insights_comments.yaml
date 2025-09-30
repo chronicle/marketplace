@@ -1,5 +1,6 @@
 name: Get SOC Insights Comments
-description: Retrieve the list of comments available in the specified SOC insight.
+description: Retrieve the list of comments available in the specified SOC 
+  insight.
 integration_identifier: InfobloxThreatDefenseWithDDI
 parameters:
 - name: Insight ID
@@ -8,22 +9,20 @@ parameters:
   description: ID of the insight to retrieve comments from.
   is_mandatory: true
 - name: From
-  default_value: null
+  default_value:
   type: string
   description: 'Filter by comments changed after this time in this format: YYYY-MM-DDTHH:mm:ss.SSS. '
   is_mandatory: false
 - name: To
-  default_value: null
+  default_value:
   type: string
   description: 'Filter by comments changed before this time in this format: YYYY-MM-DDTHH:mm:ss.SSS'
   is_mandatory: false
 dynamic_results_metadata:
 - result_name: JsonResult
   show_result: true
-  result_example: "{\r\n    \"comments\": [\r\n        {\r\n            \"commentsChanger\"\
-    : \"user.service@infoblox.invalid\",\r\n            \"newComment\": \"ServiceNow\
-    \ incident\",\r\n            \"dateChanged\": \"2025-07-07T01:08:34.082\",\r\n\
-    \            \"status\": \"Active\"\r\n        }\r\n    ]\r\n}"
+  result_example_path: 
+    resources/get_soc_insights_comments_JsonResult_example.json
 default_result_value: ''
 creator: Admin
 script_result_name: ScriptResult

@@ -1,33 +1,31 @@
 name: Get Metric Snapshot Graph
 description: 'Get metric snapshot graph for a given query.
 
-    For more information: https://docs.datadoghq.com/api/v1/snapshots/'
+  For more information: https://docs.datadoghq.com/api/v1/snapshots/'
 integration_identifier: DataDog
 parameters:
-    -   name: Query
-        default_value: avg:aws.rds.cpuutilization{cloud_env:production}by{dbinstanceidentifier}
-        type: string
-        description: 'The metric query which you want to get the snapshot graph of.
+- name: Query
+  default_value: 
+    avg:aws.rds.cpuutilization{cloud_env:production}by{dbinstanceidentifier}
+  type: string
+  description: 'The metric query which you want to get the snapshot graph of.
 
-        For example: avg:aws.rds.cpuutilization{cloud_env:production}by{dbinstanceidentifier}'
-        is_mandatory: true
-    -   name: Start Time
-        default_value: '1400000470'
-        type: string
-        description: The start time of the metric snapshot graph in Unixtime.
-        is_mandatory: true
-    -   name: End Time
-        default_value: '1610557457'
-        type: string
-        description: The end time of the metric snapshot graph in Unixtime.
-        is_mandatory: true
+    For example: avg:aws.rds.cpuutilization{cloud_env:production}by{dbinstanceidentifier}'
+  is_mandatory: true
+- name: Start Time
+  default_value: '1400000470'
+  type: string
+  description: The start time of the metric snapshot graph in Unixtime.
+  is_mandatory: true
+- name: End Time
+  default_value: '1610557457'
+  type: string
+  description: The end time of the metric snapshot graph in Unixtime.
+  is_mandatory: true
 dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: "{\r\n  \"graph_def\": \"string\",\r\n  \"metric_query\": \"string\"\
-        ,\r\n  \"snapshot_url\": \"https://app.datadoghq.com/s/f12345678/aaa-bbb-ccc\"\
-        \r\n}"
+- result_name: JsonResult
+  show_result: true
+  result_example_path: resources/GetMetricSnapshotGraph_JsonResult_example.json
 default_result_value: ''
 creator: Admin
 script_result_name: ScriptResult

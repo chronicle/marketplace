@@ -2,29 +2,28 @@ name: Send event to Arcanna
 description: ''
 integration_identifier: ArcannaAI
 parameters:
-    -   name: Job ID
-        default_value: ' '
-        type: string
-        description: Job ID used for sending event to Arcanna.ai
-        is_mandatory: true
-    -   name: Username
-        default_value: '@Administrator'
-        type: user
-        description: Username registered for audit purposes
-        is_mandatory: true
-    -   name: Event ID mapping field
-        type: string
-        description: Field that will be used as reference ID with Arcanna.ai
-        is_mandatory: false
-    -   name: Send individual alerts from case
-        default_value: 'false'
-        type: boolean
-        description: Send individual alerts or full case to Arcanna.ai
-        is_mandatory: false
+- name: Job ID
+  default_value: ' '
+  type: string
+  description: Job ID used for sending event to Arcanna.ai
+  is_mandatory: true
+- name: Username
+  default_value: '@Administrator'
+  type: user
+  description: Username registered for audit purposes
+  is_mandatory: true
+- name: Event ID mapping field
+  type: string
+  description: Field that will be used as reference ID with Arcanna.ai
+  is_mandatory: false
+- name: Send individual alerts from case
+  default_value: 'false'
+  type: boolean
+  description: Send individual alerts or full case to Arcanna.ai
+  is_mandatory: false
 dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: '{}'
+- result_name: JsonResult
+  show_result: true
+  result_example_path:
 default_result_value: ''
 creator: Admin

@@ -1,0 +1,33 @@
+[
+    {
+        "job_id": 3207,
+        "title": "Arcanna Demo Job",
+        "status": "ENABLED",
+        "retrain_state": null,
+        "retrain_msg": null,
+        "labels": [
+            "Low",
+            "Medium",
+            "High",
+            "Critical",
+            "Informative"
+        ],
+        "features": [
+            "additional_properties.detection_1_ruleLabels_1_value",
+            "additional_properties.detection_1_ruleLabels_2_value",
+            "additional_properties.detection_1_ruleLabels_4_key",
+            "additional_properties.detection_1_ruleType",
+            "source_host_name",
+            "source_nt_domain",
+            "source_process_name",
+            "source_user_name"
+        ],
+        "processed_documents_count": 4,
+        "feedback_documents_count": 0,
+        "last_processed_timestamp": "2024-05-27T09:00:15.779399+00:00",
+        "last_feedback_timestamp": "2024-05-27T08:59:53.839953+00:00",
+        "last_train_start_timestamp": null,
+        "last_train_finished_timestamp": null,
+        "invalid": false
+    }
+]

@@ -1,31 +1,31 @@
 name: Set Context Value
-description: The action sets a key and value in a specific context (alert or case)
+description: The action sets a key and value in a specific context (alert or 
+  case)
 integration_identifier: Tools
 parameters:
-    -   name: Value
-        default_value: Value
-        type: string
-        description: Value
-        is_mandatory: true
-    -   name: Key
-        default_value: Key
-        type: string
-        description: Key
-        is_mandatory: true
-    -   name: Scope
-        default_value: Alert
-        type: ddl
-        optional_values:
-            - Case
-            - Alert
-            - Global
-        description: Alert or Case or Global
-        is_mandatory: true
+- name: Value
+  default_value: Value
+  type: string
+  description: Value
+  is_mandatory: true
+- name: Key
+  default_value: Key
+  type: string
+  description: Key
+  is_mandatory: true
+- name: Scope
+  default_value: Alert
+  type: ddl
+  optional_values:
+  - Case
+  - Alert
+  - Global
+  description: Alert or Case or Global
+  is_mandatory: true
 dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: '{}'
+- result_name: JsonResult
+  show_result: true
+  result_example_path:
 default_result_value: ''
 creator: Robert
 script_result_name: ScriptResult

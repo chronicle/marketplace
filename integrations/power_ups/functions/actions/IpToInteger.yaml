@@ -1,17 +1,18 @@
 name: IP to Integer
-description: Converts an IP address or list of IP addresses to integers or longs.
+description: Converts an IP address or list of IP addresses to integers or 
+  longs.
 integration_identifier: Functions
 parameters:
-    -   name: IP Addresses
-        default_value: ''
-        type: string
-        description: Comma separated list of IP addresses to be converted into integers.
-        is_mandatory: true
+- name: IP Addresses
+  default_value: ''
+  type: string
+  description: Comma separated list of IP addresses to be converted into 
+    integers.
+  is_mandatory: true
 dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: false
-        # language=json
-        result_example: '{}'
+- result_name: JsonResult
+  show_result: false
+  result_example_path:
 default_result_value: ''
 creator: Rob
 script_result_name: ScriptResult

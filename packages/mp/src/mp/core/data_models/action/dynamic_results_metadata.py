@@ -29,7 +29,7 @@ class BuiltDynamicResultsMetadata(TypedDict):
 
 
 class NonBuiltDynamicResultsMetadata(TypedDict):
-    result_example: str | None
+    result_example_path: str | None
     result_name: str
     show_result: bool
 
@@ -76,7 +76,7 @@ class DynamicResultsMetadata(
 
         """
         return cls(
-            result_example=non_built["result_example"],
+            result_example=non_built["result_example_path"],
             result_name=non_built["result_name"],
             show_result=non_built["show_result"],
         )
@@ -110,7 +110,7 @@ class DynamicResultsMetadata(
             example = json.dumps(self.result_example)
 
         return NonBuiltDynamicResultsMetadata(
-            result_example=example,
+            result_example_path=example,
             result_name=self.result_name,
             show_result=self.show_result,
         )

@@ -2,93 +2,39 @@ name: Create Task
 description: 'Create a task for a specific project '
 integration_identifier: Asana
 parameters:
-    -   name: Task Subject
-        default_value: Your Task Subject
-        type: string
-        description: The new task subject
-        is_mandatory: true
-    -   name: Assignee
-        default_value: ''
-        type: string
-        description: 'The user to whom you will assign the task.
+- name: Task Subject
+  default_value: Your Task Subject
+  type: string
+  description: The new task subject
+  is_mandatory: true
+- name: Assignee
+  default_value: ''
+  type: string
+  description: 'The user to whom you will assign the task.
 
-        Note: This is case sensitive!'
-        is_mandatory: false
-    -   name: Due Date
-        default_value: ''
-        type: string
-        description: The due date is in the format YYYY-MM-DD
-        is_mandatory: false
-    -   name: Description
-        default_value: Your task description
-        type: string
-        description: The description of the new task
-        is_mandatory: true
-    -   name: Project Name
-        default_value: 'Your Project Name '
-        type: string
-        description: 'The name of the project to which you want to assign the task.
+    Note: This is case sensitive!'
+  is_mandatory: false
+- name: Due Date
+  default_value: ''
+  type: string
+  description: The due date is in the format YYYY-MM-DD
+  is_mandatory: false
+- name: Description
+  default_value: Your task description
+  type: string
+  description: The description of the new task
+  is_mandatory: true
+- name: Project Name
+  default_value: 'Your Project Name '
+  type: string
+  description: 'The name of the project to which you want to assign the task.
 
-        Note: this is case sensitive'
-        is_mandatory: true
+    Note: this is case sensitive'
+  is_mandatory: true
 dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: "{\r\n\t\"data\": {\r\n\t\t\"gid\": \"12345\",\r\n\t\t\"resource_type\"\
-        : \"task\",\r\n\t\t\"name\": \"Buy catnip\",\r\n\t\t\"approval_status\": \"\
-        pending\",\r\n\t\t\"assignee_status\": \"upcoming\",\r\n\t\t\"completed\"\
-        : false,\r\n\t\t\"completed_at\": \"2012-02-22T02:06:58.147Z\",\r\n\t\t\"\
-        completed_by\": {\r\n\t\t\t\"gid\": \"12345\",\r\n\t\t\t\"resource_type\"\
-        : \"user\",\r\n\t\t\t\"name\": \"Greg Sanchez\"\r\n\t\t},\r\n\t\t\"created_at\"\
-        : \"2012-02-22T02:06:58.147Z\",\r\n\t\t\"dependencies\": [{\r\n\t\t\t\"gid\"\
-        : \"12345\",\r\n\t\t\t\"resource_type\": \"task\"\r\n\t\t}],\r\n\t\t\"dependents\"\
-        : [{\r\n\t\t\t\"gid\": \"12345\",\r\n\t\t\t\"resource_type\": \"task\"\r\n\
-        \t\t}],\r\n\t\t\"due_at\": \"2019-09-15T02:06:58.147Z\",\r\n\t\t\"due_on\"\
-        : \"2019-09-15\",\r\n\t\t\"external\": {\r\n\t\t\t\"data\": \"A blob of information\"\
-        ,\r\n\t\t\t\"gid\": \"my_gid\"\r\n\t\t},\r\n\t\t\"hearted\": true,\r\n\t\t\
-        \"hearts\": [{\r\n\t\t\t\"gid\": \"12345\",\r\n\t\t\t\"user\": {\r\n\t\t\t\
-        \t\"gid\": \"12345\",\r\n\t\t\t\t\"resource_type\": \"user\",\r\n\t\t\t\t\"\
-        name\": \"Greg Sanchez\"\r\n\t\t\t}\r\n\t\t}],\r\n\t\t\"html_notes\": \"<body>Mittens\
-        \ <em>really</em> likes the stuff from Humboldt.</body>\",\r\n\t\t\"is_rendered_as_separator\"\
-        : false,\r\n\t\t\"liked\": true,\r\n\t\t\"likes\": [{\r\n\t\t\t\"gid\": \"\
-        12345\",\r\n\t\t\t\"user\": {\r\n\t\t\t\t\"gid\": \"12345\",\r\n\t\t\t\t\"\
-        resource_type\": \"user\",\r\n\t\t\t\t\"name\": \"Greg Sanchez\"\r\n\t\t\t\
-        }\r\n\t\t}],\r\n\t\t\"memberships\": [{\r\n\t\t\t\"project\": {\r\n\t\t\t\t\
-        \"gid\": \"12345\",\r\n\t\t\t\t\"resource_type\": \"project\",\r\n\t\t\t\t\
-        \"name\": \"Stuff to buy\"\r\n\t\t\t},\r\n\t\t\t\"section\": {\r\n\t\t\t\t\
-        \"gid\": \"12345\",\r\n\t\t\t\t\"resource_type\": \"section\",\r\n\t\t\t\t\
-        \"name\": \"Next Actions\"\r\n\t\t\t}\r\n\t\t}],\r\n\t\t\"modified_at\": \"\
-        2012-02-22T02:06:58.147Z\",\r\n\t\t\"notes\": \"Mittens really likes the stuff\
-        \ from Humboldt.\",\r\n\t\t\"num_hearts\": 5,\r\n\t\t\"num_likes\": 5,\r\n\
-        \t\t\"num_subtasks\": 3,\r\n\t\t\"resource_subtype\": \"default_task\",\r\n\
-        \t\t\"start_on\": \"2019-09-14\",\r\n\t\t\"assignee\": {\r\n\t\t\t\"gid\"\
-        : \"12345\",\r\n\t\t\t\"resource_type\": \"user\",\r\n\t\t\t\"name\": \"Greg\
-        \ Sanchez\"\r\n\t\t},\r\n\t\t\"custom_fields\": [{\r\n\t\t\t\"gid\": \"12345\"\
-        ,\r\n\t\t\t\"resource_type\": \"custom_field\",\r\n\t\t\t\"currency_code\"\
-        : \"EUR\",\r\n\t\t\t\"custom_label\": \"gold pieces\",\r\n\t\t\t\"custom_label_position\"\
-        : \"suffix\",\r\n\t\t\t\"description\": \"Development team priority\",\r\n\
-        \t\t\t\"enabled\": true,\r\n\t\t\t\"enum_options\": [{\r\n\t\t\t\t\"gid\"\
-        : \"12345\",\r\n\t\t\t\t\"resource_type\": \"enum_option\",\r\n\t\t\t\t\"\
-        color\": \"blue\",\r\n\t\t\t\t\"enabled\": true,\r\n\t\t\t\t\"name\": \"Low\"\
-        \r\n\t\t\t}],\r\n\t\t\t\"enum_value\": {\r\n\t\t\t\t\"gid\": \"12345\",\r\n\
-        \t\t\t\t\"resource_type\": \"enum_option\",\r\n\t\t\t\t\"color\": \"blue\"\
-        ,\r\n\t\t\t\t\"enabled\": true,\r\n\t\t\t\t\"name\": \"Low\"\r\n\t\t\t},\r\
-        \n\t\t\t\"format\": \"custom\",\r\n\t\t\t\"has_notifications_enabled\": true,\r\
-        \n\t\t\t\"is_global_to_workspace\": true,\r\n\t\t\t\"name\": \"Status\",\r\
-        \n\t\t\t\"number_value\": 5.2,\r\n\t\t\t\"precision\": 2,\r\n\t\t\t\"resource_subtype\"\
-        : \"text\",\r\n\t\t\t\"text_value\": \"Some Value\",\r\n\t\t\t\"type\": \"\
-        text\"\r\n\t\t}],\r\n\t\t\"followers\": [{\r\n\t\t\t\"gid\": \"12345\",\r\n\
-        \t\t\t\"resource_type\": \"user\",\r\n\t\t\t\"name\": \"Greg Sanchez\"\r\n\
-        \t\t}],\r\n\t\t\"parent\": {\r\n\t\t\t\"gid\": \"12345\",\r\n\t\t\t\"resource_type\"\
-        : \"task\",\r\n\t\t\t\"name\": \"Bug Task\"\r\n\t\t},\r\n\t\t\"permalink_url\"\
-        : \"https://app.asana.com/0/resource/123456789/list\",\r\n\t\t\"projects\"\
-        : [{\r\n\t\t\t\"gid\": \"12345\",\r\n\t\t\t\"resource_type\": \"project\"\
-        ,\r\n\t\t\t\"name\": \"Stuff to buy\"\r\n\t\t}],\r\n\t\t\"tags\": [{\r\n\t\
-        \t\t\"gid\": \"59746\",\r\n\t\t\t\"name\": \"Grade A\"\r\n\t\t}],\r\n\t\t\"\
-        workspace\": {\r\n\t\t\t\"gid\": \"12345\",\r\n\t\t\t\"resource_type\": \"\
-        workspace\",\r\n\t\t\t\"name\": \"My Company Workspace\"\r\n\t\t}\r\n\t}\r\
-        \n}"
+- result_name: JsonResult
+  show_result: true
+  result_example_path: resources/CreateTask_JsonResult_example.json
 default_result_value: ''
 creator: Admin
 script_result_name: ScriptResult

@@ -1,59 +1,48 @@
 name: Reports - List All
-description: This method returns the list of scheduled reports, according to the parameters
-    received.
+description: This method returns the list of scheduled reports, according to the
+  parameters received.
 integration_identifier: Bitdefender GravityZone
 parameters:
-    -   name: Report Name
-        type: string
-        description: The name of the report.
-        is_mandatory: false
-    -   name: Report Type
-        default_value: ''
-        type: ddl
-        optional_values:
-            - Antiphishing Activity
-            - Blocked Applications
-            - Blocked Websites
-            - Data Protection
-            - Device Control Activity
-            - Endpoint Modules Status
-            - Endpoint Protection Status
-            - Firewall Activity
-            - Malware Status
-            - Monthly License Usage
-            - Network Status
-            - On demand scanning
-            - Policy Compliance
-            - Security Audit
-            - Security Server Status
-            - Top 10 Detected Malware
-            - Top 10 Infected Endpoints
-            - Update Status
-            - Upgrade Status
-            - AWS Monthly Usage
-            - Endpoint Encryption Status
-            - HyperDetect Activity
-            - Network Patch Status
-            - Sandbox Analyzer Failed Submissions
-            - Network Incidents
-            - Email Security Usage
-        description: The report type.
-        is_mandatory: false
+- name: Report Name
+  type: string
+  description: The name of the report.
+  is_mandatory: false
+- name: Report Type
+  default_value: ''
+  type: ddl
+  optional_values:
+  - Antiphishing Activity
+  - Blocked Applications
+  - Blocked Websites
+  - Data Protection
+  - Device Control Activity
+  - Endpoint Modules Status
+  - Endpoint Protection Status
+  - Firewall Activity
+  - Malware Status
+  - Monthly License Usage
+  - Network Status
+  - On demand scanning
+  - Policy Compliance
+  - Security Audit
+  - Security Server Status
+  - Top 10 Detected Malware
+  - Top 10 Infected Endpoints
+  - Update Status
+  - Upgrade Status
+  - AWS Monthly Usage
+  - Endpoint Encryption Status
+  - HyperDetect Activity
+  - Network Patch Status
+  - Sandbox Analyzer Failed Submissions
+  - Network Incidents
+  - Email Security Usage
+  description: The report type.
+  is_mandatory: false
 dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: "{\r\n    \"items\": [\r\n        {\r\n            \"id\": \"\
-        5638cdceb1a43d46137b23c6\",\r\n            \"name\": \"My report 1\",\r\n\
-        \            \"occurrence\": 2,\r\n            \"type\": 2\r\n        },\r\
-        \n        {\r\n            \"id\": \"5638d7f8b1a43d49137b23c9\",\r\n     \
-        \       \"name\": \"My report 2\",\r\n            \"occurrence\": 4,\r\n \
-        \           \"type\": 2\r\n        },\r\n        {\r\n            \"id\":\
-        \ \"563b271bb1a43d21077b23c8\",\r\n            \"name\": \"My report 3\",\r\
-        \n            \"occurrence\": 4,\r\n            \"type\": 2\r\n        },\r\
-        \n        {\r\n            \"id\": \"563a289eb1a43d2f617b23c6\",\r\n     \
-        \       \"name\": \"My report 4\",\r\n            \"occurrence\": 2,\r\n \
-        \           \"type\": 2\r\n        }\r\n\r\n    ]\r\n\r\n}"
+- result_name: JsonResult
+  show_result: true
+  result_example_path: resources/ReportsListAll_JsonResult_example.json
 default_result_value: ''
 creator: daniel.harvey
 script_result_name: ScriptResult

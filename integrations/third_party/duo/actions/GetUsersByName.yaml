@@ -1,57 +1,17 @@
 name: Get Users by Name
-description: Query the get_users_by_name DUO API endpoint to obtain information on
-    a specified username.
+description: Query the get_users_by_name DUO API endpoint to obtain information 
+  on a specified username.
 integration_identifier: DUO
 parameters:
-    -   name: Username
-        default_value: admin
-        type: string
-        description: Username
-        is_mandatory: true
+- name: Username
+  default_value: admin
+  type: string
+  description: Username
+  is_mandatory: true
 dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: "{\n\t\"user_name\": \"username\",\n\t\"user_id\": \"ABC123\"\
-        ,\n\t\"user_data\": [\n\t\t{\n\t\t\t\"alias1\": null,\n\t\t\t\"alias2\": null,\n\
-        \t\t\t\"alias3\": null,\n\t\t\t\"alias4\": null,\n\t\t\t\"aliases\": {},\n\
-        \t\t\t\"created\": 1488805062,\n\t\t\t\"desktoptokens\": [],\n\t\t\t\"email\"\
-        : \"username@domain.tld\",\n\t\t\t\"firstname\": \"USER T\",\n\t\t\t\"groups\"\
-        : [\n\t\t\t\t{\n\t\t\t\t\t\"desc\": \"\",\n\t\t\t\t\t\"group_id\": \"ABC123\"\
-        ,\n\t\t\t\t\t\"mobile_otp_enabled\": false,\n\t\t\t\t\t\"name\": \"GROUP_NAME\
-        \ (from AD sync \\\"CORP AD\\\")\",\n\t\t\t\t\t\"push_enabled\": false,\n\t\
-        \t\t\t\t\"sms_enabled\": false,\n\t\t\t\t\t\"status\": \"Active\",\n\t\t\t\
-        \t\t\"voice_enabled\": false\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"desc\": \"\
-        \",\n\t\t\t\t\t\"group_id\": \"ABC123\",\n\t\t\t\t\t\"mobile_otp_enabled\"\
-        : false,\n\t\t\t\t\t\"name\": \"GROUP_NAME (from AD sync \\\"CORP AD\\\")\"\
-        ,\n\t\t\t\t\t\"push_enabled\": false,\n\t\t\t\t\t\"sms_enabled\": false,\n\
-        \t\t\t\t\t\"status\": \"Active\",\n\t\t\t\t\t\"voice_enabled\": false\n\t\t\
-        \t\t},\n\t\t\t\t{\n\t\t\t\t\t\"desc\": \"\",\n\t\t\t\t\t\"group_id\": \"ABC123\"\
-        ,\n\t\t\t\t\t\"mobile_otp_enabled\": false,\n\t\t\t\t\t\"name\": \"GROUP_NAME\
-        \ (from AD sync \\\"CORP AD\\\")\",\n\t\t\t\t\t\"push_enabled\": false,\n\t\
-        \t\t\t\t\"sms_enabled\": false,\n\t\t\t\t\t\"status\": \"Active\",\n\t\t\t\
-        \t\t\"voice_enabled\": false\n\t\t\t\t}\n\t\t\t],\n\t\t\t\"is_enrolled\":\
-        \ true,\n\t\t\t\"last_directory_sync\": 1625224570,\n\t\t\t\"last_login\"\
-        : 1625237130,\n\t\t\t\"lastname\": \"LASTNAME\",\n\t\t\t\"notes\": \"\",\n\
-        \t\t\t\"phones\": [\n\t\t\t\t{\n\t\t\t\t\t\"activated\": true,\n\t\t\t\t\t\
-        \"capabilities\": [\n\t\t\t\t\t\t\"auto\",\n\t\t\t\t\t\t\"push\",\n\t\t\t\t\
-        \t\t\"sms\",\n\t\t\t\t\t\t\"phone\",\n\t\t\t\t\t\t\"mobile_otp\"\n\t\t\t\t\
-        \t],\n\t\t\t\t\t\"encrypted\": \"Encrypted\",\n\t\t\t\t\t\"extension\": \"\
-        \",\n\t\t\t\t\t\"fingerprint\": \"Disabled\",\n\t\t\t\t\t\"last_seen\": \"\
-        2021-07-02T14:45:30\",\n\t\t\t\t\t\"model\": \"PHONE MODEL\",\n\t\t\t\t\t\"\
-        name\": \"\",\n\t\t\t\t\t\"number\": \"+12223334444\",\n\t\t\t\t\t\"phone_id\"\
-        : \"ABC123\",\n\t\t\t\t\t\"platform\": \"Phone OS\",\n\t\t\t\t\t\"postdelay\"\
-        : \"\",\n\t\t\t\t\t\"predelay\": \"\",\n\t\t\t\t\t\"screenlock\": \"Locked\"\
-        ,\n\t\t\t\t\t\"sms_passcodes_sent\": true,\n\t\t\t\t\t\"tampered\": \"Not\
-        \ tampered\",\n\t\t\t\t\t\"type\": \"Mobile\"\n\t\t\t\t}\n\t\t\t],\n\t\t\t\
-        \"realname\": \"USER T LASTNAME\",\n\t\t\t\"status\": \"active\",\n\t\t\t\"\
-        tokens\": [\n\t\t\t\t{\n\t\t\t\t\t\"serial\": \"ABC123\",\n\t\t\t\t\t\"token_id\"\
-        : \"123ABC\",\n\t\t\t\t\t\"totp_step\": null,\n\t\t\t\t\t\"type\": \"d1\"\n\
-        \t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"serial\": \"123456789\",\n\t\t\t\t\t\"\
-        token_id\": \"ABC123\",\n\t\t\t\t\t\"totp_step\": null,\n\t\t\t\t\t\"type\"\
-        : \"yk\"\n\t\t\t\t}\n\t\t\t],\n\t\t\t\"u2ftokens\": [],\n\t\t\t\"user_id\"\
-        : \"ABC123\",\n\t\t\t\"username\": \"username\",\n\t\t\t\"webauthncredentials\"\
-        : []\n\t\t}\n\t]\n}"
+- result_name: JsonResult
+  show_result: true
+  result_example_path: resources/GetUsersByName_JsonResult_example.json
 default_result_value: ''
 creator: John
 script_result_name: ScriptResult

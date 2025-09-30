@@ -1,19 +1,18 @@
 name: Delay Playbook Synchronous
-description: This action will temporarily stop a playbook from continuing execution
-    for up to 30 seconds. If you need to delay the playbook for longer, use action
-    "Delay Playbook V2"
+description: This action will temporarily stop a playbook from continuing 
+  execution for up to 30 seconds. If you need to delay the playbook for longer, 
+  use action "Delay Playbook V2"
 integration_identifier: Tools
 parameters:
-    -   name: Seconds
-        default_value: ''
-        type: string
-        description: Seconds
-        is_mandatory: true
+- name: Seconds
+  default_value: ''
+  type: string
+  description: Seconds
+  is_mandatory: true
 dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: '{}'
+- result_name: JsonResult
+  show_result: true
+  result_example_path:
 default_result_value: ''
 creator: Artem
 script_result_name: ScriptResult

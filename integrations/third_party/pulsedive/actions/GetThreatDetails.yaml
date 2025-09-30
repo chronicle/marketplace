@@ -2,159 +2,33 @@ name: Get Threat Details
 description: Performs a look in Pulsedive to get threat information.
 integration_identifier: Pulsedive
 parameters:
-    -   name: Threat Name
-        default_value: ''
-        type: string
-        description: 'Specify the threat name you would like to retrieve. '
-        is_mandatory: false
-    -   name: Threat ID
-        type: string
-        description: Specific the threat id that you wish to retrieve information
-        is_mandatory: false
-    -   name: Retrieve Comments
-        default_value: 'true'
-        type: boolean
-        description: Get Comments from Threat
-        is_mandatory: false
-    -   name: Split Risk
-        default_value: 'true'
-        type: boolean
-        description: 'You can split out the indicator counts by risk '
-        is_mandatory: false
-    -   name: Create Insight
-        default_value: 'false'
-        type: boolean
-        description: Create Siemplify Insight with Threat Details
-        is_mandatory: false
+- name: Threat Name
+  default_value: ''
+  type: string
+  description: 'Specify the threat name you would like to retrieve. '
+  is_mandatory: false
+- name: Threat ID
+  type: string
+  description: Specific the threat id that you wish to retrieve information
+  is_mandatory: false
+- name: Retrieve Comments
+  default_value: 'true'
+  type: boolean
+  description: Get Comments from Threat
+  is_mandatory: false
+- name: Split Risk
+  default_value: 'true'
+  type: boolean
+  description: 'You can split out the indicator counts by risk '
+  is_mandatory: false
+- name: Create Insight
+  default_value: 'false'
+  type: boolean
+  description: Create Siemplify Insight with Threat Details
+  is_mandatory: false
 dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: "{\n  \"results\": [\n    {\n      \"Entity\": \"pulsedive.com\"\
-        ,\n      \"EntityResult\": {\n        \"iid\": 53929,\n        \"type\": \"\
-        domain\",\n        \"indicator\": \"pulsedive.com\",\n        \"risk\": \"\
-        none\",\n        \"risk_recommended\": \"none\",\n        \"manualrisk\":\
-        \ 0,\n        \"retired\": \"test\",\n        \"stamp_added\": \"2017-10-04\
-        \ 01:20:55\",\n        \"stamp_updated\": \"2021-01-14 07:40:29\",\n     \
-        \   \"stamp_seen\": \"2021-01-14 07:40:29\",\n        \"stamp_probed\": \"\
-        2021-01-14 07:40:29\",\n        \"stamp_retired\": null,\n        \"recent\"\
-        : 0,\n        \"redirects\": {\n          \"to\": [\n            {\n     \
-        \         \"iid\": 642010,\n              \"indicator\": \"https://pulsedive.com/\"\
-        \n            }\n          ]\n        },\n        \"riskfactors\": [\n   \
-        \       {\n            \"rfid\": 74,\n            \"description\": \"SPF record\
-        \ present\",\n            \"risk\": \"none\"\n          },\n          {\n\
-        \            \"rfid\": 44,\n            \"description\": \"registration details\
-        \ hidden\",\n            \"risk\": \"unknown\"\n          }\n        ],\n\
-        \        \"comments\": [\n          {\n            \"cid\": 125987,\n    \
-        \        \"uid\": 4,\n            \"username\": \"sherd\",\n            \"\
-        title\": \"Founder & CEO\",\n            \"comment\": \"Have you seen our\
-        \ Pro tier? \\ud83d\\ude0e\",\n            \"stamp_added\": \"2019-12-18 21:13:46\"\
-        ,\n            \"stamp_updated\": \"2020-11-10 10:03:01\"\n          }\n \
-        \       ],\n        \"attributes\": {\n          \"port\": [\n           \
-        \ \"443\",\n            \"80\"\n          ],\n          \"protocol\": [\n\
-        \            \"HTTP\",\n            \"HTTPS\"\n          ],\n          \"\
-        technology\": [\n            \"Apache\",\n            \"Font Awesome\",\n\
-        \            \"Google Analytics\",\n            \"PHP\",\n            \"Stripe\"\
-        \n          ]\n        },\n        \"properties\": {\n          \"cookies\"\
-        : {\n            \"_ga\": \"GA1.2.234824738.1610609947\",\n            \"\
-        _gat_gtag_ua_108145347_2\": \"1\",\n            \"_gid\": \"GA1.2.522527771.1610609947\"\
-        ,\n            \"phpsessid\": \"4f67f8dc92c5a9759d02817cefff6524\"\n     \
-        \     },\n          \"dns\": {\n            \"a\": \"1.1.1.1\",\n        \
-        \    \"mname\": \"ns1.digitalocean.com\",\n            \"mx\": [\n       \
-        \       \"domain.google.com\",\n              \"domain.google.com\",\n   \
-        \           \"domain.google.com\",\n              \"alt4.aspmx.l.google.com\"\
-        ,\n              \"aspmx.l.google.com\"\n            ],\n            \"ns\"\
-        : [\n              \"ns1.digitalocean.com\",\n              \"ns2.digitalocean.com\"\
-        ,\n              \"ns3.digitalocean.com\"\n            ],\n            \"\
-        rname\": \"hostmaster@pulsedive.com\",\n            \"soa\": \"ns1.digitalocean.com.\
-        \ hostmaster.pulsedive.com. 1608682181 10800 3600 604800 1800\",\n       \
-        \     \"txt\": [\n              \"v=spf1 a ip4:159.65.224.55 ~all\",\n   \
-        \           \"v=spf1 include:_spf.google.com ~all\"\n            ]\n     \
-        \     },\n          \"dom\": {\n            \"screenshot\": \"\"\n       \
-        \   },\n          \"geo\": {\n            \"address\": \"96 Mowat Ave\",\n\
-        \            \"city\": \"Toronto\",\n            \"country\": \"Canada\",\n\
-        \            \"countrycode\": \"CA\",\n            \"org\": \"Contact Privacy\
-        \ Inc. Customer 124912322\",\n            \"region\": \"ON\",\n          \
-        \  \"zip\": \"M4K 3K1\"\n          },\n          \"http\": {\n           \
-        \ \"++code\": \"200\",\n            \"++content-type\": \"text/html\",\n \
-        \           \"++status\": \"OK\",\n            \"cache-control\": \"no-store,\
-        \ no-cache, must-revalidate\",\n            \"connection\": \"close\",\n \
-        \           \"content-encoding\": \"gzip\",\n            \"content-type\"\
-        : \"text/html; charset=utf-8\",\n            \"date\": \"Thu, 14 Jan 2021\
-        \ 07:39:06 GMT\",\n            \"expires\": \"Thu, 19 Nov 1981 08:52:00 GMT\"\
-        ,\n            \"pragma\": \"no-cache\",\n            \"server\": \"Apache\"\
-        ,\n            \"set-cookie\": \"PHPSESSID=4f67f8dc92c5a9759d02817cefff6524;\
-        \ expires=Thu, 21-Jan-2021 07:39:06 GMT; Max-Age=604800; path=/\",\n     \
-        \       \"strict-transport-security\": \"max-age=31536000; includeSubDomains\"\
-        ,\n            \"transfer-encoding\": \"chunked\",\n            \"vary\":\
-        \ \"Accept-Encoding\",\n            \"x-content-type-options\": \"nosniff\"\
-        ,\n            \"x-frame-options\": \"SAMEORIGIN\",\n            \"x-xss-protection\"\
-        : \"1; mode=block\"\n          },\n          \"meta\": {\n            \"assets\"\
-        : \"https://pulsedive.com\",\n            \"author\": \"Pulsedive LLC\",\n\
-        \            \"charset\": \"utf-8\",\n            \"description\": \"Pulsedive\
-        \ is a free threat intelligence platform. Search, scan, and enrich IPs, URLs,\
-        \ domains and other IOCs from OSINT feeds or submit your own.\",\n       \
-        \     \"keywords\": \"threat intelligence,feed,ioc\",\n            \"og:description\"\
-        : \"Pulsedive is a free threat intelligence platform. Search, scan, and enrich\
-        \ IPs, URLs, domains and other IOCs from OSINT feeds or submit your own.\"\
-        ,\n            \"og:image\": \"https://pulsedive.com/img/opengraph/home.png?v=4.0.90\"\
-        ,\n            \"og:title\": \"Threat Intelligence - Pulsedive\",\n      \
-        \      \"og:url\": \"https://pulsedive.com/\",\n            \"twitter:card\"\
-        : \"summary_large_image\",\n            \"twitter:creator\": \"@netbroom\"\
-        ,\n            \"twitter:description\": \"Pulsedive is a free threat intelligence\
-        \ platform. Search, scan, and enrich IPs, URLs, domains and other IOCs from\
-        \ OSINT feeds or submit your own.\",\n            \"twitter:image\": \"https://pulsedive.com/img/opengraph/home.png?v=4.0.90\"\
-        ,\n            \"twitter:site\": \"@pulsedive\",\n            \"twitter:title\"\
-        : \"Threat Intelligence - Pulsedive\",\n            \"version\": \"4.0.90\"\
-        ,\n            \"viewport\": \"width=device-width, initial-scale=1\"\n   \
-        \       },\n          \"ssl\": {\n            \"domain\": [\n            \
-        \  \"www.pulsedive.com\",\n              \"pulsedive.com\"\n            ],\n\
-        \            \"expires\": \"2021-03-28 18:05:42\",\n            \"issuer\"\
-        : \"/C=US/O=Let's Encrypt/CN=R3\",\n            \"org\": \"R3\",\n       \
-        \     \"subject\": \"/CN=pulsedive.com\",\n            \"valid\": \"2020-12-28\
-        \ 18:05:42\",\n            \"version\": \"v3\"\n          },\n          \"\
-        whois\": {\n            \"++abuse\": \"registrar-abuse@google.com\",\n   \
-        \         \"++email\": \"urb6dpdrhxz4@contactprivacy.email\",\n          \
-        \  \"++expires\": \"2021-11-11 00:00:00\",\n            \"++phone\": \"+1.4165385487\"\
-        ,\n            \"++privacy\": \"1\",\n            \"++registered\": \"2016-11-11\
-        \ 00:00:00\",\n            \"++registrant\": \"Contact Privacy Inc. Customer\
-        \ 124912322\",\n            \"++registrar\": \"Google LLC\",\n           \
-        \ \"++updated\": \"2020-11-12 00:00:00\",\n            \"admin city\": \"\
-        Toronto\",\n            \"admin country\": \"CA\",\n            \"admin email\"\
-        : \"urb6dpdrhxz4@contactprivacy.email\",\n            \"admin name\": \"Contact\
-        \ Privacy Inc. Customer 124912322\",\n            \"admin organization\":\
-        \ \"Contact Privacy Inc. Customer 124912322\",\n            \"admin phone\"\
-        : \"+1.4165385487\",\n            \"admin postal code\": \"M4K 3K1\",\n  \
-        \          \"admin state/province\": \"ON\",\n            \"admin street\"\
-        : \"96 Mowat Ave\",\n            \"creation date\": \"2016-11-11T21:18:19Z\"\
-        ,\n            \"dnssec\": \"unsigned\",\n            \"domain name\": \"\
-        pulsedive.com\",\n            \"domain status\": \"ok https://www.icann.org/eppRegistry\
-        \ Registrant ID:\",\n            \"name server\": [\n              \"NS1.DIGITALOCEAN.COM\"\
-        ,\n              \"NS2.DIGITALOCEAN.COM\",\n              \"NS3.DIGITALOCEAN.COM\"\
-        \n            ],\n            \"please register your domains at\": \"https://domains.google.com/\"\
-        ,\n            \"registrant city\": \"Toronto\",\n            \"registrant\
-        \ country\": \"CA\",\n            \"registrant email\": \"urb6dpdrhxz4@contactprivacy.email\"\
-        ,\n            \"registrant name\": \"Contact Privacy Inc. Customer 124912322\"\
-        ,\n            \"registrant organization\": \"Contact Privacy Inc. Customer\
-        \ 124912322\",\n            \"registrant phone\": \"+1.4165385487\",\n   \
-        \         \"registrant postal code\": \"M4K 3K1\",\n            \"registrant\
-        \ state/province\": \"ON\",\n            \"registrant street\": \"96 Mowat\
-        \ Ave\",\n            \"registrar\": \"Google LLC\",\n            \"registrar\
-        \ abuse contact email\": \"registrar-abuse@google.com\",\n            \"registrar\
-        \ abuse contact phone\": \"+1.8772376466\",\n            \"registrar iana\
-        \ id\": \"895\",\n            \"registrar registration expiration date\":\
-        \ \"2021-11-11T21:18:19Z\",\n            \"registrar url\": \"https://domains.google.com\"\
-        ,\n            \"registrar whois server\": \"whois.google.com\",\n       \
-        \     \"registry domain id\": \"2073459391_DOMAIN_COM-VRSN\",\n          \
-        \  \"tech city\": \"Toronto\",\n            \"tech country\": \"CA\",\n  \
-        \          \"tech email\": \"urb6dpdrhxz4@contactprivacy.email\",\n      \
-        \      \"tech name\": \"Contact Privacy Inc. Customer 124912322\",\n     \
-        \       \"tech organization\": \"Contact Privacy Inc. Customer 124912322\"\
-        ,\n            \"tech phone\": \"+1.4165385487\",\n            \"tech postal\
-        \ code\": \"M4K 3K1\",\n            \"tech state/province\": \"ON\",\n   \
-        \         \"tech street\": \"96 Mowat Ave\",\n            \"updated date\"\
-        : \"2020-11-12T03:14:58Z\",\n            \"url of the icann whois data problem\
-        \ reporting system\": \"http://wdprs.internic.net/\"\n          }\n      \
-        \  }\n      }\n    }\n  ],\n  \"is_risky\": true\n}"
+- result_name: JsonResult
+  show_result: true
+  result_example_path: resources/GetThreatDetails_JsonResult_example.json
 creator: Admin
 is_async: true

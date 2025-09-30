@@ -1,35 +1,11 @@
 name: Enrich URL
-description: Enrich a URL using Sixgill Information (Identify, investigate, and download
-    malware shared on the hosted on underground file-sharing/paste sites)
+description: Enrich a URL using Sixgill Information (Identify, investigate, and 
+  download malware shared on the hosted on underground file-sharing/paste sites)
 integration_identifier: Cybersixgill Darkfeed Enrichment
-parameters: [ ]
+parameters: []
 dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: "[\r\n  {\r\n    \"entityIdentifier\": \"https://rapidgator.net/file/46dcb60949bd324e948ce2b35a876e2b/y0y1u.The.Ultimate.Swagger.Tools.Course.Build.OpenAPI.with.Ease.part1.rar.html\"\
-        ,\r\n    \"entityResult\": [\r\n      {\r\n        \"created\": \"2021-06-22T09:15:45.634Z\"\
-        ,\r\n        \"description\": \"Malware available for download from file-sharing\
-        \ sites\",\r\n        \"external_reference\": [\r\n          {\r\n       \
-        \     \"description\": \"Mitre attack tactics and technique reference\",\r\
-        \n            \"mitre_attack_tactic\": \"Build Capabilities\",\r\n       \
-        \     \"mitre_attack_tactic_id\": \"TA0024\",\r\n            \"mitre_attack_tactic_url\"\
-        : \"https://attack.mitre.org/tactics/TA0024/\",\r\n            \"mitre_attack_technique\"\
-        : \"Obtain/re-use payloads\",\r\n            \"mitre_attack_technique_id\"\
-        : \"T1346\",\r\n            \"mitre_attack_technique_url\": \"https://attack.mitre.org/techniques/T1346/\"\
-        ,\r\n            \"source_name\": \"mitre-attack\"\r\n          }\r\n    \
-        \    ],\r\n        \"id\": \"indicator--2d0c9087-d4e0-4066-9c1e-011de88c0b5f\"\
-        ,\r\n        \"labels\": [\r\n          \"malicious-activity\",\r\n      \
-        \    \"malware\",\r\n          \"Build Capabilities\",\r\n          \"Obtain/re-use\
-        \ payloads\"\r\n        ],\r\n        \"lang\": \"en\",\r\n        \"modified\"\
-        : \"2021-06-22T09:15:45.634Z\",\r\n        \"pattern\": \"[url:value = 'https://rapidgator.net/file/46dcb60949bd324e948ce2b35a876e2b/y0y1u.The.Ultimate.Swagger.Tools.Course.Build.OpenAPI.with.Ease.part1.rar.html']\"\
-        ,\r\n        \"sixgill_actor\": \"oaxino\",\r\n        \"sixgill_confidence\"\
-        : 80,\r\n        \"sixgill_feedid\": \"darkfeed_010\",\r\n        \"sixgill_feedname\"\
-        : \"malware_download_urls\",\r\n        \"sixgill_postid\": \"75b37b198d6d27e63894039b91c073fea091540c\"\
-        ,\r\n        \"sixgill_posttitle\": \"The  Ultimate Swagger Tools Course:\
-        \ Build OpenAPI with Ease\",\r\n        \"sixgill_severity\": 70,\r\n    \
-        \    \"sixgill_source\": \"forum_prizrak\",\r\n        \"spec_version\": \"\
-        2.0\",\r\n        \"type\": \"indicator\",\r\n        \"valid_from\": \"2021-06-18T13:06:06Z\"\
-        \r\n      }\r\n    ]\r\n  }\r\n]"
+- result_name: JsonResult
+  show_result: true
+  result_example_path: resources/EnrichUrl_JsonResult_example.json
 default_result_value: ''
 creator: System

@@ -1,38 +1,13 @@
 name: Get Event Data JSON
-description: This action retrieves entity details from events and SecOps entities associated with the Alert, enriched by XM Cyber, and returns the JSON output.
+description: This action retrieves entity details from events and SecOps 
+  entities associated with the Alert, enriched by XM Cyber, and returns the JSON
+  output.
 integration_identifier: XMCyber
-parameters: [ ]
+parameters: []
 dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: "{\r\n  \"entity_id_1\": {\r\n    \"Choke Point Score\": 200.0,\r\
-        \n    \"Is Critical Asset\": true,\r\n    \"AD Admins And DCs\": false,\r\n\
-        \    \"Is External\": true,\r\n    \"User without MFA\": true,\r\n    \"Tenant\
-        \ Name\": \"Test Tenant 1\",\r\n    \"Compromise Risk Score\": 73,\r\n   \
-        \ \"AD Risk to Domain\": false,\r\n    \"Account ID\": \"acc1234567890\",\r\
-        \n    \"Last Activity Date\": \"Sat Mar 15 2025 14: 55: 48 GMT+0000\",\r\n\
-        \    \"Domain Name\": \"crestdata.ai\",\r\n    \"Tenant ID\": \"ten987654321\"\
-        ,\r\n    \"Affected Entities\": 34,\r\n    \"Affected Critical Assets\": 54,\r\
-        \n    \"Entity Type\": \"AWS\",\r\n    \"Labels\": \"label1, label2, testlabel,123label\"\
-        ,\r\n    \"Enabled\": false,\r\n    \"Predefined Admin\": false,\r\n    \"\
-        Attacked By Techniques\": \"abcde,12345, IPAddress, Hash123\",\r\n    \"ARN\"\
-        : \"ñ©Øüé\",\r\n    \"AD Risky Principals\": true,\r\n    \"Highly Privileged\"\
-        : true,\r\n    \"url\": \"https://xmcyber-instance.com//#/report/entity/entity_id_1\"\
-        \r\n  },\r\n  \"entity_id_2\": {\r\n    \"Choke Point Score\": 200.0,\r\n\
-        \    \"Is Critical Asset\": true,\r\n    \"AD Admins And DCs\": false,\r\n\
-        \    \"Is External\": true,\r\n    \"User without MFA\": true,\r\n    \"Tenant\
-        \ Name\": \"Test Tenant 2\",\r\n    \"Tenant ID\": \"ten987654321\",\r\n \
-        \   \"Compromise Risk Score\": 73,\r\n    \"Affected Critical Assets\": 54,\r\
-        \n    \"AD Risk to Domain\": false,\r\n    \"Account ID\": \"acc1234567890\"\
-        ,\r\n    \"Last Activity Date\": \"Sat Mar 15 2025 14: 55: 48 GMT+0000\",\r\
-        \n    \"Domain Name\": \"crestdata.ai\",\r\n    \"Affected Entities\": 34,\r\
-        \n    \"Entity Type\": \"AWS\",\r\n    \"Labels\": \"label1, label2, testlabel,123label\"\
-        ,\r\n    \"Enabled\": false,\r\n    \"Predefined Admin\": false,\r\n    \"\
-        Attacked By Techniques\": \"abcde,12345, IPAddress, Hash123\",\r\n    \"ARN\"\
-        : \"ñ©Øüé\",\r\n    \"AD Risky Principals\": true,\r\n    \"Highly Privileged\"\
-        : true,\r\n    \"url\": \"https://xmcyber-instance.com//#/report/entity/entity_id_2\"\
-        \r\n  }\r\n}\r\n"
+- result_name: JsonResult
+  show_result: true
+  result_example_path: resources/GetEventDataJSON_JsonResult_example.json
 default_result_value: ''
 creator: af7283aa-f6b7-4c8f-bbe6-e76a38778387
 script_result_name: ScriptResult

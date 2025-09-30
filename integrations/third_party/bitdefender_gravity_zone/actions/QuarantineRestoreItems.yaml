@@ -1,53 +1,39 @@
 name: Quarantine - Restore Items
 description: 'This method creates a new task to restore items from the quarantine.
 
-    '
+  '
 integration_identifier: Bitdefender GravityZone
 parameters:
-    -   name: Location to Restore
-        type: string
-        description: The absolute path to the folder where the items will be restored.
-            If the parameter is not set, the original location will be used.
-        is_mandatory: false
-    -   name: Quarantine Item IDs
-        default_value: itemId1,itemId2
-        type: string
-        description: Comma-separated list of quarantine items IDs. The maximum number
-            of items that can be removed once is 100.
-        is_mandatory: true
-    -   name: Service
-        default_value: Computers
-        type: ddl
-        optional_values:
-            - Computers
-            - Exchange
-        description: 'Allowed services are: computers, for "Computers and Virtual Machines"
-        or exchange, for "Security for Exchange"'
-        is_mandatory: true
-    -   name: Add Exclusion in Policy
-        default_value: 'false'
-        type: boolean
-        description: Exclude the files to be restored from future scans. Exclusions do
-            not apply to items with the Default Policy assigned.
-        is_mandatory: false
+- name: Location to Restore
+  type: string
+  description: The absolute path to the folder where the items will be restored.
+    If the parameter is not set, the original location will be used.
+  is_mandatory: false
+- name: Quarantine Item IDs
+  default_value: itemId1,itemId2
+  type: string
+  description: Comma-separated list of quarantine items IDs. The maximum number 
+    of items that can be removed once is 100.
+  is_mandatory: true
+- name: Service
+  default_value: Computers
+  type: ddl
+  optional_values:
+  - Computers
+  - Exchange
+  description: 'Allowed services are: computers, for "Computers and Virtual Machines"
+    or exchange, for "Security for Exchange"'
+  is_mandatory: true
+- name: Add Exclusion in Policy
+  default_value: 'false'
+  type: boolean
+  description: Exclude the files to be restored from future scans. Exclusions do
+    not apply to items with the Default Policy assigned.
+  is_mandatory: false
 dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: false
-        # language=json
-        result_example: "{\n    \"items\":[\n        {   \n            \"id\" : \"21a295eeb1a43d8b497b23b7\"\
-        , \"name\" : \"Endpoint 1\",\n            \"label\" : \"endpoint 1\",\n  \
-        \          \"fqdn\": \"endpoint1.local\",\n            \"groupId\": \"5a5f4d36b1a43d5f097b23bb\"\
-        , \"isManaged\": true,\n            \"isManaged\": true,\n            \"machineType\"\
-        : 1,\n            \"operatingSystemVersion\": \"Windows Server 2016\",\n \
-        \           \"ip\": \"1.1.1.1\",\n            \"macs\": [\n              \
-        \  \"324935237225\"\n            ],\n            \"ssid\": \"\"\n        },\n\
-        \        {\n            \"id\" : \"23a295d8b1a43d7c4a7b23c9\",\n         \
-        \   \"name\" : \"Endpoint 2\",\n            \"machineType\": 2,\n        \
-        \    \"label\" : \"endpoint 2\",\n            \"fqdn\": \"endpoint2.local\"\
-        ,\n            \"groupId\": \"5a4f4d46b1a53d5f197b23aa\", \"isManaged\": true,\n\
-        \            \"machineType\": 1, \"operatingSystemVersion\": \"Windows 7\"\
-        , \"ip\": \"1.1.1.1\",\n            \"macs\": [\n                \"325935237445\"\
-        \n            ],\n            \"ssid\": \"\"\n        }    \n    ]\n}"
+- result_name: JsonResult
+  show_result: false
+  result_example_path: resources/QuarantineRestoreItems_JsonResult_example.json
 default_result_value: ''
 creator: daniel.harvey
 script_result_name: ScriptResult

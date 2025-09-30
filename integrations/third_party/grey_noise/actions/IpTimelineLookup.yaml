@@ -1,38 +1,22 @@
 name: IP Timeline Lookup
-description: Retrieve Daily Scanning events for an IP. Requires additional license
-    to use. Consumes 1 Search per valid IP submitted.
+description: Retrieve Daily Scanning events for an IP. Requires additional 
+  license to use. Consumes 1 Search per valid IP submitted.
 integration_identifier: GreyNoise
 parameters:
-    -   name: days
-        default_value: '30'
-        type: string
-        description: Number of days from today to retrieve timeline information
-        is_mandatory: true
-    -   name: limit
-        default_value: '50'
-        type: string
-        description: Maximum number of timeline events to return
-        is_mandatory: true
+- name: days
+  default_value: '30'
+  type: string
+  description: Number of days from today to retrieve timeline information
+  is_mandatory: true
+- name: limit
+  default_value: '50'
+  type: string
+  description: Maximum number of timeline events to return
+  is_mandatory: true
 dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: '{"results": [{"Entity": "1.1.1.1", "EntityResult": {"activity":
-        [{"timestamp": "2023-08-14T00:00:00Z", "country": "China", "country_code":
-        "CN", "asn": "AS9808", "region": "Sichuan", "city": "Chengdu", "category":
-        "isp", "rdns": "", "organization": "China Mobile Communications Group Co.,
-        Ltd.", "vpn": false, "vpn_service": "", "tor": false, "spoofable": true, "destinations":
-        [{"country": "United States", "country_code": "US"}], "protocols": [{"transport_protocol":
-        "TCP", "port": 80}, {"transport_protocol": "TCP", "port": 8080}, {"transport_protocol":
-        "TCP", "app_protocol": "TELNET", "port": 2323}, {"transport_protocol": "TCP",
-        "app_protocol": "HTTP", "port": 80}, {"transport_protocol": "TCP", "port":
-        2323}, {"transport_protocol": "TCP", "port": 21635}], "classification": "unknown",
-        "tags": [{"name": "Web Crawler", "description": "IP addresses with this tag
-        have been seen crawling HTTP(S) servers around the Internet.", "category":
-        "activity", "intention": "unknown"}], "ja3_fingerprints": [], "hassh_fingerprints":
-        [], "http_paths": [], "http_user_agents": []}], "metadata": {"start_time":
-        "2023-07-16T00:00:00Z", "end_time": "2023-08-15T16:00:39.815261684Z", "ip":
-        "1.1.1.1", "limit": 1, "next_cursor": "b2Zmc2V0PTE="}, "ip": "1.1.1.1"}}]}'
+- result_name: JsonResult
+  show_result: true
+  result_example_path: resources/IpTimelineLookup_JsonResult_example.json
 default_result_value: ''
 creator: 5773731e-9b72-438e-893d-ad4b9a297423
 script_result_name: ScriptResult

@@ -1,22 +1,16 @@
 name: Spelling Check
-description: Determining if a word is misspelled and what the likely correct spelling
-    would be based on word frequency
+description: Determining if a word is misspelled and what the likely correct 
+  spelling would be based on word frequency
 integration_identifier: Spell Checker
 parameters:
-    -   name: Input
-        type: string
-        description: ' The text that will be checked by the Spell Checker'
-        is_mandatory: false
+- name: Input
+  type: string
+  description: ' The text that will be checked by the Spell Checker'
+  is_mandatory: false
 dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: "[\n  {\n    \"Entity\": \"sentinelone\",\n    \"EntityResult\"\
-        : [\n      \"sentinelone\"\n    ]\n  },\n  {\n    \"Entity\": \"iscustom\"\
-        ,\n    \"EntityResult\": [\n      \"accustom\",\n      \"custom\"\n    ]\n\
-        \  },\n  {\n    \"Entity\": \"allenvironments\",\n    \"EntityResult\": [\n\
-        \      \"allenvironments\"\n    ]\n  },\n  {\n    \"Entity\": \"iscertify\"\
-        ,\n    \"EntityResult\": [\n      \"certify\"\n    ]\n  }\n]"
+- result_name: JsonResult
+  show_result: true
+  result_example_path: resources/SpellingCheck_JsonResult_example.json
 default_result_value: ''
 creator: Hagai Cohen
 script_result_name: ScriptResult

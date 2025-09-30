@@ -1,169 +1,45 @@
 name: Check Entities Fields In Text
-description: This actions allows to search for a specific field from each entity in
-    the scope (or multiple fields using regex) and compare it with one or more values.
-    The compared values can also go through regex. A match is found if one of the
-    post regex values from the entity enrichment is in one or more values searched
-    in.
+description: This actions allows to search for a specific field from each entity
+  in the scope (or multiple fields using regex) and compare it with one or more 
+  values. The compared values can also go through regex. A match is found if one
+  of the post regex values from the entity enrichment is in one or more values 
+  searched in.
 integration_identifier: Tools
 parameters:
-    -   name: SearchInData
-        default_value: '[     {         "Data": "[Event.from]",         "RegEx": "(?<=@)[^.]+(?=\\.)"     }
-        ]'
-        type: string
-        description: "A JSON that represents the string(s) you want to search in\n[{\n\
-        \ \"Data\": \"\",\n \"RegEx\": \"\"\n}]"
-        is_mandatory: true
-    -   name: FieldsInput
-        default_value: '[     {         "RegexForFieldName": "",         "FieldName":
-        "body",         "RegexForFieldValue": ""     },     {         "RegexForFieldName":
-        ".*(_url_).*",         "FieldName": "",         "RegexForFieldValue": ""     },     {         "RegexForFieldName":
-        "",         "FieldName": "body",         "RegexForFieldValue": "HostName:
-        (.*?)"     } ]'
-        type: string
-        description: "A JSON that describes what fields should be tested for\n[{\n \"\
-        RegexForFieldName\": \"\",\n \"FieldName\": \"Field name to search\",\n \"\
-        RegexForFieldValue\": \"\"\n}]"
-        is_mandatory: true
-    -   name: ShouldEnrichEntity
-        default_value: domain_matched
-        type: string
-        description: If set to "<VAL>" will also put an enrichment value on the entity
-            to be recognized as "matched" with the value. The key will be "<VAL>"
-        is_mandatory: false
-    -   name: IsCaseSensitive
-        default_value: 'false'
-        type: boolean
-        description: 'Is the field case sensitive '
-        is_mandatory: false
+- name: SearchInData
+  default_value: '[     {         "Data": "[Event.from]",         "RegEx": "(?<=@)[^.]+(?=\\.)"     }
+    ]'
+  type: string
+  description: "A JSON that represents the string(s) you want to search in\n[{\n \"\
+    Data\": \"\",\n \"RegEx\": \"\"\n}]"
+  is_mandatory: true
+- name: FieldsInput
+  default_value: '[     {         "RegexForFieldName": "",         "FieldName": "body",         "RegexForFieldValue":
+    ""     },     {         "RegexForFieldName": ".*(_url_).*",         "FieldName":
+    "",         "RegexForFieldValue": ""     },     {         "RegexForFieldName":
+    "",         "FieldName": "body",         "RegexForFieldValue": "HostName: (.*?)"     }
+    ]'
+  type: string
+  description: "A JSON that describes what fields should be tested for\n[{\n \"RegexForFieldName\"\
+    : \"\",\n \"FieldName\": \"Field name to search\",\n \"RegexForFieldValue\": \"\
+    \"\n}]"
+  is_mandatory: true
+- name: ShouldEnrichEntity
+  default_value: domain_matched
+  type: string
+  description: If set to "<VAL>" will also put an enrichment value on the entity
+    to be recognized as "matched" with the value. The key will be "<VAL>"
+  is_mandatory: false
+- name: IsCaseSensitive
+  default_value: 'false'
+  type: boolean
+  description: 'Is the field case sensitive '
+  is_mandatory: false
 dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: "[\n  {\n    \"Entity\": \"F.ATTACKER4@GMAIL.COM\",\n    \"EntityResult\"\
-        : [\n      {\n        \"RegexForFieldName\": \".*\",\n        \"FieldName\"\
-        : \"\",\n        \"RegexForFieldValue\": \"\",\n        \"ResultsToSearch\"\
-        : {\n          \"val_to_search\": [\n            [\n              {\n    \
-        \            \"key\": \"Type\",\n                \"val\": \"USERUNIQNAME\"\
-        \n              },\n              {\n                \"key\": \"Identifier\"\
-        ,\n                \"val\": \"F.ATTACKER4@GMAIL.COM\"\n              },\n\
-        \              {\n                \"key\": \"Environment\",\n            \
-        \    \"val\": \"Default Environment\"\n              },\n              {\n\
-        \                \"key\": \"OriginalIdentifier\",\n                \"val\"\
-        : \"f.attacker4@gmail.com\"\n              },\n              {\n         \
-        \       \"key\": \"OrigIdentifier\",\n                \"val\": \"f.attacker4@gmail.com\"\
-        \n              },\n              {\n                \"key\": \"IsFromLdapString\"\
-        ,\n                \"val\": \"False\"\n              },\n              {\n\
-        \                \"key\": \"IsInternalAsset\",\n                \"val\": \"\
-        False\"\n              },\n              {\n                \"key\": \"IsSuspicious\"\
-        ,\n                \"val\": \"False\"\n              },\n              {\n\
-        \                \"key\": \"IsEnriched\",\n                \"val\": \"False\"\
-        \n              },\n              {\n                \"key\": \"IsVulnerable\"\
-        ,\n                \"val\": \"False\"\n              },\n              {\n\
-        \                \"key\": \"IsArtifact\",\n                \"val\": \"False\"\
-        \n              },\n              {\n                \"key\": \"IsTestCase\"\
-        ,\n                \"val\": \"False\"\n              },\n              {\n\
-        \                \"key\": \"domain_mathed\",\n                \"val\": \"\
-        true\"\n              },\n              {\n                \"key\": \"domain_matched\"\
-        ,\n                \"val\": \"true\"\n              }\n            ]\n   \
-        \       ],\n          \"found_results\": [\n            {\n              \"\
-        to_search\": {\n                \"key\": \"domain_mathed\",\n            \
-        \    \"val\": \"true\"\n              },\n              \"searched_in\": \"\
-        true \"\n            },\n            {\n              \"to_search\": {\n \
-        \               \"key\": \"domain_matched\",\n                \"val\": \"\
-        true\"\n              },\n              \"searched_in\": \"true \"\n     \
-        \       }\n          ],\n          \"num_of_results\": 2\n        }\n    \
-        \  }\n    ]\n  },\n  {\n    \"Entity\": \"VICKIE.B@SIEMPLIFY.CO\",\n    \"\
-        EntityResult\": [\n      {\n        \"RegexForFieldName\": \".*\",\n     \
-        \   \"FieldName\": \"\",\n        \"RegexForFieldValue\": \"\",\n        \"\
-        ResultsToSearch\": {\n          \"val_to_search\": [\n            [\n    \
-        \          {\n                \"key\": \"Type\",\n                \"val\"\
-        : \"USERUNIQNAME\"\n              },\n              {\n                \"\
-        key\": \"Identifier\",\n                \"val\": \"VICKIE.B@SIEMPLIFY.CO\"\
-        \n              },\n              {\n                \"key\": \"Environment\"\
-        ,\n                \"val\": \"Default Environment\"\n              },\n  \
-        \            {\n                \"key\": \"OriginalIdentifier\",\n       \
-        \         \"val\": \"vickie.b@siemplify.co\"\n              },\n         \
-        \     {\n                \"key\": \"OrigIdentifier\",\n                \"\
-        val\": \"vickie.b@siemplify.co\"\n              },\n              {\n    \
-        \            \"key\": \"IsFromLdapString\",\n                \"val\": \"False\"\
-        \n              },\n              {\n                \"key\": \"IsInternalAsset\"\
-        ,\n                \"val\": \"False\"\n              },\n              {\n\
-        \                \"key\": \"IsSuspicious\",\n                \"val\": \"False\"\
-        \n              },\n              {\n                \"key\": \"IsEnriched\"\
-        ,\n                \"val\": \"False\"\n              },\n              {\n\
-        \                \"key\": \"IsVulnerable\",\n                \"val\": \"False\"\
-        \n              },\n              {\n                \"key\": \"IsArtifact\"\
-        ,\n                \"val\": \"False\"\n              },\n              {\n\
-        \                \"key\": \"IsTestCase\",\n                \"val\": \"False\"\
-        \n              },\n              {\n                \"key\": \"domain_mathed\"\
-        ,\n                \"val\": \"true\"\n              },\n              {\n\
-        \                \"key\": \"domain_matched\",\n                \"val\": \"\
-        true\"\n              }\n            ]\n          ],\n          \"found_results\"\
-        : [\n            {\n              \"to_search\": {\n                \"key\"\
-        : \"domain_mathed\",\n                \"val\": \"true\"\n              },\n\
-        \              \"searched_in\": \"true \"\n            },\n            {\n\
-        \              \"to_search\": {\n                \"key\": \"domain_matched\"\
-        ,\n                \"val\": \"true\"\n              },\n              \"searched_in\"\
-        : \"true \"\n            }\n          ],\n          \"num_of_results\": 2\n\
-        \        }\n      }\n    ]\n  },\n  {\n    \"Entity\": \"HTTP://MARKOSSOLOMON.COM/F1Q7QX.PHP\"\
-        ,\n    \"EntityResult\": [\n      {\n        \"RegexForFieldName\": \".*\"\
-        ,\n        \"FieldName\": \"\",\n        \"RegexForFieldValue\": \"\",\n \
-        \       \"ResultsToSearch\": {\n          \"val_to_search\": [\n         \
-        \   [\n              {\n                \"key\": \"Type\",\n             \
-        \   \"val\": \"DestinationURL\"\n              },\n              {\n     \
-        \           \"key\": \"Identifier\",\n                \"val\": \"HTTP://MARKOSSOLOMON.COM/F1Q7QX.PHP\"\
-        \n              },\n              {\n                \"key\": \"Environment\"\
-        ,\n                \"val\": \"Default Environment\"\n              },\n  \
-        \            {\n                \"key\": \"OriginalIdentifier\",\n       \
-        \         \"val\": \"http://markossolomon.com/F1q7QX.php\"\n             \
-        \ },\n              {\n                \"key\": \"IsInternalAsset\",\n   \
-        \             \"val\": \"True\"\n              },\n              {\n     \
-        \           \"key\": \"IsSuspicious\",\n                \"val\": \"False\"\
-        \n              },\n              {\n                \"key\": \"IsEnriched\"\
-        ,\n                \"val\": \"False\"\n              },\n              {\n\
-        \                \"key\": \"IsVulnerable\",\n                \"val\": \"False\"\
-        \n              },\n              {\n                \"key\": \"IsArtifact\"\
-        ,\n                \"val\": \"True\"\n              },\n              {\n\
-        \                \"key\": \"IsTestCase\",\n                \"val\": \"False\"\
-        \n              },\n              {\n                \"key\": \"domain_mathed\"\
-        ,\n                \"val\": \"true\"\n              },\n              {\n\
-        \                \"key\": \"domain_matched\",\n                \"val\": \"\
-        true\"\n              }\n            ]\n          ],\n          \"found_results\"\
-        : [\n            {\n              \"to_search\": {\n                \"key\"\
-        : \"domain_mathed\",\n                \"val\": \"true\"\n              },\n\
-        \              \"searched_in\": \"true \"\n            },\n            {\n\
-        \              \"to_search\": {\n                \"key\": \"domain_matched\"\
-        ,\n                \"val\": \"true\"\n              },\n              \"searched_in\"\
-        : \"true \"\n            }\n          ],\n          \"num_of_results\": 2\n\
-        \        }\n      }\n    ]\n  },\n  {\n    \"Entity\": \"YOUR NEW SALARY NOTIFICATION\"\
-        ,\n    \"EntityResult\": [\n      {\n        \"RegexForFieldName\": \".*\"\
-        ,\n        \"FieldName\": \"\",\n        \"RegexForFieldValue\": \"\",\n \
-        \       \"ResultsToSearch\": {\n          \"val_to_search\": [\n         \
-        \   [\n              {\n                \"key\": \"Type\",\n             \
-        \   \"val\": \"EMAILSUBJECT\"\n              },\n              {\n       \
-        \         \"key\": \"Identifier\",\n                \"val\": \"YOUR NEW SALARY\
-        \ NOTIFICATION\"\n              },\n              {\n                \"key\"\
-        : \"Environment\",\n                \"val\": \"Default Environment\"\n   \
-        \           },\n              {\n                \"key\": \"IsInternalAsset\"\
-        ,\n                \"val\": \"True\"\n              },\n              {\n\
-        \                \"key\": \"IsSuspicious\",\n                \"val\": \"False\"\
-        \n              },\n              {\n                \"key\": \"IsEnriched\"\
-        ,\n                \"val\": \"False\"\n              },\n              {\n\
-        \                \"key\": \"IsVulnerable\",\n                \"val\": \"False\"\
-        \n              },\n              {\n                \"key\": \"IsArtifact\"\
-        ,\n                \"val\": \"True\"\n              },\n              {\n\
-        \                \"key\": \"IsTestCase\",\n                \"val\": \"False\"\
-        \n              },\n              {\n                \"key\": \"domain_mathed\"\
-        ,\n                \"val\": \"true\"\n              },\n              {\n\
-        \                \"key\": \"domain_matched\",\n                \"val\": \"\
-        true\"\n              }\n            ]\n          ],\n          \"found_results\"\
-        : [\n            {\n              \"to_search\": {\n                \"key\"\
-        : \"domain_mathed\",\n                \"val\": \"true\"\n              },\n\
-        \              \"searched_in\": \"true \"\n            },\n            {\n\
-        \              \"to_search\": {\n                \"key\": \"domain_matched\"\
-        ,\n                \"val\": \"true\"\n              },\n              \"searched_in\"\
-        : \"true \"\n            }\n          ],\n          \"num_of_results\": 2\n\
-        \        }\n      }\n    ]\n  }\n]"
+- result_name: JsonResult
+  show_result: true
+  result_example_path: 
+    resources/CheckEntitiesFieldsInText_JsonResult_example.json
 default_result_value: ''
 creator: Robert
 script_result_name: ScriptResult

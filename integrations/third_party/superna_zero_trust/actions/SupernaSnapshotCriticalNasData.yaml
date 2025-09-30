@@ -1,12 +1,11 @@
 name: Superna Snapshot Critical NAS Data
 description: Superna Zero Trust Snapshot critical NAS data
 integration_identifier: SupernaZeroTrust
-parameters: [ ]
+parameters: []
 dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: '{}'
+- result_name: JsonResult
+  show_result: true
+  result_example_path:
 default_result_value: ''
 creator: 015f9a45-808a-4c76-8598-adad98670462
 is_async: true

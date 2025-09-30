@@ -2,198 +2,154 @@ name: Search Hosts
 description: List hosts based on query parameters.
 integration_identifier: VectraQUX
 parameters:
-    -   name: Limit
-        type: string
-        description: 'Fetch this many records
+- name: Limit
+  type: string
+  description: 'Fetch this many records
 
-        '
-        is_mandatory: false
-    -   name: Tags
-        type: string
-        description: Filter hosts based on Tags
-        is_mandatory: false
-    -   name: Last Source
-        type: string
-        description: Filter based on Last Source
-        is_mandatory: false
-    -   name: Order
-        default_value: ''
-        type: ddl
-        optional_values:
-            - Ascending
-            - Descending
-        description: 'Filter based on ascending ,descending order '
-        is_mandatory: false
-    -   name: Fields
-        default_value: ''
-        type: multi_choice_parameter
-        optional_values:
-            - id
-            - name
-            - active_traffic
-            - has_active_traffic
-            - t_score
-            - threat
-            - c_score
-            - certainty
-            - severity
-            - last_source
-            - ip
-            - previous_ips
-            - last_detection_timestamp
-            - key_asset
-            - is_key_asset
-            - state
-            - target_key_asset
-            - detection_set
-            - host_artifact_set
-            - sensor
-            - sensor_name
-            - tags
-            - note
-            - notes
-            - note_modified_by
-            - note_modified_timestamp
-            - url
-            - host_url
-            - last_modified
-            - assigned_to
-            - assigned_date
-            - groups
-            - has_custom_model
-            - privilege_level
-            - privilege_category
-            - probable_owner
-            - detection_profile
-            - assignment
-            - past_assignments
-            - detection_summaries
-            - host_session_luids
-            - host_luid
-        description: This parameter take the list of string and filter the response with
-            provided fields
-        is_mandatory: false
-    -   name: Name
-        type: string
-        description: Filter hosts based on Name
-        is_mandatory: false
-    -   name: State
-        default_value: ''
-        type: ddl
-        optional_values:
-            - Active
-            - Inactive
-        description: Filters host based on the State of host
-        is_mandatory: false
-    -   name: Threat GTE
-        type: string
-        description: Filter events based on the threat value and return all the hosts
-            for the greater value then provided values
-        is_mandatory: false
-    -   name: Certainty GTE
-        type: string
-        description: Filter the hosts greater then provided certainty
-        is_mandatory: false
-    -   name: Last Detection Timestamp GTE
-        type: string
-        description: Filter based on Last Detection Timestamp GTE
-        is_mandatory: false
-    -   name: Last Detection Timestamp LTE
-        type: string
-        description: Filter hosts based on Last Detection Timestamp LTE
-        is_mandatory: false
-    -   name: ' Is Targeting Key Asset'
-        default_value: ''
-        type: ddl
-        optional_values:
-            - "True"
-            - "False"
-        description: Filter hosts that are targeting key assets
-        is_mandatory: false
-    -   name: ' Privilege Level GTE'
-        type: string
-        description: Filter based on Privilege Level
-        is_mandatory: false
-    -   name: Privilege Category
-        default_value: ''
-        type: ddl
-        optional_values:
-            - Low
-            - Medium
-            - High
-        description: Filter based on Privilege Category
-        is_mandatory: false
-    -   name: Active Traffic
-        default_value: ''
-        type: ddl
-        optional_values:
-            - "True"
-            - "False"
-        description: Filters hosts with active traffic within the last two hours
-        is_mandatory: false
-    -   name: Order By
-        default_value: ''
-        type: ddl
-        optional_values:
-            - t_score
-            - c_score
-            - id
-            - last_detection_timestamp
-        description: 'Order the hosts by  last_timestamp or  threat_score or certainty_score
-        or id '
-        is_mandatory: false
-    -   name: Note Modified Timestamp GTE
-        type: string
-        description: filter based on Note Modified Timestamp GTE
-        is_mandatory: false
+    '
+  is_mandatory: false
+- name: Tags
+  type: string
+  description: Filter hosts based on Tags
+  is_mandatory: false
+- name: Last Source
+  type: string
+  description: Filter based on Last Source
+  is_mandatory: false
+- name: Order
+  default_value: ''
+  type: ddl
+  optional_values:
+  - Ascending
+  - Descending
+  description: 'Filter based on ascending ,descending order '
+  is_mandatory: false
+- name: Fields
+  default_value: ''
+  type: multi_choice_parameter
+  optional_values:
+  - id
+  - name
+  - active_traffic
+  - has_active_traffic
+  - t_score
+  - threat
+  - c_score
+  - certainty
+  - severity
+  - last_source
+  - ip
+  - previous_ips
+  - last_detection_timestamp
+  - key_asset
+  - is_key_asset
+  - state
+  - target_key_asset
+  - detection_set
+  - host_artifact_set
+  - sensor
+  - sensor_name
+  - tags
+  - note
+  - notes
+  - note_modified_by
+  - note_modified_timestamp
+  - url
+  - host_url
+  - last_modified
+  - assigned_to
+  - assigned_date
+  - groups
+  - has_custom_model
+  - privilege_level
+  - privilege_category
+  - probable_owner
+  - detection_profile
+  - assignment
+  - past_assignments
+  - detection_summaries
+  - host_session_luids
+  - host_luid
+  description: This parameter take the list of string and filter the response 
+    with provided fields
+  is_mandatory: false
+- name: Name
+  type: string
+  description: Filter hosts based on Name
+  is_mandatory: false
+- name: State
+  default_value: ''
+  type: ddl
+  optional_values:
+  - Active
+  - Inactive
+  description: Filters host based on the State of host
+  is_mandatory: false
+- name: Threat GTE
+  type: string
+  description: Filter events based on the threat value and return all the hosts 
+    for the greater value then provided values
+  is_mandatory: false
+- name: Certainty GTE
+  type: string
+  description: Filter the hosts greater then provided certainty
+  is_mandatory: false
+- name: Last Detection Timestamp GTE
+  type: string
+  description: Filter based on Last Detection Timestamp GTE
+  is_mandatory: false
+- name: Last Detection Timestamp LTE
+  type: string
+  description: Filter hosts based on Last Detection Timestamp LTE
+  is_mandatory: false
+- name: ' Is Targeting Key Asset'
+  default_value: ''
+  type: ddl
+  optional_values:
+  - "True"
+  - "False"
+  description: Filter hosts that are targeting key assets
+  is_mandatory: false
+- name: ' Privilege Level GTE'
+  type: string
+  description: Filter based on Privilege Level
+  is_mandatory: false
+- name: Privilege Category
+  default_value: ''
+  type: ddl
+  optional_values:
+  - Low
+  - Medium
+  - High
+  description: Filter based on Privilege Category
+  is_mandatory: false
+- name: Active Traffic
+  default_value: ''
+  type: ddl
+  optional_values:
+  - "True"
+  - "False"
+  description: Filters hosts with active traffic within the last two hours
+  is_mandatory: false
+- name: Order By
+  default_value: ''
+  type: ddl
+  optional_values:
+  - t_score
+  - c_score
+  - id
+  - last_detection_timestamp
+  description: 'Order the hosts by  last_timestamp or  threat_score or certainty_score
+    or id '
+  is_mandatory: false
+- name: Note Modified Timestamp GTE
+  type: string
+  description: filter based on Note Modified Timestamp GTE
+  is_mandatory: false
 dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: "[\n    {\n        \"id\": 40789,\n        \"name\": \"IP-1.1.1.1\"\
-        ,\n        \"active_traffic\": false,\n        \"has_active_traffic\": false,\n\
-        \        \"t_score\": 30,\n        \"threat\": 30,\n        \"c_score\": 90,\n\
-        \        \"certainty\": 90,\n        \"severity\": \"medium\",\n        \"\
-        last_source\": \"1.1.1.1\",\n        \"ip\": \"1.1.1.1\",\n        \"previous_ips\"\
-        : [],\n        \"last_detection_timestamp\": \"2025-01-04T03:13:19Z\",\n \
-        \       \"key_asset\": false,\n        \"is_key_asset\": false,\n        \"\
-        state\": \"active\",\n        \"targets_key_asset\": false,\n        \"is_targeting_key_asset\"\
-        : false,\n        \"detection_set\": [\n            \"https://hc2024.vectracloudlab.com/detections/7173\"\
-        ,\n            \"https://hc2024.vectracloudlab.com/detections/7174\"\n   \
-        \     ],\n        \"host_artifact_set\": [],\n        \"sensor\": \"whx12u9g\"\
-        ,\n        \"sensor_name\": \"FGU-lab-vcenter\",\n        \"tags\": [],\n\
-        \        \"note\": null,\n        \"notes\": [],\n        \"note_modified_by\"\
-        : null,\n        \"note_modified_timestamp\": null,\n        \"url\": \"https://hc2024.vectracloudlab.com/hosts/40789\"\
-        ,\n        \"host_url\": \"https://hc2024.vectracloudlab.com/hosts/40789\"\
-        ,\n        \"last_modified\": \"2025-01-04T01:30:31Z\",\n        \"assigned_to\"\
-        : null,\n        \"assigned_date\": null,\n        \"groups\": [],\n     \
-        \   \"has_custom_model\": false,\n        \"privilege_level\": null,\n   \
-        \     \"privilege_category\": null,\n        \"probable_owner\": null,\n \
-        \       \"detection_profile\": \"IT Services\",\n        \"assignment\": null,\n\
-        \        \"past_assignments\": [],\n        \"host_session_luids\": [\n  \
-        \          \"Jfd-9a5q\"\n        ],\n        \"host_luid\": null\n    },\n\
-        \    {\n        \"id\": 40778,\n        \"name\": \"IP-1.1.1.1\",\n      \
-        \  \"active_traffic\": false,\n        \"has_active_traffic\": false,\n  \
-        \      \"t_score\": 36,\n        \"threat\": 36,\n        \"c_score\": 90,\n\
-        \        \"certainty\": 90,\n        \"severity\": \"medium\",\n        \"\
-        last_source\": \"1.1.1.1\",\n        \"ip\": \"1.1.1.1\",\n        \"previous_ips\"\
-        : [],\n        \"last_detection_timestamp\": \"2025-01-04T03:12:32Z\",\n \
-        \       \"key_asset\": false,\n        \"is_key_asset\": false,\n        \"\
-        state\": \"active\",\n        \"targets_key_asset\": false,\n        \"is_targeting_key_asset\"\
-        : false,\n        \"detection_set\": [\n            \"https://hc2024.vectracloudlab.com/detections/7171\"\
-        ,\n            \"https://hc2024.vectracloudlab.com/detections/7172\"\n   \
-        \     ],\n        \"host_artifact_set\": [],\n        \"sensor\": \"whx12u9g\"\
-        ,\n        \"sensor_name\": \"FGU-lab-vcenter\",\n        \"tags\": [],\n\
-        \        \"note\": null,\n        \"notes\": [],\n        \"note_modified_by\"\
-        : null,\n        \"note_modified_timestamp\": null,\n        \"url\": \"https://hc2024.vectracloudlab.com/hosts/40778\"\
-        ,\n        \"host_url\": \"https://hc2024.vectracloudlab.com/hosts/40778\"\
-        ,\n        \"last_modified\": \"2025-01-04T00:01:14Z\",\n        \"assigned_to\"\
-        : null,\n        \"assigned_date\": null,\n        \"groups\": [],\n     \
-        \   \"has_custom_model\": false,\n        \"privilege_level\": null,\n   \
-        \     \"privilege_category\": null,\n        \"probable_owner\": null,\n \
-        \       \"detection_profile\": \"IT Services\",\n        \"assignment\": null,\n\
-        \        \"past_assignments\": [],\n        \"host_session_luids\": [\n  \
-        \          \"Jf.-9t81\"\n        ],\n        \"host_luid\": null\n    }\n]"
+- result_name: JsonResult
+  show_result: true
+  result_example_path: resources/Search Hosts_JsonResult_example.json
 default_result_value: ''
 creator: Admin
 script_result_name: ScriptResult

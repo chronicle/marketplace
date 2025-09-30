@@ -1,27 +1,26 @@
 name: Import CSV
 description: 'Imports data into the first page of the spreadsheet.
 
-    *This method removes all other worksheets and then replaces the content of the
-    first worksheet.*'
+  *This method removes all other worksheets and then replaces the content of the first
+  worksheet.*'
 integration_identifier: Google Sheets
 parameters:
-    -   name: Sheet Id
-        default_value: <Sheet-Id>
-        type: string
-        description: 'The sheet id can be found in the sheet url.
+- name: Sheet Id
+  default_value: <Sheet-Id>
+  type: string
+  description: 'The sheet id can be found in the sheet url.
 
-        https://docs.google.com/spreadsheets/d/{YourSpreadSheetId}/edit#gid=0'
-        is_mandatory: true
-    -   name: CSV Path
-        default_value: /temp/data_to_imprort.csv
-        type: string
-        description: The path that locates the CSV file you would like to import.
-        is_mandatory: true
+    https://docs.google.com/spreadsheets/d/{YourSpreadSheetId}/edit#gid=0'
+  is_mandatory: true
+- name: CSV Path
+  default_value: /temp/data_to_imprort.csv
+  type: string
+  description: The path that locates the CSV file you would like to import.
+  is_mandatory: true
 dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: '{}'
+- result_name: JsonResult
+  show_result: true
+  result_example_path:
 default_result_value: ''
 creator: Admin
 script_result_name: ScriptResult

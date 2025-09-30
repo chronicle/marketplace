@@ -2,66 +2,51 @@ name: Create RPZ SRV Rule
 description: Adds an SRV record override in RPZ for service-based DNS lookups.
 integration_identifier: InfobloxNIOS
 parameters:
--   name: Name
-    default_value: ''
-    type: string
-    description: Specify the name of the rule.
-    is_mandatory: true
--   name: Priority
-    default_value: ''
-    type: string
-    description: The priority of the Substitute (SRV Record) Rule.
-    is_mandatory: true
--   name: RP Zone
-    default_value: ''
-    type: string
-    description: 'The name of a response policy zone in which the record resides. '
-    is_mandatory: true
--   name: Port
-    default_value: ''
-    type: string
-    description: The port of the Substitute (SRV Record) Rule.
-    is_mandatory: true
--   name: Target
-    default_value: ''
-    type: string
-    description: Text associated with the record.
-    is_mandatory: true
--   name: Weight
-    default_value: ''
-    type: string
-    description: The weight of the Substitute (SRV Record) Rule.
-    is_mandatory: true
--   name: Comment
-    default_value: ''
-    type: string
-    description: Comment for this rule.
-    is_mandatory: false
--   name: Additional Parameters
-    default_value: ''
-    type: string
-    description: JSON object containing additional parameters to create response policy
-        zone.
-    is_mandatory: false
+- name: Name
+  default_value: ''
+  type: string
+  description: Specify the name of the rule.
+  is_mandatory: true
+- name: Priority
+  default_value: ''
+  type: string
+  description: The priority of the Substitute (SRV Record) Rule.
+  is_mandatory: true
+- name: RP Zone
+  default_value: ''
+  type: string
+  description: 'The name of a response policy zone in which the record resides. '
+  is_mandatory: true
+- name: Port
+  default_value: ''
+  type: string
+  description: The port of the Substitute (SRV Record) Rule.
+  is_mandatory: true
+- name: Target
+  default_value: ''
+  type: string
+  description: Text associated with the record.
+  is_mandatory: true
+- name: Weight
+  default_value: ''
+  type: string
+  description: The weight of the Substitute (SRV Record) Rule.
+  is_mandatory: true
+- name: Comment
+  default_value: ''
+  type: string
+  description: Comment for this rule.
+  is_mandatory: false
+- name: Additional Parameters
+  default_value: ''
+  type: string
+  description: JSON object containing additional parameters to create response 
+    policy zone.
+  is_mandatory: false
 dynamic_results_metadata:
--   result_name: JsonResult
-    show_result: true
-    result_example: |
-        {
-            "_ref": "record:rpz:srv/ZG5zLmJpbmRfc3J2JC5fZGVmYXVsdC5jb20ucnB6LnRocmVhdC9uaWdodGx5My10ZXN0LXNydi1zdWIvMTAvMTAvMjIvdGhyZWF0LnJwei5jb20:nightly3-test-srv-sub.threat.rpz.com/default",
-            "comment": "nightly-test-srv-sub",
-            "disable": false,
-            "extattrs": {},
-            "name": "nightly3-test-srv-sub.threat.rpz.com",
-            "port": 22,
-            "priority": 10,
-            "rp_zone": "threat.rpz.com",
-            "target": "threat.rpz.com",
-            "use_ttl": false,
-            "view": "default",
-            "weight": 10,
-            "zone": "threat.rpz.com"
-        }
+- result_name: JsonResult
+  show_result: true
+  result_example_path: resources/create_rpz_srv_rule_JsonResult_example.json
 default_result_value: ''
 creator: Admin
 script_result_name: ScriptResult

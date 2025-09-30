@@ -1,39 +1,26 @@
 name: Delete Instance
 description: 'Deletes a specific instance in AWS - EC2.
 
-    Note: the result value is the count of deleted instances.
+  Note: the result value is the count of deleted instances.
 
-    Deleted instances remain visible after being deleted (for approximately one hour)
+  Deleted instances remain visible after being deleted (for approximately one hour)
 
-    For more information:
+  For more information:
 
-    https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/ec2.html#EC2.Client.terminate_instances'
+  https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/ec2.html#EC2.Client.terminate_instances'
 integration_identifier: AWS - EC2
 parameters:
-    -   name: Instance Ids
-        default_value: instance_id1,instance_id2
-        type: content
-        description: 'The instance IDs which you want to delete (comma separated).
+- name: Instance Ids
+  default_value: instance_id1,instance_id2
+  type: content
+  description: 'The instance IDs which you want to delete (comma separated).
 
-        For example: instance_id1, instance_id2'
-        is_mandatory: true
+    For example: instance_id1, instance_id2'
+  is_mandatory: true
 dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: "{\r\n\t\"i-123456\": {\r\n\t\t\"TerminatingInstances\": [{\r\n\
-        \t\t\t\"CurrentState\": {\r\n\t\t\t\t\"Code\": 48,\r\n\t\t\t\t\"Name\": \"\
-        terminated\"\r\n\t\t\t},\r\n\t\t\t\"InstanceId\": \"i-123456\",\r\n\t\t\t\"\
-        PreviousState\": {\r\n\t\t\t\t\"Code\": 80,\r\n\t\t\t\t\"Name\": \"stopped\"\
-        \r\n\t\t\t}\r\n\t\t}],\r\n\t\t\"ResponseMetadata\": {\r\n\t\t\t\"RequestId\"\
-        : \"2222\",\r\n\t\t\t\"HTTPStatusCode\": 200,\r\n\t\t\t\"HTTPHeaders\": {\r\
-        \n\t\t\t\t\"x-amzn-requestid\": \"3333\",\r\n\t\t\t\t\"cache-control\": \"\
-        no-cache, no-store\",\r\n\t\t\t\t\"strict-transport-security\": \"max-age=31536000;\
-        \ includeSubDomains\",\r\n\t\t\t\t\"content-type\": \"text/xml;charset=UTF-8\"\
-        ,\r\n\t\t\t\t\"transfer-encoding\": \"chunked\",\r\n\t\t\t\t\"vary\": \"accept-encoding\"\
-        ,\r\n\t\t\t\t\"date\": \"Mon, 28 Dec 2020 15:30:05 GMT\",\r\n\t\t\t\t\"server\"\
-        : \"AmazonEC2\"\r\n\t\t\t},\r\n\t\t\t\"RetryAttempts\": 0\r\n\t\t}\r\n\t}\r\
-        \n}"
+- result_name: JsonResult
+  show_result: true
+  result_example_path: resources/DeleteInstance_JsonResult_example.json
 default_result_value: ''
 creator: Admin
 is_async: true

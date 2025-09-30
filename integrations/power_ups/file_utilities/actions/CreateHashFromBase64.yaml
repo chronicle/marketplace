@@ -2,58 +2,55 @@ name: Create Hash From Base64
 description: Returns hashes for provided base64s.
 integration_identifier: FileUtilities
 parameters:
-    -   name: Base64
-        default_value: '-'
-        type: content
-        description: One more more base64 encoded strings. Strings should be separated
-            by the defined separator.
-        is_mandatory: true
-    -   name: Hash Algorythm
-        default_value: sha1
-        type: ddl
-        optional_values:
-            - blake2b
-            - blake2s
-            - md5
-            - sha1
-            - sha224
-            - sha256
-            - sha384
-            - sha3_224
-            - sha3_256
-            - sha3_384
-            - sha3_512
-            - sha512
-        description: hash type (sha1, sha256, md5...)
-        is_mandatory: true
-    -   name: Names
-        default_value: ''
-        type: string
-        description: "List of names that identify the base64 strings. Typically filenames.\
-        \ \nList of names must contain the same quantity as the list of base64 strings."
-        is_mandatory: false
-    -   name: Names Separator
-        default_value: ','
-        type: string
-        description: A character to separate the list of names by.
-        is_mandatory: true
-    -   name: Include Base64
-        default_value: 'true'
-        type: boolean
-        description: Include the base64 input strings in the output.
-        is_mandatory: false
-    -   name: Base64 Separator
-        default_value: ','
-        type: string
-        description: A character to separate the base64 strings by.
-        is_mandatory: true
+- name: Base64
+  default_value: '-'
+  type: content
+  description: One more more base64 encoded strings. Strings should be separated
+    by the defined separator.
+  is_mandatory: true
+- name: Hash Algorythm
+  default_value: sha1
+  type: ddl
+  optional_values:
+  - blake2b
+  - blake2s
+  - md5
+  - sha1
+  - sha224
+  - sha256
+  - sha384
+  - sha3_224
+  - sha3_256
+  - sha3_384
+  - sha3_512
+  - sha512
+  description: hash type (sha1, sha256, md5...)
+  is_mandatory: true
+- name: Names
+  default_value: ''
+  type: string
+  description: "List of names that identify the base64 strings. Typically filenames.\
+    \ \nList of names must contain the same quantity as the list of base64 strings."
+  is_mandatory: false
+- name: Names Separator
+  default_value: ','
+  type: string
+  description: A character to separate the list of names by.
+  is_mandatory: true
+- name: Include Base64
+  default_value: 'true'
+  type: boolean
+  description: Include the base64 input strings in the output.
+  is_mandatory: false
+- name: Base64 Separator
+  default_value: ','
+  type: string
+  description: A character to separate the base64 strings by.
+  is_mandatory: true
 dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: "[\n  {\n    \"Path\": \"/path/to/file.extension\",\n    \"Hash\"\
-        : \"da39a3ee5e6b4b0d3255bfef95601890afd80709\",\n    \"HashAlgorythm\": \"\
-        sha1\"\n  }\n]"
+- result_name: JsonResult
+  show_result: true
+  result_example_path: resources/CreateHashFromBase64_JsonResult_example.json
 default_result_value: ''
 creator: f56aefe2-fa00-4424-b2ce-de40f122b9c4
 script_result_name: ScriptResult

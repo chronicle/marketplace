@@ -1,0 +1,52 @@
+[
+    {
+        "entityIdentifier": "neodiy.com",
+        "entityResult": [
+            {
+                "created": "2021-02-04T10:28:42.957Z",
+                "description": "This domain is being sold on the dark web and may be used in an attack",
+                "external_reference": [
+                    {
+                        "positive_rate": "none",
+                        "source_name": "VirusTotal",
+                        "url": "https://www.virustotal.com/gui/url/25988d7851c91e50efd9762579c45ce2821c0418d890d6ed4ddaec9874ed664c/detection/u-25988d7851c91e50efd9762579c45ce2821c0418d890d6ed4ddaec9874ed664c-1520348339"
+                    },
+                    {
+                        "description": "Mitre attack tactics and technique reference",
+                        "mitre_attack_tactic": "Establish & Maintain Infrastructure",
+                        "mitre_attack_tactic_id": "TA0022",
+                        "mitre_attack_tactic_url": "https://attack.mitre.org/tactics/TA0022/",
+                        "mitre_attack_technique": "Buy domain name",
+                        "mitre_attack_technique_id": "T1328",
+                        "mitre_attack_technique_url": "https://attack.mitre.org/techniques/T1328/",
+                        "source_name": "mitre-attack"
+                    }
+                ],
+                "id": "indicator--884e73b8-d4ad-40df-ad50-5b2d80165e4f",
+                "labels": [
+                    "anomalous-activity",
+                    "suspicious domain",
+                    "phishing",
+                    "cnc",
+                    "c&c",
+                    "Establish & Maintain Infrastructure",
+                    "Buy domain name"
+                ],
+                "lang": "en",
+                "modified": "2021-02-04T10:28:42.957Z",
+                "pattern": "[domain-name:value = 'neodiy.com']",
+                "sixgill_actor": "frontier2002",
+                "sixgill_confidence": 60,
+                "sixgill_feedid": "darkfeed_003",
+                "sixgill_feedname": "domains_sold_dark_web",
+                "sixgill_postid": "778c55a650652fa0b664afc933e5fccbd330ae02",
+                "sixgill_posttitle": "Selling  [SELLING] Well established domain neodiy.com",
+                "sixgill_severity": 60,
+                "sixgill_source": "forum_digitalpoint",
+                "spec_version": "2.0",
+                "type": "indicator",
+                "valid_from": "2021-02-04T08:28:00Z"
+            }
+        ]
+    }
+]

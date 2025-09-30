@@ -1,25 +1,10 @@
 name: Get Jobs
 description: Retrieves Arcanna.AI available jobs  and saves the results
 integration_identifier: ArcannaAI
-parameters: [ ]
+parameters: []
 dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: "[\n    {\n      \"job_id\": 3207,\n      \"title\": \"Arcanna\
-        \ Demo Job\",\n      \"status\": \"ENABLED\",\n      \"retrain_state\": null,\n\
-        \      \"retrain_msg\": null,\n      \"labels\": [\n        \"Low\",\n   \
-        \     \"Medium\",\n        \"High\",\n        \"Critical\",\n        \"Informative\"\
-        \n      ],\n      \"features\": [\n        \"additional_properties.detection_1_ruleLabels_1_value\"\
-        ,\n        \"additional_properties.detection_1_ruleLabels_2_value\",\n   \
-        \     \"additional_properties.detection_1_ruleLabels_4_key\",\n        \"\
-        additional_properties.detection_1_ruleType\",\n        \"source_host_name\"\
-        ,\n        \"source_nt_domain\",\n        \"source_process_name\",\n     \
-        \   \"source_user_name\"\n      ],\n      \"processed_documents_count\": 4,\n\
-        \      \"feedback_documents_count\": 0,\n      \"last_processed_timestamp\"\
-        : \"2024-05-27T09:00:15.779399+00:00\",\n      \"last_feedback_timestamp\"\
-        : \"2024-05-27T08:59:53.839953+00:00\",\n      \"last_train_start_timestamp\"\
-        : null,\n      \"last_train_finished_timestamp\": null,\n      \"invalid\"\
-        : false\n    }\n  ]"
+- result_name: JsonResult
+  show_result: true
+  result_example_path: resources/GetJobs_JsonResult_example.json
 default_result_value: ''
 creator: 57861f63-e407-4200-90d4-a03bed1eb07e

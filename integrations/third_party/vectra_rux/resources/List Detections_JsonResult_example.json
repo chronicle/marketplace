@@ -1,0 +1,358 @@
+[
+    {
+        "summary": {
+            "artifact": [
+                "atc0003.admin.vectra.ai",
+                "atc0003.dyn.vectra.ai"
+            ],
+            "last_timestamp": "2024-12-30T22:03:39Z",
+            "description": "This is the first time this host has been seen on the network."
+        },
+        "notes": [],
+        "filtered_by_user": false,
+        "is_targeting_key_asset": false,
+        "detection_type": "New Host",
+        "detection": "New Host",
+        "description": null,
+        "id": 34421,
+        "last_timestamp": "2024-12-30T22:03:39Z",
+        "triage_rule_id": null,
+        "custom_detection": null,
+        "url": "https://308714519558.cc1.portal.vectra.ai/detections/34421",
+        "note": null,
+        "is_triaged": false,
+        "threat": 0,
+        "assigned_to": null,
+        "filtered_by_rule": false,
+        "sensor": "w4ftj0a8",
+        "tags": [],
+        "type": "host",
+        "note_modified_by": null,
+        "certainty": 0,
+        "detection_url": "https://308714519558.cc1.portal.vectra.ai/detections/34421",
+        "note_modified_timestamp": null,
+        "groups": [],
+        "first_timestamp": "2024-12-30T22:03:39Z",
+        "state": "active",
+        "filtered_by_ai": false,
+        "src_host": {
+            "id": 69442,
+            "ip": "1.1.1.1",
+            "name": "csoarrc1-4",
+            "url": "https://308714519558.cc1.portal.vectra.ai/hosts/69442",
+            "is_key_asset": false,
+            "groups": [],
+            "threat": 0,
+            "certainty": 0
+        },
+        "created_timestamp": "2024-12-30T22:05:31Z",
+        "is_marked_custom": false,
+        "src_ip": "1.1.1.1",
+        "assigned_date": null,
+        "data_source": {
+            "type": "Unknown sensor type",
+            "connection_name": "Unknown sensor name",
+            "connection_id": "w4ftj0a8"
+        },
+        "sensor_name": "EDR Sensor",
+        "src_account": null,
+        "is_custom_model": false,
+        "detection_category": "info",
+        "investigation_pivot_link": null,
+        "grouped_details": [
+            {
+                "artifact": "atc0003.admin.vectra.ai",
+                "via": "DNS",
+                "last_timestamp": "2024-12-30T22:03:39Z"
+            },
+            {
+                "artifact": "atc0003.dyn.vectra.ai",
+                "via": "DNS",
+                "last_timestamp": "2024-12-30T22:03:39Z"
+            }
+        ]
+    },
+    {
+        "summary": {
+            "artifact": [
+                "atc0003.admin.vectra.ai",
+                "atc0003.dyn.vectra.ai"
+            ],
+            "last_timestamp": "2024-12-30T20:11:26Z",
+            "description": "This is the first time this host has been seen on the network."
+        },
+        "notes": [],
+        "filtered_by_user": false,
+        "is_targeting_key_asset": false,
+        "detection_type": "New Host",
+        "detection": "New Host",
+        "description": null,
+        "id": 34413,
+        "last_timestamp": "2024-12-30T20:11:26Z",
+        "triage_rule_id": null,
+        "custom_detection": null,
+        "url": "https://308714519558.cc1.portal.vectra.ai/detections/34413",
+        "note": null,
+        "is_triaged": false,
+        "threat": 0,
+        "assigned_to": null,
+        "filtered_by_rule": false,
+        "sensor": "w4ftj0a8",
+        "tags": [],
+        "type": "host",
+        "note_modified_by": null,
+        "certainty": 0,
+        "detection_url": "https://308714519558.cc1.portal.vectra.ai/detections/34413",
+        "note_modified_timestamp": null,
+        "groups": [],
+        "first_timestamp": "2024-12-30T20:11:26Z",
+        "state": "active",
+        "filtered_by_ai": false,
+        "src_host": {
+            "id": 69434,
+            "ip": "1.1.1.1",
+            "name": "csoarrc1-3",
+            "url": "https://308714519558.cc1.portal.vectra.ai/hosts/69434",
+            "is_key_asset": false,
+            "groups": [],
+            "threat": 0,
+            "certainty": 0
+        },
+        "created_timestamp": "2024-12-30T20:13:14Z",
+        "is_marked_custom": false,
+        "src_ip": "1.1.1.1",
+        "assigned_date": null,
+        "data_source": {
+            "type": "Unknown sensor type",
+            "connection_name": "Unknown sensor name",
+            "connection_id": "w4ftj0a8"
+        },
+        "sensor_name": "EDR Sensor",
+        "src_account": null,
+        "is_custom_model": false,
+        "detection_category": "info",
+        "investigation_pivot_link": null,
+        "grouped_details": [
+            {
+                "artifact": "atc0003.admin.vectra.ai",
+                "via": "DNS",
+                "last_timestamp": "2024-12-30T20:11:26Z"
+            },
+            {
+                "artifact": "atc0003.dyn.vectra.ai",
+                "via": "DNS",
+                "last_timestamp": "2024-12-30T20:11:26Z"
+            }
+        ]
+    },
+    {
+        "summary": {
+            "artifact": [
+                "atc0003.admin.vectra.ai",
+                "atc0003.dyn.vectra.ai"
+            ],
+            "last_timestamp": "2024-12-30T18:19:13Z",
+            "description": "This is the first time this host has been seen on the network."
+        },
+        "notes": [],
+        "filtered_by_user": false,
+        "is_targeting_key_asset": false,
+        "detection_type": "New Host",
+        "detection": "New Host",
+        "description": null,
+        "id": 34405,
+        "last_timestamp": "2024-12-30T18:19:13Z",
+        "triage_rule_id": null,
+        "custom_detection": null,
+        "url": "https://308714519558.cc1.portal.vectra.ai/detections/34405",
+        "note": null,
+        "is_triaged": false,
+        "threat": 0,
+        "assigned_to": null,
+        "filtered_by_rule": false,
+        "sensor": "w4ftj0a8",
+        "tags": [],
+        "type": "host",
+        "note_modified_by": null,
+        "certainty": 0,
+        "detection_url": "https://308714519558.cc1.portal.vectra.ai/detections/34405",
+        "note_modified_timestamp": null,
+        "groups": [],
+        "first_timestamp": "2024-12-30T18:19:13Z",
+        "state": "active",
+        "filtered_by_ai": false,
+        "src_host": {
+            "id": 69428,
+            "ip": "1.1.1.1",
+            "name": "csoarrc1-2",
+            "url": "https://308714519558.cc1.portal.vectra.ai/hosts/69428",
+            "is_key_asset": false,
+            "groups": [],
+            "threat": 0,
+            "certainty": 0
+        },
+        "created_timestamp": "2024-12-30T18:20:58Z",
+        "is_marked_custom": false,
+        "src_ip": "1.1.1.1",
+        "assigned_date": null,
+        "data_source": {
+            "type": "Unknown sensor type",
+            "connection_name": "Unknown sensor name",
+            "connection_id": "w4ftj0a8"
+        },
+        "sensor_name": "EDR Sensor",
+        "src_account": null,
+        "is_custom_model": false,
+        "detection_category": "info",
+        "investigation_pivot_link": null,
+        "grouped_details": [
+            {
+                "artifact": "atc0003.admin.vectra.ai",
+                "via": "DNS",
+                "last_timestamp": "2024-12-30T18:19:13Z"
+            },
+            {
+                "artifact": "atc0003.dyn.vectra.ai",
+                "via": "DNS",
+                "last_timestamp": "2024-12-30T18:19:13Z"
+            }
+        ]
+    },
+    {
+        "summary": {
+            "artifact": [
+                "atc0003.admin.vectra.ai",
+                "atc0003.dyn.vectra.ai"
+            ],
+            "last_timestamp": "2024-12-30T16:26:56Z",
+            "description": "This is the first time this host has been seen on the network."
+        },
+        "notes": [],
+        "filtered_by_user": false,
+        "is_targeting_key_asset": false,
+        "detection_type": "New Host",
+        "detection": "New Host",
+        "description": null,
+        "id": 34397,
+        "last_timestamp": "2024-12-30T16:26:56Z",
+        "triage_rule_id": null,
+        "custom_detection": null,
+        "url": "https://308714519558.cc1.portal.vectra.ai/detections/34397",
+        "note": null,
+        "is_triaged": false,
+        "threat": 0,
+        "assigned_to": null,
+        "filtered_by_rule": false,
+        "sensor": "w4ftj0a8",
+        "tags": [],
+        "type": "host",
+        "note_modified_by": null,
+        "certainty": 0,
+        "detection_url": "https://308714519558.cc1.portal.vectra.ai/detections/34397",
+        "note_modified_timestamp": null,
+        "groups": [],
+        "first_timestamp": "2024-12-30T16:26:56Z",
+        "state": "active",
+        "filtered_by_ai": false,
+        "src_host": {
+            "id": 69424,
+            "ip": "1.1.1.1",
+            "name": "csoarrc1-1",
+            "url": "https://308714519558.cc1.portal.vectra.ai/hosts/69424",
+            "is_key_asset": false,
+            "groups": [],
+            "threat": 0,
+            "certainty": 0
+        },
+        "created_timestamp": "2024-12-30T16:28:46Z",
+        "is_marked_custom": false,
+        "src_ip": "1.1.1.1",
+        "assigned_date": null,
+        "data_source": {
+            "type": "Unknown sensor type",
+            "connection_name": "Unknown sensor name",
+            "connection_id": "w4ftj0a8"
+        },
+        "sensor_name": "EDR Sensor",
+        "src_account": null,
+        "is_custom_model": false,
+        "detection_category": "info",
+        "investigation_pivot_link": null,
+        "grouped_details": [
+            {
+                "artifact": "atc0003.admin.vectra.ai",
+                "via": "DNS",
+                "last_timestamp": "2024-12-30T16:26:56Z"
+            },
+            {
+                "artifact": "atc0003.dyn.vectra.ai",
+                "via": "DNS",
+                "last_timestamp": "2024-12-30T16:26:56Z"
+            }
+        ]
+    },
+    {
+        "summary": {
+            "event_names": [],
+            "num_events": 0,
+            "src_external_hosts": [],
+            "identity_type": null,
+            "assumed_roles": [],
+            "user_agents": [],
+            "aws_account_ids": [],
+            "aws_regions": [],
+            "description": "This principal invoked AWS control plane APIs associated with browsing of EC2 resources."
+        },
+        "notes": [],
+        "filtered_by_user": false,
+        "is_targeting_key_asset": false,
+        "detection_type": "AWS EC2 Browsing Activity",
+        "detection": "AWS EC2 Browsing Activity",
+        "description": null,
+        "id": 861,
+        "last_timestamp": "2024-12-29T17:01:06Z",
+        "triage_rule_id": null,
+        "custom_detection": null,
+        "url": "https://308714519558.cc1.portal.vectra.ai/detections/861",
+        "note": null,
+        "is_triaged": false,
+        "threat": 0,
+        "assigned_to": null,
+        "filtered_by_rule": false,
+        "sensor": "z7hmcp0z",
+        "tags": [],
+        "type": "account",
+        "note_modified_by": null,
+        "certainty": 0,
+        "detection_url": "https://308714519558.cc1.portal.vectra.ai/detections/861",
+        "note_modified_timestamp": null,
+        "groups": [],
+        "first_timestamp": "2023-11-05T17:01:05Z",
+        "state": "active",
+        "filtered_by_ai": false,
+        "src_host": null,
+        "created_timestamp": "2023-11-05T17:27:08Z",
+        "is_marked_custom": false,
+        "src_ip": "1.1.1.1",
+        "assigned_date": null,
+        "data_source": {
+            "type": "aws",
+            "connection_name": "Demo-Lab",
+            "connection_id": "z7hmcp0z"
+        },
+        "sensor_name": "Vectra X",
+        "src_account": {
+            "id": 20,
+            "name": "AWS:602592549188",
+            "url": "https://308714519558.cc1.portal.vectra.ai/accounts/20",
+            "threat": 0,
+            "certainty": 0,
+            "privilege_level": null,
+            "privilege_category": null
+        },
+        "is_custom_model": false,
+        "detection_category": "info",
+        "investigation_pivot_link": null,
+        "grouped_details": []
+    }
+]

@@ -2,49 +2,36 @@ name: Create User
 description: Creating a new user in zoom
 integration_identifier: Zoom
 parameters:
-    -   name: First Name
-        default_value: FirstName
-        type: string
-        description: First Name
-        is_mandatory: true
-    -   name: Last Name
-        default_value: LastName
-        type: string
-        description: Last Name
-        is_mandatory: true
-    -   name: Email
-        default_value: email@gmail.com
-        type: string
-        description: The user's email you want to create
-        is_mandatory: true
-    -   name: User Type
-        default_value: Basic
-        type: ddl
-        optional_values:
-            - Basic
-            - Licensed
-            - On-prem
-        description: 'The user license type can be:
+- name: First Name
+  default_value: FirstName
+  type: string
+  description: First Name
+  is_mandatory: true
+- name: Last Name
+  default_value: LastName
+  type: string
+  description: Last Name
+  is_mandatory: true
+- name: Email
+  default_value: email@gmail.com
+  type: string
+  description: The user's email you want to create
+  is_mandatory: true
+- name: User Type
+  default_value: Basic
+  type: ddl
+  optional_values:
+  - Basic
+  - Licensed
+  - On-prem
+  description: 'The user license type can be:
 
-        ''Basic'', ''Licensed'', ''On-prem''.'
-        is_mandatory: true
+    ''Basic'', ''Licensed'', ''On-prem''.'
+  is_mandatory: true
 dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: "{\r\n\t\"id\": \"k&KdKr6TLWuxdDtk0hjSzL\",\r\n\t\"meta\": {\r\
-        \n\t\t\"resourceType\": \"User\",\r\n\t\t\"location\": \"https://api.zoom.us/scim2/Users/k&KdKr6TLWuxdDtk0hjSzL\"\
-        ,\r\n\t\t\"version\": \"1.0.0\"\r\n\t},\r\n\t\"schemas\": [\r\n\t\t\"urn:ietf:params:scim:schemas:core:2.0:User\"\
-        \r\n\t],\r\n\t\"name\": {\r\n\t\t\"givenName\": \"Fancy\",\r\n\t\t\"familyName\"\
-        : \"Being\"\r\n\t},\r\n\r\n\t\"phoneNumbers\": [{\r\n\t\t\"type\": \"work\"\
-        ,\r\n\t\t\"value\": \"+01 11234567\"\r\n\t}],\r\n\t\"roles\": [{\r\n\t\t\"\
-        display\": \"user\",\r\n\t\t\"value\": \"user\",\r\n\t\t\"primary\": true\r\
-        \n\t}],\r\n\t\"groups\": [{\r\n\t\t\"display\": \"LA Group\",\r\n\t\t\"type\"\
-        : \"direct\",\r\n\t\t\"primary\": true\r\n\t}],\r\n\t\"urn:ietf:params:scim:schemas:extension:enterprise:2.0:User\"\
-        : {\r\n\t\t\"department\": \"engineering\",\r\n\t\t\"organization\": \"Cloud\"\
-        \r\n\t},\r\n\t\"urn:us:zoom:scim:schemas:extension:1.0:ZoomUser\": {\r\n\t\
-        \t\"loginType\": {\r\n\t\t\t\"workEmail\": false,\r\n\t\t\t\"sso\": true\r\
-        \n\t\t}\r\n\t}\r\n}"
+- result_name: JsonResult
+  show_result: true
+  result_example_path: resources/CreateUser_JsonResult_example.json
 default_result_value: ''
 creator: TehilaGourary
 script_result_name: ScriptResult

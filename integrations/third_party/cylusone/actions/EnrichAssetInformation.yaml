@@ -1,11 +1,12 @@
 name: EnrichAssetInformation
-description: Enrich asset information for selected IP address entities using Cylus API.
+description: Enrich asset information for selected IP address entities using 
+  Cylus API.
 integration_identifier: CylusOne
 parameters: []
 dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        result_example: '{}'
+- result_name: JsonResult
+  show_result: true
+  result_example_path:
 default_result_value: ''
 script_result_name: ScriptResult
 

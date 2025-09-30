@@ -2,35 +2,34 @@ name: Send JSON Document to Arcanna
 description: ''
 integration_identifier: ArcannaAI
 parameters:
-    -   name: Job ID
-        default_value: ' '
-        type: string
-        description: Job ID used for sending event to Arcanna.ai
-        is_mandatory: true
-    -   name: Identifier field
-        default_value: ''
-        type: string
-        description: Identifier field that will be used as an ID in Arcanna.ai when ingesting
-            the document. The field supports dot notation field names such as 'doc.id'.
-        is_mandatory: false
-    -   name: Use document ID as ID in Arcanna
-        default_value: 'false'
-        type: boolean
-        description: 'If False, Arcanna generates a new unique ID for the document.
+- name: Job ID
+  default_value: ' '
+  type: string
+  description: Job ID used for sending event to Arcanna.ai
+  is_mandatory: true
+- name: Identifier field
+  default_value: ''
+  type: string
+  description: Identifier field that will be used as an ID in Arcanna.ai when 
+    ingesting the document. The field supports dot notation field names such as 
+    'doc.id'.
+  is_mandatory: false
+- name: Use document ID as ID in Arcanna
+  default_value: 'false'
+  type: boolean
+  description: 'If False, Arcanna generates a new unique ID for the document.
 
-        If True, Arcanna uses the id found in the "Identifier field".'
-        is_mandatory: false
-    -   name: JSON Document
-        default_value: '{}'
-        type: code
-        description: The JSON document to be sent to Arcanna.
-        is_mandatory: true
+    If True, Arcanna uses the id found in the "Identifier field".'
+  is_mandatory: false
+- name: JSON Document
+  default_value: '{}'
+  type: code
+  description: The JSON document to be sent to Arcanna.
+  is_mandatory: true
 dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: '{"event_id": "12223273231449", "job_id": 1222, "ingest_timestamp":
-        "2024-08-07T14:38:43.327323Z", "status": "pending_inference", "error_message":
-        ""}'
+- result_name: JsonResult
+  show_result: true
+  result_example_path: 
+    resources/SendJsonDocumentToArcanna_JsonResult_example.json
 default_result_value: ''
 creator: 57861f63-e407-4200-90d4-a03bed1eb07e

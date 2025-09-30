@@ -2,52 +2,39 @@ name: Create RPZ MX Rule
 description: Adds a mail exchange override rule to an RPZ.
 integration_identifier: InfobloxNIOS
 parameters:
--   name: Name
-    default_value: ''
-    type: string
-    description: Specify the name of the rule.
-    is_mandatory: true
--   name: RP Zone
-    default_value: ''
-    type: string
-    description: The zone to assign the rule to.
-    is_mandatory: true
--   name: Mail Exchanger
-    default_value: ''
-    type: string
-    description: Specify the mail exchanger for the rule.
-    is_mandatory: true
--   name: Preference
-    default_value: '0'
-    type: string
-    description: Preference value for the rule.
-    is_mandatory: true
--   name: Comment
-    type: string
-    description: Comment for this rule.
-    is_mandatory: false
--   name: Additional Parameters
-    type: string
-    description: JSON object containing additional parameters to create response policy
-        zone.
-    is_mandatory: false
+- name: Name
+  default_value: ''
+  type: string
+  description: Specify the name of the rule.
+  is_mandatory: true
+- name: RP Zone
+  default_value: ''
+  type: string
+  description: The zone to assign the rule to.
+  is_mandatory: true
+- name: Mail Exchanger
+  default_value: ''
+  type: string
+  description: Specify the mail exchanger for the rule.
+  is_mandatory: true
+- name: Preference
+  default_value: '0'
+  type: string
+  description: Preference value for the rule.
+  is_mandatory: true
+- name: Comment
+  type: string
+  description: Comment for this rule.
+  is_mandatory: false
+- name: Additional Parameters
+  type: string
+  description: JSON object containing additional parameters to create response 
+    policy zone.
+  is_mandatory: false
 dynamic_results_metadata:
--   result_name: JsonResult
-    show_result: true
-    result_example: |
-        {
-            "_ref": "record:rpz:mx/ZG5zLmJpbmRfbXgkLl9kZWZhdWx0LmNvbS5ycHoudGhyZWF0Lm5pZ2h0bHkxLXRlc3QtbXgtc3ViLjAuMC4wLjAuNQ:nightly1-test-mx-sub.threat.rpz.com/default",
-            "comment": "nightly-test-mx-sub",
-            "disable": false,
-            "extattrs": {},
-            "mail_exchanger": "0.0.0.0",
-            "name": "nightly1-test-mx-sub.threat.rpz.com",
-            "preference": 5,
-            "rp_zone": "threat.rpz.com",
-            "use_ttl": false,
-            "view": "default",
-            "zone": "threat.rpz.com"
-        }
+- result_name: JsonResult
+  show_result: true
+  result_example_path: resources/create_rpz_mx_rule_JsonResult_example.json
 default_result_value: ''
 creator: Admin
 script_result_name: ScriptResult

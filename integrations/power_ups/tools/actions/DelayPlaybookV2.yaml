@@ -1,39 +1,38 @@
 name: Delay Playbook V2
-description: This action will temporarily stop a playbook from completing for a period
-    of time.
+description: This action will temporarily stop a playbook from completing for a 
+  period of time.
 integration_identifier: Tools
 parameters:
-    -   name: Seconds
-        default_value: '0'
-        type: string
-        description: The amount of seconds to delay the playbook for.
-        is_mandatory: false
-    -   name: Minutes
-        default_value: '1'
-        type: string
-        description: The amount of minutes to delay the playbook for.
-        is_mandatory: false
-    -   name: Hours
-        default_value: '0'
-        type: string
-        description: The amount of hours to delay the playbook for.
-        is_mandatory: false
-    -   name: Days
-        default_value: '0'
-        type: string
-        description: The amount of days to delay the playbook for.
-        is_mandatory: false
-    -   name: Cron Expression
-        default_value: ''
-        type: string
-        description: Determines when the playbook should proceed using a cron expression.
-            Will be prioritized over the other parameters.
-        is_mandatory: false
+- name: Seconds
+  default_value: '0'
+  type: string
+  description: The amount of seconds to delay the playbook for.
+  is_mandatory: false
+- name: Minutes
+  default_value: '1'
+  type: string
+  description: The amount of minutes to delay the playbook for.
+  is_mandatory: false
+- name: Hours
+  default_value: '0'
+  type: string
+  description: The amount of hours to delay the playbook for.
+  is_mandatory: false
+- name: Days
+  default_value: '0'
+  type: string
+  description: The amount of days to delay the playbook for.
+  is_mandatory: false
+- name: Cron Expression
+  default_value: ''
+  type: string
+  description: Determines when the playbook should proceed using a cron 
+    expression. Will be prioritized over the other parameters.
+  is_mandatory: false
 dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: '{}'
+- result_name: JsonResult
+  show_result: true
+  result_example_path:
 default_result_value: ''
 creator: Elisv
 is_async: true

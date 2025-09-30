@@ -13,12 +13,12 @@ parameters:
   description: Specify the type of Custom List to create.
   is_mandatory: true
 - name: Items
-  default_value: null
+  default_value:
   type: string
   description: Specify comma-separated items to include in the Custom List.
   is_mandatory: false
 - name: Description
-  default_value: null
+  default_value:
   type: string
   description: Description of Custom List.
   is_mandatory: false
@@ -42,20 +42,14 @@ parameters:
   - Low
   - Info
 - name: Tags
-  default_value: null
+  default_value:
   type: string
   description: Add tags to categorize and organize the Custom List
   is_mandatory: false
 dynamic_results_metadata:
 - result_name: JsonResult
   show_result: true
-  result_example: "{\n    \"confidence_level\": \"MEDIUM\",\n    \"created_time\"\
-    : \"2025-07-07T09:01:38Z\",\n    \"description\": \"Test action\",\n    \"id\"\
-    : 831832,\n    \"item_count\": 1,\n    \"items\": [\n        \"example1.somedomain.com\"\
-    \n    ],\n    \"items_described\": [],\n    \"name\": \"test-89\",\n    \"policies\"\
-    : [],\n    \"tags\": {\n        \"Test2\": \"SS2\"\n    },\n    \"threat_level\"\
-    : \"INFO\",\n    \"type\": \"custom_list\",\n    \"updated_time\": \"2025-07-07T09:01:38Z\"\
-    \n}"
+  result_example_path: resources/create_custom_list_JsonResult_example.json
 default_result_value: ''
 creator: Admin
 script_result_name: ScriptResult

@@ -1,43 +1,32 @@
 name: Get Metric Timeseries Points
 description: 'Get metrics timeseries points of a given query.
 
-    For more information: https://docs.datadoghq.com/api/latest/snapshots/'
+  For more information: https://docs.datadoghq.com/api/latest/snapshots/'
 integration_identifier: DataDog
 parameters:
-    -   name: End Time
-        default_value: '1610557457'
-        type: string
-        description: The end time of the timeseries points in Unixtime.
-        is_mandatory: true
-    -   name: Start Time
-        default_value: '1400000470'
-        type: string
-        description: The start time of the timeseries points in Unixtime.
-        is_mandatory: true
-    -   name: Query
-        default_value: avg:aws.rds.dbload{dbinstanceidentifier:db}by{dbinstanceidentifier}
-        type: string
-        description: 'The metric query which you want to get the timeseries points.
+- name: End Time
+  default_value: '1610557457'
+  type: string
+  description: The end time of the timeseries points in Unixtime.
+  is_mandatory: true
+- name: Start Time
+  default_value: '1400000470'
+  type: string
+  description: The start time of the timeseries points in Unixtime.
+  is_mandatory: true
+- name: Query
+  default_value: 
+    avg:aws.rds.dbload{dbinstanceidentifier:db}by{dbinstanceidentifier}
+  type: string
+  description: 'The metric query which you want to get the timeseries points.
 
-        For example: '
-        is_mandatory: true
+    For example: '
+  is_mandatory: true
 dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: "{\r\n  \"from_date\": \"integer\",\r\n  \"group_by\": [],\r\n\
-        \  \"message\": \"string\",\r\n  \"query\": \"string\",\r\n  \"res_type\"\
-        : \"time_series\",\r\n  \"series\": [\r\n    {\r\n      \"aggr\": \"avg\"\
-        ,\r\n      \"display_name\": \"system.cpu.idle\",\r\n      \"end\": \"integer\"\
-        ,\r\n      \"expression\": \"system.cpu.idle{host:foo,env:test}\",\r\n   \
-        \   \"interval\": \"integer\",\r\n      \"length\": \"integer\",\r\n     \
-        \ \"metric\": \"system.cpu.idle\",\r\n      \"pointlist\": [\r\n        1575317847,\r\
-        \n        0.5\r\n      ],\r\n      \"scope\": \"host:foo,env:test\",\r\n \
-        \     \"start\": \"integer\",\r\n      \"unit\": [\r\n        {\r\n      \
-        \    \"family\": \"time\",\r\n          \"name\": \"minute\",\r\n        \
-        \  \"plural\": \"minutes\",\r\n          \"scale_factor\": 60,\r\n       \
-        \   \"short_name\": \"min\"\r\n        }\r\n      ]\r\n    }\r\n  ],\r\n \
-        \ \"status\": \"ok\",\r\n  \"to_date\": \"integer\"\r\n}"
+- result_name: JsonResult
+  show_result: true
+  result_example_path: 
+    resources/GetMetricTimeseriesPoints_JsonResult_example.json
 default_result_value: ''
 creator: Admin
 script_result_name: ScriptResult

@@ -2,30 +2,22 @@ name: Add User To Workspace
 description: Add a user to a specific workspace
 integration_identifier: Asana
 parameters:
-    -   name: Workspace Name
-        default_value: Your Workspace Name
-        type: string
-        description: 'The workspace to which you want to add the user.
+- name: Workspace Name
+  default_value: Your Workspace Name
+  type: string
+  description: 'The workspace to which you want to add the user.
 
-        Note: It is case sensitive!'
-        is_mandatory: true
-    -   name: User's Email
-        default_value: email@gmail.com
-        type: string
-        description: The email address of the user you want to add
-        is_mandatory: true
+    Note: It is case sensitive!'
+  is_mandatory: true
+- name: User's Email
+  default_value: email@gmail.com
+  type: string
+  description: The email address of the user you want to add
+  is_mandatory: true
 dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: "{\r\n\t\"data\": {\r\n\t\t\"gid\": \"12345\",\r\n\t\t\"resource_type\"\
-        : \"user\",\r\n\t\t\"name\": \"Greg Sanchez\",\r\n\t\t\"email\": \"gsanchez@example.com\"\
-        ,\r\n\t\t\"photo\": {\r\n\t\t\t\"image_128x128\": \"https://...\",\r\n\t\t\
-        \t\"image_21x21\": \"https://...\",\r\n\t\t\t\"image_27x27\": \"https://...\"\
-        ,\r\n\t\t\t\"image_36x36\": \"https://...\",\r\n\t\t\t\"image_60x60\": \"\
-        https://...\"\r\n\t\t},\r\n\t\t\"workspaces\": [{\r\n\t\t\t\"gid\": \"12345\"\
-        ,\r\n\t\t\t\"resource_type\": \"workspace\",\r\n\t\t\t\"name\": \"My Company\
-        \ Workspace\"\r\n\t\t}]\r\n\t}\r\n}"
+- result_name: JsonResult
+  show_result: true
+  result_example_path: resources/AddUserToWorkspace_JsonResult_example.json
 default_result_value: ''
 creator: TehilaGourary
 script_result_name: ScriptResult

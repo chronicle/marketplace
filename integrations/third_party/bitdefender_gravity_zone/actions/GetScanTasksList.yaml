@@ -2,32 +2,26 @@ name: Get Scan Tasks List
 description: This method returns the list of scan tasks.
 integration_identifier: Bitdefender GravityZone
 parameters:
-    -   name: Task Status
-        default_value: All
-        type: ddl
-        optional_values:
-            - All
-            - Pending
-            - In-progress
-            - Finished
-        description: The status of the task.
-        is_mandatory: true
-    -   name: Task Name
-        type: string
-        description: Use an asterisk in front to search its appearance anywhere in the
-            name. If omitted, only returns results where the name starts with the keyword
-        is_mandatory: false
+- name: Task Status
+  default_value: All
+  type: ddl
+  optional_values:
+  - All
+  - Pending
+  - In-progress
+  - Finished
+  description: The status of the task.
+  is_mandatory: true
+- name: Task Name
+  type: string
+  description: Use an asterisk in front to search its appearance anywhere in the
+    name. If omitted, only returns results where the name starts with the 
+    keyword
+  is_mandatory: false
 dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: "{\r\n    \"result\": [\r\n        {\r\n            \"id\" : \"\
-        21a295eeb1a43d8b497b23b7\",\r\n            \"name\" : \"task 1\",\r\n    \
-        \        \"status\": 1,\r\n            \"startDate\": \"2015-08-21T23:48:16\"\
-        \r\n        },\r\n        {\r\n            \"id\" : \"21a295eeb1a43d8b497b23b8\"\
-        ,\r\n            \"name\" : \"task 2\",\r\n            \"status\": 1,\r\n\
-        \            \"startDate\": \"2015-08-21T10:21:15\"\r\n        }\r\n    ]\r\
-        \n}"
+- result_name: JsonResult
+  show_result: true
+  result_example_path: resources/GetScanTasksList_JsonResult_example.json
 default_result_value: ''
 creator: daniel.harvey
 script_result_name: ScriptResult

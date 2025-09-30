@@ -2,57 +2,16 @@ name: Delete File
 description: Delete a specific file stored in Google Drive
 integration_identifier: Google Drive
 parameters:
-    -   name: File Id
-        default_value: <file_id>
-        type: string
-        description: The file Id is presented in the file URL. See example - https://drive.google.com/drive/u/0/folders/{file-id}
-        is_mandatory: true
+- name: File Id
+  default_value: <file_id>
+  type: string
+  description: The file Id is presented in the file URL. See example - 
+    https://drive.google.com/drive/u/0/folders/{file-id}
+  is_mandatory: true
 dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: "{\n  \"kind\": \"drive#file\",\n  \"id\": \"1bVDM43X43X4Ogfzzvb_PmPRobMmRdAsmOOgk\"\
-        ,\n  \"name\": \"test.png\",\n  \"mimeType\": \"image/png\",\n  \"starred\"\
-        : false,\n  \"trashed\": false,\n  \"explicitlyTrashed\": false,\n  \"parents\"\
-        : [\n    \"0ADdNAjNcLms6Uk9PVA\"\n  ],\n  \"spaces\": [\n    \"drive\"\n \
-        \ ],\n  \"version\": \"1\",\n  \"webContentLink\": \"https://drive.google.com/uc?id=eid&export=download\"\
-        ,\n  \"webViewLink\": \"https://drive.google.com/file/d/eid/view?usp=drivesdk\"\
-        ,\n  \"iconLink\": \"https://drive-thirdparty.googleusercontent.com/16/type/image/png\"\
-        ,\n  \"hasThumbnail\": true,\n  \"thumbnailLink\": \"https://lh3.googleusercontent.com/c2mMhnOEjpc4gfaHwYG9bIL_34-w952oa43C9IsiUg--NAyYlranEDibh_1qwJSBmS4327iDhNxFLnPUs=s220\"\
-        ,\n  \"thumbnailVersion\": \"1\",\n  \"viewedByMe\": false,\n  \"createdTime\"\
-        : \"2020-10-03T08:42:26.734Z\",\n  \"modifiedTime\": \"2020-10-03T08:42:26.734Z\"\
-        ,\n  \"modifiedByMeTime\": \"2020-10-03T08:42:26.734Z\",\n  \"modifiedByMe\"\
-        : true,\n  \"owners\": [\n    {\n      \"kind\": \"drive#user\",\n      \"\
-        displayName\": \"test@quickstart-155094408020996.iam.gserviceaccount.com\"\
-        ,\n      \"me\": true,\n      \"permissionId\": \"02214475487724192531\",\n\
-        \      \"emailAddress\": \"test@quickstart-1553240908020996.iam.gserviceaccount.com\"\
-        \n    }\n  ],\n  \"lastModifyingUser\": {\n    \"kind\": \"drive#user\",\n\
-        \    \"displayName\": \"test-api@quickstart-1550908020996.iam.gserviceaccount.com\"\
-        ,\n    \"me\": true,\n    \"permissionId\": \"02214475487724192531\",\n  \
-        \  \"emailAddress\": \"test-api@quickstart-1550908020996.iam.gserviceaccount.com\"\
-        \n  },\n  \"shared\": false,\n  \"ownedByMe\": true,\n  \"capabilities\":\
-        \ {\n    \"canAddChildren\": false,\n    \"canAddMyDriveParent\": false,\n\
-        \    \"canChangeCopyRequiresWriterPermission\": true,\n    \"canChangeViewersCanCopyContent\"\
-        : true,\n    \"canComment\": true,\n    \"canCopy\": true,\n    \"canDelete\"\
-        : true,\n    \"canDownload\": true,\n    \"canEdit\": true,\n    \"canListChildren\"\
-        : false,\n    \"canModifyContent\": true,\n    \"canMoveChildrenWithinDrive\"\
-        : false,\n    \"canMoveItemIntoTeamDrive\": true,\n    \"canMoveItemOutOfDrive\"\
-        : true,\n    \"canMoveItemWithinDrive\": true,\n    \"canReadRevisions\":\
-        \ true,\n    \"canRemoveChildren\": false,\n    \"canRemoveMyDriveParent\"\
-        : true,\n    \"canRename\": true,\n    \"canShare\": true,\n    \"canTrash\"\
-        : true,\n    \"canUntrash\": true\n  },\n  \"viewersCanCopyContent\": true,\n\
-        \  \"copyRequiresWriterPermission\": false,\n  \"writersCanShare\": true,\n\
-        \  \"permissions\": [\n    {\n      \"kind\": \"drive#permission\",\n    \
-        \  \"id\": \"02214475487724192531\",\n      \"type\": \"user\",\n      \"\
-        emailAddress\": \"test-api@quickstart-1550908020996.iam.gserviceaccount.com\"\
-        ,\n      \"role\": \"owner\",\n      \"displayName\": \"test-api@quickstart-1550908020996.iam.gserviceaccount.com\"\
-        ,\n      \"deleted\": false\n    }\n  ],\n  \"permissionIds\": [\n    \"02214475487724192531\"\
-        \n  ],\n  \"originalFilename\": \"test.png\",\n  \"fullFileExtension\": \"\
-        png\",\n  \"fileExtension\": \"png\",\n  \"md5Checksum\": \"d6419f2547edda03b7ce948d7356baf7\"\
-        ,\n  \"size\": \"226429\",\n  \"quotaBytesUsed\": \"226429\",\n  \"headRevisionId\"\
-        : \"0BzdNAjNcLms6TGdlUlFmeTJUc0Q0UExXeS9FQ1NRL2FEMTBvPQ\",\n  \"imageMediaMetadata\"\
-        : {\n    \"width\": 996,\n    \"height\": 359,\n    \"rotation\": 0\n  },\n\
-        \  \"isAppAuthorized\": true\n}"
+- result_name: JsonResult
+  show_result: true
+  result_example_path: resources/DeleteFile_JsonResult_example.json
 default_result_value: ''
 creator: Admin
 script_result_name: ScriptResult

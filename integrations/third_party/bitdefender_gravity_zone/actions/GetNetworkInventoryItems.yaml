@@ -1,92 +1,84 @@
 name: Get Network Inventory Items
 description: 'This method returns network inventory items. Note - Some filters require
-    a specific license to be active, otherwise they are ignored, resulting in an inaccurate
-    API response. The field name works with partial matching.
+  a specific license to be active, otherwise they are ignored, resulting in an inaccurate
+  API response. The field name works with partial matching.
 
-    The filter returns the items whose names are exact match or start with the specified
-    value. To use the specified value as a suffix, use the asterisk symbol (*).'
+  The filter returns the items whose names are exact match or start with the specified
+  value. To use the specified value as a suffix, use the asterisk symbol (*).'
 integration_identifier: Bitdefender GravityZone
 parameters:
-    -   name: Filter - Name
-        type: string
-        description: A string for filtering the items by name. Minimum required string
-            length is three characters.
-        is_mandatory: false
-    -   name: Filter - MAC Addresses
-        type: string
-        description: Comma-separated list of MAC addresses used to filter the endpoints
-            regardless of their protection status.
-        is_mandatory: false
-    -   name: Filter - SSID
-        type: string
-        description: The SSID (Active Directory SID of the endpoint) used to filter the
-            endpoints regardless of their protection status.
-        is_mandatory: false
-    -   name: Filter - Depth - All Items Recursively
-        default_value: 'false'
-        type: boolean
-        description: Boolean to filter all endpoints recursively within the Network Inventory
-            of a company.
-        is_mandatory: false
-    -   name: Filter - Security Servers
-        default_value: 'false'
-        type: boolean
-        description: Boolean to filter all Security Servers
-        is_mandatory: false
-    -   name: Filter - Managed Relays
-        default_value: 'false'
-        type: boolean
-        description: 'Boolean to filter all endpoints with Relay role. '
-        is_mandatory: false
-    -   name: Filter - Managed Exchange Servers
-        default_value: 'false'
-        type: boolean
-        description: Boolean to filter all protected Exchange servers.
-        is_mandatory: false
-    -   name: Filter - Managed with BEST
-        default_value: 'false'
-        type: boolean
-        description: Boolean to filter all endpoints with the security agent installed
-            on them.
-        is_mandatory: false
-    -   name: Filter - Virtual Machines
-        default_value: 'false'
-        type: boolean
-        description: Boolean to filter all virtual machines.
-        is_mandatory: false
-    -   name: Filter - Computers
-        default_value: 'false'
-        type: boolean
-        description: Boolean to filter all computers.
-        is_mandatory: false
-    -   name: Filter - EC2 Instances
-        default_value: 'false'
-        type: boolean
-        description: Boolean to filter all Amazon EC2 Instances.
-        is_mandatory: false
-    -   name: Filter - Groups
-        default_value: 'false'
-        type: boolean
-        description: Boolean to filter all custom groups of endpoints.
-        is_mandatory: false
-    -   name: Parent ID
-        type: string
-        description: The ID of the container for which the network items will be returned.
-        is_mandatory: false
+- name: Filter - Name
+  type: string
+  description: A string for filtering the items by name. Minimum required string
+    length is three characters.
+  is_mandatory: false
+- name: Filter - MAC Addresses
+  type: string
+  description: Comma-separated list of MAC addresses used to filter the 
+    endpoints regardless of their protection status.
+  is_mandatory: false
+- name: Filter - SSID
+  type: string
+  description: The SSID (Active Directory SID of the endpoint) used to filter 
+    the endpoints regardless of their protection status.
+  is_mandatory: false
+- name: Filter - Depth - All Items Recursively
+  default_value: 'false'
+  type: boolean
+  description: Boolean to filter all endpoints recursively within the Network 
+    Inventory of a company.
+  is_mandatory: false
+- name: Filter - Security Servers
+  default_value: 'false'
+  type: boolean
+  description: Boolean to filter all Security Servers
+  is_mandatory: false
+- name: Filter - Managed Relays
+  default_value: 'false'
+  type: boolean
+  description: 'Boolean to filter all endpoints with Relay role. '
+  is_mandatory: false
+- name: Filter - Managed Exchange Servers
+  default_value: 'false'
+  type: boolean
+  description: Boolean to filter all protected Exchange servers.
+  is_mandatory: false
+- name: Filter - Managed with BEST
+  default_value: 'false'
+  type: boolean
+  description: Boolean to filter all endpoints with the security agent installed
+    on them.
+  is_mandatory: false
+- name: Filter - Virtual Machines
+  default_value: 'false'
+  type: boolean
+  description: Boolean to filter all virtual machines.
+  is_mandatory: false
+- name: Filter - Computers
+  default_value: 'false'
+  type: boolean
+  description: Boolean to filter all computers.
+  is_mandatory: false
+- name: Filter - EC2 Instances
+  default_value: 'false'
+  type: boolean
+  description: Boolean to filter all Amazon EC2 Instances.
+  is_mandatory: false
+- name: Filter - Groups
+  default_value: 'false'
+  type: boolean
+  description: Boolean to filter all custom groups of endpoints.
+  is_mandatory: false
+- name: Parent ID
+  type: string
+  description: The ID of the container for which the network items will be 
+    returned.
+  is_mandatory: false
 dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: "{\r\n    \"result\": {\r\n        \"id\" : \"21a295eeb1a43d8b497b24b7\"\
-        ,\r\n        \"name\" : \"Computer\",\r\n        \"type\" : 5,\r\n       \
-        \ \"parentId\": \"21a295eeb1a43d8b497b24b7\",\r\n        \"companyId\": \"\
-        21a295eeb1a43d8b497b24b7\",\r\n        \"details\" : {\r\n            \"label\"\
-        \ : \"endpoint 2\",\r\n            \"fqdn\": \"endpoint2.local\",\r\n    \
-        \        \"groupId\": \"5a5f4d36b1a43d5f097b23bb\",\r\n            \"isManaged\"\
-        : true,\r\n            \"machineType\": 2,\r\n            \"operatingSystemVersion\"\
-        : \"Windows Server\",\r\n            \"ip\": \"1.1.1.1\",\r\n            \"\
-        macs\": [\r\n            \"324935237346\"\r\n            ],\r\n          \
-        \  \"ssid\": \"\"\r\n        }\r\n    }\r\n}"
+- result_name: JsonResult
+  show_result: true
+  result_example_path: 
+    resources/GetNetworkInventoryItems_JsonResult_example.json
 default_result_value: ''
 creator: daniel.harvey
 script_result_name: ScriptResult

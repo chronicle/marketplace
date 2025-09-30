@@ -1,38 +1,32 @@
 name: Create Tags
 description: 'Creates tags for a specific instance (or other resources).
 
-    For more information:
+  For more information:
 
-    https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/ec2.html#EC2.Client.create_tags'
+  https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/ec2.html#EC2.Client.create_tags'
 integration_identifier: AWS - EC2
 parameters:
-    -   name: Resources ID
-        default_value: ResourceID1, ResourceID2
-        type: string
-        description: 'The resources IDs which you want to tag.
+- name: Resources ID
+  default_value: ResourceID1, ResourceID2
+  type: string
+  description: 'The resources IDs which you want to tag.
 
-        (comma separated)'
-        is_mandatory: true
-    -   name: Tags
-        default_value: "{\"tags\": [{\"Key\": \"key1\",\"Value\": \"value1\"}, \r\n{\"\
-        Key\": \"key2\",\t\"Value\": \"value2\"}]}"
-        type: code
-        description: 'The tags you want to create for given resource IDs.
+    (comma separated)'
+  is_mandatory: true
+- name: Tags
+  default_value: "{\"tags\": [{\"Key\": \"key1\",\"Value\": \"value1\"}, \r\n{\"Key\"\
+    : \"key2\",\t\"Value\": \"value2\"}]}"
+  type: code
+  description: 'The tags you want to create for given resource IDs.
 
-        For example:{"Key":"k","Value":"v"};{"key2":"","value2":""} seperated by ";"
+    For example:{"Key":"k","Value":"v"};{"key2":"","value2":""} seperated by ";"
 
-        Note:Case sensitive'
-        is_mandatory: true
+    Note:Case sensitive'
+  is_mandatory: true
 dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: "{\r\n\t\"ResponseMetadata\": {\r\n\t\t\"RequestId\": \"123456789\"\
-        ,\r\n\t\t\"HTTPStatusCode\": 200,\r\n\t\t\"HTTPHeaders\": {\r\n\t\t\t\"x-amzn-requestid\"\
-        : \"123456789\",\r\n\t\t\t\"content-type\": \"text/xml;charset=UTF-8\",\r\n\
-        \t\t\t\"content-length\": \"221\",\r\n\t\t\t\"date\": \"Wed, 02 Dec 2020 13:51:31\
-        \ GMT\",\r\n\t\t\t\"server\": \"AmazonEC2\"\r\n\t\t},\r\n\t\t\"RetryAttempts\"\
-        : 0\r\n\t}\r\n}"
+- result_name: JsonResult
+  show_result: true
+  result_example_path: resources/CreateTags_JsonResult_example.json
 default_result_value: ''
 creator: TehilaGourary
 script_result_name: ScriptResult

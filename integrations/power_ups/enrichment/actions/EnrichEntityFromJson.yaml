@@ -1,50 +1,48 @@
 name: Enrich Entity From JSON
-description: The action extracts fields from a json file and adds them to the entity
-    fields
+description: The action extracts fields from a json file and adds them to the 
+  entity fields
 integration_identifier: Enrichment
 parameters:
-    -   name: Enrichment JSON
-        default_value: '[   {     "EntityResult": {       "permalink": "https://www.virustotal.com/file/275a021bbfb6489e54d471899f7db9d1663fc695ec2fe2a2c4538aabf651fd0f/analysis/1549381312/",       "sha1":
-        "3395856ce81f2b7382dee72602f798b642f14140",       "resource": "275A021BBFB6489E54D471899F7DB9D1663FC695EC2FE2A2C4538AABF651FD0F",       "response_code":
-        1,       "scan_date": "2019-02-05 15:41:52",       "scan_id": "275a021bbfb6489e54d471899f7db9d1663fc695ec2fe2a2c4538aabf651fd0f-1549381312",       "verbose_msg":
-        "Scan finished, information embedded",       "total": 60,       "positives":
-        54,       "sha256": "275a021bbfb6489e54d471899f7db9d1663fc695ec2fe2a2c4538aabf651fd0f",       "md5":
-        "44d88612fea8a8f36de82e1278abb02f",       "scans": {         "Bkav": {           "detected":
-        true,           "version": "1.1.1.1",           "result": "DOS.EiracA.Trojan",           "update":
-        "20190201"         },         "MicroWorld-eScan": {           "detected":
-        true,           "version": "1.1.1.1",           "result": "EICAR-Test-File",           "update":
-        "20190205"         }       }     },     "Entity": "275A021BBFB6489E54D471899F7DB9D1663FC695EC2FE2A2C4538AABF651FD0F"   }
-        ]'
-        type: string
-        description: ' JSON from which you would like to enrich an entity. (List of JSONs)'
-        is_mandatory: true
-    -   name: Identifier KeyPath
-        default_value: key1.key2
-        type: string
-        description: KeyPath to the Entity Identifier in the JSON
-        is_mandatory: true
-    -   name: Separator
-        default_value: .
-        type: string
-        description: 'The "Separator" for the keypath. For example, if its XXX then the
-        example would be:
+- name: Enrichment JSON
+  default_value: '[   {     "EntityResult": {       "permalink": "https://www.virustotal.com/file/275a021bbfb6489e54d471899f7db9d1663fc695ec2fe2a2c4538aabf651fd0f/analysis/1549381312/",       "sha1":
+    "3395856ce81f2b7382dee72602f798b642f14140",       "resource": "275A021BBFB6489E54D471899F7DB9D1663FC695EC2FE2A2C4538AABF651FD0F",       "response_code":
+    1,       "scan_date": "2019-02-05 15:41:52",       "scan_id": "275a021bbfb6489e54d471899f7db9d1663fc695ec2fe2a2c4538aabf651fd0f-1549381312",       "verbose_msg":
+    "Scan finished, information embedded",       "total": 60,       "positives": 54,       "sha256":
+    "275a021bbfb6489e54d471899f7db9d1663fc695ec2fe2a2c4538aabf651fd0f",       "md5":
+    "44d88612fea8a8f36de82e1278abb02f",       "scans": {         "Bkav": {           "detected":
+    true,           "version": "1.1.1.1",           "result": "DOS.EiracA.Trojan",           "update":
+    "20190201"         },         "MicroWorld-eScan": {           "detected": true,           "version":
+    "1.1.1.1",           "result": "EICAR-Test-File",           "update": "20190205"         }       }     },     "Entity":
+    "275A021BBFB6489E54D471899F7DB9D1663FC695EC2FE2A2C4538AABF651FD0F"   } ]'
+  type: string
+  description: ' JSON from which you would like to enrich an entity. (List of JSONs)'
+  is_mandatory: true
+- name: Identifier KeyPath
+  default_value: key1.key2
+  type: string
+  description: KeyPath to the Entity Identifier in the JSON
+  is_mandatory: true
+- name: Separator
+  default_value: .
+  type: string
+  description: 'The "Separator" for the keypath. For example, if its XXX then the
+    example would be:
 
-        key1XXXkey2'
-        is_mandatory: true
-    -   name: PrefixForEnrichment
-        type: string
-        description: What prefix to use for enrichment
-        is_mandatory: false
-    -   name: Enrichment JSONPath
-        type: string
-        description: JSONPath expressions always refers to a JSON structure in the same
-            way as XPath expressions are used in combination with an XML document.
-        is_mandatory: false
+    key1XXXkey2'
+  is_mandatory: true
+- name: PrefixForEnrichment
+  type: string
+  description: What prefix to use for enrichment
+  is_mandatory: false
+- name: Enrichment JSONPath
+  type: string
+  description: JSONPath expressions always refers to a JSON structure in the 
+    same way as XPath expressions are used in combination with an XML document.
+  is_mandatory: false
 dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: '{}'
+- result_name: JsonResult
+  show_result: true
+  result_example_path:
 default_result_value: ''
 creator: Robert
 script_result_name: ScriptResult

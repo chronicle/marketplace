@@ -2,109 +2,96 @@ name: DNS Lookup
 description: Perform a DNS lookup on an entity.
 integration_identifier: Tools
 parameters:
-    -   name: DNS Servers
-        default_value: 1.1.1.1
-        type: string
-        description: Single or multiple comma separated servers.
-        is_mandatory: true
-    -   name: Data Type
-        default_value: ANY
-        type: ddl
-        optional_values:
-            - A
-            - A6
-            - AAAA
-            - AFSDB
-            - AMTRELAY
-            - ANY
-            - APL
-            - AVC
-            - AXFR
-            - CAA
-            - CDNSKEY
-            - CDS
-            - CERT
-            - CNAME
-            - CSYNC
-            - DHCID
-            - DLV
-            - DNAME
-            - DNSKEY
-            - DS
-            - EUI48
-            - EUI64
-            - GPOS
-            - HINFO
-            - HIP
-            - HTTPS
-            - IPSECKEY
-            - ISDN
-            - IXFR
-            - KEY
-            - KX
-            - LOC
-            - MAILA
-            - MAILB
-            - MB
-            - MD
-            - MF
-            - MG
-            - MINFO
-            - MR
-            - MX
-            - NAPTR
-            - NINFO
-            - "NONE"
-            - NS
-            - NSAP
-            - NSAP_PTR
-            - NSEC
-            - NSEC3
-            - NSEC3PARAM
-            - "NULL"
-            - NXT
-            - OPENPGPKEY
-            - OPT
-            - PTR
-            - PX
-            - RP
-            - RRSIG
-            - RT
-            - SIG
-            - SMIMEA
-            - SOA
-            - SPF
-            - SRV
-            - SSHFP
-            - SVCB
-            - TA
-            - TKEY
-            - TLSA
-            - TSIG
-            - TXT
-            - UNSPEC
-            - URI
-            - WKS
-            - X25
-        description: Uses ANY by default; applies only to host entities
-        is_mandatory: true
+- name: DNS Servers
+  default_value: 1.1.1.1
+  type: string
+  description: Single or multiple comma separated servers.
+  is_mandatory: true
+- name: Data Type
+  default_value: ANY
+  type: ddl
+  optional_values:
+  - A
+  - A6
+  - AAAA
+  - AFSDB
+  - AMTRELAY
+  - ANY
+  - APL
+  - AVC
+  - AXFR
+  - CAA
+  - CDNSKEY
+  - CDS
+  - CERT
+  - CNAME
+  - CSYNC
+  - DHCID
+  - DLV
+  - DNAME
+  - DNSKEY
+  - DS
+  - EUI48
+  - EUI64
+  - GPOS
+  - HINFO
+  - HIP
+  - HTTPS
+  - IPSECKEY
+  - ISDN
+  - IXFR
+  - KEY
+  - KX
+  - LOC
+  - MAILA
+  - MAILB
+  - MB
+  - MD
+  - MF
+  - MG
+  - MINFO
+  - MR
+  - MX
+  - NAPTR
+  - NINFO
+  - "NONE"
+  - NS
+  - NSAP
+  - NSAP_PTR
+  - NSEC
+  - NSEC3
+  - NSEC3PARAM
+  - "NULL"
+  - NXT
+  - OPENPGPKEY
+  - OPT
+  - PTR
+  - PX
+  - RP
+  - RRSIG
+  - RT
+  - SIG
+  - SMIMEA
+  - SOA
+  - SPF
+  - SRV
+  - SSHFP
+  - SVCB
+  - TA
+  - TKEY
+  - TLSA
+  - TSIG
+  - TXT
+  - UNSPEC
+  - URI
+  - WKS
+  - X25
+  description: Uses ANY by default; applies only to host entities
+  is_mandatory: true
 dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: |
-            [
-                {
-                    "Entity": "BMAUS.BADOO.APP",
-                    "EntityResult": [
-                        {
-                            "Type": "A",
-                            "Response": "1.1.1.1",
-                            "DNSServer": "1.1.1.1"
-                        }
-                    ]
-                }
-            ]
+- result_name: JsonResult
+  show_result: true
+  result_example_path: resources/DnsLookup_JsonResult_example.json
 default_result_value: ''
 creator: f56aefe2-fa00-4424-b2ce-de40f122b9c4
 script_result_name: ScriptResult

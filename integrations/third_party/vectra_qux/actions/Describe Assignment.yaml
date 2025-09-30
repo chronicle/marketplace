@@ -2,39 +2,15 @@ name: 'Describe Assignment    '
 description: Show all the details of an assignment for the given ID.
 integration_identifier: VectraQUX
 parameters:
-    -   name: Assignment ID
-        default_value: '0'
-        type: string
-        description: Unique assignment ID to get assignment
-        is_mandatory: true
+- name: Assignment ID
+  default_value: '0'
+  type: string
+  description: Unique assignment ID to get assignment
+  is_mandatory: true
 dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: "{\n    \"assignment\": {\n        \"id\": 224,\n        \"assigned_by\"\
-        : {\n            \"id\": 62,\n            \"username\": \"cds-crestphantom\"\
-        \n        },\n        \"date_assigned\": \"2024-11-11T07:59:54Z\",\n     \
-        \   \"date_resolved\": \"2024-11-11T08:22:34Z\",\n        \"events\": [\n\
-        \            {\n                \"assignment_id\": 224,\n                \"\
-        actor\": 62,\n                \"event_type\": \"resolved\",\n            \
-        \    \"datetime\": \"2024-11-11T08:22:34Z\",\n                \"context\"\
-        : {\n                    \"entity_t_score\": 0,\n                    \"entity_c_score\"\
-        : 0,\n                    \"triage_as\": null,\n                    \"triaged_detection_ids\"\
-        : null,\n                    \"fixed_detection_ids\": null,\n            \
-        \        \"created_rule_ids\": null\n                }\n            },\n \
-        \           {\n                \"assignment_id\": 224,\n                \"\
-        actor\": 62,\n                \"event_type\": \"created\",\n             \
-        \   \"datetime\": \"2024-11-11T07:59:54Z\",\n                \"context\":\
-        \ {\n                    \"to\": 31,\n                    \"entity_t_score\"\
-        : 0,\n                    \"entity_c_score\": 0\n                }\n     \
-        \       }\n        ],\n        \"outcome\": {\n            \"id\": 1,\n  \
-        \          \"builtin\": true,\n            \"user_selectable\": true,\n  \
-        \          \"title\": \"Benign True Positive\",\n            \"category\"\
-        : \"benign_true_positive\"\n        },\n        \"resolved_by\": {\n     \
-        \       \"id\": 62,\n            \"username\": \"cds-crestphantom\"\n    \
-        \    },\n        \"triaged_detections\": {},\n        \"host_id\": 35526,\n\
-        \        \"account_id\": null,\n        \"assigned_to\": {\n            \"\
-        id\": 31,\n            \"username\": \"emartin\"\n        }\n    }\n}"
+- result_name: JsonResult
+  show_result: true
+  result_example_path: resources/Describe Assignment_JsonResult_example.json
 default_result_value: ''
 creator: Admin
 script_result_name: ScriptResult

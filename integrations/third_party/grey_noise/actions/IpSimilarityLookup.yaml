@@ -1,39 +1,29 @@
 name: IP Similarity Lookup
-description: Check an IP in GreyNoise to see if there are similar scanning IPs. Requires
-    additional license to use. Consumes 1 Search per valid IP submitted.
+description: Check an IP in GreyNoise to see if there are similar scanning IPs. 
+  Requires additional license to use. Consumes 1 Search per valid IP submitted.
 integration_identifier: GreyNoise
 parameters:
-    -   name: limit
-        default_value: '50'
-        type: string
-        description: Maximum number of similarity results to return
-        is_mandatory: true
-    -   name: minimum_score
-        default_value: '90'
-        type: ddl
-        optional_values:
-            - '75'
-            - '80'
-            - '85'
-            - '90'
-            - '95'
-            - '100'
-        description: The minimum simlarity score to return in the results.
-        is_mandatory: true
+- name: limit
+  default_value: '50'
+  type: string
+  description: Maximum number of similarity results to return
+  is_mandatory: true
+- name: minimum_score
+  default_value: '90'
+  type: ddl
+  optional_values:
+  - '75'
+  - '80'
+  - '85'
+  - '90'
+  - '95'
+  - '100'
+  description: The minimum simlarity score to return in the results.
+  is_mandatory: true
 dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: '{"results": [{"Entity": "1.1.1.1", "EntityResult": {"ip": {"ip":
-        "1.1.1.1", "actor": "unknown", "classification": "malicious", "first_seen":
-        "2019-04-30", "last_seen": "2023-08-15", "asn": "AS9808", "city": "Chengdu",
-        "country": "China", "country_code": "CN", "organization": "China Mobile Communications
-        Group Co., Ltd."}, "similar_ips": [{"ip": "1.1.1.1", "score": 0.86328256,
-        "features": ["mass_scan_bool", "os", "ports", "web_paths"], "actor": "unknown",
-        "classification": "malicious", "first_seen": "2023-06-09", "last_seen": "2023-06-17",
-        "asn": "AS9808", "city": "Jinrongjie", "country": "China", "country_code":
-        "CN", "organization": "China Mobile Communications Group Co., Ltd."}], "total":
-        824}}]}'
+- result_name: JsonResult
+  show_result: true
+  result_example_path: resources/IpSimilarityLookup_JsonResult_example.json
 default_result_value: ''
 creator: 5773731e-9b72-438e-893d-ad4b9a297423
 script_result_name: ScriptResult

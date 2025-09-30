@@ -1,37 +1,37 @@
 name: Enrich Entities from List with Field
-description: This action enriches entities supplied by a list with a field and a value.
+description: This action enriches entities supplied by a list with a field and a
+  value.
 integration_identifier: Enrichment
 parameters:
-    -   name: List of Entities
-        default_value: ''
-        type: string
-        description: A list of entities of the same type, delimited by a field.
-        is_mandatory: true
-    -   name: Entity Type
-        default_value: ' '
-        type: string
-        description: The type of entity.
-        is_mandatory: true
-    -   name: Entity Delimiter
-        default_value: ','
-        type: string
-        description: The value of the field that is delimiting the list of entities.
-        is_mandatory: true
-    -   name: Enrichment Field
-        default_value: ' '
-        type: string
-        description: The name of the field that will be added to the entity.
-        is_mandatory: true
-    -   name: Enrichment Value
-        default_value: ' '
-        type: string
-        description: The value of the field that will be enriched to the entity.
-        is_mandatory: true
+- name: List of Entities
+  default_value: ''
+  type: string
+  description: A list of entities of the same type, delimited by a field.
+  is_mandatory: true
+- name: Entity Type
+  default_value: ' '
+  type: string
+  description: The type of entity.
+  is_mandatory: true
+- name: Entity Delimiter
+  default_value: ','
+  type: string
+  description: The value of the field that is delimiting the list of entities.
+  is_mandatory: true
+- name: Enrichment Field
+  default_value: ' '
+  type: string
+  description: The name of the field that will be added to the entity.
+  is_mandatory: true
+- name: Enrichment Value
+  default_value: ' '
+  type: string
+  description: The value of the field that will be enriched to the entity.
+  is_mandatory: true
 dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: '{}'
+- result_name: JsonResult
+  show_result: true
+  result_example_path:
 default_result_value: ''
 creator: Admin
 script_result_name: ScriptResult

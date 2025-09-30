@@ -2,80 +2,24 @@ name: List Messages
 description: List the messages in a user's mailbox
 integration_identifier: MicrosoftGraphSecurityTools
 parameters:
-    -   name: Query Parameters
-        type: string
-        description: 'Should begin with ''$'' - See MS Graph docs for query-parameters.
-        EG: $filter=subject eq ''test'''
-        is_mandatory: false
-    -   name: Select Filter
-        type: string
-        description: 'CSV list of fields to return, eg: sender,subject'
-        is_mandatory: false
-    -   name: User ID
-        default_value: john.smith@mail.com
-        type: string
-        description: User ID/userPrincipalName (email)
-        is_mandatory: true
+- name: Query Parameters
+  type: string
+  description: 'Should begin with ''$'' - See MS Graph docs for query-parameters.
+    EG: $filter=subject eq ''test'''
+  is_mandatory: false
+- name: Select Filter
+  type: string
+  description: 'CSV list of fields to return, eg: sender,subject'
+  is_mandatory: false
+- name: User ID
+  default_value: john.smith@mail.com
+  type: string
+  description: User ID/userPrincipalName (email)
+  is_mandatory: true
 dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: "[\r\n    {\r\n        \"@odata.etag\": \"W/\\\"CQAAABYAAADHcgC8Hl9tRZ/hc1wEUs1TAAAwR4Hg\\\
-        \"\",\r\n        \"id\": \"AAMkAGUAAAwTW09AAA=\",\r\n        \"subject\":\
-        \ \"You have late tasks!\",\r\n        \"sender\": {\r\n            \"emailAddress\"\
-        : {\r\n                \"name\": \"Microsoft Planner\",\r\n              \
-        \  \"address\": \"noreply@Planner.Office365.com\"\r\n            }\r\n   \
-        \     }\r\n    },\r\n    {\r\n        \"@odata.etag\": \"W/\\\"CQAAABYAAADHcgC8Hl9tRZ/hc1wEUs1TAAAq4D1e\\\
-        \"\",\r\n        \"id\": \"AAMkAGUAAAq5QKlAAA=\",\r\n        \"subject\":\
-        \ \"You have late tasks!\",\r\n        \"sender\": {\r\n            \"emailAddress\"\
-        : {\r\n                \"name\": \"Microsoft Planner\",\r\n              \
-        \  \"address\": \"noreply@Planner.Office365.com\"\r\n            }\r\n   \
-        \     }\r\n    },\r\n    {\r\n        \"@odata.etag\": \"W/\\\"CQAAABYAAADHcgC8Hl9tRZ/hc1wEUs1TAAAq4D0v\\\
-        \"\",\r\n        \"id\": \"AAMkAGUAAAq5QKkAAA=\",\r\n        \"subject\":\
-        \ \"Your Azure AD Identity Protection Weekly Digest\",\r\n        \"sender\"\
-        : {\r\n            \"emailAddress\": {\r\n                \"name\": \"Microsoft\
-        \ Azure\",\r\n                \"address\": \"azure-noreply@microsoft.com\"\
-        \r\n            }\r\n        }\r\n    },\r\n    {\r\n        \"@odata.etag\"\
-        : \"W/\\\"CQAAABYAAADHcgC8Hl9tRZ/hc1wEUs1TAAAq4DsN\\\"\",\r\n        \"id\"\
-        : \"AAMkAGUAAAq5QKjAAA=\",\r\n        \"subject\": \"Use attached file\",\r\
-        \n        \"sender\": {\r\n            \"emailAddress\": {\r\n           \
-        \     \"name\": \"Megan Bowen\",\r\n                \"address\": \"MeganB@contoso.OnMicrosoft.com\"\
-        \r\n            }\r\n        }\r\n    },\r\n    {\r\n        \"@odata.etag\"\
-        : \"W/\\\"CQAAABYAAADHcgC8Hl9tRZ/hc1wEUs1TAAAq4Dq9\\\"\",\r\n        \"id\"\
-        : \"AAMkAGUAAAq5QKiAAA=\",\r\n        \"subject\": \"Original invitation\"\
-        ,\r\n        \"sender\": {\r\n            \"emailAddress\": {\r\n        \
-        \        \"name\": \"Megan Bowen\",\r\n                \"address\": \"MeganB@contoso.OnMicrosoft.com\"\
-        \r\n            }\r\n        }\r\n    },\r\n    {\r\n        \"@odata.etag\"\
-        : \"W/\\\"CQAAABYAAADHcgC8Hl9tRZ/hc1wEUs1TAAAq4Dq1\\\"\",\r\n        \"id\"\
-        : \"AAMkAGUAAAq5QKhAAA=\",\r\n        \"subject\": \"Koala image\",\r\n  \
-        \      \"sender\": {\r\n            \"emailAddress\": {\r\n              \
-        \  \"name\": \"Megan Bowen\",\r\n                \"address\": \"MeganB@contoso.OnMicrosoft.com\"\
-        \r\n            }\r\n        }\r\n    },\r\n    {\r\n        \"@odata.etag\"\
-        : \"W/\\\"CQAAABYAAADHcgC8Hl9tRZ/hc1wEUs1TAAAq4Dqp\\\"\",\r\n        \"id\"\
-        : \"AAMkAGUAAAq5QKgAAA=\",\r\n        \"subject\": \"Sales invoice template\"\
-        ,\r\n        \"sender\": {\r\n            \"emailAddress\": {\r\n        \
-        \        \"name\": \"Megan Bowen\",\r\n                \"address\": \"MeganB@contoso.OnMicrosoft.com\"\
-        \r\n            }\r\n        }\r\n    },\r\n    {\r\n        \"@odata.type\"\
-        : \"#microsoft.graph.eventMessage\",\r\n        \"@odata.etag\": \"W/\\\"\
-        DAAAABYAAADHcgC8Hl9tRZ/hc1wEUs1TAAAq4Dft\\\"\",\r\n        \"id\": \"AAMkAGUAAAq5UMVAAA=\"\
-        ,\r\n        \"subject\": \"Accepted: Review strategy for Q3\",\r\n      \
-        \  \"sender\": {\r\n            \"emailAddress\": {\r\n                \"\
-        name\": \"Adele Vance\",\r\n                \"address\": \"/O=EXCHANGELABS/OU=EXCHANGE\
-        \ ADMINISTRATIVE GROUP (FYDIBOHF23SPDLT)/CN=RECIPIENTS/CN=A17A02BCF30C4937A87B14273385667C-ADELEV\"\
-        \r\n            }\r\n        }\r\n    },\r\n    {\r\n        \"@odata.type\"\
-        : \"#microsoft.graph.eventMessage\",\r\n        \"@odata.etag\": \"W/\\\"\
-        DAAAABYAAADHcgC8Hl9tRZ/hc1wEUs1TAAAq4DfF\\\"\",\r\n        \"id\": \"AAMkAGUAAAq5UMUAAA=\"\
-        ,\r\n        \"subject\": \"Accepted: Review strategy for Q3\",\r\n      \
-        \  \"sender\": {\r\n            \"emailAddress\": {\r\n                \"\
-        name\": \"Adele Vance\",\r\n                \"address\": \"/O=EXCHANGELABS/OU=EXCHANGE\
-        \ ADMINISTRATIVE GROUP (FYDIBOHF23SPDLT)/CN=RECIPIENTS/CN=A17A02BCF30C4937A87B14273385667C-ADELEV\"\
-        \r\n            }\r\n        }\r\n    },\r\n    {\r\n        \"@odata.type\"\
-        : \"#microsoft.graph.eventMessage\",\r\n        \"@odata.etag\": \"W/\\\"\
-        CwAAABYAAADHcgC8Hl9tRZ/hc1wEUs1TAAAq4Dfa\\\"\",\r\n        \"id\": \"AAMkAGUAAAq5T8tAAA=\"\
-        ,\r\n        \"subject\": \"Review strategy for Q3\",\r\n        \"sender\"\
-        : {\r\n            \"emailAddress\": {\r\n                \"name\": \"Megan\
-        \ Bowen\",\r\n                \"address\": \"MeganB@contoso.OnMicrosoft.com\"\
-        \r\n            }\r\n        }\r\n    }\r\n]"
+- result_name: JsonResult
+  show_result: true
+  result_example_path: resources/ListMessages_JsonResult_example.json
 default_result_value: ''
 creator: daniel.harvey
 script_result_name: ScriptResult

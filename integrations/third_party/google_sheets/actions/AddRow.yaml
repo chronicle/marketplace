@@ -2,36 +2,35 @@ name: Add Row
 description: Adds a row to a given sheet in Google Sheets
 integration_identifier: Google Sheets
 parameters:
-    -   name: Sheet Id
-        default_value: <Sheet-Id>
-        type: string
-        description: 'The sheet Id can be found in the sheet url.
+- name: Sheet Id
+  default_value: <Sheet-Id>
+  type: string
+  description: 'The sheet Id can be found in the sheet url.
 
-        https://docs.google.com/spreadsheets/d/{YourSpreadSheetId}/edit#gid=0'
-        is_mandatory: true
-    -   name: Worksheet Name
-        default_value: <Sheet-Name>
-        type: string
-        description: 'The worksheet name is the Sheet tab name. The default Sheet name
-        is "Sheet1". Note: it is case sensitive. '
-        is_mandatory: false
-    -   name: Row Index
-        default_value: <Row-1>
-        type: string
-        description: 'The location in the spreadsheet where the row is added (one-based).
-        Default is 1. '
-        is_mandatory: false
-    -   name: Values
-        default_value: val1,val2,val3
-        type: string
-        description: 'The values you would like to add in the row. Values should be comma
-        separated. '
-        is_mandatory: true
+    https://docs.google.com/spreadsheets/d/{YourSpreadSheetId}/edit#gid=0'
+  is_mandatory: true
+- name: Worksheet Name
+  default_value: <Sheet-Name>
+  type: string
+  description: 'The worksheet name is the Sheet tab name. The default Sheet name is
+    "Sheet1". Note: it is case sensitive. '
+  is_mandatory: false
+- name: Row Index
+  default_value: <Row-1>
+  type: string
+  description: 'The location in the spreadsheet where the row is added (one-based).
+    Default is 1. '
+  is_mandatory: false
+- name: Values
+  default_value: val1,val2,val3
+  type: string
+  description: 'The values you would like to add in the row. Values should be comma
+    separated. '
+  is_mandatory: true
 dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: false
-        # language=json
-        result_example: '{}'
+- result_name: JsonResult
+  show_result: false
+  result_example_path:
 default_result_value: ''
 creator: Admin
 script_result_name: ScriptResult

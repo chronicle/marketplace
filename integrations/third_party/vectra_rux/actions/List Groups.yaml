@@ -2,87 +2,72 @@ name: List Groups
 description: List groups based on the query parameters.
 integration_identifier: VectraRUX
 parameters:
-    -   name: Last Modified Timestamp GTE
-        type: string
-        description: Last modified timestamp (greater or equal) of group
-        is_mandatory: false
-    -   name: Last Modified By
-        type: string
-        description: Username who has modified the group
-        is_mandatory: false
-    -   name: Name
-        type: string
-        description: Name of group
-        is_mandatory: false
-    -   name: Type
-        default_value: "None"
-        type: ddl
-        optional_values:
-            - account"
-            - ip"
-            - domain"
-            - host"
-            - "None"
-        description: Type of group
-        is_mandatory: false
-    -   name: Limit
-        type: string
-        description: Specify limit for fetching records.
-        is_mandatory: false
-    -   name: Account Names
-        type: string
-        description: Comma separated values of account names
-        is_mandatory: false
-    -   name: Domains
-        type: string
-        description: Comma separated values of domains
-        is_mandatory: false
-    -   name: Host Ids
-        type: string
-        description: Comma separated values of host ids
-        is_mandatory: false
-    -   name: Host Names
-        type: string
-        description: Comma separated values of host names
-        is_mandatory: false
-    -   name: Importance
-        default_value: "None"
-        type: ddl
-        optional_values:
-            - low
-            - medium
-            - high
-            - never_prioritize
-            - "None"
-        description: Importance of group
-        is_mandatory: false
-    -   name: IPs
-        type: string
-        description: Comma separated values of ips
-        is_mandatory: false
-    -   name: Description
-        type: string
-        description: Description of group (case insensitive match)
-        is_mandatory: false
+- name: Last Modified Timestamp GTE
+  type: string
+  description: Last modified timestamp (greater or equal) of group
+  is_mandatory: false
+- name: Last Modified By
+  type: string
+  description: Username who has modified the group
+  is_mandatory: false
+- name: Name
+  type: string
+  description: Name of group
+  is_mandatory: false
+- name: Type
+  default_value: "None"
+  type: ddl
+  optional_values:
+  - account"
+  - ip"
+  - domain"
+  - host"
+  - "None"
+  description: Type of group
+  is_mandatory: false
+- name: Limit
+  type: string
+  description: Specify limit for fetching records.
+  is_mandatory: false
+- name: Account Names
+  type: string
+  description: Comma separated values of account names
+  is_mandatory: false
+- name: Domains
+  type: string
+  description: Comma separated values of domains
+  is_mandatory: false
+- name: Host Ids
+  type: string
+  description: Comma separated values of host ids
+  is_mandatory: false
+- name: Host Names
+  type: string
+  description: Comma separated values of host names
+  is_mandatory: false
+- name: Importance
+  default_value: "None"
+  type: ddl
+  optional_values:
+  - low
+  - medium
+  - high
+  - never_prioritize
+  - "None"
+  description: Importance of group
+  is_mandatory: false
+- name: IPs
+  type: string
+  description: Comma separated values of ips
+  is_mandatory: false
+- name: Description
+  type: string
+  description: Description of group (case insensitive match)
+  is_mandatory: false
 dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: "[\n    {\n        \"id\": 1,\n        \"name\": \"Cognito - Box\"\
-        ,\n        \"description\": \"Domains used by the Box service\",\n       \
-        \ \"last_modified\": \"2023-08-29T21:39:50Z\",\n        \"last_modified_by\"\
-        : \"cognito\",\n        \"type\": \"domain\",\n        \"members\": [\n  \
-        \          \"*.box.com\",\n            \"*.box.net\",\n            \"*.boxcdn.net\"\
-        ,\n            \"*.boxcloud.com\",\n            \"*.boxrelay.com\"\n     \
-        \   ],\n        \"rules\": [\n            {\n                \"triage_category\"\
-        : \"Box Exfil\",\n                \"id\": 175,\n                \"description\"\
-        : \"Exfil or data storage to Box service\"\n            },\n            {\n\
-        \                \"triage_category\": \"Box Exfil\",\n                \"id\"\
-        : 178,\n                \"description\": \"Exfil or data storage to Box service\"\
-        \n            }\n        ],\n        \"importance\": \"medium\",\n       \
-        \ \"regex\": null,\n        \"membership_evaluation_ongoing\": false,\n  \
-        \      \"member_count\": 5,\n        \"built_using\": \"static_members\",\n\
-        \        \"cognito_managed\": true\n    }\n]"
+- result_name: JsonResult
+  show_result: true
+  result_example_path: resources/List Groups_JsonResult_example.json
 default_result_value: ''
 creator: Admin
 script_result_name: ScriptResult

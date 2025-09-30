@@ -1,5 +1,6 @@
 name: Update Security Policy
-description: Modifies an existing security policy’s configurations or linked lists.
+description: Modifies an existing security policy’s configurations or linked 
+  lists.
 integration_identifier: InfobloxThreatDefenseWithDDI
 parameters:
 - name: Security Policy ID
@@ -8,39 +9,42 @@ parameters:
   description: Specify the ID of the security policy to update.
   is_mandatory: true
 - name: Policy Name
-  default_value: null
+  default_value:
   type: string
   description: Specify the name of the security policy to update.
   is_mandatory: false
 - name: Description
-  default_value: null
+  default_value:
   type: string
-  description: Specify an updated description for this security policy. Use keyword
-    `empty` to remove the description.
+  description: Specify an updated description for this security policy. Use 
+    keyword `empty` to remove the description.
   is_mandatory: false
 - name: Network Lists
-  default_value: null
+  default_value:
   type: string
-  description: Specify the comma-separated network lists to associate with this policy
-    (e.g 522436, 522438). Use keyword `empty` to remove the network lists.
+  description: Specify the comma-separated network lists to associate with this 
+    policy (e.g 522436, 522438). Use keyword `empty` to remove the network 
+    lists.
   is_mandatory: false
 - name: DFPS
-  default_value: null
+  default_value:
   type: string
-  description: Specify the comma-separated Default Forwarding Policies to update.
-    Use keyword `empty` to remove the DFPS.
+  description: Specify the comma-separated Default Forwarding Policies to 
+    update. Use keyword `empty` to remove the DFPS.
   is_mandatory: false
 - name: Roaming Device Groups
-  default_value: null
+  default_value:
   type: string
-  description: Specify the comma-separated Roaming Device Groups to associate with
-    this policy (e.g 56312, 56316). Use keyword `empty` to remove the devices.
+  description: Specify the comma-separated Roaming Device Groups to associate 
+    with this policy (e.g 56312, 56316). Use keyword `empty` to remove the 
+    devices.
   is_mandatory: false
 - name: Rules
-  default_value: null
+  default_value:
   type: string
-  description: Specify updated security rules as a list of JSON objects, each with
-    action, type, data, policy_name, redirect_name. Use keyword`empty `to remove rule.
+  description: Specify updated security rules as a list of JSON objects, each 
+    with action, type, data, policy_name, redirect_name. Use keyword`empty `to 
+    remove rule.
   is_mandatory: false
 - name: Safe Search
   default_value: ''
@@ -59,40 +63,20 @@ parameters:
   - 'True'
   - 'False'
 - name: Tags
-  default_value: null
+  default_value:
   type: string
   description: Update tags used to categorize and organize the Security Policy.
   is_mandatory: false
 - name: Additional Parameters
-  default_value: null
+  default_value:
   type: string
-  description: JSON object containing additional parameters to update (precedence,
-    access_codes, doh_enabled, doh_fqdn etc).
+  description: JSON object containing additional parameters to update 
+    (precedence, access_codes, doh_enabled, doh_fqdn etc).
   is_mandatory: false
 dynamic_results_metadata:
 - result_name: JsonResult
   show_result: true
-  result_example: "{\n    \"access_codes\": [],\n    \"block_dns_rebind_attack\":\
-    \ false,\n    \"created_time\": \"2025-07-10T05:55:54Z\",\n    \"default_action\"\
-    : \"action_allow\",\n    \"default_redirect_name\": \"\",\n    \"description\"\
-    : \"Desc\",\n    \"dfp_services\": [],\n    \"dfps\": [],\n    \"doh_enabled\"\
-    : false,\n    \"doh_fqdn\": \"\",\n    \"ecs\": false,\n    \"id\": 226360,\n\
-    \    \"is_default\": false,\n    \"migration_status\": {\n        \"uses_legacy_feeds\"\
-    : true\n    },\n    \"name\": \"Test-1l\",\n    \"net_address_dfps\": [],\n  \
-    \  \"network_lists\": [],\n    \"onprem_resolve\": false,\n    \"precedence\"\
-    : 28,\n    \"roaming_device_groups\": [],\n    \"rules\": [\n        {\n     \
-    \       \"action\": \"action_allow\",\n            \"data\": \"ip_blocking_plicy.ff\"\
-    ,\n            \"type\": \"named_feed\"\n        },\n        {\n            \"\
-    action\": \"action_log\",\n            \"data\": \"ext-antimalware-ip\",\n   \
-    \         \"description\": \"Suspicious/malicious as destinations: An extension\
-    \ of the AntiMalware IP feed that contains recently expired Malware IP's with\
-    \ an extended time-to-live (TTL) applied. The extended time-to-live (TTL) provides\
-    \ an extended reach of protection for the DNS FW, but may also increase the risk\
-    \ of false positives as some of these Malware IP's may no longer be active.\"\
-    ,\n            \"type\": \"named_feed\"\n        }\n    ],\n    \"safe_search\"\
-    : false,\n    \"scope_expr\": \"\",\n    \"scope_tags\": [],\n    \"tags\": {\n\
-    \        \"test\": \"11\"\n    },\n    \"updated_time\": \"2025-07-10T11:10:17Z\"\
-    ,\n    \"user_groups\": []\n}"
+  result_example_path: resources/update_security_policy_JsonResult_example.json
 default_result_value: ''
 creator: Admin
 script_result_name: ScriptResult

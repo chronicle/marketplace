@@ -1,69 +1,57 @@
 name: Create Entity Relationships
 description: 'Creates a relationship between the supplied entities and the linked
-    entities.  If the supplied entities do not exist, it will create them.
+  entities.  If the supplied entities do not exist, it will create them.
 
-    Supports Siemplify 5.6+ ONLY.'
+  Supports Siemplify 5.6+ ONLY.'
 integration_identifier: Tools
 parameters:
-    -   name: Entity Identifier(s)
-        default_value: ''
-        type: string
-        description: 'Create new or use existing entity identifier or comma-separated
-        list of identifiers (Example: value1, value2, value3)'
-        is_mandatory: true
-    -   name: Entity Identifier(s) Type
-        default_value: USERUNIQNAME
-        type: entity_type
-        description: 'Siemplify Entity type. Example: Host Name / User Name / etc.'
-        is_mandatory: true
-    -   name: Connect As
-        default_value: Source
-        type: ddl
-        optional_values:
-            - Source
-            - Destination
-            - Linked
-        description: Connect entity identifiers using source, destination, or linked relationship
-            to the target entity identifiers.
-        is_mandatory: true
-    -   name: Target Entity Type
-        default_value: ADDRESS
-        type: entity_type
-        description: 'Connect the entity identifier(s) to entities of this type.  '
-        is_mandatory: true
-    -   name: Target Entity Identifier(s)
-        default_value: ''
-        type: string
-        description: 'Entities in this comma separated list, of the type from Target Entity
-        Type, will be linked to the entities in the Entities Identifier(s) parameter.  '
-        is_mandatory: false
-    -   name: Enrichment JSON
-        type: string
-        description: 'An optional JSON object containing key / value pairs of attributes
-        that can be added to the newly created entities. '
-        is_mandatory: false
-    -   name: Separator Character
-        type: string
-        description: The character to separate the list of entities in Entity Identifiers
-            and/or Target Entity Identifiers by.  Defaults to comma.
-        is_mandatory: false
+- name: Entity Identifier(s)
+  default_value: ''
+  type: string
+  description: 'Create new or use existing entity identifier or comma-separated list
+    of identifiers (Example: value1, value2, value3)'
+  is_mandatory: true
+- name: Entity Identifier(s) Type
+  default_value: USERUNIQNAME
+  type: entity_type
+  description: 'Siemplify Entity type. Example: Host Name / User Name / etc.'
+  is_mandatory: true
+- name: Connect As
+  default_value: Source
+  type: ddl
+  optional_values:
+  - Source
+  - Destination
+  - Linked
+  description: Connect entity identifiers using source, destination, or linked 
+    relationship to the target entity identifiers.
+  is_mandatory: true
+- name: Target Entity Type
+  default_value: ADDRESS
+  type: entity_type
+  description: 'Connect the entity identifier(s) to entities of this type.  '
+  is_mandatory: true
+- name: Target Entity Identifier(s)
+  default_value: ''
+  type: string
+  description: 'Entities in this comma separated list, of the type from Target Entity
+    Type, will be linked to the entities in the Entities Identifier(s) parameter.  '
+  is_mandatory: false
+- name: Enrichment JSON
+  type: string
+  description: 'An optional JSON object containing key / value pairs of attributes
+    that can be added to the newly created entities. '
+  is_mandatory: false
+- name: Separator Character
+  type: string
+  description: The character to separate the list of entities in Entity 
+    Identifiers and/or Target Entity Identifiers by.  Defaults to comma.
+  is_mandatory: false
 dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: |
-            [
-                {
-                    "Entity": "EMK",
-                    "EntityResult": {
-                        "status": "created",
-                        "enrichment": {
-                            "attachment": 0,
-                            "linked_entities": "SIEMPLIFY_PS@YAHOO.COM"
-                        }
-                    }
-                }
-            ]
+- result_name: JsonResult
+  show_result: true
+  result_example_path: 
+    resources/CreateEntityRelationships_JsonResult_example.json
 default_result_value: ''
 creator: Rob
 script_result_name: ScriptResult

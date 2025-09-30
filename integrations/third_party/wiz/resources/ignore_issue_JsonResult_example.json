@@ -1,0 +1,7 @@
+{
+    "id": "abc",
+    "note": "",
+    "status": "REJECTED",
+    "dueAt": null,
+    "resolutionReason": "FALSE_POSITIVE"
+}

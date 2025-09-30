@@ -2,40 +2,39 @@ name: Send Email
 description: Send email message
 integration_identifier: SendGrid
 parameters:
-    -   name: Return Message Status
-        default_value: 'false'
-        type: boolean
-        description: Return Message Status
-        is_mandatory: false
-    -   name: Subject
-        default_value: ' '
-        type: string
-        description: Subject
-        is_mandatory: true
-    -   name: Email To
-        default_value: ' '
-        type: string
-        description: Email To
-        is_mandatory: true
-    -   name: Email From
-        default_value: ' '
-        type: string
-        description: Email From
-        is_mandatory: true
-    -   name: Content
-        default_value: '{"type":0,"name":"testb","content":"<table><tr><td>Techniques
-        found: {{ input_json|join(\", \") }}</td></tr></table><table><tr><td>Permissions
-        Required</td><td>{{ x_mitre_permissions_required|join(\", \") }}</td></tr><tr><td>External
-        References</td><td>{{ external_references|map(attribute=''url'')|first }}</td></tr><tr><td
-        colspan=\"2\">{{ description }}</td></tr></table>","creatorUserName":"Rob","forMigration":false,"environments":["*"],"id":3,"creationTimeUnixTimeInMs":1591804382641,"modificationTimeUnixTimeInMs":1591804382641}'
-        type: email_content
-        description: Content
-        is_mandatory: true
+- name: Return Message Status
+  default_value: 'false'
+  type: boolean
+  description: Return Message Status
+  is_mandatory: false
+- name: Subject
+  default_value: ' '
+  type: string
+  description: Subject
+  is_mandatory: true
+- name: Email To
+  default_value: ' '
+  type: string
+  description: Email To
+  is_mandatory: true
+- name: Email From
+  default_value: ' '
+  type: string
+  description: Email From
+  is_mandatory: true
+- name: Content
+  default_value: '{"type":0,"name":"testb","content":"<table><tr><td>Techniques found:
+    {{ input_json|join(\", \") }}</td></tr></table><table><tr><td>Permissions Required</td><td>{{
+    x_mitre_permissions_required|join(\", \") }}</td></tr><tr><td>External References</td><td>{{
+    external_references|map(attribute=''url'')|first }}</td></tr><tr><td colspan=\"2\">{{
+    description }}</td></tr></table>","creatorUserName":"Rob","forMigration":false,"environments":["*"],"id":3,"creationTimeUnixTimeInMs":1591804382641,"modificationTimeUnixTimeInMs":1591804382641}'
+  type: email_content
+  description: Content
+  is_mandatory: true
 dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: '{}'
+- result_name: JsonResult
+  show_result: true
+  result_example_path:
 default_result_value: ''
 creator: Mike
 script_result_name: ScriptResult

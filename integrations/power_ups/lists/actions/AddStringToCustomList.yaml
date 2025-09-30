@@ -2,35 +2,20 @@ name: Add String to Custom List
 description: The action adds a string to a custom list.
 integration_identifier: Lists
 parameters:
-    -   name: ListItem
-        default_value: cajs3i
-        type: string
-        description: The list item string to add to the custom list.
-        is_mandatory: true
-    -   name: Category
-        default_value: WhiteList
-        type: string
-        description: Custom list Category
-        is_mandatory: true
+- name: ListItem
+  default_value: cajs3i
+  type: string
+  description: The list item string to add to the custom list.
+  is_mandatory: true
+- name: Category
+  default_value: WhiteList
+  type: string
+  description: Custom list Category
+  is_mandatory: true
 dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: |
-            [
-                {
-                    "Entity": "1.2.3.4",
-                    "EntityResult": false
-                },
-                {
-                    "Entity": "google.com",
-                    "EntityResult": true
-                },
-                {
-                    "Entity": "yahoo.co.uk",
-                    "EntityResult": false
-                }
-            ]
+- result_name: JsonResult
+  show_result: true
+  result_example_path: resources/AddStringToCustomList_JsonResult_example.json
 default_result_value: ''
 creator: Robert
 script_result_name: NumOfFoundResults

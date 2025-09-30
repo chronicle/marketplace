@@ -2,155 +2,115 @@ name: Search Accounts
 description: List accounts based on query parameters.
 integration_identifier: VectraQUX
 parameters:
-    -   name: Order
-        default_value: ''
-        type: ddl
-        optional_values:
-            - Ascending
-            - Descending
-        description: filter accounts by ascending or descending
-        is_mandatory: false
-    -   name: Limit
-        type: string
-        description: fetch this number of records
-        is_mandatory: false
-    -   name: Order By
-        default_value: ''
-        type: ddl
-        optional_values:
-            - t_score
-            - c_score
-            - last_detection_timestamp
-            - id
-        description: 'Order Accounts based on filters like last_timestamp, threat_score,
-        and certainty_score,id. '
-        is_mandatory: false
-    -   name: Fields
-        default_value: ''
-        type: multi_choice_parameter
-        optional_values:
-            - id
-            - url
-            - name
-            - state
-            - threat
-            - certainty
-            - severity
-            - account_type
-            - tags
-            - note
-            - notes
-            - note_modfied_by
-            - note_modified_timestamp
-            - privilege_level
-            - privilege_category
-            - last_detection_timestamp
-            - detection_set
-            - probable_home
-            - detection_summaries
-        description: 'filter accounts with coma separated values of fields.
+- name: Order
+  default_value: ''
+  type: ddl
+  optional_values:
+  - Ascending
+  - Descending
+  description: filter accounts by ascending or descending
+  is_mandatory: false
+- name: Limit
+  type: string
+  description: fetch this number of records
+  is_mandatory: false
+- name: Order By
+  default_value: ''
+  type: ddl
+  optional_values:
+  - t_score
+  - c_score
+  - last_detection_timestamp
+  - id
+  description: 'Order Accounts based on filters like last_timestamp, threat_score,
+    and certainty_score,id. '
+  is_mandatory: false
+- name: Fields
+  default_value: ''
+  type: multi_choice_parameter
+  optional_values:
+  - id
+  - url
+  - name
+  - state
+  - threat
+  - certainty
+  - severity
+  - account_type
+  - tags
+  - note
+  - notes
+  - note_modfied_by
+  - note_modified_timestamp
+  - privilege_level
+  - privilege_category
+  - last_detection_timestamp
+  - detection_set
+  - probable_home
+  - detection_summaries
+  description: 'filter accounts with coma separated values of fields.
 
-        '
-        is_mandatory: false
-    -   name: Name
-        type: string
-        description: filter accounts by Name
-        is_mandatory: false
-    -   name: State
-        default_value: ''
-        type: ddl
-        optional_values:
-            - Active
-            - Inactive
-        description: filter based on account State
-        is_mandatory: false
-    -   name: Threat GTE
-        type: string
-        description: filter based on Threat value GTE
-        is_mandatory: false
-    -   name: Certainty GTE
-        type: string
-        description: 'Filters for Certainty scores GTE
+    '
+  is_mandatory: false
+- name: Name
+  type: string
+  description: filter accounts by Name
+  is_mandatory: false
+- name: State
+  default_value: ''
+  type: ddl
+  optional_values:
+  - Active
+  - Inactive
+  description: filter based on account State
+  is_mandatory: false
+- name: Threat GTE
+  type: string
+  description: filter based on Threat value GTE
+  is_mandatory: false
+- name: Certainty GTE
+  type: string
+  description: 'Filters for Certainty scores GTE
 
-        '
-        is_mandatory: false
-    -   name: Last Detection Timestamp GTE
-        type: string
-        description: filter based on Last Detection Timestamp GTE
-        is_mandatory: false
-    -   name: Last Detection Timestamp LTE
-        type: string
-        description: 'filter based on  Last Detection Timestamp LTE
+    '
+  is_mandatory: false
+- name: Last Detection Timestamp GTE
+  type: string
+  description: filter based on Last Detection Timestamp GTE
+  is_mandatory: false
+- name: Last Detection Timestamp LTE
+  type: string
+  description: 'filter based on  Last Detection Timestamp LTE
 
-        '
-        is_mandatory: false
-    -   name: Tags
-        type: string
-        description: filter based on Tags with coma separated values
-        is_mandatory: false
-    -   name: Note Modified Timestamp GTE
-        type: string
-        description: 'filter based on Note Modified Timestamp GTE
+    '
+  is_mandatory: false
+- name: Tags
+  type: string
+  description: filter based on Tags with coma separated values
+  is_mandatory: false
+- name: Note Modified Timestamp GTE
+  type: string
+  description: 'filter based on Note Modified Timestamp GTE
 
-        '
-        is_mandatory: false
-    -   name: Privilege Level
-        type: string
-        description: filter based on Privilege Level
-        is_mandatory: false
-    -   name: Privilege Category
-        default_value: ''
-        type: ddl
-        optional_values:
-            - Low
-            - Medium
-            - High
-        description: filter based on Privilege Category
-        is_mandatory: false
+    '
+  is_mandatory: false
+- name: Privilege Level
+  type: string
+  description: filter based on Privilege Level
+  is_mandatory: false
+- name: Privilege Category
+  default_value: ''
+  type: ddl
+  optional_values:
+  - Low
+  - Medium
+  - High
+  description: filter based on Privilege Category
+  is_mandatory: false
 dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: "[\n    {\n        \"associated_accounts\": [\n            \"\
-        johnh@lab.tme.local\"\n        ],\n        \"subaccounts\": [\n          \
-        \  \"johnh@lab.tme.local\"\n        ],\n        \"id\": 93,\n        \"url\"\
-        : \"https://hc2024.vectracloudlab.com/accounts/93\",\n        \"name\": \"\
-        johnh@lab.tme.local\",\n        \"state\": \"inactive\",\n        \"threat\"\
-        : 0,\n        \"certainty\": 0,\n        \"severity\": \"Low\",\n        \"\
-        account_type\": [\n            \"kerberos\"\n        ],\n        \"tags\"\
-        : [],\n        \"note\": \"Here comes your note TEST\",\n        \"notes\"\
-        : [\n            {\n                \"id\": 3156,\n                \"date_created\"\
-        : \"2024-11-11T09:04:05Z\",\n                \"date_modified\": null,\n  \
-        \              \"created_by\": \"cds-crestphantom\",\n                \"modified_by\"\
-        : null,\n                \"note\": \"Here comes your note TEST\"\n       \
-        \     },\n            {\n                \"id\": 2199,\n                \"\
-        date_created\": \"2024-07-29T12:50:32Z\",\n                \"date_modified\"\
-        : null,\n                \"created_by\": \"cds_xsoar\",\n                \"\
-        modified_by\": null,\n                \"note\": \"test note\"\n          \
-        \  },\n            {\n                \"id\": 2198,\n                \"date_created\"\
-        : \"2024-07-29T12:48:43Z\",\n                \"date_modified\": null,\n  \
-        \              \"created_by\": \"cds_xsoar\",\n                \"modified_by\"\
-        : null,\n                \"note\": \"new\"\n            }\n        ],\n  \
-        \      \"note_modified_by\": \"cds-crestphantom\",\n        \"note_modified_timestamp\"\
-        : \"2024-11-11T09:04:05Z\",\n        \"privilege_level\": 1,\n        \"privilege_category\"\
-        : \"Low\",\n        \"last_detection_timestamp\": null,\n        \"detection_set\"\
-        : [],\n        \"probable_home\": null,\n        \"assignment\": null,\n \
-        \       \"past_assignments\": [],\n        \"sensors\": []\n    },\n    {\n\
-        \        \"associated_accounts\": [\n            \"O365:1a4e5c8a-4d80-409f-8cb6-917e6a939837\"\
-        \n        ],\n        \"subaccounts\": [\n            \"O365:1a4e5c8a-4d80-409f-8cb6-917e6a939837\"\
-        \n        ],\n        \"id\": 325,\n        \"url\": \"https://hc2024.vectracloudlab.com/accounts/325\"\
-        ,\n        \"name\": \"O365:1a4e5c8a-4d80-409f-8cb6-917e6a939837\",\n    \
-        \    \"state\": \"active\",\n        \"threat\": 30,\n        \"certainty\"\
-        : 86,\n        \"severity\": \"Medium\",\n        \"account_type\": [\n  \
-        \          \"o365\"\n        ],\n        \"tags\": [],\n        \"note\":\
-        \ null,\n        \"notes\": [],\n        \"note_modified_by\": null,\n   \
-        \     \"note_modified_timestamp\": null,\n        \"privilege_level\": null,\n\
-        \        \"privilege_category\": null,\n        \"last_detection_timestamp\"\
-        : \"2025-01-03T16:28:25Z\",\n        \"detection_set\": [\n            \"\
-        https://hc2024.vectracloudlab.com/detections/7170\"\n        ],\n        \"\
-        probable_home\": null,\n        \"assignment\": null,\n        \"past_assignments\"\
-        : [],\n        \"sensors\": [\n            \"g7pv84nd\"\n        ]\n    }\n\
-        ]"
+- result_name: JsonResult
+  show_result: true
+  result_example_path: resources/Search Accounts_JsonResult_example.json
 default_result_value: ''
 creator: Admin
 script_result_name: ScriptResult

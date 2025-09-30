@@ -1,43 +1,29 @@
 name: Get Messages
 description: 'Gets messages from a specific chat.
 
-    Note: The messages of a chat will be returned only if the bot is a member of this
-    chat.'
+  Note: The messages of a chat will be returned only if the bot is a member of this
+  chat.'
 integration_identifier: Telegram
 parameters:
-    -   name: Last Message ID
-        default_value: '123456'
-        type: string
-        description: The ID of the last message from which we will start pulling all the
-            messages
-        is_mandatory: false
-    -   name: Message Types
-        default_value: '[]'
-        type: content
-        description: 'A list of the messages types to retrieve.
+- name: Last Message ID
+  default_value: '123456'
+  type: string
+  description: The ID of the last message from which we will start pulling all 
+    the messages
+  is_mandatory: false
+- name: Message Types
+  default_value: '[]'
+  type: content
+  description: 'A list of the messages types to retrieve.
 
-        For example [''channel_post'', ''poll_answer'']
+    For example [''channel_post'', ''poll_answer'']
 
-        See the documentation: https://core.telegram.org/bots/api#update'
-        is_mandatory: false
+    See the documentation: https://core.telegram.org/bots/api#update'
+  is_mandatory: false
 dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: "{\r\n\t\"ok\": true,\r\n\t\"result\": [{\r\n\t\t\"update_id\"\
-        : 123456,\r\n\t\t\"message\": {\r\n\t\t\t\"message_id\": 51,\r\n\t\t\t\"from\"\
-        : {\r\n\t\t\t\t\"id\": 11111,\r\n\t\t\t\t\"is_bot\": false,\r\n\t\t\t\t\"\
-        first_name\": \"T\",\r\n\t\t\t\t\"language_code\": \"en\"\r\n\t\t\t},\r\n\t\
-        \t\t\"chat\": {\r\n\t\t\t\t\"id\": 11111,\r\n\t\t\t\t\"first_name\": \"T\"\
-        ,\r\n\t\t\t\t\"type\": \"private\"\r\n\t\t\t},\r\n\t\t\t\"date\": 1605428770,\r\
-        \n\t\t\t\"text\": \"Hello\"\r\n\t\t}\r\n\t}, {\r\n\t\t\"update_id\": 123344,\r\
-        \n\t\t\"channel_post\": {\r\n\t\t\t\"message_id\": 23,\r\n\t\t\t\"sender_chat\"\
-        : {\r\n\t\t\t\t\"id\": -222222,\r\n\t\t\t\t\"title\": \"test_test\",\r\n\t\
-        \t\t\t\"username\": \"test_test\",\r\n\t\t\t\t\"type\": \"channel\"\r\n\t\t\
-        \t},\r\n\t\t\t\"chat\": {\r\n\t\t\t\t\"id\": -222222,\r\n\t\t\t\t\"title\"\
-        : \"test_test\",\r\n\t\t\t\t\"username\": \"test_test\",\r\n\t\t\t\t\"type\"\
-        : \"channel\"\r\n\t\t\t},\r\n\t\t\t\"date\": 1605429685,\r\n\t\t\t\"text\"\
-        : \"Hello\"\r\n\t\t}\r\n\t}]\r\n}"
+- result_name: JsonResult
+  show_result: true
+  result_example_path: resources/GetMessages_JsonResult_example.json
 default_result_value: ''
 creator: Admin
 script_result_name: ScriptResult
