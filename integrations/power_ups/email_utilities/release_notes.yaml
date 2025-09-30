@@ -279,3 +279,10 @@
   item_type: Action
   publish_time: '2025-08-20'
   ticket_number: '432241464'
+- description: Parse Case Wall Email - Updated the logic for case wall failing attachments.
+  integration_version: 41.0
+  item_name: Parse Case Wall Email
+  item_type: Action
+  publish_time: '2025-08-30'
+  ticket_number: '445763034'
+

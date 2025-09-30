@@ -131,6 +131,13 @@ def main():
         else:
             attachment = orig_email_attachment
 
+    if not attachment or "id" not in attachment:
+        output_message += "No EML attachments found on the case."
+        siemplify.LOGGER.info(
+            f"\n  status: {status}\n result_value: False\n output_message: {output_message}"
+        )
+        siemplify.end(output_message, False, status)
+
     attachment_record = siemplify.get_attachment(attachment["id"])
     attachment_name = f"{attachment['evidenceName']}{attachment['fileType']}"
     attachment_content = attachment_record.getvalue()
