@@ -1,40 +1,28 @@
-name: Get Logs
+creator: Admin
+default_result_value: ''
 description: 'Get logs by a given Kubernetes Namespace.
 
     For more information: https://docs.datadoghq.com/api/latest/logs/#get-a-list-of-logs'
-integration_identifier: DataDog
-parameters:
-    -   name: End Time
-        default_value: '2020-02-02T02:02:02Z'
-        type: string
-        description: The end time which you want to retrieve the logs to.
-        is_mandatory: true
-    -   name: Start Time
-        default_value: '2020-02-02T02:02:02Z'
-        type: string
-        description: The start time which you want to retrieve the logs from.
-        is_mandatory: true
-    -   name: Namespace
-        default_value: name_space1, name_space2
-        type: string
-        description: The Kubernetes namespace you would like to get logs for.
-        is_mandatory: true
 dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: "{\r\n\t\"NameSpace: kube-system\": {\r\n\t\t\"status\": \"done\"\
-        ,\r\n\t\t\"nextLogId\": \"1111111\",\r\n\t\t\"logs\": [{\r\n\t\t\t\"content\"\
-        : {\r\n\t\t\t\t\"timestamp\": \"2021-01-01T02:02:01.894Z\",\r\n\t\t\t\t\"\
-        host\": \"i-11111\",\r\n\t\t\t\t\"message\": \"The messasge content\",\r\n\
-        \t\t\t\t\"service\": \"snapshot-controller\",\r\n\t\t\t\t\"tags\": [\"image_name:name\"\
-        , \"container_name:name\", \"source:source name\", \"kube_namespace:kube-system\"\
-        ]\r\n\t\t\t},\r\n\t\t\t\"id\": \"123456789\"\r\n\t\t}, {\r\n\t\t\t\"content\"\
-        : {\r\n\t\t\t\t\"timestamp\": \"2021-01-01T02:02:01.894Z\",\r\n\t\t\t\t\"\
-        host\": \"i-22222\",\r\n\t\t\t\t\"message\": \"The messasge content\",\r\n\
-        \t\t\t\t\"service\": \"snapshot-controller\",\r\n\t\t\t\t\"tags\": [\"image_name:name\"\
-        ]\r\n\t\t\t},\r\n\t\t\t\"id\": \"123456789\"\r\n\t\t}],\r\n\t\t\"requestId\"\
-        : \"aaaabbbb11112222\"\r\n\r\n\t}\r\n}"
-default_result_value: ''
-creator: Admin
+-   result_example_path: resources/GetLogs_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: DataDog
+name: Get Logs
+parameters:
+-   default_value: '2020-02-02T02:02:02Z'
+    description: The end time which you want to retrieve the logs to.
+    is_mandatory: true
+    name: End Time
+    type: string
+-   default_value: '2020-02-02T02:02:02Z'
+    description: The start time which you want to retrieve the logs from.
+    is_mandatory: true
+    name: Start Time
+    type: string
+-   default_value: name_space1, name_space2
+    description: The Kubernetes namespace you would like to get logs for.
+    is_mandatory: true
+    name: Namespace
+    type: string
 script_result_name: ScriptResult

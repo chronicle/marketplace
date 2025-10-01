@@ -1,0 +1,244 @@
+[
+    {
+        "summary": {
+            "accounts": [
+                ""
+            ],
+            "function_uuids": [
+                "wkssvc",
+                "srvsvc"
+            ],
+            "dst_ips": [
+                "1.1.1.1"
+            ]
+        },
+        "id": 7177,
+        "url": "https://hc2024.vectracloudlab.com/detections/7177",
+        "detection_url": "https://hc2024.vectracloudlab.com/detections/7177",
+        "category": "RECONNAISSANCE",
+        "detection": "RPC Targeted Recon",
+        "detection_category": "RECONNAISSANCE",
+        "detection_type": "RPC Targeted Recon",
+        "custom_detection": null,
+        "description": null,
+        "src_ip": "1.1.1.1",
+        "state": "active",
+        "t_score": 54,
+        "c_score": 33,
+        "certainty": 33,
+        "threat": 54,
+        "created_timestamp": "2025-01-05T01:42:02Z",
+        "first_timestamp": "2025-01-05T01:30:24Z",
+        "last_timestamp": "2025-01-05T03:13:17Z",
+        "targets_key_asset": false,
+        "is_targeting_key_asset": false,
+        "src_account": null,
+        "src_host": {
+            "id": 40875,
+            "ip": "1.1.1.1",
+            "name": "IP-1.1.1.1",
+            "url": "https://hc2024.vectracloudlab.com/hosts/40875",
+            "is_key_asset": false,
+            "groups": [],
+            "threat": 30,
+            "certainty": 90
+        },
+        "note": null,
+        "notes": [],
+        "note_modified_by": null,
+        "note_modified_timestamp": null,
+        "sensor": "whx12u9g",
+        "sensor_name": "FGU-lab-vcenter",
+        "tags": [],
+        "triage_rule_id": null,
+        "assigned_to": null,
+        "assigned_date": null,
+        "groups": [],
+        "is_marked_custom": false,
+        "is_custom_model": false,
+        "filtered_by_ai": false,
+        "filtered_by_user": false,
+        "filtered_by_rule": false,
+        "grouped_details": [
+            {
+                "dst_profiles": [],
+                "src_profiles": [],
+                "anomalous_profiles": [
+                    {
+                        "account": "",
+                        "function_call": "NetrWkstaGetInfo",
+                        "function_uuid": "wkssvc",
+                        "count": 2,
+                        "first_timestamp": "2025-01-05T01:30:24.763Z",
+                        "last_timestamp": "2025-01-05T03:13:17.632Z"
+                    },
+                    {
+                        "account": "",
+                        "function_call": "NetrServerGetInfo",
+                        "function_uuid": "srvsvc",
+                        "count": 2,
+                        "first_timestamp": "2025-01-05T01:30:24.763Z",
+                        "last_timestamp": "2025-01-05T03:13:17.632Z"
+                    },
+                    {
+                        "account": "",
+                        "function_call": "NetrShareEnum",
+                        "function_uuid": "srvsvc",
+                        "count": 4,
+                        "first_timestamp": "2025-01-05T01:30:24.763Z",
+                        "last_timestamp": "2025-01-05T03:13:17.632Z"
+                    }
+                ],
+                "first_timestamp": "2025-01-05T01:30:24Z",
+                "last_timestamp": "2025-01-05T03:13:17Z",
+                "dst_hosts": [
+                    {
+                        "id": 40872,
+                        "name": "IP-1.1.1.1",
+                        "ip": "1.1.1.1"
+                    }
+                ],
+                "dst_ips": [
+                    "1.1.1.1"
+                ]
+            }
+        ]
+    },
+    {
+        "summary": {
+            "accounts": [
+                ""
+            ],
+            "function_uuids": [
+                "wkssvc",
+                "srvsvc"
+            ],
+            "dst_ips": [
+                "1.1.1.1"
+            ]
+        },
+        "id": 7176,
+        "url": "https://hc2024.vectracloudlab.com/detections/7176",
+        "detection_url": "https://hc2024.vectracloudlab.com/detections/7176",
+        "category": "RECONNAISSANCE",
+        "detection": "RPC Targeted Recon",
+        "detection_category": "RECONNAISSANCE",
+        "detection_type": "RPC Targeted Recon",
+        "custom_detection": null,
+        "description": null,
+        "src_ip": "1.1.1.1",
+        "state": "active",
+        "t_score": 54,
+        "c_score": 33,
+        "certainty": 33,
+        "threat": 54,
+        "created_timestamp": "2025-01-05T01:41:00Z",
+        "first_timestamp": "2025-01-05T01:29:38Z",
+        "last_timestamp": "2025-01-05T03:12:31Z",
+        "targets_key_asset": false,
+        "is_targeting_key_asset": false,
+        "src_account": null,
+        "src_host": {
+            "id": 40860,
+            "ip": "1.1.1.1",
+            "name": "IP-1.1.1.1",
+            "url": "https://hc2024.vectracloudlab.com/hosts/40860",
+            "is_key_asset": false,
+            "groups": [],
+            "threat": 36,
+            "certainty": 90
+        },
+        "note": null,
+        "notes": [],
+        "note_modified_by": null,
+        "note_modified_timestamp": null,
+        "sensor": "whx12u9g",
+        "sensor_name": "FGU-lab-vcenter",
+        "tags": [],
+        "triage_rule_id": null,
+        "assigned_to": null,
+        "assigned_date": null,
+        "groups": [],
+        "is_marked_custom": false,
+        "is_custom_model": false,
+        "filtered_by_ai": false,
+        "filtered_by_user": false,
+        "filtered_by_rule": false,
+        "grouped_details": [
+            {
+                "dst_profiles": [],
+                "src_profiles": [],
+                "anomalous_profiles": [
+                    {
+                        "account": "",
+                        "function_call": "NetrWkstaGetInfo",
+                        "function_uuid": "wkssvc",
+                        "count": 1,
+                        "first_timestamp": "2025-01-05T03:12:16.670Z",
+                        "last_timestamp": "2025-01-05T03:12:31.109Z"
+                    },
+                    {
+                        "account": "",
+                        "function_call": "NetrServerGetInfo",
+                        "function_uuid": "srvsvc",
+                        "count": 1,
+                        "first_timestamp": "2025-01-05T03:12:16.670Z",
+                        "last_timestamp": "2025-01-05T03:12:31.109Z"
+                    },
+                    {
+                        "account": "",
+                        "function_call": "NetrShareEnum",
+                        "function_uuid": "srvsvc",
+                        "count": 2,
+                        "first_timestamp": "2025-01-05T03:12:16.670Z",
+                        "last_timestamp": "2025-01-05T03:12:31.109Z"
+                    }
+                ],
+                "first_timestamp": "2025-01-05T03:12:16Z",
+                "last_timestamp": "2025-01-05T03:12:31Z",
+                "dst_hosts": [
+                    {
+                        "id": 40872,
+                        "name": "IP-1.1.1.1",
+                        "ip": "1.1.1.1"
+                    }
+                ],
+                "dst_ips": [
+                    "1.1.1.1"
+                ]
+            },
+            {
+                "dst_profiles": [],
+                "src_profiles": [],
+                "anomalous_profiles": [
+                    {
+                        "account": "",
+                        "function_call": "NetrServerGetInfo",
+                        "function_uuid": "srvsvc",
+                        "count": 1,
+                        "first_timestamp": "2025-01-05T01:29:38.484Z",
+                        "last_timestamp": "2025-01-05T01:29:52.809Z"
+                    },
+                    {
+                        "account": "",
+                        "function_call": "NetrShareEnum",
+                        "function_uuid": "srvsvc",
+                        "count": 2,
+                        "first_timestamp": "2025-01-05T01:29:38.484Z",
+                        "last_timestamp": "2025-01-05T01:29:52.809Z"
+                    }
+                ],
+                "first_timestamp": "2025-01-05T01:29:38Z",
+                "last_timestamp": "2025-01-05T01:29:52Z",
+                "dst_hosts": [
+                    {
+                        "ip": "1.1.1.1"
+                    }
+                ],
+                "dst_ips": [
+                    "1.1.1.1"
+                ]
+            }
+        ]
+    }
+]

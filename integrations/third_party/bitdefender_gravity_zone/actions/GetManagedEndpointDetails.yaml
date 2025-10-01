@@ -1,43 +1,17 @@
-name: Get Managed Endpoint Details
+creator: daniel.harvey
+default_result_value: ''
 description: 'This method returns detailed information, such as: details to identify
     the endpoint and the security agent, the status of installed protection modules.'
-integration_identifier: Bitdefender GravityZone
-parameters:
-    -   name: Endpoint ID
-        default_value: oBFA8Ie3Oh4iXCtyr5Z9iw
-        type: string
-        description: The ID of the endpoint for which the details will be returned
-        is_mandatory: true
 dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: "{\r\n    \"result\": {\r\n        \"id\": \"54a28b41b1a43d89367b23fd\"\
-        ,\r\n        \"name\": \"WIN-TGQDU499RS4\",\r\n        \"companyId\": \"5575a235d2172c65038b454e\"\
-        ,\r\n        \"operatingSystem\": \"Windows Server 2008 R2 Datacenter\",\r\
-        \n        \"state\": 1,\r\n        \"ip\": \"1.1.1.1\",\r\n        \"lastSeen\"\
-        : \"2015-06-22T13:46:59\",\r\n        \"machineType\": 1,\r\n        \"agent\"\
-        : {\r\n        \"engineVersion\": \"7.61184\",\r\n        \"primaryEngine\"\
-        : 1,\r\n        \"fallbackEngine\": 2,\r\n        \"lastUpdate\": \"2015-06-22T13:40:06\"\
-        ,\r\n        \"licensed\": 1,\r\n        \"productOutdated\": false,\r\n \
-        \       \"productUpdateDisabled\": false,\r\n        \"productVersion\": \"\
-        1.1.1.1\",\r\n        \"signatureOutdated\": false,\r\n        \"signatureUpdateDisabled\"\
-        : false,\r\n        \"type\": 3\r\n        },\r\n        \"group\": {\r\n\
-        \        \"id\": \"5575a235d2172c65038b456d\",\r\n        \"name\": \"Custom\
-        \ Groups\"\r\n        },\r\n        \"malwareStatus\": {\r\n        \"detection\"\
-        : false,\r\n        \"infected\": false\r\n        },\r\n        \"modules\"\
-        : {\r\n            \"advancedThreatControl\": false,\r\n            \"antimalware\"\
-        : false,\r\n            \"contentControl\": false,\r\n            \"deviceControl\"\
-        : false,\r\n            \"firewall\": false,\r\n            \"powerUser\"\
-        : false,\r\n            \"networkAttackDefense\": false\r\n            },\r\
-        \n            \"policy\": {\r\n            \"id\": \"5121da426803fa2d0e000017\"\
-        ,\r\n            \"applied\": true,\r\n            \"name\": \"Default policy\"\
-        \r\n            },\r\n            \"label\" : \"endpoint label\",\r\n    \
-        \        \"moveState\": 1,\r\n            \"riskScore\": {\r\n           \
-        \ \"value\": \"81%\",\r\n            \"impact\": \"High\",\r\n           \
-        \ \"misconfigurations\": \"70%\",\r\n            \"appVulnerabilities\": \"\
-        11%\",\r\n            \"humanRisks\": \"19%\"\r\n            }\r\n       \
-        \     \r\n    }\r\n}"
-default_result_value: ''
-creator: daniel.harvey
+-   result_example_path: resources/GetManagedEndpointDetails_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: Bitdefender GravityZone
+name: Get Managed Endpoint Details
+parameters:
+-   default_value: oBFA8Ie3Oh4iXCtyr5Z9iw
+    description: The ID of the endpoint for which the details will be returned
+    is_mandatory: true
+    name: Endpoint ID
+    type: string
 script_result_name: ScriptResult

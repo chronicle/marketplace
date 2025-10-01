@@ -1,0 +1,24 @@
+[
+    {
+        "EntityResult": {
+            "description": "",
+            "insertedDatetime": "2021-07-06T16:47:01+00:00",
+            "address": "1.1.1.1",
+            "maskbits": 32,
+            "expiresDatetime": null,
+            "id": "1.1.1.1/32"
+        },
+        "Entity": "1.1.1.1"
+    },
+    {
+        "EntityResult": {
+            "description": "",
+            "insertedDatetime": "2021-07-06T16:47:01+00:00",
+            "address": "1.1.1.1",
+            "maskbits": 32,
+            "expiresDatetime": null,
+            "id": "1.1.1.1/32"
+        },
+        "Entity": "1.1.1.1"
+    }
+]

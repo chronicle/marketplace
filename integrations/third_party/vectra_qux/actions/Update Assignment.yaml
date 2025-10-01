@@ -1,48 +1,29 @@
-name: Update Assignment
-description: Updates the assigned user in the assignment for the given entity.
-integration_identifier: VectraQUX
-parameters:
-    -   name: Entity ID
-        default_value: N/A
-        type: string
-        description: Entity ID to update assignment of that entity
-        is_mandatory: true
-    -   name: Entity Type
-        default_value: Account
-        type: ddl
-        optional_values:
-            - Account
-            - Host
-        description: Entity Type of entity
-        is_mandatory: true
-    -   name: User ID
-        default_value: N/A
-        type: string
-        description: User ID to assign entity assignment
-        is_mandatory: true
-dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: "{\n    \"assignment\": {\n        \"id\": 63,\n        \"assigned_by\"\
-        : {\n            \"id\": 22237,\n            \"username\": \"api_client_25cb417aab214139ae8c7394e2b1a3db\"\
-        \n        },\n        \"date_assigned\": \"2023-09-07T12:12:27Z\",\n     \
-        \   \"date_resolved\": null,\n        \"events\": [\n            {\n     \
-        \           \"assignment_id\": 63,\n                \"actor\": 22237,\n  \
-        \              \"event_type\": \"reassigned\",\n                \"datetime\"\
-        : \"2024-11-27T13:39:06Z\",\n                \"context\": {\n            \
-        \        \"from\": 31,\n                    \"to\": 28,\n                \
-        \    \"entity_t_score\": 0,\n                    \"entity_c_score\": 0\n \
-        \               }\n            },\n            {\n                \"assignment_id\"\
-        : 63,\n                \"actor\": 33,\n                \"event_type\": \"\
-        created\",\n                \"datetime\": \"2023-09-07T12:12:27Z\",\n    \
-        \            \"context\": {\n                    \"to\": 31,\n           \
-        \         \"entity_t_score\": 0,\n                    \"entity_c_score\":\
-        \ 0\n                }\n            }\n        ],\n        \"outcome\": null,\n\
-        \        \"resolved_by\": null,\n        \"triaged_detections\": {},\n   \
-        \     \"host_id\": null,\n        \"account_id\": 16,\n        \"assigned_to\"\
-        : {\n            \"id\": 28,\n            \"username\": \"agroyz@vectra.ai\"\
-        \n        }\n    }\n}"
-default_result_value: ''
 creator: Admin
+default_result_value: ''
+description: Updates the assigned user in the assignment for the given entity.
+dynamic_results_metadata:
+-   result_example_path: resources/Update Assignment_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: VectraQUX
+name: Update Assignment
+parameters:
+-   default_value: N/A
+    description: Entity ID to update assignment of that entity
+    is_mandatory: true
+    name: Entity ID
+    type: string
+-   default_value: Account
+    description: Entity Type of entity
+    is_mandatory: true
+    name: Entity Type
+    optional_values:
+    - Account
+    - Host
+    type: ddl
+-   default_value: N/A
+    description: User ID to assign entity assignment
+    is_mandatory: true
+    name: User ID
+    type: string
 script_result_name: ScriptResult

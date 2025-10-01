@@ -1,0 +1,78 @@
+[
+    {
+        "entityIdentifier": "CVE-2021-21552",
+        "entityResult": {
+            "created": "2021-05-21T00:00:00.001000Z",
+            "description": "Dell Wyse Windows Embedded System versions WIE10 LTSC 2019 and earlier contain an improper authorization vulnerability. A local authenticated malicious user with low privileges may potentially exploit this vulnerability to bypass the restricted environment and perform unauthorized actions on the affected system.",
+            "external_references": [
+                {
+                    "external_id": "CVE-2021-21552",
+                    "source_name": "cve"
+                }
+            ],
+            "id": "vulnerability--16613a0e-bc9c-db43-e3e4-11adda88d220",
+            "last_activity_date": "2021-06-02T22:08:06Z",
+            "name": "CVE-2021-21552",
+            "type": "vulnerability",
+            "x_sixgill_info": {
+                "mentions": {
+                    "first_mention": "2021-05-21T20:08:50Z",
+                    "last_mention": "2021-06-02T22:08:06Z",
+                    "mentions_total": 14
+                },
+                "nvd": {
+                    "link": "https://nvd.nist.gov/vuln/detail/CVE-2021-21552",
+                    "modified": "2021-06-02T12:30:00Z",
+                    "published": "2021-05-21T20:15:00Z",
+                    "v2": {
+                        "accessVector": "LOCAL",
+                        "authentication": "NONE",
+                        "availabilityImpact": "COMPLETE",
+                        "confidentialityImpact": "COMPLETE",
+                        "current": 7.2,
+                        "exploitabilityScore": 3.9,
+                        "impactScore": 10.0,
+                        "integrityImpact": "COMPLETE",
+                        "severity": "HIGH",
+                        "vector": "AV:L/AC:L/Au:N/C:C/I:C/A:C"
+                    },
+                    "v3": {
+                        "attackComplexity": "LOW",
+                        "attackVector": "LOCAL",
+                        "availabilityImpact": "HIGH",
+                        "confidentialityImpact": "HIGH",
+                        "current": 8.8,
+                        "exploitabilityScore": 2.0,
+                        "impactScore": 6.0,
+                        "integrityImpact": "HIGH",
+                        "privilegesRequired": "LOW",
+                        "severity": "HIGH",
+                        "userInteraction": "NONE",
+                        "vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:C/C:H/I:H/A:H"
+                    }
+                },
+                "score": {
+                    "current": 1.01,
+                    "highest": {
+                        "date": "2021-06-02T00:00:00Z",
+                        "value": 6.42
+                    },
+                    "previouslyExploited": 2.57
+                },
+                "references": {
+                    "reference_data": [
+                        {
+                            "name": "N/A",
+                            "refsource": "CONFIRM",
+                            "tags": [
+                                "Patch",
+                                "Vendor Advisory"
+                            ],
+                            "url": "https://www.dell.com/support/kbdoc/en-us/000186134/dsa-2021-096-dell-wyse-windows-embedded-system-security-update-for-an-improper-authorization-vulnerability"
+                        }
+                    ]
+                }
+            }
+        }
+    }
+]

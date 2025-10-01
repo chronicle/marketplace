@@ -1,24 +1,23 @@
-name: Request Campaign
-description: ''
-integration_identifier: Marketo
-parameters:
-    -   name: Tokens Json
-        type: string
-        description: ''
-        is_mandatory: false
-    -   name: Lead Id
-        type: string
-        description: ''
-        is_mandatory: true
-    -   name: Campaign Id
-        type: string
-        description: ''
-        is_mandatory: true
-dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: false
-        # language=Json
-        result_example: null
-default_result_value: ''
 creator: Admin
+default_result_value: ''
+description: ''
+dynamic_results_metadata:
+-   result_example_path: null
+    result_name: JsonResult
+    show_result: false
+integration_identifier: Marketo
+name: Request Campaign
+parameters:
+-   description: ''
+    is_mandatory: false
+    name: Tokens Json
+    type: string
+-   description: ''
+    is_mandatory: true
+    name: Lead Id
+    type: string
+-   description: ''
+    is_mandatory: true
+    name: Campaign Id
+    type: string
 script_result_name: ScriptResult

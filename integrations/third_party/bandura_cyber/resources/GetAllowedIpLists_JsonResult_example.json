@@ -1,0 +1,17 @@
+[
+    {
+        "count": 3,
+        "isPublic": false,
+        "description": "",
+        "lastUpdateDatetime": "2021-07-06T16:46:58+00:00",
+        "pluginParameters": {},
+        "pluginUuid": "00000000-6714-4000-8000-000000000000",
+        "interval": 60,
+        "enabled": true,
+        "isHealthy": true,
+        "name": "Test",
+        "lastSyncDatetime": null,
+        "type": "manual",
+        "uuid": "ab7a33e5-b833-402c-a238-ef76eaa583c6"
+    }
+]

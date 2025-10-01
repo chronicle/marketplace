@@ -1,13 +1,12 @@
-name: Ping
-description: ''
-integration_identifier: SupernaZeroTrust
-parameters: [ ]
-dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: false
-        # language=json
-        result_example: '{}'
-default_result_value: ''
 creator: 015f9a45-808a-4c76-8598-adad98670462
+default_result_value: ''
+description: ''
+dynamic_results_metadata:
+-   result_example_path: null
+    result_name: JsonResult
+    show_result: false
+integration_identifier: SupernaZeroTrust
 is_async: true
+name: Ping
+parameters: []
 script_result_name: ScriptResult

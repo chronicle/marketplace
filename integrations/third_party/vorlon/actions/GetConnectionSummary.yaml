@@ -1,46 +1,42 @@
-name: Get Connection Summary
-description: Returns the connections summary for the given service id
-integration_identifier: Vorlon
-parameters:
-    -   name: Service ID
-        default_value: <service id>
-        type: string
-        description: Service ID (typically service name or app name) to get the connections
-            summary
-        is_mandatory: true
-    -   name: Instance ID
-        type: string
-        description: If provided, filter by the instance id of the service
-        is_mandatory: false
-    -   name: From
-        type: string
-        description: If provided, filter by from time in the format "YYYY-MM-DDTHH:MM:SS"
-            e.g. 1970-1-1T00:00:00
-        is_mandatory: false
-    -   name: To
-        type: string
-        description: If provided, filter by to time in the format "YYYY-MM-DDTHH:MM:SS"
-            e.g. 1970-1-1T00:00:00
-        is_mandatory: false
-    -   name: Type
-        default_value: observed
-        type: ddl
-        optional_values:
-            - observed
-            - detected
-        description: Type of connection
-        is_mandatory: false
-    -   name: Secret IDs
-        type: string
-        description: A comma separated list of secret IDs
-        is_mandatory: false
-dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: "[\n  {\n    \"count\": 100,\n    \"requesting_instance\": \"\
-        my-salesforce\",\n    \"requesting_service\": \"my-salesforce\",\n    \"responding_instance\"\
-        : \"my.salesforce.com\",\n    \"responding_service\": \"salesforce\"\n  }\n\
-        ]"
-default_result_value: ''
 creator: fe5f742c-a69e-4116-ad38-b1d7c5194541
+default_result_value: ''
+description: Returns the connections summary for the given service id
+dynamic_results_metadata:
+-   result_example_path: resources/GetConnectionSummary_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: Vorlon
+name: Get Connection Summary
+parameters:
+-   default_value: <service id>
+    description: Service ID (typically service name or app name) to get the connections
+        summary
+    is_mandatory: true
+    name: Service ID
+    type: string
+-   description: If provided, filter by the instance id of the service
+    is_mandatory: false
+    name: Instance ID
+    type: string
+-   description: If provided, filter by from time in the format "YYYY-MM-DDTHH:MM:SS"
+        e.g. 1970-1-1T00:00:00
+    is_mandatory: false
+    name: From
+    type: string
+-   description: If provided, filter by to time in the format "YYYY-MM-DDTHH:MM:SS"
+        e.g. 1970-1-1T00:00:00
+    is_mandatory: false
+    name: To
+    type: string
+-   default_value: observed
+    description: Type of connection
+    is_mandatory: false
+    name: Type
+    optional_values:
+    - observed
+    - detected
+    type: ddl
+-   description: A comma separated list of secret IDs
+    is_mandatory: false
+    name: Secret IDs
+    type: string

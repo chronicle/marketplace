@@ -1,0 +1,48 @@
+{
+    "id": 68599,
+    "name": "csoarqa-12",
+    "breadth_contrib": 1,
+    "importance": 1,
+    "type": "host",
+    "is_prioritized": true,
+    "severity": "High",
+    "urgency_score": 76,
+    "velocity_contrib": 2,
+    "detection_set": [
+        "https://308714519558.cc1.portal.vectra.ai/detections/34338",
+        "https://308714519558.cc1.portal.vectra.ai/detections/34339",
+        "https://308714519558.cc1.portal.vectra.ai/detections/34340",
+        "https://308714519558.cc1.portal.vectra.ai/detections/34341",
+        "https://308714519558.cc1.portal.vectra.ai/detections/34342",
+        "https://308714519558.cc1.portal.vectra.ai/detections/34343",
+        "https://308714519558.cc1.portal.vectra.ai/detections/34344",
+        "https://308714519558.cc1.portal.vectra.ai/detections/34345"
+    ],
+    "last_detection_timestamp": "2024-12-20T01:12:51Z",
+    "last_modified_timestamp": "2025-01-02T09:39:17Z",
+    "notes": [
+        {
+            "id": 9763,
+            "date_created": "2024-12-31T06:40:27Z",
+            "date_modified": null,
+            "created_by": "api_client_ec19d57481ba402ab807e87010dde796",
+            "modified_by": null,
+            "note": "[Explore Case](https://vctrr.backstory.chronicle.security/cases/5046)"
+        }
+    ],
+    "attack_rating": 7,
+    "privilege_level": null,
+    "privilege_category": null,
+    "attack_profile": "Insider Threat: Admin",
+    "sensors": [
+        "w4ftj0a8"
+    ],
+    "state": "active",
+    "tags": [],
+    "url": "https://308714519558.cc1.portal.vectra.ai/hosts/68599",
+    "host_type": [
+        "normal"
+    ],
+    "account_type": null,
+    "ip": "1.1.1.1"
+}

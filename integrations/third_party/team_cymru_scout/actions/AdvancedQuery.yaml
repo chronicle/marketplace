@@ -1,204 +1,41 @@
-name: Advanced Query
+creator: d28f2b46-9f0f-4c38-8509-0416748b77d9
+default_result_value: ''
 description: Returns the summary information available for the given query following
     the Scout query language.
+dynamic_results_metadata:
+-   result_example_path: resources/AdvancedQuery_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
 integration_identifier: TeamCymruScout
+name: Advanced Query
 parameters:
-    -   name: Query
-        default_value: comms.ip="1.1.1.1"
-        type: string
-        description: A simple or advanced query as described by the Scout query language
-            in the Team Cymru Scout platform.
-        is_mandatory: true
-    -   name: Start Date
-        type: string
-        description: The latest date for results, formatted YYYY-MM-DD in UTC time. If
-            not provided, the default value will be 29 days prior to today, in UTC.
-        is_mandatory: false
-    -   name: End Date
-        type: string
-        description: The earliest date for results, formatted YYYY-MM-DD in UTC time.
-            If not provided, the default value will be today's date in UTC.
-        is_mandatory: false
-    -   name: Days
-        type: string
-        description: 'Relative offset in days (integer) from current time in UTC.
+-   default_value: comms.ip="1.1.1.1"
+    description: A simple or advanced query as described by the Scout query language
+        in the Team Cymru Scout platform.
+    is_mandatory: true
+    name: Query
+    type: string
+-   description: The latest date for results, formatted YYYY-MM-DD in UTC time. If
+        not provided, the default value will be 29 days prior to today, in UTC.
+    is_mandatory: false
+    name: Start Date
+    type: string
+-   description: The earliest date for results, formatted YYYY-MM-DD in UTC time.
+        If not provided, the default value will be today's date in UTC.
+    is_mandatory: false
+    name: End Date
+    type: string
+-   description: 'Relative offset in days (integer) from current time in UTC.
 
         Note: this will take priority over start_date and end_date if all three are
         passed.'
-        is_mandatory: false
-    -   name: Size
-        type: string
-        description: 'Size, in records, of the search results.
+    is_mandatory: false
+    name: Days
+    type: string
+-   description: 'Size, in records, of the search results.
 
         Note: The maximum allowed size is 5000.'
-        is_mandatory: false
-dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: "{\r\n  \"request_id\": \"593a8f91-57a1-521e-b8cc-57de7e3bc6ae\"\
-        ,\r\n  \"total\": 594,\r\n  \"query\": \"fingerprints.hash = \\\"40d1db40d00040d1dc43d1db1db43d5ecfbe778b06e32b538bd51f24eb7398\\\
-        \"\",\r\n  \"size\": 3,\r\n  \"start_date\": \"2024-09-18\",\r\n  \"end_date\"\
-        : \"2024-09-22\",\r\n  \"usage\": {\r\n    \"used_queries\": 14173,\r\n  \
-        \  \"remaining_queries\": 35827,\r\n    \"query_limit\": 50000,\r\n    \"\
-        foundation_api_usage\": {\r\n      \"used_queries\": 2665,\r\n      \"remaining_queries\"\
-        : 7335,\r\n      \"query_limit\": 10000\r\n    },\r\n    \"ai_insights_usage\"\
-        : {\r\n      \"used_queries\": 0,\r\n      \"remaining_queries\": 0,\r\n \
-        \     \"query_limit\": 0\r\n    }\r\n  },\r\n  \"ips\": [\r\n    {\r\n   \
-        \   \"ip\": \"1.1.1.1\",\r\n      \"country_codes\": [\r\n        \"US\"\r\
-        \n      ],\r\n      \"as_info\": [\r\n        {\r\n          \"asn\": 139646,\r\
-        \n          \"as_name\": \"HKMTC-AS-AP HONG KONG Megalayer Technology Co.,Limited,\
-        \ HK\"\r\n        }\r\n      ],\r\n      \"tags\": null,\r\n      \"event_count\"\
-        : 1,\r\n      \"summary\": {\r\n        \"last_seen\": \"2024-09-21\",\r\n\
-        \        \"whois\": {\r\n          \"asn\": 174,\r\n          \"as_name\"\
-        : \"Cogent Communications\",\r\n          \"net_name\": \"COGENT-154-22-16\"\
-        ,\r\n          \"org_name\": \"PSINet, Inc.\"\r\n        },\r\n        \"\
-        open_ports\": [\r\n          {\r\n            \"ip\": \"1.1.1.1\",\r\n   \
-        \         \"port\": 443,\r\n            \"protocol\": 6,\r\n            \"\
-        protocol_text\": \"TCP\",\r\n            \"service\": \"https\",\r\n     \
-        \       \"event_count\": 1\r\n          }\r\n        ],\r\n        \"pdns\"\
-        : null,\r\n        \"top_peers\": [\r\n          {\r\n            \"ip\":\
-        \ \"1.1.1.1\",\r\n            \"event_count\": 2\r\n          },\r\n     \
-        \     {\r\n            \"ip\": \"1.1.1.1\",\r\n            \"event_count\"\
-        : 1\r\n          }\r\n        ],\r\n        \"comms_total\": 3,\r\n      \
-        \  \"service_counts\": [\r\n          {\r\n            \"proto\": 6,\r\n \
-        \           \"proto_text\": \"\",\r\n            \"port\": 80,\r\n       \
-        \     \"event_count\": 2,\r\n            \"service\": {\r\n              \"\
-        service_name\": \"http\",\r\n              \"port\": 80,\r\n             \
-        \ \"proto_number\": 6,\r\n              \"description\": \"World Wide Web\
-        \ HTTP\"\r\n            }\r\n          }\r\n        ],\r\n        \"fingerprints\"\
-        : [\r\n          {\r\n            \"ip\": \"1.1.1.1\",\r\n            \"type\"\
-        : \"jarm\",\r\n            \"signature\": \"40d1db40d00040d1dc43d1db1db43d5ecfbe778b06e32b538bd51f24eb7398\"\
-        ,\r\n            \"event_count\": 1\r\n          }\r\n        ],\r\n     \
-        \   \"certs\": [\r\n          {\r\n            \"ip\": \"1.1.1.1\",\r\n  \
-        \          \"issuer\": \"CN=E5, O=Let's Encrypt, C=US\",\r\n            \"\
-        issuer_common_name\": \"E5\",\r\n            \"common_name\": \"9a16eb5c.nip.io\"\
-        ,\r\n            \"port\": 443,\r\n            \"event_count\": 1\r\n    \
-        \      }\r\n        ]\r\n      },\r\n      \"comms_enrichment\": {}\r\n  \
-        \  },\r\n    {\r\n      \"ip\": \"1.1.1.1\",\r\n      \"country_codes\": [\r\
-        \n        \"CA\"\r\n      ],\r\n      \"as_info\": [\r\n        {\r\n    \
-        \      \"asn\": 14061,\r\n          \"as_name\": \"DIGITALOCEAN-ASN, US\"\r\
-        \n        }\r\n      ],\r\n      \"tags\": [\r\n        {\r\n          \"\
-        id\": 82,\r\n          \"name\": \"cloud\",\r\n          \"children\": [\r\
-        \n            {\r\n              \"id\": 931,\r\n              \"name\": \"\
-        digitalocean\",\r\n              \"children\": null\r\n            }\r\n \
-        \         ]\r\n        }\r\n      ],\r\n      \"event_count\": 1,\r\n    \
-        \  \"summary\": {\r\n        \"last_seen\": \"2024-09-21\",\r\n        \"\
-        whois\": {\r\n          \"asn\": 14061,\r\n          \"as_name\": \"DigitalOcean,\
-        \ LLC\",\r\n          \"net_name\": \"DIGITALOCEAN\",\r\n          \"org_name\"\
-        : \"DigitalOcean, LLC\"\r\n        },\r\n        \"open_ports\": [\r\n   \
-        \       {\r\n            \"ip\": \"1.1.1.1\",\r\n            \"port\": 80,\r\
-        \n            \"protocol\": 6,\r\n            \"protocol_text\": \"TCP\",\r\
-        \n            \"service\": \"http\",\r\n            \"event_count\": 3\r\n\
-        \          },\r\n          {\r\n            \"ip\": \"1.1.1.1\",\r\n     \
-        \       \"port\": 3389,\r\n            \"protocol\": 6,\r\n            \"\
-        protocol_text\": \"TCP\",\r\n            \"service\": \"ms-wbt-server\",\r\
-        \n            \"event_count\": 3\r\n          },\r\n          {\r\n      \
-        \      \"ip\": \"1.1.1.1\",\r\n            \"port\": 22,\r\n            \"\
-        protocol\": 6,\r\n            \"protocol_text\": \"TCP\",\r\n            \"\
-        service\": \"ssh\",\r\n            \"event_count\": 3\r\n          },\r\n\
-        \          {\r\n            \"ip\": \"1.1.1.1\",\r\n            \"port\":\
-        \ 443,\r\n            \"protocol\": 6,\r\n            \"protocol_text\": \"\
-        TCP\",\r\n            \"service\": \"https\",\r\n            \"event_count\"\
-        : 2\r\n          }\r\n        ],\r\n        \"pdns\": [\r\n          {\r\n\
-        \            \"ip\": \"1.1.1.1\",\r\n            \"domain\": \"ns3.evilginxtest.shop\"\
-        ,\r\n            \"event_count\": 4\r\n          },\r\n          {\r\n   \
-        \         \"ip\": \"1.1.1.1\",\r\n            \"domain\": \"ns4.evilginxtest.shop\"\
-        ,\r\n            \"event_count\": 4\r\n          },\r\n          {\r\n   \
-        \         \"ip\": \"1.1.1.1\",\r\n            \"domain\": \"ns1.evilginxtest.shop\"\
-        ,\r\n            \"event_count\": 4\r\n          },\r\n          {\r\n   \
-        \         \"ip\": \"1.1.1.1\",\r\n            \"domain\": \"ns2.evilginxtest.shop\"\
-        ,\r\n            \"event_count\": 4\r\n          }\r\n        ],\r\n     \
-        \   \"top_peers\": [\r\n          {\r\n            \"ip\": \"1.1.1.1\",\r\n\
-        \            \"event_count\": 19\r\n          },\r\n          {\r\n      \
-        \      \"ip\": \"1.1.1.1\",\r\n            \"event_count\": 2\r\n        \
-        \  },\r\n          {\r\n            \"ip\": \"1.1.1.1\",\r\n            \"\
-        event_count\": 2\r\n          },\r\n          {\r\n            \"ip\": \"\
-        1.1.1.1\",\r\n            \"event_count\": 1\r\n          },\r\n         \
-        \ {\r\n            \"ip\": \"1.1.1.1\",\r\n            \"event_count\": 1\r\
-        \n          }\r\n        ],\r\n        \"comms_total\": 31,\r\n        \"\
-        service_counts\": [\r\n          {\r\n            \"proto\": 6,\r\n      \
-        \      \"proto_text\": \"\",\r\n            \"port\": 22,\r\n            \"\
-        event_count\": 21,\r\n            \"service\": {\r\n              \"service_name\"\
-        : \"ssh\",\r\n              \"port\": 22,\r\n              \"proto_number\"\
-        : 6,\r\n              \"description\": \"The Secure Shell (SSH) Protocol\"\
-        \r\n            }\r\n          },\r\n          {\r\n            \"proto\"\
-        : 6,\r\n            \"proto_text\": \"\",\r\n            \"port\": 80,\r\n\
-        \            \"event_count\": 1,\r\n            \"service\": {\r\n       \
-        \       \"service_name\": \"http\",\r\n              \"port\": 80,\r\n   \
-        \           \"proto_number\": 6,\r\n              \"description\": \"World\
-        \ Wide Web HTTP\"\r\n            }\r\n          },\r\n          {\r\n    \
-        \        \"proto\": 6,\r\n            \"proto_text\": \"\",\r\n          \
-        \  \"port\": 8081,\r\n            \"event_count\": 1,\r\n            \"service\"\
-        : {\r\n              \"service_name\": \"sunproxyadmin\",\r\n            \
-        \  \"port\": 8081,\r\n              \"proto_number\": 6,\r\n             \
-        \ \"description\": \"Sun Proxy Admin Service\"\r\n            }\r\n      \
-        \    },\r\n          {\r\n            \"proto\": 6,\r\n            \"proto_text\"\
-        : \"\",\r\n            \"port\": 9876,\r\n            \"event_count\": 1,\r\
-        \n            \"service\": {\r\n              \"service_name\": \"sd\",\r\n\
-        \              \"port\": 9876,\r\n              \"proto_number\": 6,\r\n \
-        \             \"description\": \"Session Director\"\r\n            }\r\n \
-        \         }\r\n        ],\r\n        \"fingerprints\": [\r\n          {\r\n\
-        \            \"ip\": \"1.1.1.1\",\r\n            \"type\": \"jarm\",\r\n \
-        \           \"signature\": \"40d1db40d00040d1dc43d1db1db43d5ecfbe778b06e32b538bd51f24eb7398\"\
-        ,\r\n            \"event_count\": 1\r\n          }\r\n        ],\r\n     \
-        \   \"certs\": [\r\n          {\r\n            \"ip\": \"1.1.1.1\",\r\n  \
-        \          \"issuer\": \"CN=Chisel, OU=Unit, O=Test, L=San Jose, ST=California,\
-        \ C=US\",\r\n            \"issuer_common_name\": \"Chisel\",\r\n         \
-        \   \"common_name\": \"Chisel\",\r\n            \"port\": 443,\r\n       \
-        \     \"event_count\": 1\r\n          },\r\n          {\r\n            \"\
-        ip\": \"1.1.1.1\",\r\n            \"issuer\": \"O=\",\r\n            \"issuer_common_name\"\
-        : \"\",\r\n            \"common_name\": \"\",\r\n            \"port\": 443,\r\
-        \n            \"event_count\": 1\r\n          }\r\n        ]\r\n      },\r\
-        \n      \"comms_enrichment\": {}\r\n    },\r\n    {\r\n      \"ip\": \"1.1.1.1\"\
-        ,\r\n      \"country_codes\": [\r\n        \"US\"\r\n      ],\r\n      \"\
-        as_info\": [\r\n        {\r\n          \"asn\": 979,\r\n          \"as_name\"\
-        : \"NETLAB-SDN, US\"\r\n        }\r\n      ],\r\n      \"tags\": null,\r\n\
-        \      \"event_count\": 1,\r\n      \"summary\": {\r\n        \"last_seen\"\
-        : \"2024-09-23\",\r\n        \"whois\": {\r\n          \"asn\": 174,\r\n \
-        \         \"as_name\": \"Cogent Communications\",\r\n          \"net_name\"\
-        : \"NETLAB\",\r\n          \"org_name\": \"Private Customer\"\r\n        },\r\
-        \n        \"open_ports\": [\r\n          {\r\n            \"ip\": \"1.1.1.1\"\
-        ,\r\n            \"port\": 443,\r\n            \"protocol\": 6,\r\n      \
-        \      \"protocol_text\": \"TCP\",\r\n            \"service\": \"https\",\r\
-        \n            \"event_count\": 4\r\n          },\r\n          {\r\n      \
-        \      \"ip\": \"1.1.1.1\",\r\n            \"port\": 22,\r\n            \"\
-        protocol\": 6,\r\n            \"protocol_text\": \"TCP\",\r\n            \"\
-        service\": \"ssh\",\r\n            \"event_count\": 1\r\n          }\r\n \
-        \       ],\r\n        \"pdns\": null,\r\n        \"top_peers\": [\r\n    \
-        \      {\r\n            \"ip\": \"1.1.1.1\",\r\n            \"event_count\"\
-        : 24\r\n          },\r\n          {\r\n            \"ip\": \"1.1.1.1\",\r\n\
-        \            \"event_count\": 12\r\n          },\r\n          {\r\n      \
-        \      \"ip\": \"1.1.1.1\",\r\n            \"event_count\": 1\r\n        \
-        \  },\r\n          {\r\n            \"ip\": \"1.1.1.1\",\r\n            \"\
-        event_count\": 1\r\n          },\r\n          {\r\n            \"ip\": \"\
-        1.1.1.1\",\r\n            \"event_count\": 1\r\n          }\r\n        ],\r\
-        \n        \"comms_total\": 39,\r\n        \"service_counts\": [\r\n      \
-        \    {\r\n            \"proto\": 6,\r\n            \"proto_text\": \"\",\r\
-        \n            \"port\": 22,\r\n            \"event_count\": 38,\r\n      \
-        \      \"service\": {\r\n              \"service_name\": \"ssh\",\r\n    \
-        \          \"port\": 22,\r\n              \"proto_number\": 6,\r\n       \
-        \       \"description\": \"The Secure Shell (SSH) Protocol\"\r\n         \
-        \   }\r\n          },\r\n          {\r\n            \"proto\": 6,\r\n    \
-        \        \"proto_text\": \"\",\r\n            \"port\": 36424,\r\n       \
-        \     \"event_count\": 1,\r\n            \"service\": {\r\n              \"\
-        service_name\": \"\",\r\n              \"port\": 0,\r\n              \"proto_number\"\
-        : 0,\r\n              \"description\": \"\"\r\n            }\r\n         \
-        \ },\r\n          {\r\n            \"proto\": 17,\r\n            \"proto_text\"\
-        : \"\",\r\n            \"port\": 5060,\r\n            \"event_count\": 1,\r\
-        \n            \"service\": {\r\n              \"service_name\": \"sip\",\r\
-        \n              \"port\": 5060,\r\n              \"proto_number\": 17,\r\n\
-        \              \"description\": \"SIP\"\r\n            }\r\n          }\r\n\
-        \        ],\r\n        \"fingerprints\": [\r\n          {\r\n            \"\
-        ip\": \"1.1.1.1\",\r\n            \"type\": \"jarm\",\r\n            \"signature\"\
-        : \"40d1db40d00040d1dc43d1db1db43d5ecfbe778b06e32b538bd51f24eb7398\",\r\n\
-        \            \"event_count\": 1\r\n          }\r\n        ],\r\n        \"\
-        certs\": [\r\n          {\r\n            \"ip\": \"1.1.1.1\",\r\n        \
-        \    \"issuer\": \"CN=E5, O=Let's Encrypt, C=US\",\r\n            \"issuer_common_name\"\
-        : \"E5\",\r\n            \"common_name\": \"s1.huangshi.org\",\r\n       \
-        \     \"port\": 443,\r\n            \"event_count\": 4\r\n          }\r\n\
-        \        ]\r\n      },\r\n      \"comms_enrichment\": {}\r\n    }\r\n  ]\r\
-        \n}\r\n"
-default_result_value: ''
-creator: d28f2b46-9f0f-4c38-8509-0416748b77d9
+    is_mandatory: false
+    name: Size
+    type: string
 script_result_name: ScriptResult

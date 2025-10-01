@@ -1,40 +1,39 @@
-name: Delay Playbook V2
+creator: Elisv
+default_result_value: ''
 description: This action will temporarily stop a playbook from completing for a period
     of time.
-integration_identifier: Tools
-parameters:
-    -   name: Seconds
-        default_value: '0'
-        type: string
-        description: The amount of seconds to delay the playbook for.
-        is_mandatory: false
-    -   name: Minutes
-        default_value: '1'
-        type: string
-        description: The amount of minutes to delay the playbook for.
-        is_mandatory: false
-    -   name: Hours
-        default_value: '0'
-        type: string
-        description: The amount of hours to delay the playbook for.
-        is_mandatory: false
-    -   name: Days
-        default_value: '0'
-        type: string
-        description: The amount of days to delay the playbook for.
-        is_mandatory: false
-    -   name: Cron Expression
-        default_value: ''
-        type: string
-        description: Determines when the playbook should proceed using a cron expression.
-            Will be prioritized over the other parameters.
-        is_mandatory: false
 dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: '{}'
-default_result_value: ''
-creator: Elisv
+-   result_example_path: null
+    result_name: JsonResult
+    show_result: true
+integration_identifier: Tools
 is_async: true
+name: Delay Playbook V2
+parameters:
+-   default_value: '0'
+    description: The amount of seconds to delay the playbook for.
+    is_mandatory: false
+    name: Seconds
+    type: string
+-   default_value: '1'
+    description: The amount of minutes to delay the playbook for.
+    is_mandatory: false
+    name: Minutes
+    type: string
+-   default_value: '0'
+    description: The amount of hours to delay the playbook for.
+    is_mandatory: false
+    name: Hours
+    type: string
+-   default_value: '0'
+    description: The amount of days to delay the playbook for.
+    is_mandatory: false
+    name: Days
+    type: string
+-   default_value: ''
+    description: Determines when the playbook should proceed using a cron expression.
+        Will be prioritized over the other parameters.
+    is_mandatory: false
+    name: Cron Expression
+    type: string
 script_result_name: ScriptResult

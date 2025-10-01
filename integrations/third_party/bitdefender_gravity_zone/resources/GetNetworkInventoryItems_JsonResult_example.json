@@ -1,0 +1,22 @@
+{
+    "result": {
+        "id": "21a295eeb1a43d8b497b24b7",
+        "name": "Computer",
+        "type": 5,
+        "parentId": "21a295eeb1a43d8b497b24b7",
+        "companyId": "21a295eeb1a43d8b497b24b7",
+        "details": {
+            "label": "endpoint 2",
+            "fqdn": "endpoint2.local",
+            "groupId": "5a5f4d36b1a43d5f097b23bb",
+            "isManaged": true,
+            "machineType": 2,
+            "operatingSystemVersion": "Windows Server",
+            "ip": "1.1.1.1",
+            "macs": [
+                "324935237346"
+            ],
+            "ssid": ""
+        }
+    }
+}

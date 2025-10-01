@@ -1,0 +1,220 @@
+{
+    "id": 38970,
+    "name": "IP-1.1.1.1",
+    "active_traffic": false,
+    "has_active_traffic": false,
+    "t_score": 30,
+    "threat": 30,
+    "c_score": 68,
+    "certainty": 68,
+    "severity": "medium",
+    "last_source": "1.1.1.1",
+    "ip": "1.1.1.1",
+    "previous_ips": [],
+    "last_detection_timestamp": "2024-12-17T14:51:56Z",
+    "key_asset": false,
+    "is_key_asset": false,
+    "state": "active",
+    "targets_key_asset": false,
+    "is_targeting_key_asset": false,
+    "detection_set": [
+        "https://hc2024.vectracloudlab.com/detections/6926",
+        "https://hc2024.vectracloudlab.com/detections/6927",
+        "https://hc2024.vectracloudlab.com/detections/6928"
+    ],
+    "host_artifact_set": [],
+    "sensor": "whx12u9g",
+    "sensor_name": "FGU-lab-vcenter",
+    "tags": [],
+    "note": "[Explore Case](https://vctrr.backstory.chronicle.security/cases/4619)",
+    "notes": [
+        {
+            "id": 3596,
+            "date_created": "2024-12-18T07:28:08Z",
+            "date_modified": null,
+            "created_by": "cds-crestphantom",
+            "modified_by": null,
+            "note": "[Explore Case](https://vctrr.backstory.chronicle.security/cases/4619)"
+        }
+    ],
+    "note_modified_by": "cds-crestphantom",
+    "note_modified_timestamp": "2024-12-18T07:28:08Z",
+    "url": "https://hc2024.vectracloudlab.com/hosts/38970",
+    "host_url": "https://hc2024.vectracloudlab.com/hosts/38970",
+    "last_modified": "2024-12-17T01:31:19Z",
+    "assigned_to": "admin",
+    "assigned_date": "2024-12-18T07:28:05Z",
+    "groups": [],
+    "has_custom_model": false,
+    "privilege_level": null,
+    "privilege_category": null,
+    "probable_owner": null,
+    "detection_profile": "IT Services",
+    "assignment": {
+        "id": 305,
+        "assigned_by": {
+            "id": 58,
+            "username": "cds-gaurang"
+        },
+        "date_assigned": "2024-12-18T07:28:05Z",
+        "date_resolved": null,
+        "events": [
+            {
+                "assignment_id": 305,
+                "actor": 58,
+                "event_type": "reassigned",
+                "datetime": "2025-01-03T06:44:48Z",
+                "context": {
+                    "from": 59,
+                    "to": 20,
+                    "entity_t_score": 30,
+                    "entity_c_score": 68
+                }
+            },
+            {
+                "assignment_id": 305,
+                "actor": 62,
+                "event_type": "created",
+                "datetime": "2024-12-18T07:28:05Z",
+                "context": {
+                    "to": 59,
+                    "entity_t_score": 30,
+                    "entity_c_score": 89
+                }
+            }
+        ],
+        "outcome": null,
+        "resolved_by": null,
+        "triaged_detections": {},
+        "host_id": 38970,
+        "account_id": null,
+        "assigned_to": {
+            "id": 20,
+            "username": "admin"
+        }
+    },
+    "past_assignments": [],
+    "roles": [],
+    "edrs": [],
+    "account_access_history": [
+        {
+            "id": 93,
+            "uid": "johnh@lab.tme.local",
+            "privilege": null,
+            "privilege_category": null,
+            "last_seen": "2024-12-17T03:13:11Z"
+        }
+    ],
+    "service_access_history": [
+        {
+            "id": 1983,
+            "uid": "http/win-fs-02.lab.tme.local@lab.tme.local",
+            "privilege": null,
+            "privilege_category": null,
+            "last_seen": "2024-12-17T03:13:11Z"
+        },
+        {
+            "id": 1982,
+            "uid": "cifs/win-fs-02.lab.tme.local@lab.tme.local",
+            "privilege": null,
+            "privilege_category": null,
+            "last_seen": "2024-12-17T03:13:05Z"
+        },
+        {
+            "id": 73,
+            "uid": "krbtgt/lab.tme.local@lab.tme.local",
+            "privilege": null,
+            "privilege_category": null,
+            "last_seen": "2024-12-17T03:13:05Z"
+        }
+    ],
+    "detection_summaries": [
+        {
+            "detection_id": 6926,
+            "detection_url": "https://hc2024.vectracloudlab.com/detections/6926",
+            "detection_type": "RPC Targeted Recon",
+            "detection_category": "RECONNAISSANCE",
+            "is_targeting_key_asset": false,
+            "state": "active",
+            "threat": 54,
+            "certainty": 33,
+            "is_triaged": false,
+            "tags": [],
+            "summary": {
+                "accounts": [
+                    ""
+                ],
+                "function_uuids": [
+                    "wkssvc",
+                    "srvsvc"
+                ],
+                "dst_ips": [
+                    "1.1.1.1"
+                ]
+            },
+            "assigned_to": "admin",
+            "assigned_date": "2024-12-18T07:28:05Z"
+        },
+        {
+            "detection_id": 6928,
+            "detection_url": "https://hc2024.vectracloudlab.com/detections/6928",
+            "detection_type": "Data Smuggler",
+            "detection_category": "EXFILTRATION",
+            "is_targeting_key_asset": false,
+            "state": "active",
+            "threat": 0,
+            "certainty": 0,
+            "is_triaged": true,
+            "tags": [],
+            "summary": {
+                "dst_ports": [
+                    443
+                ],
+                "protocols": [
+                    "tcp"
+                ],
+                "bytes_sent": 735310080,
+                "dst_ips": [
+                    "content.dropboxapi.com"
+                ]
+            },
+            "assigned_to": "admin",
+            "assigned_date": "2024-12-18T07:28:05Z"
+        },
+        {
+            "detection_id": 6927,
+            "detection_url": "https://hc2024.vectracloudlab.com/detections/6927",
+            "detection_type": "Hidden HTTPS Tunnel",
+            "detection_category": "COMMAND & CONTROL",
+            "is_targeting_key_asset": false,
+            "state": "active",
+            "threat": 0,
+            "certainty": 0,
+            "is_triaged": true,
+            "tags": [],
+            "summary": {
+                "dst_ips": [
+                    "1.1.1.1"
+                ],
+                "num_sessions": 117,
+                "bytes_sent": 29139,
+                "bytes_received": 648472,
+                "description": "This host communicated with an external destination using HTTPS where another protocol was running over the top of the session. The host appeared to be under the control of the external destination."
+            },
+            "assigned_to": "admin",
+            "assigned_date": "2024-12-18T07:28:05Z"
+        }
+    ],
+    "campaign_summaries": [],
+    "last_seen": "2024-12-17T03:13:29Z",
+    "suspicious_admin_learnings": {
+        "managers_of_host": [],
+        "host_manages": []
+    },
+    "shell_knocker": [],
+    "has_shell_knocker_learnings": false,
+    "host_session_luids": [
+        "GqZ-9a5q"
+    ],
+    "host_luid": null
+}

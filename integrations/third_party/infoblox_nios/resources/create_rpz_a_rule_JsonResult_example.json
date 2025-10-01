@@ -1,0 +1,12 @@
+{
+    "_ref": "record:rpz:a/ZG5zLmJpbmRfYSQuX2RlZmF1bHQuY29tLnJwei50aHJlYXQsMTEuMi4xMi4xMCwwLjAuMC4w:10.12.2.11.threat.rpz.com/default",
+    "comment": "nightly-test-a-sub",
+    "disable": false,
+    "extattrs": {},
+    "ipv4addr": "0.0.0.0",
+    "name": "10.12.2.11.threat.rpz.com",
+    "rp_zone": "threat.rpz.com",
+    "use_ttl": false,
+    "view": "default",
+    "zone": "threat.rpz.com"
+}

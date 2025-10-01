@@ -34,6 +34,7 @@ class Products(Generic[_T]):
 
 ActionName: TypeAlias = str
 ConnectorName: TypeAlias = str
+JsonString: TypeAlias = str
 JobName: TypeAlias = str
 WidgetName: TypeAlias = str
 ManagerName: TypeAlias = str

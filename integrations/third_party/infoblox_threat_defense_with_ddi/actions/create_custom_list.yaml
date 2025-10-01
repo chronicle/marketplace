@@ -1,61 +1,55 @@
-name: Create Custom List
-description: Creates a new custom list for use in security policies.
-integration_identifier: InfobloxThreatDefenseWithDDI
-parameters:
-- name: Name
-  default_value: ' '
-  type: string
-  description: Specify the name of the Custom List to create.
-  is_mandatory: true
-- name: Type
-  default_value: custom_list
-  type: string
-  description: Specify the type of Custom List to create.
-  is_mandatory: true
-- name: Items
-  default_value: null
-  type: string
-  description: Specify comma-separated items to include in the Custom List.
-  is_mandatory: false
-- name: Description
-  default_value: null
-  type: string
-  description: Description of Custom List.
-  is_mandatory: false
-- name: Confidence Level
-  default_value: High
-  type: ddl
-  description: Specify the confidence level for this list.
-  is_mandatory: false
-  optional_values:
-  - High
-  - Medium
-  - Low
-- name: Threat Level
-  default_value: Low
-  type: ddl
-  description: Specify the threat level for this list.
-  is_mandatory: false
-  optional_values:
-  - High
-  - Medium
-  - Low
-  - Info
-- name: Tags
-  default_value: null
-  type: string
-  description: Add tags to categorize and organize the Custom List
-  is_mandatory: false
-dynamic_results_metadata:
-- result_name: JsonResult
-  show_result: true
-  result_example: "{\n    \"confidence_level\": \"MEDIUM\",\n    \"created_time\"\
-    : \"2025-07-07T09:01:38Z\",\n    \"description\": \"Test action\",\n    \"id\"\
-    : 831832,\n    \"item_count\": 1,\n    \"items\": [\n        \"example1.somedomain.com\"\
-    \n    ],\n    \"items_described\": [],\n    \"name\": \"test-89\",\n    \"policies\"\
-    : [],\n    \"tags\": {\n        \"Test2\": \"SS2\"\n    },\n    \"threat_level\"\
-    : \"INFO\",\n    \"type\": \"custom_list\",\n    \"updated_time\": \"2025-07-07T09:01:38Z\"\
-    \n}"
-default_result_value: ''
 creator: Admin
+default_result_value: ''
+description: Creates a new custom list for use in security policies.
+dynamic_results_metadata:
+-   result_example_path: resources/create_custom_list_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: InfobloxThreatDefenseWithDDI
+name: Create Custom List
+parameters:
+-   default_value: ' '
+    description: Specify the name of the Custom List to create.
+    is_mandatory: true
+    name: Name
+    type: string
+-   default_value: custom_list
+    description: Specify the type of Custom List to create.
+    is_mandatory: true
+    name: Type
+    type: string
+-   default_value: null
+    description: Specify comma-separated items to include in the Custom List.
+    is_mandatory: false
+    name: Items
+    type: string
+-   default_value: null
+    description: Description of Custom List.
+    is_mandatory: false
+    name: Description
+    type: string
+-   default_value: High
+    description: Specify the confidence level for this list.
+    is_mandatory: false
+    name: Confidence Level
+    optional_values:
+    - High
+    - Medium
+    - Low
+    type: ddl
+-   default_value: Low
+    description: Specify the threat level for this list.
+    is_mandatory: false
+    name: Threat Level
+    optional_values:
+    - High
+    - Medium
+    - Low
+    - Info
+    type: ddl
+-   default_value: null
+    description: Add tags to categorize and organize the Custom List
+    is_mandatory: false
+    name: Tags
+    type: string
 script_result_name: ScriptResult

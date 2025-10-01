@@ -1,0 +1,56 @@
+{
+    "assignment": {
+        "id": 110,
+        "assigned_by": {
+            "id": 33,
+            "username": "api_client_a7f5be37ee144f3495ec08c150146c7a"
+        },
+        "date_assigned": "2023-09-11T06:33:08Z",
+        "date_resolved": "2023-09-11T06:34:12Z",
+        "events": [
+            {
+                "assignment_id": 110,
+                "actor": 35,
+                "event_type": "resolved",
+                "datetime": "2023-09-11T06:34:12Z",
+                "context": {
+                    "entity_t_score": 33,
+                    "entity_c_score": 89,
+                    "triage_as": null,
+                    "triaged_detection_ids": null,
+                    "fixed_detection_ids": null,
+                    "created_rule_ids": null
+                }
+            },
+            {
+                "assignment_id": 110,
+                "actor": 33,
+                "event_type": "created",
+                "datetime": "2023-09-11T06:33:08Z",
+                "context": {
+                    "to": 23,
+                    "entity_t_score": 33,
+                    "entity_c_score": 89
+                }
+            }
+        ],
+        "outcome": {
+            "id": 1,
+            "builtin": true,
+            "user_selectable": true,
+            "title": "Benign True Positive",
+            "category": "benign_true_positive"
+        },
+        "resolved_by": {
+            "id": 35,
+            "username": "api_client_24f38d33d35947208f5d47aad8235cc2"
+        },
+        "triaged_detections": {},
+        "host_id": null,
+        "account_id": 20,
+        "assigned_to": {
+            "id": 23,
+            "username": "vectra_mdr"
+        }
+    }
+}

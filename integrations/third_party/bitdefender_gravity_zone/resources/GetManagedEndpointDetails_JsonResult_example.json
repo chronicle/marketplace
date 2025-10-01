@@ -1,0 +1,56 @@
+{
+    "result": {
+        "id": "54a28b41b1a43d89367b23fd",
+        "name": "WIN-TGQDU499RS4",
+        "companyId": "5575a235d2172c65038b454e",
+        "operatingSystem": "Windows Server 2008 R2 Datacenter",
+        "state": 1,
+        "ip": "1.1.1.1",
+        "lastSeen": "2015-06-22T13:46:59",
+        "machineType": 1,
+        "agent": {
+            "engineVersion": "7.61184",
+            "primaryEngine": 1,
+            "fallbackEngine": 2,
+            "lastUpdate": "2015-06-22T13:40:06",
+            "licensed": 1,
+            "productOutdated": false,
+            "productUpdateDisabled": false,
+            "productVersion": "1.1.1.1",
+            "signatureOutdated": false,
+            "signatureUpdateDisabled": false,
+            "type": 3
+        },
+        "group": {
+            "id": "5575a235d2172c65038b456d",
+            "name": "Custom Groups"
+        },
+        "malwareStatus": {
+            "detection": false,
+            "infected": false
+        },
+        "modules": {
+            "advancedThreatControl": false,
+            "antimalware": false,
+            "contentControl": false,
+            "deviceControl": false,
+            "firewall": false,
+            "powerUser": false,
+            "networkAttackDefense": false
+        },
+        "policy": {
+            "id": "5121da426803fa2d0e000017",
+            "applied": true,
+            "name": "Default policy"
+        },
+        "label": "endpoint label",
+        "moveState": 1,
+        "riskScore": {
+            "value": "81%",
+            "impact": "High",
+            "misconfigurations": "70%",
+            "appVulnerabilities": "11%",
+            "humanRisks": "19%"
+        }
+    }
+}

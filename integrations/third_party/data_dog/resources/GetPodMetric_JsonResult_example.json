@@ -1,0 +1,240 @@
+{
+    "pod_name_X": {
+        "pod_CPU": {
+            "status": "ok",
+            "res_type": "time_series",
+            "from_date": 1507040000000,
+            "series": [
+                {
+                    "end": 1610668799000,
+                    "attributes": {},
+                    "metric": "kubernetes.cpu.system.total",
+                    "interval": 604800,
+                    "tag_set": [
+                        "kube_namespace:y",
+                        "pod_name:x"
+                    ],
+                    "start": 1602201600000,
+                    "length": 14,
+                    "query_index": 0,
+                    "aggr": "avg",
+                    "scope": "kube_namespace:y,pod_name:x",
+                    "pointlist": [
+                        [
+                            1602201600000.0,
+                            0.0003853833283493937
+                        ],
+                        [
+                            1602806400000.0,
+                            0.00036236030051059264
+                        ],
+                        [
+                            1603411200000.0,
+                            0.0004022896314672298
+                        ],
+                        [
+                            1604016000000.0,
+                            0.00036836003994138866
+                        ],
+                        [
+                            1604620800000.0,
+                            0.00039237702930315773
+                        ]
+                    ],
+                    "expression": "avg:kubernetes.cpu.system.total{kube_namespace:y,pod_name:x}",
+                    "unit": [
+                        {
+                            "family": "cpu",
+                            "scale_factor": 1.0,
+                            "name": "core",
+                            "short_name": null,
+                            "plural": "cores",
+                            "id": 31
+                        },
+                        null
+                    ],
+                    "display_name": "kubernetes.cpu.system.total"
+                }
+            ],
+            "to_date": 1610557457000,
+            "resp_version": 1,
+            "query": "avg:kubernetes.cpu.system.total{pod_name:x}by{pod_name,kube_namespace}",
+            "message": "",
+            "group_by": [
+                "kube_namespace",
+                "pod_name"
+            ]
+        },
+        "pod_memory": {
+            "status": "ok",
+            "res_type": "time_series",
+            "from_date": 1507040000000,
+            "series": [
+                {
+                    "end": 1610668799000,
+                    "attributes": {},
+                    "metric": "kubernetes.memory.usage_pct",
+                    "interval": 604800,
+                    "tag_set": [
+                        "kube_namespace:y",
+                        "pod_name:x"
+                    ],
+                    "start": 1602201600000,
+                    "length": 14,
+                    "query_index": 0,
+                    "aggr": "avg",
+                    "scope": "kube_namespace:y,pod_name:x",
+                    "pointlist": [
+                        [
+                            1602201600000.0,
+                            0.17388684940859045
+                        ],
+                        [
+                            1602806400000.0,
+                            0.20004428429430668
+                        ],
+                        [
+                            1603411200000.0,
+                            0.18134797875370298
+                        ],
+                        [
+                            1604016000000.0,
+                            0.25646502505858065
+                        ],
+                        [
+                            1604620800000.0,
+                            0.2630635437274736
+                        ]
+                    ],
+                    "expression": "avg:kubernetes.memory.usage_pct{kube_namespace:y,pod_name:x}",
+                    "unit": [
+                        {
+                            "family": "percentage",
+                            "scale_factor": 100.0,
+                            "name": "fraction",
+                            "short_name": null,
+                            "plural": "fractions",
+                            "id": 16
+                        },
+                        null
+                    ],
+                    "display_name": "kubernetes.memory.usage_pct"
+                }
+            ],
+            "to_date": 1610557457000,
+            "resp_version": 1,
+            "query": "avg:kubernetes.memory.usage_pct{pod_name:x}by{pod_name,kube_namespace}",
+            "message": "",
+            "group_by": [
+                "kube_namespace",
+                "pod_name"
+            ]
+        },
+        "pod_processes": {
+            "meta": {
+                "page": {
+                    "after": "abcdef",
+                    "size": 6
+                }
+            },
+            "data": [
+                {
+                    "type": "process",
+                    "id": "123456",
+                    "attributes": {
+                        "cmdline": "",
+                        "timestamp": "2021-01-21T13:50:33",
+                        "start": "2020-10-24T04:28:57",
+                        "user": "root",
+                        "pid": 1234,
+                        "ppid": 1111,
+                        "host": "i-12345",
+                        "tags": [
+                            ""
+                        ]
+                    }
+                },
+                {
+                    "type": "process",
+                    "id": "123456",
+                    "attributes": {
+                        "cmdline": "",
+                        "timestamp": "2021-01-21T13:45:03",
+                        "start": "2020-12-23T12:35:52",
+                        "user": "root",
+                        "pid": 1234,
+                        "ppid": 1111,
+                        "host": "i-123456789",
+                        "tags": [
+                            ""
+                        ]
+                    }
+                },
+                {
+                    "type": "process",
+                    "id": "123456",
+                    "attributes": {
+                        "cmdline": "",
+                        "timestamp": "2021-01-21T13:50:33",
+                        "start": "2020-12-23T13:23:30",
+                        "user": "root",
+                        "pid": 1234,
+                        "ppid": 1111,
+                        "host": "i-123456",
+                        "tags": [
+                            ""
+                        ]
+                    }
+                },
+                {
+                    "type": "process",
+                    "id": "123456",
+                    "attributes": {
+                        "cmdline": "",
+                        "timestamp": "2021-01-21T13:42:03",
+                        "start": "2020-12-29T15:57:01",
+                        "user": "root",
+                        "pid": 1234,
+                        "ppid": 1111,
+                        "host": "i-123456",
+                        "tags": [
+                            ""
+                        ]
+                    }
+                },
+                {
+                    "type": "process",
+                    "id": "123456",
+                    "attributes": {
+                        "cmdline": ".log",
+                        "timestamp": "2021-01-21T13:44:33",
+                        "start": "2020-12-29T18:12:04",
+                        "user": "root",
+                        "pid": 1234,
+                        "ppid": 1111,
+                        "host": "i-123456",
+                        "tags": [
+                            ""
+                        ]
+                    }
+                },
+                {
+                    "type": "process",
+                    "id": "123456",
+                    "attributes": {
+                        "cmdline": "",
+                        "timestamp": "2021-01-21T13:43:03",
+                        "start": "2020-12-30T10:57:17",
+                        "user": "root",
+                        "pid": 1234,
+                        "ppid": 1111,
+                        "host": "i-123456",
+                        "tags": [
+                            ""
+                        ]
+                    }
+                }
+            ]
+        }
+    }
+}

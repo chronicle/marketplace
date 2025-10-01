@@ -1,0 +1,36 @@
+{
+    "data": {
+        "id": "Ln3jtww",
+        "title": "80e65c37e8d2",
+        "url_viewer": "https://ibb.co/Ln3tww",
+        "url": "https://i.ibb.co/2qMWcc/80e65c37e8d2.png",
+        "display_url": "https://i.ibb.co/MMmwTT/80e6c37e8d2.png",
+        "size": 52056,
+        "time": "1600338508",
+        "expiration": "600",
+        "image": {
+            "filename": "80e65ce8d2.png",
+            "name": "80e65c37e8d2",
+            "mime": "image/png",
+            "extension": "png",
+            "url": "https://i.ibb.co/72qWcc/80e657e8d2.png"
+        },
+        "thumb": {
+            "filename": "80e65c37e8d2.png",
+            "name": "80e65c37e8d2",
+            "mime": "image/png",
+            "extension": "png",
+            "url": "https://i.ib.co/Ln3jtww/80ec37ed2.png"
+        },
+        "medium": {
+            "filename": "80e637e8d2.png",
+            "name": "80e65c38d2",
+            "mime": "image/png",
+            "extension": "png",
+            "url": "https://i.ibb.co/MMwVTT/80ec37e8d2.png"
+        },
+        "delete_url": "https://ibb.co/Ln3jw/ef3fed8a0e9b987a04a25e86ef8bd9"
+    },
+    "success": true,
+    "status": 200
+}

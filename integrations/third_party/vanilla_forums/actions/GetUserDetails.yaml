@@ -1,27 +1,16 @@
-name: Get User Details
-description: Get all user details by user ID
-integration_identifier: VanillaForums
-parameters:
-    -   name: User ID
-        default_value: '0'
-        type: string
-        description: The ID of the user who's details you want to fetch.
-        is_mandatory: true
-dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: "{\r\n\t\"banned\": 0,\r\n\t\"bypassSpam\": false,\r\n\t\"email\"\
-        : \"mail@mail.com\",\r\n\t\"emailConfirmed\": true,\r\n\t\"dateInserted\"\
-        : \"2021-08-01T11:46:39+00:00\",\r\n\t\"dateLastActive\": \"2021-08-01T11:46:39+00:00\"\
-        ,\r\n\t\"dateUpdated\": \"2021-08-08T13:31:44+00:00\",\r\n\t\"name\": \"Name\
-        \ Name\",\r\n\t\"photoUrl\": \"https://we.vanillicon.com/v2/e5ceb39e1c5d3c36eadb06ce5bc66c00.svg\"\
-        ,\r\n\t\"url\": \"https://community.siemplify.co/profile/Name%20Name\",\r\n\
-        \t\"points\": 137,\r\n\t\"roles\": [{\r\n\t\t\"roleID\": 2,\r\n\t\t\"name\"\
-        : \"Guest\"\r\n\t}],\r\n\t\"showEmail\": false,\r\n\t\"userID\": 0,\r\n\t\"\
-        countDiscussions\": 0,\r\n\t\"countComments\": 0,\r\n\t\"countPosts\": 0,\r\
-        \n\t\"label\": \"Siemplify Gold Member\",\r\n\t\"private\": false,\r\n\t\"\
-        rankID\": 113,\r\n\t\"hidden\": false\r\n}"
-default_result_value: ''
 creator: shirsavion
+default_result_value: ''
+description: Get all user details by user ID
+dynamic_results_metadata:
+-   result_example_path: resources/GetUserDetails_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: VanillaForums
+name: Get User Details
+parameters:
+-   default_value: '0'
+    description: The ID of the user who's details you want to fetch.
+    is_mandatory: true
+    name: User ID
+    type: string
 script_result_name: ScriptResult

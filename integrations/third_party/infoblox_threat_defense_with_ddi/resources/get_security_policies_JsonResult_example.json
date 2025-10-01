@@ -1,0 +1,56 @@
+{
+    "results": [
+        {
+            "access_codes": [],
+            "block_dns_rebind_attack": false,
+            "created_time": "2024-04-26T13:44:41Z",
+            "default_action": "action_allow",
+            "default_redirect_name": "",
+            "description": "",
+            "dfp_services": [],
+            "dfps": [],
+            "doh_enabled": false,
+            "doh_fqdn": "",
+            "ecs": true,
+            "id": 207665,
+            "is_default": false,
+            "migration_status": {
+                "uses_legacy_feeds": false
+            },
+            "name": "CDS_Block",
+            "net_address_dfps": [
+                {
+                    "addr_net": "",
+                    "dfp_ids": [],
+                    "dfp_service_ids": [],
+                    "end": "10.50.7.90",
+                    "external_scope_id": "c391412b-fcad-11ee-9624-4a0e9455f8d2",
+                    "host_id": "",
+                    "ip_space_id": "29b07f2d-fca7-11ee-952b-26d521eb7155",
+                    "scope_type": "RANGE",
+                    "start": "10.50.7.83"
+                }
+            ],
+            "network_lists": [
+                1527535
+            ],
+            "onprem_resolve": true,
+            "precedence": 8,
+            "roaming_device_groups": [],
+            "rules": [
+                {
+                    "action": "action_block",
+                    "data": "Default Block",
+                    "description": "Auto-generated",
+                    "type": "custom_list"
+                }
+            ],
+            "safe_search": true,
+            "scope_expr": "",
+            "scope_tags": [],
+            "tags": {},
+            "updated_time": "2025-06-26T12:28:08Z",
+            "user_groups": []
+        }
+    ]
+}

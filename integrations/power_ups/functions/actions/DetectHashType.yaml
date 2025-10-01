@@ -1,20 +1,17 @@
-name: Detect Hash Type
+creator: f56aefe2-fa00-4424-b2ce-de40f122b9c4
+default_result_value: ''
 description: This action detects the most likely hash type of entities. Supported
     types are SHA256, MD5, SHA1, SHA-512.
-integration_identifier: Functions
-parameters:
-    -   name: Hashes
-        default_value: ''
-        type: string
-        description: 'One or more hashes that are comma separated. '
-        is_mandatory: false
 dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: "[\n  {\n    \"Hash\": \"275A021BBFB6489E54D471899F7DB9D1663FC695EC2FE2A2C4538AABF651FD0F\"\
-        ,\n    \"HashType\": \"SHA-256\"\n  },\n  {\n    \"Hash\": \"202cb962ac59075b964b07152d234b70\"\
-        ,\n    \"HashType\": \"MD5\"\n  }\n]"
-default_result_value: ''
-creator: f56aefe2-fa00-4424-b2ce-de40f122b9c4
+-   result_example_path: resources/DetectHashType_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: Functions
+name: Detect Hash Type
+parameters:
+-   default_value: ''
+    description: 'One or more hashes that are comma separated. '
+    is_mandatory: false
+    name: Hashes
+    type: string
 script_result_name: IsSuccess

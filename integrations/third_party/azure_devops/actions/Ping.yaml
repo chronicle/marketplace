@@ -1,12 +1,11 @@
-name: Ping
-description: Test Connectivity with Azure Devops
-integration_identifier: Azure DevOps
-parameters: [ ]
-dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: '{}'
-default_result_value: ''
 creator: community-automation
+default_result_value: ''
+description: Test Connectivity with Azure Devops
+dynamic_results_metadata:
+-   result_example_path: null
+    result_name: JsonResult
+    show_result: true
+integration_identifier: Azure DevOps
+name: Ping
+parameters: []
 script_result_name: ScriptResult

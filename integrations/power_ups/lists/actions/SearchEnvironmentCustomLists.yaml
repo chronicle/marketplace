@@ -1,49 +1,22 @@
-name: Search Environment Custom Lists
+creator: 464c66fb-e0db-48d9-8c72-d2a408bb425d
+default_result_value: ''
 description: Search a specified string within the records of an environment's custom
     list. (If no values are provided will return all custom lists records)
-integration_identifier: Lists
-parameters:
-    -   name: String to Search
-        default_value: ''
-        type: string
-        description: String to search within list values
-        is_mandatory: false
-    -   name: Categories
-        default_value: ''
-        type: string
-        description: Comma separated values
-        is_mandatory: false
 dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: |
-            [
-                {
-                    "entityIdentifier": "1.1.1.1",
-                    "category": "vuln_scanner",
-                    "forDBMigration": false,
-                    "environments": [
-                        "Default Environment"
-                    ],
-                    "id": 5,
-                    "name": "test",
-                    "creationTimeUnixTimeInMs": 1673953571935,
-                    "modificationTimeUnixTimeInMs": 1673953571935
-                },
-                {
-                    "entityIdentifier": "1.1.1.1",
-                    "category": "vuln_scanner",
-                    "forDBMigration": false,
-                    "environments": [
-                        "Default Environment"
-                    ],
-                    "id": 6,
-                    "name": "test",
-                    "creationTimeUnixTimeInMs": 1673953584305,
-                    "modificationTimeUnixTimeInMs": 1673953584305
-                }
-            ]
-default_result_value: ''
-creator: 464c66fb-e0db-48d9-8c72-d2a408bb425d
+-   result_example_path: resources/SearchEnvironmentCustomLists_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: Lists
+name: Search Environment Custom Lists
+parameters:
+-   default_value: ''
+    description: String to search within list values
+    is_mandatory: false
+    name: String to Search
+    type: string
+-   default_value: ''
+    description: Comma separated values
+    is_mandatory: false
+    name: Categories
+    type: string
 script_result_name: Match_Records

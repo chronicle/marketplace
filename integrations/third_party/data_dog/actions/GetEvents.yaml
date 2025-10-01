@@ -1,72 +1,54 @@
-name: Get Events
+creator: Admin
+default_result_value: ''
 description: 'Get events from Datadog.
 
     For more information: https://docs.datadoghq.com/api/v1/events/'
+dynamic_results_metadata:
+-   result_example_path: resources/GetEvents_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
 integration_identifier: DataDog
+name: Get Events
 parameters:
-    -   name: Sources
-        default_value: alert
-        type: string
-        description: 'The sources to retrieve the events from.
+-   default_value: alert
+    description: 'The sources to retrieve the events from.
 
         For example in order to see events from the triggered monitor write: ''alert''  '
-        is_mandatory: true
-    -   name: Start Time
-        default_value: '1400000470'
-        type: string
-        description: The start time of the events in Unixtime.
-        is_mandatory: true
-    -   name: End Time
-        default_value: '1610557457'
-        type: string
-        description: The end time of the events  in Unixtime.
-        is_mandatory: true
-    -   name: Priority
-        default_value: all
-        type: ddl
-        optional_values:
-            - all
-            - normal
-            - low
-        description: "The priority of the events you want to retrieve. \n"
-        is_mandatory: false
-    -   name: Tags
-        default_value: monitor
-        type: string
-        description: 'A comma separated list of tags that will filter the list of monitors
+    is_mandatory: true
+    name: Sources
+    type: string
+-   default_value: '1400000470'
+    description: The start time of the events in Unixtime.
+    is_mandatory: true
+    name: Start Time
+    type: string
+-   default_value: '1610557457'
+    description: The end time of the events  in Unixtime.
+    is_mandatory: true
+    name: End Time
+    type: string
+-   default_value: all
+    description: "The priority of the events you want to retrieve. \n"
+    is_mandatory: false
+    name: Priority
+    optional_values:
+    - all
+    - normal
+    - low
+    type: ddl
+-   default_value: monitor
+    description: 'A comma separated list of tags that will filter the list of monitors
         by scope.
 
         For example: ''monitor''.'
-        is_mandatory: false
-    -   name: Unaggregated
-        default_value: 'true'
-        type: boolean
-        description: 'True- if you want to retrieve the full list of events.
+    is_mandatory: false
+    name: Tags
+    type: string
+-   default_value: 'true'
+    description: 'True- if you want to retrieve the full list of events.
 
         False - if you want to retrieve aggregated list of events.'
-        is_mandatory: false
-dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: "{\r\n\t\"events\": [{\r\n\t\t\"date_happened\": 1610487676,\r\
-        \n\t\t\"alert_type\": \"error\",\r\n\t\t\"is_aggregate\": false,\r\n\t\t\"\
-        title\": \"[Triggered on {host:i-123456}] Node filesystem used in Percent\
-        \ i-123456\",\r\n\t\t\"url\": \"/event/event?id=1111111111\",\r\n\t\t\"text\"\
-        : \"\",\r\n\t\t\"tags\": [\"monitor\", \"region:us-west-2\", \"security-group:y\"\
-        , \"security-group:x\"],\r\n\t\t\"comments\": [],\r\n\t\t\"device_name\":\
-        \ null,\r\n\t\t\"priority\": \"normal\",\r\n\t\t\"source\": \"Monitor Alert\"\
-        ,\r\n\t\t\"host\": \"i-123456\",\r\n\t\t\"resource\": \"/api/v1/events/aaabbbccc111\"\
-        ,\r\n\t\t\"id\": \"aaabbbccc111\"\r\n\t}, {\r\n\t\t\"date_happened\": 1610487676,\r\
-        \n\t\t\"alert_type\": \"error\",\r\n\t\t\"is_aggregate\": true,\r\n\t\t\"\
-        title\": \"[Triggered on {host:i-123456}] Node filesystem used in Percent\
-        \ i-123456\",\r\n\t\t\"url\": \"/event/event?id=22222222\",\r\n\t\t\"text\"\
-        : \"\",\r\n\t\t\"tags\": [\"monitor\", \"region:us-west-2\"],\r\n\t\t\"comments\"\
-        : [],\r\n\t\t\"children\": [{\r\n\t\t\t\"date_happened\": 1610487676,\r\n\t\
-        \t\t\"alert_type\": \"error\",\r\n\t\t\t\"id\": \"22222222\"\r\n\t\t}],\r\n\
-        \t\t\"priority\": \"normal\",\r\n\t\t\"source\": \"Monitor Alert\",\r\n\t\t\
-        \"host\": \"i-123456\",\r\n\t\t\"resource\": \"/api/v1/events/2222222\",\r\
-        \n\t\t\"device_name\": null,\r\n\t\t\"id\": 2222222\r\n\t}]\r\n}"
-default_result_value: ''
-creator: Admin
+    is_mandatory: false
+    name: Unaggregated
+    type: boolean
 script_result_name: ScriptResult

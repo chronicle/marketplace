@@ -1,43 +1,18 @@
-name: Get Meeting Recording
+creator: TehilaGourary
+default_result_value: ''
 description: 'Fetch a specific recording stored in cloud
 
     '
-integration_identifier: Zoom
-parameters:
-    -   name: Meeting ID
-        default_value: '123456'
-        type: string
-        description: The ID of the desired meeting recording
-        is_mandatory: true
 dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: "{\r\n\t\"uuid\": \"gkABCDEbbbbbbbkPuA==\",\r\n\t\"id\": 68000000031879,\r\
-        \n\t\"account_id\": \"EABkdslfBBBdk\",\r\n\t\"host_id\": \"z8yBXksaAAjdhfsfdfkjgg\"\
-        ,\r\n\t\"topic\": \"MyTestPollMeeting\",\r\n\t\"type\": 2,\r\n\t\"start_time\"\
-        : \"2019-08-29T21:54:49Z\",\r\n\t\"timezone\": \"America/Los_Angeles\",\r\n\
-        \t\"duration\": 1,\r\n\t\"total_size\": 47383,\r\n\t\"recording_count\": 3,\r\
-        \n\t\"share_url\": \"https://api.zoom.us/recording/share/abcdkhfdbbfdjbg\"\
-        ,\r\n\t\"recording_files\": [{\r\n\t\t\t\"id\": \"96119skjlfhdshkjf-djkfndjf0-f791\"\
-        ,\r\n\t\t\t\"meeting_id\": \"gkABCDEbbbbbbbkPuA==\",\r\n\t\t\t\"recording_start\"\
-        : \"2019-08-29T21:54:55Z\",\r\n\t\t\t\"recording_end\": \"2019-08-29T21:55:24Z\"\
-        ,\r\n\t\t\t\"file_type\": \"MP4\",\r\n\t\t\t\"file_size\": 37285,\r\n\t\t\t\
-        \"play_url\": \"https://api.zoom.us/recording/play/Qg75t7xZBtEbAkjdlgbfdngBBBB\"\
-        ,\r\n\t\t\t\"download_url\": \"https://api.zoom.us/recording/download/Qg75t7xZBtEbAkjdlgbfdngBBBB\"\
-        ,\r\n\t\t\t\"status\": \"completed\",\r\n\t\t\t\"recording_type\": \"shared_screen_with_speaker_view\"\
-        \r\n\t\t},\r\n\t\t{\r\n\t\t\t\"id\": \"5890sfjkdsf-aaaakdf-fbbb618718e\",\r\
-        \n\t\t\t\"meeting_id\": \"gkABCDEbbbbbbbkPuA==\",\r\n\t\t\t\"recording_start\"\
-        : \"2019-08-29T21:54:55Z\",\r\n\t\t\t\"recording_end\": \"2019-08-29T21:55:24Z\"\
-        ,\r\n\t\t\t\"file_type\": \"M4A\",\r\n\t\t\t\"file_size\": 10098,\r\n\t\t\t\
-        \"play_url\": \"https://api.zoom.us/recording/play/ABdkEEEfhlgldfjkglfghlkfdklhsg\"\
-        ,\r\n\t\t\t\"download_url\": \"https://api.zoom.us/recording/download/ABdkEEEfhlgldfjkglfghlkfdklhsg\"\
-        ,\r\n\t\t\t\"status\": \"completed\",\r\n\t\t\t\"recording_type\": \"audio_only\"\
-        \r\n\t\t},\r\n\t\t{\r\n\t\t\t\"meeting_id\": \"gkABCDEbbbbbbbkPuA==\",\r\n\
-        \t\t\t\"recording_start\": \"2019-08-29T21:54:55Z\",\r\n\t\t\t\"recording_end\"\
-        : \"2019-08-29T21:55:24Z\",\r\n\t\t\t\"file_type\": \"TIMELINE\",\r\n\t\t\t\
-        \"download_url\": \"https://api.zoom.us/recording/download/e2ed-dlkjgdfkgh-kslsdbsjf1a\"\
-        \r\n\t\t}\r\n\t]\r\n}"
-default_result_value: ''
-creator: TehilaGourary
+-   result_example_path: resources/GetMeetingRecording_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: Zoom
+name: Get Meeting Recording
+parameters:
+-   default_value: '123456'
+    description: The ID of the desired meeting recording
+    is_mandatory: true
+    name: Meeting ID
+    type: string
 script_result_name: ScriptResult

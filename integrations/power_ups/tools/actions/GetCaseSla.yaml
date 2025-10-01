@@ -1,24 +1,17 @@
-name: Get Case SLA
-description: Gets the Case SLA and critical SLA in multiple formats.
-integration_identifier: Tools
-parameters:
-    -   name: DateTime Format
-        default_value: '%Y-%m-%d %H:%M:%S'
-        type: string
-        description: Specify the DateTime Format in which the SLA expiration time will
-            be presented by the action. Defaults to "%Y-%m-%d %H:%M:%S"
-        is_mandatory: true
-dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: false
-        # language=json
-        result_example: |
-            {
-                "SLA_unix": 1700748819259,
-                "SLA": "2023-11-23 14:13:39",
-                "critical_SLA_unix": 1700676819259,
-                "critical_SLA": "2023-11-22 18:13:39"
-            }
-default_result_value: ''
 creator: Admin
+default_result_value: ''
+description: Gets the Case SLA and critical SLA in multiple formats.
+dynamic_results_metadata:
+-   result_example_path: resources/GetCaseSla_JsonResult_example.json
+    result_name: JsonResult
+    show_result: false
+integration_identifier: Tools
+name: Get Case SLA
+parameters:
+-   default_value: '%Y-%m-%d %H:%M:%S'
+    description: Specify the DateTime Format in which the SLA expiration time will
+        be presented by the action. Defaults to "%Y-%m-%d %H:%M:%S"
+    is_mandatory: true
+    name: DateTime Format
+    type: string
 script_result_name: ScriptResult

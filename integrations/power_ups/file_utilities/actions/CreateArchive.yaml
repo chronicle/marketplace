@@ -1,38 +1,36 @@
-name: Create Archive
+creator: Rob
+default_result_value: ''
 description: 'Creates an archive file from a list of provided files or a directories.  Supports:
     zip, tar, gztar, bztar, xtar.
 
     Returns the location of the archive file.'
-integration_identifier: FileUtilities
-parameters:
-    -   name: Archive Type
-        default_value: zip
-        type: ddl
-        optional_values:
-            - zip
-            - tar
-            - gztar
-            - bztar
-            - xztar
-        description: "The type of archive to create.  \n\nSupports: \nzip,\nuncompressed\
-        \ tar-file\ngzip'ed tar-file\nbzip2'ed tar-file\nxz'ed tar-file"
-        is_mandatory: true
-    -   name: Archive Base Name
-        default_value: <filename>
-        type: string
-        description: The name of the archive file that will be created without the extension.
-        is_mandatory: true
-    -   name: Archive Input
-        default_value: <archive input>
-        type: string
-        description: Either a comma delimited list of files or a directory path.
-        is_mandatory: true
 dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: "{\n    \"success\": true,\n    \"archive\": \"/opt/siemplify/siemplify_server/Scripting/FileUtilities/Archives/testarchive.zip\"\
-        \n}"
-default_result_value: ''
-creator: Rob
+-   result_example_path: resources/CreateArchive_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: FileUtilities
+name: Create Archive
+parameters:
+-   default_value: zip
+    description: "The type of archive to create.  \n\nSupports: \nzip,\nuncompressed\
+        \ tar-file\ngzip'ed tar-file\nbzip2'ed tar-file\nxz'ed tar-file"
+    is_mandatory: true
+    name: Archive Type
+    optional_values:
+    - zip
+    - tar
+    - gztar
+    - bztar
+    - xztar
+    type: ddl
+-   default_value: <filename>
+    description: The name of the archive file that will be created without the extension.
+    is_mandatory: true
+    name: Archive Base Name
+    type: string
+-   default_value: <archive input>
+    description: Either a comma delimited list of files or a directory path.
+    is_mandatory: true
+    name: Archive Input
+    type: string
 script_result_name: ScriptResult

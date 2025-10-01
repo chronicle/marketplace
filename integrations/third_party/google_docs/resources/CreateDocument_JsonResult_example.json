@@ -1,0 +1,99 @@
+{
+    "kind": "drive#file",
+    "id": "1bVDM43X43X4Ogfzzvb_PmPRobMmRdAsmOOgk",
+    "name": "test.png",
+    "mimeType": "image/png",
+    "starred": false,
+    "trashed": false,
+    "explicitlyTrashed": false,
+    "parents": [
+        "0ADdNAjNcLms6Uk9PVA"
+    ],
+    "spaces": [
+        "drive"
+    ],
+    "version": "1",
+    "webContentLink": "https://drive.google.com/uc?id=somid&export=download",
+    "webViewLink": "https://drive.google.com/file/d/eid/view?usp=drivesdk",
+    "iconLink": "https://drive-thirdparty.googleusercontent.com/16/type/image/png",
+    "hasThumbnail": true,
+    "thumbnailLink": "https://lh3.googleusercontent.com/c2mMhnOEjpc4gfaHwYG9bIL_34-w952oa43C9IsiUg--NAyYlranEDibh_1qwJSBmS4327iDhNxFLnPUs=s220",
+    "thumbnailVersion": "1",
+    "viewedByMe": false,
+    "createdTime": "2020-10-03T08:42:26.734Z",
+    "modifiedTime": "2020-10-03T08:42:26.734Z",
+    "modifiedByMeTime": "2020-10-03T08:42:26.734Z",
+    "modifiedByMe": true,
+    "owners": [
+        {
+            "kind": "drive#user",
+            "displayName": "test@quickstart-155094408020996.iam.gserviceaccount.com",
+            "me": true,
+            "permissionId": "02214475487724192531",
+            "emailAddress": "test@quickstart-1553240908020996.iam.gserviceaccount.com"
+        }
+    ],
+    "lastModifyingUser": {
+        "kind": "drive#user",
+        "displayName": "test-api@quickstart-1550908020996.iam.gserviceaccount.com",
+        "me": true,
+        "permissionId": "02214475487724192531",
+        "emailAddress": "test-api@quickstart-1550908020996.iam.gserviceaccount.com"
+    },
+    "shared": false,
+    "ownedByMe": true,
+    "capabilities": {
+        "canAddChildren": false,
+        "canAddMyDriveParent": false,
+        "canChangeCopyRequiresWriterPermission": true,
+        "canChangeViewersCanCopyContent": true,
+        "canComment": true,
+        "canCopy": true,
+        "canDelete": true,
+        "canDownload": true,
+        "canEdit": true,
+        "canListChildren": false,
+        "canModifyContent": true,
+        "canMoveChildrenWithinDrive": false,
+        "canMoveItemIntoTeamDrive": true,
+        "canMoveItemOutOfDrive": true,
+        "canMoveItemWithinDrive": true,
+        "canReadRevisions": true,
+        "canRemoveChildren": false,
+        "canRemoveMyDriveParent": true,
+        "canRename": true,
+        "canShare": true,
+        "canTrash": true,
+        "canUntrash": true
+    },
+    "viewersCanCopyContent": true,
+    "copyRequiresWriterPermission": false,
+    "writersCanShare": true,
+    "permissions": [
+        {
+            "kind": "drive#permission",
+            "id": "02214475487724192531",
+            "type": "user",
+            "emailAddress": "test-api@quickstart-1550908020996.iam.gserviceaccount.com",
+            "role": "owner",
+            "displayName": "test-api@quickstart-1550908020996.iam.gserviceaccount.com",
+            "deleted": false
+        }
+    ],
+    "permissionIds": [
+        "02214475487724192531"
+    ],
+    "originalFilename": "test.png",
+    "fullFileExtension": "png",
+    "fileExtension": "png",
+    "md5Checksum": "d6419f2547edda03b7ce948d7356baf7",
+    "size": "226429",
+    "quotaBytesUsed": "226429",
+    "headRevisionId": "0BzdNAjNcLms6TGdlUlFmeTJUc0Q0UExXeS9FQ1NRL2FEMTBvPQ",
+    "imageMediaMetadata": {
+        "width": 996,
+        "height": 359,
+        "rotation": 0
+    },
+    "isAppAuthorized": true
+}

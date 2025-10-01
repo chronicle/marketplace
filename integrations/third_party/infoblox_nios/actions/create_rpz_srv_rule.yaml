@@ -1,67 +1,52 @@
-name: Create RPZ SRV Rule
+creator: Admin
+default_result_value: ''
 description: Adds an SRV record override in RPZ for service-based DNS lookups.
+dynamic_results_metadata:
+-   result_example_path: resources/create_rpz_srv_rule_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
 integration_identifier: InfobloxNIOS
+name: Create RPZ SRV Rule
 parameters:
--   name: Name
-    default_value: ''
-    type: string
+-   default_value: ''
     description: Specify the name of the rule.
     is_mandatory: true
--   name: Priority
-    default_value: ''
+    name: Name
     type: string
+-   default_value: ''
     description: The priority of the Substitute (SRV Record) Rule.
     is_mandatory: true
--   name: RP Zone
-    default_value: ''
+    name: Priority
     type: string
+-   default_value: ''
     description: 'The name of a response policy zone in which the record resides. '
     is_mandatory: true
--   name: Port
-    default_value: ''
+    name: RP Zone
     type: string
+-   default_value: ''
     description: The port of the Substitute (SRV Record) Rule.
     is_mandatory: true
--   name: Target
-    default_value: ''
+    name: Port
     type: string
+-   default_value: ''
     description: Text associated with the record.
     is_mandatory: true
--   name: Weight
-    default_value: ''
+    name: Target
     type: string
+-   default_value: ''
     description: The weight of the Substitute (SRV Record) Rule.
     is_mandatory: true
--   name: Comment
-    default_value: ''
+    name: Weight
     type: string
+-   default_value: ''
     description: Comment for this rule.
     is_mandatory: false
--   name: Additional Parameters
-    default_value: ''
+    name: Comment
     type: string
+-   default_value: ''
     description: JSON object containing additional parameters to create response policy
         zone.
     is_mandatory: false
-dynamic_results_metadata:
--   result_name: JsonResult
-    show_result: true
-    result_example: |
-        {
-            "_ref": "record:rpz:srv/ZG5zLmJpbmRfc3J2JC5fZGVmYXVsdC5jb20ucnB6LnRocmVhdC9uaWdodGx5My10ZXN0LXNydi1zdWIvMTAvMTAvMjIvdGhyZWF0LnJwei5jb20:nightly3-test-srv-sub.threat.rpz.com/default",
-            "comment": "nightly-test-srv-sub",
-            "disable": false,
-            "extattrs": {},
-            "name": "nightly3-test-srv-sub.threat.rpz.com",
-            "port": 22,
-            "priority": 10,
-            "rp_zone": "threat.rpz.com",
-            "target": "threat.rpz.com",
-            "use_ttl": false,
-            "view": "default",
-            "weight": 10,
-            "zone": "threat.rpz.com"
-        }
-default_result_value: ''
-creator: Admin
+    name: Additional Parameters
+    type: string
 script_result_name: ScriptResult

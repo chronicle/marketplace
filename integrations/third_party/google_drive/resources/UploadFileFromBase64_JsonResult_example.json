@@ -1,0 +1,105 @@
+{
+    "kind": "drive#file",
+    "id": "1UK6HruAvkNLHOAZdaO0iDKFdzU6CwazE",
+    "name": "Hello.txt",
+    "mimeType": "text/plain",
+    "starred": false,
+    "trashed": false,
+    "explicitlyTrashed": false,
+    "parents": [
+        "0ADdNAjNcLms6Uk9PVA"
+    ],
+    "spaces": [
+        "drive"
+    ],
+    "version": "4",
+    "webContentLink": "https://drive.google.com/uc?id=eid&export=download",
+    "webViewLink": "https://drive.google.com/file/d/eid/view?usp=drivesdk",
+    "iconLink": "https://drive-thirdparty.googleusercontent.com/16/type/text/plain",
+    "hasThumbnail": true,
+    "thumbnailLink": "https://lh3.googleusercontent.com/f6Gk8Rn7-pu-6xsekHcrKVl5d4Z9EduGvdyJmiUCuZSyCM1JCla6ywYgsDN1qPA3B6CWmYxUpxo=s220",
+    "thumbnailVersion": "1",
+    "viewedByMe": false,
+    "createdTime": "2020-10-03T12:12:57.070Z",
+    "modifiedTime": "2020-10-03T12:12:57.984Z",
+    "modifiedByMeTime": "2020-10-03T12:12:57.984Z",
+    "modifiedByMe": true,
+    "owners": [
+        {
+            "kind": "drive#user",
+            "displayName": "alon-api@quickstart-1550908020996.iam.gserviceaccount.com",
+            "me": true,
+            "permissionId": "02214475487724192531",
+            "emailAddress": "alon-api@quickstart-1550908020996.iam.gserviceaccount.com"
+        }
+    ],
+    "lastModifyingUser": {
+        "kind": "drive#user",
+        "displayName": "alon-api@quickstart-1550908020996.iam.gserviceaccount.com",
+        "me": true,
+        "permissionId": "02214475487724192531",
+        "emailAddress": "alon-api@quickstart-1550908020996.iam.gserviceaccount.com"
+    },
+    "shared": true,
+    "ownedByMe": true,
+    "capabilities": {
+        "canAddChildren": false,
+        "canAddMyDriveParent": false,
+        "canChangeCopyRequiresWriterPermission": true,
+        "canChangeViewersCanCopyContent": true,
+        "canComment": true,
+        "canCopy": true,
+        "canDelete": true,
+        "canDownload": true,
+        "canEdit": true,
+        "canListChildren": false,
+        "canModifyContent": true,
+        "canMoveChildrenWithinDrive": false,
+        "canMoveItemIntoTeamDrive": true,
+        "canMoveItemOutOfDrive": true,
+        "canMoveItemWithinDrive": true,
+        "canReadRevisions": true,
+        "canRemoveChildren": false,
+        "canRemoveMyDriveParent": true,
+        "canRename": true,
+        "canShare": true,
+        "canTrash": true,
+        "canUntrash": true
+    },
+    "viewersCanCopyContent": true,
+    "copyRequiresWriterPermission": false,
+    "writersCanShare": true,
+    "permissions": [
+        {
+            "kind": "drive#permission",
+            "id": "07712505579216618120",
+            "type": "user",
+            "emailAddress": "alon@siemplify.co",
+            "role": "writer",
+            "displayName": "Alon Cohen",
+            "photoLink": "https://lh3.googleusercontent.com/a-/AOh14GiMxKieoHd_kj45ZZ1IMl6XDsZMh4gFeXRmRi6LIg=s64",
+            "deleted": false
+        },
+        {
+            "kind": "drive#permission",
+            "id": "02214475487724192531",
+            "type": "user",
+            "emailAddress": "alon-api@quickstart-1550908020996.iam.gserviceaccount.com",
+            "role": "owner",
+            "displayName": "alon-api@quickstart-1550908020996.iam.gserviceaccount.com",
+            "deleted": false
+        }
+    ],
+    "permissionIds": [
+        "07712505579216618120",
+        "02214475487724192531"
+    ],
+    "originalFilename": "Hello.txt",
+    "fullFileExtension": "txt",
+    "fileExtension": "txt",
+    "md5Checksum": "65a8e27d8879283831b664bd8b7f0ad4",
+    "size": "13",
+    "quotaBytesUsed": "13",
+    "headRevisionId": "0BzdNAjNcLms6UERwdmFEdUZ4eXNWbTFFQ3pEdlAwZ1ppLzZ3PQ",
+    "isAppAuthorized": true
+}

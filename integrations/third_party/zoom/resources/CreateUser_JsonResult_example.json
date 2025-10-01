@@ -1,0 +1,45 @@
+{
+    "id": "k&KdKr6TLWuxdDtk0hjSzL",
+    "meta": {
+        "resourceType": "User",
+        "location": "https://api.zoom.us/scim2/Users/k&KdKr6TLWuxdDtk0hjSzL",
+        "version": "1.0.0"
+    },
+    "schemas": [
+        "urn:ietf:params:scim:schemas:core:2.0:User"
+    ],
+    "name": {
+        "givenName": "Fancy",
+        "familyName": "Being"
+    },
+    "phoneNumbers": [
+        {
+            "type": "work",
+            "value": "+01 11234567"
+        }
+    ],
+    "roles": [
+        {
+            "display": "user",
+            "value": "user",
+            "primary": true
+        }
+    ],
+    "groups": [
+        {
+            "display": "LA Group",
+            "type": "direct",
+            "primary": true
+        }
+    ],
+    "urn:ietf:params:scim:schemas:extension:enterprise:2.0:User": {
+        "department": "engineering",
+        "organization": "Cloud"
+    },
+    "urn:us:zoom:scim:schemas:extension:1.0:ZoomUser": {
+        "loginType": {
+            "workEmail": false,
+            "sso": true
+        }
+    }
+}

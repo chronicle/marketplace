@@ -1,85 +1,58 @@
-name: Create RPZ CNAME Rule
+creator: Admin
+default_result_value: ''
 description: 'Adds a CNAME rule to an existing RPZ to override DNS behavior. '
+dynamic_results_metadata:
+-   result_example_path: resources/create_rpz_cname_rule_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
 integration_identifier: InfobloxNIOS
+name: Create RPZ CNAME Rule
 parameters:
--   name: Substitute Name
-    type: string
-    description: 'The substitute name to assign (substitute domain only). '
+-   description: 'The substitute name to assign (substitute domain only). '
     is_mandatory: false
--   name: Rule Type
-    default_value: Block (No data)
-    type: ddl
+    name: Substitute Name
+    type: string
+-   default_value: Block (No data)
+    description: The type of the rule to create.
+    is_mandatory: true
+    name: Rule Type
     optional_values:
     - Passthru
     - Block (No such domain)
     - Substitute (Domain name)
     - Block (No data)
-    description: The type of the rule to create.
-    is_mandatory: true
--   name: Object Type
-    default_value: Domain Name
     type: ddl
+-   default_value: Domain Name
+    description: The type of the object for which to assign the rule.
+    is_mandatory: true
+    name: Object Type
     optional_values:
     - Domain Name
     - IP Address
     - Client IP Address
-    description: The type of the object for which to assign the rule.
-    is_mandatory: true
--   name: Name
-    default_value: ''
-    type: string
+    type: ddl
+-   default_value: ''
     description: The rule name in a FQDN format.
     is_mandatory: true
--   name: RP Zone
-    default_value: ''
+    name: Name
     type: string
+-   default_value: ''
     description: The zone to assign the rule to.
     is_mandatory: true
--   name: Comment
+    name: RP Zone
     type: string
-    description: Comment for this rule.
+-   description: Comment for this rule.
     is_mandatory: false
--   name: View
-    default_value: default
+    name: Comment
     type: string
+-   default_value: default
     description: The DNS view in which the records are located. By default, the 'default'
         DNS view is searched.
     is_mandatory: false
--   name: Additional Parameters
+    name: View
     type: string
-    description: JSON object containing additional parameters to create rpz rule.
+-   description: JSON object containing additional parameters to create rpz rule.
     is_mandatory: false
-dynamic_results_metadata:
--   result_name: JsonResult
-    show_result: true
-    result_example: |
-        [
-            {
-                "_ref": "record:rpz:cname:ipaddress/ZG5zLmJpbmRfY25hbWUkLl9kZWZhdWx0LmNvbS5ycHoudGhyZWF0LnJwei1pcC4xMC4yLjIuMTEuMzI:10.2.2.11.threat.rpz.com/default",
-                "canonical": "*",
-                "comment": "Block test1",
-                "disable": false,
-                "extattrs": {},
-                "name": "10.2.2.11.threat.rpz.com",
-                "rp_zone": "threat.rpz.com",
-                "use_ttl": false,
-                "view": "default",
-                "zone": "threat.rpz.com"
-            },
-            {
-                "_ref": "record:rpz:cname:clientipaddress/ZG5zLmJpbmRfY25hbWUkLl9kZWZhdWx0LmNvbS5ycHoudGhyZWF0LnJwei1jbGllbnQtaXAuMTAuMi4yLjE5LjMy:10.2.2.19.threat.rpz.com/default",
-                "canonical": "*",
-                "comment": "Block test1",
-                "disable": false,
-                "extattrs": {},
-                "is_ipv4": true,
-                "name": "10.2.2.19.threat.rpz.com",
-                "rp_zone": "threat.rpz.com",
-                "use_ttl": false,
-                "view": "default",
-                "zone": "threat.rpz.com"
-            }
-        ]
-default_result_value: ''
-creator: Admin
+    name: Additional Parameters
+    type: string
 script_result_name: ScriptResult

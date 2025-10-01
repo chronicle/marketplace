@@ -1,0 +1,35 @@
+{
+    "Email": true,
+    "UserName": true,
+    "UserDetails": {
+        "banned": 0,
+        "bypassSpam": false,
+        "email": "mail@mail.co",
+        "emailConfirmed": true,
+        "dateInserted": "2021-07-20T10:14:57+00:00",
+        "dateLastActive": "2021-09-05T10:54:58+00:00",
+        "dateUpdated": "2021-08-01T15:48:06+00:00",
+        "name": "Mail Mail",
+        "photoUrl": "https://wb.vanillicon.com/v2/bc5f30c1d3425047c142fd94c7e2a8f3.svg",
+        "url": "https://community.siemplify.co/profile/Mail%20Mail",
+        "points": 10,
+        "roles": [
+            {
+                "roleID": 8,
+                "name": "Member"
+            },
+            {
+                "roleID": 16,
+                "name": "Community Team"
+            }
+        ],
+        "showEmail": false,
+        "userID": 1,
+        "countDiscussions": 0,
+        "countComments": 0,
+        "countPosts": 0,
+        "label": "Community Team",
+        "private": false,
+        "rankID": 110
+    }
+}

@@ -1,0 +1,11 @@
+[
+    {
+        "id": 20,
+        "last_login": "2024-11-14T19:06:13Z",
+        "username": "admin",
+        "email": "",
+        "account_type": "local",
+        "authentication_profile": null,
+        "role": "Super Admin"
+    }
+]

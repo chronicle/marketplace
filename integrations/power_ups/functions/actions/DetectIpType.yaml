@@ -1,19 +1,17 @@
-name: Detect IP Type
+creator: f56aefe2-fa00-4424-b2ce-de40f122b9c4
+default_result_value: ''
 description: This action checks if an IP is an IPv4 address or IPv6 address.  IP Address
     entities will be enriched with IPType field.
-integration_identifier: Functions
-parameters:
-    -   name: IP Addresses
-        default_value: ''
-        type: string
-        description: Comma-separated
-        is_mandatory: false
 dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: '[{"Address": "2.2.2.2", "IPType": "IPV4"}, {"Address": "2001:db8:3333:4444:CCCC:DDDD:EEEE:FFFF",
-        "IPType": "IPV6"}, {"IPType": "IPV4", "Address": "1.1.1.1"}]'
-default_result_value: ''
-creator: f56aefe2-fa00-4424-b2ce-de40f122b9c4
+-   result_example_path: resources/DetectIpType_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: Functions
+name: Detect IP Type
+parameters:
+-   default_value: ''
+    description: Comma-separated
+    is_mandatory: false
+    name: IP Addresses
+    type: string
 script_result_name: IsSuccess

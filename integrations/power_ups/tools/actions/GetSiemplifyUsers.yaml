@@ -1,40 +1,17 @@
-name: Get Siemplify Users
+creator: Rob
+default_result_value: ''
 description: This action will return an object containing all users configured in
     the Siemplify system.
-integration_identifier: Tools
-parameters:
-    -   name: Hide Disabled Users
-        default_value: 'true'
-        type: boolean
-        description: Hide disabled users from the result.
-        is_mandatory: false
 dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: "{\n    \"siemplifyUsers\": [\n        {\n            \"permissionGroup\"\
-        : \"string\",\n            \"firstName\": \"string\",\n            \"lastName\"\
-        : \"string\",\n            \"permissionType\": 1,\n            \"role\": 1,\n\
-        \            \"socRoleId\": 1,\n            \"email\": \"string\",\n     \
-        \       \"userName\": \"string\",\n            \"imageBase64\": null,\n  \
-        \          \"userType\": 1,\n            \"identityProvider\": -1,\n     \
-        \       \"isDisabled\": false,\n            \"shouldShowLicenseAgreement\"\
-        : false,\n            \"lastLoginTime\": 1111111111111,\n            \"previousLoginTime\"\
-        : 1111111111111,\n            \"environments\": [\n                \"string\"\
-        \n            ],\n            \"id\": 1,\n            \"creationTimeUnixTimeInMs\"\
-        : 1111111111111,\n            \"modificationTimeUnixTimeInMs\": 1111111111111\n\
-        \        },\n        {\n            \"permissionGroup\": \"string\",\n   \
-        \         \"firstName\": \"string\",\n            \"lastName\": \"string\"\
-        ,\n            \"permissionType\": 1,\n            \"role\": 1,\n        \
-        \    \"socRoleId\": 1,\n            \"email\": \"string\",\n            \"\
-        userName\": \"string\",\n            \"imageBase64\": \"string\",\n      \
-        \      \"userType\": 1,\n            \"identityProvider\": -1,\n         \
-        \   \"isDisabled\": false,\n            \"shouldShowLicenseAgreement\": false,\n\
-        \            \"lastLoginTime\": 1111111111111,\n            \"previousLoginTime\"\
-        : 1111111111111,\n            \"environments\": [\n                \"string\"\
-        \n            ],\n            \"id\": 1,\n            \"creationTimeUnixTimeInMs\"\
-        : 1111111111111,\n            \"modificationTimeUnixTimeInMs\": 1111111111111\n\
-        \        }\n    ]\n}"
-default_result_value: ''
-creator: Rob
+-   result_example_path: resources/GetSiemplifyUsers_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: Tools
+name: Get Siemplify Users
+parameters:
+-   default_value: 'true'
+    description: Hide disabled users from the result.
+    is_mandatory: false
+    name: Hide Disabled Users
+    type: boolean
 script_result_name: ScriptResult

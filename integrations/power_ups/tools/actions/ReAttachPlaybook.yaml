@@ -1,22 +1,21 @@
-name: Re-Attach Playbook
+creator: Robert
+default_result_value: ''
 description: 'This action will remove a playbook from a case, delete any result data
     in the case from that playbook, and re-attach the playbook so it will run again.
 
     Requires installation of PostgreSQL integration, configured to the Shared Environment
     with an instance name of Siemplify.  See CSM / Support for additional details.'
-integration_identifier: Tools
-parameters:
-    -   name: Playbook Name
-        default_value: Basic Phishing PB - Zero to Hero
-        type: playbook_name
-        description: This is the name of the playbook that will be removed from the case
-            and re-attached.  Once re-attached, it will run again.
-        is_mandatory: true
 dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: '{}'
-default_result_value: ''
-creator: Robert
+-   result_example_path: null
+    result_name: JsonResult
+    show_result: true
+integration_identifier: Tools
+name: Re-Attach Playbook
+parameters:
+-   default_value: Basic Phishing PB - Zero to Hero
+    description: This is the name of the playbook that will be removed from the case
+        and re-attached.  Once re-attached, it will run again.
+    is_mandatory: true
+    name: Playbook Name
+    type: playbook_name
 script_result_name: ScriptResult

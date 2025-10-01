@@ -1,53 +1,39 @@
-name: Remote Lock Managed Device
-description: Remotely lock a managed computer using Jamf Pro MDM commands. This action will lock the device screen and can optionally display a custom message and phone number.
-script: RemoteLockManagedDevice.py
-type: containment
+creator: Admin
+default_result_value: ''
+description: Remotely lock a managed computer using Jamf Pro MDM commands. This action
+    will lock the device screen and can optionally display a custom message and phone
+    number.
+dynamic_results_metadata:
+-   result_example_path: resources/RemoteLockManagedDevice_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
 integration_identifier: Jamf
-timeout_seconds: 300
+name: Remote Lock Managed Device
 parameters:
-  - name: Computer ID
-    type: string
+-   default_value: ''
     description: The ID of the computer to lock (required)
     is_mandatory: true
-    default_value: ""
-  - name: PIN
+    name: Computer ID
     type: string
-    description: Optional 6-digit PIN code for unlocking the device (leave empty for no PIN)
+-   default_value: ''
+    description: Optional 6-digit PIN code for unlocking the device (leave empty for
+        no PIN)
     is_mandatory: false
-    default_value: ""
-  - name: Message
+    name: PIN
     type: string
+-   default_value: ''
     description: Optional custom message to display on the locked device screen
     is_mandatory: false
-    default_value: ""
-  - name: Phone Number
+    name: Message
     type: string
-    description: Optional phone number to display on the locked device screen for contact
+-   default_value: ''
+    description: Optional phone number to display on the locked device screen for
+        contact
     is_mandatory: false
-    default_value: ""
-dynamic_results_metadata:
-  - result_name: JsonResult
-    show_result: true
-    # language=json
-    result_example: |
-      {
-        "status": "success",
-        "message": "Remote lock command initiated",
-        "command_details": {
-          "computer_id": "12345",
-          "lock_message_used": true,
-          "phone_number_used": true,
-          "pin_used": true,
-          "timestamp": 1641234567,
-          "status": "initiated"
-        },
-        "api_response": {
-          "commandUuid": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
-          "requestType": "DEVICE_LOCK",
-          "status": "Pending"
-        }
-      }
-default_result_value: ""
-creator: Admin
+    name: Phone Number
+    type: string
+script: RemoteLockManagedDevice.py
 script_result_name: ScriptResult
 supported_entity_types: []
+timeout_seconds: 300
+type: containment

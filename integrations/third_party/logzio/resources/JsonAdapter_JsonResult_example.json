@@ -1,0 +1,12 @@
+{
+    "results": [
+        {
+            "entityType": "field_key",
+            "entityIdentifier": "field_value"
+        },
+        {
+            "entityType": "field_key2",
+            "entityIdentifier": "field_key2"
+        }
+    ]
+}

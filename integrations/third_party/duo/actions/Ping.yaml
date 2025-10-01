@@ -1,13 +1,12 @@
-name: Ping
+creator: John
+default_result_value: ''
 description: Uses the /check endpoint to verify that the Auth API integration and
     secret keys are valid, and that the signature is being generated properly.
-integration_identifier: DUO
-parameters: [ ]
 dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: '{}'
-default_result_value: ''
-creator: John
+-   result_example_path: null
+    result_name: JsonResult
+    show_result: true
+integration_identifier: DUO
+name: Ping
+parameters: []
 script_result_name: ScriptResult

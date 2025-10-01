@@ -1,40 +1,16 @@
-name: Describe Assignment
-description: Show all the details of an assignment for the given ID.
-integration_identifier: VectraRUX
-parameters:
-    -   name: Assignment ID
-        default_value: '0'
-        type: string
-        description: Unique assignment ID to get assignment
-        is_mandatory: true
-dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: "{\n    \"assignment\": {\n        \"id\": 110,\n        \"assigned_by\"\
-        : {\n            \"id\": 33,\n            \"username\": \"api_client_a7f5be37ee144f3495ec08c150146c7a\"\
-        \n        },\n        \"date_assigned\": \"2023-09-11T06:33:08Z\",\n     \
-        \   \"date_resolved\": \"2023-09-11T06:34:12Z\",\n        \"events\": [\n\
-        \            {\n                \"assignment_id\": 110,\n                \"\
-        actor\": 35,\n                \"event_type\": \"resolved\",\n            \
-        \    \"datetime\": \"2023-09-11T06:34:12Z\",\n                \"context\"\
-        : {\n                    \"entity_t_score\": 33,\n                    \"entity_c_score\"\
-        : 89,\n                    \"triage_as\": null,\n                    \"triaged_detection_ids\"\
-        : null,\n                    \"fixed_detection_ids\": null,\n            \
-        \        \"created_rule_ids\": null\n                }\n            },\n \
-        \           {\n                \"assignment_id\": 110,\n                \"\
-        actor\": 33,\n                \"event_type\": \"created\",\n             \
-        \   \"datetime\": \"2023-09-11T06:33:08Z\",\n                \"context\":\
-        \ {\n                    \"to\": 23,\n                    \"entity_t_score\"\
-        : 33,\n                    \"entity_c_score\": 89\n                }\n   \
-        \         }\n        ],\n        \"outcome\": {\n            \"id\": 1,\n\
-        \            \"builtin\": true,\n            \"user_selectable\": true,\n\
-        \            \"title\": \"Benign True Positive\",\n            \"category\"\
-        : \"benign_true_positive\"\n        },\n        \"resolved_by\": {\n     \
-        \       \"id\": 35,\n            \"username\": \"api_client_24f38d33d35947208f5d47aad8235cc2\"\
-        \n        },\n        \"triaged_detections\": {},\n        \"host_id\": null,\n\
-        \        \"account_id\": 20,\n        \"assigned_to\": {\n            \"id\"\
-        : 23,\n            \"username\": \"vectra_mdr\"\n        }\n    }\n}"
-default_result_value: ''
 creator: Admin
+default_result_value: ''
+description: Show all the details of an assignment for the given ID.
+dynamic_results_metadata:
+-   result_example_path: resources/Describe Assignment_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: VectraRUX
+name: Describe Assignment
+parameters:
+-   default_value: '0'
+    description: Unique assignment ID to get assignment
+    is_mandatory: true
+    name: Assignment ID
+    type: string
 script_result_name: ScriptResult

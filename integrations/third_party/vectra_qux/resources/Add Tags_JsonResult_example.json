@@ -1,0 +1,13 @@
+[
+    {
+        "Entity Id": "103",
+        "Entity Type": "account",
+        "Status": "success",
+        "Tags": [
+            "test-tag",
+            "t-tag",
+            "test-3",
+            "test-tag-2"
+        ]
+    }
+]

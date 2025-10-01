@@ -1,0 +1,7 @@
+{
+    "result": {
+        "readyForDownload": true,
+        "allInstancesUrl": "https://gravityzone.bitdefender.com/api/v1.0/http/downloadReportZip?reportId=5645cba6f12a9a8c5e8b4748&allInstances=1&serviceType=1",
+        "lastInstanceUrl": "https://gravityzone.bitdefender.com/api/v1.0/http/downloadReportZip?reportId=5645cba6f12a9a8c5e8b4748&allInstances=0&serviceType=1"
+    }
+}

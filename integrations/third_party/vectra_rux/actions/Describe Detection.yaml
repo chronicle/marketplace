@@ -1,40 +1,16 @@
-name: Describe Detection
-description: Show all the details of a detection for the given ID.
-integration_identifier: VectraRUX
-parameters:
-    -   name: Detection ID
-        default_value: '0'
-        type: string
-        description: Unique ID of detection to get detection.
-        is_mandatory: true
-dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: "{\n    \"notes\": [],\n    \"filtered_by_user\": false,\n   \
-        \ \"is_targeting_key_asset\": false,\n    \"detection_type\": \"Kerberoasting:\
-        \ Weak Cipher Request\",\n    \"detection\": \"Kerberoasting: Weak Cipher\
-        \ Request\",\n    \"description\": null,\n    \"id\": 34344,\n    \"last_timestamp\"\
-        : \"2024-12-20T01:02:48Z\",\n    \"triage_rule_id\": null,\n    \"custom_detection\"\
-        : null,\n    \"url\": \"https://308714519558.cc1.portal.vectra.ai/detections/34344\"\
-        ,\n    \"note\": null,\n    \"is_triaged\": false,\n    \"threat\": 5,\n \
-        \   \"assigned_to\": \"dogrady@vectra.ai\",\n    \"filtered_by_rule\": false,\n\
-        \    \"sensor\": \"w4ftj0a8\",\n    \"tags\": [],\n    \"type\": \"host\"\
-        ,\n    \"note_modified_by\": null,\n    \"certainty\": 5,\n    \"detection_url\"\
-        : \"https://308714519558.cc1.portal.vectra.ai/detections/34344\",\n    \"\
-        note_modified_timestamp\": null,\n    \"groups\": [],\n    \"first_timestamp\"\
-        : \"2024-12-20T01:02:48Z\",\n    \"state\": \"active\",\n    \"filtered_by_ai\"\
-        : false,\n    \"src_host\": {\n        \"id\": 68599,\n        \"ip\": \"\
-        1.1.1.1\",\n        \"name\": \"csoarqa-12\",\n        \"url\": \"https://308714519558.cc1.portal.vectra.ai/hosts/68599\"\
-        ,\n        \"is_key_asset\": false,\n        \"groups\": [],\n        \"threat\"\
-        : 76,\n        \"certainty\": 49\n    },\n    \"created_timestamp\": \"2024-12-20T01:04:12Z\"\
-        ,\n    \"is_marked_custom\": false,\n    \"src_ip\": \"1.1.1.1\",\n    \"\
-        assigned_date\": \"2025-01-02T09:39:15Z\",\n    \"data_source\": {\n     \
-        \   \"type\": \"Unknown sensor type\",\n        \"connection_name\": \"Unknown\
-        \ sensor name\",\n        \"connection_id\": \"w4ftj0a8\"\n    },\n    \"\
-        sensor_name\": \"EDR Sensor\",\n    \"src_account\": null,\n    \"is_custom_model\"\
-        : false,\n    \"detection_category\": \"reconnaissance\",\n    \"investigation_pivot_link\"\
-        : null\n}"
-default_result_value: ''
 creator: Admin
+default_result_value: ''
+description: Show all the details of a detection for the given ID.
+dynamic_results_metadata:
+-   result_example_path: resources/Describe Detection_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: VectraRUX
+name: Describe Detection
+parameters:
+-   default_value: '0'
+    description: Unique ID of detection to get detection.
+    is_mandatory: true
+    name: Detection ID
+    type: string
 script_result_name: ScriptResult

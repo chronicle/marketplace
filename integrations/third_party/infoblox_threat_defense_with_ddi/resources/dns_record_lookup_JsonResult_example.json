@@ -1,0 +1,104 @@
+{
+    "results": [
+        {
+            "absolute_name_spec": "crest.",
+            "absolute_zone_name": "crest.",
+            "comment": "Auto-created by Add Zone",
+            "compartment_id": "",
+            "created_at": "2025-05-07T09:51:55.056896Z",
+            "delegation": null,
+            "disabled": false,
+            "dns_absolute_name_spec": "crest.",
+            "dns_absolute_zone_name": "crest.",
+            "dns_name_in_zone": "",
+            "dns_rdata": "infoblox.localdomain.",
+            "id": "dns/record/9fa2075a-5ec7-40af-8498-6e5d5a50dbce",
+            "inheritance_sources": null,
+            "ipam_host": null,
+            "last_queried": null,
+            "name_in_zone": "",
+            "nios_metadata": {
+                "federation": true,
+                "gridId": "92b54f9e010e44c68cede2f69206b6f1",
+                "niosKey": [
+                    ".com.infoblox.dns.bind_ns$._default.crest..infoblox.localdomain"
+                ],
+                "objType": "record_ns"
+            },
+            "options": null,
+            "provider_metadata": null,
+            "rdata": {
+                "dname": "infoblox.localdomain."
+            },
+            "source": [
+                "SYSTEM"
+            ],
+            "subtype": "",
+            "tags": {
+                "nios/federation_enabled": "true",
+                "nios/grid_name": "crest_Infoblox_ise",
+                "nios/import_timestamp": "2025-05-07T09:51:42Z",
+                "nios/imported": "true"
+            },
+            "ttl": 28800,
+            "type": "NS",
+            "updated_at": "2025-05-07T09:51:55.056896Z",
+            "view": "dns/view/157bbb3c-2643-4e65-a671-fb3140def66b",
+            "view_name": "default-crest_Infoblox_ise",
+            "zone": "dns/auth_zone/45bfdc4b-dcb5-4013-9dcc-8825d2cbd391"
+        },
+        {
+            "absolute_name_spec": "crest.",
+            "absolute_zone_name": "crest.",
+            "comment": "Auto-created by Add Zone",
+            "compartment_id": "",
+            "created_at": "2025-05-07T09:51:40.371930Z",
+            "delegation": null,
+            "disabled": false,
+            "dns_absolute_name_spec": "crest.",
+            "dns_absolute_zone_name": "crest.",
+            "dns_name_in_zone": "",
+            "dns_rdata": "ns.b1ddi.crest. hostmaster.crest. 1 10800 3600 2419200 900",
+            "id": "dns/record/e58593cc-3ff6-4dd8-817c-8d02d9fd7b9f",
+            "inheritance_sources": null,
+            "ipam_host": null,
+            "last_queried": null,
+            "name_in_zone": "",
+            "nios_metadata": {
+                "federation": true,
+                "gridId": "92b54f9e010e44c68cede2f69206b6f1",
+                "niosKey": [
+                    ".com.infoblox.dns.bind_soa$._default.crest"
+                ],
+                "objType": "record_soa"
+            },
+            "options": null,
+            "provider_metadata": null,
+            "rdata": {
+                "expire": 2419200,
+                "mname": "ns.b1ddi.crest.",
+                "negative_ttl": 900,
+                "refresh": 10800,
+                "retry": 3600,
+                "rname": "hostmaster@crest",
+                "serial": 1
+            },
+            "source": [
+                "SYSTEM"
+            ],
+            "subtype": "",
+            "tags": {
+                "nios/federation_enabled": "true",
+                "nios/grid_name": "crest_Infoblox_ise",
+                "nios/import_timestamp": "2025-05-07T09:51:42Z",
+                "nios/imported": "true"
+            },
+            "ttl": 28800,
+            "type": "SOA",
+            "updated_at": "2025-05-07T09:51:55.075214Z",
+            "view": "dns/view/157bbb3c-2643-4e65-a671-fb3140def66b",
+            "view_name": "default-crest_Infoblox_ise",
+            "zone": "dns/auth_zone/45bfdc4b-dcb5-4013-9dcc-8825d2cbd391"
+        }
+    ]
+}

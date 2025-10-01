@@ -1,0 +1,18 @@
+{
+    "deleted_items": [],
+    "inserted_items": [
+        {
+            "description": "",
+            "item": "193.56.2.11/32",
+            "status": -1,
+            "status_details": ""
+        },
+        {
+            "description": "",
+            "item": "2001:db8:ffff:ffff:ffff:ffff:ffff:fff1/128",
+            "status": -1,
+            "status_details": ""
+        }
+    ],
+    "updated_items": []
+}

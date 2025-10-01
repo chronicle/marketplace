@@ -1,188 +1,45 @@
-name: Get Proto Info
+creator: d28f2b46-9f0f-4c38-8509-0416748b77d9
+default_result_value: ''
 description: Allows to retrieve detailed Protocol information for the given IP Addresses.
+dynamic_results_metadata:
+-   result_example_path: resources/GetProtoInfo_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
 integration_identifier: TeamCymruScout
+name: Get Proto Info
 parameters:
-    -   name: IP Addresses
-        default_value: 1.1.1.1
-        type: string
-        description: 'IP Address to fetch the detailed information for. Possible IP options
+-   default_value: 1.1.1.1
+    description: 'IP Address to fetch the detailed information for. Possible IP options
         are: IPv4 and IPv6'
-        is_mandatory: true
-    -   name: Limit
-        default_value: '10'
-        type: string
-        description: The maximum number of valid IP addresses to be allowed
-        is_mandatory: true
-    -   name: Start Date
-        type: string
-        description: The latest date for results, formatted YYYY-MM-DD in UTC time. If
-            not provided, the default value will be 29 days prior to today, in UTC.
-        is_mandatory: false
-    -   name: End Date
-        type: string
-        description: The earliest date for results, formatted YYYY-MM-DD in UTC time.
-            If not provided, the default value will be today's date in UTC.
-        is_mandatory: false
-    -   name: Days
-        type: string
-        description: 'Relative offset in days (integer) from current time in UTC.
+    is_mandatory: true
+    name: IP Addresses
+    type: string
+-   default_value: '10'
+    description: The maximum number of valid IP addresses to be allowed
+    is_mandatory: true
+    name: Limit
+    type: string
+-   description: The latest date for results, formatted YYYY-MM-DD in UTC time. If
+        not provided, the default value will be 29 days prior to today, in UTC.
+    is_mandatory: false
+    name: Start Date
+    type: string
+-   description: The earliest date for results, formatted YYYY-MM-DD in UTC time.
+        If not provided, the default value will be today's date in UTC.
+    is_mandatory: false
+    name: End Date
+    type: string
+-   description: 'Relative offset in days (integer) from current time in UTC.
 
         Note: this will take priority over start_date and end_date if all three are
         passed.'
-        is_mandatory: false
-    -   name: Size
-        type: string
-        description: 'Size, in records, of the search results.
+    is_mandatory: false
+    name: Days
+    type: string
+-   description: 'Size, in records, of the search results.
 
         Note: The maximum allowed size is 1000.'
-        is_mandatory: false
-dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: "{\r\n    \"1.1.1.1\": {\r\n        \"request_id\": \"ed5b1fc2-7e46-587b-8085-5cfff40a4019\"\
-        ,\r\n        \"ip\": \"1.1.1.1\",\r\n        \"size\": 20,\r\n        \"start_date\"\
-        : \"2024-07-30\",\r\n        \"end_date\": \"2024-08-20\",\r\n        \"sections\"\
-        : [\r\n            \"proto_by_ip\"\r\n        ],\r\n        \"usage\": {\r\
-        \n            \"used_queries\": 1399,\r\n            \"remaining_queries\"\
-        : 48601,\r\n            \"query_limit\": 50000,\r\n            \"foundation_api_usage\"\
-        : {\r\n                \"used_queries\": 2,\r\n                \"remaining_queries\"\
-        : 9998,\r\n                \"query_limit\": 10000\r\n            },\r\n  \
-        \          \"ai_insights_usage\": {\r\n                \"used_queries\": 0,\r\
-        \n                \"remaining_queries\": 0,\r\n                \"query_limit\"\
-        : 0\r\n            }\r\n        },\r\n        \"proto_by_ip\": {\r\n     \
-        \       \"request_id\": \"e2d86d4f-98f0-5288-abc9-c1f23d9e41c4\",\r\n    \
-        \        \"total\": 31,\r\n            \"ip\": \"1.1.1.1\",\r\n          \
-        \  \"size\": 20,\r\n            \"start_date\": \"2024-07-30\",\r\n      \
-        \      \"end_date\": \"2024-08-20\",\r\n            \"data\": {\r\n      \
-        \          \"dates\": [\r\n                    \"2024-07-30\",\r\n       \
-        \             \"2024-07-31\",\r\n                    \"2024-08-01\",\r\n \
-        \                   \"2024-08-02\",\r\n                    \"2024-08-03\"\
-        ,\r\n                    \"2024-08-04\",\r\n                    \"2024-08-05\"\
-        ,\r\n                    \"2024-08-06\",\r\n                    \"2024-08-07\"\
-        ,\r\n                    \"2024-08-08\",\r\n                    \"2024-08-09\"\
-        ,\r\n                    \"2024-08-10\",\r\n                    \"2024-08-11\"\
-        ,\r\n                    \"2024-08-12\",\r\n                    \"2024-08-13\"\
-        ,\r\n                    \"2024-08-14\",\r\n                    \"2024-08-15\"\
-        ,\r\n                    \"2024-08-16\",\r\n                    \"2024-08-17\"\
-        ,\r\n                    \"2024-08-18\",\r\n                    \"2024-08-19\"\
-        ,\r\n                    \"2024-08-20\"\r\n                ],\r\n        \
-        \        \"protocols\": [\r\n                    1,\r\n                  \
-        \  6\r\n                ],\r\n                \"proto_by_date\": [\r\n   \
-        \                 {\r\n                        \"proto\": 1,\r\n         \
-        \               \"keyword\": \"ICMP\",\r\n                        \"data\"\
-        : [\r\n                            {\r\n                                \"\
-        count\": 2,\r\n                                \"date\": \"2024-07-30\"\r\n\
-        \                            },\r\n                            {\r\n     \
-        \                           \"count\": 0,\r\n                            \
-        \    \"date\": \"2024-07-31\"\r\n                            },\r\n      \
-        \                      {\r\n                                \"count\": 1,\r\
-        \n                                \"date\": \"2024-08-01\"\r\n           \
-        \                 },\r\n                            {\r\n                \
-        \                \"count\": 3,\r\n                                \"date\"\
-        : \"2024-08-02\"\r\n                            },\r\n                   \
-        \         {\r\n                                \"count\": 0,\r\n         \
-        \                       \"date\": \"2024-08-03\"\r\n                     \
-        \       },\r\n                            {\r\n                          \
-        \      \"count\": 0,\r\n                                \"date\": \"2024-08-04\"\
-        \r\n                            },\r\n                            {\r\n  \
-        \                              \"count\": 0,\r\n                         \
-        \       \"date\": \"2024-08-05\"\r\n                            },\r\n   \
-        \                         {\r\n                                \"count\":\
-        \ 4,\r\n                                \"date\": \"2024-08-06\"\r\n     \
-        \                       },\r\n                            {\r\n          \
-        \                      \"count\": 0,\r\n                                \"\
-        date\": \"2024-08-07\"\r\n                            },\r\n             \
-        \               {\r\n                                \"count\": 0,\r\n   \
-        \                             \"date\": \"2024-08-08\"\r\n               \
-        \             },\r\n                            {\r\n                    \
-        \            \"count\": 1,\r\n                                \"date\": \"\
-        2024-08-09\"\r\n                            },\r\n                       \
-        \     {\r\n                                \"count\": 0,\r\n             \
-        \                   \"date\": \"2024-08-10\"\r\n                         \
-        \   },\r\n                            {\r\n                              \
-        \  \"count\": 2,\r\n                                \"date\": \"2024-08-11\"\
-        \r\n                            },\r\n                            {\r\n  \
-        \                              \"count\": 2,\r\n                         \
-        \       \"date\": \"2024-08-12\"\r\n                            },\r\n   \
-        \                         {\r\n                                \"count\":\
-        \ 0,\r\n                                \"date\": \"2024-08-13\"\r\n     \
-        \                       },\r\n                            {\r\n          \
-        \                      \"count\": 0,\r\n                                \"\
-        date\": \"2024-08-14\"\r\n                            },\r\n             \
-        \               {\r\n                                \"count\": 0,\r\n   \
-        \                             \"date\": \"2024-08-15\"\r\n               \
-        \             },\r\n                            {\r\n                    \
-        \            \"count\": 2,\r\n                                \"date\": \"\
-        2024-08-16\"\r\n                            },\r\n                       \
-        \     {\r\n                                \"count\": 0,\r\n             \
-        \                   \"date\": \"2024-08-17\"\r\n                         \
-        \   },\r\n                            {\r\n                              \
-        \  \"count\": 1,\r\n                                \"date\": \"2024-08-18\"\
-        \r\n                            },\r\n                            {\r\n  \
-        \                              \"count\": 0,\r\n                         \
-        \       \"date\": \"2024-08-19\"\r\n                            },\r\n   \
-        \                         {\r\n                                \"count\":\
-        \ 0,\r\n                                \"date\": \"2024-08-20\"\r\n     \
-        \                       }\r\n                        ]\r\n               \
-        \     },\r\n                    {\r\n                        \"proto\": 6,\r\
-        \n                        \"keyword\": \"TCP\",\r\n                      \
-        \  \"data\": [\r\n                            {\r\n                      \
-        \          \"count\": 1,\r\n                                \"date\": \"2024-07-30\"\
-        \r\n                            },\r\n                            {\r\n  \
-        \                              \"count\": 0,\r\n                         \
-        \       \"date\": \"2024-07-31\"\r\n                            },\r\n   \
-        \                         {\r\n                                \"count\":\
-        \ 1,\r\n                                \"date\": \"2024-08-01\"\r\n     \
-        \                       },\r\n                            {\r\n          \
-        \                      \"count\": 0,\r\n                                \"\
-        date\": \"2024-08-02\"\r\n                            },\r\n             \
-        \               {\r\n                                \"count\": 4,\r\n   \
-        \                             \"date\": \"2024-08-03\"\r\n               \
-        \             },\r\n                            {\r\n                    \
-        \            \"count\": 0,\r\n                                \"date\": \"\
-        2024-08-04\"\r\n                            },\r\n                       \
-        \     {\r\n                                \"count\": 1,\r\n             \
-        \                   \"date\": \"2024-08-05\"\r\n                         \
-        \   },\r\n                            {\r\n                              \
-        \  \"count\": 0,\r\n                                \"date\": \"2024-08-06\"\
-        \r\n                            },\r\n                            {\r\n  \
-        \                              \"count\": 2,\r\n                         \
-        \       \"date\": \"2024-08-07\"\r\n                            },\r\n   \
-        \                         {\r\n                                \"count\":\
-        \ 0,\r\n                                \"date\": \"2024-08-08\"\r\n     \
-        \                       },\r\n                            {\r\n          \
-        \                      \"count\": 1,\r\n                                \"\
-        date\": \"2024-08-09\"\r\n                            },\r\n             \
-        \               {\r\n                                \"count\": 1,\r\n   \
-        \                             \"date\": \"2024-08-10\"\r\n               \
-        \             },\r\n                            {\r\n                    \
-        \            \"count\": 0,\r\n                                \"date\": \"\
-        2024-08-11\"\r\n                            },\r\n                       \
-        \     {\r\n                                \"count\": 0,\r\n             \
-        \                   \"date\": \"2024-08-12\"\r\n                         \
-        \   },\r\n                            {\r\n                              \
-        \  \"count\": 0,\r\n                                \"date\": \"2024-08-13\"\
-        \r\n                            },\r\n                            {\r\n  \
-        \                              \"count\": 0,\r\n                         \
-        \       \"date\": \"2024-08-14\"\r\n                            },\r\n   \
-        \                         {\r\n                                \"count\":\
-        \ 1,\r\n                                \"date\": \"2024-08-15\"\r\n     \
-        \                       },\r\n                            {\r\n          \
-        \                      \"count\": 1,\r\n                                \"\
-        date\": \"2024-08-16\"\r\n                            },\r\n             \
-        \               {\r\n                                \"count\": 0,\r\n   \
-        \                             \"date\": \"2024-08-17\"\r\n               \
-        \             },\r\n                            {\r\n                    \
-        \            \"count\": 0,\r\n                                \"date\": \"\
-        2024-08-18\"\r\n                            },\r\n                       \
-        \     {\r\n                                \"count\": 0,\r\n             \
-        \                   \"date\": \"2024-08-19\"\r\n                         \
-        \   },\r\n                            {\r\n                              \
-        \  \"count\": 0,\r\n                                \"date\": \"2024-08-20\"\
-        \r\n                            }\r\n                        ]\r\n       \
-        \             }\r\n                ]\r\n            }\r\n        }\r\n   \
-        \ }\r\n}"
-default_result_value: ''
-creator: d28f2b46-9f0f-4c38-8509-0416748b77d9
+    is_mandatory: false
+    name: Size
+    type: string
 script_result_name: ScriptResult

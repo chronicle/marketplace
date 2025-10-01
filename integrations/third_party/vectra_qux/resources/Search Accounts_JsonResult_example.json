@@ -1,0 +1,93 @@
+[
+    {
+        "associated_accounts": [
+            "johnh@lab.tme.local"
+        ],
+        "subaccounts": [
+            "johnh@lab.tme.local"
+        ],
+        "id": 93,
+        "url": "https://hc2024.vectracloudlab.com/accounts/93",
+        "name": "johnh@lab.tme.local",
+        "state": "inactive",
+        "threat": 0,
+        "certainty": 0,
+        "severity": "Low",
+        "account_type": [
+            "kerberos"
+        ],
+        "tags": [],
+        "note": "Here comes your note TEST",
+        "notes": [
+            {
+                "id": 3156,
+                "date_created": "2024-11-11T09:04:05Z",
+                "date_modified": null,
+                "created_by": "cds-crestphantom",
+                "modified_by": null,
+                "note": "Here comes your note TEST"
+            },
+            {
+                "id": 2199,
+                "date_created": "2024-07-29T12:50:32Z",
+                "date_modified": null,
+                "created_by": "cds_xsoar",
+                "modified_by": null,
+                "note": "test note"
+            },
+            {
+                "id": 2198,
+                "date_created": "2024-07-29T12:48:43Z",
+                "date_modified": null,
+                "created_by": "cds_xsoar",
+                "modified_by": null,
+                "note": "new"
+            }
+        ],
+        "note_modified_by": "cds-crestphantom",
+        "note_modified_timestamp": "2024-11-11T09:04:05Z",
+        "privilege_level": 1,
+        "privilege_category": "Low",
+        "last_detection_timestamp": null,
+        "detection_set": [],
+        "probable_home": null,
+        "assignment": null,
+        "past_assignments": [],
+        "sensors": []
+    },
+    {
+        "associated_accounts": [
+            "O365:1a4e5c8a-4d80-409f-8cb6-917e6a939837"
+        ],
+        "subaccounts": [
+            "O365:1a4e5c8a-4d80-409f-8cb6-917e6a939837"
+        ],
+        "id": 325,
+        "url": "https://hc2024.vectracloudlab.com/accounts/325",
+        "name": "O365:1a4e5c8a-4d80-409f-8cb6-917e6a939837",
+        "state": "active",
+        "threat": 30,
+        "certainty": 86,
+        "severity": "Medium",
+        "account_type": [
+            "o365"
+        ],
+        "tags": [],
+        "note": null,
+        "notes": [],
+        "note_modified_by": null,
+        "note_modified_timestamp": null,
+        "privilege_level": null,
+        "privilege_category": null,
+        "last_detection_timestamp": "2025-01-03T16:28:25Z",
+        "detection_set": [
+            "https://hc2024.vectracloudlab.com/detections/7170"
+        ],
+        "probable_home": null,
+        "assignment": null,
+        "past_assignments": [],
+        "sensors": [
+            "g7pv84nd"
+        ]
+    }
+]

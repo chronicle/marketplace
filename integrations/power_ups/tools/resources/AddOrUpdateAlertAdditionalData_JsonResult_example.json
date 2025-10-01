@@ -1,0 +1,14 @@
+{
+    "list": [
+        {
+            "key": "PhishingBodyAnalysisUnmatchedDomains",
+            "value": "onlineservicetech.websit"
+        },
+        {
+            "key": "PhishingBodyAnalysisSpellingMistakes",
+            "value": "perfomance"
+        }
+    ],
+    "dict": {},
+    "data": "Just some string"
+}

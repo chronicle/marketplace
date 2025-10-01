@@ -1,13 +1,13 @@
-name: Ping
+creator: a27bf531-e234-4aff-b717-18a554a6a8b9
+default_result_value: ''
 description: Ping to test Group-IB Threat Intelligence connection. Also gives JSON
     output of available collections, based on subscription.
-integration_identifier: Group-IB-TI
-parameters: []
 dynamic_results_metadata:
--   result_example: '{}'
+-   result_example_path: null
     result_name: JsonResult
     show_result: true
-default_result_value: ''
-creator: a27bf531-e234-4aff-b717-18a554a6a8b9
-simulation_data_json: '{"Entities": null}'
+integration_identifier: Group-IB-TI
+name: Ping
+parameters: []
 script_result_name: Ping_Result
+simulation_data_json: '{"Entities": null}'

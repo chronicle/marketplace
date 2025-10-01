@@ -1,64 +1,50 @@
-name: Create Scan Task by MAC Address
+creator: daniel.harvey
+default_result_value: ''
 description: Use this method to generate a scan task for managed endpoints identified
     by their MAC address.
-integration_identifier: Bitdefender GravityZone
-parameters:
-    -   name: MAC Addresses
-        default_value: macaddr1,macaddr2
-        type: string
-        description: The list of mac addresses of the endpoints to be scanned. You can
-            specify at most 100 MAC addresses at once
-        is_mandatory: true
-    -   name: Scan Type
-        default_value: Quick
-        type: ddl
-        optional_values:
-            - Quick
-            - Full
-            - Memory
-            - Custom
-        description: 'The type of scan. Available options are: 1 - quick scan; 2 - full
-        scan; 3 - memory scan; 4 - custom scan'
-        is_mandatory: true
-    -   name: Task Name
-        type: string
-        description: The name of the task. If the parameter is not passed, the name will
-            be automatically generated.
-        is_mandatory: false
-    -   name: Custom Scan - Depth
-        default_value: Normal
-        type: ddl
-        optional_values:
-            - Aggressive
-            - Normal
-            - Permissive
-        description: 'The scan profile. Available options: 1 - aggressive; 2 - normal;
-        3 - permissive. This parameter is only used when scan type is Custom'
-        is_mandatory: false
-    -   name: Custom Scan - Paths
-        default_value: LocalDrives
-        type: string
-        description: Comma-separated list of target paths to be scanned. This parameter
-            is only used when scan type is Custom
-        is_mandatory: false
 dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: "{\n    \"items\":[\n        {   \n            \"id\" : \"21a295eeb1a43d8b497b23b7\"\
-        , \"name\" : \"Endpoint 1\",\n            \"label\" : \"endpoint 1\",\n  \
-        \          \"fqdn\": \"endpoint1.local\",\n            \"groupId\": \"5a5f4d36b1a43d5f097b23bb\"\
-        , \"isManaged\": true,\n            \"isManaged\": true,\n            \"machineType\"\
-        : 1,\n            \"operatingSystemVersion\": \"Windows Server 2016\",\n \
-        \           \"ip\": \"1.1.1.1\",\n            \"macs\": [\n              \
-        \  \"324935237225\"\n            ],\n            \"ssid\": \"\"\n        },\n\
-        \        {\n            \"id\" : \"23a295d8b1a43d7c4a7b23c9\",\n         \
-        \   \"name\" : \"Endpoint 2\",\n            \"machineType\": 2,\n        \
-        \    \"label\" : \"endpoint 2\",\n            \"fqdn\": \"endpoint2.local\"\
-        ,\n            \"groupId\": \"5a4f4d46b1a53d5f197b23aa\", \"isManaged\": true,\n\
-        \            \"machineType\": 1, \"operatingSystemVersion\": \"Windows 7\"\
-        , \"ip\": \"1.1.1.1\",\n            \"macs\": [\n                \"325935237445\"\
-        \n            ],\n            \"ssid\": \"\"\n        }    \n    ]\n}"
-default_result_value: ''
-creator: daniel.harvey
+-   result_example_path: resources/CreateScanTaskByMacAddress_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: Bitdefender GravityZone
+name: Create Scan Task by MAC Address
+parameters:
+-   default_value: macaddr1,macaddr2
+    description: The list of mac addresses of the endpoints to be scanned. You can
+        specify at most 100 MAC addresses at once
+    is_mandatory: true
+    name: MAC Addresses
+    type: string
+-   default_value: Quick
+    description: 'The type of scan. Available options are: 1 - quick scan; 2 - full
+        scan; 3 - memory scan; 4 - custom scan'
+    is_mandatory: true
+    name: Scan Type
+    optional_values:
+    - Quick
+    - Full
+    - Memory
+    - Custom
+    type: ddl
+-   description: The name of the task. If the parameter is not passed, the name will
+        be automatically generated.
+    is_mandatory: false
+    name: Task Name
+    type: string
+-   default_value: Normal
+    description: 'The scan profile. Available options: 1 - aggressive; 2 - normal;
+        3 - permissive. This parameter is only used when scan type is Custom'
+    is_mandatory: false
+    name: Custom Scan - Depth
+    optional_values:
+    - Aggressive
+    - Normal
+    - Permissive
+    type: ddl
+-   default_value: LocalDrives
+    description: Comma-separated list of target paths to be scanned. This parameter
+        is only used when scan type is Custom
+    is_mandatory: false
+    name: Custom Scan - Paths
+    type: string
 script_result_name: ScriptResult

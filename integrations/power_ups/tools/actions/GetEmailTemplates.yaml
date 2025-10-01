@@ -1,63 +1,19 @@
-name: Get Email Templates
-description: Returns all of the email templates in a system.
-integration_identifier: Tools
-parameters:
-    -   name: Template Type
-        default_value: Standard
-        type: ddl
-        optional_values:
-            - HTML
-            - Standard
-        description: HTML or Standard Template
-        is_mandatory: true
-dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: |
-            {
-                "templates": [
-                    {
-                        "type": 0,
-                        "name": "Standard Template Name",
-                        "content": "Thisis the content of a standard email template.",
-                        "creatorUserName": "Rob",
-                        "forMigration": false,
-                        "environments": [
-                            "ReedSales"
-                        ],
-                        "id": 1,
-                        "creationTimeUnixTimeInMs": 1618588676723,
-                        "modificationTimeUnixTimeInMs": 1618588676734
-                    },
-                    {
-                        "type": 0,
-                        "name": "AllENV Template",
-                        "content": "All env template",
-                        "creatorUserName": "Rob",
-                        "forMigration": false,
-                        "environments": [
-                            "*"
-                        ],
-                        "id": 3,
-                        "creationTimeUnixTimeInMs": 1618588714655,
-                        "modificationTimeUnixTimeInMs": 1618588714655
-                    },
-                    {
-                        "type": 0,
-                        "name": "ReedSales_Create Record",
-                        "content": "{\n    \"state\": \"1\",\n    \"impact\":\"3\",\n    \"priority\": \"5\",\n    \"short_description\": \"Incident involvinguser(s): [Alert.Users]\",\n    \"u_incident_insights\": \"[CaseData.JsonResult|\"insights\" | filter(\"triggeredBy\", \"=\", \"VirusTotalV3\") | \"content\"]\",\n    \"severity\":\"3\"\n}\n",
-                        "creatorUserName": "Rob",
-                        "forMigration": false,
-                        "environments": [
-                            "ReedSales"
-                        ],
-                        "id": 5,
-                        "creationTimeUnixTimeInMs": 1618601564841,
-                        "modificationTimeUnixTimeInMs": 1618601564841
-                    }
-                ]
-            }
-default_result_value: ''
 creator: Rob
+default_result_value: ''
+description: Returns all of the email templates in a system.
+dynamic_results_metadata:
+-   result_example_path: resources/GetEmailTemplates_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: Tools
+name: Get Email Templates
+parameters:
+-   default_value: Standard
+    description: HTML or Standard Template
+    is_mandatory: true
+    name: Template Type
+    optional_values:
+    - HTML
+    - Standard
+    type: ddl
 script_result_name: ScriptResult

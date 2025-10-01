@@ -1,0 +1,29 @@
+[
+    {
+        "created": 1686562760,
+        "description": "Vorlon detected traffic from salesforce to a new endpoint on asana that may contain sensitive data.",
+        "id": "string",
+        "remediation_steps": [
+            "string"
+        ],
+        "requesting_service": {
+            "host": "my.salesforce.com",
+            "instance": "my.salesforce.com",
+            "name": "Salesforce",
+            "service_id": "salesforce"
+        },
+        "responding_service": {
+            "host": "my.salesforce.com",
+            "instance": "my.salesforce.com",
+            "name": "Salesforce",
+            "service_id": "salesforce"
+        },
+        "secret": "string",
+        "secret_id": "string",
+        "secret_type": "string",
+        "severity": 25,
+        "status": "open",
+        "title": "Sensitive Data Access",
+        "type": "ExposureAlert"
+    }
+]

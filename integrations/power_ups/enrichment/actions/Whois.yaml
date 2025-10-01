@@ -1,185 +1,24 @@
-name: Whois
+creator: admin
+default_result_value: ''
 description: 'Query WHOIS servers for domain registration information.  Supports IP
     Addresses, URLs, Email, Domains.  Supports creation of DOMAIN entities linked
     to target entity and a domain age threshold to set the entity to suspicious. '
-integration_identifier: Enrichment
-parameters:
-    -   name: Create Entities
-        default_value: 'true'
-        type: boolean
-        description: Create and link domain entities to URL and Email / User names.
-        is_mandatory: false
-    -   name: Domain Age Threshold
-        default_value: ''
-        type: string
-        description: 'Domains who''s age is less than the than the supplied days will
-        be marked suspicious.  '
-        is_mandatory: false
 dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: "[\r\n\t{\r\n\t\t\"Entity\": \"outlook.com\",\r\n\t\t\"EntityResult\"\
-        : {\r\n\t\t\t\"id\": [\r\n\t\t\t\t\"2019401_DOMAIN_COM-VRSN\"\r\n\t\t\t],\r\
-        \n\t\t\t\"status\": [\r\n\t\t\t\t\"clientDeleteProhibited https://icann.org/epp#clientDeleteProhibited\"\
-        ,\r\n\t\t\t\t\"clientTransferProhibited https://icann.org/epp#clientTransferProhibited\"\
-        ,\r\n\t\t\t\t\"clientUpdateProhibited https://icann.org/epp#clientUpdateProhibited\"\
-        ,\r\n\t\t\t\t\"serverDeleteProhibited https://icann.org/epp#serverDeleteProhibited\"\
-        ,\r\n\t\t\t\t\"serverTransferProhibited https://icann.org/epp#serverTransferProhibited\"\
-        ,\r\n\t\t\t\t\"serverUpdateProhibited https://icann.org/epp#serverUpdateProhibited\"\
-        \r\n\t\t\t],\r\n\t\t\t\"creation_date\": [\r\n\t\t\t\t\"1994-08-18T04:00:00\"\
-        \r\n\t\t\t],\r\n\t\t\t\"expiration_date\": [\r\n\t\t\t\t\"2022-08-17T04:00:00\"\
-        \r\n\t\t\t],\r\n\t\t\t\"updated_date\": [\r\n\t\t\t\t\"2021-07-16T09:32:12\"\
-        \r\n\t\t\t],\r\n\t\t\t\"registrar\": [\r\n\t\t\t\t\"MarkMonitor Inc.\"\r\n\
-        \t\t\t],\r\n\t\t\t\"whois_server\": [\r\n\t\t\t\t\"whois.markmonitor.com\"\
-        \r\n\t\t\t],\r\n\t\t\t\"nameservers\": [\r\n\t\t\t\t\"NS1-38.AZURE-DNS.COM\"\
-        ,\r\n\t\t\t\t\"NS2-38.AZURE-DNS.NET\",\r\n\t\t\t\t\"NS3-38.AZURE-DNS.ORG\"\
-        ,\r\n\t\t\t\t\"NS4-38.AZURE-DNS.INFO\",\r\n\t\t\t\t\"NSE12.O365FILTERING.COM\"\
-        ,\r\n\t\t\t\t\"NSE13.O365FILTERING.COM\",\r\n\t\t\t\t\"NSE21.O365FILTERING.COM\"\
-        ,\r\n\t\t\t\t\"NSE24.O365FILTERING.COM\"\r\n\t\t\t],\r\n\t\t\t\"emails\":\
-        \ [\r\n\t\t\t\t\"abusecomplaints@markmonitor.com\"\r\n\t\t\t],\r\n\t\t\t\"\
-        contacts\": {\r\n\t\t\t\t\"registrant\": null,\r\n\t\t\t\t\"tech\": null,\r\
-        \n\t\t\t\t\"admin\": null,\r\n\t\t\t\t\"billing\": null\r\n\t\t\t},\r\n\t\t\
-        \t\"age_in_days\": 9987\r\n\t\t}\r\n\t},\r\n\t{\r\n\t\t\"Entity\": \"1.1.1.1\"\
-        ,\r\n\t\t\"EntityResult\": {\r\n\t\t\t\"nir\": null,\r\n\t\t\t\"asn_registry\"\
-        : \"arin\",\r\n\t\t\t\"asn\": \"15169\",\r\n\t\t\t\"asn_cidr\": \"1.1.1.1/19\"\
-        ,\r\n\t\t\t\"asn_country_code\": \"US\",\r\n\t\t\t\"asn_date\": \"2014-08-27\"\
-        ,\r\n\t\t\t\"asn_description\": \"GOOGLE, US\",\r\n\t\t\t\"query\": \"1.1.1.1\"\
-        ,\r\n\t\t\t\"network\": {\r\n\t\t\t\t\"handle\": \"NET-104-196-0-0-1\",\r\n\
-        \t\t\t\t\"status\": [\r\n\t\t\t\t\t\"active\"\r\n\t\t\t\t],\r\n\t\t\t\t\"\
-        remarks\": [\r\n\t\t\t\t\t{\r\n\t\t\t\t\t\t\"title\": \"Registration Comments\"\
-        ,\r\n\t\t\t\t\t\t\"description\": \"** The IP addresses under this netblock\
-        \ are in use by Google Cloud customers ** \\r\\n\\r\\nDirect all copyright\
-        \ and legal complaints to \\r\\nhttps://support.google.com/legal/go/report\\\
-        r\\n\\r\\nDirect all spam and abuse complaints to \\r\\nhttps://support.google.com/code/go/gce_abuse_report\\\
-        r\\n\\r\\nFor fastest response, use the relevant forms above.\\r\\n\\r\\nComplaints\
-        \ can also be sent to the GC Abuse desk \\r\\n(google-cloud-compliance@google.com)\
-        \ \\r\\nbut may have longer turnaround times.\\r\\n\\r\\nComplaints sent to\
-        \ any other POC will be ignored.\",\r\n\t\t\t\t\t\t\"links\": null\r\n\t\t\
-        \t\t\t}\r\n\t\t\t\t],\r\n\t\t\t\t\"notices\": [\r\n\t\t\t\t\t{\r\n\t\t\t\t\
-        \t\t\"title\": \"Terms of Service\",\r\n\t\t\t\t\t\t\"description\": \"By\
-        \ using the ARIN RDAP/Whois service, you are agreeing to the RDAP/Whois Terms\
-        \ of Use\",\r\n\t\t\t\t\t\t\"links\": [\r\n\t\t\t\t\t\t\t\"https://www.arin.net/resources/registry/whois/tou/\"\
-        \r\n\t\t\t\t\t\t]\r\n\t\t\t\t\t},\r\n\t\t\t\t\t{\r\n\t\t\t\t\t\t\"title\"\
-        : \"Whois Inaccuracy Reporting\",\r\n\t\t\t\t\t\t\"description\": \"If you\
-        \ see inaccuracies in the results, please visit: \",\r\n\t\t\t\t\t\t\"links\"\
-        : [\r\n\t\t\t\t\t\t\t\"https://www.arin.net/resources/registry/whois/inaccuracy_reporting/\"\
-        \r\n\t\t\t\t\t\t]\r\n\t\t\t\t\t},\r\n\t\t\t\t\t{\r\n\t\t\t\t\t\t\"title\"\
-        : \"Copyright Notice\",\r\n\t\t\t\t\t\t\"description\": \"Copyright 1997-2021,\
-        \ American Registry for Internet Numbers, Ltd.\",\r\n\t\t\t\t\t\t\"links\"\
-        : null\r\n\t\t\t\t\t}\r\n\t\t\t\t],\r\n\t\t\t\t\"links\": [\r\n\t\t\t\t\t\"\
-        https://rdap.arin.net/registry/ip/104.196.0.0\",\r\n\t\t\t\t\t\"https://whois.arin.net/rest/net/NET-104-196-0-0-1\"\
-        \r\n\t\t\t\t],\r\n\t\t\t\t\"events\": [\r\n\t\t\t\t\t{\r\n\t\t\t\t\t\t\"action\"\
-        : \"last changed\",\r\n\t\t\t\t\t\t\"timestamp\": \"2015-09-21T20:50:14-04:00\"\
-        ,\r\n\t\t\t\t\t\t\"actor\": null\r\n\t\t\t\t\t},\r\n\t\t\t\t\t{\r\n\t\t\t\t\
-        \t\t\"action\": \"registration\",\r\n\t\t\t\t\t\t\"timestamp\": \"2014-08-27T13:55:35-04:00\"\
-        ,\r\n\t\t\t\t\t\t\"actor\": null\r\n\t\t\t\t\t}\r\n\t\t\t\t],\r\n\t\t\t\t\"\
-        raw\": null,\r\n\t\t\t\t\"start_address\": \"1.1.1.1\",\r\n\t\t\t\t\"end_address\"\
-        : \"1.1.1.1\",\r\n\t\t\t\t\"cidr\": \"1.1.1.1/14\",\r\n\t\t\t\t\"ip_version\"\
-        : \"v4\",\r\n\t\t\t\t\"type\": \"DIRECT ALLOCATION\",\r\n\t\t\t\t\"name\"\
-        : \"GOOGLE-CLOUD\",\r\n\t\t\t\t\"country\": null,\r\n\t\t\t\t\"parent_handle\"\
-        : \"NET-104-0-0-0-0\"\r\n\t\t\t},\r\n\t\t\t\"entities\": [\r\n\t\t\t\t\"GOOGL-2\"\
-        \r\n\t\t\t],\r\n\t\t\t\"objects\": {\r\n\t\t\t\t\"GOOGL-2\": {\r\n\t\t\t\t\
-        \t\"handle\": \"GOOGL-2\",\r\n\t\t\t\t\t\"status\": null,\r\n\t\t\t\t\t\"\
-        remarks\": [\r\n\t\t\t\t\t\t{\r\n\t\t\t\t\t\t\t\"title\": \"Registration Comments\"\
-        ,\r\n\t\t\t\t\t\t\t\"description\": \"*** The IP addresses under this Org-ID\
-        \ are in use by Google Cloud customers *** \\r\\n\\r\\nDirect all copyright\
-        \ and legal complaints to \\r\\nhttps://support.google.com/legal/go/report\\\
-        r\\n\\r\\nDirect all spam and abuse complaints to \\r\\nhttps://support.google.com/code/go/gce_abuse_report\\\
-        r\\n\\r\\nFor fastest response, use the relevant forms above.\\r\\n\\r\\nComplaints\
-        \ can also be sent to the GC Abuse desk \\r\\n(google-cloud-compliance@google.com)\
-        \ \\r\\nbut may have longer turnaround times.\\r\\n\\r\\nComplaints sent to\
-        \ any other POC will be ignored.\",\r\n\t\t\t\t\t\t\t\"links\": null\r\n\t\
-        \t\t\t\t\t}\r\n\t\t\t\t\t],\r\n\t\t\t\t\t\"notices\": null,\r\n\t\t\t\t\t\"\
-        links\": [\r\n\t\t\t\t\t\t\"https://rdap.arin.net/registry/entity/GOOGL-2\"\
-        ,\r\n\t\t\t\t\t\t\"https://whois.arin.net/rest/org/GOOGL-2\"\r\n\t\t\t\t\t\
-        ],\r\n\t\t\t\t\t\"events\": [\r\n\t\t\t\t\t\t{\r\n\t\t\t\t\t\t\t\"action\"\
-        : \"last changed\",\r\n\t\t\t\t\t\t\t\"timestamp\": \"2019-11-01T05:34:25-04:00\"\
-        ,\r\n\t\t\t\t\t\t\t\"actor\": null\r\n\t\t\t\t\t\t},\r\n\t\t\t\t\t\t{\r\n\t\
-        \t\t\t\t\t\t\"action\": \"registration\",\r\n\t\t\t\t\t\t\t\"timestamp\":\
-        \ \"2006-09-29T16:40:11-04:00\",\r\n\t\t\t\t\t\t\t\"actor\": null\r\n\t\t\t\
-        \t\t\t}\r\n\t\t\t\t\t],\r\n\t\t\t\t\t\"raw\": null,\r\n\t\t\t\t\t\"roles\"\
-        : [\r\n\t\t\t\t\t\t\"registrant\"\r\n\t\t\t\t\t],\r\n\t\t\t\t\t\"contact\"\
-        : {\r\n\t\t\t\t\t\t\"name\": \"Google LLC\",\r\n\t\t\t\t\t\t\"kind\": \"org\"\
-        ,\r\n\t\t\t\t\t\t\"address\": [\r\n\t\t\t\t\t\t\t{\r\n\t\t\t\t\t\t\t\t\"type\"\
-        : null,\r\n\t\t\t\t\t\t\t\t\"value\": \"1600 Amphitheatre Parkway\\nMountain\
-        \ View\\nCA\\n94043\\nUnited States\"\r\n\t\t\t\t\t\t\t}\r\n\t\t\t\t\t\t],\r\
-        \n\t\t\t\t\t\t\"phone\": null,\r\n\t\t\t\t\t\t\"email\": null,\r\n\t\t\t\t\
-        \t\t\"role\": null,\r\n\t\t\t\t\t\t\"title\": null\r\n\t\t\t\t\t},\r\n\t\t\
-        \t\t\t\"events_actor\": null,\r\n\t\t\t\t\t\"entities\": [\r\n\t\t\t\t\t\t\
-        \"GCABU-ARIN\",\r\n\t\t\t\t\t\t\"ZG39-ARIN\"\r\n\t\t\t\t\t]\r\n\t\t\t\t},\r\
-        \n\t\t\t\t\"GCABU-ARIN\": {\r\n\t\t\t\t\t\"handle\": \"GCABU-ARIN\",\r\n\t\
-        \t\t\t\t\"status\": [\r\n\t\t\t\t\t\t\"validated\"\r\n\t\t\t\t\t],\r\n\t\t\
-        \t\t\t\"remarks\": null,\r\n\t\t\t\t\t\"notices\": [\r\n\t\t\t\t\t\t{\r\n\t\
-        \t\t\t\t\t\t\"title\": \"Terms of Service\",\r\n\t\t\t\t\t\t\t\"description\"\
-        : \"By using the ARIN RDAP/Whois service, you are agreeing to the RDAP/Whois\
-        \ Terms of Use\",\r\n\t\t\t\t\t\t\t\"links\": [\r\n\t\t\t\t\t\t\t\t\"https://www.arin.net/resources/registry/whois/tou/\"\
-        \r\n\t\t\t\t\t\t\t]\r\n\t\t\t\t\t\t},\r\n\t\t\t\t\t\t{\r\n\t\t\t\t\t\t\t\"\
-        title\": \"Whois Inaccuracy Reporting\",\r\n\t\t\t\t\t\t\t\"description\"\
-        : \"If you see inaccuracies in the results, please visit: \",\r\n\t\t\t\t\t\
-        \t\t\"links\": [\r\n\t\t\t\t\t\t\t\t\"https://www.arin.net/resources/registry/whois/inaccuracy_reporting/\"\
-        \r\n\t\t\t\t\t\t\t]\r\n\t\t\t\t\t\t},\r\n\t\t\t\t\t\t{\r\n\t\t\t\t\t\t\t\"\
-        title\": \"Copyright Notice\",\r\n\t\t\t\t\t\t\t\"description\": \"Copyright\
-        \ 1997-2021, American Registry for Internet Numbers, Ltd.\",\r\n\t\t\t\t\t\
-        \t\t\"links\": null\r\n\t\t\t\t\t\t}\r\n\t\t\t\t\t],\r\n\t\t\t\t\t\"links\"\
-        : [\r\n\t\t\t\t\t\t\"https://rdap.arin.net/registry/entity/GCABU-ARIN\",\r\
-        \n\t\t\t\t\t\t\"https://whois.arin.net/rest/poc/GCABU-ARIN\"\r\n\t\t\t\t\t\
-        ],\r\n\t\t\t\t\t\"events\": [\r\n\t\t\t\t\t\t{\r\n\t\t\t\t\t\t\t\"action\"\
-        : \"last changed\",\r\n\t\t\t\t\t\t\t\"timestamp\": \"2021-04-09T11:46:04-04:00\"\
-        ,\r\n\t\t\t\t\t\t\t\"actor\": null\r\n\t\t\t\t\t\t},\r\n\t\t\t\t\t\t{\r\n\t\
-        \t\t\t\t\t\t\"action\": \"registration\",\r\n\t\t\t\t\t\t\t\"timestamp\":\
-        \ \"2011-03-30T00:36:28-04:00\",\r\n\t\t\t\t\t\t\t\"actor\": null\r\n\t\t\t\
-        \t\t\t}\r\n\t\t\t\t\t],\r\n\t\t\t\t\t\"raw\": null,\r\n\t\t\t\t\t\"roles\"\
-        : [\r\n\t\t\t\t\t\t\"abuse\",\r\n\t\t\t\t\t\t\"noc\"\r\n\t\t\t\t\t],\r\n\t\
-        \t\t\t\t\"contact\": {\r\n\t\t\t\t\t\t\"name\": \"GC Abuse\",\r\n\t\t\t\t\t\
-        \t\"kind\": \"group\",\r\n\t\t\t\t\t\t\"address\": [\r\n\t\t\t\t\t\t\t{\r\n\
-        \t\t\t\t\t\t\t\t\"type\": null,\r\n\t\t\t\t\t\t\t\t\"value\": \"1600 Amphitheatre\
-        \ Parkway\\nMountain View\\nCA\\n94043\\nUnited States\"\r\n\t\t\t\t\t\t\t\
-        }\r\n\t\t\t\t\t\t],\r\n\t\t\t\t\t\t\"phone\": [\r\n\t\t\t\t\t\t\t{\r\n\t\t\
-        \t\t\t\t\t\t\"type\": [\r\n\t\t\t\t\t\t\t\t\t\"work\",\r\n\t\t\t\t\t\t\t\t\
-        \t\"voice\"\r\n\t\t\t\t\t\t\t\t],\r\n\t\t\t\t\t\t\t\t\"value\": \"+1-650-253-0000\"\
-        \r\n\t\t\t\t\t\t\t}\r\n\t\t\t\t\t\t],\r\n\t\t\t\t\t\t\"email\": [\r\n\t\t\t\
-        \t\t\t\t{\r\n\t\t\t\t\t\t\t\t\"type\": null,\r\n\t\t\t\t\t\t\t\t\"value\"\
-        : \"google-cloud-compliance@google.com\"\r\n\t\t\t\t\t\t\t}\r\n\t\t\t\t\t\t\
-        ],\r\n\t\t\t\t\t\t\"role\": null,\r\n\t\t\t\t\t\t\"title\": null\r\n\t\t\t\
-        \t\t},\r\n\t\t\t\t\t\"events_actor\": null,\r\n\t\t\t\t\t\"entities\": null\r\
-        \n\t\t\t\t},\r\n\t\t\t\t\"ZG39-ARIN\": {\r\n\t\t\t\t\t\"handle\": \"ZG39-ARIN\"\
-        ,\r\n\t\t\t\t\t\"status\": [\r\n\t\t\t\t\t\t\"validated\"\r\n\t\t\t\t\t],\r\
-        \n\t\t\t\t\t\"remarks\": null,\r\n\t\t\t\t\t\"notices\": [\r\n\t\t\t\t\t\t\
-        {\r\n\t\t\t\t\t\t\t\"title\": \"Terms of Service\",\r\n\t\t\t\t\t\t\t\"description\"\
-        : \"By using the ARIN RDAP/Whois service, you are agreeing to the RDAP/Whois\
-        \ Terms of Use\",\r\n\t\t\t\t\t\t\t\"links\": [\r\n\t\t\t\t\t\t\t\t\"https://www.arin.net/resources/registry/whois/tou/\"\
-        \r\n\t\t\t\t\t\t\t]\r\n\t\t\t\t\t\t},\r\n\t\t\t\t\t\t{\r\n\t\t\t\t\t\t\t\"\
-        title\": \"Whois Inaccuracy Reporting\",\r\n\t\t\t\t\t\t\t\"description\"\
-        : \"If you see inaccuracies in the results, please visit: \",\r\n\t\t\t\t\t\
-        \t\t\"links\": [\r\n\t\t\t\t\t\t\t\t\"https://www.arin.net/resources/registry/whois/inaccuracy_reporting/\"\
-        \r\n\t\t\t\t\t\t\t]\r\n\t\t\t\t\t\t},\r\n\t\t\t\t\t\t{\r\n\t\t\t\t\t\t\t\"\
-        title\": \"Copyright Notice\",\r\n\t\t\t\t\t\t\t\"description\": \"Copyright\
-        \ 1997-2021, American Registry for Internet Numbers, Ltd.\",\r\n\t\t\t\t\t\
-        \t\t\"links\": null\r\n\t\t\t\t\t\t}\r\n\t\t\t\t\t],\r\n\t\t\t\t\t\"links\"\
-        : [\r\n\t\t\t\t\t\t\"https://rdap.arin.net/registry/entity/ZG39-ARIN\",\r\n\
-        \t\t\t\t\t\t\"https://whois.arin.net/rest/poc/ZG39-ARIN\"\r\n\t\t\t\t\t],\r\
-        \n\t\t\t\t\t\"events\": [\r\n\t\t\t\t\t\t{\r\n\t\t\t\t\t\t\t\"action\": \"\
-        last changed\",\r\n\t\t\t\t\t\t\t\"timestamp\": \"2021-11-10T10:26:54-05:00\"\
-        ,\r\n\t\t\t\t\t\t\t\"actor\": null\r\n\t\t\t\t\t\t},\r\n\t\t\t\t\t\t{\r\n\t\
-        \t\t\t\t\t\t\"action\": \"registration\",\r\n\t\t\t\t\t\t\t\"timestamp\":\
-        \ \"2000-11-30T13:54:08-05:00\",\r\n\t\t\t\t\t\t\t\"actor\": null\r\n\t\t\t\
-        \t\t\t}\r\n\t\t\t\t\t],\r\n\t\t\t\t\t\"raw\": null,\r\n\t\t\t\t\t\"roles\"\
-        : [\r\n\t\t\t\t\t\t\"administrative\",\r\n\t\t\t\t\t\t\"technical\"\r\n\t\t\
-        \t\t\t],\r\n\t\t\t\t\t\"contact\": {\r\n\t\t\t\t\t\t\"name\": \"Google LLC\"\
-        ,\r\n\t\t\t\t\t\t\"kind\": \"group\",\r\n\t\t\t\t\t\t\"address\": [\r\n\t\t\
-        \t\t\t\t\t{\r\n\t\t\t\t\t\t\t\t\"type\": null,\r\n\t\t\t\t\t\t\t\t\"value\"\
-        : \"1600 Amphitheatre Parkway\\nMountain View\\nCA\\n94043\\nUnited States\"\
-        \r\n\t\t\t\t\t\t\t}\r\n\t\t\t\t\t\t],\r\n\t\t\t\t\t\t\"phone\": [\r\n\t\t\t\
-        \t\t\t\t{\r\n\t\t\t\t\t\t\t\t\"type\": [\r\n\t\t\t\t\t\t\t\t\t\"work\",\r\n\
-        \t\t\t\t\t\t\t\t\t\"voice\"\r\n\t\t\t\t\t\t\t\t],\r\n\t\t\t\t\t\t\t\t\"value\"\
-        : \"+1-650-253-0000\"\r\n\t\t\t\t\t\t\t}\r\n\t\t\t\t\t\t],\r\n\t\t\t\t\t\t\
-        \"email\": [\r\n\t\t\t\t\t\t\t{\r\n\t\t\t\t\t\t\t\t\"type\": null,\r\n\t\t\
-        \t\t\t\t\t\t\"value\": \"arin-contact@google.com\"\r\n\t\t\t\t\t\t\t}\r\n\t\
-        \t\t\t\t\t],\r\n\t\t\t\t\t\t\"role\": null,\r\n\t\t\t\t\t\t\"title\": null\r\
-        \n\t\t\t\t\t},\r\n\t\t\t\t\t\"events_actor\": null,\r\n\t\t\t\t\t\"entities\"\
-        : null\r\n\t\t\t\t}\r\n\t\t\t},\r\n\t\t\t\"raw\": null\r\n\t\t}\r\n\t}\r\n\
-        ]"
-default_result_value: ''
-creator: admin
+-   result_example_path: resources/Whois_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: Enrichment
+name: Whois
+parameters:
+-   default_value: 'true'
+    description: Create and link domain entities to URL and Email / User names.
+    is_mandatory: false
+    name: Create Entities
+    type: boolean
+-   default_value: ''
+    description: 'Domains who''s age is less than the than the supplied days will
+        be marked suspicious.  '
+    is_mandatory: false
+    name: Domain Age Threshold
+    type: string
 script_result_name: ScriptResult

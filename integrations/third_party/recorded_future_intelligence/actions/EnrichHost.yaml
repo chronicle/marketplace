@@ -1,65 +1,29 @@
-name: Enrich Host
+creator: admin
 description: Query Recorded Future to get intelligence about the Host.
+dynamic_results_metadata:
+-   result_example_path: resources/EnrichHost_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
 integration_identifier: RecordedFutureIntelligence
+name: Enrich Host
 parameters:
-    -   name: Risk Score Threshold
-        default_value: '25'
-        type: string
-        description: "Represents the minimum malicious risk score for a Host to be marked\
+-   default_value: '25'
+    description: "Represents the minimum malicious risk score for a Host to be marked\
         \ malicious. Has a range of 0-99. Below is the band levels: \n Very Malicious:\
         \ 90-99 \n Malicious: 65-89 \n Suspicious: 25-64 \n Unusual: 5-24 \n No Malicious\
         \ content: 0"
-        is_mandatory: true
-    -   name: Include Links
-        default_value: 'false'
-        type: boolean
-        description: If enabled, action will get information about links.
-        is_mandatory: false
-    -   name: Enable Collective Insights
-        default_value: 'true'
-        type: boolean
-        description: If enabled, contribute detections back to Recorded Future.
-        is_mandatory: false
-dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: '[{"Entity": "ntrshvquunyzxevkucs.com", "EntityResult": [{"entity":
-        {"id": "idn:ntrshvquunyzxevkucs.com", "name": "ntrshvquunyzxevkucs.com", "type":
-        "InternetDomainName"}, "intelCard": "https://app.recordedfuture.com/live/sc/entity/idn%3Antrshvquunyzxevkucs.com",
-        "risk": {"criticalityLabel": "Very Malicious", "riskString": "6/52", "rules":
-        6, "criticality": 4, "riskSummary": "6 of 52 Risk Rules currently observed.",
-        "score": 94, "evidenceDetails": [{"mitigationString": "", "evidenceString":
-        "10 sightings on 2 sources: External Sensor Data Analysis, Bitdefender. ntrshvquunyzxevkucs.com
-        is observed to be a malware site domain that navigates to malicious content
-        including executables, drive-by infection sites, malicious scripts, viruses,
-        trojans, or code.", "rule": "Historically Detected Malware Operation", "criticality":
-        1, "timestamp": "2022-01-21T00:00:00.000Z", "criticalityLabel": "Unusual"},
-        {"mitigationString": "", "evidenceString": "1 sighting on 1 source: @DGAFeedAlerts.
-        Most recent tweet: New dircrypt Dom: ntrshvquunyzxevkucs[.]com IP: 80[.]92[.]65[.]188
-        NS: https://t.co/F8xbRMAf2C https://t.co/JxUb8f0Cir. Most recent link (Oct
-        21, 2021): https://twitter.com/DGAFeedAlerts/statuses/1451293292587593729",
-        "rule": "Historically Reported as a Defanged DNS Name", "criticality": 1,
-        "timestamp": "2021-10-21T21:04:19.000Z", "criticalityLabel": "Unusual"}, {"mitigationString":
-        "", "evidenceString": "Previous sightings on 2 sources: Bambenek Consulting
-        C&C Blocklist, Recently Viewed Integrations Indicators. Observed between Mar
-        5, 2023, and Mar 8, 2023.", "rule": "Historically Reported in Threat List",
-        "criticality": 1, "timestamp": "2024-07-25T05:37:09.188Z", "criticalityLabel":
-        "Unusual"}, {"mitigationString": "", "evidenceString": "1 sighting on 1 source:
-        Bitdefender. Detected malicious behavior from an endpoint agent via global
-        telemetry. Last observed on Jan 21, 2022.", "rule": "Historically Suspected
-        Malware Operation", "criticality": 1, "timestamp": "2022-01-21T00:00:00.000Z",
-        "criticalityLabel": "Unusual"}, {"mitigationString": "", "evidenceString":
-        "1 sighting on 1 source: External Sensor Data Analysis. ntrshvquunyzxevkucs.com
-        is observed to be a malware site domain that navigates to malicious content
-        including executables, drive-by infection sites, malicious scripts, viruses,
-        trojans, or code.", "rule": "Recently Detected Malware Operation", "criticality":
-        3, "timestamp": "2024-07-18T05:26:23.354Z", "criticalityLabel": "Malicious"},
-        {"mitigationString": "", "evidenceString": "1 sighting on 1 source: Bambenek
-        Consulting C&C Blocklist.", "rule": "Recent C&C DNS Name", "criticality":
-        4, "timestamp": "2024-07-25T05:37:09.159Z", "criticalityLabel": "Very Malicious"}]},
-        "timestamps": {"lastSeen": "2024-07-17T19:47:20.526Z", "firstSeen": "2019-04-02T18:30:05.054Z"},
-        "links": {}}]}]'
-creator: admin
-simulation_data_json: '{"Entities": ["HOSTNAME"]}'
+    is_mandatory: true
+    name: Risk Score Threshold
+    type: string
+-   default_value: 'false'
+    description: If enabled, action will get information about links.
+    is_mandatory: false
+    name: Include Links
+    type: boolean
+-   default_value: 'true'
+    description: If enabled, contribute detections back to Recorded Future.
+    is_mandatory: false
+    name: Enable Collective Insights
+    type: boolean
 script_result_name: is_risky
+simulation_data_json: '{"Entities": ["HOSTNAME"]}'

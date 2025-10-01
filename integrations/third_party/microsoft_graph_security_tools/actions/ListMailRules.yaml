@@ -1,39 +1,18 @@
-name: List Mail Rules
+creator: daniel.harvey
+default_result_value: ''
 description: 'Get all the messageRule objects defined for the user''s Inbox.
 
     https://docs.microsoft.com/en-us/graph/api/mailfolder-list-messagerules?view=graph-rest-1.0&tabs=http'
-integration_identifier: MicrosoftGraphSecurityTools
-parameters:
-    -   name: User ID
-        default_value: john.smith@mail.com
-        type: string
-        description: User ID/userPrincipalName (email)
-        is_mandatory: true
 dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: "[\r\n    {\r\n        \"id\": \"BQCBAcc7hg4=\",\r\n        \"\
-        displayName\": \"IBM XForce\",\r\n        \"sequence\": 1,\r\n        \"isEnabled\"\
-        : \"True\",\r\n        \"hasError\": \"False\",\r\n        \"isReadOnly\"\
-        : \"False\",\r\n        \"conditions\": {\r\n            \"fromAddresses\"\
-        : [\r\n                {\r\n                    \"emailAddress\": {\r\n  \
-        \                      \"name\": \"no-reply@xforce.ibmcloud.com\",\r\n   \
-        \                     \"address\": \"no-reply@xforce.ibmcloud.com\"\r\n  \
-        \                  }\r\n                }\r\n            ]\r\n        },\r\
-        \n        \"actions\": {\r\n            \"moveToFolder\": \"YXNmYWRmd2RzZmZzZmRzYWRmYXNkZmFzZGZhc2RmYXNmYXNmYWZhZ2hmZ2hydGJmZ3ZiZGZzdmZkYWRzZmE=\"\
-        ,\r\n            \"stopProcessingRules\": \"True\"\r\n        }\r\n    },\r\
-        \n    {\r\n        \"id\": \"CQAccc7hg8=\",\r\n        \"displayName\": \"\
-        Siemplify\",\r\n        \"sequence\": 2,\r\n        \"isEnabled\": \"True\"\
-        ,\r\n        \"hasError\": \"False\",\r\n        \"isReadOnly\": \"False\"\
-        ,\r\n        \"conditions\": {\r\n            \"fromAddresses\": [\r\n   \
-        \             {\r\n                    \"emailAddress\": {\r\n           \
-        \             \"name\": \"user@siemplify.co\",\r\n                       \
-        \ \"address\": \"user@siemplify.co\"\r\n                    }\r\n        \
-        \        }\r\n            ]\r\n        },\r\n        \"actions\": {\r\n  \
-        \          \"moveToFolder\": \"YXNkZiBhc2RmIGFzZGZhZGZhZGZhc2YgZGFzZnNmIGFoZGZnYXNkIGZnYXNmZGdhZ2RmaHNnZmhhIHNkZ2ZhaHMgZ2ZhaGZnc2YgZ2FzamhkZ2YgYWpzZ2QgZmhnYXNzaGRmZ2E=\"\
-        ,\r\n            \"stopProcessingRules\": \"True\"\r\n        }\r\n    }\r\
-        \n]"
-default_result_value: ''
-creator: daniel.harvey
+-   result_example_path: resources/ListMailRules_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: MicrosoftGraphSecurityTools
+name: List Mail Rules
+parameters:
+-   default_value: john.smith@mail.com
+    description: User ID/userPrincipalName (email)
+    is_mandatory: true
+    name: User ID
+    type: string
 script_result_name: ScriptResult

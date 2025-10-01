@@ -1,0 +1,20 @@
+{
+    "items": [
+        {
+            "companyId": "5b680f6fb1a43d860a7b23c8",
+            "hash": "098f6bcd4621d373cade4e832627b4f6",
+            "hashType": 2,
+            "id": "5b7ac19bb1a43dfb107b23c6",
+            "source": 3,
+            "sourceInfo": "Added from public API"
+        },
+        {
+            "filename": "file.txt",
+            "hash": "f696282aa4cd4f614aa995190cf442fe",
+            "hashType": 2,
+            "id": "5b7ac19bb1a43dfb107b23c7",
+            "source": 1,
+            "sourceInfo": "Added from incident 1"
+        }
+    ]
+}

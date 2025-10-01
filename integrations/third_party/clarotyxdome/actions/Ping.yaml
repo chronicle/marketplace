@@ -1,11 +1,11 @@
-name: Ping
+creator: 01510cf5-bc5e-4a6c-b91d-1facfab4ce0f
+default_result_value: ''
 description: Test connectivity to Claroty xDome.
-integration_identifier: clarotyxdome
-parameters: []
 dynamic_results_metadata:
--   result_example: '{}'
+-   result_example_path: null
     result_name: JsonResult
     show_result: false
-default_result_value: ''
-creator: 01510cf5-bc5e-4a6c-b91d-1facfab4ce0f
+integration_identifier: clarotyxdome
+name: Ping
+parameters: []
 script_result_name: ScriptResult

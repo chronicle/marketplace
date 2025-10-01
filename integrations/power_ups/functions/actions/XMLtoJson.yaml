@@ -1,17 +1,16 @@
-name: XMLtoJson
-description: Convert XML formatted data to JSON.
-integration_identifier: Functions
-parameters:
-    -   name: xml
-        default_value: <e> <a>text</a> <a>text</a> </e>
-        type: string
-        description: Convert XML to JSON
-        is_mandatory: true
-dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: '{}'
-default_result_value: ''
 creator: Rob
+default_result_value: ''
+description: Convert XML formatted data to JSON.
+dynamic_results_metadata:
+-   result_example_path: null
+    result_name: JsonResult
+    show_result: true
+integration_identifier: Functions
+name: XMLtoJson
+parameters:
+-   default_value: <e> <a>text</a> <a>text</a> </e>
+    description: Convert XML to JSON
+    is_mandatory: true
+    name: xml
+    type: string
 script_result_name: ScriptResult

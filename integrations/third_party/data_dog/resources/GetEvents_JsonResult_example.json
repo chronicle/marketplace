@@ -1,0 +1,51 @@
+{
+    "events": [
+        {
+            "date_happened": 1610487676,
+            "alert_type": "error",
+            "is_aggregate": false,
+            "title": "[Triggered on {host:i-123456}] Node filesystem used in Percent i-123456",
+            "url": "/event/event?id=1111111111",
+            "text": "",
+            "tags": [
+                "monitor",
+                "region:us-west-2",
+                "security-group:y",
+                "security-group:x"
+            ],
+            "comments": [],
+            "device_name": null,
+            "priority": "normal",
+            "source": "Monitor Alert",
+            "host": "i-123456",
+            "resource": "/api/v1/events/aaabbbccc111",
+            "id": "aaabbbccc111"
+        },
+        {
+            "date_happened": 1610487676,
+            "alert_type": "error",
+            "is_aggregate": true,
+            "title": "[Triggered on {host:i-123456}] Node filesystem used in Percent i-123456",
+            "url": "/event/event?id=22222222",
+            "text": "",
+            "tags": [
+                "monitor",
+                "region:us-west-2"
+            ],
+            "comments": [],
+            "children": [
+                {
+                    "date_happened": 1610487676,
+                    "alert_type": "error",
+                    "id": "22222222"
+                }
+            ],
+            "priority": "normal",
+            "source": "Monitor Alert",
+            "host": "i-123456",
+            "resource": "/api/v1/events/2222222",
+            "device_name": null,
+            "id": 2222222
+        }
+    ]
+}

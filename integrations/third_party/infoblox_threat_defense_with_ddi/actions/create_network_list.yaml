@@ -1,32 +1,28 @@
-name: Create Network List
-description: Creates a new network list to define where security policies should be
-  applied.
-integration_identifier: InfobloxThreatDefenseWithDDI
-parameters:
-- name: Name
-  default_value: ' '
-  type: string
-  description: Specify the name of the network list.
-  is_mandatory: true
-- name: Items
-  default_value: ' '
-  type: string
-  description: Specify the comma-separated items to include in the network list (e.g.,
-    IP addresses)
-  is_mandatory: true
-- name: Description
-  default_value: null
-  type: string
-  description: Specify a description for the network list
-  is_mandatory: false
-dynamic_results_metadata:
-- result_name: JsonResult
-  show_result: true
-  result_example: "{\r\n  \"created_time\": \"2025-07-02T06:03:25Z\",\r\n  \"description\"\
-    : \"Test Network List 1 Description\",\r\n  \"id\": 1858966,\r\n  \"item_approvals\"\
-    : [],\r\n  \"items\": [\r\n    \"192.0.2.0/24\",\r\n    \"192.0.3.0/24\"\r\n \
-    \ ],\r\n  \"name\": \"tesst-1\",\r\n  \"policy_id\": 204970,\r\n  \"updated_time\"\
-    : \"2025-07-02T06:03:25Z\"\r\n}"
-default_result_value: ''
 creator: Admin
+default_result_value: ''
+description: Creates a new network list to define where security policies should be
+    applied.
+dynamic_results_metadata:
+-   result_example_path: resources/create_network_list_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: InfobloxThreatDefenseWithDDI
+name: Create Network List
+parameters:
+-   default_value: ' '
+    description: Specify the name of the network list.
+    is_mandatory: true
+    name: Name
+    type: string
+-   default_value: ' '
+    description: Specify the comma-separated items to include in the network list
+        (e.g., IP addresses)
+    is_mandatory: true
+    name: Items
+    type: string
+-   default_value: null
+    description: Specify a description for the network list
+    is_mandatory: false
+    name: Description
+    type: string
 script_result_name: ScriptResult

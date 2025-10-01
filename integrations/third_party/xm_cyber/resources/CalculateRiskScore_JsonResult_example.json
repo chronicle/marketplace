@@ -1,0 +1,13 @@
+{
+    "base_risk_score": 45,
+    "risk_score": 99,
+    "is_critical_asset": true,
+    "is_highly_privileged": true,
+    "is_predefined_admin": true,
+    "user_without_mfa": true,
+    "compromised_risk_score_level": "CRITICAL",
+    "compromised_choke_point_score_level": "MEDIUM",
+    "compromised_risk_score": 87,
+    "compromised_choke_point_score": 52,
+    "labels": "label1, label2, testlabel, 123label"
+}

@@ -1,0 +1,44 @@
+[
+    {
+        "entityIdentifier": "https://rapidgator.net/file/46dcb60949bd324e948ce2b35a876e2b/y0y1u.The.Ultimate.Swagger.Tools.Course.Build.OpenAPI.with.Ease.part1.rar.html",
+        "entityResult": [
+            {
+                "created": "2021-06-22T09:15:45.634Z",
+                "description": "Malware available for download from file-sharing sites",
+                "external_reference": [
+                    {
+                        "description": "Mitre attack tactics and technique reference",
+                        "mitre_attack_tactic": "Build Capabilities",
+                        "mitre_attack_tactic_id": "TA0024",
+                        "mitre_attack_tactic_url": "https://attack.mitre.org/tactics/TA0024/",
+                        "mitre_attack_technique": "Obtain/re-use payloads",
+                        "mitre_attack_technique_id": "T1346",
+                        "mitre_attack_technique_url": "https://attack.mitre.org/techniques/T1346/",
+                        "source_name": "mitre-attack"
+                    }
+                ],
+                "id": "indicator--2d0c9087-d4e0-4066-9c1e-011de88c0b5f",
+                "labels": [
+                    "malicious-activity",
+                    "malware",
+                    "Build Capabilities",
+                    "Obtain/re-use payloads"
+                ],
+                "lang": "en",
+                "modified": "2021-06-22T09:15:45.634Z",
+                "pattern": "[url:value = 'https://rapidgator.net/file/46dcb60949bd324e948ce2b35a876e2b/y0y1u.The.Ultimate.Swagger.Tools.Course.Build.OpenAPI.with.Ease.part1.rar.html']",
+                "sixgill_actor": "oaxino",
+                "sixgill_confidence": 80,
+                "sixgill_feedid": "darkfeed_010",
+                "sixgill_feedname": "malware_download_urls",
+                "sixgill_postid": "75b37b198d6d27e63894039b91c073fea091540c",
+                "sixgill_posttitle": "The  Ultimate Swagger Tools Course: Build OpenAPI with Ease",
+                "sixgill_severity": 70,
+                "sixgill_source": "forum_prizrak",
+                "spec_version": "2.0",
+                "type": "indicator",
+                "valid_from": "2021-06-18T13:06:06Z"
+            }
+        ]
+    }
+]

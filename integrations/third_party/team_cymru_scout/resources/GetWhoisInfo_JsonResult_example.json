@@ -1,0 +1,75 @@
+{
+    "1.1.1.1": {
+        "request_id": "6d70a122-d9ca-5d81-b7bc-2fe46435efc4",
+        "ip": "1.1.1.1",
+        "size": 20,
+        "start_date": "2024-07-30",
+        "end_date": "2024-08-20",
+        "sections": [
+            "whois"
+        ],
+        "usage": {
+            "used_queries": 1400,
+            "remaining_queries": 48600,
+            "query_limit": 50000,
+            "foundation_api_usage": {
+                "used_queries": 2,
+                "remaining_queries": 9998,
+                "query_limit": 10000
+            },
+            "ai_insights_usage": {
+                "used_queries": 0,
+                "remaining_queries": 0,
+                "query_limit": 0
+            }
+        },
+        "whois": {
+            "modified": "2017-10-30",
+            "asn": 174,
+            "cidr": "1.1.1.1/16",
+            "as_name": "Cogent Communications",
+            "bgp_asn": 174,
+            "bgp_asn_name": "COGENT-174, US",
+            "net_name": "COGENT-154-22-16",
+            "net_handle": "NET-154-22-0-0-1",
+            "description": "",
+            "cc": "US",
+            "city": "Washington",
+            "address": "[\"2450 N Street NW, Washington, DC, US\"]",
+            "abuse_contact_id": "COGEN-ARIN",
+            "about_contact_role": "",
+            "about_contact_person": "Cogent Abuse",
+            "about_contact_email": "abuse@cogentco.com",
+            "about_contact_phone": "+1-877-875-4311",
+            "about_contact_country": "US",
+            "about_contact_city": "",
+            "about_contact_address": "[\"US, DC, Washington, 2450 N street, NW, 20037\"]",
+            "admin_contact_id": "IPALL-ARIN",
+            "admin_contact_role": "",
+            "admin_contact_person": "IP Allocation",
+            "admin_contact_email": "ipalloc@cogentco.com",
+            "admin_contact_phone": "+1-877-875-4311",
+            "admin_contact_country": "US",
+            "admin_contact_city": "",
+            "admin_contact_address": "[\"US, DC, Washington, 2450 N Street NW, 20037\"]",
+            "tech_contact_id": "IPALL-ARIN",
+            "tech_contact_role": "",
+            "tech_contact_person": "IP Allocation",
+            "tech_contact_email": "ipalloc@cogentco.com",
+            "tech_contact_phone": "+1-877-875-4311",
+            "tech_contact_country": "US",
+            "tech_contact_city": "",
+            "tech_contact_address": "[\"US, DC, Washington, 2450 N Street NW, 20037\"]",
+            "org_id": "PSI-2",
+            "org_name": "PSINet, Inc.",
+            "org_email": "",
+            "org_phone": "+1-877-875-4311",
+            "org_country": "US",
+            "org_city": "Washington",
+            "org_address": "",
+            "mnt_by_email": "",
+            "mnt_lower_email": "",
+            "mnt_router_email": ""
+        }
+    }
+}

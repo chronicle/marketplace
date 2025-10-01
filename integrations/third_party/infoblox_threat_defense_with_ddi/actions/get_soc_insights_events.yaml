@@ -1,87 +1,79 @@
-name: Get SOC Insights Events
-description: Retrieve the list of events available in the specified SOC insight.
-integration_identifier: InfobloxThreatDefenseWithDDI
-parameters:
-- name: Insight ID
-  default_value: ' '
-  type: string
-  description: ID of the insight to retrieve events from.
-  is_mandatory: true
-- name: Device IP
-  default_value: null
-  type: string
-  description: Filter assets by Device IP.
-  is_mandatory: false
-- name: Query
-  default_value: null
-  type: string
-  description: Filter by query string.
-  is_mandatory: false
-- name: Query Type
-  default_value: null
-  type: string
-  description: Filter events by DNS query type (e.g., TXT, A, MX).
-  is_mandatory: false
-- name: Source
-  default_value: null
-  type: string
-  description: Filter events by the threat intelligence source or feed (e.g., DFP
-    (DFP)).
-  is_mandatory: false
-- name: Indicator
-  default_value: null
-  type: string
-  description: Filter events by a specific threat indicator such as a domain, IP,
-    or hash (e.g., hmdns.top).
-  is_mandatory: false
-- name: Threat Level
-  default_value: All
-  type: ddl
-  description: Filter by threat level.
-  is_mandatory: false
-  optional_values:
-  - All
-  - Info
-  - Low
-  - Medium
-  - High
-- name: Confidence Level
-  default_value: All
-  type: ddl
-  description: Filter by confidence level.
-  is_mandatory: false
-  optional_values:
-  - All
-  - Low
-  - Medium
-  - High
-- name: Limit
-  default_value: '100'
-  type: string
-  description: Specify the maximum number of results to return.
-  is_mandatory: false
-- name: From
-  default_value: null
-  type: string
-  description: 'Filter by events detected after this time in this format: YYYY-MM-DDTHH:mm:ss.SSS'
-  is_mandatory: false
-- name: To
-  default_value: ''
-  type: string
-  description: 'Filter by events detected before this time in this format: YYYY-MM-DDTHH:mm:ss.SSS'
-  is_mandatory: false
-dynamic_results_metadata:
-- result_name: JsonResult
-  show_result: true
-  result_example: "{\r\n    \"events\": [\r\n        {\r\n            \"confidenceLevel\"\
-    : \"High\",\r\n            \"source\": \"unknown\",\r\n            \"action\"\
-    : \"Allow - No Log\",\r\n            \"policy\": \"DoH\",\r\n            \"deviceIp\"\
-    : \"34.96.34.26\",\r\n            \"query\": \"soc-botnet.xhexriya.ru\",\r\n \
-    \           \"queryType\": \"ANY\",\r\n            \"class\": \"TI-BOTNET\",\r\
-    \n            \"threatFamily\": \"QTYPEANY\",\r\n            \"detected\": \"\
-    2025-07-09 11:42:30 +0000 UTC\",\r\n            \"property\": \"soc-botnet.xhexriya.ru\"\
-    ,\r\n            \"user\": \"unknown\",\r\n            \"threatLevel\": \"Medium\"\
-    \r\n        }\r\n    ]\r\n}"
-default_result_value: ''
 creator: Admin
+default_result_value: ''
+description: Retrieve the list of events available in the specified SOC insight.
+dynamic_results_metadata:
+-   result_example_path: resources/get_soc_insights_events_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: InfobloxThreatDefenseWithDDI
+name: Get SOC Insights Events
+parameters:
+-   default_value: ' '
+    description: ID of the insight to retrieve events from.
+    is_mandatory: true
+    name: Insight ID
+    type: string
+-   default_value: null
+    description: Filter assets by Device IP.
+    is_mandatory: false
+    name: Device IP
+    type: string
+-   default_value: null
+    description: Filter by query string.
+    is_mandatory: false
+    name: Query
+    type: string
+-   default_value: null
+    description: Filter events by DNS query type (e.g., TXT, A, MX).
+    is_mandatory: false
+    name: Query Type
+    type: string
+-   default_value: null
+    description: Filter events by the threat intelligence source or feed (e.g., DFP
+        (DFP)).
+    is_mandatory: false
+    name: Source
+    type: string
+-   default_value: null
+    description: Filter events by a specific threat indicator such as a domain, IP,
+        or hash (e.g., hmdns.top).
+    is_mandatory: false
+    name: Indicator
+    type: string
+-   default_value: All
+    description: Filter by threat level.
+    is_mandatory: false
+    name: Threat Level
+    optional_values:
+    - All
+    - Info
+    - Low
+    - Medium
+    - High
+    type: ddl
+-   default_value: All
+    description: Filter by confidence level.
+    is_mandatory: false
+    name: Confidence Level
+    optional_values:
+    - All
+    - Low
+    - Medium
+    - High
+    type: ddl
+-   default_value: '100'
+    description: Specify the maximum number of results to return.
+    is_mandatory: false
+    name: Limit
+    type: string
+-   default_value: null
+    description: 'Filter by events detected after this time in this format: YYYY-MM-DDTHH:mm:ss.SSS'
+    is_mandatory: false
+    name: From
+    type: string
+-   default_value: ''
+    description: 'Filter by events detected before this time in this format: YYYY-MM-DDTHH:mm:ss.SSS'
+    is_mandatory: false
+    name: To
+    type: string
 script_result_name: ScriptResult

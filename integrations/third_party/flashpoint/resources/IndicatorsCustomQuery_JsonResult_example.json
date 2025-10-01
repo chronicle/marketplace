@@ -1,0 +1,27 @@
+[
+    {
+        "Attribute": [
+            {
+                "category": "string",
+                "comment": "string",
+                "fpid": {},
+                "href": {},
+                "timestamp": 0,
+                "type": "string",
+                "uuid": "string",
+                "value": {}
+            }
+        ],
+        "RelatedEvent": {},
+        "Tag": [
+            {
+                "name": "string"
+            }
+        ],
+        "attribute_count": 0,
+        "date": "string",
+        "event_creator_email": "string",
+        "href": "string",
+        "uuid": "string"
+    }
+]

@@ -1,29 +1,22 @@
-name: List Attachments
+creator: daniel.harvey
+default_result_value: ''
 description: 'Retrieve a list of attachment objects attached to a message.
 
     https://docs.microsoft.com/en-us/graph/api/message-list-attachments?view=graph-rest-1.0&tabs=http'
-integration_identifier: MicrosoftGraphSecurityTools
-parameters:
-    -   name: User ID
-        default_value: john.smith@mail.com
-        type: string
-        description: Either email (userPrincipalName) or ID
-        is_mandatory: true
-    -   name: Message ID
-        type: string
-        description: ID of message to retrieve attachment list from
-        is_mandatory: false
 dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: "[{\"@odata.type\": \"#microsoft.graph.fileAttachment\", \"@odata.mediaContentType\"\
-        : \"image/png\", \r\n\"id\": \"AAMkADY4OWJiOTY5LWZiODItNDNjMy05MjA4LTA2ZTNiMzNkZTg1NQBGAAAAAADi_cDVGMwvSY14bTcuE30PBwBq0FWx2eMAQJKh8wSyz13FAAAAAAEMAABq0FWx2eMAQJKh8wSyz13FAAHfMNGJAAABEgAQAE7nqquOvxZAnwi-XELc2aw=\"\
-        , \"lastModifiedDateTime\": \"2020-11-04T13:57:31Z\", \"name\": \"banner.png\"\
-        , \"contentType\": \"image/png\", \"size\": 14061, \"isInline\": \"False\"\
-        , \r\n\"contentId\": \"206BF41F95785446BD7BC1721276F923@ausprd01.prod.outlook.com\"\
-        , \"contentLocation\": \"None\", \r\n\"contentBytes\": \"verylongb64string==\"\
-        }]"
-default_result_value: ''
-creator: daniel.harvey
+-   result_example_path: resources/ListAttachments_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: MicrosoftGraphSecurityTools
+name: List Attachments
+parameters:
+-   default_value: john.smith@mail.com
+    description: Either email (userPrincipalName) or ID
+    is_mandatory: true
+    name: User ID
+    type: string
+-   description: ID of message to retrieve attachment list from
+    is_mandatory: false
+    name: Message ID
+    type: string
 script_result_name: ScriptResult

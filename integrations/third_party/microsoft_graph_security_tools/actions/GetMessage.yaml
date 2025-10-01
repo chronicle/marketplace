@@ -1,52 +1,23 @@
-name: Get Message
+creator: daniel.harvey
+default_result_value: ''
 description: 'Get Email Message from a user''s inbox
 
     https://docs.microsoft.com/en-us/graph/api/message-get?view=graph-rest-1.0&tabs=http'
-integration_identifier: MicrosoftGraphSecurityTools
-parameters:
-    -   name: User ID
-        default_value: john.smith@email.com
-        type: string
-        description: User ID/userPrincipalName (email)
-        is_mandatory: true
-    -   name: Message ID
-        default_value: AAMkADhMGAAA=
-        type: string
-        description: ID of the message to retrieve
-        is_mandatory: true
 dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: "{\r\n    \"@odata.context\":\"https://graph.microsoft.com/v1.0/$metadata#users('7f180cbb-a5ae-457c-b7e8-6f5b42ba33e7')/messages/$entity\"\
-        ,\r\n    \"@odata.etag\":\"W/\\\"CQAAABYAAAC4ofQHEIqCSbQPot83AFcbAAAnjjuZ\\\
-        \"\",\r\n    \"id\":\"AAMkADhMGAAA=\",\r\n    \"createdDateTime\":\"2018-09-09T03:15:05Z\"\
-        ,\r\n    \"lastModifiedDateTime\":\"2018-09-09T03:15:08Z\",\r\n    \"changeKey\"\
-        :\"CQAAABYAAAC4ofQHEIqCSbQPot83AFcbAAAnjjuZ\",\r\n    \"categories\":[\r\n\
-        \r\n    ],\r\n    \"receivedDateTime\":\"2018-09-09T03:15:08Z\",\r\n    \"\
-        sentDateTime\":\"2018-09-09T03:15:06Z\",\r\n    \"hasAttachments\":false,\r\
-        \n    \"internetMessageId\":\"<MWHPR6E1BE060@MWHPR1120.namprd22.prod.outlook.com>\"\
-        ,\r\n    \"subject\":\"9/9/2018: concert\",\r\n    \"bodyPreview\":\"The group\
-        \ represents Nevada.\",\r\n    \"importance\":\"normal\",\r\n    \"parentFolderId\"\
-        :\"AAMkADcbAAAAAAEJAAA=\",\r\n    \"conversationId\":\"AAQkADOUpag6yWs=\"\
-        ,\r\n    \"isDeliveryReceiptRequested\":false,\r\n    \"isReadReceiptRequested\"\
-        :false,\r\n    \"isRead\":true,\r\n    \"isDraft\":false,\r\n    \"webLink\"\
-        :\"https://outlook.office365.com/owa/?ItemID=AAMkADMGAAA%3D&exvsurl=1&viewmodel=ReadMessageItem\"\
-        ,\r\n    \"inferenceClassification\":\"focused\",\r\n    \"body\":{\r\n  \
-        \      \"contentType\":\"html\",\r\n        \"content\":\"<html>\\r\\n<head>\\\
-        r\\n<meta http-equiv=\\\"Content-Type\\\" content=\\\"text/html; charset=utf-8\\\
-        \">\\r\\n<meta content=\\\"text/html; charset=us-ascii\\\">\\r\\n</head>\\\
-        r\\n<body>\\r\\nThe group represents Nevada.\\r\\n</body>\\r\\n</html>\\r\\\
-        n\"\r\n    },\r\n    \"sender\":{\r\n        \"emailAddress\":{\r\n      \
-        \      \"name\":\"Adele Vance\",\r\n            \"address\":\"adelev@contoso.OnMicrosoft.com\"\
-        \r\n        }\r\n    },\r\n    \"from\":{\r\n        \"emailAddress\":{\r\n\
-        \            \"name\":\"Adele Vance\",\r\n            \"address\":\"adelev@contoso.OnMicrosoft.com\"\
-        \r\n        }\r\n    },\r\n    \"toRecipients\":[\r\n        {\r\n       \
-        \     \"emailAddress\":{\r\n                \"name\":\"Alex Wilber\",\r\n\
-        \                \"address\":\"AlexW@contoso.OnMicrosoft.com\"\r\n       \
-        \     }\r\n        }\r\n    ],\r\n    \"ccRecipients\":[\r\n\r\n    ],\r\n\
-        \    \"bccRecipients\":[\r\n\r\n    ],\r\n    \"replyTo\":[\r\n\r\n    ],\r\
-        \n    \"flag\":{\r\n        \"flagStatus\":\"notFlagged\"\r\n    }\r\n}"
-default_result_value: ''
-creator: daniel.harvey
+-   result_example_path: resources/GetMessage_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: MicrosoftGraphSecurityTools
+name: Get Message
+parameters:
+-   default_value: john.smith@email.com
+    description: User ID/userPrincipalName (email)
+    is_mandatory: true
+    name: User ID
+    type: string
+-   default_value: AAMkADhMGAAA=
+    description: ID of the message to retrieve
+    is_mandatory: true
+    name: Message ID
+    type: string
 script_result_name: ScriptResult

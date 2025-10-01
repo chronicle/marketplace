@@ -1,0 +1,29 @@
+{
+    "user_details": {
+        "countDiscussions": 0,
+        "dateInserted": "2021-01-28T08:39:03+00:00",
+        "name": "FirstName LastName",
+        "roles": [
+            {
+                "roleID": 35,
+                "name": "Customer"
+            }
+        ],
+        "photoUrl": "PhotoURL",
+        "url": "UserURL",
+        "banned": 0,
+        "rankID": null,
+        "userID": 1830,
+        "countComments": 0,
+        "emailConfirmed": true,
+        "showEmail": false,
+        "points": 0,
+        "bypassSpam": false,
+        "dateUpdated": null,
+        "label": "",
+        "dateLastActive": "2021-01-28T08:39:03+00:00",
+        "email": "UserEmail"
+    },
+    "Password": "UserPassword",
+    "Email": "UserEmail"
+}

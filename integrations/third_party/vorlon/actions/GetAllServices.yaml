@@ -1,15 +1,10 @@
-name: Get All Services
-description: Returns all detected and observed services.
-integration_identifier: Vorlon
-parameters: [ ]
-dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: "[\n  {\n    \"description\": \"Salesforce CRM\",\n    \"detected_instances\"\
-        : [\n      \"my-salesforce\"\n    ],\n    \"last_collected\": 1686562760,\n\
-        \    \"name\": \"Salesforce\",\n    \"observed_instances\": [\n      \"my.salesforce.com\"\
-        \n    ],\n    \"service_id\": \"salesforce\",\n    \"state\": \"observed\"\
-        \n  }\n]"
-default_result_value: ''
 creator: fe5f742c-a69e-4116-ad38-b1d7c5194541
+default_result_value: ''
+description: Returns all detected and observed services.
+dynamic_results_metadata:
+-   result_example_path: resources/GetAllServices_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: Vorlon
+name: Get All Services
+parameters: []

@@ -1,0 +1,15 @@
+{
+    "id": 73,
+    "name": "New Group test domain",
+    "description": "Group description",
+    "last_modified": "2024-11-29T10:58:54Z",
+    "last_modified_by": "API Client 25cb417a",
+    "type": "domain",
+    "members": null,
+    "rules": null,
+    "importance": "high",
+    "regex": null,
+    "membership_evaluation_ongoing": false,
+    "member_count": 3,
+    "built_using": "static_members"
+}

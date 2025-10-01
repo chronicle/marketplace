@@ -1,85 +1,61 @@
-name: Create Meeting
+creator: TehilaGourary
+default_result_value: ''
 description: Create a scheduled or instant meeting in Zoom
+dynamic_results_metadata:
+-   result_example_path: resources/CreateMeeting_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
 integration_identifier: Zoom
+name: Create Meeting
 parameters:
-    -   name: Meeting Type
-        default_value: Scheduled
-        type: ddl
-        optional_values:
-            - Instant
-            - Scheduled
-        description: 'The type of the meeting can be ''Instant'' or ''Scheduled''
+-   default_value: Scheduled
+    description: 'The type of the meeting can be ''Instant'' or ''Scheduled''
 
         Setting the meeting to ''Instant'' will overlap the configuration of the ''Scheduled''
         meeting.'
-        is_mandatory: true
-    -   name: Meeting Start Time
-        default_value: '2020-09-30 12:00:00'
-        type: string
-        description: 'Meeting start time (should be used only for scheduled meetings).
+    is_mandatory: true
+    name: Meeting Type
+    optional_values:
+    - Instant
+    - Scheduled
+    type: ddl
+-   default_value: '2020-09-30 12:00:00'
+    description: 'Meeting start time (should be used only for scheduled meetings).
 
         The time format is GMT yyyy-mm-dd hh:mm:ss '
-        is_mandatory: true
-    -   name: Meeting Topic
-        default_value: MeetingTopicExample
-        type: string
-        description: The meeting topic
-        is_mandatory: true
-    -   name: Auto Recording Type
-        default_value: "none"
-        type: ddl
-        optional_values:
-            - local
-            - cloud
-            - "none"
-        description: "'local'-Recording automatically on the local server.\n'cloud'-Recording\
+    is_mandatory: true
+    name: Meeting Start Time
+    type: string
+-   default_value: MeetingTopicExample
+    description: The meeting topic
+    is_mandatory: true
+    name: Meeting Topic
+    type: string
+-   default_value: none
+    description: "'local'-Recording automatically on the local server.\n'cloud'-Recording\
         \  automatically on cloud.\n'none'- Choose if you do not want to record. \n"
-        is_mandatory: true
-    -   name: Time Zone
-        default_value: Pacific/Midway
-        type: string
-        description: 'The time zone in format Continent/Country.
+    is_mandatory: true
+    name: Auto Recording Type
+    optional_values:
+    - local
+    - cloud
+    - none
+    type: ddl
+-   default_value: Pacific/Midway
+    description: 'The time zone in format Continent/Country.
 
         '
-        is_mandatory: true
-    -   name: Meeting Duration
-        default_value: '45'
-        type: string
-        description: The meeting duration in minutes
-        is_mandatory: true
-    -   name: Host Email Address
-        default_value: email@siemplify.co
-        type: string
-        description: Email Address of the meeting host
-        is_mandatory: true
-dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: "{\r\n\t\"created_at\": \"2019-09-05T16:54:14Z\",\r\n\t\"duration\"\
-        : 60,\r\n\t\"host_id\": \"AbcDefGHi\",\r\n\t\"id\": 1100000,\r\n\t\"join_url\"\
-        : \"https://zoom.us/j/1100000\",\r\n\t\"settings\": {\r\n\t\t\"alternative_hosts\"\
-        : \"\",\r\n\t\t\"approval_type\": 2,\r\n\t\t\"audio\": \"both\",\r\n\t\t\"\
-        auto_recording\": \"local\",\r\n\t\t\"close_registration\": false,\r\n\t\t\
-        \"cn_meeting\": false,\r\n\t\t\"enforce_login\": false,\r\n\t\t\"enforce_login_domains\"\
-        : \"\",\r\n\t\t\"global_dial_in_countries\": [\r\n\t\t\t\"US\"\r\n\t\t],\r\
-        \n\t\t\"global_dial_in_numbers\": [{\r\n\t\t\t\t\"city\": \"New York\",\r\n\
-        \t\t\t\t\"country\": \"US\",\r\n\t\t\t\t\"country_name\": \"US\",\r\n\t\t\t\
-        \t\"number\": \"+1 1000200200\",\r\n\t\t\t\t\"type\": \"toll\"\r\n\t\t\t},\r\
-        \n\t\t\t{\r\n\t\t\t\t\"city\": \"San Jose\",\r\n\t\t\t\t\"country\": \"US\"\
-        ,\r\n\t\t\t\t\"country_name\": \"US\",\r\n\t\t\t\t\"number\": \"+1 6699006833\"\
-        ,\r\n\t\t\t\t\"type\": \"toll\"\r\n\t\t\t},\r\n\t\t\t{\r\n\t\t\t\t\"city\"\
-        : \"San Jose\",\r\n\t\t\t\t\"country\": \"US\",\r\n\t\t\t\t\"country_name\"\
-        : \"US\",\r\n\t\t\t\t\"number\": \"+1 408000000\",\r\n\t\t\t\t\"type\": \"\
-        toll\"\r\n\t\t\t}\r\n\t\t],\r\n\t\t\"host_video\": false,\r\n\t\t\"in_meeting\"\
-        : false,\r\n\t\t\"join_before_host\": true,\r\n\t\t\"mute_upon_entry\": false,\r\
-        \n\t\t\"participant_video\": false,\r\n\t\t\"registrants_confirmation_email\"\
-        : true,\r\n\t\t\"use_pmi\": false,\r\n\t\t\"waiting_room\": false,\r\n\t\t\
-        \"watermark\": false,\r\n\t\t\"registrants_email_notification\": true\r\n\t\
-        },\r\n\t\"start_time\": \"2019-08-30T22:00:00Z\",\r\n\t\"start_url\": \"https://zoom.us/s/1100000?iIifQ.wfY2ldlb82SWo3TsR77lBiJjR53TNeFUiKbLyCvZZjw\"\
-        ,\r\n\t\"status\": \"waiting\",\r\n\t\"timezone\": \"America/New_York\",\r\
-        \n\t\"topic\": \"API Test\",\r\n\t\"type\": 2,\r\n\t\"uuid\": \"ng1MzyWNQaObxcf3+Gfm6A==\"\
-        \r\n}"
-default_result_value: ''
-creator: TehilaGourary
+    is_mandatory: true
+    name: Time Zone
+    type: string
+-   default_value: '45'
+    description: The meeting duration in minutes
+    is_mandatory: true
+    name: Meeting Duration
+    type: string
+-   default_value: email@siemplify.co
+    description: Email Address of the meeting host
+    is_mandatory: true
+    name: Host Email Address
+    type: string
 script_result_name: ScriptResult

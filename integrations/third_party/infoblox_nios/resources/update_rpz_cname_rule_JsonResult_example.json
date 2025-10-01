@@ -1,0 +1,12 @@
+{
+    "_ref": "record:rpz:cname/ZG5zLmJpbmRfY25hbWUkLl9kZWZhdWx0LmlwLnRocmVhdC5kbnMuMS4xLjEwLjEw:10.10.1.1.dns.threat.ip/default",
+    "canonical": "",
+    "comment": "Block IP",
+    "disable": false,
+    "extattrs": {},
+    "name": "10.10.1.1.dns.threat.ip",
+    "rp_zone": "dns.threat.ip",
+    "use_ttl": false,
+    "view": "default",
+    "zone": "dns.threat.ip"
+}

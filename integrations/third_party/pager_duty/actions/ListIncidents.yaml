@@ -1,12 +1,11 @@
-name: List Incidents
-description: Get the list of all Incidents associated with the hostname Parameters.
-integration_identifier: PagerDuty
-parameters: [ ]
-dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: '{}'
-default_result_value: ''
 creator: Admin
+default_result_value: ''
+description: Get the list of all Incidents associated with the hostname Parameters.
+dynamic_results_metadata:
+-   result_example_path: null
+    result_name: JsonResult
+    show_result: true
+integration_identifier: PagerDuty
+name: List Incidents
+parameters: []
 script_result_name: ScriptResult

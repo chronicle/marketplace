@@ -1,31 +1,16 @@
-name: Get Certificate Details
-description: Getting the certificate of a given URL
-integration_identifier: Tools
-parameters:
-    -   name: Url to check
-        default_value: expired.badssl.com
-        type: string
-        description: Url to check
-        is_mandatory: true
-dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: |
-            {
-                "hostname": "www.abc.com",
-                "ip": "127.0.0.1",
-                "commonName": "www.abc.com",
-                "is_self_signed": false,
-                "SAN": [
-                    "www.abc.com"
-                ],
-                "is_expired": false,
-                "issuer": "WR2",
-                "not_valid_before": "08/11/2025",
-                "not_valid_after": "11/03/2025",
-                "days_to_expiration": 63
-            }
-default_result_value: ''
 creator: use-cases
+default_result_value: ''
+description: Getting the certificate of a given URL
+dynamic_results_metadata:
+-   result_example_path: resources/GetCertificateDetails_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: Tools
+name: Get Certificate Details
+parameters:
+-   default_value: expired.badssl.com
+    description: Url to check
+    is_mandatory: true
+    name: Url to check
+    type: string
 script_result_name: ScriptResult

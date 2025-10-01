@@ -1,0 +1,25 @@
+[
+    {
+        "_ref": "lease/ZG5zLmxlYXNlJDAvMTAuNTAuMTUuMTA1LzAv:10.50.15.105/default",
+        "address": "10.50.15.105",
+        "binding_state": "ACTIVE",
+        "client_hostname": "win10-50-3-19",
+        "cltt": 1754034987,
+        "ends": 1754078187,
+        "fingerprint": "Microsoft Windows 10",
+        "hardware": "00:50:56:81:bc:0e",
+        "ipv6_prefix_bits": 0,
+        "is_invalid_mac": false,
+        "network": "10.50.0.0/20",
+        "network_view": "default",
+        "never_ends": false,
+        "never_starts": false,
+        "next_binding_state": "FREE",
+        "protocol": "IPV4",
+        "served_by": "10.50.3.71",
+        "server_host_name": "infoblox.localdomain",
+        "starts": 1754034987,
+        "uid": "\"\\001\\000PV\\201\\274\\016\"",
+        "variable": "vendor-class-identifier=\"MSFT 5.0\""
+    }
+]

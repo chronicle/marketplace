@@ -1,32 +1,12 @@
-name: Context IP Lookup
+creator: Admin
+default_result_value: ''
 description: Query an IP in the GreyNoise Noise Dataset. Consumes 1 Search per valid
     IP submitted.
-integration_identifier: GreyNoise
-parameters: [ ]
 dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: '{"results": [{"Entity": "1.1.1.1", "EntityResult": {"ip": "1.1.1.1",
-        "first_seen": "2019-04-30", "last_seen": "2023-08-15", "seen": true, "tags":
-        ["Mirai", "Web Crawler"], "actor": "unknown", "spoofable": false, "classification":
-        "malicious", "cve": [], "bot": false, "vpn": false, "vpn_service": "N/A",
-        "metadata": {"asn": "AS9808", "city": "Chengdu", "country": "China", "country_code":
-        "CN", "organization": "China Mobile Communications Group Co., Ltd.", "category":
-        "isp", "tor": false, "rdns": "", "os": "Linux 2.2.x-3.x (Embedded)", "sensor_count":
-        115, "sensor_hits": 1269, "region": "Sichuan", "destination_countries": ["United
-        States", "Israel"], "destination_country_codes": ["US", "IL"], "source_country":
-        "China", "source_country_code": "CN"}, "raw_data": {"scan": [{"port": 80,
-        "protocol": "TCP"}, {"port": 2323, "protocol": "TCP"}, {"port": 4841, "protocol":
-        "TCP"}, {"port": 4859, "protocol": "TCP"}, {"port": 7897, "protocol": "TCP"},
-        {"port": 8080, "protocol": "TCP"}, {"port": 9527, "protocol": "TCP"}, {"port":
-        11501, "protocol": "TCP"}, {"port": 20426, "protocol": "TCP"}, {"port": 21635,
-        "protocol": "TCP"}, {"port": 22804, "protocol": "TCP"}, {"port": 28681, "protocol":
-        "TCP"}, {"port": 29013, "protocol": "TCP"}, {"port": 41443, "protocol": "TCP"},
-        {"port": 43238, "protocol": "TCP"}, {"port": 43919, "protocol": "TCP"}, {"port":
-        54066, "protocol": "UDP"}, {"port": 56514, "protocol": "TCP"}, {"port": 57592,
-        "protocol": "TCP"}, {"port": 58468, "protocol": "TCP"}, {"port": 61905, "protocol":
-        "TCP"}], "web": {"paths": ["/"]}, "ja3": [], "hassh": []}, "noise": true}}]}'
-default_result_value: ''
-creator: Admin
+-   result_example_path: resources/ContextIpLookup_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: GreyNoise
+name: Context IP Lookup
+parameters: []
 script_result_name: success

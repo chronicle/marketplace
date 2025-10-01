@@ -1,27 +1,21 @@
-name: Remove Group
-description: Remove members from the given group ID.
-integration_identifier: VectraRUX
-parameters:
-    -   name: Group ID
-        default_value: '1'
-        type: string
-        description: ID of specific group
-        is_mandatory: true
-    -   name: Members
-        default_value: test
-        type: string
-        description: 'Comma separated members to remove from group '
-        is_mandatory: true
-dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: "{\n    \"id\": 73,\n    \"name\": \"New Group test domain\",\n\
-        \    \"description\": \"Group description\",\n    \"last_modified\": \"2024-11-29T11:02:42Z\"\
-        ,\n    \"last_modified_by\": \"API Client 25cb417a\",\n    \"type\": \"domain\"\
-        ,\n    \"members\": null,\n    \"rules\": null,\n    \"importance\": \"high\"\
-        ,\n    \"regex\": null,\n    \"membership_evaluation_ongoing\": false,\n \
-        \   \"member_count\": 2,\n    \"built_using\": \"static_members\"\n}"
-default_result_value: ''
 creator: Admin
+default_result_value: ''
+description: Remove members from the given group ID.
+dynamic_results_metadata:
+-   result_example_path: resources/Remove Group_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: VectraRUX
+name: Remove Group
+parameters:
+-   default_value: '1'
+    description: ID of specific group
+    is_mandatory: true
+    name: Group ID
+    type: string
+-   default_value: test
+    description: 'Comma separated members to remove from group '
+    is_mandatory: true
+    name: Members
+    type: string
 script_result_name: ScriptResult

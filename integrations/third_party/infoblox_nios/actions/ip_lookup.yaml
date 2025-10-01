@@ -1,93 +1,52 @@
-name: IP Lookup
+creator: d28f2b46-9f0f-4c38-8509-0416748b77d9
+default_result_value: ''
 description: 'Returns IPAM info for a given IP. '
+dynamic_results_metadata:
+-   result_example_path: resources/ip_lookup_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
 integration_identifier: InfobloxNIOS
+name: IP Lookup
 parameters:
--   name: Limit
-    default_value: '100'
-    type: string
+-   default_value: '100'
     description: Maximum numbers of objects to be returned.
     is_mandatory: false
--   name: IP Address
+    name: Limit
     type: string
-    description: The IP address for which to retrieve information, e.g. "192.168.1.1".
+-   description: The IP address for which to retrieve information, e.g. "192.168.1.1".
         Cannot be used in conjunction with network or from/to_ip arguments.
     is_mandatory: false
--   name: Network
+    name: IP Address
     type: string
-    description: The network that the IP belongs to is in FQDN/CIDR format, e.g. "192.168.1.0/24".
+-   description: The network that the IP belongs to is in FQDN/CIDR format, e.g. "192.168.1.0/24".
         Cannot be used in conjunction with ip or from/to_ip arguments.
     is_mandatory: false
--   name: From IP
+    name: Network
     type: string
-    description: The beginning of the IP range, e.g. "192.168.1.0". Must be used in
+-   description: The beginning of the IP range, e.g. "192.168.1.0". Must be used in
         conjunction with to_ip.
     is_mandatory: false
--   name: To IP
+    name: From IP
     type: string
-    description: The end of the IP range, e.g. "192.168.1.254". Must be used in conjunction
+-   description: The end of the IP range, e.g. "192.168.1.254". Must be used in conjunction
         with from_ip.
     is_mandatory: false
--   name: Status
-    default_value: All
-    type: ddl
+    name: To IP
+    type: string
+-   default_value: All
+    description: The status of the IP device. Used in conjunction with the network
+        or ip argument. Possible values are All, Active, Used and Unused.
+    is_mandatory: false
+    name: Status
     optional_values:
     - All
     - Active
     - Used
     - Unused
-    description: The status of the IP device. Used in conjunction with the network
-        or ip argument. Possible values are All, Active, Used and Unused.
-    is_mandatory: false
--   name: Extended Attributes
-    type: string
-    description: Comma-separated key/value formatted filter for extended attributes,
+    type: ddl
+-   description: Comma-separated key/value formatted filter for extended attributes,
         e.g. "Site=New York,OtherProp=MyValue".
     is_mandatory: false
-dynamic_results_metadata:
--   result_name: JsonResult
-    show_result: true
-    result_example: |
-        [
-            {
-                "_ref": "ipv4address/Li5pcHY0X2FkZHJlc3MkMTkyLjE2OC4xLjAvMA:192.168.1.0",
-                "comment": "",
-                "conflict_types": ["NONE"],
-                "discover_now_status": "NONE",
-                "extattrs": {},
-                "ip_address": "192.168.1.0",
-                "is_conflict": false,
-                "is_invalid_mac": false,
-                "mac_address": "",
-                "names": [],
-                "network": "192.168.1.0/24",
-                "network_view": "default",
-                "objects": [],
-                "status": "USED",
-                "types": ["NETWORK"],
-                "usage": []
-            },
-            {
-                "_ref": "ipv6address/Li5pcHY2X2FkZHJlc3MkMjAwMTpkYjg6MTIzNDo6MS8w:2001%3Adb8%3A1234%3A%3A1",
-                "comment": "HOST Wizard",
-                "conflict_types": ["NONE"],
-                "discover_now_status": "NONE",
-                "duid": "",
-                "extattrs": {
-                    "IB Discovery Owned": {"value": "host-wiz"},
-                    "Site": {"value": "host-site"}
-                },
-                "ip_address": "2001:db8:1234::1",
-                "is_conflict": false,
-                "lease_state": "FREE",
-                "names": ["auth zone"],
-                "network": "2001:db8:1234::/64",
-                "network_view": "default",
-                "objects": ["record:host/ZG5zLmhvc3QkLl9kZWZhdWx0LmF1dGggem9uZS4:auth%20zone/default"],
-                "status": "USED",
-                "types": ["HOST", "RESERVED_RANGE"],
-                "usage": ["DNS"]
-            }
-        ]
-default_result_value: ''
-creator: d28f2b46-9f0f-4c38-8509-0416748b77d9
+    name: Extended Attributes
+    type: string
 script_result_name: ScriptResult

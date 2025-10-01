@@ -1,12 +1,11 @@
-name: Ping
-description: Default ping action for system.
-integration_identifier: Workflow Tools
-parameters: [ ]
-dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: '{}'
-default_result_value: ''
 creator: daniel.harvey
+default_result_value: ''
+description: Default ping action for system.
+dynamic_results_metadata:
+-   result_example_path: null
+    result_name: JsonResult
+    show_result: true
+integration_identifier: Workflow Tools
+name: Ping
+parameters: []
 script_result_name: ScriptResult

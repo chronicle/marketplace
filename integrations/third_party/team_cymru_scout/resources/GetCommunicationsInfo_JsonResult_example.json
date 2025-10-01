@@ -1,0 +1,969 @@
+{
+    "1.1.1.1": {
+        "request_id": "92ea698e-ea15-54e4-a6c8-3c8703fcc3ea",
+        "ip": "1.1.1.1",
+        "size": 20,
+        "start_date": "2024-07-30",
+        "end_date": "2024-08-20",
+        "sections": [
+            "comms"
+        ],
+        "usage": {
+            "used_queries": 1393,
+            "remaining_queries": 48607,
+            "query_limit": 50000,
+            "foundation_api_usage": {
+                "used_queries": 2,
+                "remaining_queries": 9998,
+                "query_limit": 10000
+            },
+            "ai_insights_usage": {
+                "used_queries": 0,
+                "remaining_queries": 0,
+                "query_limit": 0
+            }
+        },
+        "communications": {
+            "event_count": 31,
+            "peers": [
+                {
+                    "proto": 1,
+                    "proto_text": "ICMP",
+                    "local": {
+                        "ip": "1.1.1.1",
+                        "min_port": 0,
+                        "max_port": 0,
+                        "country_codes": [
+                            "US"
+                        ],
+                        "as_info": [
+                            {
+                                "asn": 139646,
+                                "as_name": "HKMTC-AS-AP HONG KONG Megalayer Technology Co.,Limited, HK"
+                            }
+                        ],
+                        "tags": null,
+                        "unique_ports": 1,
+                        "top_services": [
+                            {
+                                "service_name": "",
+                                "port": 0,
+                                "proto_number": 1,
+                                "description": ""
+                            }
+                        ]
+                    },
+                    "peer": {
+                        "ip": "1.1.1.1",
+                        "min_port": 0,
+                        "max_port": 0,
+                        "country_codes": [
+                            "ID"
+                        ],
+                        "as_info": [
+                            {
+                                "asn": 140443,
+                                "as_name": "IDNIC-HERZA-AS-ID PT Herza Digital Indonesia, ID"
+                            }
+                        ],
+                        "tags": null,
+                        "unique_ports": 1,
+                        "top_services": [
+                            {
+                                "service_name": "",
+                                "port": 0,
+                                "proto_number": 1,
+                                "description": ""
+                            }
+                        ]
+                    },
+                    "event_count": 8,
+                    "first_seen": "2024-08-02",
+                    "last_seen": "2024-08-16"
+                },
+                {
+                    "proto": 1,
+                    "proto_text": "ICMP",
+                    "local": {
+                        "ip": "1.1.1.1",
+                        "min_port": 0,
+                        "max_port": 0,
+                        "country_codes": [
+                            "US"
+                        ],
+                        "as_info": [
+                            {
+                                "asn": 139646,
+                                "as_name": "HKMTC-AS-AP HONG KONG Megalayer Technology Co.,Limited, HK"
+                            }
+                        ],
+                        "tags": null,
+                        "unique_ports": 1,
+                        "top_services": [
+                            {
+                                "service_name": "",
+                                "port": 0,
+                                "proto_number": 1,
+                                "description": ""
+                            }
+                        ]
+                    },
+                    "peer": {
+                        "ip": "1.1.1.1",
+                        "min_port": 0,
+                        "max_port": 0,
+                        "country_codes": [
+                            "ID"
+                        ],
+                        "as_info": [
+                            {
+                                "asn": 140443,
+                                "as_name": "IDNIC-HERZA-AS-ID PT Herza Digital Indonesia, ID"
+                            }
+                        ],
+                        "tags": null,
+                        "unique_ports": 1,
+                        "top_services": [
+                            {
+                                "service_name": "",
+                                "port": 0,
+                                "proto_number": 1,
+                                "description": ""
+                            }
+                        ]
+                    },
+                    "event_count": 7,
+                    "first_seen": "2024-07-30",
+                    "last_seen": "2024-08-18"
+                },
+                {
+                    "proto": 6,
+                    "proto_text": "TCP",
+                    "local": {
+                        "ip": "1.1.1.1",
+                        "min_port": 443,
+                        "max_port": 443,
+                        "country_codes": [
+                            "US"
+                        ],
+                        "as_info": [
+                            {
+                                "asn": 139646,
+                                "as_name": "HKMTC-AS-AP HONG KONG Megalayer Technology Co.,Limited, HK"
+                            }
+                        ],
+                        "tags": null,
+                        "unique_ports": 1,
+                        "top_services": [
+                            {
+                                "service_name": "https",
+                                "port": 443,
+                                "proto_number": 6,
+                                "description": "http protocol over TLS/SSL"
+                            }
+                        ]
+                    },
+                    "peer": {
+                        "ip": "1.1.1.1",
+                        "min_port": 59752,
+                        "max_port": 59886,
+                        "country_codes": [
+                            "US"
+                        ],
+                        "as_info": [
+                            {
+                                "asn": 46844,
+                                "as_name": "SHARKTECH, US"
+                            }
+                        ],
+                        "tags": [
+                            {
+                                "id": 2,
+                                "name": "scanner",
+                                "children": null
+                            }
+                        ],
+                        "unique_ports": 4,
+                        "top_services": [
+                            {
+                                "service_name": "",
+                                "port": 59886,
+                                "proto_number": 6,
+                                "description": ""
+                            },
+                            {
+                                "service_name": "",
+                                "port": 59858,
+                                "proto_number": 6,
+                                "description": ""
+                            },
+                            {
+                                "service_name": "",
+                                "port": 59828,
+                                "proto_number": 6,
+                                "description": ""
+                            },
+                            {
+                                "service_name": "",
+                                "port": 59752,
+                                "proto_number": 6,
+                                "description": ""
+                            }
+                        ]
+                    },
+                    "event_count": 4,
+                    "first_seen": "2024-08-03",
+                    "last_seen": "2024-08-03"
+                },
+                {
+                    "proto": 6,
+                    "proto_text": "TCP",
+                    "local": {
+                        "ip": "1.1.1.1",
+                        "min_port": 41406,
+                        "max_port": 41796,
+                        "country_codes": [
+                            "US"
+                        ],
+                        "as_info": [
+                            {
+                                "asn": 139646,
+                                "as_name": "HKMTC-AS-AP HONG KONG Megalayer Technology Co.,Limited, HK"
+                            }
+                        ],
+                        "tags": null,
+                        "unique_ports": 2,
+                        "top_services": [
+                            {
+                                "service_name": "crestron-cips",
+                                "port": 41796,
+                                "proto_number": 6,
+                                "description": "Crestron Secure Control Port"
+                            },
+                            {
+                                "service_name": "",
+                                "port": 41406,
+                                "proto_number": 6,
+                                "description": ""
+                            }
+                        ]
+                    },
+                    "peer": {
+                        "ip": "1.1.1.1",
+                        "min_port": 443,
+                        "max_port": 443,
+                        "country_codes": [
+                            "US"
+                        ],
+                        "as_info": [
+                            {
+                                "asn": 15169,
+                                "as_name": "GOOGLE, US"
+                            }
+                        ],
+                        "tags": null,
+                        "unique_ports": 1,
+                        "top_services": [
+                            {
+                                "service_name": "https",
+                                "port": 443,
+                                "proto_number": 6,
+                                "description": "http protocol over TLS/SSL"
+                            }
+                        ]
+                    },
+                    "event_count": 2,
+                    "first_seen": "2024-08-07",
+                    "last_seen": "2024-08-07"
+                },
+                {
+                    "proto": 6,
+                    "proto_text": "TCP",
+                    "local": {
+                        "ip": "1.1.1.1",
+                        "min_port": 37215,
+                        "max_port": 37215,
+                        "country_codes": [
+                            "US"
+                        ],
+                        "as_info": [
+                            {
+                                "asn": 139646,
+                                "as_name": "HKMTC-AS-AP HONG KONG Megalayer Technology Co.,Limited, HK"
+                            }
+                        ],
+                        "tags": null,
+                        "unique_ports": 1,
+                        "top_services": [
+                            {
+                                "service_name": "",
+                                "port": 37215,
+                                "proto_number": 6,
+                                "description": ""
+                            }
+                        ]
+                    },
+                    "peer": {
+                        "ip": "1.1.1.1",
+                        "min_port": 47219,
+                        "max_port": 47219,
+                        "country_codes": [
+                            "CZ"
+                        ],
+                        "as_info": [
+                            {
+                                "asn": 197550,
+                                "as_name": "ASINET4YOU, CZ"
+                            }
+                        ],
+                        "tags": [
+                            {
+                                "id": 2,
+                                "name": "scanner",
+                                "children": [
+                                    {
+                                        "id": 260,
+                                        "name": "telnet-scanner",
+                                        "children": null
+                                    }
+                                ]
+                            }
+                        ],
+                        "unique_ports": 1,
+                        "top_services": [
+                            {
+                                "service_name": "",
+                                "port": 47219,
+                                "proto_number": 6,
+                                "description": ""
+                            }
+                        ]
+                    },
+                    "event_count": 1,
+                    "first_seen": "2024-08-01",
+                    "last_seen": "2024-08-01"
+                },
+                {
+                    "proto": 1,
+                    "proto_text": "ICMP",
+                    "local": {
+                        "ip": "1.1.1.1",
+                        "min_port": 0,
+                        "max_port": 0,
+                        "country_codes": [
+                            "US"
+                        ],
+                        "as_info": [
+                            {
+                                "asn": 139646,
+                                "as_name": "HKMTC-AS-AP HONG KONG Megalayer Technology Co.,Limited, HK"
+                            }
+                        ],
+                        "tags": null,
+                        "unique_ports": 1,
+                        "top_services": [
+                            {
+                                "service_name": "",
+                                "port": 0,
+                                "proto_number": 1,
+                                "description": ""
+                            }
+                        ]
+                    },
+                    "peer": {
+                        "ip": "1.1.1.1",
+                        "min_port": 778,
+                        "max_port": 778,
+                        "country_codes": [
+                            "CZ"
+                        ],
+                        "as_info": [
+                            {
+                                "asn": 197550,
+                                "as_name": "ASINET4YOU, CZ"
+                            }
+                        ],
+                        "tags": [
+                            {
+                                "id": 2,
+                                "name": "scanner",
+                                "children": [
+                                    {
+                                        "id": 260,
+                                        "name": "telnet-scanner",
+                                        "children": null
+                                    }
+                                ]
+                            }
+                        ],
+                        "unique_ports": 1,
+                        "top_services": [
+                            {
+                                "service_name": "",
+                                "port": 778,
+                                "proto_number": 1,
+                                "description": ""
+                            }
+                        ]
+                    },
+                    "event_count": 1,
+                    "first_seen": "2024-08-01",
+                    "last_seen": "2024-08-01"
+                },
+                {
+                    "proto": 6,
+                    "proto_text": "TCP",
+                    "local": {
+                        "ip": "1.1.1.1",
+                        "min_port": 54870,
+                        "max_port": 54870,
+                        "country_codes": [
+                            "US"
+                        ],
+                        "as_info": [
+                            {
+                                "asn": 139646,
+                                "as_name": "HKMTC-AS-AP HONG KONG Megalayer Technology Co.,Limited, HK"
+                            }
+                        ],
+                        "tags": null,
+                        "unique_ports": 1,
+                        "top_services": [
+                            {
+                                "service_name": "",
+                                "port": 54870,
+                                "proto_number": 6,
+                                "description": ""
+                            }
+                        ]
+                    },
+                    "peer": {
+                        "ip": "1.1.1.1",
+                        "min_port": 443,
+                        "max_port": 443,
+                        "country_codes": [
+                            "US"
+                        ],
+                        "as_info": [
+                            {
+                                "asn": 15169,
+                                "as_name": "GOOGLE, US"
+                            }
+                        ],
+                        "tags": null,
+                        "unique_ports": 1,
+                        "top_services": [
+                            {
+                                "service_name": "https",
+                                "port": 443,
+                                "proto_number": 6,
+                                "description": "http protocol over TLS/SSL"
+                            }
+                        ]
+                    },
+                    "event_count": 1,
+                    "first_seen": "2024-08-05",
+                    "last_seen": "2024-08-05"
+                },
+                {
+                    "proto": 6,
+                    "proto_text": "TCP",
+                    "local": {
+                        "ip": "1.1.1.1",
+                        "min_port": 59102,
+                        "max_port": 59102,
+                        "country_codes": [
+                            "US"
+                        ],
+                        "as_info": [
+                            {
+                                "asn": 139646,
+                                "as_name": "HKMTC-AS-AP HONG KONG Megalayer Technology Co.,Limited, HK"
+                            }
+                        ],
+                        "tags": null,
+                        "unique_ports": 1,
+                        "top_services": [
+                            {
+                                "service_name": "",
+                                "port": 59102,
+                                "proto_number": 6,
+                                "description": ""
+                            }
+                        ]
+                    },
+                    "peer": {
+                        "ip": "1.1.1.1",
+                        "min_port": 443,
+                        "max_port": 443,
+                        "country_codes": [
+                            "US"
+                        ],
+                        "as_info": [
+                            {
+                                "asn": 15169,
+                                "as_name": "GOOGLE, US"
+                            }
+                        ],
+                        "tags": null,
+                        "unique_ports": 1,
+                        "top_services": [
+                            {
+                                "service_name": "https",
+                                "port": 443,
+                                "proto_number": 6,
+                                "description": "http protocol over TLS/SSL"
+                            }
+                        ]
+                    },
+                    "event_count": 1,
+                    "first_seen": "2024-07-30",
+                    "last_seen": "2024-07-30"
+                },
+                {
+                    "proto": 1,
+                    "proto_text": "ICMP",
+                    "local": {
+                        "ip": "1.1.1.1",
+                        "min_port": 0,
+                        "max_port": 0,
+                        "country_codes": [
+                            "US"
+                        ],
+                        "as_info": [
+                            {
+                                "asn": 174,
+                                "as_name": "COGENT-174, US"
+                            }
+                        ],
+                        "tags": null,
+                        "unique_ports": 1,
+                        "top_services": [
+                            {
+                                "service_name": "",
+                                "port": 0,
+                                "proto_number": 1,
+                                "description": ""
+                            }
+                        ]
+                    },
+                    "peer": {
+                        "ip": "1.1.1.1",
+                        "min_port": 0,
+                        "max_port": 0,
+                        "country_codes": [
+                            "BR"
+                        ],
+                        "as_info": [
+                            {
+                                "asn": 61681,
+                                "as_name": "MEGANET TELECOM, BR"
+                            }
+                        ],
+                        "tags": [
+                            {
+                                "id": 1055,
+                                "name": "iot",
+                                "children": [
+                                    {
+                                        "id": 1588,
+                                        "name": "ip-camera",
+                                        "children": null
+                                    },
+                                    {
+                                        "id": 1626,
+                                        "name": "dahua",
+                                        "children": null
+                                    }
+                                ]
+                            },
+                            {
+                                "id": 2,
+                                "name": "scanner",
+                                "children": [
+                                    {
+                                        "id": 260,
+                                        "name": "telnet-scanner",
+                                        "children": null
+                                    }
+                                ]
+                            }
+                        ],
+                        "unique_ports": 1,
+                        "top_services": [
+                            {
+                                "service_name": "",
+                                "port": 0,
+                                "proto_number": 1,
+                                "description": ""
+                            }
+                        ]
+                    },
+                    "event_count": 1,
+                    "first_seen": "2024-08-09",
+                    "last_seen": "2024-08-09"
+                },
+                {
+                    "proto": 6,
+                    "proto_text": "TCP",
+                    "local": {
+                        "ip": "1.1.1.1",
+                        "min_port": 23,
+                        "max_port": 23,
+                        "country_codes": [
+                            "US"
+                        ],
+                        "as_info": [
+                            {
+                                "asn": 174,
+                                "as_name": "COGENT-174, US"
+                            }
+                        ],
+                        "tags": null,
+                        "unique_ports": 1,
+                        "top_services": [
+                            {
+                                "service_name": "telnet",
+                                "port": 23,
+                                "proto_number": 6,
+                                "description": "Telnet"
+                            }
+                        ]
+                    },
+                    "peer": {
+                        "ip": "1.1.1.1",
+                        "min_port": 46190,
+                        "max_port": 46190,
+                        "country_codes": [
+                            "BR"
+                        ],
+                        "as_info": [
+                            {
+                                "asn": 61681,
+                                "as_name": "MEGANET TELECOM, BR"
+                            }
+                        ],
+                        "tags": [
+                            {
+                                "id": 2,
+                                "name": "scanner",
+                                "children": [
+                                    {
+                                        "id": 260,
+                                        "name": "telnet-scanner",
+                                        "children": null
+                                    }
+                                ]
+                            },
+                            {
+                                "id": 1055,
+                                "name": "iot",
+                                "children": [
+                                    {
+                                        "id": 1588,
+                                        "name": "ip-camera",
+                                        "children": null
+                                    },
+                                    {
+                                        "id": 1626,
+                                        "name": "dahua",
+                                        "children": null
+                                    }
+                                ]
+                            }
+                        ],
+                        "unique_ports": 1,
+                        "top_services": [
+                            {
+                                "service_name": "",
+                                "port": 46190,
+                                "proto_number": 6,
+                                "description": ""
+                            }
+                        ]
+                    },
+                    "event_count": 1,
+                    "first_seen": "2024-08-09",
+                    "last_seen": "2024-08-09"
+                },
+                {
+                    "proto": 1,
+                    "proto_text": "ICMP",
+                    "local": {
+                        "ip": "1.1.1.1",
+                        "min_port": 0,
+                        "max_port": 0,
+                        "country_codes": [
+                            "US"
+                        ],
+                        "as_info": [
+                            {
+                                "asn": 139646,
+                                "as_name": "HKMTC-AS-AP HONG KONG Megalayer Technology Co.,Limited, HK"
+                            }
+                        ],
+                        "tags": null,
+                        "unique_ports": 1,
+                        "top_services": [
+                            {
+                                "service_name": "",
+                                "port": 0,
+                                "proto_number": 1,
+                                "description": ""
+                            }
+                        ]
+                    },
+                    "peer": {
+                        "ip": "1.1.1.1",
+                        "min_port": 778,
+                        "max_port": 778,
+                        "country_codes": [
+                            "ZA"
+                        ],
+                        "as_info": [
+                            {
+                                "asn": 328631,
+                                "as_name": "BallitoISP, ZA"
+                            }
+                        ],
+                        "tags": null,
+                        "unique_ports": 1,
+                        "top_services": [
+                            {
+                                "service_name": "",
+                                "port": 778,
+                                "proto_number": 1,
+                                "description": ""
+                            }
+                        ]
+                    },
+                    "event_count": 1,
+                    "first_seen": "2024-08-02",
+                    "last_seen": "2024-08-02"
+                },
+                {
+                    "proto": 6,
+                    "proto_text": "TCP",
+                    "local": {
+                        "ip": "1.1.1.1",
+                        "min_port": 14365,
+                        "max_port": 14365,
+                        "country_codes": [
+                            "US"
+                        ],
+                        "as_info": [
+                            {
+                                "asn": 139646,
+                                "as_name": "HKMTC-AS-AP HONG KONG Megalayer Technology Co.,Limited, HK"
+                            }
+                        ],
+                        "tags": null,
+                        "unique_ports": 1,
+                        "top_services": [
+                            {
+                                "service_name": "",
+                                "port": 14365,
+                                "proto_number": 6,
+                                "description": ""
+                            }
+                        ]
+                    },
+                    "peer": {
+                        "ip": "1.1.1.1",
+                        "min_port": 53968,
+                        "max_port": 53968,
+                        "country_codes": [
+                            "US"
+                        ],
+                        "as_info": [
+                            {
+                                "asn": 396982,
+                                "as_name": "GOOGLE-CLOUD-PLATFORM, US"
+                            }
+                        ],
+                        "tags": [
+                            {
+                                "id": 82,
+                                "name": "cloud",
+                                "children": [
+                                    {
+                                        "id": 184,
+                                        "name": "google",
+                                        "children": null
+                                    }
+                                ]
+                            },
+                            {
+                                "id": 2,
+                                "name": "scanner",
+                                "children": [
+                                    {
+                                        "id": 264,
+                                        "name": "vpn-scanner",
+                                        "children": null
+                                    },
+                                    {
+                                        "id": 265,
+                                        "name": "ssh-scanner",
+                                        "children": null
+                                    },
+                                    {
+                                        "id": 270,
+                                        "name": "rdp-scanner",
+                                        "children": null
+                                    }
+                                ]
+                            }
+                        ],
+                        "unique_ports": 1,
+                        "top_services": [
+                            {
+                                "service_name": "",
+                                "port": 53968,
+                                "proto_number": 6,
+                                "description": ""
+                            }
+                        ]
+                    },
+                    "event_count": 1,
+                    "first_seen": "2024-08-16",
+                    "last_seen": "2024-08-16"
+                },
+                {
+                    "proto": 6,
+                    "proto_text": "TCP",
+                    "local": {
+                        "ip": "1.1.1.1",
+                        "min_port": 445,
+                        "max_port": 445,
+                        "country_codes": [
+                            "US"
+                        ],
+                        "as_info": [
+                            {
+                                "asn": 139646,
+                                "as_name": "HKMTC-AS-AP HONG KONG Megalayer Technology Co.,Limited, HK"
+                            }
+                        ],
+                        "tags": null,
+                        "unique_ports": 1,
+                        "top_services": [
+                            {
+                                "service_name": "microsoft-ds",
+                                "port": 445,
+                                "proto_number": 6,
+                                "description": "Microsoft-DS"
+                            }
+                        ]
+                    },
+                    "peer": {
+                        "ip": "1.1.1.1",
+                        "min_port": 50901,
+                        "max_port": 50901,
+                        "country_codes": [
+                            "BR"
+                        ],
+                        "as_info": [
+                            {
+                                "asn": 267251,
+                                "as_name": "TELEFONARNET TELECOMUNICACOES, BR"
+                            }
+                        ],
+                        "tags": [
+                            {
+                                "id": 2,
+                                "name": "scanner",
+                                "children": [
+                                    {
+                                        "id": 271,
+                                        "name": "winshare-scanner",
+                                        "children": null
+                                    }
+                                ]
+                            }
+                        ],
+                        "unique_ports": 1,
+                        "top_services": [
+                            {
+                                "service_name": "",
+                                "port": 50901,
+                                "proto_number": 6,
+                                "description": ""
+                            }
+                        ]
+                    },
+                    "event_count": 1,
+                    "first_seen": "2024-08-15",
+                    "last_seen": "2024-08-15"
+                },
+                {
+                    "proto": 6,
+                    "proto_text": "TCP",
+                    "local": {
+                        "ip": "1.1.1.1",
+                        "min_port": 13878,
+                        "max_port": 13878,
+                        "country_codes": [
+                            "US"
+                        ],
+                        "as_info": [
+                            {
+                                "asn": 139646,
+                                "as_name": "HKMTC-AS-AP HONG KONG Megalayer Technology Co.,Limited, HK"
+                            }
+                        ],
+                        "tags": null,
+                        "unique_ports": 1,
+                        "top_services": [
+                            {
+                                "service_name": "",
+                                "port": 13878,
+                                "proto_number": 6,
+                                "description": ""
+                            }
+                        ]
+                    },
+                    "peer": {
+                        "ip": "1.1.1.1",
+                        "min_port": 443,
+                        "max_port": 443,
+                        "country_codes": [
+                            "AE"
+                        ],
+                        "as_info": [
+                            {
+                                "asn": 201340,
+                                "as_name": "ENBD, AE"
+                            }
+                        ],
+                        "tags": [
+                            {
+                                "id": 2,
+                                "name": "scanner",
+                                "children": [
+                                    {
+                                        "id": 265,
+                                        "name": "ssh-scanner",
+                                        "children": null
+                                    }
+                                ]
+                            }
+                        ],
+                        "unique_ports": 1,
+                        "top_services": [
+                            {
+                                "service_name": "https",
+                                "port": 443,
+                                "proto_number": 6,
+                                "description": "http protocol over TLS/SSL"
+                            }
+                        ]
+                    },
+                    "event_count": 1,
+                    "first_seen": "2024-08-10",
+                    "last_seen": "2024-08-10"
+                }
+            ]
+        }
+    }
+}

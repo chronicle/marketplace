@@ -1,0 +1,15 @@
+[
+    {
+        "@odata.type": "#microsoft.graph.fileAttachment",
+        "@odata.mediaContentType": "image/png",
+        "id": "AAMkADY4OWJiOTY5LWZiODItNDNjMy05MjA4LTA2ZTNiMzNkZTg1NQBGAAAAAADi_cDVGMwvSY14bTcuE30PBwBq0FWx2eMAQJKh8wSyz13FAAAAAAEMAABq0FWx2eMAQJKh8wSyz13FAAHfMNGJAAABEgAQAE7nqquOvxZAnwi-XELc2aw=",
+        "lastModifiedDateTime": "2020-11-04T13:57:31Z",
+        "name": "banner.png",
+        "contentType": "image/png",
+        "size": 14061,
+        "isInline": "False",
+        "contentId": "206BF41F95785446BD7BC1721276F923@ausprd01.prod.outlook.com",
+        "contentLocation": "None",
+        "contentBytes": "verylongb64string=="
+    }
+]

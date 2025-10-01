@@ -1,0 +1,13 @@
+{
+    "1.1.1.1 ": [
+        "ccr2116-12g-4s+",
+        "router",
+        "telnet-scanner",
+        "scanner",
+        "mikrotik"
+    ],
+    "1.1.1.1": [
+        "winshare-scanner",
+        "scanner"
+    ]
+}

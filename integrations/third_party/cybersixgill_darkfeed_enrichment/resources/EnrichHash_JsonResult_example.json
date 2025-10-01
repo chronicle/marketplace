@@ -1,0 +1,50 @@
+[
+    {
+        "entityIdentifier": "6A416565A80DF7955C2729CC36C3760C",
+        "entityResult": [
+            {
+                "created": "2020-07-31T04:47:01.788Z",
+                "description": "Virustotal link that appeared on a dark web site, generally to show malware that is undedetected",
+                "external_reference": [
+                    {
+                        "positive_rate": "medium",
+                        "source_name": "VirusTotal",
+                        "url": "https://virustotal.com/#/file/31dbff2e35c1ff0c76ac3f2d8c68256d6a6736218be26d8eb8b78b2dd687978c"
+                    },
+                    {
+                        "description": "Mitre attack tactics and technique reference",
+                        "mitre_attack_tactic": "Test capabilities",
+                        "mitre_attack_tactic_id": "TA0025",
+                        "mitre_attack_tactic_url": "https://attack.mitre.org/tactics/TA0025/",
+                        "mitre_attack_technique": "Test signature detection for file upload/email filters",
+                        "mitre_attack_technique_id": "T1361",
+                        "mitre_attack_technique_url": "https://attack.mitre.org/techniques/T1361/",
+                        "source_name": "mitre-attack"
+                    }
+                ],
+                "id": "indicator--006e5e90-b86a-4e51-9d44-bf129b2cf358",
+                "labels": [
+                    "malicious-activity",
+                    "malware",
+                    "malicious",
+                    "Test capabilities",
+                    "Test signature detection for file upload/email filters"
+                ],
+                "lang": "en",
+                "modified": "2020-07-31T04:47:01.788Z",
+                "pattern": "[file:hashes.MD5 = '6a416565a80df7955c2729cc36c3760c' OR file:hashes.'SHA-1' = '809f9db2ad097f3292714610aa4c1c73ad39cfe6' OR file:hashes.'SHA-256' = '31dbff2e35c1ff0c76ac3f2d8c68256d6a6736218be26d8eb8b78b2dd687978c']",
+                "sixgill_actor": "skywalkingz",
+                "sixgill_confidence": 80,
+                "sixgill_feedid": "darkfeed_002",
+                "sixgill_feedname": "darkweb_vt_links",
+                "sixgill_post_virustotallink": "https://virustotal.com/#/file/31dbff2e35c1ff0c76ac3f2d8c68256d6a6736218be26d8eb8b78b2dd687978c",
+                "sixgill_postid": "34b727bcb64e80769044b6f9cf241de05963d396",
+                "sixgill_posttitle": "[CRACKED] Paysafecard Codes Generator | Cracked By Me From Nulled.to",
+                "sixgill_source": "forum_cracked",
+                "spec_version": "2.0",
+                "type": "indicator",
+                "valid_from": "2020-07-26T20:05:00Z"
+            }
+        ]
+    }
+]

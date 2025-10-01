@@ -1,0 +1,27 @@
+[
+    {
+        "Entity": "sentinelone",
+        "EntityResult": [
+            "sentinelone"
+        ]
+    },
+    {
+        "Entity": "iscustom",
+        "EntityResult": [
+            "accustom",
+            "custom"
+        ]
+    },
+    {
+        "Entity": "allenvironments",
+        "EntityResult": [
+            "allenvironments"
+        ]
+    },
+    {
+        "Entity": "iscertify",
+        "EntityResult": [
+            "certify"
+        ]
+    }
+]

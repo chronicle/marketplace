@@ -1,17 +1,16 @@
-name: Extract IOCs
-description: Extract domains, IP addresses, URLs and Emails from a string.
-integration_identifier: Functions
-parameters:
-    -   name: Input String
-        default_value: <input string>
-        type: string
-        description: The string to extract the IP addresses from.
-        is_mandatory: true
-dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: '{"domains":["google.com"],"ips":["1.1.1.1"],"urls":["www.google.com"],"emails":["user@user.com"]}'
-default_result_value: ''
 creator: 34edc1ea-17ec-4fc7-bbd0-f8743e42c83c
+default_result_value: ''
+description: Extract domains, IP addresses, URLs and Emails from a string.
+dynamic_results_metadata:
+-   result_example_path: resources/ExtractIocs_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: Functions
+name: Extract IOCs
+parameters:
+-   default_value: <input string>
+    description: The string to extract the IP addresses from.
+    is_mandatory: true
+    name: Input String
+    type: string
 script_result_name: ScriptResult

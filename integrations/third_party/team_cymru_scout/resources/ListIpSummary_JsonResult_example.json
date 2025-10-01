@@ -1,0 +1,49 @@
+[
+    {
+        "ip": "1.1.1.1",
+        "country_code": "US",
+        "as_info": [
+            {
+                "asn": 13335,
+                "as_name": "CLOUDFLARENET, US"
+            }
+        ],
+        "insights": {
+            "overall_rating": "no_rating",
+            "insights": [
+                {
+                    "rating": "no_rating",
+                    "message": "1.1.1.1 has been identified as a Cloudflare content delivery network (CDN) IP. CDNs are distributed network of servers strategically placed around the world to efficiently deliver content."
+                }
+            ]
+        },
+        "tags": [
+            {
+                "id": 176,
+                "name": "cdn",
+                "children": [
+                    {
+                        "id": 210,
+                        "name": "cloudflare",
+                        "children": null
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "ip": "9.9.9.9",
+        "country_code": "CH",
+        "as_info": [
+            {
+                "asn": 19281,
+                "as_name": "QUAD9-AS-1, CH"
+            }
+        ],
+        "insights": {
+            "overall_rating": "no_rating",
+            "insights": null
+        },
+        "tags": null
+    }
+]

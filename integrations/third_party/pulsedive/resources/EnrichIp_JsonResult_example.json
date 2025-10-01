@@ -1,0 +1,153 @@
+{
+    "results": [
+        {
+            "Entity": "1.1.1.1",
+            "EntityResult": {
+                "iid": 178,
+                "type": "ip",
+                "indicator": "1.1.1.1",
+                "risk": "low",
+                "risk_recommended": "low",
+                "manualrisk": 0,
+                "retired": "No recent activity",
+                "stamp_added": "2017-09-27 18:12:13",
+                "stamp_updated": "2020-12-10 00:13:33",
+                "stamp_seen": "2020-12-10 00:13:33",
+                "stamp_probed": "2020-12-10 00:13:32",
+                "stamp_retired": null,
+                "recent": 0,
+                "riskfactors": [
+                    {
+                        "rfid": 60,
+                        "description": "found in threat feeds",
+                        "risk": "medium"
+                    },
+                    {
+                        "rfid": 1,
+                        "description": "returns PTR record",
+                        "risk": "none"
+                    }
+                ],
+                "attributes": {
+                    "port": [
+                        "443",
+                        "80"
+                    ],
+                    "protocol": [
+                        "HTTP",
+                        "HTTPS"
+                    ],
+                    "technology": [
+                        "Varnish"
+                    ]
+                },
+                "properties": {
+                    "dns": {
+                        "ptr": "webcluster2.webpod5-cph3.one.com"
+                    },
+                    "dom": {
+                        "screenshot": ""
+                    },
+                    "geo": {
+                        "asn": "AS51468",
+                        "city": "Kobenhavn S",
+                        "country": "Denmark",
+                        "countrycode": "DK",
+                        "isp": "One.com A/S",
+                        "lat": "55.6759",
+                        "long": "12.5655",
+                        "org": "One.com A/S",
+                        "region": "Capital Region",
+                        "zip": "1071"
+                    },
+                    "http": {
+                        "++code": "403",
+                        "++content-type": "text/html",
+                        "++status": "Forbidden",
+                        "connection": "keep-alive",
+                        "content-length": "7",
+                        "content-type": "text/html; charset=utf-8",
+                        "date": "Thu, 10 Dec 2020 00:13:16 GMT",
+                        "server": "Varnish",
+                        "x-varnish": "206348409"
+                    },
+                    "meta": {
+                        "++title": "404 Not Found"
+                    },
+                    "whois": {
+                        "++abuse": "abuse@ripe.net",
+                        "++email": "hostmaster@ripe.net",
+                        "++phone": "+31 20 535 4444",
+                        "++registered": "2009-09-28 00:00:00",
+                        "++registrant": "RIPE Network Coordination Centre",
+                        "++updated": "2009-09-30 00:00:00",
+                        "address": "P.O. Box 10096",
+                        "cidr": "1.1.1.1/8",
+                        "city": "Amsterdam",
+                        "country": "NL",
+                        "nethandle": "NET-46-0-0-0-0",
+                        "netname": "46-RIPE",
+                        "netrange": "1.1.1.1 - 46.255.255.255",
+                        "nettype": "Allocated to RIPE NCC",
+                        "orgabuseemail": "abuse@ripe.net",
+                        "orgabusehandle": "ABUSE3850-ARIN",
+                        "orgabusename": "Abuse Contact",
+                        "orgabusephone": "+31205354444",
+                        "orgabuseref": "https://rdap.arin.net/registry/entity/ABUSE3850-ARIN",
+                        "organization": "RIPE Network Coordination Centre (RIPE)",
+                        "orgid": "RIPE",
+                        "orgname": "RIPE Network Coordination Centre",
+                        "orgtechemail": "hostmaster@ripe.net",
+                        "orgtechhandle": "RNO29-ARIN",
+                        "orgtechname": "RIPE NCC Operations",
+                        "orgtechphone": "+31 20 535 4444",
+                        "orgtechref": "https://rdap.arin.net/registry/entity/RNO29-ARIN",
+                        "parent": "()",
+                        "postalcode": "1001EB",
+                        "ref": [
+                            "https://rdap.arin.net/registry/ip/46.0.0.0",
+                            "https://rdap.arin.net/registry/entity/RIPE"
+                        ],
+                        "referralserver": "whois://whois.ripe.net",
+                        "regdate": "2009-09-28",
+                        "resourcelink": [
+                            "whois.ripe.net",
+                            "https://apps.db.ripe.net/search/query.html"
+                        ],
+                        "updated": [
+                            "2009-09-30",
+                            "2013-07-29"
+                        ]
+                    }
+                },
+                "threats": [
+                    {
+                        "tid": 546,
+                        "name": "qsnatch",
+                        "category": "general",
+                        "risk": "unknown",
+                        "stamp_linked": "2020-08-14 12:04:46"
+                    },
+                    {
+                        "tid": 1,
+                        "name": "Zeus",
+                        "category": "malware",
+                        "risk": "high",
+                        "stamp_linked": "2018-04-18 07:00:12"
+                    }
+                ],
+                "feeds": [
+                    {
+                        "fid": 4,
+                        "name": "C&C IPs",
+                        "category": "malware",
+                        "organization": "Bambenek Consulting",
+                        "pricing": "free",
+                        "stamp_linked": "2020-08-14 12:04:46"
+                    }
+                ]
+            }
+        }
+    ],
+    "is_risky": false
+}

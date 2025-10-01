@@ -1,0 +1,29 @@
+{
+    "data": {
+        "id": "TgSJ5m1",
+        "title": "08cdb41c98bf",
+        "url_viewer": "https://ibb.co/Tg5m1",
+        "url": "https://i.ibb.co/1m5Bx8M/08c41c98bf.jpg",
+        "display_url": "https://i.ibb.co/1m5Bx8M/08cdbc98bf.jpg",
+        "size": 5520,
+        "time": "1600338870",
+        "expiration": "600",
+        "image": {
+            "filename": "08cdb41c98bf.jpg",
+            "name": "08cdb41c98bf",
+            "mime": "image/jpeg",
+            "extension": "jpg",
+            "url": "https://i.ibb.co/1m5Bx8M/08c41c98bf.jpg"
+        },
+        "thumb": {
+            "filename": "08cdb41c98bf.jpg",
+            "name": "08cdb41c98bf",
+            "mime": "image/jpeg",
+            "extension": "jpg",
+            "url": "https://i.ibb.co/TgSJ5m1/08cdb41c98bf.jpg"
+        },
+        "delete_url": "https://ibb.co/TgSJ5m1/06651ef6cec6909c85af7d18409c39"
+    },
+    "success": true,
+    "status": 200
+}

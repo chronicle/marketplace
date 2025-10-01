@@ -1,0 +1,9 @@
+{
+    "alert_id": "1234567890",
+    "apply_to_linked_alerts": true,
+    "apply_to_status": [
+        "[\"dismissed\"",
+        "\"resolved\"]]"
+    ],
+    "new_status": "closed"
+}

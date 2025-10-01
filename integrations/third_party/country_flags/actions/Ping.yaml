@@ -1,12 +1,11 @@
-name: Ping
-description: Test connectivity with Country Flags product
-integration_identifier: CountryFlags
-parameters: [ ]
-dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: '{}'
-default_result_value: ''
 creator: Yoav
+default_result_value: ''
+description: Test connectivity with Country Flags product
+dynamic_results_metadata:
+-   result_example_path: null
+    result_name: JsonResult
+    show_result: true
+integration_identifier: CountryFlags
+name: Ping
+parameters: []
 script_result_name: ScriptResult

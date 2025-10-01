@@ -1,0 +1,25 @@
+{
+    "threat": [
+        {
+            "id": "b099a146-8731-11ef-911d-47e265fc2653",
+            "type": "IP",
+            "ip": "1.1.1.1",
+            "profile": "IID",
+            "property": "InternetInfrastructure_DoHService",
+            "class": "InternetInfrastructure",
+            "threat_level": 0,
+            "expiration": "2025-10-10T17:58:08.847Z",
+            "detected": "2024-10-10T17:58:08.847Z",
+            "received": "2024-10-10T18:01:35.775Z",
+            "imported": "2024-10-10T18:01:35.775Z",
+            "confidence": 100,
+            "batch_id": "b098ddca-8731-11ef-911d-47e265fc2653",
+            "extended": {
+                "cyberint_guid": "de44eb0308f0f0cfc35206f96e6a7896",
+                "no_whitelist": "true",
+                "notes": "IP is hosting a DNS over HTTPS (DoH) domain."
+            }
+        }
+    ],
+    "record_count": 1
+}

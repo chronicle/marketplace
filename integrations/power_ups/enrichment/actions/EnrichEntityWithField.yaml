@@ -1,21 +1,20 @@
-name: Enrich Entity With Field
+creator: Robert
+default_result_value: ''
 description: 'The action adds enrichment fields to the entity based on a list of key
     values '
+dynamic_results_metadata:
+-   result_example_path: null
+    result_name: JsonResult
+    show_result: true
 integration_identifier: Enrichment
+name: Enrich Entity With Field
 parameters:
-    -   name: Fields to enrich
-        default_value: '[   {     "entity_field_name": "Title",     "entity_field_value":
+-   default_value: '[   {     "entity_field_name": "Title",     "entity_field_value":
         "SalseManager"   },   {     "entity_field_name": "City",     "entity_field_value":
         "NewYork"   } ]'
-        type: string
-        description: Takes a list of key/value pairs and enriches the entity with that
-            data. Can be used to add multiple static values easily.
-        is_mandatory: true
-dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: '{}'
-default_result_value: ''
-creator: Robert
+    description: Takes a list of key/value pairs and enriches the entity with that
+        data. Can be used to add multiple static values easily.
+    is_mandatory: true
+    name: Fields to enrich
+    type: string
 script_result_name: ScriptResult

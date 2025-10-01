@@ -1,48 +1,47 @@
-name: Extract Zip Files
+creator: 2afb1e45-9047-46ac-8f30-af7a83000d3b
+default_result_value: ''
 description: This action will extract files from a ZIP archive.  It has the ability
     to extract password protected files by either a supplied password or bruteforce.
     Requires FILENAME entity to have attachment_id attribute to download file from
     Case Wall.
-integration_identifier: FileUtilities
-parameters:
-    -   name: Include Data In JSON Result
-        default_value: 'false'
-        type: boolean
-        description: Include the data from the extracted files as base64 encoded values
-            in the JSON result of the action.
-        is_mandatory: false
-    -   name: Create Entities
-        default_value: 'true'
-        type: boolean
-        description: Create entities out of the extracted files.
-        is_mandatory: false
-    -   name: Zip File Password
-        default_value: ''
-        type: string
-        description: If the zip file is password protected, use this password to extract.
-        is_mandatory: false
-    -   name: BruteForce Password
-        default_value: 'false'
-        type: boolean
-        description: When enabled, the action will attempt to brute force any password
-            protected Zip files.
-        is_mandatory: false
-    -   name: Add to Case Wall
-        default_value: 'true'
-        type: boolean
-        description: Add the extracted files to the case wall.
-        is_mandatory: false
-    -   name: Zip Password List Delimiter
-        default_value: ','
-        type: string
-        description: This is character that separates multiple passwords in the Zip File
-            Password parameter.
-        is_mandatory: true
 dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: '{}'
-default_result_value: ''
-creator: 2afb1e45-9047-46ac-8f30-af7a83000d3b
+-   result_example_path: null
+    result_name: JsonResult
+    show_result: true
+integration_identifier: FileUtilities
+name: Extract Zip Files
+parameters:
+-   default_value: 'false'
+    description: Include the data from the extracted files as base64 encoded values
+        in the JSON result of the action.
+    is_mandatory: false
+    name: Include Data In JSON Result
+    type: boolean
+-   default_value: 'true'
+    description: Create entities out of the extracted files.
+    is_mandatory: false
+    name: Create Entities
+    type: boolean
+-   default_value: ''
+    description: If the zip file is password protected, use this password to extract.
+    is_mandatory: false
+    name: Zip File Password
+    type: string
+-   default_value: 'false'
+    description: When enabled, the action will attempt to brute force any password
+        protected Zip files.
+    is_mandatory: false
+    name: BruteForce Password
+    type: boolean
+-   default_value: 'true'
+    description: Add the extracted files to the case wall.
+    is_mandatory: false
+    name: Add to Case Wall
+    type: boolean
+-   default_value: ','
+    description: This is character that separates multiple passwords in the Zip File
+        Password parameter.
+    is_mandatory: true
+    name: Zip Password List Delimiter
+    type: string
 script_result_name: zip_files_extracted

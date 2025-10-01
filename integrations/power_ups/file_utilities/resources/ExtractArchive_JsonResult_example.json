@@ -1,0 +1,43 @@
+{
+    "archives": [
+        {
+            "success": true,
+            "archive": "testarchive.zip",
+            "folder": "/opt/siemplify/siemplify_server/Scripting/FileUtilities/Extract/testarchive",
+            "files_with_path": [
+                "/opt/siemplify/siemplify_server/Scripting/FileUtilities/Extract/testarchive/Archives/testarchive.zip",
+                "/opt/siemplify/siemplify_server/Scripting/FileUtilities/Extract/testarchive/Archives/file1",
+                "/opt/siemplify/siemplify_server/Scripting/FileUtilities/Extract/testarchive/Archives/file2"
+            ],
+            "files_list": [
+                "testarchive.zip",
+                "file1",
+                "file2"
+            ],
+            "files": {
+                "name": "testarchive",
+                "type": "directory",
+                "children": [
+                    {
+                        "name": "Archives",
+                        "type": "directory",
+                        "children": [
+                            {
+                                "name": "testarchive.zip",
+                                "type": "file"
+                            },
+                            {
+                                "name": "file1",
+                                "type": "file"
+                            },
+                            {
+                                "name": "file2",
+                                "type": "file"
+                            }
+                        ]
+                    }
+                ]
+            }
+        }
+    ]
+}

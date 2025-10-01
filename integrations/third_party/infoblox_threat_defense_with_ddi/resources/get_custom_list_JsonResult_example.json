@@ -1,0 +1,49 @@
+{
+    "results": [
+        {
+            "confidence_level": "LOW",
+            "created_time": "2025-06-26T12:36:15Z",
+            "description": "Named List A Description",
+            "id": 831056,
+            "item_count": 2,
+            "name": "block_unblock_IP_TEST1",
+            "policies": [
+                "test-policy"
+            ],
+            "tags": {},
+            "threat_level": "INFO",
+            "type": "custom_list",
+            "updated_time": "2025-07-04T12:02:36Z"
+        },
+        {
+            "confidence_level": "LOW",
+            "created_time": "2025-04-24T12:46:56Z",
+            "description": "Named List A Description",
+            "id": 827783,
+            "item_count": 3,
+            "name": "block_unblock_IP_TEST1_UPDATED",
+            "policies": [
+                "New Network Policy"
+            ],
+            "tags": {},
+            "threat_level": "INFO",
+            "type": "custom_list",
+            "updated_time": "2025-07-04T12:02:01Z"
+        },
+        {
+            "confidence_level": "HIGH",
+            "created_time": "2024-07-03T17:36:56Z",
+            "description": "",
+            "id": 808094,
+            "item_count": 19,
+            "name": "ConfigError",
+            "policies": [
+                "Config Error"
+            ],
+            "tags": null,
+            "threat_level": "LOW",
+            "type": "custom_list",
+            "updated_time": "2025-05-14T09:10:19Z"
+        }
+    ]
+}

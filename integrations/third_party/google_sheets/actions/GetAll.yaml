@@ -1,25 +1,24 @@
-name: Get All
+creator: alon
+default_result_value: ''
 description: Retrieves the values for a given range in a sheet
+dynamic_results_metadata:
+-   result_example_path: null
+    result_name: JsonResult
+    show_result: true
 integration_identifier: Google Sheets
+name: Get All
 parameters:
-    -   name: Sheet Id
-        default_value: <Sheet-Id>
-        type: string
-        description: 'The sheet id can be found in the sheet url.
+-   default_value: <Sheet-Id>
+    description: 'The sheet id can be found in the sheet url.
 
         https://docs.google.com/spreadsheets/d/{YourSpreadSheetId}/edit#gid=0'
-        is_mandatory: true
-    -   name: Worksheet Name
-        default_value: <Sheet-Name>
-        type: string
-        description: 'The worksheet name is the Sheet tab name. The default Sheet name
+    is_mandatory: true
+    name: Sheet Id
+    type: string
+-   default_value: <Sheet-Name>
+    description: 'The worksheet name is the Sheet tab name. The default Sheet name
         is "Sheet1". Note: it is case sensitive. '
-        is_mandatory: false
-dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: '{}'
-default_result_value: ''
-creator: alon
+    is_mandatory: false
+    name: Worksheet Name
+    type: string
 script_result_name: ScriptResult

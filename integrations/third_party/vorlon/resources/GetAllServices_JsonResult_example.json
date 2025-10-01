@@ -1,0 +1,15 @@
+[
+    {
+        "description": "Salesforce CRM",
+        "detected_instances": [
+            "my-salesforce"
+        ],
+        "last_collected": 1686562760,
+        "name": "Salesforce",
+        "observed_instances": [
+            "my.salesforce.com"
+        ],
+        "service_id": "salesforce",
+        "state": "observed"
+    }
+]

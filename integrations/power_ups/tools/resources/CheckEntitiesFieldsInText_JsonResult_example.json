@@ -1,0 +1,338 @@
+[
+    {
+        "Entity": "F.ATTACKER4@GMAIL.COM",
+        "EntityResult": [
+            {
+                "RegexForFieldName": ".*",
+                "FieldName": "",
+                "RegexForFieldValue": "",
+                "ResultsToSearch": {
+                    "val_to_search": [
+                        [
+                            {
+                                "key": "Type",
+                                "val": "USERUNIQNAME"
+                            },
+                            {
+                                "key": "Identifier",
+                                "val": "F.ATTACKER4@GMAIL.COM"
+                            },
+                            {
+                                "key": "Environment",
+                                "val": "Default Environment"
+                            },
+                            {
+                                "key": "OriginalIdentifier",
+                                "val": "f.attacker4@gmail.com"
+                            },
+                            {
+                                "key": "OrigIdentifier",
+                                "val": "f.attacker4@gmail.com"
+                            },
+                            {
+                                "key": "IsFromLdapString",
+                                "val": "False"
+                            },
+                            {
+                                "key": "IsInternalAsset",
+                                "val": "False"
+                            },
+                            {
+                                "key": "IsSuspicious",
+                                "val": "False"
+                            },
+                            {
+                                "key": "IsEnriched",
+                                "val": "False"
+                            },
+                            {
+                                "key": "IsVulnerable",
+                                "val": "False"
+                            },
+                            {
+                                "key": "IsArtifact",
+                                "val": "False"
+                            },
+                            {
+                                "key": "IsTestCase",
+                                "val": "False"
+                            },
+                            {
+                                "key": "domain_mathed",
+                                "val": "true"
+                            },
+                            {
+                                "key": "domain_matched",
+                                "val": "true"
+                            }
+                        ]
+                    ],
+                    "found_results": [
+                        {
+                            "to_search": {
+                                "key": "domain_mathed",
+                                "val": "true"
+                            },
+                            "searched_in": "true "
+                        },
+                        {
+                            "to_search": {
+                                "key": "domain_matched",
+                                "val": "true"
+                            },
+                            "searched_in": "true "
+                        }
+                    ],
+                    "num_of_results": 2
+                }
+            }
+        ]
+    },
+    {
+        "Entity": "VICKIE.B@SIEMPLIFY.CO",
+        "EntityResult": [
+            {
+                "RegexForFieldName": ".*",
+                "FieldName": "",
+                "RegexForFieldValue": "",
+                "ResultsToSearch": {
+                    "val_to_search": [
+                        [
+                            {
+                                "key": "Type",
+                                "val": "USERUNIQNAME"
+                            },
+                            {
+                                "key": "Identifier",
+                                "val": "VICKIE.B@SIEMPLIFY.CO"
+                            },
+                            {
+                                "key": "Environment",
+                                "val": "Default Environment"
+                            },
+                            {
+                                "key": "OriginalIdentifier",
+                                "val": "vickie.b@siemplify.co"
+                            },
+                            {
+                                "key": "OrigIdentifier",
+                                "val": "vickie.b@siemplify.co"
+                            },
+                            {
+                                "key": "IsFromLdapString",
+                                "val": "False"
+                            },
+                            {
+                                "key": "IsInternalAsset",
+                                "val": "False"
+                            },
+                            {
+                                "key": "IsSuspicious",
+                                "val": "False"
+                            },
+                            {
+                                "key": "IsEnriched",
+                                "val": "False"
+                            },
+                            {
+                                "key": "IsVulnerable",
+                                "val": "False"
+                            },
+                            {
+                                "key": "IsArtifact",
+                                "val": "False"
+                            },
+                            {
+                                "key": "IsTestCase",
+                                "val": "False"
+                            },
+                            {
+                                "key": "domain_mathed",
+                                "val": "true"
+                            },
+                            {
+                                "key": "domain_matched",
+                                "val": "true"
+                            }
+                        ]
+                    ],
+                    "found_results": [
+                        {
+                            "to_search": {
+                                "key": "domain_mathed",
+                                "val": "true"
+                            },
+                            "searched_in": "true "
+                        },
+                        {
+                            "to_search": {
+                                "key": "domain_matched",
+                                "val": "true"
+                            },
+                            "searched_in": "true "
+                        }
+                    ],
+                    "num_of_results": 2
+                }
+            }
+        ]
+    },
+    {
+        "Entity": "HTTP://MARKOSSOLOMON.COM/F1Q7QX.PHP",
+        "EntityResult": [
+            {
+                "RegexForFieldName": ".*",
+                "FieldName": "",
+                "RegexForFieldValue": "",
+                "ResultsToSearch": {
+                    "val_to_search": [
+                        [
+                            {
+                                "key": "Type",
+                                "val": "DestinationURL"
+                            },
+                            {
+                                "key": "Identifier",
+                                "val": "HTTP://MARKOSSOLOMON.COM/F1Q7QX.PHP"
+                            },
+                            {
+                                "key": "Environment",
+                                "val": "Default Environment"
+                            },
+                            {
+                                "key": "OriginalIdentifier",
+                                "val": "http://markossolomon.com/F1q7QX.php"
+                            },
+                            {
+                                "key": "IsInternalAsset",
+                                "val": "True"
+                            },
+                            {
+                                "key": "IsSuspicious",
+                                "val": "False"
+                            },
+                            {
+                                "key": "IsEnriched",
+                                "val": "False"
+                            },
+                            {
+                                "key": "IsVulnerable",
+                                "val": "False"
+                            },
+                            {
+                                "key": "IsArtifact",
+                                "val": "True"
+                            },
+                            {
+                                "key": "IsTestCase",
+                                "val": "False"
+                            },
+                            {
+                                "key": "domain_mathed",
+                                "val": "true"
+                            },
+                            {
+                                "key": "domain_matched",
+                                "val": "true"
+                            }
+                        ]
+                    ],
+                    "found_results": [
+                        {
+                            "to_search": {
+                                "key": "domain_mathed",
+                                "val": "true"
+                            },
+                            "searched_in": "true "
+                        },
+                        {
+                            "to_search": {
+                                "key": "domain_matched",
+                                "val": "true"
+                            },
+                            "searched_in": "true "
+                        }
+                    ],
+                    "num_of_results": 2
+                }
+            }
+        ]
+    },
+    {
+        "Entity": "YOUR NEW SALARY NOTIFICATION",
+        "EntityResult": [
+            {
+                "RegexForFieldName": ".*",
+                "FieldName": "",
+                "RegexForFieldValue": "",
+                "ResultsToSearch": {
+                    "val_to_search": [
+                        [
+                            {
+                                "key": "Type",
+                                "val": "EMAILSUBJECT"
+                            },
+                            {
+                                "key": "Identifier",
+                                "val": "YOUR NEW SALARY NOTIFICATION"
+                            },
+                            {
+                                "key": "Environment",
+                                "val": "Default Environment"
+                            },
+                            {
+                                "key": "IsInternalAsset",
+                                "val": "True"
+                            },
+                            {
+                                "key": "IsSuspicious",
+                                "val": "False"
+                            },
+                            {
+                                "key": "IsEnriched",
+                                "val": "False"
+                            },
+                            {
+                                "key": "IsVulnerable",
+                                "val": "False"
+                            },
+                            {
+                                "key": "IsArtifact",
+                                "val": "True"
+                            },
+                            {
+                                "key": "IsTestCase",
+                                "val": "False"
+                            },
+                            {
+                                "key": "domain_mathed",
+                                "val": "true"
+                            },
+                            {
+                                "key": "domain_matched",
+                                "val": "true"
+                            }
+                        ]
+                    ],
+                    "found_results": [
+                        {
+                            "to_search": {
+                                "key": "domain_mathed",
+                                "val": "true"
+                            },
+                            "searched_in": "true "
+                        },
+                        {
+                            "to_search": {
+                                "key": "domain_matched",
+                                "val": "true"
+                            },
+                            "searched_in": "true "
+                        }
+                    ],
+                    "num_of_results": 2
+                }
+            }
+        ]
+    }
+]

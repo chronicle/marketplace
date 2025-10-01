@@ -1,122 +1,24 @@
-name: Describe Entity
-description: Show all the details of an entity for the given ID.
-integration_identifier: VectraQUX
-parameters:
-    -   name: Entity ID
-        default_value: '0'
-        type: string
-        description: Unique ID for Account/Host
-        is_mandatory: true
-    -   name: Entity Type
-        default_value: Host
-        type: ddl
-        optional_values:
-            - Account
-            - Host
-        description: Type of entity that can be either Account or Host
-        is_mandatory: true
-dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: "{\n    \"id\": 38970,\n    \"name\": \"IP-1.1.1.1\",\n    \"\
-        active_traffic\": false,\n    \"has_active_traffic\": false,\n    \"t_score\"\
-        : 30,\n    \"threat\": 30,\n    \"c_score\": 68,\n    \"certainty\": 68,\n\
-        \    \"severity\": \"medium\",\n    \"last_source\": \"1.1.1.1\",\n    \"\
-        ip\": \"1.1.1.1\",\n    \"previous_ips\": [],\n    \"last_detection_timestamp\"\
-        : \"2024-12-17T14:51:56Z\",\n    \"key_asset\": false,\n    \"is_key_asset\"\
-        : false,\n    \"state\": \"active\",\n    \"targets_key_asset\": false,\n\
-        \    \"is_targeting_key_asset\": false,\n    \"detection_set\": [\n      \
-        \  \"https://hc2024.vectracloudlab.com/detections/6926\",\n        \"https://hc2024.vectracloudlab.com/detections/6927\"\
-        ,\n        \"https://hc2024.vectracloudlab.com/detections/6928\"\n    ],\n\
-        \    \"host_artifact_set\": [],\n    \"sensor\": \"whx12u9g\",\n    \"sensor_name\"\
-        : \"FGU-lab-vcenter\",\n    \"tags\": [],\n    \"note\": \"[Explore Case](https://vctrr.backstory.chronicle.security/cases/4619)\"\
-        ,\n    \"notes\": [\n        {\n            \"id\": 3596,\n            \"\
-        date_created\": \"2024-12-18T07:28:08Z\",\n            \"date_modified\":\
-        \ null,\n            \"created_by\": \"cds-crestphantom\",\n            \"\
-        modified_by\": null,\n            \"note\": \"[Explore Case](https://vctrr.backstory.chronicle.security/cases/4619)\"\
-        \n        }\n    ],\n    \"note_modified_by\": \"cds-crestphantom\",\n   \
-        \ \"note_modified_timestamp\": \"2024-12-18T07:28:08Z\",\n    \"url\": \"\
-        https://hc2024.vectracloudlab.com/hosts/38970\",\n    \"host_url\": \"https://hc2024.vectracloudlab.com/hosts/38970\"\
-        ,\n    \"last_modified\": \"2024-12-17T01:31:19Z\",\n    \"assigned_to\":\
-        \ \"admin\",\n    \"assigned_date\": \"2024-12-18T07:28:05Z\",\n    \"groups\"\
-        : [],\n    \"has_custom_model\": false,\n    \"privilege_level\": null,\n\
-        \    \"privilege_category\": null,\n    \"probable_owner\": null,\n    \"\
-        detection_profile\": \"IT Services\",\n    \"assignment\": {\n        \"id\"\
-        : 305,\n        \"assigned_by\": {\n            \"id\": 58,\n            \"\
-        username\": \"cds-gaurang\"\n        },\n        \"date_assigned\": \"2024-12-18T07:28:05Z\"\
-        ,\n        \"date_resolved\": null,\n        \"events\": [\n            {\n\
-        \                \"assignment_id\": 305,\n                \"actor\": 58,\n\
-        \                \"event_type\": \"reassigned\",\n                \"datetime\"\
-        : \"2025-01-03T06:44:48Z\",\n                \"context\": {\n            \
-        \        \"from\": 59,\n                    \"to\": 20,\n                \
-        \    \"entity_t_score\": 30,\n                    \"entity_c_score\": 68\n\
-        \                }\n            },\n            {\n                \"assignment_id\"\
-        : 305,\n                \"actor\": 62,\n                \"event_type\": \"\
-        created\",\n                \"datetime\": \"2024-12-18T07:28:05Z\",\n    \
-        \            \"context\": {\n                    \"to\": 59,\n           \
-        \         \"entity_t_score\": 30,\n                    \"entity_c_score\"\
-        : 89\n                }\n            }\n        ],\n        \"outcome\": null,\n\
-        \        \"resolved_by\": null,\n        \"triaged_detections\": {},\n   \
-        \     \"host_id\": 38970,\n        \"account_id\": null,\n        \"assigned_to\"\
-        : {\n            \"id\": 20,\n            \"username\": \"admin\"\n      \
-        \  }\n    },\n    \"past_assignments\": [],\n    \"roles\": [],\n    \"edrs\"\
-        : [],\n    \"account_access_history\": [\n        {\n            \"id\": 93,\n\
-        \            \"uid\": \"johnh@lab.tme.local\",\n            \"privilege\"\
-        : null,\n            \"privilege_category\": null,\n            \"last_seen\"\
-        : \"2024-12-17T03:13:11Z\"\n        }\n    ],\n    \"service_access_history\"\
-        : [\n        {\n            \"id\": 1983,\n            \"uid\": \"http/win-fs-02.lab.tme.local@lab.tme.local\"\
-        ,\n            \"privilege\": null,\n            \"privilege_category\": null,\n\
-        \            \"last_seen\": \"2024-12-17T03:13:11Z\"\n        },\n       \
-        \ {\n            \"id\": 1982,\n            \"uid\": \"cifs/win-fs-02.lab.tme.local@lab.tme.local\"\
-        ,\n            \"privilege\": null,\n            \"privilege_category\": null,\n\
-        \            \"last_seen\": \"2024-12-17T03:13:05Z\"\n        },\n       \
-        \ {\n            \"id\": 73,\n            \"uid\": \"krbtgt/lab.tme.local@lab.tme.local\"\
-        ,\n            \"privilege\": null,\n            \"privilege_category\": null,\n\
-        \            \"last_seen\": \"2024-12-17T03:13:05Z\"\n        }\n    ],\n\
-        \    \"detection_summaries\": [\n        {\n            \"detection_id\":\
-        \ 6926,\n            \"detection_url\": \"https://hc2024.vectracloudlab.com/detections/6926\"\
-        ,\n            \"detection_type\": \"RPC Targeted Recon\",\n            \"\
-        detection_category\": \"RECONNAISSANCE\",\n            \"is_targeting_key_asset\"\
-        : false,\n            \"state\": \"active\",\n            \"threat\": 54,\n\
-        \            \"certainty\": 33,\n            \"is_triaged\": false,\n    \
-        \        \"tags\": [],\n            \"summary\": {\n                \"accounts\"\
-        : [\n                    \"\"\n                ],\n                \"function_uuids\"\
-        : [\n                    \"wkssvc\",\n                    \"srvsvc\"\n   \
-        \             ],\n                \"dst_ips\": [\n                    \"1.1.1.1\"\
-        \n                ]\n            },\n            \"assigned_to\": \"admin\"\
-        ,\n            \"assigned_date\": \"2024-12-18T07:28:05Z\"\n        },\n \
-        \       {\n            \"detection_id\": 6928,\n            \"detection_url\"\
-        : \"https://hc2024.vectracloudlab.com/detections/6928\",\n            \"detection_type\"\
-        : \"Data Smuggler\",\n            \"detection_category\": \"EXFILTRATION\"\
-        ,\n            \"is_targeting_key_asset\": false,\n            \"state\":\
-        \ \"active\",\n            \"threat\": 0,\n            \"certainty\": 0,\n\
-        \            \"is_triaged\": true,\n            \"tags\": [],\n          \
-        \  \"summary\": {\n                \"dst_ports\": [\n                    443\n\
-        \                ],\n                \"protocols\": [\n                  \
-        \  \"tcp\"\n                ],\n                \"bytes_sent\": 735310080,\n\
-        \                \"dst_ips\": [\n                    \"content.dropboxapi.com\"\
-        \n                ]\n            },\n            \"assigned_to\": \"admin\"\
-        ,\n            \"assigned_date\": \"2024-12-18T07:28:05Z\"\n        },\n \
-        \       {\n            \"detection_id\": 6927,\n            \"detection_url\"\
-        : \"https://hc2024.vectracloudlab.com/detections/6927\",\n            \"detection_type\"\
-        : \"Hidden HTTPS Tunnel\",\n            \"detection_category\": \"COMMAND\
-        \ & CONTROL\",\n            \"is_targeting_key_asset\": false,\n         \
-        \   \"state\": \"active\",\n            \"threat\": 0,\n            \"certainty\"\
-        : 0,\n            \"is_triaged\": true,\n            \"tags\": [],\n     \
-        \       \"summary\": {\n                \"dst_ips\": [\n                 \
-        \   \"1.1.1.1\"\n                ],\n                \"num_sessions\": 117,\n\
-        \                \"bytes_sent\": 29139,\n                \"bytes_received\"\
-        : 648472,\n                \"description\": \"This host communicated with\
-        \ an external destination using HTTPS where another protocol was running over\
-        \ the top of the session. The host appeared to be under the control of the\
-        \ external destination.\"\n            },\n            \"assigned_to\": \"\
-        admin\",\n            \"assigned_date\": \"2024-12-18T07:28:05Z\"\n      \
-        \  }\n    ],\n    \"campaign_summaries\": [],\n    \"last_seen\": \"2024-12-17T03:13:29Z\"\
-        ,\n    \"suspicious_admin_learnings\": {\n        \"managers_of_host\": [],\n\
-        \        \"host_manages\": []\n    },\n    \"shell_knocker\": [],\n    \"\
-        has_shell_knocker_learnings\": false,\n    \"host_session_luids\": [\n   \
-        \     \"GqZ-9a5q\"\n    ],\n    \"host_luid\": null\n}"
-default_result_value: ''
 creator: Admin
+default_result_value: ''
+description: Show all the details of an entity for the given ID.
+dynamic_results_metadata:
+-   result_example_path: resources/Describe Entity_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: VectraQUX
+name: Describe Entity
+parameters:
+-   default_value: '0'
+    description: Unique ID for Account/Host
+    is_mandatory: true
+    name: Entity ID
+    type: string
+-   default_value: Host
+    description: Type of entity that can be either Account or Host
+    is_mandatory: true
+    name: Entity Type
+    optional_values:
+    - Account
+    - Host
+    type: ddl
 script_result_name: ScriptResult

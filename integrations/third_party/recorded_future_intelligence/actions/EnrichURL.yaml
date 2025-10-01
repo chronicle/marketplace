@@ -1,73 +1,29 @@
-name: Enrich URL
+creator: severins
 description: Query Recorded Future to get intelligence about the URL.
+dynamic_results_metadata:
+-   result_example_path: resources/EnrichURL_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
 integration_identifier: RecordedFutureIntelligence
+name: Enrich URL
 parameters:
-    -   name: Risk Score Threshold
-        default_value: '25'
-        type: string
-        description: "Represents the minimum malicious risk score for a URL to be marked\
+-   default_value: '25'
+    description: "Represents the minimum malicious risk score for a URL to be marked\
         \ malicious. Has a range of 0-99. Below is the band levels: \n Very Malicious:\
         \ 90-99 \n Malicious: 65-89 \n Suspicious: 25-64 \n Unusual: 5-24 \n No Malicious\
         \ content: 0"
-        is_mandatory: true
-    -   name: Include Links
-        default_value: 'false'
-        type: boolean
-        description: If enabled, action will get information about links.
-        is_mandatory: false
-    -   name: Enable Collective Insights
-        default_value: 'true'
-        type: boolean
-        description: If enabled, contribute detections back to Recorded Future.
-        is_mandatory: false
-dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: '[{"Entity": "https://send.exploit.in/", "EntityResult": [{"entity":
-        {"id": "url:https://send.exploit.in/", "name": "https://send.exploit.in/",
-        "type": "URL"}, "intelCard": "https://app.recordedfuture.com/live/sc/entity/url%3Ahttps%3A%2F%2Fsend.exploit.in%2F",
-        "risk": {"criticalityLabel": "Unusual", "riskString": "3/35", "rules": 3,
-        "criticality": 1, "riskSummary": "3 of 35 Risk Rules currently observed.",
-        "score": 24, "evidenceDetails": [{"mitigationString": "", "evidenceString":
-        "83 sightings on 18 sources including: Infoblox, SOCRadar Cyber Intelligence,
-        Google Play Store, CyberInt | Blog, US CERT CISA Alerts. Most recent link
-        (Jun 10, 2024): https://cyberint.com/blog/threat-intelligence/japan-threat-landscape-report/",
-        "rule": "Historically Reported as a Defanged URL", "criticality": 1, "timestamp":
-        "2024-06-10T00:00:00.000Z", "criticalityLabel": "Unusual"}, {"mitigationString":
-        "", "evidenceString": "6 sightings on 1 source: External Sensor Data Analysis.
-        https://send.exploit.in/ is suspected to be a malware site URL/Domain that
-        navigates to malicious content including executables, drive-by infections
-        sites, malicious scripts, viruses, trojans, or code.", "rule": "Historically
-        Suspected Malware Distribution", "criticality": 1, "timestamp": "2024-05-30T17:31:31.424Z",
-        "criticalityLabel": "Unusual"}, {"mitigationString": "", "evidenceString":
-        "1 sighting on 1 source: Insikt Group. 1 report: CISA Releases Advisory on
-        LockBit 3.0 TTPs. Most recent link (Mar 21, 2023): https://app.recordedfuture.com/portal/analyst-note/doc:qd_m7U",
-        "rule": "Historically Reported by Insikt Group", "criticality": 1, "timestamp":
-        "2023-03-21T00:00:00.000Z", "criticalityLabel": "Unusual"}]}, "timestamps":
-        {"lastSeen": "2024-07-01T23:59:59.000Z", "firstSeen": "2024-07-01T00:00:00.000Z"},
-        "links": {"Actors, Tools & TTPs": [{"id": "mitre:T1027", "name": "T1027",
-        "type": "MitreAttackIdentifier"}, {"id": "mitre:T1059.001", "name": "T1059.001",
-        "type": "MitreAttackIdentifier"}, {"id": "mitre:T1059.003", "name": "T1059.003",
-        "type": "MitreAttackIdentifier"}, {"id": "mitre:T1070.004", "name": "T1070.004",
-        "type": "MitreAttackIdentifier"}, {"id": "mitre:T1078", "name": "T1078", "type":
-        "MitreAttackIdentifier"}, {"id": "mitre:T1082", "name": "T1082", "type": "MitreAttackIdentifier"},
-        {"id": "mitre:T1102", "name": "T1102", "type": "MitreAttackIdentifier"}, {"id":
-        "mitre:T1133", "name": "T1133", "type": "MitreAttackIdentifier"}, {"id": "mitre:T1189",
-        "name": "T1189", "type": "MitreAttackIdentifier"}, {"id": "mitre:T1190", "name":
-        "T1190", "type": "MitreAttackIdentifier"}, {"id": "mitre:T1480.001", "name":
-        "T1480.001", "type": "MitreAttackIdentifier"}, {"id": "mitre:T1485", "name":
-        "T1485", "type": "MitreAttackIdentifier"}, {"id": "mitre:T1486", "name": "T1486",
-        "type": "MitreAttackIdentifier"}, {"id": "mitre:T1489", "name": "T1489", "type":
-        "MitreAttackIdentifier"}, {"id": "mitre:T1490", "name": "T1490", "type": "MitreAttackIdentifier"},
-        {"id": "mitre:T1491.001", "name": "T1491.001", "type": "MitreAttackIdentifier"},
-        {"id": "mitre:T1547", "name": "T1547", "type": "MitreAttackIdentifier"}, {"id":
-        "mitre:T1566", "name": "T1566", "type": "MitreAttackIdentifier"}, {"id": "mitre:T1567",
-        "name": "T1567", "type": "MitreAttackIdentifier"}, {"id": "mitre:TA0002",
-        "name": "TA0002", "type": "MitreAttackIdentifier"}, {"id": "mitre:TA0004",
-        "name": "TA0004", "type": "MitreAttackIdentifier"}, {"id": "fRjfoI", "name":
-        "Drive-by compromise", "type": "AttackVector"}, {"id": "0eyAM", "name": "Phishing",
-        "type": "AttackVector"}, {"id": "l-ZWx4", "name": "Lockbit 3.0", "type": "Malware"}]}}]}]'
-creator: severins
-simulation_data_json: '{"Entities": ["DestinationURL"]}'
+    is_mandatory: true
+    name: Risk Score Threshold
+    type: string
+-   default_value: 'false'
+    description: If enabled, action will get information about links.
+    is_mandatory: false
+    name: Include Links
+    type: boolean
+-   default_value: 'true'
+    description: If enabled, contribute detections back to Recorded Future.
+    is_mandatory: false
+    name: Enable Collective Insights
+    type: boolean
 script_result_name: is_risky
+simulation_data_json: '{"Entities": ["DestinationURL"]}'

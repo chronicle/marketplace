@@ -1,0 +1,32 @@
+[
+    {
+        "Entity": "entity",
+        "EntityResult": {
+            "observable_type": "ipv4",
+            "confidence": "low",
+            "created_at": "2023-09-06T15:00:12.428401+00:00",
+            "last_updated_at": "2024-05-08T06:01:41.413741+00:00",
+            "observable_id": "123",
+            "entities": [
+                {
+                    "created_at": "2024-05-08T06:01:41.413741+00:00",
+                    "description": "desc",
+                    "title": "title",
+                    "sources": [
+                        "test"
+                    ],
+                    "last_updated_at": "2024-05-08T06:01:41.413741+00:00",
+                    "type": "indicator",
+                    "tags": [
+                        "test"
+                    ],
+                    "estimated_observed_time": "2024-05-08T06:01:41.413741+00:00",
+                    "estimated_threat_start_time": "2024-05-08T06:01:41.413741+00:00",
+                    "half_life": "7",
+                    "platform_link": "http://eclecticic.local/entity"
+                }
+            ],
+            "platform_link": "http://eclecticic.local/observable"
+        }
+    }
+]

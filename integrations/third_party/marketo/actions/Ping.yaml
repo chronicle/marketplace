@@ -1,12 +1,11 @@
-name: Ping
-description: 'Test the connectivity with Marketo '
-integration_identifier: Marketo
-parameters: [ ]
-dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: null
-default_result_value: ''
 creator: Yoav
+default_result_value: ''
+description: 'Test the connectivity with Marketo '
+dynamic_results_metadata:
+-   result_example_path: null
+    result_name: JsonResult
+    show_result: true
+integration_identifier: Marketo
+name: Ping
+parameters: []
 script_result_name: ScriptResult

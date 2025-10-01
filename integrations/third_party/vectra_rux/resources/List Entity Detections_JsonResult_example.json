@@ -1,0 +1,281 @@
+[
+    {
+        "notes": [],
+        "filtered_by_user": false,
+        "is_targeting_key_asset": false,
+        "detection_type": "Smash and Grab",
+        "detection": "Smash and Grab",
+        "description": null,
+        "id": 34345,
+        "last_timestamp": "2024-12-20T01:12:51Z",
+        "triage_rule_id": 403,
+        "custom_detection": "AI-Filtered",
+        "url": "https://308714519558.cc1.portal.vectra.ai/detections/34345",
+        "note": null,
+        "is_triaged": true,
+        "threat": 0,
+        "assigned_to": "dogrady@vectra.ai",
+        "filtered_by_rule": false,
+        "sensor": "w4ftj0a8",
+        "tags": [],
+        "type": "host",
+        "note_modified_by": null,
+        "certainty": 0,
+        "detection_url": "https://308714519558.cc1.portal.vectra.ai/detections/34345",
+        "note_modified_timestamp": null,
+        "groups": [
+            {
+                "id": 14,
+                "name": "hi1234",
+                "description": "IP space used by Data Center",
+                "type": "ip",
+                "last_modified": "2024-12-12T06:44:33Z",
+                "last_modified_by": "api_client_25cb417aab214139ae8c7394e2b1a3db"
+            }
+        ],
+        "first_timestamp": "2024-12-20T01:12:51Z",
+        "state": "active",
+        "filtered_by_ai": true,
+        "src_host": {
+            "id": 68599,
+            "ip": "1.1.1.1",
+            "name": "csoarqa-12",
+            "url": "https://308714519558.cc1.portal.vectra.ai/hosts/68599",
+            "is_key_asset": false,
+            "groups": [
+                {
+                    "id": 14,
+                    "name": "hi1234",
+                    "description": "IP space used by Data Center",
+                    "last_modified": "2024-12-12T06:44:33Z",
+                    "last_modified_by": "API Client 25cb417a",
+                    "type": "ip"
+                }
+            ],
+            "threat": 76,
+            "certainty": 49
+        },
+        "created_timestamp": "2024-12-20T01:14:52Z",
+        "is_marked_custom": false,
+        "src_ip": "1.1.1.1",
+        "assigned_date": "2025-01-02T09:39:15Z",
+        "data_source": {
+            "type": "Unknown sensor type",
+            "connection_name": "Unknown sensor name",
+            "connection_id": "w4ftj0a8"
+        },
+        "sensor_name": "EDR Sensor",
+        "src_account": null,
+        "is_custom_model": false,
+        "detection_category": "exfiltration",
+        "investigation_pivot_link": null,
+        "grouped_details": [
+            {
+                "grouping_field": "target_domains",
+                "first_timestamp": "2024-12-20T01:12:51Z",
+                "last_timestamp": "2024-12-20T01:12:51Z",
+                "events": [
+                    {
+                        "dst_country": "",
+                        "duration": "285",
+                        "first_timestamp": "2024-12-20T01:12:51Z",
+                        "last_timestamp": "2024-12-20T01:12:51Z",
+                        "protocol": "tcp",
+                        "normal_bytes_sent": 104857600,
+                        "target_domains": [
+                            "ilovebrisket.org"
+                        ],
+                        "dst_ports": [
+                            8002
+                        ],
+                        "bytes_sent": 471859200,
+                        "dst_ips": [
+                            "1.1.1.1"
+                        ]
+                    },
+                    {
+                        "dst_country": "",
+                        "duration": "48",
+                        "first_timestamp": "2024-12-20T01:12:51Z",
+                        "last_timestamp": "2024-12-20T01:12:51Z",
+                        "protocol": "tcp",
+                        "normal_bytes_sent": 104857600,
+                        "target_domains": [
+                            "ilovebrisket.org"
+                        ],
+                        "dst_ports": [
+                            8002
+                        ],
+                        "bytes_sent": 104857600,
+                        "dst_ips": [
+                            "1.1.1.1"
+                        ]
+                    }
+                ],
+                "subnet": "1.1.1.1/24",
+                "normal_bytes_sent": 104857600,
+                "proxy_ip": "",
+                "bytes_sent": 576716800,
+                "dst_ips": [
+                    "1.1.1.1",
+                    "1.1.1.1"
+                ],
+                "target_domains": [
+                    "ilovebrisket.org"
+                ]
+            }
+        ],
+        "summary": {
+            "dst_ips": [
+                "1.1.1.1",
+                "1.1.1.1"
+            ],
+            "bytes_sent": 576716800,
+            "subnet": "1.1.1.1/24"
+        },
+        "normal_domains": [
+            "1.1.1.1"
+        ]
+    },
+    {
+        "summary": {
+            "dst_accounts": [
+                {
+                    "uid": "user1/VMAL.LOCAL"
+                }
+            ],
+            "domain_controllers": [
+                {
+                    "ip": "1.1.1.1"
+                }
+            ],
+            "services_requested": [
+                "vmal.local\\NetworkEvents",
+                "vmal.local\\SQLRemoteService",
+                "vmal.local\\SharedFiles",
+                "vmal.local\\WebService",
+                "vmal.local\\user1",
+                "vmal.local\\user2",
+                "vmal.local\\user3",
+                "vmal.local\\user4"
+            ],
+            "ciphers_requested": [
+                "rc4_hmac",
+                "des3_cbc_sha1_kd",
+                "des_cbc_md5"
+            ],
+            "cipher_responses": [
+                "rc4_hmac"
+            ],
+            "description": "This host was seen requesting a weaker cryptographic cipher than normal, consistent with a Kerberoasting recon attempt. Vectra considers all deprecated Kerberos cipher suites to be weak, including DES and RC4 suites."
+        },
+        "notes": [],
+        "filtered_by_user": false,
+        "is_targeting_key_asset": false,
+        "detection_type": "Kerberoasting: Weak Cipher Request",
+        "detection": "Kerberoasting: Weak Cipher Request",
+        "description": null,
+        "id": 34344,
+        "last_timestamp": "2024-12-20T01:02:48Z",
+        "triage_rule_id": null,
+        "custom_detection": null,
+        "url": "https://308714519558.cc1.portal.vectra.ai/detections/34344",
+        "note": null,
+        "is_triaged": false,
+        "threat": 5,
+        "assigned_to": "dogrady@vectra.ai",
+        "filtered_by_rule": false,
+        "sensor": "w4ftj0a8",
+        "tags": [],
+        "type": "host",
+        "note_modified_by": null,
+        "certainty": 5,
+        "detection_url": "https://308714519558.cc1.portal.vectra.ai/detections/34344",
+        "note_modified_timestamp": null,
+        "groups": [],
+        "first_timestamp": "2024-12-20T01:02:48Z",
+        "state": "active",
+        "filtered_by_ai": false,
+        "src_host": {
+            "id": 68599,
+            "ip": "1.1.1.1",
+            "name": "csoarqa-12",
+            "url": "https://308714519558.cc1.portal.vectra.ai/hosts/68599",
+            "is_key_asset": false,
+            "groups": [],
+            "threat": 76,
+            "certainty": 49
+        },
+        "created_timestamp": "2024-12-20T01:04:12Z",
+        "is_marked_custom": false,
+        "src_ip": "1.1.1.1",
+        "assigned_date": "2025-01-02T09:39:15Z",
+        "data_source": {
+            "type": "Unknown sensor type",
+            "connection_name": "Unknown sensor name",
+            "connection_id": "w4ftj0a8"
+        },
+        "sensor_name": "EDR Sensor",
+        "src_account": null,
+        "is_custom_model": false,
+        "detection_category": "reconnaissance",
+        "investigation_pivot_link": null,
+        "grouped_details": [
+            {
+                "ciphers_requested": [
+                    "rc4_hmac",
+                    "des3_cbc_sha1_kd",
+                    "des_cbc_md5",
+                    "rc4_hmac"
+                ],
+                "cipher_response": "rc4_hmac",
+                "services_requested": [
+                    {
+                        "service": "vmal.local\\NetworkEvents",
+                        "privilege": null
+                    },
+                    {
+                        "service": "vmal.local\\SQLRemoteService",
+                        "privilege": null
+                    },
+                    {
+                        "service": "vmal.local\\SharedFiles",
+                        "privilege": null
+                    },
+                    {
+                        "service": "vmal.local\\WebService",
+                        "privilege": null
+                    },
+                    {
+                        "service": "vmal.local\\user1",
+                        "privilege": null
+                    },
+                    {
+                        "service": "vmal.local\\user2",
+                        "privilege": null
+                    },
+                    {
+                        "service": "vmal.local\\user3",
+                        "privilege": null
+                    },
+                    {
+                        "service": "vmal.local\\user4",
+                        "privilege": null
+                    }
+                ],
+                "first_timestamp": "2024-12-20T01:02:48Z",
+                "last_timestamp": "2024-12-20T01:02:48Z",
+                "dst_accounts": [
+                    {
+                        "uid": "user1/VMAL.LOCAL"
+                    }
+                ],
+                "dst_hosts": [
+                    {
+                        "ip": "1.1.1.1"
+                    }
+                ]
+            }
+        ]
+    }
+]

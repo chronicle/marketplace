@@ -1,0 +1,9 @@
+[
+    {
+        "count": 100,
+        "requesting_instance": "my-salesforce",
+        "requesting_service": "my-salesforce",
+        "responding_instance": "my.salesforce.com",
+        "responding_service": "salesforce"
+    }
+]

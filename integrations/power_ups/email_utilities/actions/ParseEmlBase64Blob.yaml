@@ -1,134 +1,17 @@
-name: Parse EML Base64 Blob
+creator: Robert
+default_result_value: ''
 description: This action will decode a base64 string and attempt to parse it as an
     EML file.  It will return a list of parsed objects.
-integration_identifier: EmailUtilities
-parameters:
-    -   name: Base64 EML Blob
-        default_value: <base64encoded_string>
-        type: string
-        description: A base64 encoded string of an EML file.
-        is_mandatory: true
 dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: "[\n  {\n    \"Entity\": \"=?utf-8?q?Please_join_Zoom_meeting_in_progress?=\"\
-        ,\n    \"EntityResult\": {\n      \"base64_blob\": \"gxMjU0NjUwNDE3NTU4Nz09LS0K\"\
-        ,\n      \"headers\": [\n        [\n          \"Delivered-To\",\n        \
-        \  \"bbbbb@company.co\"\n        ],\n        [\n          \"Received\",\n\
-        \          \"by 2002:a02:b105:0:0:0:0:0 with SMTP id r5csp394571jah;\\n Mon,\
-        \ 25 May 2020 05:01:36 -0700 (PDT)\"\n        ],\n        [\n          \"\
-        X-Google-Smtp-Source\",\n          \"ABdhPJwRIPolXj6t9hz7uDhriCjaL3FX7ZCvEuj1yRKm3WIbPSxV+Sq7ndSNOgf1n9jnVIQeZLZ/\"\
-        \n        ],\n        [\n          \"X-Received\",\n          \"by 2002:aa7:8425::\
-        \ with SMTP id q5mr15902257pfn.98.1590408095861; \\n Mon, 25 May 2020 05:01:35\
-        \ -0700 (PDT)\"\n        ],\n        [\n          \"ARC-Seal\",\n        \
-        \  \"i=1; a=rsa-sha256; t=1590408095; cv=none;\\n d=google.com; s=arc-20160816;\\\
-        n b=UI2usvi7Wzr15/jm30/LDWy2kNzh0KPb+5nipU+gloaJ0V6AtCgJeEKligz0DpqnnM\\n\
-        \ V0ZOay+z7OsKqGAkgB2Fo9dOHwTFs+S9DU+ag18AFuLdx09Sj/AHcMOYEnyV+elsBl4D\\n\
-        \ k80KBZfJ51b5l6QFulJlcCtBoOKXsa5bB+5XQy9UZA5YRLG+pIP+GDOu+8ejUjPz7XQ7\\n\
-        \ 0DR/wiAkyYHeImnZ57bXMR35SjbP3jLhs6F5wY6oXPzN0j0Ljye1/0aJCgnaKu07Zv4t\\n\
-        \ +CablS2sP8aKfhx+nUtL98BRWqoAM7CRR7BhpdDJmHO3f5AXVAEhf4OLJPMDhemPEztq\\n\
-        \ tKsQ==\"\n        ],\n        [\n          \"ARC-Message-Signature\",\n\
-        \          \"i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;\\n s=arc-20160816;\
-        \ \\n h=subject:reply-to:from:to:mime-version:message-id:date;\\n bh=OCUn7dAzBq4ikkUWPM7zlRyznZDGSbzE8WOf3rs6Lfo=;\\\
-        n b=FruVTsGq74a09NVaaVAQnSzpXHfok485GPyPlwhfGHtTrEZJ662VGLCc1pcjDx/SzM\\n\
-        \ ++njkWuUjCV6Y7B7vPxYnXWHdFzdNYAEir4V0JDF3zPylYJemenwBaNZ54TN/24JyZ14\\n\
-        \ egQupuAqMnfF7VZFHdVo0oCv3NCTDcQDEY8GOK3RrO2n+vNJM87ZTkfXg52apVsaSFHu\\n\
-        \ sYY97MAV+tCNEeJqwIAQLPgq6H3uT1i+pbAZ6xv7d0XmxkI6yulc/eDB9Ii1cPHTk56s\\n\
-        \ WRVRTTYHzgtBZpP6/6my8C9cuXBaAzTv4bmovzip0hB0KLN0Pz0sUfYQcCqoxbYNJdoy\\n\
-        \ XhuQ==\"\n        ],\n        [\n          \"ARC-Authentication-Results\"\
-        ,\n          \"i=1; domain.google.com;\\n spf=pass (google.com: domain of\
-        \ pawt@mailrelaysrv.com designates 18.184.247.15\\n as permitted sender) smtp.mailfrom=pawt@mailrelaysrv.com\"\
-        \n        ],\n        [\n          \"Return-Path\",\n          \"<pawt@mailrelaysrv.com>\"\
-        \n        ],\n        [\n          \"Received\",\n          \"from mailstream-west.mxrecord.io\\\
-        n (mailstream-uswest-egress002.mxrecord.io. [52.11.209.211])\\n by mx.google.com\
-        \ with ESMTPS id lj8si13539801pjb.114.2020.05.25.05.01.35\\n for <bbbbb@company.co>\\\
-        n (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);\\n Mon, 25\
-        \ May 2020 05:01:35 -0700 (PDT)\"\n        ],\n        [\n          \"Received-SPF\"\
-        ,\n          \"pass (google.com: domain of pawt@mailrelaysrv.com designates\\\
-        n 18.184.247.15 as permitted sender) client-ip=18.184.247.15; \"\n       \
-        \ ],\n        [\n          \"Authentication-Results\",\n          \"mx.google.com;\\\
-        n spf=pass (google.com: domain of pawt@mailrelaysrv.com designates 18.184.247.15\\\
-        n as permitted sender) smtp.mailfrom=pawt@mailrelaysrv.com\"\n        ],\n\
-        \        [\n          \"Date\",\n          \"Mon, 25 May 2020 05:01:35 -0700\
-        \ (PDT)\"\n        ],\n        [\n          \"Message-ID\",\n          \"\
-        <5ecbb39f.1c69fb81.ab8ef.0cfcSMTPIN_ADDED_MISSING@mx.google.com>\"\n     \
-        \   ],\n        [\n          \"Received\",\n          \"from mailstreamwest005.production.area1.internal\
-        \ (localhost\\n [127.0.0.1])\\n by mailstream-west.mxrecord.io (Postfix) with\
-        \ ESMTP id 49Vwg33HQWzNkJn\\n for <bbbbb@company.co>; Mon, 25 May 2020 12:01:35\
-        \ +0000 (UTC)\"\n        ],\n        [\n          \"Received-SPF\",\n    \
-        \      \"pass (mxrecord.io: mailrelaysrv.com designates 18.184.247.15 as\\\
-        n permitted sender) client-ip=18.184.247.15; envelope-from=pawt@mailrelaysrv.com;\\\
-        n helo=mail4.eu.mailrelaysrv.com; \"\n        ],\n        [\n          \"\
-        Authentication-Results\",\n          \"mailstream-west.mxrecord.io;\\n dmarc=fail\
-        \ (p=none) header.from=company.co;\\n spf=pass smtp.mailfrom=mailrelaysrv.com;\
-        \ dkim=none\"\n        ],\n        [\n          \"Received\",\n          \"\
-        from mailstream-west.mxrecord.io (localhost. [127.0.0.1])\\n by localhost\
-        \ with SMTP (Area1Security-Mailstream 2.94.0) id KAMFVJZH\\n for bbbbb@company.co;\
-        \ Mon, 25 May 2020 12:01:35 +0000 (GMT)\"\n        ],\n        [\n       \
-        \   \"Received\",\n          \"from mailrelaysrv.com (mail4.eu.mailrelaysrv.com\
-        \ [18.184.247.15])\\n by mailstream-west.mxrecord.io (Postfix) with ESMTP\
-        \ id 49Vwg25XkYzNkHv\\n for <bbbbb@company.co>; Mon, 25 May 2020 12:01:34\
-        \ +0000 (UTC)\"\n        ],\n        [\n          \"Content-Type\",\n    \
-        \      \"multipart/mixed; boundary=\\\"===============2469812546504175587==\\\
-        \"\"\n        ],\n        [\n          \"MIME-Version\",\n          \"1.0\"\
-        \n        ],\n        [\n          \"To\",\n          \"=?utf-8?q?hXKQ+fhuQ2u40+Sb+KBccg=3D=3D?=\
-        \ <bbbbb@company.co>\"\n        ],\n        [\n          \"From\",\n     \
-        \     \"=?utf-8?q?Maayan_Horenstain?= <aaaaa@company.co>\"\n        ],\n \
-        \       [\n          \"Reply-To\",\n          \"<bbbbb@company.co>\"\n   \
-        \     ],\n        [\n          \"X-Area1Security-Disposition\",\n        \
-        \  \"SPOOF 49Vwg25XkYzNkHv-2020-05-25T12:01:35\"\n        ],\n        [\n\
-        \          \"X-Area1Security-Origin\",\n          \"EXTERNAL 49Vwg25XkYzNkHv-2020-05-25T12:01:35\"\
-        \n        ],\n        [\n          \"X-Area1Security-Processed\",\n      \
-        \    \"f4822d4f5014edc3e32b57c850398246; 2; SPOOF;\\n 2020-05-25T12:01:35\"\
-        \n        ],\n        [\n          \"Subject\",\n          \"=?utf-8?q?Please_join_Zoom_meeting_in_progress?=\"\
-        \n        ],\n        [\n          \"X-PhishInsight\",\n          \"Trend\
-        \ Micro Phishing simulation\"\n        ],\n        [\n          \"X-PhishInsightTracking\"\
-        ,\n          \"This phishing simulation email was sent because\\n bbbbb@company.co\
-        \ initiated a simulation campaign.\"\n        ],\n        [\n          \"\
-        X-PhishInsightCampaignID\",\n          \"\"\n        ]\n      ],\n      \"\
-        sender\": [\n        \"aaaaa@company.co\"\n      ],\n      \"to\": [\n   \
-        \     \"bbbbb@company.co\"\n      ],\n      \"cc\": [],\n      \"bcc\": [],\n\
-        \      \"subject\": \"=?utf-8?q?Please_join_Zoom_meeting_in_progress?=\",\n\
-        \      \"date\": \"Mon, 25 May 2020 05:01:35 -0700 (PDT)\",\n      \"text_body\"\
-        : \"\",\n      \"html_body\": \"<p style=\\\"padding-left: 30px;\\\">\\n</p>\\\
-        n<p style=\\\"padding-left: 30px;\\\">\\n <span style=\\\"font-family: helvetica,\
-        \ arial, sans-serif; font-size: 12pt;\\\">\\n Hello\\n </span>\\n <span class=\\\
-        \"mceNonEditable\\\">\\n <span class=\\\"mceNonEditable\\\">\\n bbbbb\\n </span>\\\
-        n </span>\\n <span style=\\\"font-family: helvetica, arial, sans-serif; font-size:\
-        \ 12pt;\\\">\\n ,\\n </span>\\n</p>\\n<p style=\\\"padding-left: 30px;\\\"\
-        >\\n <span style=\\\"font-family: helvetica, arial, sans-serif; font-size:\
-        \ 12pt;\\\">\\n </span>\\n</p>\\n<p style=\\\"padding-left: 30px;\\\">\\n\
-        \ <span style=\\\"font-family: helvetica, arial, sans-serif; font-size: 12pt;\\\
-        \">\\n Join your\\n </span>\\n <span class=\\\"mceNonEditable\\\">\\n <span\
-        \ class=\\\"mceNonEditable\\\">\\n \\n </span>\\n </span>\\n <span style=\\\
-        \"font-family: helvetica, arial, sans-serif; font-size: 12pt;\\\">\\n CEO\
-        \ and Management Board Meeting\\n </span>\\n <br/>\\n <span style=\\\"font-family:\
-        \ helvetica, arial, sans-serif; font-size: 12pt;\\\">\\n for all staffs on\
-        \ Zoom Meeting\\n </span>\\n</p>\\n<p style=\\\"padding-left: 30px;\\\">\\\
-        n <span style=\\\"font-family: helvetica, arial, sans-serif;\\\">\\n </span>\\\
-        n</p>\\n<p style=\\\"padding-left: 30px;\\\">\\n <span style=\\\"font-family:\
-        \ helvetica, arial, sans-serif; font-size: 12pt;\\\">\\n This is a reminder\
-        \ that your zoom meeting appointment with\\n </span>\\n <br/>\\n <span style=\\\
-        \"font-family: helvetica, arial, sans-serif; font-size: 12pt;\\\">\\n <strong>\\\
-        n H.R and Audit Head\\n </strong>\\n will start in few minutes.\\n </span>\\\
-        n <br/>\\n <span style=\\\"font-family: helvetica, arial, sans-serif; font-size:\
-        \ 12pt;\\\">\\n Your presence is crucial to this meeting and equally\\n </span>\\\
-        n <br/>\\n <span style=\\\"font-family: helvetica, arial, sans-serif; font-size:\
-        \ 12pt;\\\">\\n required to commence this\\n <strong>\\n Q1 perfomance review\
-        \ meeting\\n </strong>\\n </span>\\n <br/>\\n <br/>\\n</p>\\n<p style=\\\"\
-        padding-left: 30px;\\\">\\n</p>\\n<table style=\\\"height: 71px; background-color:\
-        \ #3694f7; margin-left: 30px;\\\" width=\\\"208\\\">\\n <tbody>\\n <tr>\\\
-        n <td style=\\\"width: 200px; height: 50px; text-align: center;\\\">\\n <span\
-        \ style=\\\"font-family: tahoma, arial, helvetica, sans-serif;\\\">\\n <strong>\\\
-        n <span style=\\\"color: #ffffff;\\\">\\n <a class=\\\"fakesitelink\\\" href=\\\
-        \"https://www.onlineservicetech.website/link/l/P70iPXzLzo2cEeD77GjmLWWqXFQCjsVQBYNKZZ346JqYYikTR6QGaMnqw4L-mxxYSStIHAeIicd-w1IUrFsBn6iuMCO4gwZ_1SBG-62fgIZQk3zPNIst9wGCbTW-62BxD-FJp7TcWFBSqKVUBeVYliF_DTc6oygMqfxdStFnDb_-CffKq4AzNFF13zwoNarj\\\
-        \" rel=\\\"noopener noreferrer\\\" style=\\\"color: #ffffff;\\\" target=\\\
-        \"_blank\\\">\\n Join this live meeting\\n </a>\\n </span>\\n </strong>\\\
-        n </span>\\n </td>\\n </tr>\\n </tbody>\\n</table><img alt=\\\"\\\" src=\\\
-        \"https://www.onlineservicetech.website/link/t/KEDVs-MM3mp5milZ6YjdRdZjBbXiCMAKHKwUTCo7zkd4j2-iwl-RGhO3GIxnJDOk\\\
-        \"/><a href=\\\"https://www.onlineservicetech.website/link/b/KEDVs-MM3mp5milZ6YjdRdZjBbXiCMAKHKwUTCo7zkd4j2-iwl-RGhO3GIxnJDOk\\\
-        \"></a>\",\n      \"count\": 1\n    }\n  }\n]"
-default_result_value: ''
-creator: Robert
+-   result_example_path: resources/ParseEmlBase64Blob_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: EmailUtilities
+name: Parse EML Base64 Blob
+parameters:
+-   default_value: <base64encoded_string>
+    description: A base64 encoded string of an EML file.
+    is_mandatory: true
+    name: Base64 EML Blob
+    type: string
 script_result_name: ScriptResult

@@ -1,0 +1,20 @@
+{
+    "id": 3851,
+    "type": "domain",
+    "name": "Test group test domain 1",
+    "description": "created during API testing",
+    "cognito_managed": false,
+    "importance": null,
+    "members": [
+        "",
+        "check.com",
+        "vlauej4.5",
+        "*v**lauej.45",
+        "ip-1.1.1.1",
+        "email.com",
+        "ip-1.1.1.1"
+    ],
+    "rules": [],
+    "last_modified": "2024-11-28T10:57:27Z",
+    "last_modified_by": "cds-crestphantom"
+}

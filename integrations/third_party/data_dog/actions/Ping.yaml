@@ -1,12 +1,11 @@
-name: Ping
-description: Test connectivity with DataDog
-integration_identifier: DataDog
-parameters: [ ]
-dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: '{}'
-default_result_value: ''
 creator: Admin
+default_result_value: ''
+description: Test connectivity with DataDog
+dynamic_results_metadata:
+-   result_example_path: null
+    result_name: JsonResult
+    show_result: true
+integration_identifier: DataDog
+name: Ping
+parameters: []
 script_result_name: ScriptResult

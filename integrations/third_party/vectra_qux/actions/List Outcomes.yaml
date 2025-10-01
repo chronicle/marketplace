@@ -1,18 +1,15 @@
-name: List Outcomes
-description: List all the assignment outcomes.
-integration_identifier: VectraQUX
-parameters:
-    -   name: Limit
-        type: string
-        description: Specify the limit for fetching the records.
-        is_mandatory: false
-dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: "[\n    {\n        \"id\": 1,\n        \"builtin\": true,\n  \
-        \      \"user_selectable\": true,\n        \"title\": \"Benign True Positive\"\
-        ,\n        \"category\": \"benign_true_positive\"\n    }\n]"
-default_result_value: ''
 creator: Admin
+default_result_value: ''
+description: List all the assignment outcomes.
+dynamic_results_metadata:
+-   result_example_path: resources/List Outcomes_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: VectraQUX
+name: List Outcomes
+parameters:
+-   description: Specify the limit for fetching the records.
+    is_mandatory: false
+    name: Limit
+    type: string
 script_result_name: ScriptResult

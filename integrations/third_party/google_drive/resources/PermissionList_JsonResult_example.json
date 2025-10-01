@@ -1,0 +1,30 @@
+[
+    {
+        "kind": "drive#permission",
+        "id": "077125055792436618120",
+        "type": "user",
+        "emailAddress": "user_1@gmail.com",
+        "role": "writer",
+        "displayName": "User 1",
+        "photoLink": "https://lh3.googleusercontent.com/a-/AOh14GiMxKi43Hd_kj45ZZ1I4Ml43DsZMh4gFeXRmRi6LIg=s64",
+        "deleted": false
+    },
+    {
+        "kind": "drive#permission",
+        "id": "18131361814365736519",
+        "type": "user",
+        "emailAddress": "user_2@gmail.com",
+        "role": "writer",
+        "displayName": "User 2",
+        "deleted": false
+    },
+    {
+        "kind": "drive#permission",
+        "id": "02214475487434192531",
+        "type": "user",
+        "emailAddress": "test-api@quickstart-1550908020996.iam.gserviceaccount.com",
+        "role": "owner",
+        "displayName": "test-api@quickstart-1550908020996.iam.gserviceaccount.com",
+        "deleted": false
+    }
+]

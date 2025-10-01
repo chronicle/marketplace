@@ -1,0 +1,19 @@
+{
+    "items": [
+        {
+            "id": "5d3968e0f23f730ecb0f68c2",
+            "quarantinedOn": "2019-07-28T11:31:28",
+            "actionStatus": 1,
+            "companyId": "55896b87b7894d0f367b23c6",
+            "endpointId": "5d36c255f23f730fa91944e2",
+            "endpointName": "Computer 1",
+            "endpointIP": "1.1.1.1",
+            "canBeRestored": false,
+            "canBeRemoved": false,
+            "threatName": "Virus 0",
+            "details": {
+                "filePath": "c:\\Virus0\\virus0.exe"
+            }
+        }
+    ]
+}

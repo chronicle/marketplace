@@ -1,42 +1,36 @@
-name: Add Attachment
-description: The action adds an attachment to the case wall (similar to attach evidence)
-integration_identifier: FileUtilities
-parameters:
-    -   name: Name
-        default_value: Name
-        type: string
-        description: The name of the attachment
-        is_mandatory: true
-    -   name: IsFavorite
-        default_value: 'false'
-        type: boolean
-        description: 'Is the attachment marked as favorite in the case wall '
-        is_mandatory: false
-    -   name: Base64 Blob
-        default_value: <Base64 here>
-        type: string
-        description: The attachment's content in Base64
-        is_mandatory: true
-    -   name: Type
-        default_value: .txt
-        type: string
-        description: Attachment Type
-        is_mandatory: true
-    -   name: Description
-        default_value: Description
-        type: string
-        description: 'The description of the attachment '
-        is_mandatory: true
-dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: "{\n  \"evidenceName\": \"Description\",\n  \"description\": \"\
-        Name\",\n  \"evidenceThumbnailBase64\": \"\",\n  \"evidenceId\": 30,\n  \"\
-        fileType\": \".txt\",\n  \"creatorUserId\": \"No user context\",\n  \"id\"\
-        : 30,\n  \"type\": 4,\n  \"caseId\": 25,\n  \"isFavorite\": false,\n  \"modificationTimeUnixTimeInMs\"\
-        : 1593151675450,\n  \"creationTimeUnixTimeInMs\": 1593151675450,\n  \"alertIdentifier\"\
-        : null\n}"
-default_result_value: ''
 creator: Robert
+default_result_value: ''
+description: The action adds an attachment to the case wall (similar to attach evidence)
+dynamic_results_metadata:
+-   result_example_path: resources/AddAttachment_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: FileUtilities
+name: Add Attachment
+parameters:
+-   default_value: Name
+    description: The name of the attachment
+    is_mandatory: true
+    name: Name
+    type: string
+-   default_value: 'false'
+    description: 'Is the attachment marked as favorite in the case wall '
+    is_mandatory: false
+    name: IsFavorite
+    type: boolean
+-   default_value: <Base64 here>
+    description: The attachment's content in Base64
+    is_mandatory: true
+    name: Base64 Blob
+    type: string
+-   default_value: .txt
+    description: Attachment Type
+    is_mandatory: true
+    name: Type
+    type: string
+-   default_value: Description
+    description: 'The description of the attachment '
+    is_mandatory: true
+    name: Description
+    type: string
 script_result_name: ScriptResult

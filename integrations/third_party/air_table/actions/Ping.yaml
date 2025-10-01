@@ -1,12 +1,11 @@
-name: Ping
-description: Test connection to the AirTable product
-integration_identifier: AirTable
-parameters: [ ]
-dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: '{}'
-default_result_value: ''
 creator: Alon
+default_result_value: ''
+description: Test connection to the AirTable product
+dynamic_results_metadata:
+-   result_example_path: null
+    result_name: JsonResult
+    show_result: true
+integration_identifier: AirTable
+name: Ping
+parameters: []
 script_result_name: ScriptResult

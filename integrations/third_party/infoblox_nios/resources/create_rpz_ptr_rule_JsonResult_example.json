@@ -1,0 +1,14 @@
+{
+    "_ref": "record:rpz:ptr/ZG5zLmJpbmRfcHRyJC5fZGVmYXVsdC5jb20ucnB6LnRocmVhdC5hcnBhLmlwNi5mLmQuNi4wLjAuZS4zLjIuZi4xLmIuOS4wLjAuMC4wLjAuMC4wLjAuMC4wLjAuMC4wLjAuMC4wLjAuMC4wLjIuYWJjczEudGhyZWF0LnJwei5jb20:2.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.9.b.1.f.2.3.e.0.0.6.d.f.ip6.arpa.threat.rpz.com/default",
+    "comment": "nightly-test-mx-sub",
+    "disable": false,
+    "extattrs": {},
+    "ipv4addr": "",
+    "ipv6addr": "fd60:e32:f1b9::2",
+    "name": "2.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.9.b.1.f.2.3.e.0.0.6.d.f.ip6.arpa.threat.rpz.com",
+    "ptrdname": "abcs1.threat.rpz.com",
+    "rp_zone": "threat.rpz.com",
+    "use_ttl": false,
+    "view": "default",
+    "zone": "threat.rpz.com"
+}

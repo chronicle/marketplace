@@ -1,0 +1,34 @@
+{
+    "items": [
+        {
+            "id": "21a295eeb1a43d8b497b23b7",
+            "name": "Endpoint 1",
+            "label": "endpoint 1",
+            "fqdn": "endpoint1.local",
+            "groupId": "5a5f4d36b1a43d5f097b23bb",
+            "isManaged": true,
+            "machineType": 1,
+            "operatingSystemVersion": "Windows Server 2016",
+            "ip": "1.1.1.1",
+            "macs": [
+                "324935237225"
+            ],
+            "ssid": ""
+        },
+        {
+            "id": "23a295d8b1a43d7c4a7b23c9",
+            "name": "Endpoint 2",
+            "machineType": 1,
+            "label": "endpoint 2",
+            "fqdn": "endpoint2.local",
+            "groupId": "5a4f4d46b1a53d5f197b23aa",
+            "isManaged": true,
+            "operatingSystemVersion": "Windows 7",
+            "ip": "1.1.1.1",
+            "macs": [
+                "325935237445"
+            ],
+            "ssid": ""
+        }
+    ]
+}

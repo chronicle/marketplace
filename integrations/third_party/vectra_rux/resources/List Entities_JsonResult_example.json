@@ -1,0 +1,74 @@
+[
+    {
+        "id": 64512,
+        "name": "deltics-2",
+        "breadth_contrib": 0,
+        "importance": 1,
+        "type": "host",
+        "is_prioritized": false,
+        "severity": "Low",
+        "urgency_score": 0,
+        "velocity_contrib": 0,
+        "detection_set": [
+            "https://308714519558.cc1.portal.vectra.ai/detections/33009",
+            "https://308714519558.cc1.portal.vectra.ai/detections/33010",
+            "https://308714519558.cc1.portal.vectra.ai/detections/33011",
+            "https://308714519558.cc1.portal.vectra.ai/detections/33012",
+            "https://308714519558.cc1.portal.vectra.ai/detections/33013",
+            "https://308714519558.cc1.portal.vectra.ai/detections/33014",
+            "https://308714519558.cc1.portal.vectra.ai/detections/33015",
+            "https://308714519558.cc1.portal.vectra.ai/detections/33016",
+            "https://308714519558.cc1.portal.vectra.ai/detections/33198",
+            "https://308714519558.cc1.portal.vectra.ai/detections/33199",
+            "https://308714519558.cc1.portal.vectra.ai/detections/33200",
+            "https://308714519558.cc1.portal.vectra.ai/detections/33201",
+            "https://308714519558.cc1.portal.vectra.ai/detections/33202",
+            "https://308714519558.cc1.portal.vectra.ai/detections/33203",
+            "https://308714519558.cc1.portal.vectra.ai/detections/33204",
+            "https://308714519558.cc1.portal.vectra.ai/detections/33205"
+        ],
+        "last_detection_timestamp": "2024-11-13T18:19:57Z",
+        "last_modified_timestamp": "2024-11-28T07:50:34Z",
+        "notes": [
+            {
+                "id": 9436,
+                "date_created": "2024-11-27T20:58:34Z",
+                "date_modified": null,
+                "created_by": "api_client_8b3947c3c3ed4995a29fe3b0028be6d5",
+                "modified_by": null,
+                "note": "This entity_name is deltics-2  and the entity_id is 64512. The entity_type is a(n) host."
+            },
+            {
+                "id": 9434,
+                "date_created": "2024-11-27T20:58:33Z",
+                "date_modified": null,
+                "created_by": "api_client_8b3947c3c3ed4995a29fe3b0028be6d5",
+                "modified_by": null,
+                "note": "This entity has been processed by ServiceNow SIR.\nThe incident can be tracked in ServiceNow with this incident number: SIR0010096"
+            },
+            {
+                "id": 9157,
+                "date_created": "2024-11-27T20:39:32Z",
+                "date_modified": null,
+                "created_by": "api_client_8b3947c3c3ed4995a29fe3b0028be6d5",
+                "modified_by": null,
+                "note": "This entity has been processed by ServiceNow SIR.\nThe incident can be tracked in ServiceNow with this incident number: SIR0010030"
+            }
+        ],
+        "attack_rating": 0,
+        "privilege_level": null,
+        "privilege_category": null,
+        "attack_profile": null,
+        "sensors": [
+            "w4ftj0a8"
+        ],
+        "state": "suspended",
+        "tags": [],
+        "url": "https://308714519558.cc1.portal.vectra.ai/hosts/64512",
+        "host_type": [
+            "normal"
+        ],
+        "account_type": null,
+        "ip": "1.1.1.1"
+    }
+]

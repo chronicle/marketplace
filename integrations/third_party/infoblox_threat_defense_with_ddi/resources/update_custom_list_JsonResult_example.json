@@ -1,0 +1,17 @@
+{
+    "confidence_level": "HIGH",
+    "created_time": "2025-07-09T10:08:24Z",
+    "description": "Test Desc",
+    "id": 832273,
+    "item_count": 0,
+    "items": [],
+    "items_described": [],
+    "name": "Test-1",
+    "policies": [],
+    "tags": {
+        "Test1": "S2"
+    },
+    "threat_level": "INFO",
+    "type": "custom_list",
+    "updated_time": "2025-07-09T10:33:46Z"
+}

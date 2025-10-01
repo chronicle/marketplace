@@ -1,0 +1,16 @@
+[
+    {
+        "EntityResult": {
+            "url0": {
+                "url": "https://babules.su/",
+                "in_database": "true",
+                "phish_id": "6605240",
+                "phish_detail_page": "http://www.phishtank.com/phish_detail.php?phish_id=6605240",
+                "verified": "true",
+                "verified_at": "2020-06-01T06:25:58+00:00",
+                "valid": "true"
+            }
+        },
+        "Entity": "HTTPS://WWW.ONLINESERVICETECH.WEBSITE/LINK/L/P70IPXZLZO2CEED77GJMLWWQXFQCJSVQBYNKZZ346JQYYIKTR6QGAMNQW4L-MXXYSSTIHAEIICD-W1IURFSBN6IUMCO4GWZ_1SBG-62FGIZQK3ZPNIST9WGCBTW-62BXD-FJP7TCWFBSQKVUBEVYLIF_DTC6OYGMQFXDSTFNDB_-CFFKQ4AZNFF13ZWONARJ"
+    }
+]

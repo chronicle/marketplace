@@ -1,0 +1,12 @@
+{
+    "http://malware.testing.google.test/testing/malware/": {
+        "malicious": true,
+        "platforms": [
+            "ANY_PLATFORM"
+        ],
+        "threats": [
+            "MALWARE"
+        ],
+        "cache": "300s"
+    }
+}

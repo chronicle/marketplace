@@ -1,17 +1,16 @@
-name: Delete Token
-description: Delete Webhook token by token ID.
-integration_identifier: Webhook
-parameters:
-    -   name: Token ID
-        default_value: '111'
-        type: string
-        description: ID of the token to be deleted.
-        is_mandatory: true
-dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: '{}'
-default_result_value: ''
 creator: shakedalontest
+default_result_value: ''
+description: Delete Webhook token by token ID.
+dynamic_results_metadata:
+-   result_example_path: null
+    result_name: JsonResult
+    show_result: true
+integration_identifier: Webhook
+name: Delete Token
+parameters:
+-   default_value: '111'
+    description: ID of the token to be deleted.
+    is_mandatory: true
+    name: Token ID
+    type: string
 script_result_name: ScriptResult

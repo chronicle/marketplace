@@ -21,11 +21,7 @@ parameters:
 dynamic_results_metadata:
     -   result_name: JsonResult
         show_result: true
-        # language=json
-        result_example: |
-            {
-                "some_json": "that was loaded from a string"
-            }
+        result_example_path: './resources/load_json_string_to_object_JsonResult_example.json'
 creator: Your Name
 script_result_name: is_success
 ```

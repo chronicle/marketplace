@@ -1,47 +1,15 @@
-name: Get Issue Details
+creator: admin
 description: Use the Get Issue Details action to obtain information about a specified
     issue in Wiz.
-integration_identifier: Wiz
-parameters:
--   name: Issue ID
-    default_value: ''
-    type: string
-    description: The unique identifier of the Wiz issue to retrieve or act upon.
-    is_mandatory: true
 dynamic_results_metadata:
-    # language=json
--   result_example: |
-        {
-            "id": "abc",
-            "createdAt": "2024-03-16T22:12:10.685397Z",
-            "updatedAt": "2025-07-30T00:59:29.355466Z",
-            "status": "OPEN",
-            "severity": "INFORMATIONAL",
-            "type": "TOXIC_COMBINATION",
-            "description": "abc",
-            "resolvedAt": null,
-            "entitySnapshot": {
-                "cloudPlatform": "Kubernetes",
-                "id": "abc",
-                "name": "system:cluster-autoscaler",
-                "region": "",
-                "subscriptionName": "Wiz-Labs",
-                "type": "USER_ACCOUNT"
-            },
-            "projects": [
-                {
-                    "id": "abc",
-                    "name": "GCP Lab"
-                }
-            ],
-            "sourceRules": [
-                {
-                    "id": "abc",
-                    "name": "abc",
-                    "description": "abc"
-                }
-            ]
-        }
+-   result_example_path: resources/get_issue_details_JsonResult_example.json
     result_name: JsonResult
     show_result: true
-creator: admin
+integration_identifier: Wiz
+name: Get Issue Details
+parameters:
+-   default_value: ''
+    description: The unique identifier of the Wiz issue to retrieve or act upon.
+    is_mandatory: true
+    name: Issue ID
+    type: string

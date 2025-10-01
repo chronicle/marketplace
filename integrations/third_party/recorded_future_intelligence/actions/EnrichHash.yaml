@@ -1,78 +1,28 @@
-name: Enrich Hash
+creator: admin
 description: Query Recorded Future to get intelligence about the hash.
+dynamic_results_metadata:
+-   result_example_path: resources/EnrichHash_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
 integration_identifier: RecordedFutureIntelligence
+name: Enrich Hash
 parameters:
-    -   name: Risk Score Threshold
-        default_value: '25'
-        type: string
-        description: "Represents the minimum malicious risk score for a Hash to be marked\
+-   default_value: '25'
+    description: "Represents the minimum malicious risk score for a Hash to be marked\
         \ malicious. Has a range of 0-89. Has the bands levels: \n No Suspicious/Malicious\
         \ content: 0 \n Unusual: 5-24 \n Suspicious: 25-64 \n Malicious: 65-89"
-        is_mandatory: true
-    -   name: Include Links
-        default_value: 'false'
-        type: boolean
-        description: If enabled, action will get information about links.
-        is_mandatory: false
-    -   name: Enable Collective Insights
-        default_value: 'true'
-        type: boolean
-        description: If enabled, contribute detections back to Recorded Future.
-        is_mandatory: false
-dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: '[{"Entity": "07c70968c66c93b6d6c9a90255e1c81a3b385632c83f53f69534b3f55212ced9",
-        "EntityResult": [{"entity": {"id": "hash:07c70968c66c93b6d6c9a90255e1c81a3b385632c83f53f69534b3f55212ced9",
-        "name": "07c70968c66c93b6d6c9a90255e1c81a3b385632c83f53f69534b3f55212ced9",
-        "type": "Hash"}, "intelCard": "https://app.recordedfuture.com/live/sc/entity/hash%3A07c70968c66c93b6d6c9a90255e1c81a3b385632c83f53f69534b3f55212ced9",
-        "risk": {"criticalityLabel": "Malicious", "riskString": "6/17", "rules": 6,
-        "criticality": 3, "riskSummary": "6 of 17 Risk Rules currently observed.",
-        "score": 89, "evidenceDetails": [{"mitigationString": "", "evidenceString":
-        "Previous sightings on 1 source: Recorded Future Analyst Community Trending
-        Indicators. Observed between Nov 1, 2023, and Nov 2, 2023.", "rule": "Historically
-        Reported in Threat List", "criticality": 1, "timestamp": "2024-07-19T03:02:09.151Z",
-        "criticalityLabel": "Unusual"}, {"mitigationString": "", "evidenceString":
-        "10 sightings on 1 source: cyble.com. 1 related attack vector: Reflective
-        DLL Injection. Most recent link (Sep 22, 2023): https://cyble.com/blog/evasive-noescape-ransomware-uses-reflective-dll-injection/",
-        "rule": "Linked to Attack Vector", "criticality": 2, "timestamp": "2023-09-22T05:00:51.270Z",
-        "criticalityLabel": "Suspicious"}, {"mitigationString": "", "evidenceString":
-        "2 sightings on 1 source: Insikt Group.", "rule": "Linked to Cyber Attack",
-        "criticality": 2, "timestamp": "2023-07-28T21:26:21.507Z", "criticalityLabel":
-        "Suspicious"}, {"mitigationString": "", "evidenceString": "97 sightings on
-        3 sources: cyble.com, Insikt Group, CERT-IN India. 2 related malware families:
-        NoEscape, Ransomware. Most recent link (Oct 6, 2023): https://www.cert-in.org.in/s2cMainServlet?pageid=PUBVA01&VACODE=CIVA-2023-2154",
-        "rule": "Linked to Malware", "criticality": 2, "timestamp": "2023-10-06T00:00:00.000Z",
-        "criticalityLabel": "Suspicious"}, {"mitigationString": "", "evidenceString":
-        "7 sightings on 5 sources: Recorded Future Sandbox, Polyswarm Sandbox Analysis,
-        Recorded Future Triage Malware Analysis, PolySwarm PolyUnite, PolySwarm. Malware
-        sandbox report for 07c70968c66c93b6d6c9a90255e1c81a3b385632c83f53f69534b3f55212ced9
-        on October 08, 2023.   Score: 10 (Known bad). No malware detections. Contains:
-        6 ATT&CK behaviors, 0 command and control indicators, and 4 signatures. Most
-        recent link (Jun 5, 2023): https://polyswarm.network/scan/results/file/07c70968c66c93b6d6c9a90255e1c81a3b385632c83f53f69534b3f55212ced9",
-        "rule": "Positive Malware Verdict", "criticality": 3, "timestamp": "2023-06-05T00:42:04.000Z",
-        "criticalityLabel": "Malicious"}, {"mitigationString": "", "evidenceString":
-        "2 sightings on 1 source: Insikt Group. 2 reports including Insikt Validated
-        TTP: Detecting NoEscape Ransomware Using Sigma and YARA. Most recent link
-        (Jul 28, 2023): https://app.recordedfuture.com/portal/analyst-note/doc:sJl6II",
-        "rule": "Reported by Insikt Group", "criticality": 3, "timestamp": "2023-07-28T00:00:00.000Z",
-        "criticalityLabel": "Malicious"}]}, "timestamps": {"lastSeen": "2024-07-19T03:00:51.047Z",
-        "firstSeen": "2023-07-17T23:28:08.769Z"}, "hashAlgorithm": "SHA-256", "links":
-        {"Actors, Tools & TTPs": [{"id": "mitre:T1053.005", "name": "T1053.005", "type":
-        "MitreAttackIdentifier"}, {"id": "mitre:T1057", "name": "T1057", "type": "MitreAttackIdentifier"},
-        {"id": "mitre:T1070.002", "name": "T1070.002", "type": "MitreAttackIdentifier"},
-        {"id": "mitre:T1070.004", "name": "T1070.004", "type": "MitreAttackIdentifier"},
-        {"id": "mitre:T1083", "name": "T1083", "type": "MitreAttackIdentifier"}, {"id":
-        "mitre:T1112", "name": "T1112", "type": "MitreAttackIdentifier"}, {"id": "mitre:T1120",
-        "name": "T1120", "type": "MitreAttackIdentifier"}, {"id": "mitre:T1134", "name":
-        "T1134", "type": "MitreAttackIdentifier"}, {"id": "mitre:T1135", "name": "T1135",
-        "type": "MitreAttackIdentifier"}, {"id": "mitre:T1486", "name": "T1486", "type":
-        "MitreAttackIdentifier"}, {"id": "mitre:T1489", "name": "T1489", "type": "MitreAttackIdentifier"},
-        {"id": "mitre:T1490", "name": "T1490", "type": "MitreAttackIdentifier"}, {"id":
-        "mitre:T1548.002", "name": "T1548.002", "type": "MitreAttackIdentifier"},
-        {"id": "rXVuTR", "name": "N0_Esc4pe", "type": "Person"}, {"id": "rXMfyJ",
-        "name": "NoEscape", "type": "Malware"}]}}]}]'
-creator: admin
-simulation_data_json: '{"Entities": ["FILEHASH"]}'
+    is_mandatory: true
+    name: Risk Score Threshold
+    type: string
+-   default_value: 'false'
+    description: If enabled, action will get information about links.
+    is_mandatory: false
+    name: Include Links
+    type: boolean
+-   default_value: 'true'
+    description: If enabled, contribute detections back to Recorded Future.
+    is_mandatory: false
+    name: Enable Collective Insights
+    type: boolean
 script_result_name: is_risky
+simulation_data_json: '{"Entities": ["FILEHASH"]}'

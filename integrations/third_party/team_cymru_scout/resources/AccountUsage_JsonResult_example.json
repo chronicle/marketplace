@@ -1,0 +1,15 @@
+{
+    "used_queries": 1401,
+    "remaining_queries": 48599,
+    "query_limit": 50000,
+    "foundation_api_usage": {
+        "used_queries": 2,
+        "remaining_queries": 9998,
+        "query_limit": 10000
+    },
+    "ai_insights_usage": {
+        "used_queries": 0,
+        "remaining_queries": 0,
+        "query_limit": 0
+    }
+}

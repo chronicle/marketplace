@@ -1,0 +1,64 @@
+{
+    "1.1.1.1": {
+        "request_id": "eef1c00e-d723-52c6-90b4-9f49ca8e6a95",
+        "ip": "1.1.1.1",
+        "size": 20,
+        "start_date": "2024-07-30",
+        "end_date": "2024-08-20",
+        "sections": [
+            "x509"
+        ],
+        "usage": {
+            "used_queries": 1401,
+            "remaining_queries": 48599,
+            "query_limit": 50000,
+            "foundation_api_usage": {
+                "used_queries": 2,
+                "remaining_queries": 9998,
+                "query_limit": 10000
+            },
+            "ai_insights_usage": {
+                "used_queries": 0,
+                "remaining_queries": 0,
+                "query_limit": 0
+            }
+        },
+        "x509": {
+            "event_count": 4,
+            "x509": [
+                {
+                    "ip": "1.1.1.1",
+                    "issuer": "CN=E6, O=Let's Encrypt, C=US",
+                    "issuer_common_name": "E6",
+                    "common_name": "9a16eb5c.nip.io",
+                    "altnames": [
+                        "9a16eb5c.nip.io"
+                    ],
+                    "serial": "300069253807913651817505516265034341311647",
+                    "subject": "CN=9a16eb5c.nip.io",
+                    "not_after": "2024-10-02",
+                    "not_before": "2024-07-04",
+                    "validity_period": "90 Days",
+                    "md5": "d7dd2007e9abb3dc48c0317a749480e6",
+                    "sha1": "c0103128d45b710187e97dda57a8f64f3f2b6af4",
+                    "sha256": "ac3aaf8585bacd007de736a92c8956840fe218b841195e549b5b01474137ad7d",
+                    "first_seen": "2024-07-30",
+                    "last_seen": "2024-08-15",
+                    "port": 443,
+                    "self_signed": false,
+                    "country_codes": [
+                        "US"
+                    ],
+                    "as_info": [
+                        {
+                            "asn": 139646,
+                            "as_name": "HKMTC-AS-AP HONG KONG Megalayer Technology Co.,Limited, HK"
+                        }
+                    ],
+                    "tags": null,
+                    "count": 4
+                }
+            ]
+        }
+    }
+}

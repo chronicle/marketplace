@@ -1,47 +1,31 @@
-name: Extract URL Domain
+creator: Robert
+default_result_value: ''
 description: 'This action enriches all entities with a new field "siemplifytools_extracted_domain"
     containing the extracted domain out of the entity identifier. If the entity has
     no domain (file hash for example) it will simply not return anything.
 
     In addition to entities, the user can specify a list of URLs as a parameter and
     process them, without enriching, naturally.'
-integration_identifier: Tools
-parameters:
-    -   name: Separator
-        default_value: ','
-        type: string
-        description: Separator string to use to separate URLs
-        is_mandatory: true
-    -   name: URLs
-        type: string
-        description: One or more URLs to extract the domain from
-        is_mandatory: false
-    -   name: Extract subdomain
-        default_value: 'false'
-        type: boolean
-        description: When set to True, the code will also extract the subdomain from the
-            URLs and include it in the result.
-        is_mandatory: false
 dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: "[\n  {\n    \"Entity\": \"https://regex101.com/\",\n    \"EntityResult\"\
-        : {\n      \"domain\": \"regex101.com\"\n    }\n  },\n  {\n    \"Entity\"\
-        : \"https://pay.ebay.com/rxo?action=view&sessionid=1353028532011\",\n    \"\
-        EntityResult\": {\n      \"domain\": \"ebay.com\"\n    }\n  },\n  {\n    \"\
-        Entity\": \"YAIR@SIEMPLIFY.CO\",\n    \"EntityResult\": {\n      \"domain\"\
-        : \"siemplify.co\"\n    }\n  },\n  {\n    \"Entity\": \"JAMES.BOND@SIEMPLIFYCYARX.ONMICROSOFT.COM\"\
-        ,\n    \"EntityResult\": {\n      \"domain\": \"onmicrosoft.com\"\n    }\n\
-        \  },\n  {\n    \"Entity\": \"FWD: EML ATTACHED WITH PHISHING FROM TREND MICRO\"\
-        ,\n    \"EntityResult\": {\n      \"domain\": \"fwd\"\n    }\n  },\n  {\n\
-        \    \"Entity\": \"HTTPS://WWW.ONLINESERVICETECH.WEBSITE/LINK/L/P70IPXZLZO2CEED77GJMLWWQXFQCJSVQBYNKZZ346JQYYIKTR6QGAMNQW4L-MXXYSSTIHAEIICD-W1IURFSBN6IUMCO4GWZ_1SBG-62FGIZQK3ZPNIST9WGCBTW-62BXD-FJP7TCWFBSQKVUBEVYLIF_DTC6OYGMQFXDSTFNDB_-CFFKQ4AZNFF13ZWONARJ\"\
-        ,\n    \"EntityResult\": {\n      \"domain\": \"onlineservicetech.website\"\
-        \n    }\n  },\n  {\n    \"Entity\": \"HTTPS://WWW.ONLINESERVICETECH.WEBSITE/LINK/T/KEDVS-MM3MP5MILZ6YJDRDZJBBXICMAKHKWUTCO7ZKD4J2-IWL-RGHO3GIXNJDOK)[](\"\
-        ,\n    \"EntityResult\": {\n      \"domain\": \"onlineservicetech.website\"\
-        \n    }\n  },\n  {\n    \"Entity\": \"HTTPS://WWW.ONLINESERVICETECH.WEBSITE/LINK/B/KEDVS-MM3MP5MILZ6YJDRDZJBBXICMAKHKWUTCO7ZKD4J2-IWL-RGHO3GIXNJDOK\"\
-        ,\n    \"EntityResult\": {\n      \"domain\": \"onlineservicetech.website\"\
-        \n    }\n  }\n]"
-default_result_value: ''
-creator: Robert
+-   result_example_path: resources/ExtractUrlDomain_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: Tools
+name: Extract URL Domain
+parameters:
+-   default_value: ','
+    description: Separator string to use to separate URLs
+    is_mandatory: true
+    name: Separator
+    type: string
+-   description: One or more URLs to extract the domain from
+    is_mandatory: false
+    name: URLs
+    type: string
+-   default_value: 'false'
+    description: When set to True, the code will also extract the subdomain from the
+        URLs and include it in the result.
+    is_mandatory: false
+    name: Extract subdomain
+    type: boolean
 script_result_name: ScriptResult

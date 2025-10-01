@@ -1,107 +1,37 @@
-name: Enrich IP
-description: Enrich IP using information from Pulsedive.
-integration_identifier: Pulsedive
-parameters:
-    -   name: Threshold
-        default_value: medium
-        type: ddl
-        optional_values:
-            - verylow
-            - low
-            - medium
-            - high
-            - critical
-        description: 'Specify the threshold where the entity should be marked as malicious
-        or suspicious, for Siemplify to label it as suspicious. '
-        is_mandatory: true
-    -   name: Retrieve Comments
-        default_value: 'true'
-        type: boolean
-        description: If enabled, action will retrieve comments about the entity.
-        is_mandatory: false
-    -   name: Only Suspicious Entity Insight
-        default_value: 'false'
-        type: boolean
-        description: If enabled, action will only create an insight for suspicious entities.
-        is_mandatory: false
-    -   name: Max Comments To Return
-        default_value: '50'
-        type: string
-        description: Specify how many comments to return.
-        is_mandatory: false
-dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: "{\n  \"results\": [\n    {\n      \"Entity\": \"1.1.1.1\",\n\
-        \      \"EntityResult\": {\n        \"iid\": 178,\n        \"type\": \"ip\"\
-        ,\n        \"indicator\": \"1.1.1.1\",\n        \"risk\": \"low\",\n     \
-        \   \"risk_recommended\": \"low\",\n        \"manualrisk\": 0,\n        \"\
-        retired\": \"No recent activity\",\n        \"stamp_added\": \"2017-09-27\
-        \ 18:12:13\",\n        \"stamp_updated\": \"2020-12-10 00:13:33\",\n     \
-        \   \"stamp_seen\": \"2020-12-10 00:13:33\",\n        \"stamp_probed\": \"\
-        2020-12-10 00:13:32\",\n        \"stamp_retired\": null,\n        \"recent\"\
-        : 0,\n        \"riskfactors\": [\n          {\n            \"rfid\": 60,\n\
-        \            \"description\": \"found in threat feeds\",\n            \"risk\"\
-        : \"medium\"\n          },\n          {\n            \"rfid\": 1,\n      \
-        \      \"description\": \"returns PTR record\",\n            \"risk\": \"\
-        none\"\n          }\n        ],\n        \"attributes\": {\n          \"port\"\
-        : [\n            \"443\",\n            \"80\"\n          ],\n          \"\
-        protocol\": [\n            \"HTTP\",\n            \"HTTPS\"\n          ],\n\
-        \          \"technology\": [\n            \"Varnish\"\n          ]\n     \
-        \   },\n        \"properties\": {\n          \"dns\": {\n            \"ptr\"\
-        : \"webcluster2.webpod5-cph3.one.com\"\n          },\n          \"dom\": {\n\
-        \            \"screenshot\": \"\"\n          },\n          \"geo\": {\n  \
-        \          \"asn\": \"AS51468\",\n            \"city\": \"Kobenhavn S\",\n\
-        \            \"country\": \"Denmark\",\n            \"countrycode\": \"DK\"\
-        ,\n            \"isp\": \"One.com A/S\",\n            \"lat\": \"55.6759\"\
-        ,\n            \"long\": \"12.5655\",\n            \"org\": \"One.com A/S\"\
-        ,\n            \"region\": \"Capital Region\",\n            \"zip\": \"1071\"\
-        \n          },\n          \"http\": {\n            \"++code\": \"403\",\n\
-        \            \"++content-type\": \"text/html\",\n            \"++status\"\
-        : \"Forbidden\",\n            \"connection\": \"keep-alive\",\n          \
-        \  \"content-length\": \"7\",\n            \"content-type\": \"text/html;\
-        \ charset=utf-8\",\n            \"date\": \"Thu, 10 Dec 2020 00:13:16 GMT\"\
-        ,\n            \"server\": \"Varnish\",\n            \"x-varnish\": \"206348409\"\
-        \n          },\n          \"meta\": {\n            \"++title\": \"404 Not\
-        \ Found\"\n          },\n          \"whois\": {\n            \"++abuse\":\
-        \ \"abuse@ripe.net\",\n            \"++email\": \"hostmaster@ripe.net\",\n\
-        \            \"++phone\": \"+31 20 535 4444\",\n            \"++registered\"\
-        : \"2009-09-28 00:00:00\",\n            \"++registrant\": \"RIPE Network Coordination\
-        \ Centre\",\n            \"++updated\": \"2009-09-30 00:00:00\",\n       \
-        \     \"address\": \"P.O. Box 10096\",\n            \"cidr\": \"1.1.1.1/8\"\
-        ,\n            \"city\": \"Amsterdam\",\n            \"country\": \"NL\",\n\
-        \            \"nethandle\": \"NET-46-0-0-0-0\",\n            \"netname\":\
-        \ \"46-RIPE\",\n            \"netrange\": \"1.1.1.1 - 46.255.255.255\",\n\
-        \            \"nettype\": \"Allocated to RIPE NCC\",\n            \"orgabuseemail\"\
-        : \"abuse@ripe.net\",\n            \"orgabusehandle\": \"ABUSE3850-ARIN\"\
-        ,\n            \"orgabusename\": \"Abuse Contact\",\n            \"orgabusephone\"\
-        : \"+31205354444\",\n            \"orgabuseref\": \"https://rdap.arin.net/registry/entity/ABUSE3850-ARIN\"\
-        ,\n            \"organization\": \"RIPE Network Coordination Centre (RIPE)\"\
-        ,\n            \"orgid\": \"RIPE\",\n            \"orgname\": \"RIPE Network\
-        \ Coordination Centre\",\n            \"orgtechemail\": \"hostmaster@ripe.net\"\
-        ,\n            \"orgtechhandle\": \"RNO29-ARIN\",\n            \"orgtechname\"\
-        : \"RIPE NCC Operations\",\n            \"orgtechphone\": \"+31 20 535 4444\"\
-        ,\n            \"orgtechref\": \"https://rdap.arin.net/registry/entity/RNO29-ARIN\"\
-        ,\n            \"parent\": \"()\",\n            \"postalcode\": \"1001EB\"\
-        ,\n            \"ref\": [\n              \"https://rdap.arin.net/registry/ip/46.0.0.0\"\
-        ,\n              \"https://rdap.arin.net/registry/entity/RIPE\"\n        \
-        \    ],\n            \"referralserver\": \"whois://whois.ripe.net\",\n   \
-        \         \"regdate\": \"2009-09-28\",\n            \"resourcelink\": [\n\
-        \              \"whois.ripe.net\",\n              \"https://apps.db.ripe.net/search/query.html\"\
-        \n            ],\n            \"updated\": [\n              \"2009-09-30\"\
-        ,\n              \"2013-07-29\"\n            ]\n          }\n        },\n\
-        \        \"threats\": [\n          {\n            \"tid\": 546,\n        \
-        \    \"name\": \"qsnatch\",\n            \"category\": \"general\",\n    \
-        \        \"risk\": \"unknown\",\n            \"stamp_linked\": \"2020-08-14\
-        \ 12:04:46\"\n          },\n          {\n            \"tid\": 1,\n       \
-        \     \"name\": \"Zeus\",\n            \"category\": \"malware\",\n      \
-        \      \"risk\": \"high\",\n            \"stamp_linked\": \"2018-04-18 07:00:12\"\
-        \n          }\n        ],\n        \"feeds\": [\n          {\n           \
-        \ \"fid\": 4,\n            \"name\": \"C&C IPs\",\n            \"category\"\
-        : \"malware\",\n            \"organization\": \"Bambenek Consulting\",\n \
-        \           \"pricing\": \"free\",\n            \"stamp_linked\": \"2020-08-14\
-        \ 12:04:46\"\n          }\n        ]\n      }\n    }\n  ],\n  \"is_risky\"\
-        : false\n}"
 creator: Admin
+description: Enrich IP using information from Pulsedive.
+dynamic_results_metadata:
+-   result_example_path: resources/EnrichIp_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: Pulsedive
 is_async: true
+name: Enrich IP
+parameters:
+-   default_value: medium
+    description: 'Specify the threshold where the entity should be marked as malicious
+        or suspicious, for Siemplify to label it as suspicious. '
+    is_mandatory: true
+    name: Threshold
+    optional_values:
+    - verylow
+    - low
+    - medium
+    - high
+    - critical
+    type: ddl
+-   default_value: 'true'
+    description: If enabled, action will retrieve comments about the entity.
+    is_mandatory: false
+    name: Retrieve Comments
+    type: boolean
+-   default_value: 'false'
+    description: If enabled, action will only create an insight for suspicious entities.
+    is_mandatory: false
+    name: Only Suspicious Entity Insight
+    type: boolean
+-   default_value: '50'
+    description: Specify how many comments to return.
+    is_mandatory: false
+    name: Max Comments To Return
+    type: string

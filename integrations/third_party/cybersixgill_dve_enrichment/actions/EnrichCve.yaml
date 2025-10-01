@@ -1,57 +1,17 @@
-name: Enrich CVE
-description: Cybersixgill’s Dynamic Vulnerability Exploit (DVE) Score is powered by
-    the vastest collection of vulnerability-related threat intelligence from the deep
-    and dark web. By enriching CVEs with Cybersixgill’s DVE Score, Siemplify customers
-    gain deeper visibility with relevant threat intel and dynamic attributes such
-    as where they are trending, POC exploit details, and more. Loaded with extra-context,
-    this allows Siemplify customers to accurately understand the real impact of CVEs
-    to effectively prioritize critical vulnerabilities - straight from the Siemplify
-    dashboard.
-integration_identifier: Cybersixgill DVE Enrichment
-parameters: [ ]
-dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: "[\r\n  {\r\n    \"entityIdentifier\": \"CVE-2021-21552\",\r\n\
-        \    \"entityResult\":\r\n    {\r\n      \"created\": \"2021-05-21T00:00:00.001000Z\"\
-        ,\r\n      \"description\": \"Dell Wyse Windows Embedded System versions WIE10\
-        \ LTSC 2019 and earlier contain an improper authorization vulnerability. A\
-        \ local authenticated malicious user with low privileges may potentially exploit\
-        \ this vulnerability to bypass the restricted environment and perform unauthorized\
-        \ actions on the affected system.\",\r\n      \"external_references\": [\r\
-        \n        {\r\n          \"external_id\": \"CVE-2021-21552\",\r\n        \
-        \  \"source_name\": \"cve\"\r\n        }\r\n      ],\r\n      \"id\": \"vulnerability--16613a0e-bc9c-db43-e3e4-11adda88d220\"\
-        ,\r\n      \"last_activity_date\": \"2021-06-02T22:08:06Z\",\r\n      \"name\"\
-        : \"CVE-2021-21552\",\r\n      \"type\": \"vulnerability\",\r\n      \"x_sixgill_info\"\
-        : {\r\n        \"mentions\": {\r\n          \"first_mention\": \"2021-05-21T20:08:50Z\"\
-        ,\r\n          \"last_mention\": \"2021-06-02T22:08:06Z\",\r\n          \"\
-        mentions_total\": 14\r\n        },\r\n        \"nvd\": {\r\n          \"link\"\
-        : \"https://nvd.nist.gov/vuln/detail/CVE-2021-21552\",\r\n          \"modified\"\
-        : \"2021-06-02T12:30:00Z\",\r\n          \"published\": \"2021-05-21T20:15:00Z\"\
-        ,\r\n          \"v2\": {\r\n            \"accessVector\": \"LOCAL\",\r\n \
-        \           \"authentication\": \"NONE\",\r\n            \"availabilityImpact\"\
-        : \"COMPLETE\",\r\n            \"confidentialityImpact\": \"COMPLETE\",\r\n\
-        \            \"current\": 7.2,\r\n            \"exploitabilityScore\": 3.9,\r\
-        \n            \"impactScore\": 10.0,\r\n            \"integrityImpact\": \"\
-        COMPLETE\",\r\n            \"severity\": \"HIGH\",\r\n            \"vector\"\
-        : \"AV:L/AC:L/Au:N/C:C/I:C/A:C\"\r\n          },\r\n          \"v3\": {\r\n\
-        \            \"attackComplexity\": \"LOW\",\r\n            \"attackVector\"\
-        : \"LOCAL\",\r\n            \"availabilityImpact\": \"HIGH\",\r\n        \
-        \    \"confidentialityImpact\": \"HIGH\",\r\n            \"current\": 8.8,\r\
-        \n            \"exploitabilityScore\": 2.0,\r\n            \"impactScore\"\
-        : 6.0,\r\n            \"integrityImpact\": \"HIGH\",\r\n            \"privilegesRequired\"\
-        : \"LOW\",\r\n            \"severity\": \"HIGH\",\r\n            \"userInteraction\"\
-        : \"NONE\",\r\n            \"vector\": \"CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:C/C:H/I:H/A:H\"\
-        \r\n          }\r\n        },\r\n        \"score\": {\r\n          \"current\"\
-        : 1.01,\r\n          \"highest\": {\r\n            \"date\": \"2021-06-02T00:00:00Z\"\
-        ,\r\n            \"value\": 6.42\r\n          },\r\n          \"previouslyExploited\"\
-        : 2.57\r\n        },\r\n        \"references\": {\r\n          \"reference_data\"\
-        : [\r\n            {\r\n              \"name\": \"N/A\",\r\n             \
-        \ \"refsource\": \"CONFIRM\",\r\n              \"tags\": [\r\n           \
-        \     \"Patch\",\r\n                \"Vendor Advisory\"\r\n              ],\r\
-        \n              \"url\": \"https://www.dell.com/support/kbdoc/en-us/000186134/dsa-2021-096-dell-wyse-windows-embedded-system-security-update-for-an-improper-authorization-vulnerability\"\
-        \r\n            }\r\n          ]\r\n        }\r\n      }\r\n    }\r\n  }\r\
-        \n]"
-default_result_value: ''
 creator: Admin
+default_result_value: ''
+description: "Cybersixgill\u2019s Dynamic Vulnerability Exploit (DVE) Score is powered\
+    \ by the vastest collection of vulnerability-related threat intelligence from\
+    \ the deep and dark web. By enriching CVEs with Cybersixgill\u2019s DVE Score,\
+    \ Siemplify customers gain deeper visibility with relevant threat intel and dynamic\
+    \ attributes such as where they are trending, POC exploit details, and more. Loaded\
+    \ with extra-context, this allows Siemplify customers to accurately understand\
+    \ the real impact of CVEs to effectively prioritize critical vulnerabilities -\
+    \ straight from the Siemplify dashboard."
+dynamic_results_metadata:
+-   result_example_path: resources/EnrichCve_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: Cybersixgill DVE Enrichment
+name: Enrich CVE
+parameters: []
