@@ -24,7 +24,7 @@ import mp.core.constants
 if TYPE_CHECKING:
     from mp.core.config import RuntimeParams
 
-MOCK_MARKETPLACE_DIR_NAME: str = "mock_marketplace"
+MOCK_MARKETPLACE_DIR_NAME: str = "mock_content_hub"
 INTEGRATION_NAME: str = "mock_integration"
 BUILT_INTEGRATION_DIR_NAME: str = "mock_built_integration"
 
@@ -62,7 +62,11 @@ def non_built_integration(mock_community: pathlib.Path) -> pathlib.Path:
 @pytest.fixture
 def mock_marketplace() -> pathlib.Path:
     """Path of a mocked marketplace."""
-    return pathlib.Path(__file__).parent / MOCK_MARKETPLACE_DIR_NAME
+    return (
+        pathlib.Path(__file__).parent
+        / MOCK_MARKETPLACE_DIR_NAME
+        / mp.core.constants.INTEGRATIONS_DIR_NAME
+    )
 
 
 @pytest.fixture

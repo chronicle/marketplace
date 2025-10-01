@@ -104,7 +104,7 @@ def get_integration_identifier(source_path: pathlib.Path) -> str:
         return integration_obj.identifier
 
 
-def find_built_integration_dir(_: pathlib.Path, identifier: str) -> pathlib.Path:
+def find_built_integration_dir(identifier: str) -> pathlib.Path:
     """Find the built integration directory.
 
     Args:
@@ -118,11 +118,12 @@ def find_built_integration_dir(_: pathlib.Path, identifier: str) -> pathlib.Path
         typer.Exit: If the built integration is not found.
 
     """
-    root = mp.core.file_utils.get_out_integrations_path()
+    root: pathlib.Path = mp.core.file_utils.get_out_integrations_path()
     for repo in mp.core.constants.INTEGRATIONS_TYPES:
         candidate = root / repo / identifier
         if candidate.exists():
             return candidate
+
     rich.print(
         f"[red]Built integration not found for identifier '{identifier}' in out/integrations.[/red]"
     )

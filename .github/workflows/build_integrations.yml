@@ -33,5 +33,5 @@ jobs:
     - name: Build all integrations
       shell: bash
       run: |
-        mp config --marketplace-path . --processes 10 --display-config
+        mp config --root-path . --processes 10 --display-config
         mp build --repository third_party --repository commercial

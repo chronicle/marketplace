@@ -62,13 +62,13 @@ def get_marketplace_path() -> pathlib.Path:
     )
     msg: str
     if path is None:
-        msg = "Got 'None' for marketplace path"
+        msg = "Got 'None' for content-hub path"
         raise ValueError(msg)
 
     if not path.exists():
         msg = (
-            f"Marketplace path '{path}' does not exist."
-            " Please use 'mp config --marketplace-path ...' to set it to the repo's"
+            f"Content Hub path '{path}' does not exist."
+            " Please use 'mp config --root-path ...' to set it to the repo's"
             " root directory"
         )
         warnings.warn(msg, RuntimeWarning, stacklevel=2)
