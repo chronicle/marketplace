@@ -1,24 +1,23 @@
-name: Send Entities to EclecticIQ
-description: By default, this action sends entities to EclecticIQ as sightings. 
-  Additionally, users have the option to configure parameters to create an 
-  indicator entity.
-integration_identifier: EclecticIQ
-parameters:
-- name: Group Name
-  default_value: Testing Group
-  type: string
-  description: EclecticIQ Intelligence Center Group Name (e.g.:Testing Group)
-  is_mandatory: true
-- name: Create Indicator
-  default_value: 'false'
-  type: boolean
-  description: If this field is set to true, both a sighting and an indicator 
-    will be created. If false, only a sighting will be created in EclecticIQ.
-  is_mandatory: false
-dynamic_results_metadata:
-- result_name: JsonResult
-  show_result: false
-  result_example_path:
-default_result_value: ''
 creator: 02d62532-046f-494f-8c5f-6541026a07d1
+default_result_value: ''
+description: By default, this action sends entities to EclecticIQ as sightings. Additionally,
+    users have the option to configure parameters to create an indicator entity.
+dynamic_results_metadata:
+-   result_example_path: null
+    result_name: JsonResult
+    show_result: false
+integration_identifier: EclecticIQ
+name: Send Entities to EclecticIQ
+parameters:
+-   default_value: Testing Group
+    description: EclecticIQ Intelligence Center Group Name (e.g.:Testing Group)
+    is_mandatory: true
+    name: Group Name
+    type: string
+-   default_value: 'false'
+    description: If this field is set to true, both a sighting and an indicator will
+        be created. If false, only a sighting will be created in EclecticIQ.
+    is_mandatory: false
+    name: Create Indicator
+    type: boolean
 script_result_name: ScriptResult

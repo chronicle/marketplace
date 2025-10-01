@@ -1,48 +1,48 @@
-name: Reports - List All
-description: This method returns the list of scheduled reports, according to the
-  parameters received.
-integration_identifier: Bitdefender GravityZone
-parameters:
-- name: Report Name
-  type: string
-  description: The name of the report.
-  is_mandatory: false
-- name: Report Type
-  default_value: ''
-  type: ddl
-  optional_values:
-  - Antiphishing Activity
-  - Blocked Applications
-  - Blocked Websites
-  - Data Protection
-  - Device Control Activity
-  - Endpoint Modules Status
-  - Endpoint Protection Status
-  - Firewall Activity
-  - Malware Status
-  - Monthly License Usage
-  - Network Status
-  - On demand scanning
-  - Policy Compliance
-  - Security Audit
-  - Security Server Status
-  - Top 10 Detected Malware
-  - Top 10 Infected Endpoints
-  - Update Status
-  - Upgrade Status
-  - AWS Monthly Usage
-  - Endpoint Encryption Status
-  - HyperDetect Activity
-  - Network Patch Status
-  - Sandbox Analyzer Failed Submissions
-  - Network Incidents
-  - Email Security Usage
-  description: The report type.
-  is_mandatory: false
-dynamic_results_metadata:
-- result_name: JsonResult
-  show_result: true
-  result_example_path: resources/ReportsListAll_JsonResult_example.json
-default_result_value: ''
 creator: daniel.harvey
+default_result_value: ''
+description: This method returns the list of scheduled reports, according to the parameters
+    received.
+dynamic_results_metadata:
+-   result_example_path: resources/ReportsListAll_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: Bitdefender GravityZone
+name: Reports - List All
+parameters:
+-   description: The name of the report.
+    is_mandatory: false
+    name: Report Name
+    type: string
+-   default_value: ''
+    description: The report type.
+    is_mandatory: false
+    name: Report Type
+    optional_values:
+    - Antiphishing Activity
+    - Blocked Applications
+    - Blocked Websites
+    - Data Protection
+    - Device Control Activity
+    - Endpoint Modules Status
+    - Endpoint Protection Status
+    - Firewall Activity
+    - Malware Status
+    - Monthly License Usage
+    - Network Status
+    - On demand scanning
+    - Policy Compliance
+    - Security Audit
+    - Security Server Status
+    - Top 10 Detected Malware
+    - Top 10 Infected Endpoints
+    - Update Status
+    - Upgrade Status
+    - AWS Monthly Usage
+    - Endpoint Encryption Status
+    - HyperDetect Activity
+    - Network Patch Status
+    - Sandbox Analyzer Failed Submissions
+    - Network Incidents
+    - Email Security Usage
+    type: ddl
 script_result_name: ScriptResult

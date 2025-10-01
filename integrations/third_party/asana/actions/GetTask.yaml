@@ -1,18 +1,18 @@
-name: Get Task
-description: Retrieves the task details
-integration_identifier: Asana
-parameters:
-- name: Task ID
-  default_value: <Task-Id>
-  type: string
-  description: 'The task ID can be found in the URL:
-
-    https://app.asana.com/0/{your_project_ID}/{your_task_ID}'
-  is_mandatory: true
-dynamic_results_metadata:
-- result_name: JsonResult
-  show_result: true
-  result_example_path: resources/GetTask_JsonResult_example.json
-default_result_value: ''
 creator: TehilaGourary
+default_result_value: ''
+description: Retrieves the task details
+dynamic_results_metadata:
+-   result_example_path: resources/GetTask_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: Asana
+name: Get Task
+parameters:
+-   default_value: <Task-Id>
+    description: 'The task ID can be found in the URL:
+
+        https://app.asana.com/0/{your_project_ID}/{your_task_ID}'
+    is_mandatory: true
+    name: Task ID
+    type: string
 script_result_name: ScriptResult

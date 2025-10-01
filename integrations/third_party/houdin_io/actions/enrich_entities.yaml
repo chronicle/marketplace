@@ -1,28 +1,28 @@
-name: Enrich Entities
+creator: Admin
+default_result_value: ''
 description: 'Scan compatible entities on Houdin.io, and add enrichment results for
-  each one. Compatible types are: Public IPv4/IPv6, URL, Domain, MD5, SHA1, SHA256
-  Note: Action is running as async, adjust script timeout value in Google SecOps IDE
-  for action, as needed.'
+    each one. Compatible types are: Public IPv4/IPv6, URL, Domain, MD5, SHA1, SHA256
+    Note: Action is running as async, adjust script timeout value in Google SecOps
+    IDE for action, as needed.'
+dynamic_results_metadata:
+-   result_example_path: resources/enrich_entities_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
 integration_identifier: Houdin-io
 is_async: true
+name: Enrich Entities
 parameters:
-- name: scanOn
-  default_value: ''
-  type: multi_choice_parameter
-  description: '(Optional) An array of scanners you want Houdin to use.'
-  is_mandatory: false
-  optional_values:
-  - vt
-  - urlscan
-  - alienvault
-  - abuseipdb
-  - triage
-  - mesmer
-  - servicenow
-dynamic_results_metadata:
-- result_name: JsonResult
-  show_result: true
-  result_example_path: resources/enrich_entities_JsonResult_example.json
-default_result_value: ''
-creator: Admin
+-   default_value: ''
+    description: (Optional) An array of scanners you want Houdin to use.
+    is_mandatory: false
+    name: scanOn
+    optional_values:
+    - vt
+    - urlscan
+    - alienvault
+    - abuseipdb
+    - triage
+    - mesmer
+    - servicenow
+    type: multi_choice_parameter
 script_result_name: ScriptResult

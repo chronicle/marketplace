@@ -1,54 +1,52 @@
-name: IP Lookup
-description: 'Returns IPAM info for a given IP. '
-integration_identifier: InfobloxNIOS
-parameters:
-- name: Limit
-  default_value: '100'
-  type: string
-  description: Maximum numbers of objects to be returned.
-  is_mandatory: false
-- name: IP Address
-  type: string
-  description: The IP address for which to retrieve information, e.g. 
-    "192.168.1.1". Cannot be used in conjunction with network or from/to_ip 
-    arguments.
-  is_mandatory: false
-- name: Network
-  type: string
-  description: The network that the IP belongs to is in FQDN/CIDR format, e.g. 
-    "192.168.1.0/24". Cannot be used in conjunction with ip or from/to_ip 
-    arguments.
-  is_mandatory: false
-- name: From IP
-  type: string
-  description: The beginning of the IP range, e.g. "192.168.1.0". Must be used 
-    in conjunction with to_ip.
-  is_mandatory: false
-- name: To IP
-  type: string
-  description: The end of the IP range, e.g. "192.168.1.254". Must be used in 
-    conjunction with from_ip.
-  is_mandatory: false
-- name: Status
-  default_value: All
-  type: ddl
-  optional_values:
-  - All
-  - Active
-  - Used
-  - Unused
-  description: The status of the IP device. Used in conjunction with the network
-    or ip argument. Possible values are All, Active, Used and Unused.
-  is_mandatory: false
-- name: Extended Attributes
-  type: string
-  description: Comma-separated key/value formatted filter for extended 
-    attributes, e.g. "Site=New York,OtherProp=MyValue".
-  is_mandatory: false
-dynamic_results_metadata:
-- result_name: JsonResult
-  show_result: true
-  result_example_path: resources/ip_lookup_JsonResult_example.json
-default_result_value: ''
 creator: d28f2b46-9f0f-4c38-8509-0416748b77d9
+default_result_value: ''
+description: 'Returns IPAM info for a given IP. '
+dynamic_results_metadata:
+-   result_example_path: resources/ip_lookup_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: InfobloxNIOS
+name: IP Lookup
+parameters:
+-   default_value: '100'
+    description: Maximum numbers of objects to be returned.
+    is_mandatory: false
+    name: Limit
+    type: string
+-   description: The IP address for which to retrieve information, e.g. "192.168.1.1".
+        Cannot be used in conjunction with network or from/to_ip arguments.
+    is_mandatory: false
+    name: IP Address
+    type: string
+-   description: The network that the IP belongs to is in FQDN/CIDR format, e.g. "192.168.1.0/24".
+        Cannot be used in conjunction with ip or from/to_ip arguments.
+    is_mandatory: false
+    name: Network
+    type: string
+-   description: The beginning of the IP range, e.g. "192.168.1.0". Must be used in
+        conjunction with to_ip.
+    is_mandatory: false
+    name: From IP
+    type: string
+-   description: The end of the IP range, e.g. "192.168.1.254". Must be used in conjunction
+        with from_ip.
+    is_mandatory: false
+    name: To IP
+    type: string
+-   default_value: All
+    description: The status of the IP device. Used in conjunction with the network
+        or ip argument. Possible values are All, Active, Used and Unused.
+    is_mandatory: false
+    name: Status
+    optional_values:
+    - All
+    - Active
+    - Used
+    - Unused
+    type: ddl
+-   description: Comma-separated key/value formatted filter for extended attributes,
+        e.g. "Site=New York,OtherProp=MyValue".
+    is_mandatory: false
+    name: Extended Attributes
+    type: string
 script_result_name: ScriptResult

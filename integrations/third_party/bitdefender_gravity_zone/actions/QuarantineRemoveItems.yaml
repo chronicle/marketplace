@@ -1,26 +1,26 @@
-name: Quarantine - Remove Items
-description: This method creates a new task to remove items from quarantine.
-integration_identifier: Bitdefender GravityZone
-parameters:
-- name: Service
-  default_value: Computers
-  type: ddl
-  optional_values:
-  - Computers
-  - Exchange
-  description: 'Allowed services are: computers, for "Computers and Virtual Machines"
-    or exchange, for "Security for Exchange"'
-  is_mandatory: true
-- name: Quarantine Item IDs
-  default_value: itemId1,itemId2
-  type: string
-  description: Comma-separated list of quarantine items IDs. The maximum number 
-    of items that can be removed once is 100.
-  is_mandatory: true
-dynamic_results_metadata:
-- result_name: JsonResult
-  show_result: false
-  result_example_path: resources/QuarantineRemoveItems_JsonResult_example.json
-default_result_value: ''
 creator: daniel.harvey
+default_result_value: ''
+description: This method creates a new task to remove items from quarantine.
+dynamic_results_metadata:
+-   result_example_path: resources/QuarantineRemoveItems_JsonResult_example.json
+    result_name: JsonResult
+    show_result: false
+integration_identifier: Bitdefender GravityZone
+name: Quarantine - Remove Items
+parameters:
+-   default_value: Computers
+    description: 'Allowed services are: computers, for "Computers and Virtual Machines"
+        or exchange, for "Security for Exchange"'
+    is_mandatory: true
+    name: Service
+    optional_values:
+    - Computers
+    - Exchange
+    type: ddl
+-   default_value: itemId1,itemId2
+    description: Comma-separated list of quarantine items IDs. The maximum number
+        of items that can be removed once is 100.
+    is_mandatory: true
+    name: Quarantine Item IDs
+    type: string
 script_result_name: ScriptResult

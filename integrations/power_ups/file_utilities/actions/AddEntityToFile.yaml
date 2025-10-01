@@ -1,18 +1,18 @@
-name: Add Entity to File
-description: This action will add the identifier of a target entity to a local 
-  file.  It will only add one occurance of the entity to the file and will 
-  return False if the entity already exists.
-integration_identifier: FileUtilities
-parameters:
-- name: Filename
-  default_value: <filename.out>
-  type: string
-  description: The name of the file to write the entities to.
-  is_mandatory: true
-dynamic_results_metadata:
-- result_name: JsonResult
-  show_result: true
-  result_example_path:
-default_result_value: ''
 creator: Robert
+default_result_value: ''
+description: This action will add the identifier of a target entity to a local file.  It
+    will only add one occurance of the entity to the file and will return False if
+    the entity already exists.
+dynamic_results_metadata:
+-   result_example_path: null
+    result_name: JsonResult
+    show_result: true
+integration_identifier: FileUtilities
+name: Add Entity to File
+parameters:
+-   default_value: <filename.out>
+    description: The name of the file to write the entities to.
+    is_mandatory: true
+    name: Filename
+    type: string
 script_result_name: AddedAllEntities

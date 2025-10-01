@@ -1,76 +1,76 @@
-name: Indicators Custom Query
+creator: TehilaGourary
+default_result_value: ''
 description: 'Custom query for specific indicators (events and attributes)
 
-  See the documentation: "https://docs.fp.tools/#!/indicators/"'
-integration_identifier: Flashpoint
-parameters:
-- name: Sort By Time
-  default_value: Descending
-  type: ddl
-  optional_values:
-  - Ascending
-  - Descending
-  description: Presents the data in a descending or ascending order.
-  is_mandatory: false
-- name: Entity Types
-  default_value: url,domain,ip-src
-  type: string
-  description: 'Entity types to retrieve data for (comma separated)
-
-    For example: url,domain,ip-src.
-
-    More info : https://www.circl.lu/doc/misp/categories-and-types/'
-  is_mandatory: false
-- name: Limit
-  default_value: '10'
-  type: string
-  description: The maximum number of result objects to return.
-  is_mandatory: false
-- name: Start Date
-  default_value: '2020-02-26T14:49:07Z'
-  type: string
-  description: "Retrieves values created after the specified date. \nFor example:
-    2020-02-26T14:49:07Z\nFor more info: https://docs.fp.tools/"
-  is_mandatory: false
-- name: End Date
-  default_value: '2020-02-25T14:49:07Z'
-  type: string
-  description: "Retrieves values created before the specified date. \nFor example:
-    2020-11-25T14:49:07Z\nFor more info:https://docs.fp.tools/"
-  is_mandatory: false
-- name: Search Tags
-  default_value: malware,ransomware
-  type: string
-  description: 'Search for a specific keyword (comma separated).
-
-    For example: malware,ransomware.'
-  is_mandatory: false
-- name: Query
-  default_value: malicious
-  type: string
-  description: 'Custom query to retrieve data for.
-
-    For example:
-
-    For more info:'
-  is_mandatory: false
-- name: Indicator Type
-  default_value: attribute
-  type: ddl
-  optional_values:
-  - simple
-  - event
-  - attribute
-  description: 'Simple-simplified list of indicators of compromise
-
-    Attribute- indicators of compromise (IOCs)
-
-    Event- groupings of different indicators of compromise.'
-  is_mandatory: true
+    See the documentation: "https://docs.fp.tools/#!/indicators/"'
 dynamic_results_metadata:
-- result_name: JsonResult
-  show_result: true
-  result_example_path: resources/IndicatorsCustomQuery_JsonResult_example.json
-default_result_value: ''
-creator: TehilaGourary
+-   result_example_path: resources/IndicatorsCustomQuery_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: Flashpoint
+name: Indicators Custom Query
+parameters:
+-   default_value: Descending
+    description: Presents the data in a descending or ascending order.
+    is_mandatory: false
+    name: Sort By Time
+    optional_values:
+    - Ascending
+    - Descending
+    type: ddl
+-   default_value: url,domain,ip-src
+    description: 'Entity types to retrieve data for (comma separated)
+
+        For example: url,domain,ip-src.
+
+        More info : https://www.circl.lu/doc/misp/categories-and-types/'
+    is_mandatory: false
+    name: Entity Types
+    type: string
+-   default_value: '10'
+    description: The maximum number of result objects to return.
+    is_mandatory: false
+    name: Limit
+    type: string
+-   default_value: '2020-02-26T14:49:07Z'
+    description: "Retrieves values created after the specified date. \nFor example:\
+        \ 2020-02-26T14:49:07Z\nFor more info: https://docs.fp.tools/"
+    is_mandatory: false
+    name: Start Date
+    type: string
+-   default_value: '2020-02-25T14:49:07Z'
+    description: "Retrieves values created before the specified date. \nFor example:\
+        \ 2020-11-25T14:49:07Z\nFor more info:https://docs.fp.tools/"
+    is_mandatory: false
+    name: End Date
+    type: string
+-   default_value: malware,ransomware
+    description: 'Search for a specific keyword (comma separated).
+
+        For example: malware,ransomware.'
+    is_mandatory: false
+    name: Search Tags
+    type: string
+-   default_value: malicious
+    description: 'Custom query to retrieve data for.
+
+        For example:
+
+        For more info:'
+    is_mandatory: false
+    name: Query
+    type: string
+-   default_value: attribute
+    description: 'Simple-simplified list of indicators of compromise
+
+        Attribute- indicators of compromise (IOCs)
+
+        Event- groupings of different indicators of compromise.'
+    is_mandatory: true
+    name: Indicator Type
+    optional_values:
+    - simple
+    - event
+    - attribute
+    type: ddl
 script_result_name: ScriptResult

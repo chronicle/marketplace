@@ -1,19 +1,19 @@
-name: Spell Check String
-description: The Spell Check String action will check the spelling of an input 
-  string.  It will output the percent accurate, total words, amount of 
-  misspelled words, list of each misspelled word and the correction, and a 
-  corrected version of the input string.
-integration_identifier: Tools
-parameters:
-- name: String
-  default_value: ''
-  type: string
-  description: 'The string that will be checked for spelling errors. '
-  is_mandatory: true
-dynamic_results_metadata:
-- result_name: JsonResult
-  show_result: true
-  result_example_path: resources/SpellCheckString_JsonResult_example.json
-default_result_value: ''
 creator: Rob
+default_result_value: ''
+description: The Spell Check String action will check the spelling of an input string.  It
+    will output the percent accurate, total words, amount of misspelled words, list
+    of each misspelled word and the correction, and a corrected version of the input
+    string.
+dynamic_results_metadata:
+-   result_example_path: resources/SpellCheckString_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: Tools
+name: Spell Check String
+parameters:
+-   default_value: ''
+    description: 'The string that will be checked for spelling errors. '
+    is_mandatory: true
+    name: String
+    type: string
 script_result_name: accuracy_percent

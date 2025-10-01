@@ -1,30 +1,29 @@
-name: List My Tasks
-description: Lists all the tasks associated with a user in Asana
-integration_identifier: Asana
-parameters:
-- name: User's Email
-  default_value: email@gmail.com
-  type: string
-  description: The email of the user you would like to retrieve tasks for in 
-    Asana
-  is_mandatory: true
-- name: Workspace Name
-  default_value: Your Workspace Name
-  type: string
-  description: 'The workspace name.
-
-    Note: This is case sensitive'
-  is_mandatory: true
-- name: Completed Status
-  default_value: 'false'
-  type: boolean
-  description: 'Marking the checkbox will retrieve only the tasks that were completed
-    by the user. '
-  is_mandatory: false
-dynamic_results_metadata:
-- result_name: JsonResult
-  show_result: true
-  result_example_path: resources/ListMyTasks_JsonResult_example.json
-default_result_value: ''
 creator: TehilaGourary
+default_result_value: ''
+description: Lists all the tasks associated with a user in Asana
+dynamic_results_metadata:
+-   result_example_path: resources/ListMyTasks_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: Asana
+name: List My Tasks
+parameters:
+-   default_value: email@gmail.com
+    description: The email of the user you would like to retrieve tasks for in Asana
+    is_mandatory: true
+    name: User's Email
+    type: string
+-   default_value: Your Workspace Name
+    description: 'The workspace name.
+
+        Note: This is case sensitive'
+    is_mandatory: true
+    name: Workspace Name
+    type: string
+-   default_value: 'false'
+    description: 'Marking the checkbox will retrieve only the tasks that were completed
+        by the user. '
+    is_mandatory: false
+    name: Completed Status
+    type: boolean
 script_result_name: ScriptResult

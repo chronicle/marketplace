@@ -1,16 +1,15 @@
-name: Get Issue Details
-description: Use the Get Issue Details action to obtain information about a 
-  specified issue in Wiz.
-integration_identifier: Wiz
-parameters:
-- name: Issue ID
-  default_value: ''
-  type: string
-  description: The unique identifier of the Wiz issue to retrieve or act upon.
-  is_mandatory: true
-dynamic_results_metadata:
-    # language=json
-- result_name: JsonResult
-  show_result: true
-  result_example_path: resources/get_issue_details_JsonResult_example.json
 creator: admin
+description: Use the Get Issue Details action to obtain information about a specified
+    issue in Wiz.
+dynamic_results_metadata:
+-   result_example_path: resources/get_issue_details_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: Wiz
+name: Get Issue Details
+parameters:
+-   default_value: ''
+    description: The unique identifier of the Wiz issue to retrieve or act upon.
+    is_mandatory: true
+    name: Issue ID
+    type: string

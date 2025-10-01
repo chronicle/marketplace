@@ -1,13 +1,13 @@
-name: Enrich Entities
+creator: TehilaGourary
+default_result_value: ''
 description: 'Enrich entities with Zoom properties
 
-  '
-integration_identifier: Zoom
-parameters: []
+    '
 dynamic_results_metadata:
-- result_name: JsonResult
-  show_result: true
-  result_example_path: resources/EnrichEntities_JsonResult_example.json
-default_result_value: ''
-creator: TehilaGourary
+-   result_example_path: resources/EnrichEntities_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: Zoom
+name: Enrich Entities
+parameters: []
 script_result_name: ScriptResult

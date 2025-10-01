@@ -1,35 +1,35 @@
-name: Create RPZ TXT Rule
-description: 'Adds a TXT record rule in RPZ to associate text data with a DNS response. '
-integration_identifier: InfobloxNIOS
-parameters:
-- name: RP Zone
-  default_value: ''
-  type: string
-  description: 'The zone to assign the rule to. '
-  is_mandatory: true
-- name: Name
-  default_value: ''
-  type: string
-  description: Specify the name of the rule.
-  is_mandatory: true
-- name: Text
-  default_value: ''
-  type: string
-  description: 'Text associated with the record. '
-  is_mandatory: true
-- name: Comment
-  type: string
-  description: 'Comment for this rule. '
-  is_mandatory: false
-- name: Additional Parameters
-  type: string
-  description: 'JSON object containing additional parameters to create response policy
-    zone. '
-  is_mandatory: false
-dynamic_results_metadata:
-- result_name: JsonResult
-  show_result: true
-  result_example_path: resources/create_rpz_txt_rule_JsonResult_example.json
-default_result_value: ''
 creator: Admin
+default_result_value: ''
+description: 'Adds a TXT record rule in RPZ to associate text data with a DNS response. '
+dynamic_results_metadata:
+-   result_example_path: resources/create_rpz_txt_rule_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: InfobloxNIOS
+name: Create RPZ TXT Rule
+parameters:
+-   default_value: ''
+    description: 'The zone to assign the rule to. '
+    is_mandatory: true
+    name: RP Zone
+    type: string
+-   default_value: ''
+    description: Specify the name of the rule.
+    is_mandatory: true
+    name: Name
+    type: string
+-   default_value: ''
+    description: 'Text associated with the record. '
+    is_mandatory: true
+    name: Text
+    type: string
+-   description: 'Comment for this rule. '
+    is_mandatory: false
+    name: Comment
+    type: string
+-   description: 'JSON object containing additional parameters to create response
+        policy zone. '
+    is_mandatory: false
+    name: Additional Parameters
+    type: string
 script_result_name: ScriptResult

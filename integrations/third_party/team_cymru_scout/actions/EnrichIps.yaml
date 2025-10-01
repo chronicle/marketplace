@@ -1,12 +1,12 @@
-name: Enrich IPs
-description: Enriches the IP Address Entities from the information available in 
-  Team Cymru Scout platform.
-integration_identifier: TeamCymruScout
-parameters: []
-dynamic_results_metadata:
-- result_name: JsonResult
-  show_result: true
-  result_example_path: resources/EnrichIps_JsonResult_example.json
-default_result_value: ''
 creator: d28f2b46-9f0f-4c38-8509-0416748b77d9
+default_result_value: ''
+description: Enriches the IP Address Entities from the information available in Team
+    Cymru Scout platform.
+dynamic_results_metadata:
+-   result_example_path: resources/EnrichIps_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: TeamCymruScout
+name: Enrich IPs
+parameters: []
 script_result_name: ScriptResult

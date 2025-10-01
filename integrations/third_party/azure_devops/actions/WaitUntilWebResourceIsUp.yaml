@@ -1,16 +1,16 @@
-name: Wait Until Web Resource Is Up
-description: Wait until the Web Resource is up
-integration_identifier: Azure DevOps
-parameters:
-- name: URL
-  type: string
-  description: The URL of the Web Resource
-  is_mandatory: true
-dynamic_results_metadata:
-- result_name: JsonResult
-  show_result: true
-  result_example_path:
-default_result_value: ''
 creator: Admin
+default_result_value: ''
+description: Wait until the Web Resource is up
+dynamic_results_metadata:
+-   result_example_path: null
+    result_name: JsonResult
+    show_result: true
+integration_identifier: Azure DevOps
 is_async: true
+name: Wait Until Web Resource Is Up
+parameters:
+-   description: The URL of the Web Resource
+    is_mandatory: true
+    name: URL
+    type: string
 script_result_name: ScriptResult

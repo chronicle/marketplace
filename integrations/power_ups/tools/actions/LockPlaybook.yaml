@@ -1,13 +1,13 @@
-name: Lock Playbook
-description: This action will cause the current playbook to pause until all 
-  playbooks from the previous alert complete.
-integration_identifier: Tools
-parameters: []
-dynamic_results_metadata:
-- result_name: JsonResult
-  show_result: true
-  result_example_path:
-default_result_value: ''
 creator: Rob
+default_result_value: ''
+description: This action will cause the current playbook to pause until all playbooks
+    from the previous alert complete.
+dynamic_results_metadata:
+-   result_example_path: null
+    result_name: JsonResult
+    show_result: true
+integration_identifier: Tools
 is_async: true
+name: Lock Playbook
+parameters: []
 script_result_name: ScriptResult

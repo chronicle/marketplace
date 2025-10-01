@@ -1,67 +1,65 @@
-name: Create Response Policy Zone
-description: Creates a new Response Policy Zone (RPZ) to define custom DNS 
-  responses.
-integration_identifier: InfobloxNIOS
-parameters:
-- name: FQDN
-  default_value: ''
-  type: string
-  description: The name of this DNS zone is in FQDN format.
-  is_mandatory: true
-- name: Substitute Name
-  type: string
-  description: The alternative name of the redirect target is a substitute 
-    response policy zone.
-  is_mandatory: false
-- name: Comment
-  type: string
-  description: Comment for the zone.
-  is_mandatory: false
-- name: RPZ Policy
-  default_value: GIVEN
-  type: ddl
-  optional_values:
-  - DISABLED
-  - GIVEN
-  - NODATA
-  - NXDOMAIN
-  - PASSTHRU
-  - SUBSTITUTE
-  description: 'The override policy of the response policy zone. '
-  is_mandatory: false
-- name: RPZ Severity
-  default_value: MAJOR
-  type: ddl
-  optional_values:
-  - CRITICAL
-  - MAJOR
-  - WARNING
-  - INFORMATIONAL
-  description: The severity of the response policy zone.
-  is_mandatory: false
-- name: RPZ Type
-  default_value: LOCAL
-  type: ddl
-  optional_values:
-  - FEED
-  - FIREEYE
-  - LOCAL
-  description: The type of the Response Policy Zone.
-  is_mandatory: false
-- name: Fireeye Rule Mapping
-  type: string
-  description: Rules to map fireeye alerts.
-  is_mandatory: false
-- name: Additional Parameters
-  type: string
-  description: JSON object containing additional parameters to create response 
-    policy zone.
-  is_mandatory: false
-dynamic_results_metadata:
-- result_name: JsonResult
-  show_result: true
-  result_example_path: 
-    resources/create_response_policy_zone_JsonResult_example.json
-default_result_value: ''
 creator: Admin
+default_result_value: ''
+description: Creates a new Response Policy Zone (RPZ) to define custom DNS responses.
+dynamic_results_metadata:
+-   result_example_path: resources/create_response_policy_zone_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: InfobloxNIOS
+name: Create Response Policy Zone
+parameters:
+-   default_value: ''
+    description: The name of this DNS zone is in FQDN format.
+    is_mandatory: true
+    name: FQDN
+    type: string
+-   description: The alternative name of the redirect target is a substitute response
+        policy zone.
+    is_mandatory: false
+    name: Substitute Name
+    type: string
+-   description: Comment for the zone.
+    is_mandatory: false
+    name: Comment
+    type: string
+-   default_value: GIVEN
+    description: 'The override policy of the response policy zone. '
+    is_mandatory: false
+    name: RPZ Policy
+    optional_values:
+    - DISABLED
+    - GIVEN
+    - NODATA
+    - NXDOMAIN
+    - PASSTHRU
+    - SUBSTITUTE
+    type: ddl
+-   default_value: MAJOR
+    description: The severity of the response policy zone.
+    is_mandatory: false
+    name: RPZ Severity
+    optional_values:
+    - CRITICAL
+    - MAJOR
+    - WARNING
+    - INFORMATIONAL
+    type: ddl
+-   default_value: LOCAL
+    description: The type of the Response Policy Zone.
+    is_mandatory: false
+    name: RPZ Type
+    optional_values:
+    - FEED
+    - FIREEYE
+    - LOCAL
+    type: ddl
+-   description: Rules to map fireeye alerts.
+    is_mandatory: false
+    name: Fireeye Rule Mapping
+    type: string
+-   description: JSON object containing additional parameters to create response policy
+        zone.
+    is_mandatory: false
+    name: Additional Parameters
+    type: string
 script_result_name: ScriptResult

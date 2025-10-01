@@ -1,17 +1,16 @@
-name: Blocklist - Remove Item
-description: This method removes an item from the Blocklist, identified by its 
-  ID
-integration_identifier: Bitdefender GravityZone
-parameters:
-- name: Hash ID
-  default_value: 'Eg: 0df7568c-59c1-48e0-a31b-18d83e6d9810'
-  type: string
-  description: The ID of the item in the Blocklist to be deleted
-  is_mandatory: true
-dynamic_results_metadata:
-- result_name: JsonResult
-  show_result: false
-  result_example_path: resources/BlocklistRemoveItem_JsonResult_example.json
-default_result_value: ''
 creator: daniel.harvey
+default_result_value: ''
+description: This method removes an item from the Blocklist, identified by its ID
+dynamic_results_metadata:
+-   result_example_path: resources/BlocklistRemoveItem_JsonResult_example.json
+    result_name: JsonResult
+    show_result: false
+integration_identifier: Bitdefender GravityZone
+name: Blocklist - Remove Item
+parameters:
+-   default_value: 'Eg: 0df7568c-59c1-48e0-a31b-18d83e6d9810'
+    description: The ID of the item in the Blocklist to be deleted
+    is_mandatory: true
+    name: Hash ID
+    type: string
 script_result_name: ScriptResult

@@ -1,24 +1,24 @@
-name: Whois
-description: 'Query WHOIS servers for domain registration information.  Supports IP
-  Addresses, URLs, Email, Domains.  Supports creation of DOMAIN entities linked to
-  target entity and a domain age threshold to set the entity to suspicious. '
-integration_identifier: Enrichment
-parameters:
-- name: Create Entities
-  default_value: 'true'
-  type: boolean
-  description: Create and link domain entities to URL and Email / User names.
-  is_mandatory: false
-- name: Domain Age Threshold
-  default_value: ''
-  type: string
-  description: 'Domains who''s age is less than the than the supplied days will be
-    marked suspicious.  '
-  is_mandatory: false
-dynamic_results_metadata:
-- result_name: JsonResult
-  show_result: true
-  result_example_path: resources/Whois_JsonResult_example.json
-default_result_value: ''
 creator: admin
+default_result_value: ''
+description: 'Query WHOIS servers for domain registration information.  Supports IP
+    Addresses, URLs, Email, Domains.  Supports creation of DOMAIN entities linked
+    to target entity and a domain age threshold to set the entity to suspicious. '
+dynamic_results_metadata:
+-   result_example_path: resources/Whois_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: Enrichment
+name: Whois
+parameters:
+-   default_value: 'true'
+    description: Create and link domain entities to URL and Email / User names.
+    is_mandatory: false
+    name: Create Entities
+    type: boolean
+-   default_value: ''
+    description: 'Domains who''s age is less than the than the supplied days will
+        be marked suspicious.  '
+    is_mandatory: false
+    name: Domain Age Threshold
+    type: string
 script_result_name: ScriptResult

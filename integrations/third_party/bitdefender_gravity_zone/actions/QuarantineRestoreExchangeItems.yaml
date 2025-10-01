@@ -1,40 +1,39 @@
-name: Quarantine - Restore Exchange Items
-description: This method creates a new task to restore items from the quarantine
-  for Exchange Servers.
-integration_identifier: Bitdefender GravityZone
-parameters:
-- name: EWS URL
-  type: string
-  description: The Exchange Web Services URL .The EWS URL is necessary when the 
-    Exchange Autodiscovery does not work.
-  is_mandatory: false
-- name: Email
-  type: string
-  description: The email address of the Exchange user. This parameter is 
-    necessary when the email address is different from the username.
-  is_mandatory: false
-- name: Password
-  default_value: password
-  type: password
-  description: The password of an Exchange user
-  is_mandatory: true
-- name: Username
-  default_value: username
-  type: string
-  description: The username of an Microsoft Exchange user. The username must 
-    include the domain name.
-  is_mandatory: true
-- name: Quarantine Item IDs
-  default_value: itemId1,itemId2
-  type: string
-  description: Comma-separated list of quarantine items IDs. The maximum number 
-    of items that can be removed once is 100.
-  is_mandatory: true
-dynamic_results_metadata:
-- result_name: JsonResult
-  show_result: false
-  result_example_path: 
-    resources/QuarantineRestoreExchangeItems_JsonResult_example.json
-default_result_value: ''
 creator: daniel.harvey
+default_result_value: ''
+description: This method creates a new task to restore items from the quarantine for
+    Exchange Servers.
+dynamic_results_metadata:
+-   result_example_path: resources/QuarantineRestoreExchangeItems_JsonResult_example.json
+    result_name: JsonResult
+    show_result: false
+integration_identifier: Bitdefender GravityZone
+name: Quarantine - Restore Exchange Items
+parameters:
+-   description: The Exchange Web Services URL .The EWS URL is necessary when the
+        Exchange Autodiscovery does not work.
+    is_mandatory: false
+    name: EWS URL
+    type: string
+-   description: The email address of the Exchange user. This parameter is necessary
+        when the email address is different from the username.
+    is_mandatory: false
+    name: Email
+    type: string
+-   default_value: password
+    description: The password of an Exchange user
+    is_mandatory: true
+    name: Password
+    type: password
+-   default_value: username
+    description: The username of an Microsoft Exchange user. The username must include
+        the domain name.
+    is_mandatory: true
+    name: Username
+    type: string
+-   default_value: itemId1,itemId2
+    description: Comma-separated list of quarantine items IDs. The maximum number
+        of items that can be removed once is 100.
+    is_mandatory: true
+    name: Quarantine Item IDs
+    type: string
 script_result_name: ScriptResult

@@ -1,21 +1,21 @@
-name: Gather Remote Agent Datapoints
-description: ''
-integration_identifier: ChronicleSupportTools
-parameters:
-- name: IntegrationName
-  default_value: ' '
-  type: string
-  description: 'Name of the Integration for which you want to analyse '
-  is_mandatory: true
-- name: ConnectorName
-  default_value: ' '
-  type: string
-  description: Connector Name
-  is_mandatory: false
-dynamic_results_metadata:
-- result_name: JsonResult
-  show_result: true
-  result_example_path:
-default_result_value: 'Null'
 creator: ddcd000b-a8e5-4feb-a36a-808af57c90ac
+default_result_value: 'Null'
+description: ''
+dynamic_results_metadata:
+-   result_example_path: null
+    result_name: JsonResult
+    show_result: true
+integration_identifier: ChronicleSupportTools
+name: Gather Remote Agent Datapoints
+parameters:
+-   default_value: ' '
+    description: 'Name of the Integration for which you want to analyse '
+    is_mandatory: true
+    name: IntegrationName
+    type: string
+-   default_value: ' '
+    description: Connector Name
+    is_mandatory: false
+    name: ConnectorName
+    type: string
 script_result_name: ScriptResult

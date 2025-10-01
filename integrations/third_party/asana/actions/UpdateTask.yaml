@@ -1,34 +1,34 @@
-name: Update Task
-description: Updates a given task in Asana
-integration_identifier: Asana
-parameters:
-- name: Task ID
-  default_value: <Task-Id>
-  type: string
-  description: 'The task ID can be found in the URL:
-
-    https://app.asana.com/0/{your_project_ID}/{your_task_ID}'
-  is_mandatory: true
-- name: Due Date
-  default_value: '2020-10-08'
-  type: string
-  description: The due date is in the format YYYY-MM-DD
-  is_mandatory: false
-- name: Description
-  default_value: Your new description for this task
-  type: string
-  description: The task description
-  is_mandatory: false
-- name: Assignee
-  default_value: email@gmail.com
-  type: string
-  description: "The user's email of the person you would like to re-assign the task
-    to. \nNote: This is case sensitive"
-  is_mandatory: false
-dynamic_results_metadata:
-- result_name: JsonResult
-  show_result: true
-  result_example_path: resources/UpdateTask_JsonResult_example.json
-default_result_value: ''
 creator: TehilaGourary
+default_result_value: ''
+description: Updates a given task in Asana
+dynamic_results_metadata:
+-   result_example_path: resources/UpdateTask_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: Asana
+name: Update Task
+parameters:
+-   default_value: <Task-Id>
+    description: 'The task ID can be found in the URL:
+
+        https://app.asana.com/0/{your_project_ID}/{your_task_ID}'
+    is_mandatory: true
+    name: Task ID
+    type: string
+-   default_value: '2020-10-08'
+    description: The due date is in the format YYYY-MM-DD
+    is_mandatory: false
+    name: Due Date
+    type: string
+-   default_value: Your new description for this task
+    description: The task description
+    is_mandatory: false
+    name: Description
+    type: string
+-   default_value: email@gmail.com
+    description: "The user's email of the person you would like to re-assign the task\
+        \ to. \nNote: This is case sensitive"
+    is_mandatory: false
+    name: Assignee
+    type: string
 script_result_name: ScriptResult

@@ -146,13 +146,11 @@ class DeconstructIntegration:
         for action_name, action_metadata in self.integration.actions_metadata.items():
             drms: list[DynamicResultsMetadata] = action_metadata.dynamic_results_metadata
             for drm in drms:
-                result_example: str = drm.result_example
-                if not result_example:
+                if not drm.result_example:
                     continue
-                result_name: str = drm.result_name
-                json_file_name: str = f"{action_name}_{result_name}_example.json"
+                json_file_name: str = f"{action_name}_{drm.result_name}_example.json"
                 json_file_path: pathlib.Path = resources_dir / json_file_name
-                mp.core.file_utils.write_str_to_json_file(json_file_path, result_example)
+                mp.core.file_utils.write_str_to_json_file(json_file_path, drm.result_example)
 
     def _create_definition_file(self) -> None:
         def_file: pathlib.Path = self.out_path / mp.core.constants.DEFINITION_FILE

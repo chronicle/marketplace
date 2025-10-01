@@ -1,34 +1,34 @@
-name: Update Rows
-description: Updates rows in a sheet
-integration_identifier: Google Sheets
-parameters:
-- name: Row Number
-  default_value: 1,2
-  type: string
-  description: The row numbers you want to update. Should be comma separated
-  is_mandatory: true
-- name: Values
-  default_value: value1,value2,value3
-  type: content
-  description: The values you want to update. Should be comma separated
-  is_mandatory: true
-- name: Sheet Id
-  default_value: <Sheet-Id>
-  type: string
-  description: 'The sheet Id can be found in the sheet url.
-
-    https://docs.google.com/spreadsheets/d/{YourSpreadSheetId}/edit#gid=0'
-  is_mandatory: true
-- name: Worksheet Name
-  default_value: <Sheet-Name>
-  type: string
-  description: 'The worksheet name is the Sheet tab name. The default Sheet name is
-    "Sheet1". Note: it is case sensitive. '
-  is_mandatory: false
-dynamic_results_metadata:
-- result_name: JsonResult
-  show_result: true
-  result_example_path:
-default_result_value: ''
 creator: TehilaGourary
+default_result_value: ''
+description: Updates rows in a sheet
+dynamic_results_metadata:
+-   result_example_path: null
+    result_name: JsonResult
+    show_result: true
+integration_identifier: Google Sheets
+name: Update Rows
+parameters:
+-   default_value: 1,2
+    description: The row numbers you want to update. Should be comma separated
+    is_mandatory: true
+    name: Row Number
+    type: string
+-   default_value: value1,value2,value3
+    description: The values you want to update. Should be comma separated
+    is_mandatory: true
+    name: Values
+    type: content
+-   default_value: <Sheet-Id>
+    description: 'The sheet Id can be found in the sheet url.
+
+        https://docs.google.com/spreadsheets/d/{YourSpreadSheetId}/edit#gid=0'
+    is_mandatory: true
+    name: Sheet Id
+    type: string
+-   default_value: <Sheet-Name>
+    description: 'The worksheet name is the Sheet tab name. The default Sheet name
+        is "Sheet1". Note: it is case sensitive. '
+    is_mandatory: false
+    name: Worksheet Name
+    type: string
 script_result_name: ScriptResult

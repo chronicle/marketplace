@@ -1,21 +1,21 @@
-name: Get Attachment
-description: The actions gets an attachment from the case wall (the result is 
-  presented as a Base64)
-integration_identifier: FileUtilities
-parameters:
-- name: Attachment Scope
-  default_value: Alert
-  type: ddl
-  optional_values:
-  - Case
-  - Alert
-  description: The scope of the attachment that needs to be retrieved - case or 
-    alert
-  is_mandatory: true
-dynamic_results_metadata:
-- result_name: JsonResult
-  show_result: true
-  result_example_path: resources/GetAttachment_JsonResult_example.json
-default_result_value: ''
 creator: Robert
+default_result_value: ''
+description: The actions gets an attachment from the case wall (the result is presented
+    as a Base64)
+dynamic_results_metadata:
+-   result_example_path: resources/GetAttachment_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: FileUtilities
+name: Get Attachment
+parameters:
+-   default_value: Alert
+    description: The scope of the attachment that needs to be retrieved - case or
+        alert
+    is_mandatory: true
+    name: Attachment Scope
+    optional_values:
+    - Case
+    - Alert
+    type: ddl
 script_result_name: ScriptResult

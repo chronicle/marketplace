@@ -1,16 +1,16 @@
-name: Spelling Check
-description: Determining if a word is misspelled and what the likely correct 
-  spelling would be based on word frequency
-integration_identifier: Spell Checker
-parameters:
-- name: Input
-  type: string
-  description: ' The text that will be checked by the Spell Checker'
-  is_mandatory: false
-dynamic_results_metadata:
-- result_name: JsonResult
-  show_result: true
-  result_example_path: resources/SpellingCheck_JsonResult_example.json
-default_result_value: ''
 creator: Hagai Cohen
+default_result_value: ''
+description: Determining if a word is misspelled and what the likely correct spelling
+    would be based on word frequency
+dynamic_results_metadata:
+-   result_example_path: resources/SpellingCheck_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: Spell Checker
+name: Spelling Check
+parameters:
+-   description: ' The text that will be checked by the Spell Checker'
+    is_mandatory: false
+    name: Input
+    type: string
 script_result_name: ScriptResult

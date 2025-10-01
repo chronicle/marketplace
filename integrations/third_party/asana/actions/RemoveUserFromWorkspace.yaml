@@ -1,23 +1,23 @@
-name: Remove User From Workspace
-description: Removes a given user from a workspace in Asana
-integration_identifier: Asana
-parameters:
-- name: Workspace Name
-  default_value: Your Workspace Name
-  type: string
-  description: 'The workspace from which you want to remove the user
-
-    Note: It is case sensitive!'
-  is_mandatory: true
-- name: User's Email
-  default_value: email@gmail.com
-  type: string
-  description: The email address of the user you want to remove.
-  is_mandatory: true
-dynamic_results_metadata:
-- result_name: JsonResult
-  show_result: true
-  result_example_path:
-default_result_value: ''
 creator: TehilaGourary
+default_result_value: ''
+description: Removes a given user from a workspace in Asana
+dynamic_results_metadata:
+-   result_example_path: null
+    result_name: JsonResult
+    show_result: true
+integration_identifier: Asana
+name: Remove User From Workspace
+parameters:
+-   default_value: Your Workspace Name
+    description: 'The workspace from which you want to remove the user
+
+        Note: It is case sensitive!'
+    is_mandatory: true
+    name: Workspace Name
+    type: string
+-   default_value: email@gmail.com
+    description: The email address of the user you want to remove.
+    is_mandatory: true
+    name: User's Email
+    type: string
 script_result_name: ScriptResult

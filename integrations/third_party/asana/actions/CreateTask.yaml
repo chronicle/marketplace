@@ -1,40 +1,40 @@
-name: Create Task
-description: 'Create a task for a specific project '
-integration_identifier: Asana
-parameters:
-- name: Task Subject
-  default_value: Your Task Subject
-  type: string
-  description: The new task subject
-  is_mandatory: true
-- name: Assignee
-  default_value: ''
-  type: string
-  description: 'The user to whom you will assign the task.
-
-    Note: This is case sensitive!'
-  is_mandatory: false
-- name: Due Date
-  default_value: ''
-  type: string
-  description: The due date is in the format YYYY-MM-DD
-  is_mandatory: false
-- name: Description
-  default_value: Your task description
-  type: string
-  description: The description of the new task
-  is_mandatory: true
-- name: Project Name
-  default_value: 'Your Project Name '
-  type: string
-  description: 'The name of the project to which you want to assign the task.
-
-    Note: this is case sensitive'
-  is_mandatory: true
-dynamic_results_metadata:
-- result_name: JsonResult
-  show_result: true
-  result_example_path: resources/CreateTask_JsonResult_example.json
-default_result_value: ''
 creator: Admin
+default_result_value: ''
+description: 'Create a task for a specific project '
+dynamic_results_metadata:
+-   result_example_path: resources/CreateTask_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: Asana
+name: Create Task
+parameters:
+-   default_value: Your Task Subject
+    description: The new task subject
+    is_mandatory: true
+    name: Task Subject
+    type: string
+-   default_value: ''
+    description: 'The user to whom you will assign the task.
+
+        Note: This is case sensitive!'
+    is_mandatory: false
+    name: Assignee
+    type: string
+-   default_value: ''
+    description: The due date is in the format YYYY-MM-DD
+    is_mandatory: false
+    name: Due Date
+    type: string
+-   default_value: Your task description
+    description: The description of the new task
+    is_mandatory: true
+    name: Description
+    type: string
+-   default_value: 'Your Project Name '
+    description: 'The name of the project to which you want to assign the task.
+
+        Note: this is case sensitive'
+    is_mandatory: true
+    name: Project Name
+    type: string
 script_result_name: ScriptResult

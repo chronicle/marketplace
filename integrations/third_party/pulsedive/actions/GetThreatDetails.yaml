@@ -1,34 +1,34 @@
-name: Get Threat Details
-description: Performs a look in Pulsedive to get threat information.
-integration_identifier: Pulsedive
-parameters:
-- name: Threat Name
-  default_value: ''
-  type: string
-  description: 'Specify the threat name you would like to retrieve. '
-  is_mandatory: false
-- name: Threat ID
-  type: string
-  description: Specific the threat id that you wish to retrieve information
-  is_mandatory: false
-- name: Retrieve Comments
-  default_value: 'true'
-  type: boolean
-  description: Get Comments from Threat
-  is_mandatory: false
-- name: Split Risk
-  default_value: 'true'
-  type: boolean
-  description: 'You can split out the indicator counts by risk '
-  is_mandatory: false
-- name: Create Insight
-  default_value: 'false'
-  type: boolean
-  description: Create Siemplify Insight with Threat Details
-  is_mandatory: false
-dynamic_results_metadata:
-- result_name: JsonResult
-  show_result: true
-  result_example_path: resources/GetThreatDetails_JsonResult_example.json
 creator: Admin
+description: Performs a look in Pulsedive to get threat information.
+dynamic_results_metadata:
+-   result_example_path: resources/GetThreatDetails_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: Pulsedive
 is_async: true
+name: Get Threat Details
+parameters:
+-   default_value: ''
+    description: 'Specify the threat name you would like to retrieve. '
+    is_mandatory: false
+    name: Threat Name
+    type: string
+-   description: Specific the threat id that you wish to retrieve information
+    is_mandatory: false
+    name: Threat ID
+    type: string
+-   default_value: 'true'
+    description: Get Comments from Threat
+    is_mandatory: false
+    name: Retrieve Comments
+    type: boolean
+-   default_value: 'true'
+    description: 'You can split out the indicator counts by risk '
+    is_mandatory: false
+    name: Split Risk
+    type: boolean
+-   default_value: 'false'
+    description: Create Siemplify Insight with Threat Details
+    is_mandatory: false
+    name: Create Insight
+    type: boolean

@@ -1,27 +1,25 @@
-name: Enrich Entity from Explorer Attributes
-description: Enriches entities with historic enrichment data using the entity 
-  explorer.
-integration_identifier: Enrichment
-parameters:
-- name: Field Name
-  default_value: ''
-  type: string
-  description: The field(s) from the Entity Explorer that will be used to enrich
-    the entity. When null all fields will be enriched. Supports comma delimited 
-    string.
-  is_mandatory: false
-- name: Use Field Name as Whitelist
-  default_value: 'true'
-  type: boolean
-  description: When true, entities will be enriched with fields from 'Field 
-    Name' param.  When False, the list will be used as a denylist and all other 
-    fields added
-  is_mandatory: false
-dynamic_results_metadata:
-- result_name: JsonResult
-  show_result: true
-  result_example_path: 
-    resources/EnrichEntityFromExplorerAttributes_JsonResult_example.json
-default_result_value: ''
 creator: Rob
+default_result_value: ''
+description: Enriches entities with historic enrichment data using the entity explorer.
+dynamic_results_metadata:
+-   result_example_path: resources/EnrichEntityFromExplorerAttributes_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: Enrichment
+name: Enrich Entity from Explorer Attributes
+parameters:
+-   default_value: ''
+    description: The field(s) from the Entity Explorer that will be used to enrich
+        the entity. When null all fields will be enriched. Supports comma delimited
+        string.
+    is_mandatory: false
+    name: Field Name
+    type: string
+-   default_value: 'true'
+    description: When true, entities will be enriched with fields from 'Field Name'
+        param.  When False, the list will be used as a denylist and all other fields
+        added
+    is_mandatory: false
+    name: Use Field Name as Whitelist
+    type: boolean
 script_result_name: ScriptResult

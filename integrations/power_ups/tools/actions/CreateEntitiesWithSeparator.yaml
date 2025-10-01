@@ -1,40 +1,40 @@
-name: Create Entities with Separator
-description: Creates entities and adds them to the requested alert.
-integration_identifier: Tools
-parameters:
-- name: Entities Identifiers
-  default_value: <insert string>
-  type: string
-  description: The entity or entities to be added to the alert.
-  is_mandatory: true
-- name: Entity Type
-  default_value: HOSTNAME
-  type: entity_type
-  description: 'Siemplify entity type. Example: HOSTNAME / USERNAME / etc.'
-  is_mandatory: true
-- name: Is Internal
-  default_value: 'false'
-  type: boolean
-  description: Mark if entities are part of an internal network.
-  is_mandatory: false
-- name: Entities Separator
-  default_value: ','
-  type: string
-  description: The character to split the Entities Identifiers field by.
-  is_mandatory: true
-- name: Enrichment JSON
-  default_value: ''
-  type: code
-  description: Enrichment JSOn data
-  is_mandatory: false
-- name: PrefixForEnrichment
-  type: string
-  description: The prefix to be added to the enrichment data.
-  is_mandatory: false
-dynamic_results_metadata:
-- result_name: JsonResult
-  show_result: true
-  result_example_path:
-default_result_value: ''
 creator: Rob
+default_result_value: ''
+description: Creates entities and adds them to the requested alert.
+dynamic_results_metadata:
+-   result_example_path: null
+    result_name: JsonResult
+    show_result: true
+integration_identifier: Tools
+name: Create Entities with Separator
+parameters:
+-   default_value: <insert string>
+    description: The entity or entities to be added to the alert.
+    is_mandatory: true
+    name: Entities Identifiers
+    type: string
+-   default_value: HOSTNAME
+    description: 'Siemplify entity type. Example: HOSTNAME / USERNAME / etc.'
+    is_mandatory: true
+    name: Entity Type
+    type: entity_type
+-   default_value: 'false'
+    description: Mark if entities are part of an internal network.
+    is_mandatory: false
+    name: Is Internal
+    type: boolean
+-   default_value: ','
+    description: The character to split the Entities Identifiers field by.
+    is_mandatory: true
+    name: Entities Separator
+    type: string
+-   default_value: ''
+    description: Enrichment JSOn data
+    is_mandatory: false
+    name: Enrichment JSON
+    type: code
+-   description: The prefix to be added to the enrichment data.
+    is_mandatory: false
+    name: PrefixForEnrichment
+    type: string
 script_result_name: ScriptResult

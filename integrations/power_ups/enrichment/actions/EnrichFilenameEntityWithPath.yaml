@@ -1,13 +1,12 @@
-name: Enrich FileName Entity with Path
-description: This action will parse out path, file name, and extension from an 
-  entity and enrich it with file_path, file_name, and file_extension.
-integration_identifier: Enrichment
-parameters: []
-dynamic_results_metadata:
-- result_name: JsonResult
-  show_result: true
-  result_example_path: 
-    resources/EnrichFilenameEntityWithPath_JsonResult_example.json
-default_result_value: ''
 creator: Rob
+default_result_value: ''
+description: This action will parse out path, file name, and extension from an entity
+    and enrich it with file_path, file_name, and file_extension.
+dynamic_results_metadata:
+-   result_example_path: resources/EnrichFilenameEntityWithPath_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: Enrichment
+name: Enrich FileName Entity with Path
+parameters: []
 script_result_name: ScriptResult

@@ -1,39 +1,37 @@
-name: Convert Time Format
-description: 'Convert a datetime value from one format to another format.  '
-integration_identifier: Functions
-parameters:
-- name: Input
-  default_value: <input val>
-  type: string
-  description: The input datetime value that will be converted.
-  is_mandatory: true
-- name: From Format
-  default_value: X
-  type: string
-  description: "The datetime format the input string is in.  \nhttps://strftime.org/"
-  is_mandatory: true
-- name: To Format
-  default_value: YYYY/MM/DD
-  type: string
-  description: The desired time format of the output.  Use Arrow time format.  
-    https://arrow.readthedocs.io/en/stable/#supported-tokens
-  is_mandatory: true
-- name: Time Delta In Seconds
-  default_value: '0'
-  type: string
-  description: Shift parameter that allows to change the output actual time to 
-    either the future (positive) or past (negative). This shift is measured in 
-    seconds
-  is_mandatory: true
-- name: Timezone
-  default_value: ''
-  type: string
-  description: Output timezone
-  is_mandatory: false
-dynamic_results_metadata:
-- result_name: JsonResult
-  show_result: true
-  result_example_path:
-default_result_value: ''
 creator: Rob
+default_result_value: ''
+description: 'Convert a datetime value from one format to another format.  '
+dynamic_results_metadata:
+-   result_example_path: null
+    result_name: JsonResult
+    show_result: true
+integration_identifier: Functions
+name: Convert Time Format
+parameters:
+-   default_value: <input val>
+    description: The input datetime value that will be converted.
+    is_mandatory: true
+    name: Input
+    type: string
+-   default_value: X
+    description: "The datetime format the input string is in.  \nhttps://strftime.org/"
+    is_mandatory: true
+    name: From Format
+    type: string
+-   default_value: YYYY/MM/DD
+    description: The desired time format of the output.  Use Arrow time format. https://arrow.readthedocs.io/en/stable/#supported-tokens
+    is_mandatory: true
+    name: To Format
+    type: string
+-   default_value: '0'
+    description: Shift parameter that allows to change the output actual time to either
+        the future (positive) or past (negative). This shift is measured in seconds
+    is_mandatory: true
+    name: Time Delta In Seconds
+    type: string
+-   default_value: ''
+    description: Output timezone
+    is_mandatory: false
+    name: Timezone
+    type: string
 script_result_name: ScriptResult

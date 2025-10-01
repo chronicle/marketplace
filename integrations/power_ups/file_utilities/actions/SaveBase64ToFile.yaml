@@ -1,28 +1,28 @@
-name: Save Base64 to File
-description: The action saves a base64 string to a file.  It supports comma 
-  separated lists for Filename and Base64 Input.  The optional File Extension 
-  parameter is used to add an extension to the output filename.
-integration_identifier: FileUtilities
-parameters:
-- name: File Extension
-  type: string
-  description: 'Optional: this will add the supplied extension to the filename.'
-  is_mandatory: false
-- name: Base64 Input
-  default_value: <base64_encoded_string>
-  type: string
-  description: 'The base64 string that will be converted to a file.  Supports comma
-    separation. '
-  is_mandatory: true
-- name: Filename
-  default_value: ''
-  type: string
-  description: The filename the base64 string will be saved as.
-  is_mandatory: true
-dynamic_results_metadata:
-- result_name: JsonResult
-  show_result: true
-  result_example_path: resources/SaveBase64ToFile_JsonResult_example.json
-default_result_value: ''
 creator: Robert
+default_result_value: ''
+description: The action saves a base64 string to a file.  It supports comma separated
+    lists for Filename and Base64 Input.  The optional File Extension parameter is
+    used to add an extension to the output filename.
+dynamic_results_metadata:
+-   result_example_path: resources/SaveBase64ToFile_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: FileUtilities
+name: Save Base64 to File
+parameters:
+-   description: 'Optional: this will add the supplied extension to the filename.'
+    is_mandatory: false
+    name: File Extension
+    type: string
+-   default_value: <base64_encoded_string>
+    description: 'The base64 string that will be converted to a file.  Supports comma
+        separation. '
+    is_mandatory: true
+    name: Base64 Input
+    type: string
+-   default_value: ''
+    description: The filename the base64 string will be saved as.
+    is_mandatory: true
+    name: Filename
+    type: string
 script_result_name: ScriptResult

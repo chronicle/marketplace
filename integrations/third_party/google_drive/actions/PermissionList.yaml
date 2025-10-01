@@ -1,18 +1,17 @@
-name: Permission List
-description: Retrieves the list of users that have permission for a specific 
-  file stored in Google Drive
-integration_identifier: Google Drive
-parameters:
-- name: File Id
-  default_value: <file_id>
-  type: string
-  description: The file Id is presented in the file URL. See example - 
-    https://drive.google.com/drive/u/0/folders/{file-id}
-  is_mandatory: true
-dynamic_results_metadata:
-- result_name: JsonResult
-  show_result: true
-  result_example_path: resources/PermissionList_JsonResult_example.json
-default_result_value: ''
 creator: Admin
+default_result_value: ''
+description: Retrieves the list of users that have permission for a specific file
+    stored in Google Drive
+dynamic_results_metadata:
+-   result_example_path: resources/PermissionList_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: Google Drive
+name: Permission List
+parameters:
+-   default_value: <file_id>
+    description: The file Id is presented in the file URL. See example - https://drive.google.com/drive/u/0/folders/{file-id}
+    is_mandatory: true
+    name: File Id
+    type: string
 script_result_name: ScriptResult

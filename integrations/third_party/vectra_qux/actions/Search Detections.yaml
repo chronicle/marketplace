@@ -1,138 +1,138 @@
-name: Search Detections
-description: List detections based on query parameters.
-integration_identifier: VectraQUX
-parameters:
-- name: Last Timestamp GTE
-  type: string
-  description: filter by last timestamp that greater or equal to given timestamp
-  is_mandatory: false
-- name: Host ID
-  type: string
-  description: filter by host ID
-  is_mandatory: false
-- name: Tags
-  type: string
-  description: filter by coma separated tags
-  is_mandatory: false
-- name: Is Targeting Key Asset
-  default_value: ''
-  type: ddl
-  optional_values:
-  - "True"
-  - "False"
-  description: filter if detections are targeting key asset or not
-  is_mandatory: false
-- name: Note Modified Timestamp GTE
-  type: string
-  description: filter based on note modified by timestamp
-  is_mandatory: false
-- name: Order
-  default_value: ''
-  type: ddl
-  optional_values:
-  - Ascending
-  - Descending
-  description: filter detections in ascending or descending order
-  is_mandatory: false
-- name: Limit
-  type: string
-  description: fetch given number of records
-  is_mandatory: false
-- name: Order By
-  default_value: ''
-  type: ddl
-  optional_values:
-  - last_timestamp
-  - created_datetime
-  - t_score
-  - c_score
-  - id
-  description: order by created_datetime, last_timestamp, t_score, c_score, id
-  is_mandatory: false
-- name: Fields
-  default_value: ''
-  type: multi_choice_parameter
-  optional_values:
-  - id
-  - url
-  - detection_url
-  - category
-  - detection
-  - detection_category
-  - detection_type
-  - custom_detection
-  - src_ip
-  - state
-  - t_score
-  - c_score
-  - certainty
-  - threat
-  - created_timestamp
-  - last_timestamp
-  - targets_key_asset
-  - is_targeting_key_asset
-  - src_account
-  - src_host
-  - note
-  - notes
-  - note_modified_by
-  - note_modified_timestamp
-  - sensor
-  - sensor_name
-  - tags
-  - triage_rule_id
-  - assigned_to
-  - assigned_date
-  - groups
-  - is_marked_custom
-  - is_custom_model
-  - grouped_details
-  - summary
-  description: get only given fields
-  is_mandatory: false
-- name: State
-  default_value: ''
-  type: ddl
-  optional_values:
-  - Active
-  - Inactive
-  - Fixed
-  description: 'filter by state
-
-    '
-  is_mandatory: false
-- name: Detection Type
-  type: string
-  description: filter by detection type
-  is_mandatory: false
-- name: Detection Category
-  default_value: ''
-  type: ddl
-  optional_values:
-  - Command and Control
-  - Botnet
-  - Reconnaissance
-  - Lateral Movement
-  - Exfiltration
-  - Info
-  description: filter by detection category
-  is_mandatory: false
-- name: Src IP
-  type: string
-  description: filter by source IP
-  is_mandatory: false
-- name: Threat GTE
-  type: string
-  description: filter by threat
-  is_mandatory: false
-- name: Certainty GTE
-  type: string
-  description: filter by certainty
-  is_mandatory: false
-dynamic_results_metadata:
-- result_name: JsonResult
-  show_result: true
-  result_example_path: resources/Search Detections_JsonResult_example.json
-default_result_value: ''
 creator: Admin
+default_result_value: ''
+description: List detections based on query parameters.
+dynamic_results_metadata:
+-   result_example_path: resources/Search Detections_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: VectraQUX
+name: Search Detections
+parameters:
+-   description: filter by last timestamp that greater or equal to given timestamp
+    is_mandatory: false
+    name: Last Timestamp GTE
+    type: string
+-   description: filter by host ID
+    is_mandatory: false
+    name: Host ID
+    type: string
+-   description: filter by coma separated tags
+    is_mandatory: false
+    name: Tags
+    type: string
+-   default_value: ''
+    description: filter if detections are targeting key asset or not
+    is_mandatory: false
+    name: Is Targeting Key Asset
+    optional_values:
+    - 'True'
+    - 'False'
+    type: ddl
+-   description: filter based on note modified by timestamp
+    is_mandatory: false
+    name: Note Modified Timestamp GTE
+    type: string
+-   default_value: ''
+    description: filter detections in ascending or descending order
+    is_mandatory: false
+    name: Order
+    optional_values:
+    - Ascending
+    - Descending
+    type: ddl
+-   description: fetch given number of records
+    is_mandatory: false
+    name: Limit
+    type: string
+-   default_value: ''
+    description: order by created_datetime, last_timestamp, t_score, c_score, id
+    is_mandatory: false
+    name: Order By
+    optional_values:
+    - last_timestamp
+    - created_datetime
+    - t_score
+    - c_score
+    - id
+    type: ddl
+-   default_value: ''
+    description: get only given fields
+    is_mandatory: false
+    name: Fields
+    optional_values:
+    - id
+    - url
+    - detection_url
+    - category
+    - detection
+    - detection_category
+    - detection_type
+    - custom_detection
+    - src_ip
+    - state
+    - t_score
+    - c_score
+    - certainty
+    - threat
+    - created_timestamp
+    - last_timestamp
+    - targets_key_asset
+    - is_targeting_key_asset
+    - src_account
+    - src_host
+    - note
+    - notes
+    - note_modified_by
+    - note_modified_timestamp
+    - sensor
+    - sensor_name
+    - tags
+    - triage_rule_id
+    - assigned_to
+    - assigned_date
+    - groups
+    - is_marked_custom
+    - is_custom_model
+    - grouped_details
+    - summary
+    type: multi_choice_parameter
+-   default_value: ''
+    description: 'filter by state
+
+        '
+    is_mandatory: false
+    name: State
+    optional_values:
+    - Active
+    - Inactive
+    - Fixed
+    type: ddl
+-   description: filter by detection type
+    is_mandatory: false
+    name: Detection Type
+    type: string
+-   default_value: ''
+    description: filter by detection category
+    is_mandatory: false
+    name: Detection Category
+    optional_values:
+    - Command and Control
+    - Botnet
+    - Reconnaissance
+    - Lateral Movement
+    - Exfiltration
+    - Info
+    type: ddl
+-   description: filter by source IP
+    is_mandatory: false
+    name: Src IP
+    type: string
+-   description: filter by threat
+    is_mandatory: false
+    name: Threat GTE
+    type: string
+-   description: filter by certainty
+    is_mandatory: false
+    name: Certainty GTE
+    type: string
 script_result_name: ScriptResult

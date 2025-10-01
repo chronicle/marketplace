@@ -1,62 +1,61 @@
-name: Get-TI-Search-Info-By-Collection
-description: Search Domain, IP Address, URL, File Hash, Bank Card, Email in 
-  Group-IB TI database. Specify tag to get targeted field results.
-integration_identifier: Group-IB-TI
-parameters:
-- name: Enable mapping parser
-  default_value: 'false'
-  type: boolean
-  description: Enable or Disable mapping parser before return JSON output
-  is_mandatory: false
-- name: Collection
-  default_value: apt/threat
-  type: ddl
-  optional_values:
-  - apt/threat
-  - apt/threat_actor
-  - attacks/ddos
-  - attacks/deface
-  - attacks/phishing_group
-  - attacks/phishing_kit
-  - compromised/access
-  - compromised/account_group
-  - compromised/bank_card_group
-  - compromised/discord
-  - compromised/imei
-  - compromised/masked_card
-  - compromised/messenger
-  - compromised/spd
-  - hi/threat
-  - hi/threat_actor
-  - ioc/common
-  - malware/cnc
-  - malware/config
-  - malware/malware
-  - malware/signature
-  - malware/yara
-  - osi/git_repository
-  - osi/public_leak
-  - osi/vulnerability
-  - suspicious_ip/open_proxy
-  - suspicious_ip/scanner
-  - suspicious_ip/socks_proxy
-  - suspicious_ip/tor_node
-  - suspicious_ip/vpn
-  - hi/open_threats
-  description: Choose required collection to download
-  is_mandatory: true
-- name: Search tag
-  default_value: ''
-  type: string
-  description: "By default Tag is empty:  q=<Serach Parameter> (q=8.8.8.8). \nIf Tag
-    is set to \"domain\":  q=<Tag>:<Search Parameter> (q=domain:google.com)."
-  is_mandatory: false
-dynamic_results_metadata:
-- result_name: JsonResult
-  show_result: true
-  result_example_path: 
-    resources/get_ti_search_info_by_collection_JsonResult_example.json
-default_result_value: Timeout exceeded
 creator: a27bf531-e234-4aff-b717-18a554a6a8b9
-simulation_data_json: '{"Entities": null}'
+default_result_value: Timeout exceeded
+description: Search Domain, IP Address, URL, File Hash, Bank Card, Email in Group-IB
+    TI database. Specify tag to get targeted field results.
+dynamic_results_metadata:
+-   result_example_path: resources/get_ti_search_info_by_collection_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: Group-IB-TI
+name: Get-TI-Search-Info-By-Collection
+parameters:
+-   default_value: 'false'
+    description: Enable or Disable mapping parser before return JSON output
+    is_mandatory: false
+    name: Enable mapping parser
+    type: boolean
+-   default_value: apt/threat
+    description: Choose required collection to download
+    is_mandatory: true
+    name: Collection
+    optional_values:
+    - apt/threat
+    - apt/threat_actor
+    - attacks/ddos
+    - attacks/deface
+    - attacks/phishing_group
+    - attacks/phishing_kit
+    - compromised/access
+    - compromised/account_group
+    - compromised/bank_card_group
+    - compromised/discord
+    - compromised/imei
+    - compromised/masked_card
+    - compromised/messenger
+    - compromised/spd
+    - hi/threat
+    - hi/threat_actor
+    - ioc/common
+    - malware/cnc
+    - malware/config
+    - malware/malware
+    - malware/signature
+    - malware/yara
+    - osi/git_repository
+    - osi/public_leak
+    - osi/vulnerability
+    - suspicious_ip/open_proxy
+    - suspicious_ip/scanner
+    - suspicious_ip/socks_proxy
+    - suspicious_ip/tor_node
+    - suspicious_ip/vpn
+    - hi/open_threats
+    type: ddl
+-   default_value: ''
+    description: "By default Tag is empty:  q=<Serach Parameter> (q=8.8.8.8). \nIf\
+        \ Tag is set to \"domain\":  q=<Tag>:<Search Parameter> (q=domain:google.com)."
+    is_mandatory: false
+    name: Search tag
+    type: string
 script_result_name: GIB_Search
+simulation_data_json: '{"Entities": null}'

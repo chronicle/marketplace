@@ -1,26 +1,26 @@
-name: Assign Case to User
-description: 'This action will assign a user to a case.  '
-integration_identifier: Tools
-parameters:
-- name: Case Id
-  default_value: ''
-  type: string
-  description: Case to merge with.
-  is_mandatory: true
-- name: Assign To
-  default_value: '@Admin'
-  type: string
-  description: assign
-  is_mandatory: true
-- name: Alert Id
-  default_value: id
-  type: string
-  description: Alert Id
-  is_mandatory: true
-dynamic_results_metadata:
-- result_name: JsonResult
-  show_result: true
-  result_example_path:
-default_result_value: ''
 creator: Rob
+default_result_value: ''
+description: 'This action will assign a user to a case.  '
+dynamic_results_metadata:
+-   result_example_path: null
+    result_name: JsonResult
+    show_result: true
+integration_identifier: Tools
+name: Assign Case to User
+parameters:
+-   default_value: ''
+    description: Case to merge with.
+    is_mandatory: true
+    name: Case Id
+    type: string
+-   default_value: '@Admin'
+    description: assign
+    is_mandatory: true
+    name: Assign To
+    type: string
+-   default_value: id
+    description: Alert Id
+    is_mandatory: true
+    name: Alert Id
+    type: string
 script_result_name: ScriptResult

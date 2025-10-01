@@ -1,64 +1,63 @@
-name: Parse Case Wall Email
-description: This action will parse an EML or MSG file that has been attached to
-  the case wall.
-integration_identifier: EmailUtilities
-parameters:
-- name: Create Entities
-  default_value: 'true'
-  type: boolean
-  description: 'When enabled, this will create User entities out of the To and From
-    headers and a Email Subject entity out of the Subject field. '
-  is_mandatory: false
-- name: Exclude Entities Regex
-  default_value: ''
-  type: string
-  description: Observed entities that match the supplied regex will not be 
-    created.
-  is_mandatory: false
-- name: Original EML Only
-  default_value: 'true'
-  type: boolean
-  description: Extract attachments from the original EML only.
-  is_mandatory: false
-- name: Create Observed Entities
-  default_value: All
-  type: ddl
-  optional_values:
-  - All
-  - URLs
-  - Emails
-  - IPs
-  - Hashes
-  - URLs, Emails, and IPs
-  - URLs, Emails, and Hashes
-  - Emails and IPs
-  - URLs and Hashes
-  - Emails and Hashes
-  - None
-  description: 'Create Entities out of the observed entities in the email body.
-
-    ''All'' will create URL, Email, IP, and Hash entities.'
-  is_mandatory: false
-- name: Save Attachments to Case Wall
-  default_value: 'true'
-  type: boolean
-  description: Save the extracted attachments to the case wall.
-  is_mandatory: false
-- name: Fang Entities
-  default_value: 'true'
-  type: boolean
-  description: When enabled, entities that are defanged (example.com => 
-    example[.]com) will be converted to fanged entities.
-  is_mandatory: false
-- name: Custom Entity Regexes
-  default_value: '{ }'
-  type: code
-  description: A JSON object that can parse out entities from body and subject.
-  is_mandatory: false
-dynamic_results_metadata:
-- result_name: JsonResult
-  show_result: true
-  result_example_path: resources/ParseCaseWallEmail_JsonResult_example.json
-default_result_value: ''
 creator: 2afb1e45-9047-46ac-8f30-af7a83000d3b
+default_result_value: ''
+description: This action will parse an EML or MSG file that has been attached to the
+    case wall.
+dynamic_results_metadata:
+-   result_example_path: resources/ParseCaseWallEmail_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: EmailUtilities
+name: Parse Case Wall Email
+parameters:
+-   default_value: 'true'
+    description: 'When enabled, this will create User entities out of the To and From
+        headers and a Email Subject entity out of the Subject field. '
+    is_mandatory: false
+    name: Create Entities
+    type: boolean
+-   default_value: ''
+    description: Observed entities that match the supplied regex will not be created.
+    is_mandatory: false
+    name: Exclude Entities Regex
+    type: string
+-   default_value: 'true'
+    description: Extract attachments from the original EML only.
+    is_mandatory: false
+    name: Original EML Only
+    type: boolean
+-   default_value: All
+    description: 'Create Entities out of the observed entities in the email body.
+
+        ''All'' will create URL, Email, IP, and Hash entities.'
+    is_mandatory: false
+    name: Create Observed Entities
+    optional_values:
+    - All
+    - URLs
+    - Emails
+    - IPs
+    - Hashes
+    - URLs, Emails, and IPs
+    - URLs, Emails, and Hashes
+    - Emails and IPs
+    - URLs and Hashes
+    - Emails and Hashes
+    - None
+    type: ddl
+-   default_value: 'true'
+    description: Save the extracted attachments to the case wall.
+    is_mandatory: false
+    name: Save Attachments to Case Wall
+    type: boolean
+-   default_value: 'true'
+    description: When enabled, entities that are defanged (example.com => example[.]com)
+        will be converted to fanged entities.
+    is_mandatory: false
+    name: Fang Entities
+    type: boolean
+-   default_value: '{ }'
+    description: A JSON object that can parse out entities from body and subject.
+    is_mandatory: false
+    name: Custom Entity Regexes
+    type: code
 script_result_name: ScriptResult

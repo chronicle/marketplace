@@ -1,59 +1,58 @@
-name: Create Host Record
-description: Adds a host record to Infoblox with associated IP addresses. When 
-  configure_for_dns is enabled, it also creates corresponding A/AAAA and PTR DNS
-  records. Useful for IPAM and DNS inventory management.
-integration_identifier: InfobloxNIOS
-parameters:
-- name: Name
-  default_value: ''
-  type: string
-  description: The name of the host in FQDN format `{name}.{auth_zone}` (e.g. 
-    server1.auth.threat.zone). It must belong to an existing DNS zone.
-  is_mandatory: true
-- name: IPv4 Addresses
-  type: string
-  description: Array of IPv4 address objects in the following format. (e.g. 
-    [{"ipv4addr":"192.168.1.100","mac":"00:11:22:33:44:55","configure_for_dhcp":true},...]
-    ).
-  is_mandatory: false
-- name: IPv6 Addresses
-  type: string
-  description: Array of IPv6 address objects in the following format. (e.g. 
-    [{"ipv6addr":"2001:db8::1"},{"ipv6addr":"2001:db8::2", etc.}])
-  is_mandatory: false
-- name: View
-  default_value: default
-  type: string
-  description: The DNS view in which the record resides (e.g., "default").
-  is_mandatory: false
-- name: Comment
-  type: string
-  description: Additional information or notes about this host record.
-  is_mandatory: false
-- name: Aliases
-  type: string
-  description: Comma-separated list of DNS aliases (CNAMEs) for this host (e.g.,
-    "alias1.auth zone,alias2.auth zone").
-  is_mandatory: false
-- name: Configure for DNS
-  default_value: 'true'
-  type: boolean
-  description: When false, the host record doesn't have associated DNS records.
-  is_mandatory: false
-- name: Extended Attributes
-  type: string
-  description: Comma-separated key/value formatted filter for extended 
-    attributes, e.g. "Site=New York,OtherProp=MyValue"
-  is_mandatory: false
-- name: Additional Parameters
-  type: string
-  description: Comma-separated key/value formatted string for additional 
-    parameters supported by the API (e.g., "use_ttl=true,network_view=default").
-  is_mandatory: false
-dynamic_results_metadata:
-- result_name: JsonResult
-  show_result: true
-  result_example_path: resources/create_host_record_JsonResult_example.json
-default_result_value: ''
 creator: Admin
+default_result_value: ''
+description: Adds a host record to Infoblox with associated IP addresses. When configure_for_dns
+    is enabled, it also creates corresponding A/AAAA and PTR DNS records. Useful for
+    IPAM and DNS inventory management.
+dynamic_results_metadata:
+-   result_example_path: resources/create_host_record_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: InfobloxNIOS
+name: Create Host Record
+parameters:
+-   default_value: ''
+    description: The name of the host in FQDN format `{name}.{auth_zone}` (e.g. server1.auth.threat.zone).
+        It must belong to an existing DNS zone.
+    is_mandatory: true
+    name: Name
+    type: string
+-   description: Array of IPv4 address objects in the following format. (e.g. [{"ipv4addr":"192.168.1.100","mac":"00:11:22:33:44:55","configure_for_dhcp":true},...]
+        ).
+    is_mandatory: false
+    name: IPv4 Addresses
+    type: string
+-   description: Array of IPv6 address objects in the following format. (e.g. [{"ipv6addr":"2001:db8::1"},{"ipv6addr":"2001:db8::2",
+        etc.}])
+    is_mandatory: false
+    name: IPv6 Addresses
+    type: string
+-   default_value: default
+    description: The DNS view in which the record resides (e.g., "default").
+    is_mandatory: false
+    name: View
+    type: string
+-   description: Additional information or notes about this host record.
+    is_mandatory: false
+    name: Comment
+    type: string
+-   description: Comma-separated list of DNS aliases (CNAMEs) for this host (e.g.,
+        "alias1.auth zone,alias2.auth zone").
+    is_mandatory: false
+    name: Aliases
+    type: string
+-   default_value: 'true'
+    description: When false, the host record doesn't have associated DNS records.
+    is_mandatory: false
+    name: Configure for DNS
+    type: boolean
+-   description: Comma-separated key/value formatted filter for extended attributes,
+        e.g. "Site=New York,OtherProp=MyValue"
+    is_mandatory: false
+    name: Extended Attributes
+    type: string
+-   description: Comma-separated key/value formatted string for additional parameters
+        supported by the API (e.g., "use_ttl=true,network_view=default").
+    is_mandatory: false
+    name: Additional Parameters
+    type: string
 script_result_name: ScriptResult

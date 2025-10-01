@@ -1,25 +1,25 @@
-name: List Messages
-description: List the messages in a user's mailbox
-integration_identifier: MicrosoftGraphSecurityTools
-parameters:
-- name: Query Parameters
-  type: string
-  description: 'Should begin with ''$'' - See MS Graph docs for query-parameters.
-    EG: $filter=subject eq ''test'''
-  is_mandatory: false
-- name: Select Filter
-  type: string
-  description: 'CSV list of fields to return, eg: sender,subject'
-  is_mandatory: false
-- name: User ID
-  default_value: john.smith@mail.com
-  type: string
-  description: User ID/userPrincipalName (email)
-  is_mandatory: true
-dynamic_results_metadata:
-- result_name: JsonResult
-  show_result: true
-  result_example_path: resources/ListMessages_JsonResult_example.json
-default_result_value: ''
 creator: daniel.harvey
+default_result_value: ''
+description: List the messages in a user's mailbox
+dynamic_results_metadata:
+-   result_example_path: resources/ListMessages_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: MicrosoftGraphSecurityTools
+name: List Messages
+parameters:
+-   description: 'Should begin with ''$'' - See MS Graph docs for query-parameters.
+        EG: $filter=subject eq ''test'''
+    is_mandatory: false
+    name: Query Parameters
+    type: string
+-   description: 'CSV list of fields to return, eg: sender,subject'
+    is_mandatory: false
+    name: Select Filter
+    type: string
+-   default_value: john.smith@mail.com
+    description: User ID/userPrincipalName (email)
+    is_mandatory: true
+    name: User ID
+    type: string
 script_result_name: ScriptResult

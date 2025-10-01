@@ -1,49 +1,49 @@
-name: Get Alerts
-description: Return alerts based on the provided filters
-integration_identifier: Vorlon
-parameters:
-- name: Requesting Service
-  type: string
-  description: Requesting service id(s) to include, specified as a comma 
-    separated list of ids
-  is_mandatory: false
-- name: Responding Service
-  type: string
-  description: Defines responding service id(s) to include, specified as a comma
-    separated list of ids
-  is_mandatory: false
-- name: Alert IDs
-  type: string
-  description: Defines the list of alert ids to retrieve, specified as a comma 
-    separated list of ids
-  is_mandatory: false
-- name: From
-  type: string
-  description: If provided, filter by from time in the format 
-    "YYYY-MM-DDTHH:MM:SS" e.g. 1970-1-1T00:00:00
-  is_mandatory: false
-- name: To
-  type: string
-  description: If provided, filter by from time in the format 
-    "YYYY-MM-DDTHH:MM:SS" e.g. 1970-1-1T00:00:00
-  is_mandatory: false
-- name: Alert Status
-  default_value: open
-  type: ddl
-  optional_values:
-  - open
-  - dismissed
-  - resolved
-  description: Defines the list of alert statuses to retrieve
-  is_mandatory: false
-- name: Limit
-  default_value: '100'
-  type: string
-  description: If provided, filter by limit. Default is 100
-  is_mandatory: false
-dynamic_results_metadata:
-- result_name: JsonResult
-  show_result: true
-  result_example_path: resources/GetAlerts_JsonResult_example.json
-default_result_value: ''
 creator: fe5f742c-a69e-4116-ad38-b1d7c5194541
+default_result_value: ''
+description: Return alerts based on the provided filters
+dynamic_results_metadata:
+-   result_example_path: resources/GetAlerts_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: Vorlon
+name: Get Alerts
+parameters:
+-   description: Requesting service id(s) to include, specified as a comma separated
+        list of ids
+    is_mandatory: false
+    name: Requesting Service
+    type: string
+-   description: Defines responding service id(s) to include, specified as a comma
+        separated list of ids
+    is_mandatory: false
+    name: Responding Service
+    type: string
+-   description: Defines the list of alert ids to retrieve, specified as a comma separated
+        list of ids
+    is_mandatory: false
+    name: Alert IDs
+    type: string
+-   description: If provided, filter by from time in the format "YYYY-MM-DDTHH:MM:SS"
+        e.g. 1970-1-1T00:00:00
+    is_mandatory: false
+    name: From
+    type: string
+-   description: If provided, filter by from time in the format "YYYY-MM-DDTHH:MM:SS"
+        e.g. 1970-1-1T00:00:00
+    is_mandatory: false
+    name: To
+    type: string
+-   default_value: open
+    description: Defines the list of alert statuses to retrieve
+    is_mandatory: false
+    name: Alert Status
+    optional_values:
+    - open
+    - dismissed
+    - resolved
+    type: ddl
+-   default_value: '100'
+    description: If provided, filter by limit. Default is 100
+    is_mandatory: false
+    name: Limit
+    type: string

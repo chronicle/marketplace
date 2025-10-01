@@ -1,18 +1,18 @@
-name: Get-TI-Search-Info
-description: Search Domain, IP Address, File Hash, Bank Card, Email in Group-IB 
-  TI database.
-integration_identifier: Group-IB-TI
-parameters:
-- name: Enable mapping parser
-  default_value: 'false'
-  type: boolean
-  description: Enable or Disable mapping parser before return JSON output
-  is_mandatory: false
-dynamic_results_metadata:
-- result_name: JsonResult
-  show_result: true
-  result_example_path: resources/get_ti_search_info_JsonResult_example.json
-default_result_value: Timeout exceeded
 creator: a27bf531-e234-4aff-b717-18a554a6a8b9
-simulation_data_json: '{"Entities": null}'
+default_result_value: Timeout exceeded
+description: Search Domain, IP Address, File Hash, Bank Card, Email in Group-IB TI
+    database.
+dynamic_results_metadata:
+-   result_example_path: resources/get_ti_search_info_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: Group-IB-TI
+name: Get-TI-Search-Info
+parameters:
+-   default_value: 'false'
+    description: Enable or Disable mapping parser before return JSON output
+    is_mandatory: false
+    name: Enable mapping parser
+    type: boolean
 script_result_name: GIB_Search
+simulation_data_json: '{"Entities": null}'

@@ -1,26 +1,26 @@
-name: Enrich IOC
-description: Query Recorded Future to get intelligence about the IOC
-integration_identifier: RecordedFutureIntelligence
-parameters:
-- name: Risk Score Threshold
-  default_value: '25'
-  type: string
-  description: Represents the minimum malicious risk score for each entity to be
-    marked is suspicious.
-  is_mandatory: true
-- name: Include Links
-  default_value: 'false'
-  type: boolean
-  description: If enabled, action will get information about links.
-  is_mandatory: false
-- name: Enable Collective Insights
-  default_value: 'true'
-  type: boolean
-  description: If enabled, contribute detections back to Recorded Future.
-  is_mandatory: false
-dynamic_results_metadata:
-- result_name: JsonResult
-  show_result: true
-  result_example_path: resources/EnrichIOC_JsonResult_example.json
 creator: admin
+description: Query Recorded Future to get intelligence about the IOC
+dynamic_results_metadata:
+-   result_example_path: resources/EnrichIOC_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: RecordedFutureIntelligence
+name: Enrich IOC
+parameters:
+-   default_value: '25'
+    description: Represents the minimum malicious risk score for each entity to be
+        marked is suspicious.
+    is_mandatory: true
+    name: Risk Score Threshold
+    type: string
+-   default_value: 'false'
+    description: If enabled, action will get information about links.
+    is_mandatory: false
+    name: Include Links
+    type: boolean
+-   default_value: 'true'
+    description: If enabled, contribute detections back to Recorded Future.
+    is_mandatory: false
+    name: Enable Collective Insights
+    type: boolean
 simulation_data_json: '{"Entities": ["HOSTNAME", "CVE", "FILEHASH", "ADDRESS", "DestinationURL"]}'

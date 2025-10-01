@@ -1,28 +1,27 @@
-name: Count Files
-description: The action counts files in a given folder path according to a 
-  specific file extension
-integration_identifier: FileUtilities
-parameters:
-- name: File Extension
-  default_value: '*.txt'
-  type: string
-  description: Count the files that include a specific file extension
-  is_mandatory: false
-- name: Folder
-  default_value: /tempFolder
-  type: string
-  description: The folder path from which you would like to count the files
-  is_mandatory: true
-- name: Is Recursive
-  default_value: 'false'
-  type: boolean
-  description: If enabled, this will recursively count all files in the 
-    directory.
-  is_mandatory: false
-dynamic_results_metadata:
-- result_name: JsonResult
-  show_result: true
-  result_example_path:
-default_result_value: ''
 creator: Robert
+default_result_value: ''
+description: The action counts files in a given folder path according to a specific
+    file extension
+dynamic_results_metadata:
+-   result_example_path: null
+    result_name: JsonResult
+    show_result: true
+integration_identifier: FileUtilities
+name: Count Files
+parameters:
+-   default_value: '*.txt'
+    description: Count the files that include a specific file extension
+    is_mandatory: false
+    name: File Extension
+    type: string
+-   default_value: /tempFolder
+    description: The folder path from which you would like to count the files
+    is_mandatory: true
+    name: Folder
+    type: string
+-   default_value: 'false'
+    description: If enabled, this will recursively count all files in the directory.
+    is_mandatory: false
+    name: Is Recursive
+    type: boolean
 script_result_name: ScriptResult

@@ -1,61 +1,61 @@
-name: Add or Update Rows
+creator: TehilaGourary
+default_result_value: ''
 description: 'Add or update rows by a given column name.
 
-  (If the value isn''t found in the sheet it will be added as a new row)'
-integration_identifier: Google Sheets
-parameters:
-- name: Column Number
-  default_value: '1'
-  type: string
-  description: The column number by which we will look for the value of the 
-    given Field Name in the Json
-  is_mandatory: true
-- name: Start Column
-  default_value: '1'
-  type: string
-  description: From which column number we will update or add the values ​​to 
-    the given rows
-  is_mandatory: true
-- name: End Column
-  default_value: '2'
-  type: string
-  description: Untill which column number we will update or add the values ​​to 
-    the given rows
-  is_mandatory: true
-- name: Field Name
-  default_value: Field_Key_1
-  type: string
-  description: 'This is the field name in the given Json by which we will search for
-    its value in a row by its column number.
-
-    '
-  is_mandatory: true
-- name: Json
-  default_value: "[\n  {\n    \"Field_Key_1\": \"Field_Value_1\",\n    \"Field_Key_2\"\
-    : \"Field_Value_2\",\n    \"Field_Key_3\": \"Field_Value_3\"\n  }\n]"
-  type: code
-  description: 'The JSON values to add or update for the chosen column number and
-    field name. Each item will be one row.
-
-    Note: each value needs to be unique.'
-  is_mandatory: true
-- name: Sheet Id
-  default_value: <Sheet-Id>
-  type: string
-  description: 'The sheet Id can be found in the sheet url.
-
-    https://docs.google.com/spreadsheets/d/{YourSpreadSheetId}/edit#gid=0'
-  is_mandatory: true
-- name: Worksheet Name
-  default_value: <Sheet-Name>
-  type: string
-  description: 'The worksheet name is the Sheet tab name. The default Sheet name is
-    "Sheet1". Note: it is case sensitive. '
-  is_mandatory: false
+    (If the value isn''t found in the sheet it will be added as a new row)'
 dynamic_results_metadata:
-- result_name: JsonResult
-  show_result: true
-  result_example_path:
-default_result_value: ''
-creator: TehilaGourary
+-   result_example_path: null
+    result_name: JsonResult
+    show_result: true
+integration_identifier: Google Sheets
+name: Add or Update Rows
+parameters:
+-   default_value: '1'
+    description: The column number by which we will look for the value of the given
+        Field Name in the Json
+    is_mandatory: true
+    name: Column Number
+    type: string
+-   default_value: '1'
+    description: "From which column number we will update or add the values \u200B\
+        \u200Bto the given rows"
+    is_mandatory: true
+    name: Start Column
+    type: string
+-   default_value: '2'
+    description: "Untill which column number we will update or add the values \u200B\
+        \u200Bto the given rows"
+    is_mandatory: true
+    name: End Column
+    type: string
+-   default_value: Field_Key_1
+    description: 'This is the field name in the given Json by which we will search
+        for its value in a row by its column number.
+
+        '
+    is_mandatory: true
+    name: Field Name
+    type: string
+-   default_value: "[\n  {\n    \"Field_Key_1\": \"Field_Value_1\",\n    \"Field_Key_2\"\
+        : \"Field_Value_2\",\n    \"Field_Key_3\": \"Field_Value_3\"\n  }\n]"
+    description: 'The JSON values to add or update for the chosen column number and
+        field name. Each item will be one row.
+
+        Note: each value needs to be unique.'
+    is_mandatory: true
+    name: Json
+    type: code
+-   default_value: <Sheet-Id>
+    description: 'The sheet Id can be found in the sheet url.
+
+        https://docs.google.com/spreadsheets/d/{YourSpreadSheetId}/edit#gid=0'
+    is_mandatory: true
+    name: Sheet Id
+    type: string
+-   default_value: <Sheet-Name>
+    description: 'The worksheet name is the Sheet tab name. The default Sheet name
+        is "Sheet1". Note: it is case sensitive. '
+    is_mandatory: false
+    name: Worksheet Name
+    type: string
 script_result_name: ScriptResult

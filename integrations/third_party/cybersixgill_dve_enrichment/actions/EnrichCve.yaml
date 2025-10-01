@@ -1,17 +1,17 @@
-name: Enrich CVE
-description: Cybersixgill’s Dynamic Vulnerability Exploit (DVE) Score is powered
-  by the vastest collection of vulnerability-related threat intelligence from 
-  the deep and dark web. By enriching CVEs with Cybersixgill’s DVE Score, 
-  Siemplify customers gain deeper visibility with relevant threat intel and 
-  dynamic attributes such as where they are trending, POC exploit details, and 
-  more. Loaded with extra-context, this allows Siemplify customers to accurately
-  understand the real impact of CVEs to effectively prioritize critical 
-  vulnerabilities - straight from the Siemplify dashboard.
-integration_identifier: Cybersixgill DVE Enrichment
-parameters: []
-dynamic_results_metadata:
-- result_name: JsonResult
-  show_result: true
-  result_example_path: resources/EnrichCve_JsonResult_example.json
-default_result_value: ''
 creator: Admin
+default_result_value: ''
+description: "Cybersixgill\u2019s Dynamic Vulnerability Exploit (DVE) Score is powered\
+    \ by the vastest collection of vulnerability-related threat intelligence from\
+    \ the deep and dark web. By enriching CVEs with Cybersixgill\u2019s DVE Score,\
+    \ Siemplify customers gain deeper visibility with relevant threat intel and dynamic\
+    \ attributes such as where they are trending, POC exploit details, and more. Loaded\
+    \ with extra-context, this allows Siemplify customers to accurately understand\
+    \ the real impact of CVEs to effectively prioritize critical vulnerabilities -\
+    \ straight from the Siemplify dashboard."
+dynamic_results_metadata:
+-   result_example_path: resources/EnrichCve_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: Cybersixgill DVE Enrichment
+name: Enrich CVE
+parameters: []

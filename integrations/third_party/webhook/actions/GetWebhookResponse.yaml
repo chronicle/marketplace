@@ -1,44 +1,44 @@
-name: Get Webhook Response
-description: 'Fetch data of requests for the URL: {Base URL}/{Token ID}'
-integration_identifier: Webhook
-parameters:
-- name: Pending Condition
-  default_value: TimeFrame
-  type: ddl
-  optional_values:
-  - AwaitClick
-  - TimeFrame
-  description: 'TimeFrame - Choose the custom timeout condition.
-
-    AwaitClick - Wait for first click before ending script.'
-  is_mandatory: true
-- name: TimeFrame
-  default_value: '5'
-  type: string
-  description: 'Minutes to wait for requests for URL (by token ID), before ending
-    the action.
-
-    Relevant only if "Timeout" is chosen as parameter.'
-  is_mandatory: true
-- name: Responses To Retrieve
-  default_value: All
-  type: ddl
-  optional_values:
-  - Latest
-  - All
-  description: Choose All to retrieve all responses data, or Latest to retrieve 
-    only the latest responses data.
-  is_mandatory: true
-- name: Token ID
-  default_value: '111'
-  type: string
-  description: The ID of the token to read requests for
-  is_mandatory: true
-dynamic_results_metadata:
-- result_name: JsonResult
-  show_result: true
-  result_example_path: resources/GetWebhookResponse_JsonResult_example.json
-default_result_value: ''
 creator: community
+default_result_value: ''
+description: 'Fetch data of requests for the URL: {Base URL}/{Token ID}'
+dynamic_results_metadata:
+-   result_example_path: resources/GetWebhookResponse_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: Webhook
 is_async: true
+name: Get Webhook Response
+parameters:
+-   default_value: TimeFrame
+    description: 'TimeFrame - Choose the custom timeout condition.
+
+        AwaitClick - Wait for first click before ending script.'
+    is_mandatory: true
+    name: Pending Condition
+    optional_values:
+    - AwaitClick
+    - TimeFrame
+    type: ddl
+-   default_value: '5'
+    description: 'Minutes to wait for requests for URL (by token ID), before ending
+        the action.
+
+        Relevant only if "Timeout" is chosen as parameter.'
+    is_mandatory: true
+    name: TimeFrame
+    type: string
+-   default_value: All
+    description: Choose All to retrieve all responses data, or Latest to retrieve
+        only the latest responses data.
+    is_mandatory: true
+    name: Responses To Retrieve
+    optional_values:
+    - Latest
+    - All
+    type: ddl
+-   default_value: '111'
+    description: The ID of the token to read requests for
+    is_mandatory: true
+    name: Token ID
+    type: string
 script_result_name: ScriptResult

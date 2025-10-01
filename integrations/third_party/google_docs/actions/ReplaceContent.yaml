@@ -1,26 +1,26 @@
-name: Replace Content
-description: 'Replaces specific text in a document '
-integration_identifier: Google Docs
-parameters:
-- name: Document Id
-  default_value: <document_id>
-  type: string
-  description: 'The document Id can be found in the URL.
-
-    For example: https://docs.google.com/document/d/{YourDocumentId}/'
-  is_mandatory: true
-- name: Json
-  default_value: "{\n  \"items\": [\n    {\n      \"text_to_search\": \"Hello\",\n\
-    \      \"text_to_replace\": \"HELLO\",\n      \"match_case\": \"true\"\n    },\n\
-    \    {\n      \"text_to_search\": \"World\",\n      \"text_to_replace\": \"WORLD\"\
-    ,\n      \"match_case\": \"true\"\n    }\n  ]\n}"
-  type: code
-  description: 'The content in json format you want to replace in the document. '
-  is_mandatory: true
-dynamic_results_metadata:
-- result_name: JsonResult
-  show_result: false
-  result_example_path:
-default_result_value: ''
 creator: Admin
+default_result_value: ''
+description: 'Replaces specific text in a document '
+dynamic_results_metadata:
+-   result_example_path: null
+    result_name: JsonResult
+    show_result: false
+integration_identifier: Google Docs
+name: Replace Content
+parameters:
+-   default_value: <document_id>
+    description: 'The document Id can be found in the URL.
+
+        For example: https://docs.google.com/document/d/{YourDocumentId}/'
+    is_mandatory: true
+    name: Document Id
+    type: string
+-   default_value: "{\n  \"items\": [\n    {\n      \"text_to_search\": \"Hello\"\
+        ,\n      \"text_to_replace\": \"HELLO\",\n      \"match_case\": \"true\"\n\
+        \    },\n    {\n      \"text_to_search\": \"World\",\n      \"text_to_replace\"\
+        : \"WORLD\",\n      \"match_case\": \"true\"\n    }\n  ]\n}"
+    description: 'The content in json format you want to replace in the document. '
+    is_mandatory: true
+    name: Json
+    type: code
 script_result_name: ScriptResult

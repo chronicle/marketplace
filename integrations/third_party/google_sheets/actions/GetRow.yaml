@@ -1,25 +1,25 @@
-name: Get Row
-description: Retrieves the values of a single row in a sheet
-integration_identifier: Google Sheets
-parameters:
-- name: Sheet Id
-  default_value: <Sheet-Id>
-  type: string
-  description: The shhet id can be found in the sheet url.
-  is_mandatory: true
-- name: Worksheet Name
-  type: string
-  description: Worksheet Name
-  is_mandatory: false
-- name: Row Number
-  default_value: '3'
-  type: string
-  description: Row number (one-based).
-  is_mandatory: true
-dynamic_results_metadata:
-- result_name: JsonResult
-  show_result: true
-  result_example_path:
-default_result_value: ''
 creator: Admin
+default_result_value: ''
+description: Retrieves the values of a single row in a sheet
+dynamic_results_metadata:
+-   result_example_path: null
+    result_name: JsonResult
+    show_result: true
+integration_identifier: Google Sheets
+name: Get Row
+parameters:
+-   default_value: <Sheet-Id>
+    description: The shhet id can be found in the sheet url.
+    is_mandatory: true
+    name: Sheet Id
+    type: string
+-   description: Worksheet Name
+    is_mandatory: false
+    name: Worksheet Name
+    type: string
+-   default_value: '3'
+    description: Row number (one-based).
+    is_mandatory: true
+    name: Row Number
+    type: string
 script_result_name: ScriptResult

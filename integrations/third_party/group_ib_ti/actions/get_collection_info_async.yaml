@@ -1,76 +1,74 @@
-name: Get-Collection-Info-Async
-description: Help to extract data from Group-IB TI database by chosen 
-  collection. Can be used to run daily to get fresh updates only. This Action 
-  ignore any entities. Use the input entity as the start trigger.
-integration_identifier: Group-IB-TI
-parameters:
-- name: Enable mapping parser
-  default_value: 'false'
-  type: boolean
-  description: Enable or Disable mapping parser before return JSON output
-  is_mandatory: false
-- name: Collection
-  default_value: apt/threat
-  type: ddl
-  optional_values:
-  - apt/threat
-  - apt/threat_actor
-  - attacks/ddos
-  - attacks/deface
-  - attacks/phishing_group
-  - attacks/phishing_kit
-  - compromised/access
-  - compromised/account_group
-  - compromised/bank_card_group
-  - compromised/discord
-  - compromised/imei
-  - compromised/masked_card
-  - compromised/messenger
-  - compromised/spd
-  - hi/open_threats
-  - hi/threat
-  - hi/threat_actor
-  - ioc/common
-  - malware/cnc
-  - malware/config
-  - malware/malware
-  - malware/signature
-  - malware/yara
-  - osi/git_repository
-  - osi/public_leak
-  - osi/vulnerability
-  - suspicious_ip/open_proxy
-  - suspicious_ip/scanner
-  - suspicious_ip/socks_proxy
-  - suspicious_ip/tor_node
-  - suspicious_ip/vpn
-  description: Choose required collection to download
-  is_mandatory: true
-- name: Start date
-  type: string
-  description: Set start date to download collection data. Date format 
-    YYYY-MM-DD (2023-09-01).
-  is_mandatory: false
-- name: Portion limit
-  default_value: '100'
-  type: ddl
-  optional_values:
-  - '10'
-  - '50'
-  - '100'
-  - '500'
-  - '1000'
-  description: Each Action run return response from TI Portal API, which 
-    contains portions. This parameter let you control the number of received 
-    portions.
-  is_mandatory: true
-dynamic_results_metadata:
-- result_name: JsonResult
-  show_result: true
-  result_example_path: 
-    resources/get_collection_info_async_JsonResult_example.json
-default_result_value: Timeout exceeded
 creator: a27bf531-e234-4aff-b717-18a554a6a8b9
+default_result_value: Timeout exceeded
+description: Help to extract data from Group-IB TI database by chosen collection.
+    Can be used to run daily to get fresh updates only. This Action ignore any entities.
+    Use the input entity as the start trigger.
+dynamic_results_metadata:
+-   result_example_path: resources/get_collection_info_async_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: Group-IB-TI
 is_async: true
-simulation_data_json: '{"Entities": null}'
+name: Get-Collection-Info-Async
+parameters:
+-   default_value: 'false'
+    description: Enable or Disable mapping parser before return JSON output
+    is_mandatory: false
+    name: Enable mapping parser
+    type: boolean
+-   default_value: apt/threat
+    description: Choose required collection to download
+    is_mandatory: true
+    name: Collection
+    optional_values:
+    - apt/threat
+    - apt/threat_actor
+    - attacks/ddos
+    - attacks/deface
+    - attacks/phishing_group
+    - attacks/phishing_kit
+    - compromised/access
+    - compromised/account_group
+    - compromised/bank_card_group
+    - compromised/discord
+    - compromised/imei
+    - compromised/masked_card
+    - compromised/messenger
+    - compromised/spd
+    - hi/open_threats
+    - hi/threat
+    - hi/threat_actor
+    - ioc/common
+    - malware/cnc
+    - malware/config
+    - malware/malware
+    - malware/signature
+    - malware/yara
+    - osi/git_repository
+    - osi/public_leak
+    - osi/vulnerability
+    - suspicious_ip/open_proxy
+    - suspicious_ip/scanner
+    - suspicious_ip/socks_proxy
+    - suspicious_ip/tor_node
+    - suspicious_ip/vpn
+    type: ddl
+-   description: Set start date to download collection data. Date format YYYY-MM-DD
+        (2023-09-01).
+    is_mandatory: false
+    name: Start date
+    type: string
+-   default_value: '100'
+    description: Each Action run return response from TI Portal API, which contains
+        portions. This parameter let you control the number of received portions.
+    is_mandatory: true
+    name: Portion limit
+    optional_values:
+    - '10'
+    - '50'
+    - '100'
+    - '500'
+    - '1000'
+    type: ddl
 script_result_name: GIB_Collection
+simulation_data_json: '{"Entities": null}'

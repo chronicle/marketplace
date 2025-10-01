@@ -1,37 +1,37 @@
-name: Create Incident
+creator: tcondello
+default_result_value: ''
 description: 'Create a new incident with the given parameters.
 
-  '
-integration_identifier: PagerDuty
-parameters:
-- name: Details
-  default_value: A disk is getting full on this machine. You should investigate 
-    what is causing the disk to fill, and ensure that there is an automated 
-    process in place for ensuring data is rotated (eg. logs should have 
-    logrotate around them). If data is expected to stay on this disk forever, 
-    you should start planning to scale up to a larger disk.
-  type: string
-  description: ''
-  is_mandatory: true
-- name: Title
-  default_value: The server is on fire.
-  type: string
-  description: ''
-  is_mandatory: true
-- name: Email
-  default_value: tcondello@siemplify.co
-  type: string
-  description: ''
-  is_mandatory: true
-- name: Urgency
-  default_value: high
-  type: string
-  description: ''
-  is_mandatory: true
+    '
 dynamic_results_metadata:
-- result_name: JsonResult
-  show_result: true
-  result_example_path: resources/CreateIncident_JsonResult_example.json
-default_result_value: ''
-creator: tcondello
+-   result_example_path: resources/CreateIncident_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: PagerDuty
+name: Create Incident
+parameters:
+-   default_value: A disk is getting full on this machine. You should investigate
+        what is causing the disk to fill, and ensure that there is an automated process
+        in place for ensuring data is rotated (eg. logs should have logrotate around
+        them). If data is expected to stay on this disk forever, you should start
+        planning to scale up to a larger disk.
+    description: ''
+    is_mandatory: true
+    name: Details
+    type: string
+-   default_value: The server is on fire.
+    description: ''
+    is_mandatory: true
+    name: Title
+    type: string
+-   default_value: tcondello@siemplify.co
+    description: ''
+    is_mandatory: true
+    name: Email
+    type: string
+-   default_value: high
+    description: ''
+    is_mandatory: true
+    name: Urgency
+    type: string
 script_result_name: ScriptResult

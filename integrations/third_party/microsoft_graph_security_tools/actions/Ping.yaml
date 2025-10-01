@@ -1,10 +1,10 @@
-name: Ping
-description: Test Connectivity
-integration_identifier: MicrosoftGraphSecurityTools
-parameters: []
-dynamic_results_metadata:
-- result_name: JsonResult
-  show_result: false
-  result_example_path:
 creator: daniel.harvey
+description: Test Connectivity
+dynamic_results_metadata:
+-   result_example_path: null
+    result_name: JsonResult
+    show_result: false
+integration_identifier: MicrosoftGraphSecurityTools
+name: Ping
+parameters: []
 script_result_name: is_connected

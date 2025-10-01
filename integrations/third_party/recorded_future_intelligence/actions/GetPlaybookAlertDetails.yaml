@@ -1,24 +1,24 @@
-name: Get Playbook Alert Details
-description: Fetch information about specific Playbook Alert and return results 
-  to the case. Use action to get more information available regarding Recorded 
-  Future PlaybookAlerts - Updated DNS Records, new vulnerability stages, etc...
-integration_identifier: RecordedFutureIntelligence
-parameters:
-- name: Playbook Alert ID
-  default_value: ''
-  type: string
-  description: Specify the ID of the playbook alert for which you would like to 
-    fetch details
-  is_mandatory: true
-- name: Category
-  default_value: ''
-  type: string
-  description: The Category of the Playbook Alert. Possible values are 
-    domain_abuse, cyber_vulnerability, code_repo_leakage, third_party_risk, 
-    identity_novel_exposures, and geopolitics_facility
-  is_mandatory: true
-dynamic_results_metadata:
-- result_name: JsonResult
-  show_result: true
-  result_example_path:
 creator: admin
+description: Fetch information about specific Playbook Alert and return results to
+    the case. Use action to get more information available regarding Recorded Future
+    PlaybookAlerts - Updated DNS Records, new vulnerability stages, etc...
+dynamic_results_metadata:
+-   result_example_path: null
+    result_name: JsonResult
+    show_result: true
+integration_identifier: RecordedFutureIntelligence
+name: Get Playbook Alert Details
+parameters:
+-   default_value: ''
+    description: Specify the ID of the playbook alert for which you would like to
+        fetch details
+    is_mandatory: true
+    name: Playbook Alert ID
+    type: string
+-   default_value: ''
+    description: The Category of the Playbook Alert. Possible values are domain_abuse,
+        cyber_vulnerability, code_repo_leakage, third_party_risk, identity_novel_exposures,
+        and geopolitics_facility
+    is_mandatory: true
+    name: Category
+    type: string

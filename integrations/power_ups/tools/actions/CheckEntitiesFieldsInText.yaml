@@ -1,45 +1,44 @@
-name: Check Entities Fields In Text
-description: This actions allows to search for a specific field from each entity
-  in the scope (or multiple fields using regex) and compare it with one or more 
-  values. The compared values can also go through regex. A match is found if one
-  of the post regex values from the entity enrichment is in one or more values 
-  searched in.
-integration_identifier: Tools
-parameters:
-- name: SearchInData
-  default_value: '[     {         "Data": "[Event.from]",         "RegEx": "(?<=@)[^.]+(?=\\.)"     }
-    ]'
-  type: string
-  description: "A JSON that represents the string(s) you want to search in\n[{\n \"\
-    Data\": \"\",\n \"RegEx\": \"\"\n}]"
-  is_mandatory: true
-- name: FieldsInput
-  default_value: '[     {         "RegexForFieldName": "",         "FieldName": "body",         "RegexForFieldValue":
-    ""     },     {         "RegexForFieldName": ".*(_url_).*",         "FieldName":
-    "",         "RegexForFieldValue": ""     },     {         "RegexForFieldName":
-    "",         "FieldName": "body",         "RegexForFieldValue": "HostName: (.*?)"     }
-    ]'
-  type: string
-  description: "A JSON that describes what fields should be tested for\n[{\n \"RegexForFieldName\"\
-    : \"\",\n \"FieldName\": \"Field name to search\",\n \"RegexForFieldValue\": \"\
-    \"\n}]"
-  is_mandatory: true
-- name: ShouldEnrichEntity
-  default_value: domain_matched
-  type: string
-  description: If set to "<VAL>" will also put an enrichment value on the entity
-    to be recognized as "matched" with the value. The key will be "<VAL>"
-  is_mandatory: false
-- name: IsCaseSensitive
-  default_value: 'false'
-  type: boolean
-  description: 'Is the field case sensitive '
-  is_mandatory: false
-dynamic_results_metadata:
-- result_name: JsonResult
-  show_result: true
-  result_example_path: 
-    resources/CheckEntitiesFieldsInText_JsonResult_example.json
-default_result_value: ''
 creator: Robert
+default_result_value: ''
+description: This actions allows to search for a specific field from each entity in
+    the scope (or multiple fields using regex) and compare it with one or more values.
+    The compared values can also go through regex. A match is found if one of the
+    post regex values from the entity enrichment is in one or more values searched
+    in.
+dynamic_results_metadata:
+-   result_example_path: resources/CheckEntitiesFieldsInText_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: Tools
+name: Check Entities Fields In Text
+parameters:
+-   default_value: '[     {         "Data": "[Event.from]",         "RegEx": "(?<=@)[^.]+(?=\\.)"     }
+        ]'
+    description: "A JSON that represents the string(s) you want to search in\n[{\n\
+        \ \"Data\": \"\",\n \"RegEx\": \"\"\n}]"
+    is_mandatory: true
+    name: SearchInData
+    type: string
+-   default_value: '[     {         "RegexForFieldName": "",         "FieldName":
+        "body",         "RegexForFieldValue": ""     },     {         "RegexForFieldName":
+        ".*(_url_).*",         "FieldName": "",         "RegexForFieldValue": ""     },     {         "RegexForFieldName":
+        "",         "FieldName": "body",         "RegexForFieldValue": "HostName:
+        (.*?)"     } ]'
+    description: "A JSON that describes what fields should be tested for\n[{\n \"\
+        RegexForFieldName\": \"\",\n \"FieldName\": \"Field name to search\",\n \"\
+        RegexForFieldValue\": \"\"\n}]"
+    is_mandatory: true
+    name: FieldsInput
+    type: string
+-   default_value: domain_matched
+    description: If set to "<VAL>" will also put an enrichment value on the entity
+        to be recognized as "matched" with the value. The key will be "<VAL>"
+    is_mandatory: false
+    name: ShouldEnrichEntity
+    type: string
+-   default_value: 'false'
+    description: 'Is the field case sensitive '
+    is_mandatory: false
+    name: IsCaseSensitive
+    type: boolean
 script_result_name: ScriptResult

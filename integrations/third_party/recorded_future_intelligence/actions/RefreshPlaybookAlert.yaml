@@ -1,23 +1,23 @@
-name: Refresh Playbook Alert
-description: Updates information in a case created by the Playbook Alerts 
-  Connector with new data from the Recorded Future platform
-integration_identifier: RecordedFutureIntelligence
-parameters:
-- name: Playbook Alert ID
-  default_value: ''
-  type: string
-  description: Specify the ID of the playbook alert for which you would like to 
-    fetch details
-  is_mandatory: true
-- name: Category
-  default_value: ''
-  type: string
-  description: The Category of the Playbook Alert. Possible values are 
-    domain_abuse, cyber_vulnerability, code_repo_leakage, third_party_risk, 
-    identity_novel_exposures, and geopolitics_facility
-  is_mandatory: true
-dynamic_results_metadata:
-- result_name: JsonResult
-  show_result: true
-  result_example_path: resources/RefreshPlaybookAlert_JsonResult_example.json
 creator: admin
+description: Updates information in a case created by the Playbook Alerts Connector
+    with new data from the Recorded Future platform
+dynamic_results_metadata:
+-   result_example_path: resources/RefreshPlaybookAlert_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: RecordedFutureIntelligence
+name: Refresh Playbook Alert
+parameters:
+-   default_value: ''
+    description: Specify the ID of the playbook alert for which you would like to
+        fetch details
+    is_mandatory: true
+    name: Playbook Alert ID
+    type: string
+-   default_value: ''
+    description: The Category of the Playbook Alert. Possible values are domain_abuse,
+        cyber_vulnerability, code_repo_leakage, third_party_risk, identity_novel_exposures,
+        and geopolitics_facility
+    is_mandatory: true
+    name: Category
+    type: string

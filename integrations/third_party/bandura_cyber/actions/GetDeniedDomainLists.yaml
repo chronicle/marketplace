@@ -1,16 +1,16 @@
-name: Get Denied Domain Lists
-description: Get a list of Domains in Denied Domain List
-integration_identifier: Bandura Cyber
-parameters:
-- name: List Name
-  default_value: List Name
-  type: string
-  description: Name of the list to add the IP. (The List Name is Case Sensitive)
-  is_mandatory: false
-dynamic_results_metadata:
-- result_name: JsonResult
-  show_result: true
-  result_example_path: resources/GetDeniedDomainLists_JsonResult_example.json
-default_result_value: ''
 creator: Admin
+default_result_value: ''
+description: Get a list of Domains in Denied Domain List
+dynamic_results_metadata:
+-   result_example_path: resources/GetDeniedDomainLists_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: Bandura Cyber
+name: Get Denied Domain Lists
+parameters:
+-   default_value: List Name
+    description: Name of the list to add the IP. (The List Name is Case Sensitive)
+    is_mandatory: false
+    name: List Name
+    type: string
 script_result_name: denied_domain_list
