@@ -61,7 +61,7 @@ def _get_integrations_path() -> pathlib.Path:
         The integrations' directory path
 
     """
-    return config.get_marketplace_path() / constants.INTEGRATIONS_DIR_NAME
+    return get_content_path() / constants.INTEGRATIONS_DIR_NAME
 
 
 def get_all_integrations_paths(integrations_classification: str) -> list[pathlib.Path]:
@@ -80,14 +80,44 @@ def get_all_integrations_paths(integrations_classification: str) -> list[pathlib
     return [_get_integrations_path() / dir_name for dir_name in marketplace_dir_names]
 
 
-def get_out_integrations_path() -> pathlib.Path:
-    """Get the out/integrations' path.
+def get_content_path() -> pathlib.Path:
+    """Get the content path.
 
     Returns:
-        The out/integrations' directory path
+        The root/content/integrations directory path
 
     """
-    return config.get_marketplace_path() / constants.OUT_DIR_NAME / constants.INTEGRATIONS_DIR_NAME
+    return config.get_marketplace_path() / constants.CONTENT_DIR_NAME
+
+
+def get_out_integrations_path() -> pathlib.Path:
+    """Get the out/integrations/ path.
+
+    Returns:
+        The out/content/integrations directory path
+
+    """
+    return get_out_contents_path() / constants.OUT_INTEGRATIONS_DIR_NAME
+
+
+def get_out_contents_path() -> pathlib.Path:
+    """Get the out/content/ path.
+
+    Returns:
+        The out/content/ directory path
+
+    """
+    return get_out_path() / constants.CONTENT_DIR_NAME
+
+
+def get_out_path() -> pathlib.Path:
+    """Get the out/ path.
+
+    Returns:
+        The out/ directory path
+
+    """
+    return config.get_marketplace_path() / constants.OUT_DIR_NAME
 
 
 def discover_core_modules(path: pathlib.Path) -> list[ManagerName]:

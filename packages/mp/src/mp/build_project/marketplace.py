@@ -58,22 +58,19 @@ class Marketplace:
                 and groups exist
 
         """
-        self.marketplace_name: str = integrations_dir.name
-        self.paths: list[pathlib.Path] = mp.core.file_utils.get_all_integrations_paths(
-            self.marketplace_name
-        )
+        self.name: str = integrations_dir.name
+        self.paths: list[pathlib.Path] = mp.core.file_utils.get_all_integrations_paths(self.name)
 
         for dir_name in self.paths:
             dir_name.mkdir(exist_ok=True, parents=True)
 
-        mp_path: pathlib.Path = mp.core.config.get_marketplace_path()
-        out_path: pathlib.Path = mp_path / mp.core.constants.OUT_DIR_NAME
+        out_path: pathlib.Path = mp.core.file_utils.get_out_path()
         out_path.mkdir(exist_ok=True)
 
-        self.out_path: pathlib.Path = out_path / mp.core.constants.OUT_INTEGRATIONS_DIR_NAME
+        self.out_path: pathlib.Path = mp.core.file_utils.get_out_integrations_path()
         self.out_path.mkdir(exist_ok=True)
 
-        self.out_path /= self.marketplace_name
+        self.out_path /= self.name
         self.out_path.mkdir(exist_ok=True)
 
     def write_marketplace_json(self) -> None:

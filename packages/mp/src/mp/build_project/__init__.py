@@ -189,7 +189,7 @@ def build(  # noqa: PLR0913
                 "You can verify your configuration by running [bold]mp config "
                 "--display-config[/bold].\n"
                 "If the path is incorrect, re-configure it by running [bold]mp config "
-                "--marketplace-path <your_path>[/bold]."
+                "--root-path <your_path>[/bold]."
             )
 
         rich.print("Done building integrations.")
@@ -238,12 +238,12 @@ def _build_integrations(
     if not_found:
         rich.print(
             "The following integrations could not be found in"
-            f" the {marketplace_.marketplace_name} marketplace: {', '.join(not_found)}\n"
+            f" the {marketplace_.name} marketplace: {', '.join(not_found)}\n"
         )
     if valid_integrations_:
         rich.print(
             "Building the following integrations in the"
-            f" the {marketplace_.marketplace_name} marketplace:"
+            f" the {marketplace_.name} marketplace:"
             f" {', '.join(valid_integration_names)}"
         )
         if deconstruct:

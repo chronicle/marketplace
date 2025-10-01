@@ -33,7 +33,7 @@ jobs:
     - name: Build all integrations
       shell: pwsh
       run: |
-        wmp config --marketplace-path . --processes 10 --display-config
+        wmp config --root-path . --processes 10 --display-config
         wmp build --repository third_party --repository commercial
 
   test_mp_windows:
@@ -89,7 +89,7 @@ jobs:
         PYTHONIOENCODING: "utf-8"
       shell: pwsh
       run: |
-        wmp config --marketplace-path . --processes 10 --display-config
+        wmp config --root-path . --processes 10 --display-config
         wmp validate --repository third_party --only-pre-build
 
   run-tests-windows:
@@ -118,5 +118,5 @@ jobs:
         GITHUB_PR_SHA: ${{ github.event.pull_request.head.sha }}
       shell: pwsh
       run: |
-        wmp config --marketplace-path . --processes 10 --display-config
+        wmp config --root-path . --processes 10 --display-config
         wmp test --repository third_party --repository commercial --raise-error-on-violations
