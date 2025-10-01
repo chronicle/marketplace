@@ -1,46 +1,46 @@
-name: Update
-description: Update specific fields  in a table
-integration_identifier: AirTable
-parameters:
-- name: Max records
-  default_value: '100'
-  type: string
-  description: The maximum records (rows) that will be affected by the action
-  is_mandatory: true
-- name: Json fields
-  default_value: '{"Field_Name_1":"Value1"}'
-  type: content
-  description: 'The fields (columns) and their value in a JSON format. '
-  is_mandatory: true
-- name: Field value
-  default_value: ''
-  type: string
-  description: The value of a specific field in a table
-  is_mandatory: true
-- name: Field name
-  default_value: ''
-  type: string
-  description: 'The name of a specific field (column) in the table
-
-    '
-  is_mandatory: true
-- name: Table name
-  default_value: ''
-  type: string
-  description: A table stores similar (structured) data, and each base can have 
-    multiple tables.  This parameter indicates the name of the table within the 
-    base.
-  is_mandatory: true
-- name: Base id
-  default_value: ''
-  type: string
-  description: 'Base is a database in Airtable in which you store data.The base ID
-    can be found in the URL of the API page of the base. '
-  is_mandatory: true
-dynamic_results_metadata:
-- result_name: JsonResult
-  show_result: true
-  result_example_path:
-default_result_value: ''
 creator: Admin
+default_result_value: ''
+description: Update specific fields  in a table
+dynamic_results_metadata:
+-   result_example_path: null
+    result_name: JsonResult
+    show_result: true
+integration_identifier: AirTable
+name: Update
+parameters:
+-   default_value: '100'
+    description: The maximum records (rows) that will be affected by the action
+    is_mandatory: true
+    name: Max records
+    type: string
+-   default_value: '{"Field_Name_1":"Value1"}'
+    description: 'The fields (columns) and their value in a JSON format. '
+    is_mandatory: true
+    name: Json fields
+    type: content
+-   default_value: ''
+    description: The value of a specific field in a table
+    is_mandatory: true
+    name: Field value
+    type: string
+-   default_value: ''
+    description: 'The name of a specific field (column) in the table
+
+        '
+    is_mandatory: true
+    name: Field name
+    type: string
+-   default_value: ''
+    description: A table stores similar (structured) data, and each base can have
+        multiple tables.  This parameter indicates the name of the table within the
+        base.
+    is_mandatory: true
+    name: Table name
+    type: string
+-   default_value: ''
+    description: 'Base is a database in Airtable in which you store data.The base
+        ID can be found in the URL of the API page of the base. '
+    is_mandatory: true
+    name: Base id
+    type: string
 script_result_name: ScriptResult

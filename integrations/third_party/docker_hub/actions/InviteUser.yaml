@@ -1,30 +1,28 @@
-name: Invite User
-description: Invite a user to a specific team in a given organization in Docker 
-  Hub
-integration_identifier: Docker Hub
-parameters:
-- name: Team
-  default_value: Team
-  type: string
-  description: Teams are groups of Docker Hub users that belong to an 
-    organization
-  is_mandatory: true
-- name: Organization
-  default_value: Organization
-  type: string
-  description: Organizations are collections of teams and repositories that can 
-    be managed together
-  is_mandatory: true
-- name: Email
-  default_value: Email
-  type: string
-  description: Email address of the user you would like to invite to a specific 
-    team in a given organization
-  is_mandatory: true
-dynamic_results_metadata:
-- result_name: JsonResult
-  show_result: true
-  result_example_path:
-default_result_value: ''
 creator: Admin
+default_result_value: ''
+description: Invite a user to a specific team in a given organization in Docker Hub
+dynamic_results_metadata:
+-   result_example_path: null
+    result_name: JsonResult
+    show_result: true
+integration_identifier: Docker Hub
+name: Invite User
+parameters:
+-   default_value: Team
+    description: Teams are groups of Docker Hub users that belong to an organization
+    is_mandatory: true
+    name: Team
+    type: string
+-   default_value: Organization
+    description: Organizations are collections of teams and repositories that can
+        be managed together
+    is_mandatory: true
+    name: Organization
+    type: string
+-   default_value: Email
+    description: Email address of the user you would like to invite to a specific
+        team in a given organization
+    is_mandatory: true
+    name: Email
+    type: string
 script_result_name: ScriptResult

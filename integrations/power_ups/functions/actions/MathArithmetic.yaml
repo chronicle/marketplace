@@ -1,42 +1,42 @@
-name: Math Arithmetic
+creator: Robert
+default_result_value: ''
 description: 'A set of built in math operators:
 
-  Plus - returns a result for the sum of 2 arguments
+    Plus - returns a result for the sum of 2 arguments
 
-  Sub - returns a result for 1 argument minus the other
+    Sub - returns a result for 1 argument minus the other
 
-  Multi - returns a result for 1 argument multiplied by the other
+    Multi - returns a result for 1 argument multiplied by the other
 
-  Div - returns a result for 1 argument divided by the other
+    Div - returns a result for 1 argument divided by the other
 
-  Mod - returns the result of the percentage between 2 arguments'
-integration_identifier: Functions
-parameters:
-- name: Function
-  default_value: Plus
-  type: ddl
-  optional_values:
-  - Plus
-  - Sub
-  - Multi
-  - Div
-  - Mod
-  description: 'The function you would like to run on 2 given arguments '
-  is_mandatory: true
-- name: Arg 2
-  default_value: '{}'
-  type: string
-  description: 'The second argument '
-  is_mandatory: true
-- name: Arg 1
-  default_value: '{}'
-  type: string
-  description: The first argument
-  is_mandatory: true
+    Mod - returns the result of the percentage between 2 arguments'
 dynamic_results_metadata:
-- result_name: JsonResult
-  show_result: true
-  result_example_path:
-default_result_value: ''
-creator: Robert
+-   result_example_path: null
+    result_name: JsonResult
+    show_result: true
+integration_identifier: Functions
+name: Math Arithmetic
+parameters:
+-   default_value: Plus
+    description: 'The function you would like to run on 2 given arguments '
+    is_mandatory: true
+    name: Function
+    optional_values:
+    - Plus
+    - Sub
+    - Multi
+    - Div
+    - Mod
+    type: ddl
+-   default_value: '{}'
+    description: 'The second argument '
+    is_mandatory: true
+    name: Arg 2
+    type: string
+-   default_value: '{}'
+    description: The first argument
+    is_mandatory: true
+    name: Arg 1
+    type: string
 script_result_name: ScriptResult

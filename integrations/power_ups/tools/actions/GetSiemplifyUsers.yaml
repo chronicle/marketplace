@@ -1,17 +1,17 @@
-name: Get Siemplify Users
-description: This action will return an object containing all users configured 
-  in the Siemplify system.
-integration_identifier: Tools
-parameters:
-- name: Hide Disabled Users
-  default_value: 'true'
-  type: boolean
-  description: Hide disabled users from the result.
-  is_mandatory: false
-dynamic_results_metadata:
-- result_name: JsonResult
-  show_result: true
-  result_example_path: resources/GetSiemplifyUsers_JsonResult_example.json
-default_result_value: ''
 creator: Rob
+default_result_value: ''
+description: This action will return an object containing all users configured in
+    the Siemplify system.
+dynamic_results_metadata:
+-   result_example_path: resources/GetSiemplifyUsers_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: Tools
+name: Get Siemplify Users
+parameters:
+-   default_value: 'true'
+    description: Hide disabled users from the result.
+    is_mandatory: false
+    name: Hide Disabled Users
+    type: boolean
 script_result_name: ScriptResult

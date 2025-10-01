@@ -1,10 +1,10 @@
-name: Ping
-description: Test connectivity with your Vorlon instance
-integration_identifier: Vorlon
-parameters: []
-dynamic_results_metadata:
-- result_name: JsonResult
-  show_result: false
-  result_example_path:
-default_result_value: ''
 creator: fe5f742c-a69e-4116-ad38-b1d7c5194541
+default_result_value: ''
+description: Test connectivity with your Vorlon instance
+dynamic_results_metadata:
+-   result_example_path: null
+    result_name: JsonResult
+    show_result: false
+integration_identifier: Vorlon
+name: Ping
+parameters: []

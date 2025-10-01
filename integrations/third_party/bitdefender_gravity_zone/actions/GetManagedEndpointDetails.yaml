@@ -1,18 +1,17 @@
-name: Get Managed Endpoint Details
-description: 'This method returns detailed information, such as: details to identify
-  the endpoint and the security agent, the status of installed protection modules.'
-integration_identifier: Bitdefender GravityZone
-parameters:
-- name: Endpoint ID
-  default_value: oBFA8Ie3Oh4iXCtyr5Z9iw
-  type: string
-  description: The ID of the endpoint for which the details will be returned
-  is_mandatory: true
-dynamic_results_metadata:
-- result_name: JsonResult
-  show_result: true
-  result_example_path: 
-    resources/GetManagedEndpointDetails_JsonResult_example.json
-default_result_value: ''
 creator: daniel.harvey
+default_result_value: ''
+description: 'This method returns detailed information, such as: details to identify
+    the endpoint and the security agent, the status of installed protection modules.'
+dynamic_results_metadata:
+-   result_example_path: resources/GetManagedEndpointDetails_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: Bitdefender GravityZone
+name: Get Managed Endpoint Details
+parameters:
+-   default_value: oBFA8Ie3Oh4iXCtyr5Z9iw
+    description: The ID of the endpoint for which the details will be returned
+    is_mandatory: true
+    name: Endpoint ID
+    type: string
 script_result_name: ScriptResult

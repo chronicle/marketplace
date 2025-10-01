@@ -1,11 +1,11 @@
-name: Enrich Entities
-description: Enrich Entities with data extracted from Full Contact product
-integration_identifier: Full Contact
-parameters: []
-dynamic_results_metadata:
-- result_name: JsonResult
-  show_result: true
-  result_example_path: resources/EnrichEntities_JsonResult_example.json
-default_result_value: ''
 creator: Becker
+default_result_value: ''
+description: Enrich Entities with data extracted from Full Contact product
+dynamic_results_metadata:
+-   result_example_path: resources/EnrichEntities_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: Full Contact
+name: Enrich Entities
+parameters: []
 script_result_name: ScriptResult

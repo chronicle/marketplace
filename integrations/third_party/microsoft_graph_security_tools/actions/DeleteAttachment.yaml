@@ -1,26 +1,26 @@
-name: Delete Attachment
-description: Delete an attachment from a user's mailbox.
-integration_identifier: MicrosoftGraphSecurityTools
-parameters:
-- name: User ID
-  default_value: john.smith@mail.com
-  type: string
-  description: User ID/userPrincipalName (email)
-  is_mandatory: true
-- name: Message ID
-  default_value: someb64=
-  type: string
-  description: ID of the message
-  is_mandatory: true
-- name: Attachment ID
-  default_value: someb64=
-  type: string
-  description: ID of the attachment to delete.
-  is_mandatory: true
-dynamic_results_metadata:
-- result_name: JsonResult
-  show_result: true
-  result_example_path: resources/DeleteAttachment_JsonResult_example.json
-default_result_value: ''
 creator: daniel.harvey
+default_result_value: ''
+description: Delete an attachment from a user's mailbox.
+dynamic_results_metadata:
+-   result_example_path: resources/DeleteAttachment_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: MicrosoftGraphSecurityTools
+name: Delete Attachment
+parameters:
+-   default_value: john.smith@mail.com
+    description: User ID/userPrincipalName (email)
+    is_mandatory: true
+    name: User ID
+    type: string
+-   default_value: someb64=
+    description: ID of the message
+    is_mandatory: true
+    name: Message ID
+    type: string
+-   default_value: someb64=
+    description: ID of the attachment to delete.
+    is_mandatory: true
+    name: Attachment ID
+    type: string
 script_result_name: ScriptResult

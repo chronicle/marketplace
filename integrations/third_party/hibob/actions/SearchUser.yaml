@@ -1,16 +1,16 @@
-name: Search User
-description: Search if a specific user exists in Hibob
-integration_identifier: Hibob
-parameters:
-- name: Employee's Email
-  default_value: email@gmail.com
-  type: string
-  description: The employee's email to check if it exists
-  is_mandatory: true
-dynamic_results_metadata:
-- result_name: JsonResult
-  show_result: true
-  result_example_path: resources/SearchUser_JsonResult_example.json
-default_result_value: ''
 creator: Admin
+default_result_value: ''
+description: Search if a specific user exists in Hibob
+dynamic_results_metadata:
+-   result_example_path: resources/SearchUser_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: Hibob
+name: Search User
+parameters:
+-   default_value: email@gmail.com
+    description: The employee's email to check if it exists
+    is_mandatory: true
+    name: Employee's Email
+    type: string
 script_result_name: ScriptResult

@@ -1,52 +1,51 @@
-name: DHCP Lease Lookup
-description: Retrieves DHCP lease details for a MAC or IP address.
-integration_identifier: InfobloxNIOS
-parameters:
-- name: IP Address
-  default_value: ''
-  type: string
-  description: Lease IP address (IPv4 or IPv6).
-  is_mandatory: false
-- name: Hardware
-  default_value: ''
-  type: string
-  description: MAC address for IPv4 leases. Regex or exact search supported.
-  is_mandatory: false
-- name: Hostname
-  type: string
-  description: Hostname sent via DHCP option 12. Regex/exact search.
-  is_mandatory: false
-- name: IPv6 DUID
-  type: string
-  description: IPv6 DUID identifier for IPv6 leases. Regex/exact search.
-  is_mandatory: false
-- name: Protocol
-  default_value: Both
-  type: ddl
-  optional_values:
-  - Both
-  - IPv4
-  - IPv6
-  description: 'One of: BOTH, IPV4, IPV6; exact match only.'
-  is_mandatory: false
-- name: Fingerprint
-  type: string
-  description: DHCP client fingerprint; case‑insensitive or regex search.
-  is_mandatory: false
-- name: Username
-  type: string
-  description: User associated with lease request; case-insensitive/regex 
-    search.
-  is_mandatory: false
-- name: Limit
-  default_value: '100'
-  type: string
-  description: Maximum numbers of objects to be returned.
-  is_mandatory: false
-dynamic_results_metadata:
-- result_name: JsonResult
-  show_result: true
-  result_example_path: resources/dhcp_lease_lookup_JsonResult_example.json
-default_result_value: ''
 creator: Admin
+default_result_value: ''
+description: Retrieves DHCP lease details for a MAC or IP address.
+dynamic_results_metadata:
+-   result_example_path: resources/dhcp_lease_lookup_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: InfobloxNIOS
+name: DHCP Lease Lookup
+parameters:
+-   default_value: ''
+    description: Lease IP address (IPv4 or IPv6).
+    is_mandatory: false
+    name: IP Address
+    type: string
+-   default_value: ''
+    description: MAC address for IPv4 leases. Regex or exact search supported.
+    is_mandatory: false
+    name: Hardware
+    type: string
+-   description: "Hostname sent via DHCP option\u202F12. Regex/exact search."
+    is_mandatory: false
+    name: Hostname
+    type: string
+-   description: IPv6 DUID identifier for IPv6 leases. Regex/exact search.
+    is_mandatory: false
+    name: IPv6 DUID
+    type: string
+-   default_value: Both
+    description: 'One of: BOTH, IPV4, IPV6; exact match only.'
+    is_mandatory: false
+    name: Protocol
+    optional_values:
+    - Both
+    - IPv4
+    - IPv6
+    type: ddl
+-   description: "DHCP client fingerprint; case\u2011insensitive or regex search."
+    is_mandatory: false
+    name: Fingerprint
+    type: string
+-   description: User associated with lease request; case-insensitive/regex search.
+    is_mandatory: false
+    name: Username
+    type: string
+-   default_value: '100'
+    description: Maximum numbers of objects to be returned.
+    is_mandatory: false
+    name: Limit
+    type: string
 script_result_name: ScriptResult

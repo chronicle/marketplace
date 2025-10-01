@@ -1,61 +1,59 @@
-name: Update Playbook Alert
-description: Update playbook alert in Recorded Future.
-integration_identifier: RecordedFutureIntelligence
-parameters:
-- name: Playbook Alert ID
-  default_value: ''
-  type: string
-  description: Specify the ID of the playbook alert that needs to be updated.
-  is_mandatory: true
-- name: Playbook Alert Category
-  default_value: ''
-  type: string
-  description: Specify the category of the playbook alert that needs to be 
-    updated.
-  is_mandatory: true
-- name: Assign To
-  default_value: ''
-  type: string
-  description: Specify to whom to assign the alert. You must provide a user 
-    uhash.
-  is_mandatory: false
-- name: Log Entry
-  default_value: ''
-  type: string
-  description: Specify a comment to be added on the update action.
-  is_mandatory: false
-- name: Status
-  default_value: Select One
-  type: ddl
-  optional_values:
-  - Select One
-  - New
-  - In Progress
-  - Dismissed
-  - Resolved
-  description: Specify the new status for the alert.
-  is_mandatory: false
-- name: Priority
-  default_value: Select One
-  type: ddl
-  optional_values:
-  - Select One
-  - High
-  - Moderate
-  - Informational
-  description: Specify the new priority for the alert.
-  is_mandatory: false
-- name: Reopen Strategy
-  default_value: Select One
-  type: ddl
-  optional_values:
-  - Select One
-  - Never
-  - Significant Updates
-  description: Specify the reopen strategy for the alert.
-  is_mandatory: false
-dynamic_results_metadata:
-- result_name: JsonResult
-  show_result: true
-  result_example_path: resources/UpdatePlaybookAlert_JsonResult_example.json
 creator: admin
+description: Update playbook alert in Recorded Future.
+dynamic_results_metadata:
+-   result_example_path: resources/UpdatePlaybookAlert_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: RecordedFutureIntelligence
+name: Update Playbook Alert
+parameters:
+-   default_value: ''
+    description: Specify the ID of the playbook alert that needs to be updated.
+    is_mandatory: true
+    name: Playbook Alert ID
+    type: string
+-   default_value: ''
+    description: Specify the category of the playbook alert that needs to be updated.
+    is_mandatory: true
+    name: Playbook Alert Category
+    type: string
+-   default_value: ''
+    description: Specify to whom to assign the alert. You must provide a user uhash.
+    is_mandatory: false
+    name: Assign To
+    type: string
+-   default_value: ''
+    description: Specify a comment to be added on the update action.
+    is_mandatory: false
+    name: Log Entry
+    type: string
+-   default_value: Select One
+    description: Specify the new status for the alert.
+    is_mandatory: false
+    name: Status
+    optional_values:
+    - Select One
+    - New
+    - In Progress
+    - Dismissed
+    - Resolved
+    type: ddl
+-   default_value: Select One
+    description: Specify the new priority for the alert.
+    is_mandatory: false
+    name: Priority
+    optional_values:
+    - Select One
+    - High
+    - Moderate
+    - Informational
+    type: ddl
+-   default_value: Select One
+    description: Specify the reopen strategy for the alert.
+    is_mandatory: false
+    name: Reopen Strategy
+    optional_values:
+    - Select One
+    - Never
+    - Significant Updates
+    type: ddl

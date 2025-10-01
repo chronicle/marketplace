@@ -1,16 +1,16 @@
-name: Get User Details
-description: Get all user details by user ID
-integration_identifier: VanillaForums
-parameters:
-- name: User ID
-  default_value: '0'
-  type: string
-  description: The ID of the user who's details you want to fetch.
-  is_mandatory: true
-dynamic_results_metadata:
-- result_name: JsonResult
-  show_result: true
-  result_example_path: resources/GetUserDetails_JsonResult_example.json
-default_result_value: ''
 creator: shirsavion
+default_result_value: ''
+description: Get all user details by user ID
+dynamic_results_metadata:
+-   result_example_path: resources/GetUserDetails_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: VanillaForums
+name: Get User Details
+parameters:
+-   default_value: '0'
+    description: The ID of the user who's details you want to fetch.
+    is_mandatory: true
+    name: User ID
+    type: string
 script_result_name: ScriptResult

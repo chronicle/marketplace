@@ -1,22 +1,21 @@
-name: Remove String from Custom List
-description: The action removes a string from a custom list.
-integration_identifier: Lists
-parameters:
-- name: Category
-  default_value: WhiteList
-  type: string
-  description: Custom list Category
-  is_mandatory: true
-- name: ListItem
-  default_value: cajs3i
-  type: string
-  description: The list item string to add to the custom list.
-  is_mandatory: true
-dynamic_results_metadata:
-- result_name: JsonResult
-  show_result: true
-  result_example_path: 
-    resources/RemoveStringFromCustomList_JsonResult_example.json
-default_result_value: ''
 creator: Robert
+default_result_value: ''
+description: The action removes a string from a custom list.
+dynamic_results_metadata:
+-   result_example_path: resources/RemoveStringFromCustomList_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: Lists
+name: Remove String from Custom List
+parameters:
+-   default_value: WhiteList
+    description: Custom list Category
+    is_mandatory: true
+    name: Category
+    type: string
+-   default_value: cajs3i
+    description: The list item string to add to the custom list.
+    is_mandatory: true
+    name: ListItem
+    type: string
 script_result_name: NumOfFoundResults

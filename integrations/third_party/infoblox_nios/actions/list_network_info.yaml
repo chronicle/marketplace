@@ -1,26 +1,26 @@
-name: List Network Info
-description: Lists defined IPv4/IPv6 networks and subnets in IPAM.
-integration_identifier: InfobloxNIOS
-parameters:
-- name: Network
-  default_value: ''
-  type: string
-  description: The network address in CIDR notation (e.g., "192.168.1.0/24") .
-  is_mandatory: false
-- name: Limit
-  default_value: '100'
-  type: string
-  description: Maximum numbers of objects to be returned.
-  is_mandatory: false
-- name: Extended Attributes
-  type: string
-  description: 'The comma-separated key/value formatted filter for extended attributes,
-    e.g. "Site=New York,OtherProp=MyValue". '
-  is_mandatory: false
-dynamic_results_metadata:
-- result_name: JsonResult
-  show_result: true
-  result_example_path: resources/list_network_info_JsonResult_example.json
-default_result_value: ''
 creator: Admin
+default_result_value: ''
+description: Lists defined IPv4/IPv6 networks and subnets in IPAM.
+dynamic_results_metadata:
+-   result_example_path: resources/list_network_info_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: InfobloxNIOS
+name: List Network Info
+parameters:
+-   default_value: ''
+    description: The network address in CIDR notation (e.g., "192.168.1.0/24") .
+    is_mandatory: false
+    name: Network
+    type: string
+-   default_value: '100'
+    description: Maximum numbers of objects to be returned.
+    is_mandatory: false
+    name: Limit
+    type: string
+-   description: 'The comma-separated key/value formatted filter for extended attributes,
+        e.g. "Site=New York,OtherProp=MyValue". '
+    is_mandatory: false
+    name: Extended Attributes
+    type: string
 script_result_name: ScriptResult

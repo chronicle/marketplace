@@ -14,10 +14,9 @@
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Annotated, NotRequired, Self, TypedDict
+from typing import TYPE_CHECKING, Annotated, Any, NotRequired, Self, TypedDict
 
 import pydantic
-import yaml
 
 import mp.core.constants
 import mp.core.data_models.abc
@@ -37,6 +36,8 @@ from .parameter import (
 
 if TYPE_CHECKING:
     import pathlib
+
+    from mp.core.custom_types import JsonString
 
 DEFAULT_SCRIPT_RESULT_NAME: str = "is_success"
 DEFAULT_SIMULATION_DATA: str = '{"Entities": []}'
@@ -150,9 +151,11 @@ class ActionMetadata(
         metadata_objects: list[Self] = []
 
         for p in meta_path.rglob(f"*{mp.core.constants.DEF_FILE_SUFFIX}"):
-            metadata_content: str = p.read_text(encoding="utf-8")
-            action_metadata_json: NonBuiltActionMetadata = yaml.safe_load(metadata_content)
-            _read_json_examples(action_metadata_json, meta_path)
+            action_metadata_json: dict[str, Any] = mp.core.file_utils.load_yaml_file(p)
+            drms_with_json_contents: list[NonBuiltDynamicResultsMetadata] = _load_json_examples(
+                action_metadata_json["dynamic_results_metadata"], meta_path
+            )
+            action_metadata_json["dynamic_results_metadata"] = drms_with_json_contents
             metadata_object: Self = cls.from_non_built(p.stem, action_metadata_json)
             metadata_objects.append(metadata_object)
 
@@ -280,24 +283,37 @@ class ActionMetadata(
         return non_built
 
     def _change_result_example_fields_to_paths(self) -> None:
-        action_name = self.name
         for drm in self.dynamic_results_metadata:
-            if drm.result_example:
-                json_file_name: str = f"{action_name}_{drm.result_name}_example.json"
-                json_file_path: str = f"{mp.core.constants.RESOURCES_DIR}/{json_file_name}"
-                drm.result_example = json_file_path
-            else:
+            if not drm.result_example or drm.result_example == "{}":
                 drm.result_example = None
+                continue
+            json_file_name: str = f"{self.name}_{drm.result_name}_example.json"
+            json_file_path: str = f"{mp.core.constants.RESOURCES_DIR}/{json_file_name}"
+            drm.result_example = json_file_path
 
 
-def _read_json_examples(
-    metadata_content: NonBuiltActionMetadata, actions_dir_path: pathlib.Path
-) -> None:
-    """Read JSON example files and update the metadata dictionary in place."""
-    for drm in metadata_content.get("dynamic_results_metadata", []):
-        result_name: str = drm["result_name"]
-        example_file_path: str = drm.get("result_example_path", result_name)
+def _load_json_examples(
+    drms: list[NonBuiltDynamicResultsMetadata], actions_dir_path: pathlib.Path
+) -> list[NonBuiltDynamicResultsMetadata]:
+    """Load JSON examples from files and return a new list of DRMs with their content.
 
-        drm["result_example_path"] = mp.core.file_utils.read_json_example(
-            actions_dir_path, example_file_path
-        )
+    Returns:
+        A list of non-built DRM dicts, with the json examples content.
+
+    """
+    loaded_drms: list[NonBuiltDynamicResultsMetadata] = []
+
+    for drm in drms:
+        example_path: str | None = drm.get("result_example_path")
+
+        if not example_path:
+            drm["result_example_path"] = "{}"
+            continue
+
+        json_filepath: pathlib.Path = actions_dir_path.parent / example_path
+        json_content: JsonString = mp.core.file_utils.read_and_validate_json_file(json_filepath)
+        drm["result_example_path"] = json_content
+
+        loaded_drms.append(drm)
+
+    return loaded_drms

@@ -1,45 +1,45 @@
-name: Get Ports Info
-description: Allows to retrieve detailed Open Ports information for the given IP
-  Addresses.
-integration_identifier: TeamCymruScout
-parameters:
-- name: IP Addresses
-  default_value: 1.1.1.1
-  type: string
-  description: 'IP Address to fetch the detailed information for. Possible IP options
-    are: IPv4 and IPv6'
-  is_mandatory: true
-- name: Limit
-  default_value: '10'
-  type: string
-  description: The maximum number of valid IP addresses to be allowed
-  is_mandatory: true
-- name: Start Date
-  type: string
-  description: The latest date for results, formatted YYYY-MM-DD in UTC time. If
-    not provided, the default value will be 29 days prior to today, in UTC.
-  is_mandatory: false
-- name: End Date
-  type: string
-  description: The earliest date for results, formatted YYYY-MM-DD in UTC time. 
-    If not provided, the default value will be today's date in UTC.
-  is_mandatory: false
-- name: Days
-  type: string
-  description: 'Relative offset in days (integer) from current time in UTC.
-
-    Note: this will take priority over start_date and end_date if all three are passed.'
-  is_mandatory: false
-- name: Size
-  type: string
-  description: 'Size, in records, of the search results.
-
-    Note: The maximum allowed size is 1000.'
-  is_mandatory: false
-dynamic_results_metadata:
-- result_name: JsonResult
-  show_result: true
-  result_example_path: resources/GetPortsInfo_JsonResult_example.json
-default_result_value: ''
 creator: d28f2b46-9f0f-4c38-8509-0416748b77d9
+default_result_value: ''
+description: Allows to retrieve detailed Open Ports information for the given IP Addresses.
+dynamic_results_metadata:
+-   result_example_path: resources/GetPortsInfo_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: TeamCymruScout
+name: Get Ports Info
+parameters:
+-   default_value: 1.1.1.1
+    description: 'IP Address to fetch the detailed information for. Possible IP options
+        are: IPv4 and IPv6'
+    is_mandatory: true
+    name: IP Addresses
+    type: string
+-   default_value: '10'
+    description: The maximum number of valid IP addresses to be allowed
+    is_mandatory: true
+    name: Limit
+    type: string
+-   description: The latest date for results, formatted YYYY-MM-DD in UTC time. If
+        not provided, the default value will be 29 days prior to today, in UTC.
+    is_mandatory: false
+    name: Start Date
+    type: string
+-   description: The earliest date for results, formatted YYYY-MM-DD in UTC time.
+        If not provided, the default value will be today's date in UTC.
+    is_mandatory: false
+    name: End Date
+    type: string
+-   description: 'Relative offset in days (integer) from current time in UTC.
+
+        Note: this will take priority over start_date and end_date if all three are
+        passed.'
+    is_mandatory: false
+    name: Days
+    type: string
+-   description: 'Size, in records, of the search results.
+
+        Note: The maximum allowed size is 1000.'
+    is_mandatory: false
+    name: Size
+    type: string
 script_result_name: ScriptResult

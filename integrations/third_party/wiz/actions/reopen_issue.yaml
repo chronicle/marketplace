@@ -1,15 +1,14 @@
-name: Reopen Issue
-description: Use the Reopen Issue action to reopen a specified issue in Wiz.
-integration_identifier: Wiz
-parameters:
-- name: Issue ID
-  default_value: ''
-  type: string
-  description: The unique identifier of the issue in Wiz to retrieve or update.
-  is_mandatory: true
-dynamic_results_metadata:
-    # language=json
-- result_name: JsonResult
-  show_result: true
-  result_example_path: resources/reopen_issue_JsonResult_example.json
 creator: admin
+description: Use the Reopen Issue action to reopen a specified issue in Wiz.
+dynamic_results_metadata:
+-   result_example_path: resources/reopen_issue_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: Wiz
+name: Reopen Issue
+parameters:
+-   default_value: ''
+    description: The unique identifier of the issue in Wiz to retrieve or update.
+    is_mandatory: true
+    name: Issue ID
+    type: string

@@ -1,31 +1,31 @@
-name: Get Case Data
-description: This action will get all the data from a case and return a JSON 
-  result.  The result includes comments, entity information, insights, playbooks
-  that ran, alert information and events.
-integration_identifier: Tools
-parameters:
-- name: Case Id
-  type: string
-  description: The Case ID to query.  Optional. Will use current case if empty.
-  is_mandatory: false
-- name: Fields to Return
-  type: string
-  description: 'Specify a comma-separated list of fields that need to be returned.
-    If nothing is provided, all fields are returned. Getting nested values can be
-    done using "Nested Keys Delimiter" value to chain nested keys and list indexes.
-    For example, if the delimiter is ".": key_1.nested_key_1.0.nested_key_2, key_2,
-    key_3.1.nested_key_1'
-  is_mandatory: false
-- name: Nested Keys Delimiter
-  default_value: .
-  type: string
-  description: The delimiter to split nested keys. If missing or not provided 
-    fetching nested keys is not possible. Cannot be a comma (",")
-  is_mandatory: false
-dynamic_results_metadata:
-- result_name: JsonResult
-  show_result: true
-  result_example_path: resources/GetCaseData_JsonResult_example.json
-default_result_value: ''
 creator: Robert
+default_result_value: ''
+description: This action will get all the data from a case and return a JSON result.  The
+    result includes comments, entity information, insights, playbooks that ran, alert
+    information and events.
+dynamic_results_metadata:
+-   result_example_path: resources/GetCaseData_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: Tools
+name: Get Case Data
+parameters:
+-   description: The Case ID to query.  Optional. Will use current case if empty.
+    is_mandatory: false
+    name: Case Id
+    type: string
+-   description: 'Specify a comma-separated list of fields that need to be returned.
+        If nothing is provided, all fields are returned. Getting nested values can
+        be done using "Nested Keys Delimiter" value to chain nested keys and list
+        indexes. For example, if the delimiter is ".": key_1.nested_key_1.0.nested_key_2,
+        key_2, key_3.1.nested_key_1'
+    is_mandatory: false
+    name: Fields to Return
+    type: string
+-   default_value: .
+    description: The delimiter to split nested keys. If missing or not provided fetching
+        nested keys is not possible. Cannot be a comma (",")
+    is_mandatory: false
+    name: Nested Keys Delimiter
+    type: string
 script_result_name: ScriptResult

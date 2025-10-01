@@ -1,33 +1,32 @@
-name: Search Text
-description: Search for the 'Search For' parameter in the input text or loop 
-  through the 'Search For Regex' list and find matches in the input text.  If 
-  there is a match, the action will return true.
-integration_identifier: Tools
-parameters:
-- name: Text
-  default_value: ''
-  type: string
-  description: Enter the text that will be searched.
-  is_mandatory: true
-- name: Search For
-  type: string
-  description: 'Optional: Enter the string that the Text will be searched for.'
-  is_mandatory: false
-- name: Search For Regex
-  type: string
-  description: Optional.  List of regexes that will be used to search the 
-    string.  Regex should be wrapped in double quotes.  Supports comma delimited
-    list.
-  is_mandatory: false
-- name: Case Sensitive
-  default_value: 'false'
-  type: boolean
-  description: Should the search be case sensitive?
-  is_mandatory: false
-dynamic_results_metadata:
-- result_name: JsonResult
-  show_result: true
-  result_example_path: resources/SearchText_JsonResult_example.json
-default_result_value: ''
 creator: Rob
+default_result_value: ''
+description: Search for the 'Search For' parameter in the input text or loop through
+    the 'Search For Regex' list and find matches in the input text.  If there is a
+    match, the action will return true.
+dynamic_results_metadata:
+-   result_example_path: resources/SearchText_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: Tools
+name: Search Text
+parameters:
+-   default_value: ''
+    description: Enter the text that will be searched.
+    is_mandatory: true
+    name: Text
+    type: string
+-   description: 'Optional: Enter the string that the Text will be searched for.'
+    is_mandatory: false
+    name: Search For
+    type: string
+-   description: Optional.  List of regexes that will be used to search the string.  Regex
+        should be wrapped in double quotes.  Supports comma delimited list.
+    is_mandatory: false
+    name: Search For Regex
+    type: string
+-   default_value: 'false'
+    description: Should the search be case sensitive?
+    is_mandatory: false
+    name: Case Sensitive
+    type: boolean
 script_result_name: match_found

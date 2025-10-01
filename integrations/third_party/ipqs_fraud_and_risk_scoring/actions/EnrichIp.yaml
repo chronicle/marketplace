@@ -1,65 +1,63 @@
-name: Enrich IP
-description: 'This action performs real-time lookups to instantly determine how risky
-  a user, click, or transaction is based on an IP address and optional device information.
-  In addition to analyzing if the IP address is a proxy or VPN, the API returns over
-  20 relevant data points such as: Geo location data, ISP, Connection type, Device
-  details, Recent reputation activity, Overall fraud score, Status as a proxy, VPN,
-  or TOR connection, Abuse Velocity, Other similar data points to classify reputation
-  and risk.'
-integration_identifier: IPQS Fraud and Risk Scoring
-parameters:
-- name: User Language
-  default_value: ''
-  type: string
-  description: You can optionally provide us with the users language header. 
-    This allows us to evaluate the risk of the user as judged in the 
-    "fraud_score".
-  is_mandatory: false
-- name: Fast
-  default_value: 'false'
-  type: boolean
-  description: When this parameter is enabled our API will not perform certain 
-    forensic checks that take longer to process.
-  is_mandatory: false
-- name: Mobile
-  default_value: 'false'
-  type: boolean
-  description: 'You can optionally specify that this lookup should be treated as a
-    mobile device. '
-  is_mandatory: false
-- name: Allow Public Access Points
-  default_value: 'false'
-  type: boolean
-  description: Bypasses certain checks for IP addresses from education and 
-    research institutions, schools, and some corporate connections.
-  is_mandatory: false
-- name: Lighter Penalties
-  default_value: 'false'
-  type: boolean
-  description: Skip some denylists which can cause false-positives for sensitive
-    audiences.
-  is_mandatory: false
-- name: Strictness
-  default_value: '0'
-  type: ddl
-  optional_values:
-  - '0'
-  - '1'
-  - '2'
-  description: How in depth (strict) do you want this query to be? Higher values
-    take longer to process and may provide a higher false-positive rate.
-  is_mandatory: true
-- name: User Agent
-  default_value: ''
-  type: string
-  description: You can optionally provide us with the user agent string 
-    (browser). This allows to see if the user is a bot or running an invalid 
-    browser.
-  is_mandatory: false
-dynamic_results_metadata:
-- result_name: JsonResult
-  show_result: true
-  result_example_path:
-default_result_value: ''
 creator: IPQS
+default_result_value: ''
+description: 'This action performs real-time lookups to instantly determine how risky
+    a user, click, or transaction is based on an IP address and optional device information.
+    In addition to analyzing if the IP address is a proxy or VPN, the API returns
+    over 20 relevant data points such as: Geo location data, ISP, Connection type,
+    Device details, Recent reputation activity, Overall fraud score, Status as a proxy,
+    VPN, or TOR connection, Abuse Velocity, Other similar data points to classify
+    reputation and risk.'
+dynamic_results_metadata:
+-   result_example_path: null
+    result_name: JsonResult
+    show_result: true
+integration_identifier: IPQS Fraud and Risk Scoring
+name: Enrich IP
+parameters:
+-   default_value: ''
+    description: You can optionally provide us with the users language header. This
+        allows us to evaluate the risk of the user as judged in the "fraud_score".
+    is_mandatory: false
+    name: User Language
+    type: string
+-   default_value: 'false'
+    description: When this parameter is enabled our API will not perform certain forensic
+        checks that take longer to process.
+    is_mandatory: false
+    name: Fast
+    type: boolean
+-   default_value: 'false'
+    description: 'You can optionally specify that this lookup should be treated as
+        a mobile device. '
+    is_mandatory: false
+    name: Mobile
+    type: boolean
+-   default_value: 'false'
+    description: Bypasses certain checks for IP addresses from education and research
+        institutions, schools, and some corporate connections.
+    is_mandatory: false
+    name: Allow Public Access Points
+    type: boolean
+-   default_value: 'false'
+    description: Skip some denylists which can cause false-positives for sensitive
+        audiences.
+    is_mandatory: false
+    name: Lighter Penalties
+    type: boolean
+-   default_value: '0'
+    description: How in depth (strict) do you want this query to be? Higher values
+        take longer to process and may provide a higher false-positive rate.
+    is_mandatory: true
+    name: Strictness
+    optional_values:
+    - '0'
+    - '1'
+    - '2'
+    type: ddl
+-   default_value: ''
+    description: You can optionally provide us with the user agent string (browser).
+        This allows to see if the user is a bot or running an invalid browser.
+    is_mandatory: false
+    name: User Agent
+    type: string
 script_result_name: ScriptResult

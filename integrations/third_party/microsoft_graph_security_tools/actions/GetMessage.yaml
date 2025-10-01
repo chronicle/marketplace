@@ -1,23 +1,23 @@
-name: Get Message
+creator: daniel.harvey
+default_result_value: ''
 description: 'Get Email Message from a user''s inbox
 
-  https://docs.microsoft.com/en-us/graph/api/message-get?view=graph-rest-1.0&tabs=http'
-integration_identifier: MicrosoftGraphSecurityTools
-parameters:
-- name: User ID
-  default_value: john.smith@email.com
-  type: string
-  description: User ID/userPrincipalName (email)
-  is_mandatory: true
-- name: Message ID
-  default_value: AAMkADhMGAAA=
-  type: string
-  description: ID of the message to retrieve
-  is_mandatory: true
+    https://docs.microsoft.com/en-us/graph/api/message-get?view=graph-rest-1.0&tabs=http'
 dynamic_results_metadata:
-- result_name: JsonResult
-  show_result: true
-  result_example_path: resources/GetMessage_JsonResult_example.json
-default_result_value: ''
-creator: daniel.harvey
+-   result_example_path: resources/GetMessage_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: MicrosoftGraphSecurityTools
+name: Get Message
+parameters:
+-   default_value: john.smith@email.com
+    description: User ID/userPrincipalName (email)
+    is_mandatory: true
+    name: User ID
+    type: string
+-   default_value: AAMkADhMGAAA=
+    description: ID of the message to retrieve
+    is_mandatory: true
+    name: Message ID
+    type: string
 script_result_name: ScriptResult

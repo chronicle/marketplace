@@ -1,103 +1,101 @@
-name: List Detections
-description: List all the detections for the given entity ID.
-integration_identifier: VectraRUX
-parameters:
-- name: Detection Category
-  default_value: ''
-  type: ddl
-  optional_values:
-  - Info
-  - Exfiltration
-  - Lateral Movement
-  - Reconnaissance
-  - Botnet
-  - Command and Control
-  description: Filter detections by Detection Category
-  is_mandatory: false
-- name: Threat GTE
-  type: string
-  description: Filter detections whose threat is greater then given value
-  is_mandatory: false
-- name: Certainty GTE
-  type: string
-  description: Filter detections if the certainty is greater or equal to given 
-    value
-  is_mandatory: false
-- name: Last Timestamp GTE
-  type: string
-  description: Filter detections based on timestamp
-  is_mandatory: false
-- name: Last Timestamp LTE
-  type: string
-  description: Filter detections based on last time stamp
-  is_mandatory: false
-- name: Tags
-  type: string
-  description: Provide tags with coma separated values to filter detections
-  is_mandatory: false
-- name: Entity Type
-  default_value: ''
-  type: ddl
-  optional_values:
-  - Host
-  - Account
-  description: Type of Entity
-  is_mandatory: false
-- name: Entity ID
-  type: string
-  description: ID of entity
-  is_mandatory: false
-- name: Is Targeting Key Asset
-  default_value: ''
-  type: ddl
-  optional_values:
-  - "True"
-  - "False"
-  description: Filter detections based on if it's targeting key asset or not
-  is_mandatory: false
-- name: Note Modified Timestamp GTE
-  type: string
-  description: Filter detections based on note modified timestamp
-  is_mandatory: false
-- name: Limit
-  type: string
-  description: Number of records to fetch
-  is_mandatory: false
-- name: Order
-  default_value: ''
-  type: ddl
-  optional_values:
-  - Ascending
-  - Descending
-  description: Order records by ascending or descending
-  is_mandatory: false
-- name: Order By
-  default_value: ''
-  type: ddl
-  optional_values:
-  - last_timestamp
-  - threat_score
-  - certainty_score
-  description: Order records by  last_timestamp, threat_score, and 
-    certainty_score
-  is_mandatory: false
-- name: State
-  default_value: ''
-  type: ddl
-  optional_values:
-  - Active
-  - Inactive
-  - Fixed
-  description: Filter detections by State
-  is_mandatory: false
-- name: Detection Type
-  type: string
-  description: Filter detections by detection type
-  is_mandatory: false
-dynamic_results_metadata:
-- result_name: JsonResult
-  show_result: true
-  result_example_path: resources/List Detections_JsonResult_example.json
-default_result_value: ''
 creator: Admin
+default_result_value: ''
+description: List all the detections for the given entity ID.
+dynamic_results_metadata:
+-   result_example_path: resources/List Detections_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: VectraRUX
+name: List Detections
+parameters:
+-   default_value: ''
+    description: Filter detections by Detection Category
+    is_mandatory: false
+    name: Detection Category
+    optional_values:
+    - Info
+    - Exfiltration
+    - Lateral Movement
+    - Reconnaissance
+    - Botnet
+    - Command and Control
+    type: ddl
+-   description: Filter detections whose threat is greater then given value
+    is_mandatory: false
+    name: Threat GTE
+    type: string
+-   description: Filter detections if the certainty is greater or equal to given value
+    is_mandatory: false
+    name: Certainty GTE
+    type: string
+-   description: Filter detections based on timestamp
+    is_mandatory: false
+    name: Last Timestamp GTE
+    type: string
+-   description: Filter detections based on last time stamp
+    is_mandatory: false
+    name: Last Timestamp LTE
+    type: string
+-   description: Provide tags with coma separated values to filter detections
+    is_mandatory: false
+    name: Tags
+    type: string
+-   default_value: ''
+    description: Type of Entity
+    is_mandatory: false
+    name: Entity Type
+    optional_values:
+    - Host
+    - Account
+    type: ddl
+-   description: ID of entity
+    is_mandatory: false
+    name: Entity ID
+    type: string
+-   default_value: ''
+    description: Filter detections based on if it's targeting key asset or not
+    is_mandatory: false
+    name: Is Targeting Key Asset
+    optional_values:
+    - 'True'
+    - 'False'
+    type: ddl
+-   description: Filter detections based on note modified timestamp
+    is_mandatory: false
+    name: Note Modified Timestamp GTE
+    type: string
+-   description: Number of records to fetch
+    is_mandatory: false
+    name: Limit
+    type: string
+-   default_value: ''
+    description: Order records by ascending or descending
+    is_mandatory: false
+    name: Order
+    optional_values:
+    - Ascending
+    - Descending
+    type: ddl
+-   default_value: ''
+    description: Order records by  last_timestamp, threat_score, and certainty_score
+    is_mandatory: false
+    name: Order By
+    optional_values:
+    - last_timestamp
+    - threat_score
+    - certainty_score
+    type: ddl
+-   default_value: ''
+    description: Filter detections by State
+    is_mandatory: false
+    name: State
+    optional_values:
+    - Active
+    - Inactive
+    - Fixed
+    type: ddl
+-   description: Filter detections by detection type
+    is_mandatory: false
+    name: Detection Type
+    type: string
 script_result_name: ScriptResult

@@ -1,18 +1,18 @@
-name: List Mail Rules
+creator: daniel.harvey
+default_result_value: ''
 description: 'Get all the messageRule objects defined for the user''s Inbox.
 
-  https://docs.microsoft.com/en-us/graph/api/mailfolder-list-messagerules?view=graph-rest-1.0&tabs=http'
-integration_identifier: MicrosoftGraphSecurityTools
-parameters:
-- name: User ID
-  default_value: john.smith@mail.com
-  type: string
-  description: User ID/userPrincipalName (email)
-  is_mandatory: true
+    https://docs.microsoft.com/en-us/graph/api/mailfolder-list-messagerules?view=graph-rest-1.0&tabs=http'
 dynamic_results_metadata:
-- result_name: JsonResult
-  show_result: true
-  result_example_path: resources/ListMailRules_JsonResult_example.json
-default_result_value: ''
-creator: daniel.harvey
+-   result_example_path: resources/ListMailRules_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: MicrosoftGraphSecurityTools
+name: List Mail Rules
+parameters:
+-   default_value: john.smith@mail.com
+    description: User ID/userPrincipalName (email)
+    is_mandatory: true
+    name: User ID
+    type: string
 script_result_name: ScriptResult

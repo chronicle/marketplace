@@ -1,27 +1,27 @@
-name: Custom Query
+creator: TehilaGourary
+default_result_value: ''
 description: 'Custom query
 
-  See the documentation: "https://docs.fp.tools/"'
-integration_identifier: Flashpoint
-parameters:
-- name: Query Content
-  default_value: "{\n  \"query\": \"malcious\",\n  \"limit\": \"100\",\n  \"start_date\"\
-    : \"2020-02-26T14:49:07Z\",\n  \"end_date\": \"2020-11-26T14:49:07Z\",\n  \"search_tags\"\
-    : \"malware\",\n  \"sort_timestamp\": \"des\"\n}"
-  type: code
-  description: The content of the query to search.
-  is_mandatory: true
-- name: New Query URL
-  default_value: /all/search
-  type: string
-  description: 'The new query URL path.
-
-    /all/search'
-  is_mandatory: true
+    See the documentation: "https://docs.fp.tools/"'
 dynamic_results_metadata:
-- result_name: JsonResult
-  show_result: true
-  result_example_path: resources/CustomQuery_JsonResult_example.json
-default_result_value: ''
-creator: TehilaGourary
+-   result_example_path: resources/CustomQuery_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: Flashpoint
+name: Custom Query
+parameters:
+-   default_value: "{\n  \"query\": \"malcious\",\n  \"limit\": \"100\",\n  \"start_date\"\
+        : \"2020-02-26T14:49:07Z\",\n  \"end_date\": \"2020-11-26T14:49:07Z\",\n \
+        \ \"search_tags\": \"malware\",\n  \"sort_timestamp\": \"des\"\n}"
+    description: The content of the query to search.
+    is_mandatory: true
+    name: Query Content
+    type: code
+-   default_value: /all/search
+    description: 'The new query URL path.
+
+        /all/search'
+    is_mandatory: true
+    name: New Query URL
+    type: string
 script_result_name: ScriptResult

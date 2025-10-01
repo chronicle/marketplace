@@ -1,17 +1,16 @@
-name: Upload Image From File Path
-description: Upload image from file path to Imgbb ( the outcome is the image 
-  URL)
-integration_identifier: Imgbb
-parameters:
-- name: Image File Path
-  default_value: ''
-  type: string
-  description: The file path of the image you would like to upload to Imgbb
-  is_mandatory: true
-dynamic_results_metadata:
-- result_name: JsonResult
-  show_result: true
-  result_example_path: resources/UploadImageFromFilePath_JsonResult_example.json
-default_result_value: ''
 creator: TehilaGourary
+default_result_value: ''
+description: Upload image from file path to Imgbb ( the outcome is the image URL)
+dynamic_results_metadata:
+-   result_example_path: resources/UploadImageFromFilePath_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: Imgbb
+name: Upload Image From File Path
+parameters:
+-   default_value: ''
+    description: The file path of the image you would like to upload to Imgbb
+    is_mandatory: true
+    name: Image File Path
+    type: string
 script_result_name: ScriptResult

@@ -1,31 +1,31 @@
-name: Extract URL Domain
-description: 'This action enriches all entities with a new field "siemplifytools_extracted_domain"
-  containing the extracted domain out of the entity identifier. If the entity has
-  no domain (file hash for example) it will simply not return anything.
-
-  In addition to entities, the user can specify a list of URLs as a parameter and
-  process them, without enriching, naturally.'
-integration_identifier: Tools
-parameters:
-- name: Separator
-  default_value: ','
-  type: string
-  description: Separator string to use to separate URLs
-  is_mandatory: true
-- name: URLs
-  type: string
-  description: One or more URLs to extract the domain from
-  is_mandatory: false
-- name: Extract subdomain
-  default_value: 'false'
-  type: boolean
-  description: When set to True, the code will also extract the subdomain from 
-    the URLs and include it in the result.
-  is_mandatory: false
-dynamic_results_metadata:
-- result_name: JsonResult
-  show_result: true
-  result_example_path: resources/ExtractUrlDomain_JsonResult_example.json
-default_result_value: ''
 creator: Robert
+default_result_value: ''
+description: 'This action enriches all entities with a new field "siemplifytools_extracted_domain"
+    containing the extracted domain out of the entity identifier. If the entity has
+    no domain (file hash for example) it will simply not return anything.
+
+    In addition to entities, the user can specify a list of URLs as a parameter and
+    process them, without enriching, naturally.'
+dynamic_results_metadata:
+-   result_example_path: resources/ExtractUrlDomain_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: Tools
+name: Extract URL Domain
+parameters:
+-   default_value: ','
+    description: Separator string to use to separate URLs
+    is_mandatory: true
+    name: Separator
+    type: string
+-   description: One or more URLs to extract the domain from
+    is_mandatory: false
+    name: URLs
+    type: string
+-   default_value: 'false'
+    description: When set to True, the code will also extract the subdomain from the
+        URLs and include it in the result.
+    is_mandatory: false
+    name: Extract subdomain
+    type: boolean
 script_result_name: ScriptResult

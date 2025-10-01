@@ -1,24 +1,24 @@
-name: Describe Entity
-description: Show all the details of an entity for the given ID.
-integration_identifier: VectraQUX
-parameters:
-- name: Entity ID
-  default_value: '0'
-  type: string
-  description: Unique ID for Account/Host
-  is_mandatory: true
-- name: Entity Type
-  default_value: Host
-  type: ddl
-  optional_values:
-  - Account
-  - Host
-  description: Type of entity that can be either Account or Host
-  is_mandatory: true
-dynamic_results_metadata:
-- result_name: JsonResult
-  show_result: true
-  result_example_path: resources/Describe Entity_JsonResult_example.json
-default_result_value: ''
 creator: Admin
+default_result_value: ''
+description: Show all the details of an entity for the given ID.
+dynamic_results_metadata:
+-   result_example_path: resources/Describe Entity_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: VectraQUX
+name: Describe Entity
+parameters:
+-   default_value: '0'
+    description: Unique ID for Account/Host
+    is_mandatory: true
+    name: Entity ID
+    type: string
+-   default_value: Host
+    description: Type of entity that can be either Account or Host
+    is_mandatory: true
+    name: Entity Type
+    optional_values:
+    - Account
+    - Host
+    type: ddl
 script_result_name: ScriptResult

@@ -1,53 +1,53 @@
-name: List Assignments
-description: List all the assignments based on the query parameters.
-integration_identifier: VectraQUX
-parameters:
-- name: Accounts IDs
-  default_value: ''
-  type: string
-  description: Comma-separated account ids to filter out accounts.
-  is_mandatory: false
-- name: Hosts IDs
-  default_value: ''
-  type: string
-  description: Comma-separated host ids to filter out accounts.
-  is_mandatory: false
-- name: Assignees IDs
-  default_value: ''
-  type: string
-  description: Comma-separated assignment ids to filter out accounts.
-  is_mandatory: false
-- name: Resolution IDs
-  default_value: ''
-  type: string
-  description: Comma-separated outcome ids to filter out accounts.
-  is_mandatory: false
-- name: Resolved
-  default_value: "None"
-  type: ddl
-  optional_values:
-  - "None"
-  - "True"
-  - "False"
-  description: Filter by resolved status.[true/false]
-  is_mandatory: false
-- name: Created After
-  default_value: ''
-  type: string
-  description: 'Filter by created after the timestamp.
-
-    Supported formats: 2 minutes, 2 hours, 2 days, 2 weeks, 2 months, 2 years, yyyy-mm-dd,
-    yyyy-mm-ddTHH: MM:SSZ. '
-  is_mandatory: false
-- name: Limit
-  default_value: ''
-  type: string
-  description: Specify the limit for fetching the records.
-  is_mandatory: false
-dynamic_results_metadata:
-- result_name: JsonResult
-  show_result: true
-  result_example_path: resources/List Assignments_JsonResult_example.json
-default_result_value: ''
 creator: Admin
+default_result_value: ''
+description: List all the assignments based on the query parameters.
+dynamic_results_metadata:
+-   result_example_path: resources/List Assignments_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: VectraQUX
+name: List Assignments
+parameters:
+-   default_value: ''
+    description: Comma-separated account ids to filter out accounts.
+    is_mandatory: false
+    name: Accounts IDs
+    type: string
+-   default_value: ''
+    description: Comma-separated host ids to filter out accounts.
+    is_mandatory: false
+    name: Hosts IDs
+    type: string
+-   default_value: ''
+    description: Comma-separated assignment ids to filter out accounts.
+    is_mandatory: false
+    name: Assignees IDs
+    type: string
+-   default_value: ''
+    description: Comma-separated outcome ids to filter out accounts.
+    is_mandatory: false
+    name: Resolution IDs
+    type: string
+-   default_value: None
+    description: Filter by resolved status.[true/false]
+    is_mandatory: false
+    name: Resolved
+    optional_values:
+    - None
+    - 'True'
+    - 'False'
+    type: ddl
+-   default_value: ''
+    description: 'Filter by created after the timestamp.
+
+        Supported formats: 2 minutes, 2 hours, 2 days, 2 weeks, 2 months, 2 years,
+        yyyy-mm-dd, yyyy-mm-ddTHH: MM:SSZ. '
+    is_mandatory: false
+    name: Created After
+    type: string
+-   default_value: ''
+    description: Specify the limit for fetching the records.
+    is_mandatory: false
+    name: Limit
+    type: string
 script_result_name: ScriptResult

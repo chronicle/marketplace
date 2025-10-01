@@ -1,66 +1,65 @@
-name: Add User
-description: Add user with all it's details to Vanilla
-integration_identifier: VanillaForums
-parameters:
-- name: Override Name Duplicity
-  default_value: 'false'
-  type: boolean
-  description: '''True''- if another user in the system has the same username- if
-    the email addresses differ- allow both to exist.
-
-    ''False''- don''t allow that.'
-  is_mandatory: false
-- name: Additional Identifiers
-  default_value: _,~,-
-  type: string
-  description: 'If username is already in Vanilla, one of these characters will replace
-    the gap between first and last name. 1st is 1st priority.
-
-    Example:
-
-    Com_Munity'
-  is_mandatory: false
-- name: First Name
-  default_value: Com
-  type: string
-  description: New user's first name
-  is_mandatory: true
-- name: Last Name
-  default_value: Munity
-  type: string
-  description: New user's last name
-  is_mandatory: true
-- name: Role ID
-  default_value: '8'
-  type: string
-  description: The ID of the role you want to assign to the user
-  is_mandatory: true
-- name: Email
-  default_value: mail@mail.com
-  type: string
-  description: New user's email address
-  is_mandatory: true
-- name: Email Confirmed
-  default_value: 'true'
-  type: boolean
-  description: Check this as true if the email address of the new user is 
-    confirmed.
-  is_mandatory: false
-- name: Photo URL
-  type: string
-  description: URL of the new user's picture
-  is_mandatory: false
-- name: Password
-  default_value: Aa1234
-  type: password
-  description: 'Password for the new User.
-
-    Must be at least 6 characters and include both letters and digits.'
-  is_mandatory: true
-dynamic_results_metadata:
-- result_name: JsonResult
-  show_result: true
-  result_example_path: resources/AddUser_JsonResult_example.json
-default_result_value: ''
 creator: tehila
+default_result_value: ''
+description: Add user with all it's details to Vanilla
+dynamic_results_metadata:
+-   result_example_path: resources/AddUser_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: VanillaForums
+name: Add User
+parameters:
+-   default_value: 'false'
+    description: '''True''- if another user in the system has the same username- if
+        the email addresses differ- allow both to exist.
+
+        ''False''- don''t allow that.'
+    is_mandatory: false
+    name: Override Name Duplicity
+    type: boolean
+-   default_value: _,~,-
+    description: 'If username is already in Vanilla, one of these characters will
+        replace the gap between first and last name. 1st is 1st priority.
+
+        Example:
+
+        Com_Munity'
+    is_mandatory: false
+    name: Additional Identifiers
+    type: string
+-   default_value: Com
+    description: New user's first name
+    is_mandatory: true
+    name: First Name
+    type: string
+-   default_value: Munity
+    description: New user's last name
+    is_mandatory: true
+    name: Last Name
+    type: string
+-   default_value: '8'
+    description: The ID of the role you want to assign to the user
+    is_mandatory: true
+    name: Role ID
+    type: string
+-   default_value: mail@mail.com
+    description: New user's email address
+    is_mandatory: true
+    name: Email
+    type: string
+-   default_value: 'true'
+    description: Check this as true if the email address of the new user is confirmed.
+    is_mandatory: false
+    name: Email Confirmed
+    type: boolean
+-   description: URL of the new user's picture
+    is_mandatory: false
+    name: Photo URL
+    type: string
+-   default_value: Aa1234
+    description: 'Password for the new User.
+
+        Must be at least 6 characters and include both letters and digits.'
+    is_mandatory: true
+    name: Password
+    type: password
 script_result_name: ScriptResult

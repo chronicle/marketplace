@@ -1,33 +1,33 @@
-name: Get Linked Alerts
-description: Returns alerts that are linked to the provided alert id, linked 
-  alerts are alerts that has the same secret id & same alert group
-integration_identifier: Vorlon
-parameters:
-- name: Alert Status
-  default_value: ''
-  type: ddl
-  optional_values:
-  - open
-  - dismissed
-  - resolved
-  description: Defines the list of alert statuses to retrieve
-  is_mandatory: false
-- name: Page
-  type: string
-  description: Defines the page number
-  is_mandatory: false
-- name: Limit
-  type: string
-  description: If provided, filter by limit. Default is 100
-  is_mandatory: false
-- name: Alert ID
-  default_value: <alert_id>
-  type: string
-  description: Alert ID for which the linked alerts would be returned
-  is_mandatory: true
-dynamic_results_metadata:
-- result_name: JsonResult
-  show_result: true
-  result_example_path: resources/GetLinkedAlerts_JsonResult_example.json
-default_result_value: ''
 creator: fe5f742c-a69e-4116-ad38-b1d7c5194541
+default_result_value: ''
+description: Returns alerts that are linked to the provided alert id, linked alerts
+    are alerts that has the same secret id & same alert group
+dynamic_results_metadata:
+-   result_example_path: resources/GetLinkedAlerts_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: Vorlon
+name: Get Linked Alerts
+parameters:
+-   default_value: ''
+    description: Defines the list of alert statuses to retrieve
+    is_mandatory: false
+    name: Alert Status
+    optional_values:
+    - open
+    - dismissed
+    - resolved
+    type: ddl
+-   description: Defines the page number
+    is_mandatory: false
+    name: Page
+    type: string
+-   description: If provided, filter by limit. Default is 100
+    is_mandatory: false
+    name: Limit
+    type: string
+-   default_value: <alert_id>
+    description: Alert ID for which the linked alerts would be returned
+    is_mandatory: true
+    name: Alert ID
+    type: string

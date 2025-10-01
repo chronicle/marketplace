@@ -1,30 +1,29 @@
-name: Get Response Policy Zone Details
-description: Retrieves configuration details for a specified RPZ.
-integration_identifier: InfobloxNIOS
-parameters:
-- name: FQDN
-  type: string
-  description: The name of this DNS zone in FQDN format.
-  is_mandatory: false
-- name: View
-  type: string
-  description: The name of the DNS view in which the zone resides ( e.g. 
-    “external”).
-  is_mandatory: false
-- name: Comment
-  type: string
-  description: Comment for the zone.
-  is_mandatory: false
-- name: Limit
-  default_value: '100'
-  type: string
-  description: Maximum number of objects to be returned.
-  is_mandatory: false
-dynamic_results_metadata:
-- result_name: JsonResult
-  show_result: true
-  result_example_path: 
-    resources/get_response_policy_zone_details_JsonResult_example.json
-default_result_value: ''
 creator: Admin
+default_result_value: ''
+description: Retrieves configuration details for a specified RPZ.
+dynamic_results_metadata:
+-   result_example_path: resources/get_response_policy_zone_details_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: InfobloxNIOS
+name: Get Response Policy Zone Details
+parameters:
+-   description: The name of this DNS zone in FQDN format.
+    is_mandatory: false
+    name: FQDN
+    type: string
+-   description: "The name of the DNS view in which the zone resides ( e.g. \u201C\
+        external\u201D)."
+    is_mandatory: false
+    name: View
+    type: string
+-   description: Comment for the zone.
+    is_mandatory: false
+    name: Comment
+    type: string
+-   default_value: '100'
+    description: Maximum number of objects to be returned.
+    is_mandatory: false
+    name: Limit
+    type: string
 script_result_name: ScriptResult

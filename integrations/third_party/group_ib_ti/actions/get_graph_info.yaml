@@ -1,12 +1,12 @@
-name: Get-Graph-Info
-description: Used to get WHOIS information based on Domain or IP Address.
-integration_identifier: Group-IB-TI
-parameters: []
-dynamic_results_metadata:
-- result_name: JsonResult
-  show_result: true
-  result_example_path: resources/get_graph_info_JsonResult_example.json
-default_result_value: Timeout exceeded
 creator: a27bf531-e234-4aff-b717-18a554a6a8b9
-simulation_data_json: '{"Entities": null}'
+default_result_value: Timeout exceeded
+description: Used to get WHOIS information based on Domain or IP Address.
+dynamic_results_metadata:
+-   result_example_path: resources/get_graph_info_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: Group-IB-TI
+name: Get-Graph-Info
+parameters: []
 script_result_name: GIB_Graph
+simulation_data_json: '{"Entities": null}'

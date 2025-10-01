@@ -1,15 +1,15 @@
-name: Get AI Job decision set
-description: ''
-integration_identifier: ArcannaAI
-parameters:
-- name: Job ID
-  default_value: ' '
-  type: string
-  description: 'Job ID for which decision set should be fetched '
-  is_mandatory: true
-dynamic_results_metadata:
-- result_name: JsonResult
-  show_result: true
-  result_example_path: resources/GetAiJobDecisionSet_JsonResult_example.json
-default_result_value: ''
 creator: 57861f63-e407-4200-90d4-a03bed1eb07e
+default_result_value: ''
+description: ''
+dynamic_results_metadata:
+-   result_example_path: resources/GetAiJobDecisionSet_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: ArcannaAI
+name: Get AI Job decision set
+parameters:
+-   default_value: ' '
+    description: 'Job ID for which decision set should be fetched '
+    is_mandatory: true
+    name: Job ID
+    type: string

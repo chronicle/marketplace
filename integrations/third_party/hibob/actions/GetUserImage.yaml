@@ -1,16 +1,16 @@
-name: Get User Image
-description: Get the image base64 and URL for a specific employee
-integration_identifier: Hibob
-parameters:
-- name: Employee's Email
-  default_value: email@gmail.com
-  type: string
-  description: The employee's email you want to upload a photo.
-  is_mandatory: true
-dynamic_results_metadata:
-- result_name: JsonResult
-  show_result: true
-  result_example_path: resources/GetUserImage_JsonResult_example.json
-default_result_value: ''
 creator: Admin
+default_result_value: ''
+description: Get the image base64 and URL for a specific employee
+dynamic_results_metadata:
+-   result_example_path: resources/GetUserImage_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: Hibob
+name: Get User Image
+parameters:
+-   default_value: email@gmail.com
+    description: The employee's email you want to upload a photo.
+    is_mandatory: true
+    name: Employee's Email
+    type: string
 script_result_name: ScriptResult

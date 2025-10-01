@@ -1,16 +1,16 @@
-name: Get Lead By Email Param
-description: Get Lead data for a given email address
-integration_identifier: Marketo
-parameters:
-- name: Email
-  default_value: ''
-  type: string
-  description: The email address of the user you want to get the details for.
-  is_mandatory: true
-dynamic_results_metadata:
-- result_name: JsonResult
-  show_result: true
-  result_example_path: resources/GetLeadByEmailParam_JsonResult_example.json
-default_result_value: ''
 creator: Admin
+default_result_value: ''
+description: Get Lead data for a given email address
+dynamic_results_metadata:
+-   result_example_path: resources/GetLeadByEmailParam_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: Marketo
+name: Get Lead By Email Param
+parameters:
+-   default_value: ''
+    description: The email address of the user you want to get the details for.
+    is_mandatory: true
+    name: Email
+    type: string
 script_result_name: ScriptResult

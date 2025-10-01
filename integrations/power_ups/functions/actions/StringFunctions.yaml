@@ -1,70 +1,71 @@
-name: String Functions
-description: "This action includes basic Pythonic string functions as mentioned below
-  - \nLower: Converts the input string to lowercase.\nUpper: Converts the input string
-  to uppercase (duplicated case in the script).\nStrip: Removes leading and trailing
-  whitespaces from the input string.\nTitle: Converts the first character of each
-  word in the input string to uppercase.\nCount: Counts the occurrences of `param_1`
-  in the input string.\nReplace: Replaces occurrences of `param_1` with `param_2`
-  in the input string. It supports the placeholder code _SPACE_ in both parameters,
-  which is automatically converted to a standard space before the replacement is performed.\n\
-  Find: Finds the first occurrence of `param_1` in the input string and returns its
-  index.\nIsAlpha: Checks if all characters in the input string are alphanumeric.\n\
-  IsDigit: Checks if all characters in the input string are digits.\nRegex Replace:
-  Performs a regex-based replacement of `param_1` with `param_2` in the input string.
-  It supports the placeholder code _SPACE_ in both parameters, which is automatically
-  converted to a standard space before the replacement is performed.\nJSON Serialize:
-  Converts the input string to a JSON formatted string.\nRegex: Finds all occurrences
-  of the pattern `param_1` in the input string, joins them using `param_2` (defaulting
-  to \", \"), and returns the result.\nDecodeBase64: Decodes the input string from
-  base64 using `param_1` as the encoding type. Default to utf-8\nEncodeBase64: Encodes
-  the input string in base64 using `param_1` as the encoding type. Default to utf-8\n\
-  RemoveNewLines: Removes new lines from the input string, replacing them with spaces.\n\
-  Split: Splits the input string using `param_1` (or \",\" if not provided) and adds
-  the result to the Siemplify result."
-integration_identifier: Functions
-parameters:
-- name: Param 2
-  default_value: ' '
-  type: string
-  description: The second parameter (this is an optional parameter as some 
-    functions require only 1 param)
-  is_mandatory: false
-- name: Param 1
-  type: string
-  description: The first parameter (this is an optional parameter as some 
-    functions require only 1 param)
-  is_mandatory: false
-- name: Input
-  default_value: Example
-  type: string
-  description: The input for the current fuction
-  is_mandatory: true
-- name: Function
-  default_value: Lower
-  type: ddl
-  optional_values:
-  - Lower
-  - Upper
-  - Count
-  - Find
-  - IsAlpha
-  - IsDigit
-  - Replace
-  - Strip
-  - Title
-  - Regex Replace
-  - JSON Serialize
-  - Regex
-  - Split
-  - DecodeBase64
-  - EncodeBase64
-  - RemoveNewLines
-  description: Select the function you would like to run from the list
-  is_mandatory: true
-dynamic_results_metadata:
-- result_name: JsonResult
-  show_result: true
-  result_example_path:
-default_result_value: ''
 creator: Robert
+default_result_value: ''
+description: "This action includes basic Pythonic string functions as mentioned below\
+    \ - \nLower: Converts the input string to lowercase.\nUpper: Converts the input\
+    \ string to uppercase (duplicated case in the script).\nStrip: Removes leading\
+    \ and trailing whitespaces from the input string.\nTitle: Converts the first character\
+    \ of each word in the input string to uppercase.\nCount: Counts the occurrences\
+    \ of `param_1` in the input string.\nReplace: Replaces occurrences of `param_1`\
+    \ with `param_2` in the input string. It supports the placeholder code _SPACE_\
+    \ in both parameters, which is automatically converted to a standard space before\
+    \ the replacement is performed.\nFind: Finds the first occurrence of `param_1`\
+    \ in the input string and returns its index.\nIsAlpha: Checks if all characters\
+    \ in the input string are alphanumeric.\nIsDigit: Checks if all characters in\
+    \ the input string are digits.\nRegex Replace: Performs a regex-based replacement\
+    \ of `param_1` with `param_2` in the input string. It supports the placeholder\
+    \ code _SPACE_ in both parameters, which is automatically converted to a standard\
+    \ space before the replacement is performed.\nJSON Serialize: Converts the input\
+    \ string to a JSON formatted string.\nRegex: Finds all occurrences of the pattern\
+    \ `param_1` in the input string, joins them using `param_2` (defaulting to \"\
+    , \"), and returns the result.\nDecodeBase64: Decodes the input string from base64\
+    \ using `param_1` as the encoding type. Default to utf-8\nEncodeBase64: Encodes\
+    \ the input string in base64 using `param_1` as the encoding type. Default to\
+    \ utf-8\nRemoveNewLines: Removes new lines from the input string, replacing them\
+    \ with spaces.\nSplit: Splits the input string using `param_1` (or \",\" if not\
+    \ provided) and adds the result to the Siemplify result."
+dynamic_results_metadata:
+-   result_example_path: null
+    result_name: JsonResult
+    show_result: true
+integration_identifier: Functions
+name: String Functions
+parameters:
+-   default_value: ' '
+    description: The second parameter (this is an optional parameter as some functions
+        require only 1 param)
+    is_mandatory: false
+    name: Param 2
+    type: string
+-   description: The first parameter (this is an optional parameter as some functions
+        require only 1 param)
+    is_mandatory: false
+    name: Param 1
+    type: string
+-   default_value: Example
+    description: The input for the current fuction
+    is_mandatory: true
+    name: Input
+    type: string
+-   default_value: Lower
+    description: Select the function you would like to run from the list
+    is_mandatory: true
+    name: Function
+    optional_values:
+    - Lower
+    - Upper
+    - Count
+    - Find
+    - IsAlpha
+    - IsDigit
+    - Replace
+    - Strip
+    - Title
+    - Regex Replace
+    - JSON Serialize
+    - Regex
+    - Split
+    - DecodeBase64
+    - EncodeBase64
+    - RemoveNewLines
+    type: ddl
 script_result_name: ScriptResult

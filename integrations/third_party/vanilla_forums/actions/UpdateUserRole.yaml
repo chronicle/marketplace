@@ -1,21 +1,21 @@
-name: Update User Role
-description: Change the role of a user.
-integration_identifier: VanillaForums
-parameters:
-- name: RoleID
-  default_value: '2'
-  type: string
-  description: ID of role to be assigned to the user
-  is_mandatory: true
-- name: UserID
-  default_value: '0'
-  type: string
-  description: The user ID who's role is to be chenged
-  is_mandatory: true
-dynamic_results_metadata:
-- result_name: JsonResult
-  show_result: true
-  result_example_path: resources/UpdateUserRole_JsonResult_example.json
-default_result_value: ''
 creator: Admin
+default_result_value: ''
+description: Change the role of a user.
+dynamic_results_metadata:
+-   result_example_path: resources/UpdateUserRole_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: VanillaForums
+name: Update User Role
+parameters:
+-   default_value: '2'
+    description: ID of role to be assigned to the user
+    is_mandatory: true
+    name: RoleID
+    type: string
+-   default_value: '0'
+    description: The user ID who's role is to be chenged
+    is_mandatory: true
+    name: UserID
+    type: string
 script_result_name: ScriptResult

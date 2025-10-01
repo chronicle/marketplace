@@ -1,35 +1,33 @@
-name: Send JSON Document to Arcanna
-description: ''
-integration_identifier: ArcannaAI
-parameters:
-- name: Job ID
-  default_value: ' '
-  type: string
-  description: Job ID used for sending event to Arcanna.ai
-  is_mandatory: true
-- name: Identifier field
-  default_value: ''
-  type: string
-  description: Identifier field that will be used as an ID in Arcanna.ai when 
-    ingesting the document. The field supports dot notation field names such as 
-    'doc.id'.
-  is_mandatory: false
-- name: Use document ID as ID in Arcanna
-  default_value: 'false'
-  type: boolean
-  description: 'If False, Arcanna generates a new unique ID for the document.
-
-    If True, Arcanna uses the id found in the "Identifier field".'
-  is_mandatory: false
-- name: JSON Document
-  default_value: '{}'
-  type: code
-  description: The JSON document to be sent to Arcanna.
-  is_mandatory: true
-dynamic_results_metadata:
-- result_name: JsonResult
-  show_result: true
-  result_example_path: 
-    resources/SendJsonDocumentToArcanna_JsonResult_example.json
-default_result_value: ''
 creator: 57861f63-e407-4200-90d4-a03bed1eb07e
+default_result_value: ''
+description: ''
+dynamic_results_metadata:
+-   result_example_path: resources/SendJsonDocumentToArcanna_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: ArcannaAI
+name: Send JSON Document to Arcanna
+parameters:
+-   default_value: ' '
+    description: Job ID used for sending event to Arcanna.ai
+    is_mandatory: true
+    name: Job ID
+    type: string
+-   default_value: ''
+    description: Identifier field that will be used as an ID in Arcanna.ai when ingesting
+        the document. The field supports dot notation field names such as 'doc.id'.
+    is_mandatory: false
+    name: Identifier field
+    type: string
+-   default_value: 'false'
+    description: 'If False, Arcanna generates a new unique ID for the document.
+
+        If True, Arcanna uses the id found in the "Identifier field".'
+    is_mandatory: false
+    name: Use document ID as ID in Arcanna
+    type: boolean
+-   default_value: '{}'
+    description: The JSON document to be sent to Arcanna.
+    is_mandatory: true
+    name: JSON Document
+    type: code

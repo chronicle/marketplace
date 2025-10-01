@@ -1,34 +1,34 @@
-name: Enrich URL
-description: This action Scans links and domains in real-time to detect 
-  suspicious URLs using trusted machine learning models. These machine learning 
-  models can accurately identify phishing links, malware URLs, viruses, parked 
-  domains, and suspicious URLs with real-time risk scores. In addition, the 
-  machine learning models can confidently classify poor reputation domains, 
-  suspicious links, and phishing URLs with a real-time API integration. Features
-  such as parking domain detection, domain spam scores, reputation checks, and 
-  domain age, elevates URL intelligence to a whole new level.
-integration_identifier: IPQS Fraud and Risk Scoring
-parameters:
-- name: Strictness
-  default_value: '0'
-  type: ddl
-  optional_values:
-  - '0'
-  - '1'
-  - '2'
-  description: How strict should we scan this URL? Stricter checks may provide a
-    higher false-positive rate.
-  is_mandatory: true
-- name: Fast
-  default_value: 'false'
-  type: boolean
-  description: When enabled, the API will provide quicker response times using 
-    lighter checks and analysis.
-  is_mandatory: false
-dynamic_results_metadata:
-- result_name: JsonResult
-  show_result: true
-  result_example_path:
-default_result_value: ''
 creator: IPQS
+default_result_value: ''
+description: This action Scans links and domains in real-time to detect suspicious
+    URLs using trusted machine learning models. These machine learning models can
+    accurately identify phishing links, malware URLs, viruses, parked domains, and
+    suspicious URLs with real-time risk scores. In addition, the machine learning
+    models can confidently classify poor reputation domains, suspicious links, and
+    phishing URLs with a real-time API integration. Features such as parking domain
+    detection, domain spam scores, reputation checks, and domain age, elevates URL
+    intelligence to a whole new level.
+dynamic_results_metadata:
+-   result_example_path: null
+    result_name: JsonResult
+    show_result: true
+integration_identifier: IPQS Fraud and Risk Scoring
+name: Enrich URL
+parameters:
+-   default_value: '0'
+    description: How strict should we scan this URL? Stricter checks may provide a
+        higher false-positive rate.
+    is_mandatory: true
+    name: Strictness
+    optional_values:
+    - '0'
+    - '1'
+    - '2'
+    type: ddl
+-   default_value: 'false'
+    description: When enabled, the API will provide quicker response times using lighter
+        checks and analysis.
+    is_mandatory: false
+    name: Fast
+    type: boolean
 script_result_name: ScriptResult

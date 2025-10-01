@@ -32,7 +32,7 @@ import mp.core.constants
 import mp.core.validators
 
 from . import config, constants
-from .custom_types import ManagerName, Products
+from .custom_types import JsonString, ManagerName, Products
 from .validators import validate_png_content, validate_svg_content
 
 if TYPE_CHECKING:
@@ -513,40 +513,50 @@ def png_path_to_bytes(file_path: pathlib.Path) -> str | None:
     return None
 
 
-def read_json_example(actions_dir_path: pathlib.Path, example_file_name: str) -> str:
-    """Read the content of a json_example file and validate it's a valid JSON.
-
-    Returns:
-        The raw string content of the file if it is valid JSON.
-        If the file does not exist it returns a valid empty JSON
+def read_and_validate_json_file(json_path: pathlib.Path) -> JsonString:
+    """Read the text content of a file and validates that it's valid JSON.
 
     Raises:
-        ValueError: If the file content is not a valid JSON document.
+        ValueError: If the file doesn't exist or is an invalid JSON.
+
+    Returns:
+        The decoded text content of the JSON file if exists.
 
     """
-    result_example: str = "{}"
-
     try:
-        json_path: pathlib.Path = actions_dir_path.parent / example_file_name
-
-        result_example = json_path.read_text(encoding="utf-8")
-        json.loads(result_example)
-    except (FileNotFoundError, TypeError):
-        pass
-
+        content: JsonString = json_path.read_text(encoding="utf-8")
+        json.loads(content)  # Validate by attempting to parse
+        return content  # noqa: TRY300
     except json.JSONDecodeError as e:
         msg = f"Invalid JSON content in file: {json_path}"
         raise ValueError(msg) from e
-    return result_example
+    except FileNotFoundError as e:
+        msg = f"File {json_path} does not exist"
+        raise ValueError(msg) from e
 
 
-def write_str_to_json_file(json_path: pathlib.Path, json_content: str) -> None:
-    """Write a JSON string to a file.
-
-    Args:
-        json_path: The path to the output file.
-        json_content: The JSON content as a string.
-
-    """
+def write_str_to_json_file(json_path: pathlib.Path, json_content: JsonString) -> None:
+    """Write a JSON string to a file."""
     with json_path.open("w", encoding="utf-8") as f_json:
         json.dump(json_content, f_json, indent=4)
+
+
+def load_yaml_file(path: pathlib.Path) -> dict[str, Any]:
+    """Read a file and loads its content as YAML.
+
+    Raises:
+        ValueError: If the file doesn't exist or is an invalid YAML.
+
+    Returns:
+        The decoded YAML content of the YAML file if exists.
+
+    """
+    try:
+        content = path.read_text(encoding="utf-8")
+        return yaml.safe_load(content)
+    except yaml.YAMLError as e:
+        msg = f"Failed to load or parse YAML from file: {path}"
+        raise ValueError(msg) from e
+    except FileNotFoundError as e:
+        msg = f"File {path} does not exist"
+        raise ValueError(msg) from e

@@ -1,13 +1,12 @@
-name: Get Event Data JSON
-description: This action retrieves entity details from events and SecOps 
-  entities associated with the Alert, enriched by XM Cyber, and returns the JSON
-  output.
-integration_identifier: XMCyber
-parameters: []
-dynamic_results_metadata:
-- result_name: JsonResult
-  show_result: true
-  result_example_path: resources/GetEventDataJSON_JsonResult_example.json
-default_result_value: ''
 creator: af7283aa-f6b7-4c8f-bbe6-e76a38778387
+default_result_value: ''
+description: This action retrieves entity details from events and SecOps entities
+    associated with the Alert, enriched by XM Cyber, and returns the JSON output.
+dynamic_results_metadata:
+-   result_example_path: resources/GetEventDataJSON_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: XMCyber
+name: Get Event Data JSON
+parameters: []
 script_result_name: ScriptResult

@@ -1,11 +1,11 @@
-name: Blocklist - List Items
-description: This method lists all the hashes that are present in the blocklist.
-integration_identifier: Bitdefender GravityZone
-parameters: []
-dynamic_results_metadata:
-- result_name: JsonResult
-  show_result: true
-  result_example_path: resources/BlocklistListItems_JsonResult_example.json
-default_result_value: ''
 creator: daniel.harvey
+default_result_value: ''
+description: This method lists all the hashes that are present in the blocklist.
+dynamic_results_metadata:
+-   result_example_path: resources/BlocklistListItems_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: Bitdefender GravityZone
+name: Blocklist - List Items
+parameters: []
 script_result_name: ScriptResult

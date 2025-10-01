@@ -1,61 +1,61 @@
-name: Create Meeting
-description: Create a scheduled or instant meeting in Zoom
-integration_identifier: Zoom
-parameters:
-- name: Meeting Type
-  default_value: Scheduled
-  type: ddl
-  optional_values:
-  - Instant
-  - Scheduled
-  description: 'The type of the meeting can be ''Instant'' or ''Scheduled''
-
-    Setting the meeting to ''Instant'' will overlap the configuration of the ''Scheduled''
-    meeting.'
-  is_mandatory: true
-- name: Meeting Start Time
-  default_value: '2020-09-30 12:00:00'
-  type: string
-  description: 'Meeting start time (should be used only for scheduled meetings).
-
-    The time format is GMT yyyy-mm-dd hh:mm:ss '
-  is_mandatory: true
-- name: Meeting Topic
-  default_value: MeetingTopicExample
-  type: string
-  description: The meeting topic
-  is_mandatory: true
-- name: Auto Recording Type
-  default_value: "none"
-  type: ddl
-  optional_values:
-  - local
-  - cloud
-  - "none"
-  description: "'local'-Recording automatically on the local server.\n'cloud'-Recording\
-    \  automatically on cloud.\n'none'- Choose if you do not want to record. \n"
-  is_mandatory: true
-- name: Time Zone
-  default_value: Pacific/Midway
-  type: string
-  description: 'The time zone in format Continent/Country.
-
-    '
-  is_mandatory: true
-- name: Meeting Duration
-  default_value: '45'
-  type: string
-  description: The meeting duration in minutes
-  is_mandatory: true
-- name: Host Email Address
-  default_value: email@siemplify.co
-  type: string
-  description: Email Address of the meeting host
-  is_mandatory: true
-dynamic_results_metadata:
-- result_name: JsonResult
-  show_result: true
-  result_example_path: resources/CreateMeeting_JsonResult_example.json
-default_result_value: ''
 creator: TehilaGourary
+default_result_value: ''
+description: Create a scheduled or instant meeting in Zoom
+dynamic_results_metadata:
+-   result_example_path: resources/CreateMeeting_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: Zoom
+name: Create Meeting
+parameters:
+-   default_value: Scheduled
+    description: 'The type of the meeting can be ''Instant'' or ''Scheduled''
+
+        Setting the meeting to ''Instant'' will overlap the configuration of the ''Scheduled''
+        meeting.'
+    is_mandatory: true
+    name: Meeting Type
+    optional_values:
+    - Instant
+    - Scheduled
+    type: ddl
+-   default_value: '2020-09-30 12:00:00'
+    description: 'Meeting start time (should be used only for scheduled meetings).
+
+        The time format is GMT yyyy-mm-dd hh:mm:ss '
+    is_mandatory: true
+    name: Meeting Start Time
+    type: string
+-   default_value: MeetingTopicExample
+    description: The meeting topic
+    is_mandatory: true
+    name: Meeting Topic
+    type: string
+-   default_value: none
+    description: "'local'-Recording automatically on the local server.\n'cloud'-Recording\
+        \  automatically on cloud.\n'none'- Choose if you do not want to record. \n"
+    is_mandatory: true
+    name: Auto Recording Type
+    optional_values:
+    - local
+    - cloud
+    - none
+    type: ddl
+-   default_value: Pacific/Midway
+    description: 'The time zone in format Continent/Country.
+
+        '
+    is_mandatory: true
+    name: Time Zone
+    type: string
+-   default_value: '45'
+    description: The meeting duration in minutes
+    is_mandatory: true
+    name: Meeting Duration
+    type: string
+-   default_value: email@siemplify.co
+    description: Email Address of the meeting host
+    is_mandatory: true
+    name: Host Email Address
+    type: string
 script_result_name: ScriptResult

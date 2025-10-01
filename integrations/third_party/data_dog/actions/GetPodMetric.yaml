@@ -1,30 +1,30 @@
-name: Get Pod Metric
+creator: Admin
+default_result_value: ''
 description: 'Gets a Pod metric (CPU, Memory and processes).
 
-  For more information about Metrics: https://docs.datadoghq.com/api/latest/metrics/#query-timeseries-points
+    For more information about Metrics: https://docs.datadoghq.com/api/latest/metrics/#query-timeseries-points
 
-  For more information about Kubernetes metrics: https://docs.datadoghq.com/agent/kubernetes/data_collected/'
-integration_identifier: DataDog
-parameters:
-- name: Pod Name
-  default_value: pod_namespace
-  type: string
-  description: The Pod Namespace
-  is_mandatory: true
-- name: End Time
-  default_value: '1610557457'
-  type: string
-  description: The end time of the Pod metric in Unixtime.
-  is_mandatory: true
-- name: Start Time
-  default_value: '1507040000'
-  type: string
-  description: The start time of the Pod metric in Unixtime.
-  is_mandatory: true
+    For more information about Kubernetes metrics: https://docs.datadoghq.com/agent/kubernetes/data_collected/'
 dynamic_results_metadata:
-- result_name: JsonResult
-  show_result: true
-  result_example_path: resources/GetPodMetric_JsonResult_example.json
-default_result_value: ''
-creator: Admin
+-   result_example_path: resources/GetPodMetric_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: DataDog
+name: Get Pod Metric
+parameters:
+-   default_value: pod_namespace
+    description: The Pod Namespace
+    is_mandatory: true
+    name: Pod Name
+    type: string
+-   default_value: '1610557457'
+    description: The end time of the Pod metric in Unixtime.
+    is_mandatory: true
+    name: End Time
+    type: string
+-   default_value: '1507040000'
+    description: The start time of the Pod metric in Unixtime.
+    is_mandatory: true
+    name: Start Time
+    type: string
 script_result_name: ScriptResult

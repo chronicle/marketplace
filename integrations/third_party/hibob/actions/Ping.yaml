@@ -1,11 +1,11 @@
-name: Ping
-description: 'Testing the connectivity with Hibob '
-integration_identifier: Hibob
-parameters: []
-dynamic_results_metadata:
-- result_name: JsonResult
-  show_result: false
-  result_example_path:
-default_result_value: ''
 creator: Admin
+default_result_value: ''
+description: 'Testing the connectivity with Hibob '
+dynamic_results_metadata:
+-   result_example_path: null
+    result_name: JsonResult
+    show_result: false
+integration_identifier: Hibob
+name: Ping
+parameters: []
 script_result_name: ScriptResult

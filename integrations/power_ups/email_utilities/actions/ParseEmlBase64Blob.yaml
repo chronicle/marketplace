@@ -1,17 +1,17 @@
-name: Parse EML Base64 Blob
-description: This action will decode a base64 string and attempt to parse it as 
-  an EML file.  It will return a list of parsed objects.
-integration_identifier: EmailUtilities
-parameters:
-- name: Base64 EML Blob
-  default_value: <base64encoded_string>
-  type: string
-  description: A base64 encoded string of an EML file.
-  is_mandatory: true
-dynamic_results_metadata:
-- result_name: JsonResult
-  show_result: true
-  result_example_path: resources/ParseEmlBase64Blob_JsonResult_example.json
-default_result_value: ''
 creator: Robert
+default_result_value: ''
+description: This action will decode a base64 string and attempt to parse it as an
+    EML file.  It will return a list of parsed objects.
+dynamic_results_metadata:
+-   result_example_path: resources/ParseEmlBase64Blob_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: EmailUtilities
+name: Parse EML Base64 Blob
+parameters:
+-   default_value: <base64encoded_string>
+    description: A base64 encoded string of an EML file.
+    is_mandatory: true
+    name: Base64 EML Blob
+    type: string
 script_result_name: ScriptResult

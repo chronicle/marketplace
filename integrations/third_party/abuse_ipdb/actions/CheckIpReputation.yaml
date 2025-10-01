@@ -1,36 +1,34 @@
-name: Check IP Reputation
-description: Checks the reputation of all address entities associated with an 
-  alert. Includes pre-formatted insight creation. Excludes internal entities by 
-  default.
-integration_identifier: AbuseIPDB
-parameters:
-- name: Exclude Internal Addresses
-  default_value: 'true'
-  type: boolean
-  description: If true, excludes any address entities that you've marked as 
-    internal, saving your API allowance on wasted IP checks against your own 
-    infrastructure.
-  is_mandatory: false
-- name: Suspicious Threshold
-  default_value: '100'
-  type: string
-  description: An abuse confidence score equal to, or above this threshold will 
-    mark the entity as supicious. Set to 0 to disable.
-  is_mandatory: true
-- name: Create Insight
-  default_value: 'true'
-  type: boolean
-  description: Create an insight for each IP
-  is_mandatory: false
-- name: Max Age in Days
-  default_value: '90'
-  type: string
-  description: Max report age to check
-  is_mandatory: true
-dynamic_results_metadata:
-- result_name: JsonResult
-  show_result: true
-  result_example_path: resources/CheckIpReputation_JsonResult_example.json
-default_result_value: ''
 creator: Admin
+default_result_value: ''
+description: Checks the reputation of all address entities associated with an alert.
+    Includes pre-formatted insight creation. Excludes internal entities by default.
+dynamic_results_metadata:
+-   result_example_path: resources/CheckIpReputation_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: AbuseIPDB
+name: Check IP Reputation
+parameters:
+-   default_value: 'true'
+    description: If true, excludes any address entities that you've marked as internal,
+        saving your API allowance on wasted IP checks against your own infrastructure.
+    is_mandatory: false
+    name: Exclude Internal Addresses
+    type: boolean
+-   default_value: '100'
+    description: An abuse confidence score equal to, or above this threshold will
+        mark the entity as supicious. Set to 0 to disable.
+    is_mandatory: true
+    name: Suspicious Threshold
+    type: string
+-   default_value: 'true'
+    description: Create an insight for each IP
+    is_mandatory: false
+    name: Create Insight
+    type: boolean
+-   default_value: '90'
+    description: Max report age to check
+    is_mandatory: true
+    name: Max Age in Days
+    type: string
 script_result_name: ScriptResult

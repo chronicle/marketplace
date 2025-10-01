@@ -1,114 +1,112 @@
-name: List Entities
-description: List all the entities based on the query parameters.
-integration_identifier: VectraRUX
-parameters:
-- name: Entity Type
-  default_value: ''
-  type: ddl
-  optional_values:
-  - Host
-  - Account
-  description: 'Request entities of a specific type, valid values: “account”, “host”.
-
-
-    '
-  is_mandatory: true
-- name: Order By
-  default_value: ''
-  type: ddl
-  optional_values:
-  - urgency_score
-  - last_detection_timestamp
-  - name
-  - last_modified_timestamp
-  description: Sorts records by fields like last_timestamp, threat_score, and 
-    certainty_score. Use “-” for descending order.
-  is_mandatory: false
-- name: Fields
-  default_value: ''
-  type: multi_choice_parameter
-  optional_values:
-  - id
-  - name
-  - breadth_contrib
-  - importance
-  - type
-  - is_prioritized
-  - severity
-  - urgency_score
-  - velocity_contrib
-  - detection_set
-  - last_detection_timestamp
-  - last_modified_timestamp
-  - notes
-  - attack_rating
-  - privilege_level
-  - privilege_category
-  - attack_profile
-  - sensors
-  - state
-  - tags
-  - url
-  - host_type
-  - account_type
-  - ip
-  - entity_type
-  description: filter the fields wanted to show
-  is_mandatory: false
-- name: Name
-  type: string
-  description: filter based on entity Name
-  is_mandatory: false
-- name: State
-  default_value: ''
-  type: ddl
-  optional_values:
-  - Active
-  - Inactive
-  description: filter based on State
-  is_mandatory: false
-- name: Last Detection Timestamp GTE
-  type: string
-  description: filter based on Last Detection Timestamp GTE
-  is_mandatory: false
-- name: Last Detection Timestamp LTE
-  type: string
-  description: filter based on Last Detection Timestamp LTE
-  is_mandatory: false
-- name: Tags
-  type: string
-  description: filter based on Tags(pass comma separated values)
-  is_mandatory: false
-- name: Note Modified Timestamp GTE
-  type: string
-  description: filter based on Note Modified Timestamp GTE
-  is_mandatory: false
-- name: Prioritized
-  default_value: ''
-  type: ddl
-  optional_values:
-  - "True"
-  - "False"
-  description: filter based on if the entity is prioritized or not
-  is_mandatory: false
-- name: Limit
-  type: string
-  description: 'Fetch this number of Entities
-
-    '
-  is_mandatory: false
-- name: Order
-  default_value: ''
-  type: ddl
-  optional_values:
-  - Ascending
-  - Descending
-  description: filter based on ascending or descending
-  is_mandatory: false
-dynamic_results_metadata:
-- result_name: JsonResult
-  show_result: true
-  result_example_path: resources/List Entities_JsonResult_example.json
-default_result_value: ''
 creator: Admin
+default_result_value: ''
+description: List all the entities based on the query parameters.
+dynamic_results_metadata:
+-   result_example_path: resources/List Entities_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: VectraRUX
+name: List Entities
+parameters:
+-   default_value: ''
+    description: "Request entities of a specific type, valid values: \u201Caccount\u201D\
+        , \u201Chost\u201D.\n\n"
+    is_mandatory: true
+    name: Entity Type
+    optional_values:
+    - Host
+    - Account
+    type: ddl
+-   default_value: ''
+    description: "Sorts records by fields like last_timestamp, threat_score, and certainty_score.\
+        \ Use \u201C-\u201D for descending order."
+    is_mandatory: false
+    name: Order By
+    optional_values:
+    - urgency_score
+    - last_detection_timestamp
+    - name
+    - last_modified_timestamp
+    type: ddl
+-   default_value: ''
+    description: filter the fields wanted to show
+    is_mandatory: false
+    name: Fields
+    optional_values:
+    - id
+    - name
+    - breadth_contrib
+    - importance
+    - type
+    - is_prioritized
+    - severity
+    - urgency_score
+    - velocity_contrib
+    - detection_set
+    - last_detection_timestamp
+    - last_modified_timestamp
+    - notes
+    - attack_rating
+    - privilege_level
+    - privilege_category
+    - attack_profile
+    - sensors
+    - state
+    - tags
+    - url
+    - host_type
+    - account_type
+    - ip
+    - entity_type
+    type: multi_choice_parameter
+-   description: filter based on entity Name
+    is_mandatory: false
+    name: Name
+    type: string
+-   default_value: ''
+    description: filter based on State
+    is_mandatory: false
+    name: State
+    optional_values:
+    - Active
+    - Inactive
+    type: ddl
+-   description: filter based on Last Detection Timestamp GTE
+    is_mandatory: false
+    name: Last Detection Timestamp GTE
+    type: string
+-   description: filter based on Last Detection Timestamp LTE
+    is_mandatory: false
+    name: Last Detection Timestamp LTE
+    type: string
+-   description: filter based on Tags(pass comma separated values)
+    is_mandatory: false
+    name: Tags
+    type: string
+-   description: filter based on Note Modified Timestamp GTE
+    is_mandatory: false
+    name: Note Modified Timestamp GTE
+    type: string
+-   default_value: ''
+    description: filter based on if the entity is prioritized or not
+    is_mandatory: false
+    name: Prioritized
+    optional_values:
+    - 'True'
+    - 'False'
+    type: ddl
+-   description: 'Fetch this number of Entities
+
+        '
+    is_mandatory: false
+    name: Limit
+    type: string
+-   default_value: ''
+    description: filter based on ascending or descending
+    is_mandatory: false
+    name: Order
+    optional_values:
+    - Ascending
+    - Descending
+    type: ddl
 script_result_name: ScriptResult
