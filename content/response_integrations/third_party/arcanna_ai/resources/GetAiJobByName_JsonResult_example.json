@@ -1,0 +1,34 @@
+{
+    "job_id": 3207,
+    "title": "Arcanna Accenture Demo Calin Exposer",
+    "status": "ENABLED",
+    "retrain_state": "RETRAIN_FINISHED",
+    "retrain_msg": "Retraining finished successfully",
+    "labels": [
+        "Low",
+        "Medium",
+        "High",
+        "Critical",
+        "Informational"
+    ],
+    "features": [
+        "preserve_original_id",
+        "additional_properties.AlertGroupIdentifier",
+        "additional_properties.detection_1_ruleLabels_1_value",
+        "additional_properties.detection_1_ruleLabels_2_value",
+        "additional_properties.detection_1_ruleLabels_4_key",
+        "additional_properties.detection_1_ruleType",
+        "additional_properties.event_target_process_file_fullPath",
+        "source_host_name",
+        "source_nt_domain",
+        "source_process_name",
+        "source_user_name"
+    ],
+    "processed_documents_count": 50,
+    "feedback_documents_count": 10,
+    "last_processed_timestamp": "2024-05-30T07:21:59.391204+00:00",
+    "last_feedback_timestamp": "2024-08-13T09:47:21.605603+00:00",
+    "last_train_start_timestamp": "2024-05-27T10:24:35.382371+00:00",
+    "last_train_finished_timestamp": "2024-05-27T10:24:50.067615+00:00",
+    "invalid": false
+}

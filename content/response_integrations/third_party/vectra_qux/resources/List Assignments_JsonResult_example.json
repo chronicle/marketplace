@@ -1,0 +1,56 @@
+[
+    {
+        "id": 225,
+        "assigned_by": {
+            "id": 62,
+            "username": "cds-crestphantom"
+        },
+        "date_assigned": "2024-11-20T09:06:47Z",
+        "date_resolved": "2024-11-20T09:09:36Z",
+        "events": [
+            {
+                "assignment_id": 225,
+                "actor": 62,
+                "event_type": "resolved",
+                "datetime": "2024-11-20T09:09:36Z",
+                "context": {
+                    "entity_t_score": 0,
+                    "entity_c_score": 0,
+                    "triage_as": null,
+                    "triaged_detection_ids": null,
+                    "fixed_detection_ids": null,
+                    "created_rule_ids": null
+                }
+            },
+            {
+                "assignment_id": 225,
+                "actor": 62,
+                "event_type": "created",
+                "datetime": "2024-11-20T09:06:47Z",
+                "context": {
+                    "to": 31,
+                    "entity_t_score": 0,
+                    "entity_c_score": 0
+                }
+            }
+        ],
+        "outcome": {
+            "id": 1,
+            "builtin": true,
+            "user_selectable": true,
+            "title": "Benign True Positive",
+            "category": "benign_true_positive"
+        },
+        "resolved_by": {
+            "id": 62,
+            "username": "cds-crestphantom"
+        },
+        "triaged_detections": {},
+        "host_id": 35526,
+        "account_id": null,
+        "assigned_to": {
+            "id": 31,
+            "username": "emartin"
+        }
+    }
+]

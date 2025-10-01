@@ -1,0 +1,81 @@
+{
+    "event_id": " 32072928741742",
+    "ingest_timestamp": "2024-05-30T07:21:46.292874Z",
+    "status": "OK",
+    "arcanna_event": {
+        "id": "32072928741742",
+        "metadata": {
+            "severity": 0,
+            "ingested_timestamp": "2024-05-30T07:21:46.292874Z",
+            "id": "32072928741742",
+            "description": "NEW_USER_CMD_LINE_WINDOWSA484EC16-379B-432E-B960-8DF24A381054"
+        },
+        "arcanna": {
+            "result": "class_2",
+            "result_label": "Medium",
+            "inference_status": "finished",
+            "bucket_state": null,
+            "original_id": "32072928741742",
+            "original_index": "",
+            "artifacts": [],
+            "log_messages": [
+                {
+                    "component": "Input",
+                    "level": "info",
+                    "component_subcategory": "Undefined",
+                    "content": "Read from Undefined",
+                    "timestamp": "2024-05-30T07:21:55.939337+00:00"
+                },
+                {
+                    "component": "Inference",
+                    "level": "warn",
+                    "component_subcategory": "Generic",
+                    "content": "Skip record because it is incompatible with selected features.",
+                    "timestamp": "2024-05-30T07:21:58.445649+00:00"
+                },
+                {
+                    "component": "Output",
+                    "level": "info",
+                    "component_subcategory": "Elasticsearch",
+                    "content": "Writing to Elasticsearch",
+                    "timestamp": "2024-05-30T07:21:59.218356+00:00"
+                }
+            ],
+            "timers": {
+                "output": {
+                    "per_alert_in_batch_ms": 30.0,
+                    "total_ms": 30,
+                    "start": 1717053719188,
+                    "end": 1717053719218,
+                    "kafka_overhead_in_ms": 741
+                },
+                "core": {
+                    "end": 1717053715939
+                },
+                "total_kafka_overhead_in_s": 1.714,
+                "inference": {
+                    "per_alert_in_batch_ms": 1535.0,
+                    "total_ms": 1535,
+                    "start": 1717053716912,
+                    "end": 1717053718447,
+                    "kafka_overhead_in_ms": 973
+                },
+                "total_pipeline_in_s": 3.279
+            },
+            "batch_uuid": "f652b157-8ebb-4434-9d07-25d69f423f65",
+            "inference_result": "no_decision",
+            "model": {
+                "path": "generic-1-3207-model-1716805470.hdf5",
+                "timestamp": "2024-05-27T10:24:30"
+            },
+            "batch_master_uuid": "ba66e308-6e8a-4888-8b65-42cc3fa31f0f",
+            "bucket_id": "FNTUqupSidwDGFaAd3YpZW",
+            "features_hash": "9c13e5586414e5b2ba64874931a1653e912e63375256ea01f02b8d000d70bb5b",
+            "key_hash": "57e5c9981b303223cfd55d99cda6ae5a87be1a58ec829dc3d47f9445a808a08c",
+            "full_hash": "57e5c9981b303223cfd55d99cda6ae5a87be1a58ec829dc3d47f9445a808a08c9c13e5586414e5b2ba64874931a1653e912e63375256ea01f02b8d000d70bb5b",
+            "confidence_score": 49.71
+        },
+        "@timestamp": "2024-05-30T07:21:46.292874Z",
+        "timestamp_inference": "2024-05-30T07:21:58.443060+00:00"
+    }
+}

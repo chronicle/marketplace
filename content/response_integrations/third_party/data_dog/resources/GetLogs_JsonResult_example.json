@@ -1,0 +1,36 @@
+{
+    "NameSpace: kube-system": {
+        "status": "done",
+        "nextLogId": "1111111",
+        "logs": [
+            {
+                "content": {
+                    "timestamp": "2021-01-01T02:02:01.894Z",
+                    "host": "i-11111",
+                    "message": "The messasge content",
+                    "service": "snapshot-controller",
+                    "tags": [
+                        "image_name:name",
+                        "container_name:name",
+                        "source:source name",
+                        "kube_namespace:kube-system"
+                    ]
+                },
+                "id": "123456789"
+            },
+            {
+                "content": {
+                    "timestamp": "2021-01-01T02:02:01.894Z",
+                    "host": "i-22222",
+                    "message": "The messasge content",
+                    "service": "snapshot-controller",
+                    "tags": [
+                        "image_name:name"
+                    ]
+                },
+                "id": "123456789"
+            }
+        ],
+        "requestId": "aaaabbbb11112222"
+    }
+}

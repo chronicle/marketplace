@@ -1,0 +1,25 @@
+{
+    "page": null,
+    "results": [
+        {
+            "addresses": [
+                {
+                    "address": "10.50.1.255",
+                    "ref": "ipam/address/384ce8ac-5355-11f0-a48b-f6ee09972954",
+                    "space": "ipam/ip_space/29b07f2d-fca7-11ee-952b-26d521eb7155"
+                }
+            ],
+            "auto_generate_records": false,
+            "comment": "comment-123",
+            "created_at": "2025-06-27T13:21:04.708027Z",
+            "host_names": [],
+            "id": "ipam/host/93e5d665-5359-11f0-b6d1-3e4a9b62b555",
+            "name": "temp-name",
+            "tags": {
+                "temptag": "true",
+                "temptas3": "nos/de"
+            },
+            "updated_at": "2025-06-27T13:21:04.708027Z"
+        }
+    ]
+}

@@ -1,0 +1,718 @@
+{
+    "1.1.1.1": {
+        "request_id": "5c8aa7d8-9776-5a5c-bee2-6659b302c9f7",
+        "ip": "1.1.1.1",
+        "size": 20,
+        "start_date": "2024-07-30",
+        "end_date": "2024-08-20",
+        "sections": [
+            "pdns"
+        ],
+        "usage": {
+            "used_queries": 1396,
+            "remaining_queries": 48604,
+            "query_limit": 50000,
+            "foundation_api_usage": {
+                "used_queries": 2,
+                "remaining_queries": 9998,
+                "query_limit": 10000
+            },
+            "ai_insights_usage": {
+                "used_queries": 0,
+                "remaining_queries": 0,
+                "query_limit": 0
+            }
+        },
+        "pdns": {
+            "event_count": 1716829,
+            "pdns": [
+                {
+                    "ip": "1.1.1.1",
+                    "domain": "jsc.jsczf.com",
+                    "root": "jsczf.com",
+                    "tld": "com",
+                    "type": "A",
+                    "registrar": "Alibaba Cloud Computing Ltd. d/b/a HiChina (www.net.cn)",
+                    "domain_created": "2023-05-11",
+                    "domain_expires": "2025-05-11",
+                    "nameservers": [
+                        {
+                            "root": "dns.com",
+                            "nameservers": [
+                                "17ex1.dns.com",
+                                "17ex2.dns.com"
+                            ]
+                        }
+                    ],
+                    "country_codes": [
+                        "KR"
+                    ],
+                    "as_info": [
+                        {
+                            "asn": 4766,
+                            "as_name": ""
+                        }
+                    ],
+                    "tags": null,
+                    "distinct_ips": 6,
+                    "active_days": 21,
+                    "event_count": 1127773,
+                    "first_seen": "2024-07-30",
+                    "last_seen": "2024-08-19"
+                },
+                {
+                    "ip": "1.1.1.1",
+                    "domain": "google.com",
+                    "root": "google.com",
+                    "tld": "com",
+                    "type": "A",
+                    "registrar": "MarkMonitor, Inc.",
+                    "domain_created": "1997-09-15",
+                    "domain_expires": "2028-09-13",
+                    "nameservers": [
+                        {
+                            "root": "google.com",
+                            "nameservers": [
+                                "domain1.google.com",
+                                "domain2.google.com",
+                                "domain3.google.com",
+                                "domain4.google.com"
+                            ]
+                        }
+                    ],
+                    "country_codes": [
+                        "KR"
+                    ],
+                    "as_info": [
+                        {
+                            "asn": 4766,
+                            "as_name": ""
+                        }
+                    ],
+                    "tags": null,
+                    "distinct_ips": 1482,
+                    "active_days": 18,
+                    "event_count": 437275,
+                    "first_seen": "2024-08-03",
+                    "last_seen": "2024-08-20"
+                },
+                {
+                    "ip": "1.1.1.1",
+                    "domain": "hzb.hzbearings.com",
+                    "root": "hzbearings.com",
+                    "tld": "com",
+                    "type": "A",
+                    "registrar": "Alibaba Cloud Computing Ltd. d/b/a HiChina (www.net.cn)",
+                    "domain_created": "2023-04-18",
+                    "domain_expires": "2025-04-18",
+                    "nameservers": [
+                        {
+                            "root": "hichina.com",
+                            "nameservers": [
+                                "dns21.hichina.com",
+                                "dns22.hichina.com"
+                            ]
+                        }
+                    ],
+                    "country_codes": [
+                        "KR"
+                    ],
+                    "as_info": [
+                        {
+                            "asn": 4766,
+                            "as_name": ""
+                        }
+                    ],
+                    "tags": null,
+                    "distinct_ips": 5,
+                    "active_days": 21,
+                    "event_count": 53512,
+                    "first_seen": "2024-07-30",
+                    "last_seen": "2024-08-20"
+                },
+                {
+                    "ip": "1.1.1.1",
+                    "domain": "www.bycheyun.com",
+                    "root": "bycheyun.com",
+                    "tld": "com",
+                    "type": "A",
+                    "registrar": "NameSilo, LLC",
+                    "domain_created": "2021-05-08",
+                    "domain_expires": "2025-05-08",
+                    "nameservers": [
+                        {
+                            "root": "dns.com",
+                            "nameservers": [
+                                "ns1.dns.com",
+                                "ns2.dns.com"
+                            ]
+                        }
+                    ],
+                    "country_codes": [
+                        "KR"
+                    ],
+                    "as_info": [
+                        {
+                            "asn": 4766,
+                            "as_name": ""
+                        }
+                    ],
+                    "tags": null,
+                    "distinct_ips": 5,
+                    "active_days": 22,
+                    "event_count": 19623,
+                    "first_seen": "2024-07-30",
+                    "last_seen": "2024-08-20"
+                },
+                {
+                    "ip": "1.1.1.1",
+                    "domain": "hpw.htd56pw.com",
+                    "root": "htd56pw.com",
+                    "tld": "com",
+                    "type": "A",
+                    "registrar": "Alibaba Cloud Computing (Beijing) Co., Ltd.",
+                    "domain_created": "2020-05-30",
+                    "domain_expires": "2025-05-30",
+                    "nameservers": [
+                        {
+                            "root": "dns.com",
+                            "nameservers": [
+                                "17ex1.dns.com",
+                                "17ex2.dns.com"
+                            ]
+                        }
+                    ],
+                    "country_codes": [
+                        "KR"
+                    ],
+                    "as_info": [
+                        {
+                            "asn": 4766,
+                            "as_name": ""
+                        }
+                    ],
+                    "tags": null,
+                    "distinct_ips": 65,
+                    "active_days": 1,
+                    "event_count": 5635,
+                    "first_seen": "2024-08-20",
+                    "last_seen": "2024-08-20"
+                },
+                {
+                    "ip": "1.1.1.1",
+                    "domain": "www.xvlkof.xyz",
+                    "root": "xvlkof.xyz",
+                    "tld": "xyz",
+                    "type": "A",
+                    "registrar": "NameSilo, LLC",
+                    "domain_created": "2023-03-15",
+                    "domain_expires": "2026-03-15",
+                    "nameservers": [
+                        {
+                            "root": "dns.com",
+                            "nameservers": [
+                                "ns1.dns.com",
+                                "ns2.dns.com"
+                            ]
+                        }
+                    ],
+                    "country_codes": [
+                        "KR"
+                    ],
+                    "as_info": [
+                        {
+                            "asn": 4766,
+                            "as_name": ""
+                        }
+                    ],
+                    "tags": null,
+                    "distinct_ips": 6,
+                    "active_days": 22,
+                    "event_count": 3029,
+                    "first_seen": "2024-07-30",
+                    "last_seen": "2024-08-20"
+                },
+                {
+                    "ip": "1.1.1.1",
+                    "domain": "www.xxry3f.xyz",
+                    "root": "xxry3f.xyz",
+                    "tld": "xyz",
+                    "type": "A",
+                    "registrar": "NameSilo, LLC",
+                    "domain_created": "2023-03-15",
+                    "domain_expires": "2026-03-15",
+                    "nameservers": [
+                        {
+                            "root": "dns.com",
+                            "nameservers": [
+                                "ns1.dns.com",
+                                "ns2.dns.com"
+                            ]
+                        }
+                    ],
+                    "country_codes": [
+                        "KR"
+                    ],
+                    "as_info": [
+                        {
+                            "asn": 4766,
+                            "as_name": ""
+                        }
+                    ],
+                    "tags": null,
+                    "distinct_ips": 6,
+                    "active_days": 22,
+                    "event_count": 2727,
+                    "first_seen": "2024-07-30",
+                    "last_seen": "2024-08-20"
+                },
+                {
+                    "ip": "1.1.1.1",
+                    "domain": "www.x56c5f.xyz",
+                    "root": "x56c5f.xyz",
+                    "tld": "xyz",
+                    "type": "A",
+                    "registrar": "NameSilo, LLC",
+                    "domain_created": "2023-03-15",
+                    "domain_expires": "2026-03-15",
+                    "nameservers": [
+                        {
+                            "root": "dns.com",
+                            "nameservers": [
+                                "ns1.dns.com",
+                                "ns2.dns.com"
+                            ]
+                        }
+                    ],
+                    "country_codes": [
+                        "KR"
+                    ],
+                    "as_info": [
+                        {
+                            "asn": 4766,
+                            "as_name": ""
+                        }
+                    ],
+                    "tags": null,
+                    "distinct_ips": 6,
+                    "active_days": 22,
+                    "event_count": 2720,
+                    "first_seen": "2024-07-30",
+                    "last_seen": "2024-08-20"
+                },
+                {
+                    "ip": "1.1.1.1",
+                    "domain": "accounts.google.com",
+                    "root": "google.com",
+                    "tld": "com",
+                    "type": "A",
+                    "registrar": "MarkMonitor, Inc.",
+                    "domain_created": "1997-09-15",
+                    "domain_expires": "2028-09-13",
+                    "nameservers": [
+                        {
+                            "root": "google.com",
+                            "nameservers": [
+                                "ns1.google.com",
+                                "ns2.google.com",
+                                "ns3.google.com",
+                                "ns4.google.com"
+                            ]
+                        }
+                    ],
+                    "country_codes": [
+                        "KR"
+                    ],
+                    "as_info": [
+                        {
+                            "asn": 4766,
+                            "as_name": ""
+                        }
+                    ],
+                    "tags": null,
+                    "distinct_ips": 214,
+                    "active_days": 18,
+                    "event_count": 2051,
+                    "first_seen": "2024-08-03",
+                    "last_seen": "2024-08-20"
+                },
+                {
+                    "ip": "1.1.1.1",
+                    "domain": "www.xf5ypqs2.xyz",
+                    "root": "xf5ypqs2.xyz",
+                    "tld": "xyz",
+                    "type": "A",
+                    "registrar": "NameSilo, LLC",
+                    "domain_created": "2020-05-24",
+                    "domain_expires": "2025-05-24",
+                    "nameservers": [
+                        {
+                            "root": "dns.com",
+                            "nameservers": [
+                                "ns1.dns.com",
+                                "ns2.dns.com"
+                            ]
+                        }
+                    ],
+                    "country_codes": [
+                        "KR"
+                    ],
+                    "as_info": [
+                        {
+                            "asn": 4766,
+                            "as_name": ""
+                        }
+                    ],
+                    "tags": null,
+                    "distinct_ips": 6,
+                    "active_days": 22,
+                    "event_count": 1598,
+                    "first_seen": "2024-07-30",
+                    "last_seen": "2024-08-20"
+                },
+                {
+                    "ip": "1.1.1.1",
+                    "domain": "play.google.com",
+                    "root": "google.com",
+                    "tld": "com",
+                    "type": "A",
+                    "registrar": "MarkMonitor, Inc.",
+                    "domain_created": "1997-09-15",
+                    "domain_expires": "2028-09-13",
+                    "nameservers": [
+                        {
+                            "root": "google.com",
+                            "nameservers": [
+                                "ns1.google.com",
+                                "ns2.google.com",
+                                "ns3.google.com",
+                                "ns4.google.com"
+                            ]
+                        }
+                    ],
+                    "country_codes": [
+                        "KR"
+                    ],
+                    "as_info": [
+                        {
+                            "asn": 4766,
+                            "as_name": ""
+                        }
+                    ],
+                    "tags": null,
+                    "distinct_ips": 1439,
+                    "active_days": 18,
+                    "event_count": 1359,
+                    "first_seen": "2024-08-03",
+                    "last_seen": "2024-08-20"
+                },
+                {
+                    "ip": "1.1.1.1",
+                    "domain": "www.xu0f.xyz",
+                    "root": "xu0f.xyz",
+                    "tld": "xyz",
+                    "type": "A",
+                    "registrar": "NameSilo, LLC",
+                    "domain_created": "2024-04-16",
+                    "domain_expires": "2025-04-16",
+                    "nameservers": [
+                        {
+                            "root": "dns.com",
+                            "nameservers": [
+                                "ns1.dns.com",
+                                "ns2.dns.com"
+                            ]
+                        }
+                    ],
+                    "country_codes": [
+                        "KR"
+                    ],
+                    "as_info": [
+                        {
+                            "asn": 4766,
+                            "as_name": ""
+                        }
+                    ],
+                    "tags": null,
+                    "distinct_ips": 6,
+                    "active_days": 22,
+                    "event_count": 963,
+                    "first_seen": "2024-07-30",
+                    "last_seen": "2024-08-20"
+                },
+                {
+                    "ip": "1.1.1.1",
+                    "domain": "www.xx28f.xyz",
+                    "root": "xx28f.xyz",
+                    "tld": "xyz",
+                    "type": "A",
+                    "registrar": "NameSilo, LLC",
+                    "domain_created": "2024-03-05",
+                    "domain_expires": "2025-03-05",
+                    "nameservers": [
+                        {
+                            "root": "dns.com",
+                            "nameservers": [
+                                "ns1.dns.com",
+                                "ns2.dns.com"
+                            ]
+                        }
+                    ],
+                    "country_codes": [
+                        "KR"
+                    ],
+                    "as_info": [
+                        {
+                            "asn": 4766,
+                            "as_name": ""
+                        }
+                    ],
+                    "tags": null,
+                    "distinct_ips": 6,
+                    "active_days": 22,
+                    "event_count": 915,
+                    "first_seen": "2024-07-30",
+                    "last_seen": "2024-08-20"
+                },
+                {
+                    "ip": "1.1.1.1",
+                    "domain": "www.paoney.xyz",
+                    "root": "paoney.xyz",
+                    "tld": "xyz",
+                    "type": "A",
+                    "registrar": "NameSilo, LLC",
+                    "domain_created": "2024-03-07",
+                    "domain_expires": "2025-03-07",
+                    "nameservers": [
+                        {
+                            "root": "dns.com",
+                            "nameservers": [
+                                "ns1.dns.com",
+                                "ns2.dns.com"
+                            ]
+                        }
+                    ],
+                    "country_codes": [
+                        "KR"
+                    ],
+                    "as_info": [
+                        {
+                            "asn": 4766,
+                            "as_name": ""
+                        }
+                    ],
+                    "tags": null,
+                    "distinct_ips": 6,
+                    "active_days": 22,
+                    "event_count": 906,
+                    "first_seen": "2024-07-30",
+                    "last_seen": "2024-08-20"
+                },
+                {
+                    "ip": "1.1.1.1",
+                    "domain": "www.xfwnm8mn.xyz",
+                    "root": "xfwnm8mn.xyz",
+                    "tld": "xyz",
+                    "type": "A",
+                    "registrar": "NameSilo, LLC",
+                    "domain_created": "2020-05-24",
+                    "domain_expires": "2025-05-24",
+                    "nameservers": [
+                        {
+                            "root": "dns.com",
+                            "nameservers": [
+                                "ns1.dns.com",
+                                "ns2.dns.com"
+                            ]
+                        }
+                    ],
+                    "country_codes": [
+                        "KR"
+                    ],
+                    "as_info": [
+                        {
+                            "asn": 4766,
+                            "as_name": ""
+                        }
+                    ],
+                    "tags": null,
+                    "distinct_ips": 6,
+                    "active_days": 22,
+                    "event_count": 905,
+                    "first_seen": "2024-07-30",
+                    "last_seen": "2024-08-20"
+                },
+                {
+                    "ip": "1.1.1.1",
+                    "domain": "www.xf96vhri.xyz",
+                    "root": "xf96vhri.xyz",
+                    "tld": "xyz",
+                    "type": "A",
+                    "registrar": "NameSilo, LLC",
+                    "domain_created": "2020-05-24",
+                    "domain_expires": "2025-05-24",
+                    "nameservers": [
+                        {
+                            "root": "dns.com",
+                            "nameservers": [
+                                "ns1.dns.com",
+                                "ns2.dns.com"
+                            ]
+                        }
+                    ],
+                    "country_codes": [
+                        "KR"
+                    ],
+                    "as_info": [
+                        {
+                            "asn": 4766,
+                            "as_name": ""
+                        }
+                    ],
+                    "tags": null,
+                    "distinct_ips": 6,
+                    "active_days": 22,
+                    "event_count": 885,
+                    "first_seen": "2024-07-30",
+                    "last_seen": "2024-08-20"
+                },
+                {
+                    "ip": "1.1.1.1",
+                    "domain": "www.xf2l1jyh.xyz",
+                    "root": "xf2l1jyh.xyz",
+                    "tld": "xyz",
+                    "type": "A",
+                    "registrar": "NameSilo, LLC",
+                    "domain_created": "2020-05-24",
+                    "domain_expires": "2025-05-24",
+                    "nameservers": [
+                        {
+                            "root": "dns.com",
+                            "nameservers": [
+                                "ns1.dns.com",
+                                "ns2.dns.com"
+                            ]
+                        }
+                    ],
+                    "country_codes": [
+                        "KR"
+                    ],
+                    "as_info": [
+                        {
+                            "asn": 4766,
+                            "as_name": ""
+                        }
+                    ],
+                    "tags": null,
+                    "distinct_ips": 6,
+                    "active_days": 22,
+                    "event_count": 858,
+                    "first_seen": "2024-07-30",
+                    "last_seen": "2024-08-20"
+                },
+                {
+                    "ip": "1.1.1.1",
+                    "domain": "www.xfkiahez.xyz",
+                    "root": "xfkiahez.xyz",
+                    "tld": "xyz",
+                    "type": "A",
+                    "registrar": "NameSilo, LLC",
+                    "domain_created": "2020-05-24",
+                    "domain_expires": "2025-05-24",
+                    "nameservers": [
+                        {
+                            "root": "dns.com",
+                            "nameservers": [
+                                "ns1.dns.com",
+                                "ns2.dns.com"
+                            ]
+                        }
+                    ],
+                    "country_codes": [
+                        "KR"
+                    ],
+                    "as_info": [
+                        {
+                            "asn": 4766,
+                            "as_name": ""
+                        }
+                    ],
+                    "tags": null,
+                    "distinct_ips": 6,
+                    "active_days": 22,
+                    "event_count": 855,
+                    "first_seen": "2024-07-30",
+                    "last_seen": "2024-08-20"
+                },
+                {
+                    "ip": "1.1.1.1",
+                    "domain": "www.xf7h6qvl.xyz",
+                    "root": "xf7h6qvl.xyz",
+                    "tld": "xyz",
+                    "type": "A",
+                    "registrar": "NameSilo, LLC",
+                    "domain_created": "2020-05-24",
+                    "domain_expires": "2025-05-24",
+                    "nameservers": [
+                        {
+                            "root": "dns.com",
+                            "nameservers": [
+                                "ns1.dns.com",
+                                "ns2.dns.com"
+                            ]
+                        }
+                    ],
+                    "country_codes": [
+                        "KR"
+                    ],
+                    "as_info": [
+                        {
+                            "asn": 4766,
+                            "as_name": ""
+                        }
+                    ],
+                    "tags": null,
+                    "distinct_ips": 6,
+                    "active_days": 22,
+                    "event_count": 853,
+                    "first_seen": "2024-07-30",
+                    "last_seen": "2024-08-20"
+                },
+                {
+                    "ip": "1.1.1.1",
+                    "domain": "www.xfibo8bv.xyz",
+                    "root": "xfibo8bv.xyz",
+                    "tld": "xyz",
+                    "type": "A",
+                    "registrar": "NameSilo, LLC",
+                    "domain_created": "2020-05-24",
+                    "domain_expires": "2025-05-24",
+                    "nameservers": [
+                        {
+                            "root": "dns.com",
+                            "nameservers": [
+                                "ns1.dns.com",
+                                "ns2.dns.com"
+                            ]
+                        }
+                    ],
+                    "country_codes": [
+                        "KR"
+                    ],
+                    "as_info": [
+                        {
+                            "asn": 4766,
+                            "as_name": ""
+                        }
+                    ],
+                    "tags": null,
+                    "distinct_ips": 6,
+                    "active_days": 22,
+                    "event_count": 830,
+                    "first_seen": "2024-07-30",
+                    "last_seen": "2024-08-20"
+                }
+            ]
+        }
+    }
+}

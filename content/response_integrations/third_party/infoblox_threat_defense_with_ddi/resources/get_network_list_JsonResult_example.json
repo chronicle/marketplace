@@ -1,0 +1,61 @@
+{
+    "results": [
+        {
+            "created_time": "2024-04-01T18:27:37Z",
+            "description": "Network List Description",
+            "id": 1527535,
+            "item_approvals": [
+                {
+                    "account_id": 2007292,
+                    "address": "42.42.42.3/32",
+                    "approval_status": "AUTO_VERIFIED",
+                    "comments": "",
+                    "company_name": "Technology Alliances|Crest Data Systems - 1",
+                    "requested_at": "2024-04-29T14:38:35Z",
+                    "updated_time": "0001-01-01T00:00:00Z",
+                    "username": ""
+                }
+            ],
+            "items": [
+                "42.42.42.3/32"
+            ],
+            "name": "DoH-1",
+            "policy_id": 207665,
+            "updated_time": "2025-06-30T05:12:50Z"
+        },
+        {
+            "created_time": "2024-07-04T08:06:07Z",
+            "description": "Test Network List 1 Description",
+            "id": 1744522,
+            "item_approvals": [
+                {
+                    "account_id": 2007292,
+                    "address": "122.170.106.85/32",
+                    "approval_status": "AUTO_VERIFIED",
+                    "comments": "",
+                    "company_name": "Technology Alliances|Crest Data Systems - 1",
+                    "requested_at": "2025-07-01T08:59:54Z",
+                    "updated_time": "0001-01-01T00:00:00Z",
+                    "username": ""
+                },
+                {
+                    "account_id": 2007292,
+                    "address": "122.170.105.85/32",
+                    "approval_status": "AUTO_VERIFIED",
+                    "comments": "",
+                    "company_name": "Technology Alliances|Crest Data Systems - 1",
+                    "requested_at": "2025-07-01T09:02:06Z",
+                    "updated_time": "0001-01-01T00:00:00Z",
+                    "username": ""
+                }
+            ],
+            "items": [
+                "122.170.106.85/32",
+                "122.170.105.85/32"
+            ],
+            "name": "test-1",
+            "policy_id": 218916,
+            "updated_time": "2025-07-01T09:02:06Z"
+        }
+    ]
+}

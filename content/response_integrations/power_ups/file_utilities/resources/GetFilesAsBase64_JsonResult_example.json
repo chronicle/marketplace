@@ -1,0 +1,20 @@
+{
+    "filenames": [
+        "/opt/siemplify/siemplify_server/Scripting/Phishing_.eml",
+        "/opt/siemplify/siemplify_server/Scripting/Logo.png"
+    ],
+    "data": [
+        {
+            "path": "/opt/siemplify/siemplify_server/Scripting",
+            "filename": "Phishing_.eml",
+            "extension": ".eml",
+            "base64": "XXXX"
+        },
+        {
+            "path": "/opt/siemplify/siemplify_server/Scripting",
+            "filename": "Logo.png",
+            "extension": ".png",
+            "base64": "iVBORw0KGgoAAAANSUhEUgAAAY8AAABdCAYAAABdG+"
+        }
+    ]
+}

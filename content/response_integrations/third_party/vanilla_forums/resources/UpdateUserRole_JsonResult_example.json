@@ -1,0 +1,27 @@
+{
+    "banned": 0,
+    "bypassSpam": false,
+    "email": "Siem@plify.com",
+    "emailConfirmed": true,
+    "dateInserted": "2021-08-01T11:46:39+00:0",
+    "dateLastActive": "2021-08-01T11:46:39+00:00",
+    "dateUpdated": "2021-08-09T12:24:40+00:00",
+    "name": "Siem Ply",
+    "photoUrl": "https://we.vanillicon.com/v2/e5ceb39e1c5d3c36eadb06ce5bc66c00.svg",
+    "url": "https://community.siemplify.co/profile/Siem%20Ply",
+    "points": 137,
+    "roles": [
+        {
+            "roleID": 2,
+            "name": "Guest"
+        }
+    ],
+    "showEmail": false,
+    "userID": 0,
+    "countDiscussions": 0,
+    "countComments": 0,
+    "countPosts": 0,
+    "label": "Siemplify Gold Member",
+    "private": false,
+    "rankID": 113
+}

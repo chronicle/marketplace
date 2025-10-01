@@ -1,0 +1,13 @@
+{
+    "_ref": "record:rpz:mx/ZG5zLmJpbmRfbXgkLl9kZWZhdWx0LmNvbS5ycHoudGhyZWF0Lm5pZ2h0bHkxLXRlc3QtbXgtc3ViLjAuMC4wLjAuNQ:nightly1-test-mx-sub.threat.rpz.com/default",
+    "comment": "nightly-test-mx-sub",
+    "disable": false,
+    "extattrs": {},
+    "mail_exchanger": "0.0.0.0",
+    "name": "nightly1-test-mx-sub.threat.rpz.com",
+    "preference": 5,
+    "rp_zone": "threat.rpz.com",
+    "use_ttl": false,
+    "view": "default",
+    "zone": "threat.rpz.com"
+}

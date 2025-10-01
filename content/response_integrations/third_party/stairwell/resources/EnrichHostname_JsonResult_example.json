@@ -1,0 +1,32 @@
+{
+    "lookupARecords": [
+        {
+            "state": "string",
+            "address": "string",
+            "lookupTime": "2025-07-09T15:38:00Z"
+        }
+    ],
+    "lookupAaaaRecords": [
+        {
+            "state": "string",
+            "address": "string",
+            "lookupTime": "2025-07-09T15:38:00Z"
+        }
+    ],
+    "lookupMxRecords": [
+        {
+            "state": "string",
+            "address": "string",
+            "lookupTime": "2025-07-09T15:38:00Z"
+        }
+    ],
+    "opinionsMostRecent": [
+        {
+            "verdict": "string",
+            "environment": "string",
+            "email": "string",
+            "createTime": "2025-07-09T15:38:00Z"
+        }
+    ],
+    "commentsMostRecent": []
+}

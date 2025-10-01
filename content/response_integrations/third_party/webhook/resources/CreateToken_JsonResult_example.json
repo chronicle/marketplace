@@ -1,0 +1,21 @@
+{
+    "uuid": "7fc8d86a-280a-4308-9cb4-48a8070cfe81",
+    "redirect": false,
+    "alias": null,
+    "actions": true,
+    "cors": false,
+    "expiry": true,
+    "timeout": 0,
+    "premium": false,
+    "user_id": null,
+    "password": false,
+    "ip": "1.1.1.1",
+    "user_agent": "python-requests/2.26.0",
+    "default_content": "On the hook",
+    "default_status": 200,
+    "default_content_type": "text/html",
+    "premium_expires_at": null,
+    "created_at": "2021-08-23 14:34:53",
+    "updated_at": "2021-08-23 14:34:53",
+    "webhookURL": "https://webhook.site/7fc8d86a-280a-4308-9cb4-48a8070cfe81"
+}

@@ -1,0 +1,60 @@
+{
+    "created_at": "2019-09-05T16:54:14Z",
+    "duration": 60,
+    "host_id": "AbcDefGHi",
+    "id": 1100000,
+    "join_url": "https://zoom.us/j/1100000",
+    "settings": {
+        "alternative_hosts": "",
+        "approval_type": 2,
+        "audio": "both",
+        "auto_recording": "local",
+        "close_registration": false,
+        "cn_meeting": false,
+        "enforce_login": false,
+        "enforce_login_domains": "",
+        "global_dial_in_countries": [
+            "US"
+        ],
+        "global_dial_in_numbers": [
+            {
+                "city": "New York",
+                "country": "US",
+                "country_name": "US",
+                "number": "+1 1000200200",
+                "type": "toll"
+            },
+            {
+                "city": "San Jose",
+                "country": "US",
+                "country_name": "US",
+                "number": "+1 6699006833",
+                "type": "toll"
+            },
+            {
+                "city": "San Jose",
+                "country": "US",
+                "country_name": "US",
+                "number": "+1 408000000",
+                "type": "toll"
+            }
+        ],
+        "host_video": false,
+        "in_meeting": false,
+        "join_before_host": true,
+        "mute_upon_entry": false,
+        "participant_video": false,
+        "registrants_confirmation_email": true,
+        "use_pmi": false,
+        "waiting_room": false,
+        "watermark": false,
+        "registrants_email_notification": true
+    },
+    "start_time": "2019-08-30T22:00:00Z",
+    "start_url": "https://zoom.us/s/1100000?iIifQ.wfY2ldlb82SWo3TsR77lBiJjR53TNeFUiKbLyCvZZjw",
+    "status": "waiting",
+    "timezone": "America/New_York",
+    "topic": "API Test",
+    "type": 2,
+    "uuid": "ng1MzyWNQaObxcf3+Gfm6A=="
+}

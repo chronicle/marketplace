@@ -1,0 +1,159 @@
+[
+    {
+        "Entity": "1.1.1.1",
+        "EntityResult": [
+            {
+                "entity": {
+                    "id": "ip:1.1.1.1",
+                    "name": "1.1.1.1",
+                    "type": "IpAddress"
+                },
+                "intelCard": "https://app.recordedfuture.com/live/sc/entity/ip%3A1.1.1.1",
+                "location": {
+                    "organization": "Huawei Cloud Service data center",
+                    "cidr": {
+                        "id": "ip:1.1.1.1/17",
+                        "name": "1.1.1.1/17",
+                        "type": "IpAddress"
+                    },
+                    "location": {
+                        "continent": "Asia",
+                        "country": "China",
+                        "city": "Guangzhou"
+                    },
+                    "asn": "AS55990"
+                },
+                "risk": {
+                    "criticalityLabel": "Very Malicious",
+                    "riskString": "12/79",
+                    "rules": 12,
+                    "criticality": 4,
+                    "riskSummary": "12 of 79 Risk Rules currently observed.",
+                    "score": 99,
+                    "evidenceDetails": [
+                        {
+                            "mitigationString": "",
+                            "evidenceString": "29 sightings on 3 sources: Twitter, Recorded Future Command & Control List, GitHub. 8 related intrusion methods including Interactsh LDAP Server, Cobalt Strike, Trojan, Offensive Security Tools (OST), Banking Trojan. Most recent link (Jun 27, 2024): https://github.com/drb-ra/C2IntelFeeds/commit/a2a3ba86630ad312b2eb014400d6aac83cc1f888",
+                            "rule": "Historically Linked to Intrusion Method",
+                            "criticality": 1,
+                            "timestamp": "2024-06-27T21:26:07.630Z",
+                            "criticalityLabel": "Unusual"
+                        },
+                        {
+                            "mitigationString": "",
+                            "evidenceString": "45 sightings on 3 sources: ThreatFox Infrastructure Analysis, DHS Automated Indicator Sharing, Malware Patrol. ThreatFox identified 124.71.84.65:8899 as possible TA0011 (Command and Control) for Sliver on January 01, 2024. Most recent link (Jan 1, 2024): https://threatfox.abuse.ch/ioc/1106265",
+                            "rule": "Historical Suspected C&C Server",
+                            "criticality": 1,
+                            "timestamp": "2024-01-01T07:51:06.000Z",
+                            "criticalityLabel": "Unusual"
+                        },
+                        {
+                            "mitigationString": "",
+                            "evidenceString": "330 sightings on 2 sources: Recorded Future Malicious Infrastructure Management Validation, Recorded Future Malicious Infrastructure Management Validation.",
+                            "rule": "Historical Malicious Infrastructure Admin Server",
+                            "criticality": 1,
+                            "timestamp": "2024-07-09T08:08:00.637Z",
+                            "criticalityLabel": "Unusual"
+                        },
+                        {
+                            "mitigationString": "",
+                            "evidenceString": "293 sightings on 1 source: DHS Automated Indicator Sharing. 293 reports including Malicious IPv4 address, from Forescout Research - Vedere Labs (Jun 29, 2024).",
+                            "rule": "Historically Reported by DHS AIS",
+                            "criticality": 1,
+                            "timestamp": "2024-06-29T12:00:46.284Z",
+                            "criticalityLabel": "Unusual"
+                        },
+                        {
+                            "mitigationString": "",
+                            "evidenceString": "8 sightings on 3 sources: redpacketsecurity.com, PasteBin, Twitter. Most recent link (May 13, 2024): https://pastebin.com/VJwG1yHY",
+                            "rule": "Historically Reported as a Defanged IP",
+                            "criticality": 1,
+                            "timestamp": "2024-05-13T12:57:05.000Z",
+                            "criticalityLabel": "Unusual"
+                        },
+                        {
+                            "mitigationString": "",
+                            "evidenceString": "1 sighting on 1 source: External Sensor Data Analysis. 124.71.84.65 was identified as botnets in External Sensor data. Reported to Recorded Future on Feb 11, 2024.",
+                            "rule": "Historical Botnet Traffic",
+                            "criticality": 1,
+                            "timestamp": "2024-02-11T10:04:46.433Z",
+                            "criticalityLabel": "Unusual"
+                        },
+                        {
+                            "mitigationString": "",
+                            "evidenceString": "Previous sightings on 4 sources: Recorded Future Analyst Community Trending Indicators, Recently Viewed Integrations Indicators, RAT Controller \u2013 Shodan / Recorded Future, Cobalt Strike Default Certificate Detected - Shodan / Recorded Future. Observed between Sep 24, 2023, and Jun 6, 2024.",
+                            "rule": "Historically Reported in Threat List",
+                            "criticality": 1,
+                            "timestamp": "2024-07-25T09:20:50.134Z",
+                            "criticalityLabel": "Unusual"
+                        },
+                        {
+                            "mitigationString": "",
+                            "evidenceString": "341 sightings on 2 sources: Recorded Future Command & Control Reports, Recorded Future Command & Control List. 124.71.84.65:443 was reported as a command and control server for cobalt strike on Apr 11, 2024",
+                            "rule": "Historically Reported C&C Server",
+                            "criticality": 2,
+                            "timestamp": "2024-04-13T08:22:57.282Z",
+                            "criticalityLabel": "Suspicious"
+                        },
+                        {
+                            "mitigationString": "",
+                            "evidenceString": "3 sightings on 1 source: GitHub. 3 related intrusion methods: Trojan, Banking Trojan, QakBot. Most recent link (Jul 20, 2024): https://github.com/drb-ra/C2IntelFeeds/commit/8ffba7ff283af2e28231fe5d42691e33bb1383af",
+                            "rule": "Recently Linked to Intrusion Method",
+                            "criticality": 2,
+                            "timestamp": "2024-07-20T23:02:00.653Z",
+                            "criticalityLabel": "Suspicious"
+                        },
+                        {
+                            "mitigationString": "",
+                            "evidenceString": "3001 sightings on 1 source: Recorded Future Command & Control Validation. Recorded Future analysis validated 124.71.84.65:8899 as a command and control server for Sliver on Jul 23, 2024",
+                            "rule": "Previously Validated C&C Server",
+                            "criticality": 2,
+                            "timestamp": "2024-07-23T10:38:16.000Z",
+                            "criticalityLabel": "Suspicious"
+                        },
+                        {
+                            "mitigationString": "",
+                            "evidenceString": "20 sightings on 1 source: Recorded Future Malicious Infrastructure Management Validation.",
+                            "rule": "Recent Malicious Infrastructure Admin Server",
+                            "criticality": 3,
+                            "timestamp": "2024-07-25T08:08:12.328Z",
+                            "criticalityLabel": "Malicious"
+                        },
+                        {
+                            "mitigationString": "",
+                            "evidenceString": "1 sighting on 1 source: Recorded Future Command & Control Validation. Recorded Future analysis validated 124.71.84.65:8899 as a command and control server for Sliver on Jul 24, 2024",
+                            "rule": "Validated C&C Server",
+                            "criticality": 4,
+                            "timestamp": "2024-07-24T10:38:19.000Z",
+                            "criticalityLabel": "Very Malicious"
+                        }
+                    ]
+                },
+                "timestamps": {
+                    "lastSeen": "2024-07-20T23:02:00.764Z",
+                    "firstSeen": "2022-12-09T20:10:23.511Z"
+                },
+                "links": {
+                    "Indicators & Detection Rules": [],
+                    "Actors, Tools & TTPs": [
+                        {
+                            "id": "mitre:TA0011",
+                            "name": "TA0011",
+                            "type": "MitreAttackIdentifier"
+                        },
+                        {
+                            "id": "aaa7zE",
+                            "name": "Sliver",
+                            "type": "Malware"
+                        },
+                        {
+                            "id": "plT8qj",
+                            "name": "Viper Pentesting Tool",
+                            "type": "Malware"
+                        }
+                    ]
+                }
+            }
+        ]
+    }
+]

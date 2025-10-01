@@ -1,0 +1,13 @@
+[
+    {
+        "Entity Id": "103",
+        "Entity Type": "account",
+        "Status": "success",
+        "Tags": [
+            "tast-tag:-:",
+            "1",
+            "test-tag",
+            "xsoar1"
+        ]
+    }
+]
