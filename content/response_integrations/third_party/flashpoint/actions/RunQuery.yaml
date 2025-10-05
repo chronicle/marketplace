@@ -1,49 +1,45 @@
-name: Run Query
+creator: TehilaGourary
+default_result_value: ''
 description: ''
+dynamic_results_metadata:
+-   result_example_path: null
+    result_name: JsonResult
+    show_result: true
 integration_identifier: Flashpoint
+name: Run Query
 parameters:
-    -   name: Query
-        default_value: '"+basetypes:+indicator"'
-        type: string
-        description: 'Query content, for example:
+-   default_value: '"+basetypes:+indicator"'
+    description: 'Query content, for example:
 
         +{basetypes}:{the basetypes you want to search for}
 
         This query search for blog posts that were posted in the past year'
-        is_mandatory: true
-    -   name: Results count limit
-        default_value: '100'
-        type: string
-        description: The amount limit of the results.
-        is_mandatory: false
-    -   name: Sort By
-        default_value: '"posted_at:desc,title:as"'
-        type: string
-        description: 'Sort by the given fields, for example:
+    is_mandatory: true
+    name: Query
+    type: string
+-   default_value: '100'
+    description: The amount limit of the results.
+    is_mandatory: false
+    name: Results count limit
+    type: string
+-   default_value: '"posted_at:desc,title:as"'
+    description: 'Sort by the given fields, for example:
 
         "posted_at : desc, title : asc"'
-        is_mandatory: false
-    -   name: Tags
-        default_value: +tag_1,+tag2
-        type: string
-        description: "A comma separated  list of tags for filtering, for example:\ntags\
+    is_mandatory: false
+    name: Sort By
+    type: string
+-   default_value: +tag_1,+tag2
+    description: "A comma separated  list of tags for filtering, for example:\ntags\
         \ = +tag_1, +tag_2\nwill return all documents which: \nhave both tag_1 and\
         \ tag_2 \n"
-        is_mandatory: false
-    -   name: Date Range
-        default_value: '[now-1y TO now]'
-        type: string
-        description: 'The dates range to present the data, for example:
-
-        +nist.updated_at.date-time:​[now-30d TO now]
-
-        Note: see date fields table'
-        is_mandatory: false
-dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: '{}'
-default_result_value: ''
-creator: TehilaGourary
+    is_mandatory: false
+    name: Tags
+    type: string
+-   default_value: '[now-1y TO now]'
+    description: "The dates range to present the data, for example:\n+nist.updated_at.date-time:\u200B\
+        [now-30d TO now]\nNote: see date fields table"
+    is_mandatory: false
+    name: Date Range
+    type: string
 script_result_name: ScriptResult

@@ -1,12 +1,11 @@
-name: Ping
-description: This action will be used to test the configurations of the XM Cyber integration.
-integration_identifier: XMCyber
-parameters: [ ]
-dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: '{}'
-default_result_value: ''
 creator: 80cf6f8c-c999-4e49-90ba-7f61317774b6
+default_result_value: ''
+description: This action will be used to test the configurations of the XM Cyber integration.
+dynamic_results_metadata:
+-   result_example_path: null
+    result_name: JsonResult
+    show_result: true
+integration_identifier: XMCyber
+name: Ping
+parameters: []
 script_result_name: ScriptResult

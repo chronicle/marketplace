@@ -1,31 +1,11 @@
-name: Enrich IP
 description: Enrich IP address entities with threat intelligence data from Stairwell
-script: EnrichIP.py
-type: enrichment
-integration_identifier: Stairwell
-timeout_seconds: 600
-parameters: []
 dynamic_results_metadata:
-  - result_name: JsonResult
+-   result_example_path: resources/EnrichIP_JsonResult_example.json
+    result_name: JsonResult
     show_result: true
-    # language=json
-    result_example: |
-      {
-        "uninterestingAddr": false,
-        "opinionsMostRecent": [
-          {
-            "verdict": "string",
-            "environment": "string",
-            "email": "string",
-            "createTime": "2025-07-09T14:39:00Z"
-          }
-        ],
-        "commentsMostRecent": [
-          {
-            "body": "string",
-            "email": "string",
-            "createTime": "2025-07-09T14:39:00Z",
-            "environment": "string"
-          }
-        ]
-      }
+integration_identifier: Stairwell
+name: Enrich IP
+parameters: []
+script: EnrichIP.py
+timeout_seconds: 600
+type: enrichment

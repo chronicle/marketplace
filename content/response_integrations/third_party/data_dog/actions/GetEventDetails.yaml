@@ -1,62 +1,16 @@
-name: Get Event Details
-description: ''
-integration_identifier: DataDog
-parameters:
-    -   name: Event ID
-        default_value: ''
-        type: string
-        description: The event id you want to retrieve
-        is_mandatory: true
-dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: "{\r\n\t\"event\": {\r\n\t\t\"date_happened\": 1614781413,\r\n\
-        \t\t\"alert_type\": \"error\",\r\n\t\t\"resource\": \"/api/v1/events/<event_id>\"\
-        ,\r\n\t\t\"title\": \"Event Title\",\r\n\t\t\"url\": \"/event/event?id=<event_id>\"\
-        ,\r\n\t\t\"text\": \"\",\r\n\t\t\"tags\": [\"tag1\", \"tag2\"],\r\n\t\t\"\
-        id\": \"< event_id >\",\r\n\t\t\"priority\": \"normal\",\r\n\t\t\"host\":\
-        \ \"None\",\r\n\t\t\"device_name\": \"None\",\r\n\t\t\"payload\": {\r\n\t\t\
-        \t\"transition\": {\r\n\t\t\t\t\"trans_name\": \"Triggered\",\r\n\t\t\t\t\"\
-        trans_type\": \"alert\"\r\n\t\t\t},\r\n\t\t\t\"monitor\": {\r\n\t\t\t\t\"\
-        created_at\": 1614781411000,\r\n\t\t\t\t\"name\": \"\",\r\n\t\t\t\t\"tags\"\
-        : [],\r\n\t\t\t\t\"deleted\": null,\r\n\t\t\t\t\"templated_name\": \"\",\r\
-        \n\t\t\t\t\"org_id\": 123456,\r\n\t\t\t\t\"modified\": 1614781411000,\r\n\t\
-        \t\t\t\"options\": {\r\n\t\t\t\t\t\"notify_audit\": false,\r\n\t\t\t\t\t\"\
-        locked\": false,\r\n\t\t\t\t\t\"timeout_h\": 0,\r\n\t\t\t\t\t\"silenced\"\
-        : {},\r\n\t\t\t\t\t\"include_tags\": true,\r\n\t\t\t\t\t\"thresholds\": {\r\
-        \n\t\t\t\t\t\t\"critical\": 50.0,\r\n\t\t\t\t\t\t\"warning\": 40.0\r\n\t\t\
-        \t\t\t},\r\n\t\t\t\t\t\"new_host_delay\": 300,\r\n\t\t\t\t\t\"queryConfig\"\
-        : {\r\n\t\t\t\t\t\t\"logset\": {\r\n\t\t\t\t\t\t\t\"name\": \"*\"\r\n\t\t\t\
-        \t\t\t},\r\n\t\t\t\t\t\t\"track\": \"logs\",\r\n\t\t\t\t\t\t\"timeRange\"\
-        : {\r\n\t\t\t\t\t\t\t\"to\": 1614767945471,\r\n\t\t\t\t\t\t\t\"live\": true,\r\
-        \n\t\t\t\t\t\t\t\"from\": 1614767045471\r\n\t\t\t\t\t\t},\r\n\t\t\t\t\t\t\"\
-        queryString\": \"\",\r\n\t\t\t\t\t\t\"indexes\": [\"*\"],\r\n\t\t\t\t\t\t\"\
-        queryIsFailed\": false\r\n\t\t\t\t\t},\r\n\t\t\t\t\t\"notify_no_data\": false,\r\
-        \n\t\t\t\t\t\"enable_logs_sample\": true,\r\n\t\t\t\t\t\"groupby_simple_monitor\"\
-        : false,\r\n\t\t\t\t\t\"renotify_interval\": 0,\r\n\t\t\t\t\t\"no_data_timeframe\"\
-        : 2,\r\n\t\t\t\t\t\"aggregation\": {\r\n\t\t\t\t\t\t\"metric\": \"count\"\
-        ,\r\n\t\t\t\t\t\t\"type\": \"count\",\r\n\t\t\t\t\t\t\"groupBy\": \"tag_kube_namespace\"\
-        \r\n\t\t\t\t\t}\r\n\t\t\t\t},\r\n\t\t\t\t\"query\": \"\",\r\n\t\t\t\t\"message\"\
-        : \"\",\r\n\t\t\t\t\"type\": \"log alert\",\r\n\t\t\t\t\"id\": 22222\r\n\t\
-        \t\t},\r\n\t\t\t\"text_only_message\": \"Namespace: Namespace\",\r\n\t\t\t\
-        \"states\": {\r\n\t\t\t\t\"dest_state\": \"Alert\",\r\n\t\t\t\t\"source_state\"\
-        : \"OK\"\r\n\t\t\t},\r\n\t\t\t\"avalanche_window\": null,\r\n\t\t\t\"result\"\
-        : {\r\n\t\t\t\t\"group\": \"kube_namespace:kube_namespace\",\r\n\t\t\t\t\"\
-        display_logs_sample\": {},\r\n\t\t\t\t\"result_ts\": 1614781411,\r\n\t\t\t\
-        \t\"rum_url\": \"\",\r\n\t\t\t\t\"trace_analytics_url\": \"\",\r\n\t\t\t\t\
-        \"state_counts\": {\r\n\t\t\t\t\t\"1\": 1,\r\n\t\t\t\t\t\"0\": 0,\r\n\t\t\t\
-        \t\t\"3\": 0,\r\n\t\t\t\t\t\"2\": 0,\r\n\t\t\t\t\t\"5\": 0,\r\n\t\t\t\t\t\"\
-        6\": 0\r\n\t\t\t\t},\r\n\t\t\t\t\"avalanche\": false,\r\n\t\t\t\t\"groups\"\
-        : {\r\n\t\t\t\t\t\"kube_namespace:kub_namespace\": {\r\n\t\t\t\t\t\t\"status\"\
-        : 1,\r\n\t\t\t\t\t\t\"latest_ts\": 0\r\n\t\t\t\t\t}\r\n\t\t\t\t},\r\n\t\t\t\
-        \t\"logs_url\": \"\",\r\n\t\t\t\t\"group_key\": \"kube_namespace\",\r\n\t\t\
-        \t\t\"state_id\": 1,\r\n\t\t\t\t\"result_id\": 0,\r\n\t\t\t\t\"num_groups\"\
-        : 1,\r\n\t\t\t\t\"metadata\": {\r\n\t\t\t\t\t\"to_js_ts\": 1614781413000,\r\
-        \n\t\t\t\t\t\"monitor_id\": 111111,\r\n\t\t\t\t\t\"snap_url\": \"\",\r\n\t\
-        \t\t\t\t\"from_js_ts\": 1614738213000,\r\n\t\t\t\t\t\"alert_url\": \"/\",\r\
-        \n\t\t\t\t\t\"process_url\": \"\",\r\n\t\t\t\t\t\"is_usertest\": true\r\n\t\
-        \t\t\t}\r\n\t\t\t},\r\n\t\t\t\"alert_cycle_key\": 0\r\n\t\t}\r\n\t}\r\n}"
-default_result_value: ''
 creator: Admin
+default_result_value: ''
+description: ''
+dynamic_results_metadata:
+-   result_example_path: resources/GetEventDetails_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: DataDog
+name: Get Event Details
+parameters:
+-   default_value: ''
+    description: The event id you want to retrieve
+    is_mandatory: true
+    name: Event ID
+    type: string
 script_result_name: ScriptResult

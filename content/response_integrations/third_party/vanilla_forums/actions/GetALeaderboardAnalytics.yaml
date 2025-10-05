@@ -1,61 +1,39 @@
-name: Get a Leaderboard Analytics
-description: Fetch analytics for leaderboards in a given date range
-integration_identifier: VanillaForums
-parameters:
-    -   name: Leaderboards
-        default_value: top-posters, top-discussion-starters
-        type: string
-        description: "Leaderboards seperated by comma. \nFor example: top-posters, top-discussion-starters"
-        is_mandatory: true
-    -   name: To
-        default_value: '2021-12-30'
-        type: string
-        description: 'End of the time frame
-
-        Syntax:
-
-        {yyyy}-{mm}-{dd}'
-        is_mandatory: true
-    -   name: Amount Limit
-        default_value: '10'
-        type: string
-        description: The max number of rows to return for each board
-        is_mandatory: true
-    -   name: From
-        default_value: '2021-01-01'
-        type: string
-        description: 'Start of the time frame
-
-        Syntax:
-
-        {yyyy}-{mm}-{dd}'
-        is_mandatory: true
-dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: "[{\r\n\t\"board\": \"top-discussion-starters\",\r\n\t\"board_details\"\
-        : [{\r\n\t\t\"recordID\": 1111,\r\n\t\t\"recordType\": \"user\",\r\n\t\t\"\
-        id\": 1111,\r\n\t\t\"position\": 1,\r\n\t\t\"positionChange\": \"New\",\r\n\
-        \t\t\"previous\": null,\r\n\t\t\"url\": \"/profile/Name%20LastName\",\r\n\t\
-        \t\"name\": \"FirstName LastName\",\r\n\t\t\"title\": \"FirstName LastName\"\
-        ,\r\n\t\t\"count\": 18\r\n\t}, {\r\n\t\t\"recordID\": 1111,\r\n\t\t\"recordType\"\
-        : \"user\",\r\n\t\t\"id\": 1111,\r\n\t\t\"position\": 2,\r\n\t\t\"positionChange\"\
-        : \"New\",\r\n\t\t\"previous\": null,\r\n\t\t\"url\": \"/profile/FirstName%20LastName\"\
-        ,\r\n\t\t\"name\": \"FirstName LastName\",\r\n\t\t\"title\": \"FirstName LastName\"\
-        ,\r\n\t\t\"count\": 6\r\n\t}, {\r\n\t\t\"recordID\": 0,\r\n\t\t\"recordType\"\
-        : \"user\",\r\n\t\t\"id\": 0,\r\n\t\t\"position\": 3,\r\n\t\t\"positionChange\"\
-        : \"Rise\",\r\n\t\t\"previous\": 6,\r\n\t\t\"url\": \"/profile/FirstName%20LastName\"\
-        ,\r\n\t\t\"name\": \"FirstName LastName\",\r\n\t\t\"title\": \"FirstName LastName\"\
-        ,\r\n\t\t\"count\": 4\r\n\t}, {\r\n\t\t\"recordID\": 1000,\r\n\t\t\"recordType\"\
-        : \"user\",\r\n\t\t\"id\": 1000,\r\n\t\t\"position\": 3,\r\n\t\t\"positionChange\"\
-        : \"New\",\r\n\t\t\"previous\": null,\r\n\t\t\"url\": \"/profile/FirstName%20LastName\"\
-        ,\r\n\t\t\"name\": \"FirstName LastName\",\r\n\t\t\"title\": \"FirstName LastName\"\
-        ,\r\n\t\t\"count\": 4\r\n\t}, {\r\n\t\t\"recordID\": 1000,\r\n\t\t\"recordType\"\
-        : \"user\",\r\n\t\t\"id\": 1000,\r\n\t\t\"position\": 3,\r\n\t\t\"positionChange\"\
-        : \"New\",\r\n\t\t\"previous\": null,\r\n\t\t\"url\": \"/profile/FirstName%20LastName\"\
-        ,\r\n\t\t\"name\": \"FirstName LastName\",\r\n\t\t\"title\": \"FirstName LastName\"\
-        ,\r\n\t\t\"count\": 4\r\n\t}]\r\n\r\n}]"
-default_result_value: ''
 creator: shakedalontest
+default_result_value: ''
+description: Fetch analytics for leaderboards in a given date range
+dynamic_results_metadata:
+-   result_example_path: resources/GetALeaderboardAnalytics_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: VanillaForums
+name: Get a Leaderboard Analytics
+parameters:
+-   default_value: top-posters, top-discussion-starters
+    description: "Leaderboards seperated by comma. \nFor example: top-posters, top-discussion-starters"
+    is_mandatory: true
+    name: Leaderboards
+    type: string
+-   default_value: '2021-12-30'
+    description: 'End of the time frame
+
+        Syntax:
+
+        {yyyy}-{mm}-{dd}'
+    is_mandatory: true
+    name: To
+    type: string
+-   default_value: '10'
+    description: The max number of rows to return for each board
+    is_mandatory: true
+    name: Amount Limit
+    type: string
+-   default_value: '2021-01-01'
+    description: 'Start of the time frame
+
+        Syntax:
+
+        {yyyy}-{mm}-{dd}'
+    is_mandatory: true
+    name: From
+    type: string
 script_result_name: ScriptResult

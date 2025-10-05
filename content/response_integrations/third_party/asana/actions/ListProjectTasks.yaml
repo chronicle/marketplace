@@ -1,48 +1,23 @@
-name: List Project Tasks
-description: Lists all the tasks associated with a specific project
-integration_identifier: Asana
-parameters:
-    -   name: Project Name
-        default_value: Your Project Name
-        type: string
-        description: The name of the project from which you would like to fetch all the
-            tasks
-        is_mandatory: true
-    -   name: Completed Status
-        default_value: 'false'
-        type: boolean
-        description: 'Marking the checkbox will retrieve only the tasks that were completed
-        by the user. '
-        is_mandatory: false
-dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: "{\r\n\t\"Task name: task 1\": {\r\n\t\t\"data\": {\r\n\t\t\t\"\
-        gid\": \"11111111\",\r\n\t\t\t\"assignee\": {\r\n\t\t\t\t\"gid\": \"123456\"\
-        ,\r\n\t\t\t\t\"name\": \"Firstname Lastname\",\r\n\t\t\t\t\"resource_type\"\
-        : \"user\"\r\n\t\t\t},\r\n\t\t\t\"assignee_status\": \"inbox\",\r\n\t\t\t\"\
-        completed\": false,\r\n\t\t\t\"completed_at\": null,\r\n\t\t\t\"created_at\"\
-        : \"2020-10-07T13:44:40.643Z\",\r\n\t\t\t\"due_at\": null,\r\n\t\t\t\"due_on\"\
-        : \"2020-10-09\",\r\n\t\t\t\"followers\": [{\r\n\t\t\t\t\"gid\": \"123456\"\
-        ,\r\n\t\t\t\t\"name\": \"Firstname Lastname\",\r\n\t\t\t\t\"resource_type\"\
-        : \"user\"\r\n\t\t\t}],\r\n\t\t\t\"hearted\": false,\r\n\t\t\t\"hearts\":\
-        \ [],\r\n\t\t\t\"liked\": false,\r\n\t\t\t\"likes\": [],\r\n\t\t\t\"memberships\"\
-        : [{\r\n\t\t\t\t\"project\": {\r\n\t\t\t\t\t\"gid\": \"88888888\",\r\n\t\t\
-        \t\t\t\"name\": \"Test Project\",\r\n\t\t\t\t\t\"resource_type\": \"project\"\
-        \r\n\t\t\t\t},\r\n\t\t\t\t\"section\": {\r\n\t\t\t\t\t\"gid\": \"99999999\"\
-        ,\r\n\t\t\t\t\t\"name\": \"Untitled section\",\r\n\t\t\t\t\t\"resource_type\"\
-        : \"section\"\r\n\t\t\t\t}\r\n\t\t\t}],\r\n\t\t\t\"modified_at\": \"2020-10-08T12:39:42.693Z\"\
-        ,\r\n\t\t\t\"name\": \"task 1\",\r\n\t\t\t\"notes\": \"The new task\",\r\n\
-        \t\t\t\"num_hearts\": 0,\r\n\t\t\t\"num_likes\": 0,\r\n\t\t\t\"parent\": null,\r\
-        \n\t\t\t\"permalink_url\": \"https://app.asana.com/0/88888888/11111111\",\r\
-        \n\t\t\t\"projects\": [{\r\n\t\t\t\t\"gid\": \"555555\",\r\n\t\t\t\t\"name\"\
-        : \"Test Project\",\r\n\t\t\t\t\"resource_type\": \"project\"\r\n\t\t\t}],\r\
-        \n\t\t\t\"resource_type\": \"task\",\r\n\t\t\t\"start_on\": null,\r\n\t\t\t\
-        \"tags\": [],\r\n\t\t\t\"resource_subtype\": \"default_task\",\r\n\t\t\t\"\
-        workspace\": {\r\n\t\t\t\t\"gid\": \"444444\",\r\n\t\t\t\t\"name\": \"WorkspaceName\"\
-        ,\r\n\t\t\t\t\"resource_type\": \"workspace\"\r\n\t\t\t}\r\n\t\t}\r\n\t}\r\
-        \n}"
-default_result_value: ''
 creator: TehilaGourary
+default_result_value: ''
+description: Lists all the tasks associated with a specific project
+dynamic_results_metadata:
+-   result_example_path: resources/ListProjectTasks_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: Asana
+name: List Project Tasks
+parameters:
+-   default_value: Your Project Name
+    description: The name of the project from which you would like to fetch all the
+        tasks
+    is_mandatory: true
+    name: Project Name
+    type: string
+-   default_value: 'false'
+    description: 'Marking the checkbox will retrieve only the tasks that were completed
+        by the user. '
+    is_mandatory: false
+    name: Completed Status
+    type: boolean
 script_result_name: ScriptResult

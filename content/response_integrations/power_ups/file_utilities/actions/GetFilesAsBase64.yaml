@@ -1,24 +1,16 @@
-name: Get Files as Base64
-description: Converts local files to base64 strings.
-integration_identifier: FileUtilities
-parameters:
-    -   name: File Paths
-        default_value: /path/file.exe
-        type: string
-        description: A comma delimited list of files, including their path.
-        is_mandatory: true
-dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: "{\n  \"filenames\": [\n    \"/opt/siemplify/siemplify_server/Scripting/Phishing_.eml\"\
-        ,\n    \"/opt/siemplify/siemplify_server/Scripting/Logo.png\"\n  ],\n  \"\
-        data\": [\n    {\n      \"path\": \"/opt/siemplify/siemplify_server/Scripting\"\
-        ,\n      \"filename\": \"Phishing_.eml\",\n      \"extension\": \".eml\",\n\
-        \      \"base64\": \"XXXX\"\n    },\n    {\n      \"path\": \"/opt/siemplify/siemplify_server/Scripting\"\
-        ,\n      \"filename\": \"Logo.png\",\n      \"extension\": \".png\",\n   \
-        \   \"base64\": \"iVBORw0KGgoAAAANSUhEUgAAAY8AAABdCAYAAABdG+\"\n    }\n  ]\n\
-        }"
-default_result_value: ''
 creator: Rob
+default_result_value: ''
+description: Converts local files to base64 strings.
+dynamic_results_metadata:
+-   result_example_path: resources/GetFilesAsBase64_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: FileUtilities
+name: Get Files as Base64
+parameters:
+-   default_value: /path/file.exe
+    description: A comma delimited list of files, including their path.
+    is_mandatory: true
+    name: File Paths
+    type: string
 script_result_name: ScriptResult

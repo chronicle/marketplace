@@ -1,64 +1,32 @@
-name: Get Network List
-description: Retrieves the contents of a network list.
-integration_identifier: InfobloxThreatDefenseWithDDI
-parameters:
-- name: Security Network Filter
-  default_value: ''
-  type: string
-  description: Filter network lists by a logical expression string (e.g., name ==
-    'net_list1').
-  is_mandatory: false
-- name: Offset
-  default_value: '0'
-  type: string
-  description: Specify the offset from where to start pagination.
-  is_mandatory: false
-- name: Limit
-  default_value: '100'
-  type: string
-  description: Specify the maximum number of results to return.
-  is_mandatory: false
-- name: Network List ID
-  default_value: null
-  type: string
-  description: Specify the ID of the network list.
-  is_mandatory: false
-dynamic_results_metadata:
-- result_name: JsonResult
-  show_result: true
-  result_example: "{\r\n    \"results\": [\r\n        {\r\n            \"created_time\"\
-    : \"2024-04-01T18:27:37Z\",\r\n            \"description\": \"Network List Description\"\
-    ,\r\n            \"id\": 1527535,\r\n            \"item_approvals\": [\r\n   \
-    \             {\r\n                    \"account_id\": 2007292,\r\n          \
-    \          \"address\": \"42.42.42.3/32\",\r\n                    \"approval_status\"\
-    : \"AUTO_VERIFIED\",\r\n                    \"comments\": \"\",\r\n          \
-    \          \"company_name\": \"Technology Alliances|Crest Data Systems - 1\",\r\
-    \n                    \"requested_at\": \"2024-04-29T14:38:35Z\",\r\n        \
-    \            \"updated_time\": \"0001-01-01T00:00:00Z\",\r\n                 \
-    \   \"username\": \"\"\r\n                }\r\n            ],\r\n            \"\
-    items\": [\r\n                \"42.42.42.3/32\"\r\n            ],\r\n        \
-    \    \"name\": \"DoH-1\",\r\n            \"policy_id\": 207665,\r\n          \
-    \  \"updated_time\": \"2025-06-30T05:12:50Z\"\r\n        },\r\n        {\r\n \
-    \           \"created_time\": \"2024-07-04T08:06:07Z\",\r\n            \"description\"\
-    : \"Test Network List 1 Description\",\r\n            \"id\": 1744522,\r\n   \
-    \         \"item_approvals\": [\r\n                {\r\n                    \"\
-    account_id\": 2007292,\r\n                    \"address\": \"122.170.106.85/32\"\
-    ,\r\n                    \"approval_status\": \"AUTO_VERIFIED\",\r\n         \
-    \           \"comments\": \"\",\r\n                    \"company_name\": \"Technology\
-    \ Alliances|Crest Data Systems - 1\",\r\n                    \"requested_at\"\
-    : \"2025-07-01T08:59:54Z\",\r\n                    \"updated_time\": \"0001-01-01T00:00:00Z\"\
-    ,\r\n                    \"username\": \"\"\r\n                },\r\n        \
-    \        {\r\n                    \"account_id\": 2007292,\r\n               \
-    \     \"address\": \"122.170.105.85/32\",\r\n                    \"approval_status\"\
-    : \"AUTO_VERIFIED\",\r\n                    \"comments\": \"\",\r\n          \
-    \          \"company_name\": \"Technology Alliances|Crest Data Systems - 1\",\r\
-    \n                    \"requested_at\": \"2025-07-01T09:02:06Z\",\r\n        \
-    \            \"updated_time\": \"0001-01-01T00:00:00Z\",\r\n                 \
-    \   \"username\": \"\"\r\n                }\r\n            ],\r\n            \"\
-    items\": [\r\n                \"122.170.106.85/32\",\r\n                \"122.170.105.85/32\"\
-    \r\n            ],\r\n            \"name\": \"test-1\",\r\n            \"policy_id\"\
-    : 218916,\r\n            \"updated_time\": \"2025-07-01T09:02:06Z\"\r\n      \
-    \  }\r\n    ]\r\n}"
-default_result_value: ''
 creator: Admin
+default_result_value: ''
+description: Retrieves the contents of a network list.
+dynamic_results_metadata:
+-   result_example_path: resources/get_network_list_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: InfobloxThreatDefenseWithDDI
+name: Get Network List
+parameters:
+-   default_value: ''
+    description: Filter network lists by a logical expression string (e.g., name ==
+        'net_list1').
+    is_mandatory: false
+    name: Security Network Filter
+    type: string
+-   default_value: '0'
+    description: Specify the offset from where to start pagination.
+    is_mandatory: false
+    name: Offset
+    type: string
+-   default_value: '100'
+    description: Specify the maximum number of results to return.
+    is_mandatory: false
+    name: Limit
+    type: string
+-   default_value: null
+    description: Specify the ID of the network list.
+    is_mandatory: false
+    name: Network List ID
+    type: string
 script_result_name: ScriptResult

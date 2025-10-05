@@ -1,31 +1,24 @@
-name: Get User MFA
+creator: daniel.harvey
+default_result_value: ''
 description: Search for given user and return MFA stats. Queries a given User Email
     field including any valid email entities. JSON result will always return your
     User Email input first at index zero.
-integration_identifier: MicrosoftGraphSecurityTools
-parameters:
-    -   name: Create Insight
-        default_value: 'false'
-        type: boolean
-        description: Create an insight for each email checked with MFA stats.
-        is_mandatory: false
-    -   name: User Email
-        default_value: user@email.com
-        type: string
-        description: Users email address to search for (userPrincipalName). Valid target
-            entities (emails) will also be checked.
-        is_mandatory: true
 dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: '[{"id": "75as5323-a3b6-1234-f86b-30dc4bfb56e1", "userPrincipalName":
-        "john.smith@email.com", "userDisplayName": "John Smith", "isRegistered": "True",
-        "isEnabled": "False", "isCapable": "False", "isMfaRegistered": "True", "authMethods":
-        ["mobilePhone", "appNotification", "appCode"]}, {"id": "d14f12cc-f123-1234-f3c3-a574926bad3c",
-        "userPrincipalName": "Jack.Smith@email.com", "userDisplayName": "Jack Smith",
-        "isRegistered": "True", "isEnabled": "False", "isCapable": "False", "isMfaRegistered":
-        "True", "authMethods": ["mobilePhone", "appNotification", "appCode"]}]'
-default_result_value: ''
-creator: daniel.harvey
+-   result_example_path: resources/GetUserMfa_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: MicrosoftGraphSecurityTools
+name: Get User MFA
+parameters:
+-   default_value: 'false'
+    description: Create an insight for each email checked with MFA stats.
+    is_mandatory: false
+    name: Create Insight
+    type: boolean
+-   default_value: user@email.com
+    description: Users email address to search for (userPrincipalName). Valid target
+        entities (emails) will also be checked.
+    is_mandatory: true
+    name: User Email
+    type: string
 script_result_name: ScriptResult

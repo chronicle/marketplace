@@ -1,35 +1,20 @@
-name: Extract Archive
+creator: Rob
+default_result_value: ''
 description: 'Extracts an archive file to a directory..  Supports: zip, tar, gztar,
     bztar, xtar.
 
     Returns the extracted path and files.'
-integration_identifier: FileUtilities
-parameters:
-    -   name: Archive
-        default_value: <archive file with path>
-        type: string
-        description: "The  path of the archive to be extracted.  Supports comma delimited\n\
-        Example: \n/opt/siemplify/siemplify_server/Scripting/FileUtilities//file.zip\n"
-        is_mandatory: true
 dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: "{\n  \"archives\": [\n    {\n      \"success\": true,\n     \
-        \ \"archive\": \"testarchive.zip\",\n      \"folder\": \"/opt/siemplify/siemplify_server/Scripting/FileUtilities/Extract/testarchive\"\
-        ,\n      \"files_with_path\": [\n        \"/opt/siemplify/siemplify_server/Scripting/FileUtilities/Extract/testarchive/Archives/testarchive.zip\"\
-        ,\n        \"/opt/siemplify/siemplify_server/Scripting/FileUtilities/Extract/testarchive/Archives/file1\"\
-        ,\n        \"/opt/siemplify/siemplify_server/Scripting/FileUtilities/Extract/testarchive/Archives/file2\"\
-        \n      ],\n      \"files_list\": [\"testarchive.zip\", \"file1\", \"file2\"\
-        ],\n      \"files\": {\n        \"name\": \"testarchive\",\n        \"type\"\
-        : \"directory\",\n        \"children\": [\n          {\n            \"name\"\
-        : \"Archives\",\n            \"type\": \"directory\",\n            \"children\"\
-        : [\n              {\n                \"name\": \"testarchive.zip\",\n   \
-        \             \"type\": \"file\"\n              },\n              {\n    \
-        \            \"name\": \"file1\",\n                \"type\": \"file\"\n  \
-        \            },\n              {\n                \"name\": \"file2\",\n \
-        \               \"type\": \"file\"\n              }\n            ]\n     \
-        \     }\n        ]\n      }\n    }\n  ]\n}"
-default_result_value: ''
-creator: Rob
+-   result_example_path: resources/ExtractArchive_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: FileUtilities
+name: Extract Archive
+parameters:
+-   default_value: <archive file with path>
+    description: "The  path of the archive to be extracted.  Supports comma delimited\n\
+        Example: \n/opt/siemplify/siemplify_server/Scripting/FileUtilities//file.zip\n"
+    is_mandatory: true
+    name: Archive
+    type: string
 script_result_name: ScriptResult

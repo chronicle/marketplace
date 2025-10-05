@@ -1,0 +1,34 @@
+[
+    {
+        "Entity": "/var/log/messages",
+        "EntityResult": {
+            "file_name": "messages",
+            "file_path": "/var/log",
+            "file_extension": ""
+        }
+    },
+    {
+        "Entity": "file.exe",
+        "EntityResult": {
+            "file_name": "file.exe",
+            "file_path": "",
+            "file_extension": ".exe"
+        }
+    },
+    {
+        "Entity": "c:\\windows\\cmd.com",
+        "EntityResult": {
+            "file_name": "cmd.com",
+            "file_path": "c:\\windows",
+            "file_extension": ".com"
+        }
+    },
+    {
+        "Entity": "C:\\windows\\test\\test.exe",
+        "EntityResult": {
+            "file_name": "test.exe",
+            "file_path": "C:\\windows\\test",
+            "file_extension": ".exe"
+        }
+    }
+]

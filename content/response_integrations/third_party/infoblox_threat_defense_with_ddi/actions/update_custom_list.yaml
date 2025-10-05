@@ -1,57 +1,52 @@
-name: Update Custom List
-description: Modifies entries in an existing custom list.
-integration_identifier: InfobloxThreatDefenseWithDDI
-parameters:
-- name: Name
-  default_value: null
-  type: string
-  description: Specify the name of the custom list to update.
-  is_mandatory: false
-- name: Custom List ID
-  default_value: '0'
-  type: string
-  description: Specify the ID of the custom list to update.
-  is_mandatory: true
-- name: Description
-  default_value: null
-  type: string
-  description: Specify description of custom list. Use keyword `empty` to remove the
-    description
-  is_mandatory: false
-- name: Confidence Level
-  default_value: ''
-  type: ddl
-  description: Specify the confidence level for the custom list.
-  is_mandatory: false
-  optional_values:
-  - High
-  - Medium
-  - Low
-- name: Threat Level
-  default_value: ''
-  type: ddl
-  description: Specify the threat level for the custom list.
-  is_mandatory: false
-  optional_values:
-  - High
-  - Medium
-  - Low
-  - Info
-- name: Tags
-  default_value: null
-  type: string
-  description: Add tags to categorize and organize the custom list. Use keyword `empty`
-    to remove the tags
-  is_mandatory: false
-dynamic_results_metadata:
-- result_name: JsonResult
-  show_result: true
-  result_example: "{\n    \"confidence_level\": \"HIGH\",\n    \"created_time\": \"\
-    2025-07-09T10:08:24Z\",\n    \"description\": \"Test Desc\",\n    \"id\": 832273,\n\
-    \    \"item_count\": 0,\n    \"items\": [],\n    \"items_described\": [],\n  \
-    \  \"name\": \"Test-1\",\n    \"policies\": [],\n    \"tags\": {\n        \"Test1\"\
-    : \"S2\"\n    },\n    \"threat_level\": \"INFO\",\n    \"type\": \"custom_list\"\
-    ,\n    \"updated_time\": \"2025-07-09T10:33:46Z\"\n}"
-default_result_value: ''
 creator: Admin
+default_result_value: ''
+description: Modifies entries in an existing custom list.
+dynamic_results_metadata:
+-   result_example_path: resources/update_custom_list_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: InfobloxThreatDefenseWithDDI
+name: Update Custom List
+parameters:
+-   default_value: null
+    description: Specify the name of the custom list to update.
+    is_mandatory: false
+    name: Name
+    type: string
+-   default_value: '0'
+    description: Specify the ID of the custom list to update.
+    is_mandatory: true
+    name: Custom List ID
+    type: string
+-   default_value: null
+    description: Specify description of custom list. Use keyword `empty` to remove
+        the description
+    is_mandatory: false
+    name: Description
+    type: string
+-   default_value: ''
+    description: Specify the confidence level for the custom list.
+    is_mandatory: false
+    name: Confidence Level
+    optional_values:
+    - High
+    - Medium
+    - Low
+    type: ddl
+-   default_value: ''
+    description: Specify the threat level for the custom list.
+    is_mandatory: false
+    name: Threat Level
+    optional_values:
+    - High
+    - Medium
+    - Low
+    - Info
+    type: ddl
+-   default_value: null
+    description: Add tags to categorize and organize the custom list. Use keyword
+        `empty` to remove the tags
+    is_mandatory: false
+    name: Tags
+    type: string
 script_result_name: ScriptResult

@@ -1,26 +1,16 @@
-name: Get Beautiful Metric
-description: Get metrics timeseries points of a given query
-integration_identifier: DataDog
-parameters:
-    -   name: Series
-        default_value: '{}'
-        type: code
-        description: The timeseries points you want to analyze
-        is_mandatory: true
-dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: "{\r\n\t\"unit\": \"cpu\",\r\n\t\"aggregation_by\": \"avg\",\r\
-        \n\t\"start_time\": 1607040000000,\r\n\t\"end_time\": 1610668799000,\r\n\t\
-        \"full_timeseries_points_list\": [\r\n\t\t[1607040000000.0, 0.008314899947867048],\r\
-        \n\t\t[1607644800000.0, 0.04104587218344665],\r\n\t\t[1608249600000.0, 0.050120122766495044],\r\
-        \n\t\t[1608854400000.0, 0.007100906014306722],\r\n\t\t[1609459200000.0, 0.007120135038524259],\r\
-        \n\t\t[1610064000000.0, 0.0063300259286052755]\r\n\t],\r\n\t\"sum_of_the_metric_values\"\
-        : 0.120031961879245,\r\n\t\"average_of_the_metric_values\": 0.02000532697987417,\r\
-        \n\t\"min_of_the_metric_values\": 0.0063300259286052755,\r\n\t\"max_of_the_metric_values\"\
-        : 0.050120122766495044,\r\n\t\"expression\": \"avg:kubernetes.cpu.system.total{kube_namespace:x,pod_name:y}\"\
-        \r\n}"
-default_result_value: ''
 creator: Admin
+default_result_value: ''
+description: Get metrics timeseries points of a given query
+dynamic_results_metadata:
+-   result_example_path: resources/GetBeautifulMetric_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: DataDog
+name: Get Beautiful Metric
+parameters:
+-   default_value: '{}'
+    description: The timeseries points you want to analyze
+    is_mandatory: true
+    name: Series
+    type: code
 script_result_name: ScriptResult

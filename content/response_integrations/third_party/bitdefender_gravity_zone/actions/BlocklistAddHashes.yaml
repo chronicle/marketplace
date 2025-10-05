@@ -1,36 +1,22 @@
-name: Blocklist - Add Hashes
+creator: daniel.harvey
+default_result_value: ''
 description: 'Use this method to add one or more file hashes to the Blocklist. Hashes
     supported: SHA256, MD5.'
-integration_identifier: Bitdefender GravityZone
-parameters:
-    -   name: Hash List
-        default_value: hash1,hash2
-        type: string
-        description: A comma-separated list of SHA256 or MD5 hashes.
-        is_mandatory: true
-    -   name: Source Info
-        default_value: Determined to be malicious.
-        type: string
-        description: A description for the hashes.
-        is_mandatory: true
 dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: false
-        # language=json
-        result_example: "{\n    \"items\":[\n        {   \n            \"id\" : \"21a295eeb1a43d8b497b23b7\"\
-        , \"name\" : \"Endpoint 1\",\n            \"label\" : \"endpoint 1\",\n  \
-        \          \"fqdn\": \"endpoint1.local\",\n            \"groupId\": \"5a5f4d36b1a43d5f097b23bb\"\
-        , \"isManaged\": true,\n            \"isManaged\": true,\n            \"machineType\"\
-        : 1,\n            \"operatingSystemVersion\": \"Windows Server 2016\",\n \
-        \           \"ip\": \"1.1.1.1\",\n            \"macs\": [\n              \
-        \  \"324935237225\"\n            ],\n            \"ssid\": \"\"\n        },\n\
-        \        {\n            \"id\" : \"23a295d8b1a43d7c4a7b23c9\",\n         \
-        \   \"name\" : \"Endpoint 2\",\n            \"machineType\": 2,\n        \
-        \    \"label\" : \"endpoint 2\",\n            \"fqdn\": \"endpoint2.local\"\
-        ,\n            \"groupId\": \"5a4f4d46b1a53d5f197b23aa\", \"isManaged\": true,\n\
-        \            \"machineType\": 1, \"operatingSystemVersion\": \"Windows 7\"\
-        , \"ip\": \"1.1.1.1\",\n            \"macs\": [\n                \"325935237445\"\
-        \n            ],\n            \"ssid\": \"\"\n        }    \n    ]\n}"
-default_result_value: ''
-creator: daniel.harvey
+-   result_example_path: resources/BlocklistAddHashes_JsonResult_example.json
+    result_name: JsonResult
+    show_result: false
+integration_identifier: Bitdefender GravityZone
+name: Blocklist - Add Hashes
+parameters:
+-   default_value: hash1,hash2
+    description: A comma-separated list of SHA256 or MD5 hashes.
+    is_mandatory: true
+    name: Hash List
+    type: string
+-   default_value: Determined to be malicious.
+    description: A description for the hashes.
+    is_mandatory: true
+    name: Source Info
+    type: string
 script_result_name: ScriptResult

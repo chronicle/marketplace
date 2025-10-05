@@ -1,17 +1,16 @@
-name: IOC_Enrichment
-description: Enrich indicator attribute Entities.
-integration_identifier: Flashpoint
-parameters:
-    -   name: Limit
-        default_value: '100'
-        type: string
-        description: The maximum number of result objects to return.
-        is_mandatory: false
-dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: '{}'
-default_result_value: ''
 creator: Admin
+default_result_value: ''
+description: Enrich indicator attribute Entities.
+dynamic_results_metadata:
+-   result_example_path: null
+    result_name: JsonResult
+    show_result: true
+integration_identifier: Flashpoint
+name: IOC_Enrichment
+parameters:
+-   default_value: '100'
+    description: The maximum number of result objects to return.
+    is_mandatory: false
+    name: Limit
+    type: string
 script_result_name: ScriptResult

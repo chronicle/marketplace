@@ -1,18 +1,17 @@
-name: Approval Request
-description: Requires approval from a reviewer before continuing
-integration_identifier: Workflow Tools
-parameters:
-    -   name: Move Alert If Grouped
-        default_value: 'true'
-        type: boolean
-        description: 'If the alert is grouped in a case with several other alerts - We''ll
-        move this alert to it''s own case before continuing the workflow. '
-        is_mandatory: false
-dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: '{}'
-default_result_value: ''
 creator: daniel.harvey
+default_result_value: ''
+description: Requires approval from a reviewer before continuing
+dynamic_results_metadata:
+-   result_example_path: null
+    result_name: JsonResult
+    show_result: true
+integration_identifier: Workflow Tools
+name: Approval Request
+parameters:
+-   default_value: 'true'
+    description: 'If the alert is grouped in a case with several other alerts - We''ll
+        move this alert to it''s own case before continuing the workflow. '
+    is_mandatory: false
+    name: Move Alert If Grouped
+    type: boolean
 script_result_name: RequiresApproval

@@ -1,32 +1,31 @@
-name: AddOrUpdate
-description: ''
-integration_identifier: AirTable
-parameters:
-    -   name: Base id
-        default_value: <Base id>
-        type: string
-        description: Base id
-        is_mandatory: true
-    -   name: Table name
-        default_value: <Table name>
-        type: string
-        description: Table name
-        is_mandatory: true
-    -   name: Field name
-        default_value: Field name
-        type: string
-        description: Field name
-        is_mandatory: true
-    -   name: Json fields
-        default_value: '{}'
-        type: string
-        description: Json fields
-        is_mandatory: true
-dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: '{}'
-default_result_value: ''
 creator: Admin
+default_result_value: ''
+description: ''
+dynamic_results_metadata:
+-   result_example_path: null
+    result_name: JsonResult
+    show_result: true
+integration_identifier: AirTable
+name: AddOrUpdate
+parameters:
+-   default_value: <Base id>
+    description: Base id
+    is_mandatory: true
+    name: Base id
+    type: string
+-   default_value: <Table name>
+    description: Table name
+    is_mandatory: true
+    name: Table name
+    type: string
+-   default_value: Field name
+    description: Field name
+    is_mandatory: true
+    name: Field name
+    type: string
+-   default_value: '{}'
+    description: Json fields
+    is_mandatory: true
+    name: Json fields
+    type: string
 script_result_name: ScriptResult

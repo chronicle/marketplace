@@ -1,24 +1,23 @@
-name: Create Sheet
-description: 'Creates a new Sheet '
-integration_identifier: Google Sheets
-parameters:
-    -   name: Sheet Name
-        default_value: <Sheet-Name>
-        type: string
-        description: 'The worksheet name is the Sheet tab name. The default Sheet name
-        is "Sheet1". '
-        is_mandatory: true
-    -   name: Share with emails
-        default_value: email1@gmail.com;email2@gmail.com;email3@gmail.com
-        type: string
-        description: 'Email address of the person you would like to add permission to
-        the Spreadsheet. You can add multiple emails by adding ";" as a separator. '
-        is_mandatory: false
-dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: false
-        # language=json
-        result_example: '{}'
-default_result_value: ''
 creator: Admin
+default_result_value: ''
+description: 'Creates a new Sheet '
+dynamic_results_metadata:
+-   result_example_path: null
+    result_name: JsonResult
+    show_result: false
+integration_identifier: Google Sheets
+name: Create Sheet
+parameters:
+-   default_value: <Sheet-Name>
+    description: 'The worksheet name is the Sheet tab name. The default Sheet name
+        is "Sheet1". '
+    is_mandatory: true
+    name: Sheet Name
+    type: string
+-   default_value: email1@gmail.com;email2@gmail.com;email3@gmail.com
+    description: 'Email address of the person you would like to add permission to
+        the Spreadsheet. You can add multiple emails by adding ";" as a separator. '
+    is_mandatory: false
+    name: Share with emails
+    type: string
 script_result_name: ScriptResult

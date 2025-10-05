@@ -1,72 +1,27 @@
-name: Upload File From Base64
-description: Uploads a Base64 to Google Drive
-integration_identifier: Google Drive
-parameters:
-    -   name: File Name
-        default_value: example.txt
-        type: string
-        description: The file name you would like to upload in Base64 format.
-        is_mandatory: true
-    -   name: Share with emails
-        default_value: email1@gmail.com;email2@gmail.com
-        type: string
-        description: 'Email address of the person you would like to add permission to
-        the file. You can add multiple emails by adding ";" as a separator. '
-        is_mandatory: true
-    -   name: Base64 String
-        default_value: SGVsbG8sIFdvcmxkIQ==
-        type: string
-        description: The file Base64 String
-        is_mandatory: true
-dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: "{\n  \"kind\": \"drive#file\",\n  \"id\": \"1UK6HruAvkNLHOAZdaO0iDKFdzU6CwazE\"\
-        ,\n  \"name\": \"Hello.txt\",\n  \"mimeType\": \"text/plain\",\n  \"starred\"\
-        : false,\n  \"trashed\": false,\n  \"explicitlyTrashed\": false,\n  \"parents\"\
-        : [\n    \"0ADdNAjNcLms6Uk9PVA\"\n  ],\n  \"spaces\": [\n    \"drive\"\n \
-        \ ],\n  \"version\": \"4\",\n  \"webContentLink\": \"https://drive.google.com/uc?id=eid&export=download\"\
-        ,\n  \"webViewLink\": \"https://drive.google.com/file/d/eid/view?usp=drivesdk\"\
-        ,\n  \"iconLink\": \"https://drive-thirdparty.googleusercontent.com/16/type/text/plain\"\
-        ,\n  \"hasThumbnail\": true,\n  \"thumbnailLink\": \"https://lh3.googleusercontent.com/f6Gk8Rn7-pu-6xsekHcrKVl5d4Z9EduGvdyJmiUCuZSyCM1JCla6ywYgsDN1qPA3B6CWmYxUpxo=s220\"\
-        ,\n  \"thumbnailVersion\": \"1\",\n  \"viewedByMe\": false,\n  \"createdTime\"\
-        : \"2020-10-03T12:12:57.070Z\",\n  \"modifiedTime\": \"2020-10-03T12:12:57.984Z\"\
-        ,\n  \"modifiedByMeTime\": \"2020-10-03T12:12:57.984Z\",\n  \"modifiedByMe\"\
-        : true,\n  \"owners\": [\n    {\n      \"kind\": \"drive#user\",\n      \"\
-        displayName\": \"alon-api@quickstart-1550908020996.iam.gserviceaccount.com\"\
-        ,\n      \"me\": true,\n      \"permissionId\": \"02214475487724192531\",\n\
-        \      \"emailAddress\": \"alon-api@quickstart-1550908020996.iam.gserviceaccount.com\"\
-        \n    }\n  ],\n  \"lastModifyingUser\": {\n    \"kind\": \"drive#user\",\n\
-        \    \"displayName\": \"alon-api@quickstart-1550908020996.iam.gserviceaccount.com\"\
-        ,\n    \"me\": true,\n    \"permissionId\": \"02214475487724192531\",\n  \
-        \  \"emailAddress\": \"alon-api@quickstart-1550908020996.iam.gserviceaccount.com\"\
-        \n  },\n  \"shared\": true,\n  \"ownedByMe\": true,\n  \"capabilities\": {\n\
-        \    \"canAddChildren\": false,\n    \"canAddMyDriveParent\": false,\n   \
-        \ \"canChangeCopyRequiresWriterPermission\": true,\n    \"canChangeViewersCanCopyContent\"\
-        : true,\n    \"canComment\": true,\n    \"canCopy\": true,\n    \"canDelete\"\
-        : true,\n    \"canDownload\": true,\n    \"canEdit\": true,\n    \"canListChildren\"\
-        : false,\n    \"canModifyContent\": true,\n    \"canMoveChildrenWithinDrive\"\
-        : false,\n    \"canMoveItemIntoTeamDrive\": true,\n    \"canMoveItemOutOfDrive\"\
-        : true,\n    \"canMoveItemWithinDrive\": true,\n    \"canReadRevisions\":\
-        \ true,\n    \"canRemoveChildren\": false,\n    \"canRemoveMyDriveParent\"\
-        : true,\n    \"canRename\": true,\n    \"canShare\": true,\n    \"canTrash\"\
-        : true,\n    \"canUntrash\": true\n  },\n  \"viewersCanCopyContent\": true,\n\
-        \  \"copyRequiresWriterPermission\": false,\n  \"writersCanShare\": true,\n\
-        \  \"permissions\": [\n    {\n      \"kind\": \"drive#permission\",\n    \
-        \  \"id\": \"07712505579216618120\",\n      \"type\": \"user\",\n      \"\
-        emailAddress\": \"alon@siemplify.co\",\n      \"role\": \"writer\",\n    \
-        \  \"displayName\": \"Alon Cohen\",\n      \"photoLink\": \"https://lh3.googleusercontent.com/a-/AOh14GiMxKieoHd_kj45ZZ1IMl6XDsZMh4gFeXRmRi6LIg=s64\"\
-        ,\n      \"deleted\": false\n    },\n    {\n      \"kind\": \"drive#permission\"\
-        ,\n      \"id\": \"02214475487724192531\",\n      \"type\": \"user\",\n  \
-        \    \"emailAddress\": \"alon-api@quickstart-1550908020996.iam.gserviceaccount.com\"\
-        ,\n      \"role\": \"owner\",\n      \"displayName\": \"alon-api@quickstart-1550908020996.iam.gserviceaccount.com\"\
-        ,\n      \"deleted\": false\n    }\n  ],\n  \"permissionIds\": [\n    \"07712505579216618120\"\
-        ,\n    \"02214475487724192531\"\n  ],\n  \"originalFilename\": \"Hello.txt\"\
-        ,\n  \"fullFileExtension\": \"txt\",\n  \"fileExtension\": \"txt\",\n  \"\
-        md5Checksum\": \"65a8e27d8879283831b664bd8b7f0ad4\",\n  \"size\": \"13\",\n\
-        \  \"quotaBytesUsed\": \"13\",\n  \"headRevisionId\": \"0BzdNAjNcLms6UERwdmFEdUZ4eXNWbTFFQ3pEdlAwZ1ppLzZ3PQ\"\
-        ,\n  \"isAppAuthorized\": true\n}"
-default_result_value: ''
 creator: Admin
+default_result_value: ''
+description: Uploads a Base64 to Google Drive
+dynamic_results_metadata:
+-   result_example_path: resources/UploadFileFromBase64_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: Google Drive
+name: Upload File From Base64
+parameters:
+-   default_value: example.txt
+    description: The file name you would like to upload in Base64 format.
+    is_mandatory: true
+    name: File Name
+    type: string
+-   default_value: email1@gmail.com;email2@gmail.com
+    description: 'Email address of the person you would like to add permission to
+        the file. You can add multiple emails by adding ";" as a separator. '
+    is_mandatory: true
+    name: Share with emails
+    type: string
+-   default_value: SGVsbG8sIFdvcmxkIQ==
+    description: The file Base64 String
+    is_mandatory: true
+    name: Base64 String
+    type: string
 script_result_name: ScriptResult

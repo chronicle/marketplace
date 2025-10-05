@@ -1,18 +1,12 @@
-name: Check Url
+creator: Alon
+default_result_value: ''
 description: 'Check if a specific URL is marked as suspicious by the PhishTank Community.
     The action will add an insight with the result of the action. '
-integration_identifier: PhishTank
-parameters: [ ]
 dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: "[\n  {\n    \"EntityResult\": {\n      \"url0\": {\n        \"\
-        url\": \"https://babules.su/\",\n        \"in_database\": \"true\",\n    \
-        \    \"phish_id\": \"6605240\",\n        \"phish_detail_page\": \"http://www.phishtank.com/phish_detail.php?phish_id=6605240\"\
-        ,\n        \"verified\": \"true\",\n        \"verified_at\": \"2020-06-01T06:25:58+00:00\"\
-        ,\n        \"valid\": \"true\"\n      }\n    },\n    \"Entity\": \"HTTPS://WWW.ONLINESERVICETECH.WEBSITE/LINK/L/P70IPXZLZO2CEED77GJMLWWQXFQCJSVQBYNKZZ346JQYYIKTR6QGAMNQW4L-MXXYSSTIHAEIICD-W1IURFSBN6IUMCO4GWZ_1SBG-62FGIZQK3ZPNIST9WGCBTW-62BXD-FJP7TCWFBSQKVUBEVYLIF_DTC6OYGMQFXDSTFNDB_-CFFKQ4AZNFF13ZWONARJ\"\
-        \n  }\n]"
-default_result_value: ''
-creator: Alon
+-   result_example_path: resources/CheckUrl_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: PhishTank
+name: Check Url
+parameters: []
 script_result_name: ScriptResult

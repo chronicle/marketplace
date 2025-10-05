@@ -14,12 +14,13 @@
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Annotated, NotRequired, Self, TypedDict
+from typing import TYPE_CHECKING, Annotated, Any, NotRequired, Self, TypedDict
 
 import pydantic
 
 import mp.core.constants
 import mp.core.data_models.abc
+import mp.core.file_utils
 import mp.core.utils
 
 from .dynamic_results_metadata import (
@@ -35,6 +36,8 @@ from .parameter import (
 
 if TYPE_CHECKING:
     import pathlib
+
+    from mp.core.custom_types import JsonString
 
 DEFAULT_SCRIPT_RESULT_NAME: str = "is_success"
 DEFAULT_SIMULATION_DATA: str = '{"Entities": []}'
@@ -146,10 +149,17 @@ class ActionMetadata(
         if not meta_path.exists():
             return []
 
-        return [
-            cls._from_non_built_integration_path(p)
-            for p in meta_path.rglob(f"*{mp.core.constants.DEF_FILE_SUFFIX}")
-        ]
+        metadata_objects: list[Self] = []
+        for p in meta_path.rglob(f"*{mp.core.constants.DEF_FILE_SUFFIX}"):
+            action_metadata_json: dict[str, Any] = mp.core.file_utils.load_yaml_file(p)
+            drms_with_json_contents: list[NonBuiltDynamicResultsMetadata] = _load_json_examples(
+                action_metadata_json["dynamic_results_metadata"], meta_path
+            )
+            action_metadata_json["dynamic_results_metadata"] = drms_with_json_contents
+            metadata_object: Self = cls.from_non_built(p.stem, action_metadata_json)
+            metadata_objects.append(metadata_object)
+
+        return metadata_objects
 
     @classmethod
     def _from_built(cls, file_name: str, built: BuiltActionMetadata) -> ActionMetadata:
@@ -250,6 +260,7 @@ class ActionMetadata(
             A non-built version of the action metadata dict
 
         """
+        self._change_result_example_fields_to_paths()
         non_built: NonBuiltActionMetadata = NonBuiltActionMetadata(
             name=self.name,
             description=self.description,
@@ -270,3 +281,40 @@ class ActionMetadata(
 
         mp.core.utils.remove_none_entries_from_mapping(non_built)
         return non_built
+
+    def _change_result_example_fields_to_paths(self) -> None:
+        for drm in self.dynamic_results_metadata:
+            if not drm.result_example or drm.result_example == "{}":
+                drm.result_example = None
+                continue
+
+            json_file_name: str = f"{self.name}_{drm.result_name}_example.json"
+            json_file_path: str = f"{mp.core.constants.RESOURCES_DIR}/{json_file_name}"
+            drm.result_example = json_file_path
+
+
+def _load_json_examples(
+    drms: list[NonBuiltDynamicResultsMetadata], actions_dir_path: pathlib.Path
+) -> list[NonBuiltDynamicResultsMetadata]:
+    """Load JSON examples from files and return a new list of DRMs with their content.
+
+    Returns:
+        A list of non-built DRM dicts, with the json examples content.
+
+    """
+    loaded_drms: list[NonBuiltDynamicResultsMetadata] = []
+
+    for drm in drms:
+        example_path: str | None = drm.get("result_example_path")
+
+        if not example_path:
+            drm["result_example_path"] = "{}"
+            continue
+
+        json_filepath: pathlib.Path = actions_dir_path.parent / example_path
+        json_content: JsonString = mp.core.file_utils.read_and_validate_json_file(json_filepath)
+        drm["result_example_path"] = json_content
+
+        loaded_drms.append(drm)
+
+    return loaded_drms

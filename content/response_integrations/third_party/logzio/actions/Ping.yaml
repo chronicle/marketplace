@@ -1,13 +1,12 @@
-name: Ping
+creator: Admin
+default_result_value: ''
 description: Ping Logz.io to test and validate connectivity to both your Logz.io security
     and operations accounts.
-integration_identifier: Logzio
-parameters: [ ]
 dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: '{}'
-default_result_value: ''
-creator: Admin
+-   result_example_path: null
+    result_name: JsonResult
+    show_result: true
+integration_identifier: Logzio
+name: Ping
+parameters: []
 script_result_name: ScriptResult

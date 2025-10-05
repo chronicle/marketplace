@@ -1,29 +1,16 @@
-name: Lookup
-description: Check if a specific URL is safe for browsing
-integration_identifier: Google Safe Browsing
-parameters:
-    -   name: Url
-        default_value: http://malware.testing.google.test/testing/malware/
-        type: string
-        description: The URL you would like to check in Google Safe Browsing.
-        is_mandatory: true
-dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: |
-            {
-                "http://malware.testing.google.test/testing/malware/": {
-                    "malicious": true,
-                    "platforms": [
-                        "ANY_PLATFORM"
-                    ],
-                    "threats": [
-                        "MALWARE"
-                    ],
-                    "cache": "300s"
-                }
-            }
-default_result_value: ''
 creator: Admin
+default_result_value: ''
+description: Check if a specific URL is safe for browsing
+dynamic_results_metadata:
+-   result_example_path: resources/Lookup_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: Google Safe Browsing
+name: Lookup
+parameters:
+-   default_value: http://malware.testing.google.test/testing/malware/
+    description: The URL you would like to check in Google Safe Browsing.
+    is_mandatory: true
+    name: Url
+    type: string
 script_result_name: ScriptResult
