@@ -1,16 +1,11 @@
-name: Get Bot Details
-description: Gets the configured bot details
-integration_identifier: Telegram
-parameters: [ ]
-dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: "{\r\n\t\"ok\": true,\r\n\t\"result\": {\r\n\t\t\"id\": 11111111,\r\
-        \n\t\t\"is_bot\": true,\r\n\t\t\"first_name\": \"bot_name_telegram\",\r\n\t\
-        \t\"username\": \"bot_username\",\r\n\t\t\"can_join_groups\": true,\r\n\t\t\
-        \"can_read_all_group_messages\": false,\r\n\t\t\"supports_inline_queries\"\
-        : false\r\n\t}\r\n}"
-default_result_value: ''
 creator: TehilaGourary
+default_result_value: ''
+description: Gets the configured bot details
+dynamic_results_metadata:
+-   result_example_path: resources/GetBotDetails_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: Telegram
+name: Get Bot Details
+parameters: []
 script_result_name: ScriptResult

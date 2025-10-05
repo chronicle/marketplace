@@ -1,0 +1,30 @@
+[
+    {
+        "id": "75as5323-a3b6-1234-f86b-30dc4bfb56e1",
+        "userPrincipalName": "john.smith@email.com",
+        "userDisplayName": "John Smith",
+        "isRegistered": "True",
+        "isEnabled": "False",
+        "isCapable": "False",
+        "isMfaRegistered": "True",
+        "authMethods": [
+            "mobilePhone",
+            "appNotification",
+            "appCode"
+        ]
+    },
+    {
+        "id": "d14f12cc-f123-1234-f3c3-a574926bad3c",
+        "userPrincipalName": "Jack.Smith@email.com",
+        "userDisplayName": "Jack Smith",
+        "isRegistered": "True",
+        "isEnabled": "False",
+        "isCapable": "False",
+        "isMfaRegistered": "True",
+        "authMethods": [
+            "mobilePhone",
+            "appNotification",
+            "appCode"
+        ]
+    }
+]

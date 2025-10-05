@@ -1,50 +1,35 @@
-name: DHCP Lease Lookup
-description: 'Looks up DHCP lease information based on specified DHCP filter criteria
-  (such as IP address or MAC address). '
-integration_identifier: InfobloxThreatDefenseWithDDI
-parameters:
-- name: DHCP Lease Filter
-  default_value: null
-  type: string
-  description: Filter DHCP leases by specific criteria (e.g., address == “127.0.0.1”
-    and hostname == “ubuntu”).
-  is_mandatory: false
-- name: Offset
-  default_value: '0'
-  type: string
-  description: Specify the offset from where to start pagination.
-  is_mandatory: false
-- name: Limit
-  default_value: '100'
-  type: string
-  description: Specify the maximum number of results to return.
-  is_mandatory: false
-- name: Order By
-  default_value: null
-  type: string
-  description: Comma-separated JSON fields to sort the results. Use asc or desc for
-    sort direction. Defaults to ascending. Supports dot notation for nested fields.
-  is_mandatory: false
-dynamic_results_metadata:
-- result_name: JsonResult
-  show_result: true
-  result_example: "{\r\n    \"results\": [\r\n        {\r\n            \"address\"\
-    : \"10.196.217.80\",\r\n            \"client_id\": \"ff:29:1e:55:ab:00:01:00:01:2f:e2:5b:40:00:0c:29:1e:55:ab\"\
-    ,\r\n            \"ends\": \"2025-06-16T05:59:11Z\",\r\n            \"fingerprint\"\
-    : \"VMware::Windows:\",\r\n            \"fingerprint_processed\": \"processed\"\
-    ,\r\n            \"ha_group\": null,\r\n            \"hardware\": \"00:0c:29:1e:55:ab\"\
-    ,\r\n            \"host\": \"dhcp/host/1516583\",\r\n            \"hostname\"\
-    : \"infoblox\",\r\n            \"iaid\": 0,\r\n            \"last_updated\": \"\
-    2025-06-16T04:59:11.372Z\",\r\n            \"options\": \"{\\\"Options\\\":[{\\\
-    \"Code\\\":\\\"61\\\",\\\"Value\\\":\\\"/ykeVasAAQABL+JbQAAMKR5Vqw==\\\"},{\\\"\
-    Code\\\":\\\"12\\\",\\\"Value\\\":\\\"YmxveG9uZS1pbmZvYmxveA==\\\"},{\\\"Code\\\
-    \":\\\"50\\\",\\\"Value\\\":\\\"CsTZUA==\\\"},{\\\"Code\\\":\\\"53\\\",\\\"Value\\\
-    \":\\\"Aw==\\\"},{\\\"Code\\\":\\\"54\\\",\\\"Value\\\":\\\"CsTZtQ==\\\"},{\\\"\
-    Code\\\":\\\"55\\\",\\\"Value\\\":\\\"ARwCAw8GdwwsLxp5Kg==\\\"}]}\",\r\n     \
-    \       \"preferred_lifetime\": \"2025-06-16T04:59:11Z\",\r\n            \"protocol\"\
-    : \"\",\r\n            \"space\": \"ipam/ip_space/1f99d3a6-2982-11f0-b65e-fe20d626f7e6\"\
-    ,\r\n            \"starts\": \"2025-06-16T04:59:11Z\",\r\n            \"state\"\
-    : \"used\",\r\n            \"type\": \"DHCPv4\"\r\n        }\r\n    ]\r\n}"
-default_result_value: ''
 creator: Admin
+default_result_value: ''
+description: 'Looks up DHCP lease information based on specified DHCP filter criteria
+    (such as IP address or MAC address). '
+dynamic_results_metadata:
+-   result_example_path: resources/dhcp_lease_lookup_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: InfobloxThreatDefenseWithDDI
+name: DHCP Lease Lookup
+parameters:
+-   default_value: null
+    description: "Filter DHCP leases by specific criteria (e.g., address == \u201C\
+        127.0.0.1\u201D and hostname == \u201Cubuntu\u201D)."
+    is_mandatory: false
+    name: DHCP Lease Filter
+    type: string
+-   default_value: '0'
+    description: Specify the offset from where to start pagination.
+    is_mandatory: false
+    name: Offset
+    type: string
+-   default_value: '100'
+    description: Specify the maximum number of results to return.
+    is_mandatory: false
+    name: Limit
+    type: string
+-   default_value: null
+    description: Comma-separated JSON fields to sort the results. Use asc or desc
+        for sort direction. Defaults to ascending. Supports dot notation for nested
+        fields.
+    is_mandatory: false
+    name: Order By
+    type: string
 script_result_name: ScriptResult

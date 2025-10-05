@@ -1,42 +1,21 @@
-name: Update Badge
-description: Give a badge to a given user by User ID
-integration_identifier: VanillaForums
-parameters:
-    -   name: User ID
-        default_value: '0000'
-        type: string
-        description: The ID of the user to be awarded the badge.
-        is_mandatory: true
-    -   name: Badge ID
-        default_value: '0000'
-        type: string
-        description: ID of badge to be awarded to the user
-        is_mandatory: true
-dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: "{\r\n\t\"userID\": 1111,\r\n\t\"user\": {\r\n\t\t\"userID\":\
-        \ 1111,\r\n\t\t\"name\": \"User Name\",\r\n\t\t\"url\": \"UserURL\",\r\n\t\
-        \t\"photoUrl\": \"https://us.v-cdn.JPG\",\r\n\t\t\"dateLastActive\": \"2021-03-09T09:43:29+00:00\"\
-        ,\r\n\t\t\"label\": \"Team\"\r\n\t},\r\n\t\"badgeID\": 101,\r\n\t\"badge\"\
-        : {\r\n\t\t\"badgeID\": 101,\r\n\t\t\"type\": \"Manual\",\r\n\t\t\"key\":\
-        \ \"CourseSlug\",\r\n\t\t\"name\": \"Siemplify Certified SOAR Operator Course\"\
-        ,\r\n\t\t\"body\": \"You have completed the \\\"Siemplify Certified SOAR Operator\\\
-        \" course. \",\r\n\t\t\"photoUrl\": \"https://us.v-c.png\",\r\n\t\t\"points\"\
-        : 20,\r\n\t\t\"enabled\": true,\r\n\t\t\"canDelete\": true,\r\n\t\t\"countUsers\"\
-        : 28,\r\n\t\t\"class\": \"\",\r\n\t\t\"classLevel\": null,\r\n\t\t\"insertUserID\"\
-        : 8,\r\n\t\t\"insertUser\": {\r\n\t\t\t\"userID\": 8,\r\n\t\t\t\"name\": \"\
-        CreatorName\",\r\n\t\t\t\"url\": \"\",\r\n\t\t\t\"photoUrl\": \"https://us.v-cdn.ne.jpg\"\
-        ,\r\n\t\t\t\"dateLastActive\": \"2021-03-09T08:28:20+00:00\",\r\n\t\t\t\"\
-        label\": \"Team\"\r\n\t\t},\r\n\t\t\"dateInserted\": \"2020-09-23T09:23:44+00:00\"\
-        ,\r\n\t\t\"updateUserID\": null,\r\n\t\t\"dateUpdated\": null,\r\n\t\t\"attributes\"\
-        : [],\r\n\t\t\"url\": \"/badge/ID/Slug\"\r\n\t},\r\n\t\"reasonBody\": null,\r\
-        \n\t\"dateEarned\": \"2021-03-09T10:03:48+00:00\",\r\n\t\"insertUserID\":\
-        \ 8,\r\n\t\"insertUser\": {\r\n\t\t\"userID\": 8,\r\n\t\t\"name\": \"ShakedTal\"\
-        ,\r\n\t\t\"url\": \"https://X\",\r\n\t\t\"photoUrl\": \"https://us.v-cdn.ne.jpg\"\
-        ,\r\n\t\t\"dateLastActive\": \"2021-03-09T08:28:20+00:00\",\r\n\t\t\"label\"\
-        : \"\"\r\n\t},\r\n\t\"dateInserted\": \"2021-03-09T10:03:48+00:00\"\r\n}"
-default_result_value: ''
 creator: Admin
+default_result_value: ''
+description: Give a badge to a given user by User ID
+dynamic_results_metadata:
+-   result_example_path: resources/UpdateBadge_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: VanillaForums
+name: Update Badge
+parameters:
+-   default_value: '0000'
+    description: The ID of the user to be awarded the badge.
+    is_mandatory: true
+    name: User ID
+    type: string
+-   default_value: '0000'
+    description: ID of badge to be awarded to the user
+    is_mandatory: true
+    name: Badge ID
+    type: string
 script_result_name: ScriptResult

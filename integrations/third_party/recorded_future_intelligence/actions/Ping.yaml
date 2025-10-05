@@ -1,7 +1,7 @@
-name: Ping
-description: Test Connectivity
-integration_identifier: RecordedFutureIntelligence
-parameters: [ ]
-dynamic_results_metadata: [ ]
 creator: severins
+description: Test Connectivity
+dynamic_results_metadata: []
+integration_identifier: RecordedFutureIntelligence
+name: Ping
+parameters: []
 script_result_name: is_successful

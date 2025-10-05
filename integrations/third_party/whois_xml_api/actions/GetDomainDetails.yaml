@@ -1,126 +1,21 @@
-name: Get Domain Details
-description: 'Get the domain details and present them as a Json result '
-integration_identifier: WHOIS XML API
-parameters:
-    -   name: Domain Name
-        default_value: google.com
-        type: string
-        description: The domain to scan
-        is_mandatory: true
-    -   name: Check availability
-        default_value: 'false'
-        type: boolean
-        description: Check availability
-        is_mandatory: false
-dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: |
-            {
-                "WhoisRecord": {
-                    "createdDate": "1997-09-15T00:00:00-0700",
-                    "updatedDate": "2019-09-09T08:39:04-0700",
-                    "expiresDate": "2028-09-13T00:00:00-0700",
-                    "registrant": {
-                        "organization": "Google LLC",
-                        "state": "CA",
-                        "country": "UNITED STATES",
-                        "countryCode": "US",
-                        "rawText": "Registrant Organization: Google LLC\u000aRegistrant State/Province: CA\u000aRegistrant Country: US\u000aRegistrant Email: Select Request Email Form at https://domains.markmonitor.com/whois/google.com"
-                    },
-                    "administrativeContact": {
-                        "organization": "Google LLC",
-                        "state": "CA",
-                        "country": "UNITED STATES",
-                        "countryCode": "US",
-                        "rawText": "Admin Organization: Google LLC\u000aAdmin State/Province: CA\u000aAdmin Country: US\u000aAdmin Email: Select Request Email Form at https://domains.markmonitor.com/whois/google.com"
-                    },
-                    "technicalContact": {
-                        "organization": "Google LLC",
-                        "state": "CA",
-                        "country": "UNITED STATES",
-                        "countryCode": "US",
-                        "rawText": "Tech Organization: Google LLC\u000aTech State/Province: CA\u000aTechCountry: US\u000aTech Email: Select Request Email Form at https://domains.markmonitor.com/whois/google.com"
-                    },
-                    "domainName": "google.com",
-                    "nameServers": {
-                        "rawText": "domain.google.com\\domain2.google.com\\domain2.google.com\\domain3.google.com\\u000a",
-                        "hostNames": [
-                            "ns4.google.com",
-                            "ns1.google.com",
-                            "ns2.google.com",
-                            "ns3.google.com"
-                        ],
-                        "ips": [
-                        ]
-                    },
-                    "status": "clientUpdateProhibited clientTransferProhibitedclientDeleteProhibited serverUpdateProhibited serverTransferProhibited serverDeleteProhibited",
-                    "rawText": "Domain Name: google.com\u000aRegistry Domain ID: 2138514_DOMAIN_COM-VRSN\\u000aRegistrar WHOIS Server: whois.markmonitor.com\u000aRegistrar URL: http://www.markmonitor.com\\u000aUpdated Date: 2019-09-09T08:39:04-0700\u000aCreation Date: 1997-09-15T00:00:00-0700\\u000aRegistrar Registration Expiration Date: 2028-09-13T00:00:00-0700\u000aRegistrar:MarkMonitor, Inc.\u000aRegistrar IANA ID: 292\u000aRegistrar Abuse ContactEmail: abusecomplaints@markmonitor.com\u000aRegistrar Abuse Contact Phone:+1.2083895770\u000aDomain Status: clientUpdateProhibited (https://www.icann.org/epp#clientUpdateProhibited)\\u000aDomain Status: clientTransferProhibited (https://www.icann.org/epp#clientTransferProhibited)\\u000aDomain Status: clientDeleteProhibited (https://www.icann.org/epp#clientDeleteProhibited)\\u000aDomain Status: serverUpdateProhibited (https://www.icann.org/epp#serverUpdateProhibited)\\u000aDomain Status: serverTransferProhibited (https://www.icann.org/epp#serverTransferProhibited)\\u000aDomain Status: serverDeleteProhibited (https://www.icann.org/epp#serverDeleteProhibited)\\u000aRegistrant Organization: Google LLC\u000aRegistrant State/Province:CA\u000aRegistrant Country: US\u000aRegistrant Email: Select Request EmailForm at https://domains.markmonitor.com/whois/google.com\u000aAdmin Organization:Google LLC\u000aAdmin State/Province: CA\u000aAdmin Country: US\u000aAdminEmail: Select Request Email Form at https://domains.markmonitor.com/whois/google.com\\u000aTech Organization: Google LLC\u000aTech State/Province: CA\u000aTechCountry: US\u000aTech Email: Select Request Email Form at https://domains.markmonitor.com/whois/google.com\\u000aName Server: ns4.google.com\u000aName Server: ns1.google.com\u000aNameServer: ns2.google.com\u000aName Server: ns3.google.com\u000aDNSSEC: unsigned\\u000aURL of the ICANN WHOIS Data Problem Reporting System: http://wdprs.internic.net/\\u000a>>> Last update of WHOIS database: 2020-06-08T03:58:55-0700 <<<\u000a\\u000aFor more information on WHOIS status codes, please visit:\u000a  https://www.icann.org/resources/pages/epp-status-codes\\u000a\u000aIf you wish to contact this domain’s Registrant, Administrative,or Technical\u000acontact, and such email address is not visible above,you may do so via our web\u000aform, pursuant to ICANN’s Temporary Specification.To verify that you are not a\u000arobot, please enter your email addressto receive a link to a page that\u000afacilitates email communication withthe relevant contact(s).\u000a\u000aWeb-based WHOIS:\u000a  https://domains.markmonitor.com/whois\\u000a\u000aIf you have a legitimate interest in viewing the non-public WHOISdetails, send\u000ayour request and the reasons for your request to whoisrequest@markmonitor.com\\u000aand specify the domain name in the subject line. We will review thatrequest and\u000amay ask for supporting documentation and explanation.\\u000a\u000aThe data in MarkMonitor’s WHOIS database is provided for informationpurposes,\u000aand to assist persons in obtaining information about orrelated to a domain\u000aname’s registration record. While MarkMonitorbelieves the data to be accurate,\u000athe data is provided \"as is\" with no guarantee or warranties regarding its\u000aaccuracy.\u000a\\u000aBy submitting a WHOIS query, you agree that you will use this data onlyfor\u000alawful purposes and that, under no circumstances will you usethis data to: \u000a  (1) allow, enable, or otherwise support the transmissionby email, telephone, \u000aor facsimile of mass, unsolicited, commercialadvertising, or spam; or\u000a  (2) enable high volume, automated, or electronicprocesses that send queries, \u000adata, or email to MarkMonitor (or itssystems) or the domain name contacts (or\u000aits systems).\u000a\u000aMarkMonitorreserves the right to modify these terms at any time.\u000a\u000aBy submittingthis query, you agree to abide by this policy.\u000a\u000aMarkMonitorDomain Management(TM)\u000aProtecting companies and consumers in a digitalworld.\u000a\u000aVisit MarkMonitor at https: //www.markmonitor.com\u000aContactus at +1.8007459229\u000aIn Europe, at +44.02032062220\u000a--",
-                    "parseCode": 3579,
-                    "header": "",
-                    "strippedText": "Domain Name:google.com\u000aRegistrar WHOIS Server: whois.markmonitor.com\u000aRegistrarURL: http://www.markmonitor.com\u000aUpdated Date: 2019-09-09T08:39:04-0700\\u000aCreation Date: 1997-09-15T00:00:00-0700\u000aRegistrar RegistrationExpiration Date: 2028-09-13T00:00:00-0700\u000aRegistrar: MarkMonitor,Inc.\u000aRegistrar IANA ID: 292\u000aRegistrar Abuse Contact Email: abusecomplaints@markmonitor.com\\u000aRegistrar Abuse Contact Phone: +1.2083895770\u000aDomain Status: clientUpdateProhibited(https://www.icann.org/epp#clientUpdateProhibited)\u000aDomain Status:clientTransferProhibited (https://www.icann.org/epp#clientTransferProhibited)\\u000aDomain Status: clientDeleteProhibited (https://www.icann.org/epp#clientDeleteProhibited)\\u000aDomain Status: serverUpdateProhibited (https://www.icann.org/epp#serverUpdateProhibited)\\u000aDomain Status: serverTransferProhibited (https://www.icann.org/epp#serverTransferProhibited)\\u000aDomain Status: serverDeleteProhibited (https://www.icann.org/epp#serverDeleteProhibited)\\u000aRegistrant Organization: Google LLC\u000aRegistrant State/Province:CA\u000aRegistrant Country: US\u000aRegistrant Email: Select Request EmailForm at https://domains.markmonitor.com/whois/google.com\u000aAdmin Organization:Google LLC\u000aAdmin State/Province: CA\u000aAdmin Country: US\u000aAdminEmail: Select Request Email Form at https://domains.markmonitor.com/whois/google.com\\u000aTech Organization: Google LLC\u000aTech State/Province: CA\u000aTechCountry: US\u000aTech Email: Select Request Email Form at https://domains.markmonitor.com/whois/google.com\\u000aName Server: ns4.google.com\u000aName Server: ns1.google.com\u000aNameServer: ns2.google.com\u000aName Server: ns3.google.com\u000a",
-                    "footer": "\u000a",
-                    "audit": {
-                        "createdDate": "2020-06-0811:00:38.000 UTC",
-                        "updatedDate": "2020-06-08 11:00:38.000 UTC"
-                    },
-                    "customField1Name": "RegistrarContactEmail",
-                    "customField1Value": "abusecomplaints@markmonitor.com",
-                    "registrarName": "MarkMonitor,Inc.",
-                    "registrarIANAID": "292",
-                    "whoisServer": "whois.markmonitor.com",
-                    "createdDateNormalized": "1997-09-15 07:00:00 UTC",
-                    "updatedDateNormalized": "2019-09-09 15:39:04 UTC",
-                    "expiresDateNormalized": "2028-09-1307:00:00 UTC",
-                    "customField2Name": "RegistrarContactPhone",
-                    "customField3Name": "RegistrarURL",
-                    "customField2Value": "+1.2083895770",
-                    "customField3Value": "http://www.markmonitor.com",
-                    "registryData": {
-                        "createdDate": "1997-09-15T04:00:00Z",
-                        "updatedDate": "2019-09-09T15:39:04Z",
-                        "expiresDate": "2028-09-14T04:00:00Z",
-                        "domainName": "google.com",
-                        "nameServers": {
-                            "rawText": "NS1.GOOGLE.COM\u000aNS2.GOOGLE.COM\u000aNS3.GOOGLE.COM\u000aNS4.GOOGLE.COM\\u000a",
-                            "hostNames": [
-                                "NS1.GOOGLE.COM",
-                                "S2.GOOGLE.COM",
-                                "NS3.GOOGLE.COM",
-                                "NS4.GOOGLE.COM"
-                            ],
-                            "ips": [
-                            ]
-                        },
-                        "status": "clientDeleteProhibitedclientTransferProhibited clientUpdateProhibited serverDeleteProhibited serverTransferProhibitedserverUpdateProhibited",
-                        "rawText": "Domain Name: GOOGLE.COM\\u000a   Registry Domain ID: 2138514_DOMAIN_COM-VRSN\u000a   Registrar WHOISServer: whois.markmonitor.com\u000a   Registrar URL: http://www.markmonitor.com\\u000a   Updated Date: 2019-09-09T15:39:04Z\u000a   Creation Date: 1997-09-15T04:00:00Z\\u000a   Registry Expiry Date: 2028-09-14T04:00:00Z\u000a   Registrar: MarkMonitorInc.\u000a   Registrar IANA ID: 292\u000a   Registrar Abuse Contact Email:abusecomplaints@markmonitor.com\u000a   Registrar Abuse Contact Phone:+1.2083895740\u000a   Domain Status: clientDeleteProhibited https://icann.org/epp#clientDeleteProhibited\\u000a   Domain Status: clientTransferProhibited https://icann.org/epp#clientTransferProhibited\\u000a   Domain Status: clientUpdateProhibited https://icann.org/epp#clientUpdateProhibited\\u000a   Domain Status: serverDeleteProhibited https://icann.org/epp#serverDeleteProhibited\\u000a   Domain Status: serverTransferProhibited https://icann.org/epp#serverTransferProhibited\\u000a   Domain Status: serverUpdateProhibited https://icann.org/epp#serverUpdateProhibited\\u000a   Name Server: NS1.GOOGLE.COM\u000a   Name Server: NS2.GOOGLE.COM\\u000a   Name Server: NS3.GOOGLE.COM\u000a   Name Server: NS4.GOOGLE.COM\\u000a   DNSSEC: unsigned\u000a   URL of the ICANN Whois Inaccuracy ComplaintForm: https://www.icann.org/wicf/\u000a>>> Last update of whois database:2020-06-08T11:00:31Z <<<\u000a\u000aFor more information on Whois statuscodes, please visit https://icann.org/epp\u000a\u000aNOTICE: The expirationdate displayed in this record is the date the\u000aregistrar's sponsorshipof the domain name registration in the registry is\u000acurrently set toexpire. This date does not necessarily reflect the expiration\u000adateof the domain name registrant's agreement with the sponsoring\u000aregistrar. Users may consult the sponsoring registrar's Whois database to\u000aviewthe registrar's reported date of expiration for this registration.\u000a\\u000aTERMS OF USE: You are not authorized to access or query our Whois\u000adatabasethrough the use of electronic processes that are high-volume and\u000aautomatedexcept as reasonably necessary to register domain names or\u000amodifyexisting registrations; the Data in VeriSign Global Registry\u000aServices'(\"VeriSign\") Whois database is provided by VeriSign for\u000ainformationpurposes only, and to assist persons in obtaining information\u000aaboutor related to a domain name registration record. VeriSign does not\u000aguaranteeits accuracy. By submitting a Whois query, you agree to abide\u000aby thefollowing terms of use: You agree that you may use this Data only\u000aforlawful purposes and that under no circumstances will you use this Data\\u000ato: (1) allow, enable, or otherwise support the transmission of mass\\u000aunsolicited, commercial advertising or solicitations via e-mail, telephone,\\u000aor facsimile; or (2) enable high volume, automated, electronic processes\\u000athat apply to VeriSign (or its computer systems). The compilation,\\u000arepackaging, dissemination or other use of this Data is expressly\u000aprohibitedwithout the prior written consent of VeriSign. You agree not to\u000auseelectronic processes that are automated and high-volume to access or\u000aquerythe Whois database except as reasonably necessary to register\u000adomainnames or modify existing registrations. VeriSign reserves the right\u000atorestrict your access to the Whois database in its sole discretion to ensure\\u000aoperational stability.  VeriSign may restrict or terminate your accessto the\u000aWhois database for failure to abide by these terms of use.VeriSign\u000areserves the right to modify these terms at any time.\u000a\\u000aThe Registry database contains ONLY .COM, .NET, .EDU domains and\u000aRegistrars.",
-                        "parseCode": 251,
-                        "header": "",
-                        "strippedText": "Domain Name: GOOGLE.COM\u000aRegistry Domain ID: 2138514_DOMAIN_COM-VRSN\\u000aRegistrar WHOIS Server: whois.markmonitor.com\u000aRegistrar URL: http://www.markmonitor.com\\u000aUpdated Date: 2019-09-09T15:39:04Z\u000aCreation Date: 1997-09-15T04:00:00Z\\u000aRegistry Expiry Date: 2028-09-14T04:00:00Z\u000aRegistrar: MarkMonitorInc.\u000aRegistrar IANA ID: 292\u000aRegistrar Abuse Contact Email: abusecomplaints@markmonitor.com\\u000aRegistrar Abuse Contact Phone: +1.2083895740\u000aDomain Status: clientDeleteProhibitedhttps://icann.org/epp#clientDeleteProhibited\u000aDomain Status: clientTransferProhibitedhttps://icann.org/epp#clientTransferProhibited\u000aDomain Status: clientUpdateProhibitedhttps://icann.org/epp#clientUpdateProhibited\u000aDomain Status: serverDeleteProhibitedhttps://icann.org/epp#serverDeleteProhibited\u000aDomain Status: serverTransferProhibitedhttps://icann.org/epp#serverTransferProhibited\u000aDomain Status: serverUpdateProhibitedhttps://icann.org/epp#serverUpdateProhibited\u000aName Server: NS1.GOOGLE.COM\\u000aName Server: NS2.GOOGLE.COM\u000aName Server: NS3.GOOGLE.COM\u000aNameServer: NS4.GOOGLE.COM\u000aDNSSEC: unsigned\u000aURL of the ICANN WhoisInaccuracy Complaint Form: https://www.icann.org/wicf/\u000a>>> Last updateof whois database: 2020-06-08T11:00:31Z <<<\u000aFor more information onWhois status codes, please visit https://icann.org/epp\u000aNOTICE: Theexpiration date displayed in this record is the date the\u000aregistrar'ssponsorship of the domain name registration in the registry is\u000acurrentlyset to expire. This date does not necessarily reflect the expiration\u000adateof the domain name registrant's agreement with the sponsoring\u000aregistrar. Users may consult the sponsoring registrar's Whois database to\u000aviewthe registrar's reported date of expiration for this registration.\u000aTERMSOF USE: You are not authorized to access or query our Whois\u000adatabasethrough the use of electronic processes that are high-volume and\u000aautomatedexcept as reasonably necessary to register domain names or\u000amodifyexisting registrations; the Data in VeriSign Global Registry\u000aServices'(\"VeriSign\") Whois database is provided by VeriSign for\u000ainformationpurposes only, and to assist persons in obtaining information\u000aaboutor related to a domain name registration record. VeriSign does not\u000aguaranteeits accuracy. By submitting a Whois query, you agree to abide\u000aby thefollowing terms of use: You agree that you may use this Data only\u000aforlawful purposes and that under no circumstances will you use this Data\\u000ato: (1) allow, enable, or otherwise support the transmission of mass\\u000aunsolicited, commercial advertising or solicitations via e-mail, telephone,\\u000aor facsimile; or (2) enable high volume, automated, electronic processes\\u000athat apply to VeriSign (or its computer systems). The compilation,\\u000arepackaging, dissemination or other use of this Data is expressly\u000aprohibitedwithout the prior written consent of VeriSign. You agree not to\u000auseelectronic processes that are automated and high-volume to access or\u000aquerythe Whois database except as reasonably necessary to register\u000adomainnames or modify existing registrations. VeriSign reserves the right\u000atorestrict your access to the Whois database in its sole discretion to ensure\\u000aoperational stability.  VeriSign may restrict or terminate your accessto the\u000aWhois database for failure to abide by these terms of use.VeriSign\u000areserves the right to modify these terms at any time.\u000aTheRegistry database contains ONLY .COM, .NET, .EDU domains and\u000aRegistrars.\\u000a",
-                        "footer": "\u000a",
-                        "audit": {
-                            "createdDate": "2020-06-08 11:00:37.000 UTC",
-                            "updatedDate": "2020-06-08 11:00:37.000UTC"
-                        },
-                        "customField1Name": "RegistrarContactEmail",
-                        "customField1Value": "abusecomplaints@markmonitor.com",
-                        "registrarName": "MarkMonitor Inc.",
-                        "registrarIANAID": "292",
-                        "createdDateNormalized": "1997-09-15 04:00:00 UTC",
-                        "updatedDateNormalized": "2019-09-0915:39:04 UTC",
-                        "expiresDateNormalized": "2028-09-14 04:00:00 UTC",
-                        "customField2Name": "RegistrarContactPhone",
-                        "customField3Name": "RegistrarURL",
-                        "customField2Value": "+1.2083895740",
-                        "customField3Value": "http://www.markmonitor.com",
-                        "whoisServer": "whois.markmonitor.com"
-                    },
-                    "contactEmail": "abusecomplaints@markmonitor.com",
-                    "domainNameExt": ".com",
-                    "estimatedDomainAge": 8302
-                }
-            }
-default_result_value: ''
 creator: Yoav Tal
+default_result_value: ''
+description: 'Get the domain details and present them as a Json result '
+dynamic_results_metadata:
+-   result_example_path: resources/GetDomainDetails_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: WHOIS XML API
+name: Get Domain Details
+parameters:
+-   default_value: google.com
+    description: The domain to scan
+    is_mandatory: true
+    name: Domain Name
+    type: string
+-   default_value: 'false'
+    description: Check availability
+    is_mandatory: false
+    name: Check availability
+    type: boolean
 script_result_name: ScriptResult

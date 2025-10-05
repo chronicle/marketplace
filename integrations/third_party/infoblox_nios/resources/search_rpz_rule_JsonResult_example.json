@@ -1,0 +1,12 @@
+[
+    {
+        "canonical": "1.4.5.infoblow.com",
+        "disable": false,
+        "extattrs": {},
+        "name": "1.4.5.infoblow.com",
+        "_ref": "record:rpz:cname/ZG5zLmJpbmRfY25hbWUkLl9kZLmNvbS5pbmZvYmxvdy41LjQuNwew3:1.4.5.infoblow.com/default",
+        "use_ttl": false,
+        "view": "default",
+        "zone": "infoblow.com"
+    }
+]

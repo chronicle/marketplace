@@ -1,0 +1,651 @@
+{
+    "id": 2644,
+    "url": "https://hc2024.vectracloudlab.com/detections/2644",
+    "detection_url": "https://hc2024.vectracloudlab.com/detections/2644",
+    "category": "RECONNAISSANCE",
+    "detection": "Internal Darknet Scan",
+    "detection_category": "RECONNAISSANCE",
+    "detection_type": "Internal Darknet Scan",
+    "custom_detection": null,
+    "description": null,
+    "src_ip": "1.1.1.1",
+    "state": "inactive",
+    "t_score": 0,
+    "c_score": 0,
+    "certainty": 0,
+    "threat": 0,
+    "created_timestamp": "2024-07-11T18:07:22Z",
+    "first_timestamp": "2024-07-11T18:05:06Z",
+    "last_timestamp": "2024-07-11T18:05:06Z",
+    "targets_key_asset": false,
+    "is_targeting_key_asset": false,
+    "src_account": null,
+    "src_host": {
+        "id": 23446,
+        "ip": "1.1.1.1",
+        "name": "IP-1.1.1.1",
+        "url": "https://hc2024.vectracloudlab.com/hosts/23446",
+        "is_key_asset": false,
+        "groups": [],
+        "threat": 0,
+        "certainty": 0
+    },
+    "note": null,
+    "notes": [],
+    "note_modified_by": null,
+    "note_modified_timestamp": null,
+    "sensor": "whx12u9g",
+    "sensor_name": "FGU-lab-vcenter",
+    "tags": [],
+    "triage_rule_id": null,
+    "assigned_to": null,
+    "assigned_date": null,
+    "groups": [],
+    "is_marked_custom": false,
+    "is_custom_model": false,
+    "filtered_by_ai": false,
+    "filtered_by_user": false,
+    "filtered_by_rule": false,
+    "grouped_details": [
+        {
+            "last_timestamp": "2024-07-11T18:05:06Z",
+            "flex_json": {},
+            "detection_guid": null,
+            "distilled_context": {},
+            "sequence_id": null,
+            "is_host_detail": true,
+            "is_account_detail": false,
+            "account_uid": null,
+            "account_detection": null,
+            "host_detection": 2644,
+            "src_ip": "1.1.1.1",
+            "date_couch": "2024-07-11T18:06:59Z",
+            "date_publish": "2024-07-11T18:07:17Z",
+            "date_s3": null,
+            "date_first_bucket": "2024-07-11T18:07:22Z",
+            "grouping_field": "last_timestamp",
+            "protocol": "tcp",
+            "accounts": [],
+            "target_domains": [],
+            "dst_ips": [
+                "1.1.1.1"
+            ],
+            "dst_ports": [
+                445
+            ]
+        },
+        {
+            "last_timestamp": "2024-07-11T18:05:06Z",
+            "flex_json": {},
+            "detection_guid": null,
+            "distilled_context": {},
+            "sequence_id": null,
+            "is_host_detail": true,
+            "is_account_detail": false,
+            "account_uid": null,
+            "account_detection": null,
+            "host_detection": 2644,
+            "src_ip": "1.1.1.1",
+            "date_couch": "2024-07-11T18:06:59Z",
+            "date_publish": "2024-07-11T18:07:17Z",
+            "date_s3": null,
+            "date_first_bucket": "2024-07-11T18:07:22Z",
+            "grouping_field": "last_timestamp",
+            "protocol": "tcp",
+            "accounts": [],
+            "target_domains": [],
+            "dst_ips": [
+                "1.1.1.1"
+            ],
+            "dst_ports": [
+                445
+            ]
+        },
+        {
+            "last_timestamp": "2024-07-11T18:05:06Z",
+            "flex_json": {},
+            "detection_guid": null,
+            "distilled_context": {},
+            "sequence_id": null,
+            "is_host_detail": true,
+            "is_account_detail": false,
+            "account_uid": null,
+            "account_detection": null,
+            "host_detection": 2644,
+            "src_ip": "1.1.1.1",
+            "date_couch": "2024-07-11T18:06:59Z",
+            "date_publish": "2024-07-11T18:07:17Z",
+            "date_s3": null,
+            "date_first_bucket": "2024-07-11T18:07:22Z",
+            "grouping_field": "last_timestamp",
+            "protocol": "tcp",
+            "accounts": [],
+            "target_domains": [],
+            "dst_ips": [
+                "1.1.1.1"
+            ],
+            "dst_ports": [
+                445
+            ]
+        },
+        {
+            "last_timestamp": "2024-07-11T18:05:06Z",
+            "flex_json": {},
+            "detection_guid": null,
+            "distilled_context": {},
+            "sequence_id": null,
+            "is_host_detail": true,
+            "is_account_detail": false,
+            "account_uid": null,
+            "account_detection": null,
+            "host_detection": 2644,
+            "src_ip": "1.1.1.1",
+            "date_couch": "2024-07-11T18:06:59Z",
+            "date_publish": "2024-07-11T18:07:17Z",
+            "date_s3": null,
+            "date_first_bucket": "2024-07-11T18:07:22Z",
+            "grouping_field": "last_timestamp",
+            "protocol": "tcp",
+            "accounts": [],
+            "target_domains": [],
+            "dst_ips": [
+                "1.1.1.1"
+            ],
+            "dst_ports": [
+                445
+            ]
+        },
+        {
+            "last_timestamp": "2024-07-11T18:05:06Z",
+            "flex_json": {},
+            "detection_guid": null,
+            "distilled_context": {},
+            "sequence_id": null,
+            "is_host_detail": true,
+            "is_account_detail": false,
+            "account_uid": null,
+            "account_detection": null,
+            "host_detection": 2644,
+            "src_ip": "1.1.1.1",
+            "date_couch": "2024-07-11T18:06:59Z",
+            "date_publish": "2024-07-11T18:07:17Z",
+            "date_s3": null,
+            "date_first_bucket": "2024-07-11T18:07:22Z",
+            "grouping_field": "last_timestamp",
+            "protocol": "tcp",
+            "accounts": [],
+            "target_domains": [],
+            "dst_ips": [
+                "1.1.1.1"
+            ],
+            "dst_ports": [
+                445
+            ]
+        },
+        {
+            "last_timestamp": "2024-07-11T18:05:06Z",
+            "flex_json": {},
+            "detection_guid": null,
+            "distilled_context": {},
+            "sequence_id": null,
+            "is_host_detail": true,
+            "is_account_detail": false,
+            "account_uid": null,
+            "account_detection": null,
+            "host_detection": 2644,
+            "src_ip": "1.1.1.1",
+            "date_couch": "2024-07-11T18:06:59Z",
+            "date_publish": "2024-07-11T18:07:17Z",
+            "date_s3": null,
+            "date_first_bucket": "2024-07-11T18:07:22Z",
+            "grouping_field": "last_timestamp",
+            "protocol": "tcp",
+            "accounts": [],
+            "target_domains": [],
+            "dst_ips": [
+                "1.1.1.1"
+            ],
+            "dst_ports": [
+                445
+            ]
+        },
+        {
+            "last_timestamp": "2024-07-11T18:05:06Z",
+            "flex_json": {},
+            "detection_guid": null,
+            "distilled_context": {},
+            "sequence_id": null,
+            "is_host_detail": true,
+            "is_account_detail": false,
+            "account_uid": null,
+            "account_detection": null,
+            "host_detection": 2644,
+            "src_ip": "1.1.1.1",
+            "date_couch": "2024-07-11T18:06:59Z",
+            "date_publish": "2024-07-11T18:07:17Z",
+            "date_s3": null,
+            "date_first_bucket": "2024-07-11T18:07:22Z",
+            "grouping_field": "last_timestamp",
+            "protocol": "tcp",
+            "accounts": [],
+            "target_domains": [],
+            "dst_ips": [
+                "1.1.1.1"
+            ],
+            "dst_ports": [
+                445
+            ]
+        },
+        {
+            "last_timestamp": "2024-07-11T18:05:06Z",
+            "flex_json": {},
+            "detection_guid": null,
+            "distilled_context": {},
+            "sequence_id": null,
+            "is_host_detail": true,
+            "is_account_detail": false,
+            "account_uid": null,
+            "account_detection": null,
+            "host_detection": 2644,
+            "src_ip": "1.1.1.1",
+            "date_couch": "2024-07-11T18:06:59Z",
+            "date_publish": "2024-07-11T18:07:17Z",
+            "date_s3": null,
+            "date_first_bucket": "2024-07-11T18:07:22Z",
+            "grouping_field": "last_timestamp",
+            "protocol": "tcp",
+            "accounts": [],
+            "target_domains": [],
+            "dst_ips": [
+                "1.1.1.1"
+            ],
+            "dst_ports": [
+                445
+            ]
+        },
+        {
+            "last_timestamp": "2024-07-11T18:05:06Z",
+            "flex_json": {},
+            "detection_guid": null,
+            "distilled_context": {},
+            "sequence_id": null,
+            "is_host_detail": true,
+            "is_account_detail": false,
+            "account_uid": null,
+            "account_detection": null,
+            "host_detection": 2644,
+            "src_ip": "1.1.1.1",
+            "date_couch": "2024-07-11T18:06:59Z",
+            "date_publish": "2024-07-11T18:07:17Z",
+            "date_s3": null,
+            "date_first_bucket": "2024-07-11T18:07:22Z",
+            "grouping_field": "last_timestamp",
+            "protocol": "tcp",
+            "accounts": [],
+            "target_domains": [],
+            "dst_ips": [
+                "1.1.1.1"
+            ],
+            "dst_ports": [
+                445
+            ]
+        },
+        {
+            "last_timestamp": "2024-07-11T18:05:06Z",
+            "flex_json": {},
+            "detection_guid": null,
+            "distilled_context": {},
+            "sequence_id": null,
+            "is_host_detail": true,
+            "is_account_detail": false,
+            "account_uid": null,
+            "account_detection": null,
+            "host_detection": 2644,
+            "src_ip": "1.1.1.1",
+            "date_couch": "2024-07-11T18:06:59Z",
+            "date_publish": "2024-07-11T18:07:17Z",
+            "date_s3": null,
+            "date_first_bucket": "2024-07-11T18:07:22Z",
+            "grouping_field": "last_timestamp",
+            "protocol": "tcp",
+            "accounts": [],
+            "target_domains": [],
+            "dst_ips": [
+                "1.1.1.1"
+            ],
+            "dst_ports": [
+                445
+            ]
+        },
+        {
+            "last_timestamp": "2024-07-11T18:05:06Z",
+            "flex_json": {},
+            "detection_guid": null,
+            "distilled_context": {},
+            "sequence_id": null,
+            "is_host_detail": true,
+            "is_account_detail": false,
+            "account_uid": null,
+            "account_detection": null,
+            "host_detection": 2644,
+            "src_ip": "1.1.1.1",
+            "date_couch": "2024-07-11T18:06:59Z",
+            "date_publish": "2024-07-11T18:07:17Z",
+            "date_s3": null,
+            "date_first_bucket": "2024-07-11T18:07:22Z",
+            "grouping_field": "last_timestamp",
+            "protocol": "tcp",
+            "accounts": [],
+            "target_domains": [],
+            "dst_ips": [
+                "1.1.1.1"
+            ],
+            "dst_ports": [
+                445
+            ]
+        },
+        {
+            "last_timestamp": "2024-07-11T18:05:06Z",
+            "flex_json": {},
+            "detection_guid": null,
+            "distilled_context": {},
+            "sequence_id": null,
+            "is_host_detail": true,
+            "is_account_detail": false,
+            "account_uid": null,
+            "account_detection": null,
+            "host_detection": 2644,
+            "src_ip": "1.1.1.1",
+            "date_couch": "2024-07-11T18:06:59Z",
+            "date_publish": "2024-07-11T18:07:17Z",
+            "date_s3": null,
+            "date_first_bucket": "2024-07-11T18:07:22Z",
+            "grouping_field": "last_timestamp",
+            "protocol": "tcp",
+            "accounts": [],
+            "target_domains": [],
+            "dst_ips": [
+                "1.1.1.1"
+            ],
+            "dst_ports": [
+                445
+            ]
+        },
+        {
+            "last_timestamp": "2024-07-11T18:05:06Z",
+            "flex_json": {},
+            "detection_guid": null,
+            "distilled_context": {},
+            "sequence_id": null,
+            "is_host_detail": true,
+            "is_account_detail": false,
+            "account_uid": null,
+            "account_detection": null,
+            "host_detection": 2644,
+            "src_ip": "1.1.1.1",
+            "date_couch": "2024-07-11T18:06:59Z",
+            "date_publish": "2024-07-11T18:07:17Z",
+            "date_s3": null,
+            "date_first_bucket": "2024-07-11T18:07:22Z",
+            "grouping_field": "last_timestamp",
+            "protocol": "tcp",
+            "accounts": [],
+            "target_domains": [],
+            "dst_ips": [
+                "1.1.1.1"
+            ],
+            "dst_ports": [
+                445
+            ]
+        },
+        {
+            "last_timestamp": "2024-07-11T18:05:06Z",
+            "flex_json": {},
+            "detection_guid": null,
+            "distilled_context": {},
+            "sequence_id": null,
+            "is_host_detail": true,
+            "is_account_detail": false,
+            "account_uid": null,
+            "account_detection": null,
+            "host_detection": 2644,
+            "src_ip": "1.1.1.1",
+            "date_couch": "2024-07-11T18:06:59Z",
+            "date_publish": "2024-07-11T18:07:17Z",
+            "date_s3": null,
+            "date_first_bucket": "2024-07-11T18:07:22Z",
+            "grouping_field": "last_timestamp",
+            "protocol": "tcp",
+            "accounts": [],
+            "target_domains": [],
+            "dst_ips": [
+                "1.1.1.1"
+            ],
+            "dst_ports": [
+                445
+            ]
+        },
+        {
+            "last_timestamp": "2024-07-11T18:05:06Z",
+            "flex_json": {},
+            "detection_guid": null,
+            "distilled_context": {},
+            "sequence_id": null,
+            "is_host_detail": true,
+            "is_account_detail": false,
+            "account_uid": null,
+            "account_detection": null,
+            "host_detection": 2644,
+            "src_ip": "1.1.1.1",
+            "date_couch": "2024-07-11T18:06:59Z",
+            "date_publish": "2024-07-11T18:07:17Z",
+            "date_s3": null,
+            "date_first_bucket": "2024-07-11T18:07:22Z",
+            "grouping_field": "last_timestamp",
+            "protocol": "tcp",
+            "accounts": [],
+            "target_domains": [],
+            "dst_ips": [
+                "1.1.1.1"
+            ],
+            "dst_ports": [
+                445
+            ]
+        },
+        {
+            "last_timestamp": "2024-07-11T18:05:06Z",
+            "flex_json": {},
+            "detection_guid": null,
+            "distilled_context": {},
+            "sequence_id": null,
+            "is_host_detail": true,
+            "is_account_detail": false,
+            "account_uid": null,
+            "account_detection": null,
+            "host_detection": 2644,
+            "src_ip": "1.1.1.1",
+            "date_couch": "2024-07-11T18:06:59Z",
+            "date_publish": "2024-07-11T18:07:17Z",
+            "date_s3": null,
+            "date_first_bucket": "2024-07-11T18:07:22Z",
+            "grouping_field": "last_timestamp",
+            "protocol": "tcp",
+            "accounts": [],
+            "target_domains": [],
+            "dst_ips": [
+                "1.1.1.1"
+            ],
+            "dst_ports": [
+                445
+            ]
+        },
+        {
+            "last_timestamp": "2024-07-11T18:05:06Z",
+            "flex_json": {},
+            "detection_guid": null,
+            "distilled_context": {},
+            "sequence_id": null,
+            "is_host_detail": true,
+            "is_account_detail": false,
+            "account_uid": null,
+            "account_detection": null,
+            "host_detection": 2644,
+            "src_ip": "1.1.1.1",
+            "date_couch": "2024-07-11T18:06:59Z",
+            "date_publish": "2024-07-11T18:07:17Z",
+            "date_s3": null,
+            "date_first_bucket": "2024-07-11T18:07:22Z",
+            "grouping_field": "last_timestamp",
+            "protocol": "tcp",
+            "accounts": [],
+            "target_domains": [],
+            "dst_ips": [
+                "1.1.1.1"
+            ],
+            "dst_ports": [
+                445
+            ]
+        },
+        {
+            "last_timestamp": "2024-07-11T18:05:06Z",
+            "flex_json": {},
+            "detection_guid": null,
+            "distilled_context": {},
+            "sequence_id": null,
+            "is_host_detail": true,
+            "is_account_detail": false,
+            "account_uid": null,
+            "account_detection": null,
+            "host_detection": 2644,
+            "src_ip": "1.1.1.1",
+            "date_couch": "2024-07-11T18:06:59Z",
+            "date_publish": "2024-07-11T18:07:17Z",
+            "date_s3": null,
+            "date_first_bucket": "2024-07-11T18:07:22Z",
+            "grouping_field": "last_timestamp",
+            "protocol": "tcp",
+            "accounts": [],
+            "target_domains": [],
+            "dst_ips": [
+                "1.1.1.1"
+            ],
+            "dst_ports": [
+                445
+            ]
+        },
+        {
+            "last_timestamp": "2024-07-11T18:05:06Z",
+            "flex_json": {},
+            "detection_guid": null,
+            "distilled_context": {},
+            "sequence_id": null,
+            "is_host_detail": true,
+            "is_account_detail": false,
+            "account_uid": null,
+            "account_detection": null,
+            "host_detection": 2644,
+            "src_ip": "1.1.1.1",
+            "date_couch": "2024-07-11T18:06:59Z",
+            "date_publish": "2024-07-11T18:07:17Z",
+            "date_s3": null,
+            "date_first_bucket": "2024-07-11T18:07:22Z",
+            "grouping_field": "last_timestamp",
+            "protocol": "tcp",
+            "accounts": [],
+            "target_domains": [],
+            "dst_ips": [
+                "1.1.1.1"
+            ],
+            "dst_ports": [
+                445
+            ]
+        },
+        {
+            "last_timestamp": "2024-07-11T18:05:06Z",
+            "flex_json": {},
+            "detection_guid": null,
+            "distilled_context": {},
+            "sequence_id": null,
+            "is_host_detail": true,
+            "is_account_detail": false,
+            "account_uid": null,
+            "account_detection": null,
+            "host_detection": 2644,
+            "src_ip": "192.168.199.30",
+            "date_couch": "2024-07-11T18:06:59Z",
+            "date_publish": "2024-07-11T18:07:17Z",
+            "date_s3": null,
+            "date_first_bucket": "2024-07-11T18:07:22Z",
+            "grouping_field": "last_timestamp",
+            "protocol": "tcp",
+            "accounts": [],
+            "target_domains": [],
+            "dst_ips": [
+                "10.100.199.0"
+            ],
+            "dst_ports": [
+                445
+            ]
+        },
+        {
+            "last_timestamp": "2024-07-11T18:05:06Z",
+            "flex_json": {},
+            "detection_guid": null,
+            "distilled_context": {},
+            "sequence_id": null,
+            "is_host_detail": true,
+            "is_account_detail": false,
+            "account_uid": null,
+            "account_detection": null,
+            "host_detection": 2644,
+            "src_ip": "192.168.199.30",
+            "date_couch": "2024-07-11T18:16:59Z",
+            "date_publish": "2024-07-11T18:17:18Z",
+            "date_s3": null,
+            "date_first_bucket": "2024-07-11T18:17:23Z",
+            "grouping_field": "last_timestamp",
+            "protocol": "tcp",
+            "accounts": [],
+            "target_domains": [],
+            "dst_ips": [
+                "10.100.199.17"
+            ],
+            "dst_ports": [
+                445
+            ]
+        }
+    ],
+    "summary": {
+        "dark_ips_contacted": [
+            "10.100.199.1",
+            "10.100.199.6",
+            "10.100.199.21",
+            "10.100.199.15",
+            "10.100.199.14",
+            "10.100.199.0",
+            "10.100.199.18",
+            "10.100.199.19",
+            "10.100.199.24",
+            "10.100.199.11",
+            "10.100.199.4",
+            "10.100.199.7",
+            "10.100.199.3",
+            "10.100.199.25",
+            "10.100.199.9",
+            "10.100.199.5",
+            "10.100.199.12",
+            "10.100.199.13",
+            "10.100.199.8",
+            "10.100.199.17",
+            "10.100.199.2"
+        ],
+        "dst_ports": [
+            445
+        ],
+        "protocols": [
+            "tcp"
+        ]
+    },
+    "campaign_summaries": [],
+    "is_triaged": false
+}

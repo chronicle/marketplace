@@ -1,91 +1,36 @@
-name: List Host Info
+creator: Admin
+default_result_value: ''
 description: Retrieves host records from Infoblox including hostname, associated IPv4/IPv6
     addresses (A/AAAA records), PTR records, DNS view information, and any configured
     extensible attributes.
+dynamic_results_metadata:
+-   result_example_path: resources/list_host_info_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
 integration_identifier: InfobloxNIOS
+name: List Host Info
 parameters:
--   name: IPv4 Address
-    type: string
-    description: IPv4 address information.
+-   description: IPv4 address information.
     is_mandatory: false
--   name: Name
-    default_value: ''
+    name: IPv4 Address
     type: string
+-   default_value: ''
     description: 'The hostname for the record. '
     is_mandatory: false
--   name: IPv6 Address
+    name: Name
     type: string
-    description: 'IPv6 address information. '
+-   description: 'IPv6 address information. '
     is_mandatory: false
--   name: Extended Attributes
+    name: IPv6 Address
     type: string
-    description: Comma-separated key/value formatted filter for extended attributes,
+-   description: Comma-separated key/value formatted filter for extended attributes,
         e.g. "Site=New York,OtherProp=MyValue".
     is_mandatory: false
--   name: Limit
-    default_value: '100'
+    name: Extended Attributes
     type: string
+-   default_value: '100'
     description: Maximum numbers of objects to be returned.
     is_mandatory: false
-dynamic_results_metadata:
--   result_name: JsonResult
-    show_result: true
-    result_example: |
-        [
-            {
-                "_ref": "record:host/ZG5zLmhvc3QkLl9kZWZhdWx0LmF1dGggem9uZS4:auth%20zone/default",
-                "allow_telnet": false,
-                "comment": "HOST Wizard",
-                "configure_for_dns": true,
-                "creation_time": 1753968112,
-                "ddns_protected": true,
-                "disable": false,
-                "disable_discovery": false,
-                "dns_name": "auth zone",
-                "extattrs": {
-                    "IB Discovery Owned": {"value": "host-wiz"},
-                    "Site": {"value": "host-site"}
-                },
-                "ipv4addrs": [
-                    {
-                        "_ref": "record:host_ipv4addr/ZG5zLmhvc3RfYWRkcmVzcyQuX2RlZmF1bHQuYXV0aCB6b25lLi4xOTIuMTY4LjEuMi4:192.168.1.2/auth%20zone/default",
-                        "configure_for_dhcp": false,
-                        "host": "auth zone",
-                        "ipv4addr": "192.168.1.2"
-                    },
-                    {
-                        "_ref": "record:host_ipv4addr/ZG5zLmhvc3RfYWRkcmVzcyQuX2RlZmF1bHQuYXV0aCB6b25lLi4xOTIuMTY4LjEuMy4:192.168.1.3/auth%20zone/default",
-                        "configure_for_dhcp": false,
-                        "host": "auth zone",
-                        "ipv4addr": "192.168.1.3"
-                    }
-                ],
-                "ipv6addrs": [
-                    {
-                        "_ref": "record:host_ipv6addr/ZG5zLmhvc3RfYWRkcmVzcyQuX2RlZmF1bHQuYXV0aCB6b25lLi4yMDAxOmRiODoxMjM0OjoxLg:2001%3Adb8%3A1234%3A%3A1/auth%20zone/default",
-                        "configure_for_dhcp": false,
-                        "host": "auth zone",
-                        "ipv6addr": "2001:db8:1234::1"
-                    },
-                    {
-                        "_ref": "record:host_ipv6addr/ZG5zLmhvc3RfYWRkcmVzcyQuX2RlZmF1bHQuYXV0aCB6b25lLi4yMDAxOmRiODoxMjM0OjoyLg:2001%3Adb8%3A1234%3A%3A2/auth%20zone/default",
-                        "configure_for_dhcp": false,
-                        "host": "auth zone",
-                        "ipv6addr": "2001:db8:1234::2"
-                    }
-                ],
-                "name": "auth zone",
-                "network_view": "default",
-                "rrset_order": "cyclic",
-                "use_cli_credentials": false,
-                "use_dns_ea_inheritance": false,
-                "use_snmp3_credential": false,
-                "use_snmp_credential": false,
-                "use_ttl": false,
-                "view": "default",
-                "zone": "auth zone"
-            }
-        ]
-default_result_value: ''
-creator: Admin
+    name: Limit
+    type: string
 script_result_name: ScriptResult

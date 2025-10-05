@@ -1,25 +1,24 @@
-name: Decode Base64
-description: The action decodes base64 input string and returns the json object.
-integration_identifier: FileUtilities
-parameters:
-    -   name: Base64 Input
-        default_value: ' '
-        type: string
-        description: Base64 Input string you would like to decode
-        is_mandatory: true
-    -   name: Encoding
-        default_value: UTF-8
-        type: ddl
-        optional_values:
-            - UTF-8
-            - ASCII
-        description: Choose the encoding option from the list
-        is_mandatory: true
-dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: "{\n    \"decoded_content\":\"Example output data\"\n}"
-default_result_value: ''
 creator: Robert
+default_result_value: ''
+description: The action decodes base64 input string and returns the json object.
+dynamic_results_metadata:
+-   result_example_path: resources/DecodeBase64_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: FileUtilities
+name: Decode Base64
+parameters:
+-   default_value: ' '
+    description: Base64 Input string you would like to decode
+    is_mandatory: true
+    name: Base64 Input
+    type: string
+-   default_value: UTF-8
+    description: Choose the encoding option from the list
+    is_mandatory: true
+    name: Encoding
+    optional_values:
+    - UTF-8
+    - ASCII
+    type: ddl
 script_result_name: ScriptResult

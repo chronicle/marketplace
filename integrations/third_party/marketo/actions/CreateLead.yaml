@@ -1,31 +1,30 @@
-name: Create lead
-description: Create Lead in Marketo for a given user details
-integration_identifier: Marketo
-parameters:
-    -   name: Email
-        default_value: ' '
-        type: string
-        description: ' The email address of the new lead you want to create'
-        is_mandatory: true
-    -   name: First Name
-        type: string
-        description: '  The first name of the new lead you want to create'
-        is_mandatory: true
-    -   name: Country
-        default_value: ''
-        type: string
-        description: ' The country of the new lead you want to create'
-        is_mandatory: true
-    -   name: Last Name
-        default_value: ' '
-        type: string
-        description: The last name of the new lead you want to create
-        is_mandatory: true
-dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: "{\n \"id\":123456,\n \"status\":\"created\"\n}\n"
-default_result_value: ''
 creator: Admin
+default_result_value: ''
+description: Create Lead in Marketo for a given user details
+dynamic_results_metadata:
+-   result_example_path: resources/CreateLead_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: Marketo
+name: Create lead
+parameters:
+-   default_value: ' '
+    description: ' The email address of the new lead you want to create'
+    is_mandatory: true
+    name: Email
+    type: string
+-   description: '  The first name of the new lead you want to create'
+    is_mandatory: true
+    name: First Name
+    type: string
+-   default_value: ''
+    description: ' The country of the new lead you want to create'
+    is_mandatory: true
+    name: Country
+    type: string
+-   default_value: ' '
+    description: The last name of the new lead you want to create
+    is_mandatory: true
+    name: Last Name
+    type: string
 script_result_name: ScriptResult

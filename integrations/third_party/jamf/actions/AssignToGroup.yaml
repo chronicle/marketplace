@@ -1,39 +1,35 @@
-name: Assign to Group
-description: Add computers to a computer group using computer IDs, names, or serial numbers
-script: AssignToGroup.py
-type: containment
+description: Add computers to a computer group using computer IDs, names, or serial
+    numbers
+dynamic_results_metadata:
+-   result_example_path: resources/AssignToGroup_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
 integration_identifier: Jamf
-timeout_seconds: 600
+name: Assign to Group
 parameters:
-  - name: Group ID
-    type: string
+-   default_value: ''
     description: The ID of the computer group to modify (required)
     is_mandatory: true
-    default_value: ""
-  - name: Computer IDs
+    name: Group ID
     type: string
+-   default_value: ''
     description: Comma-separated list of computer IDs to add (e.g., "123,456,789")
     is_mandatory: false
-    default_value: ""
-  - name: Computer Names
+    name: Computer IDs
     type: string
-    description: "Comma-separated list of computer names to add (e.g., \"MacBook-1,MacBook-2\"). WARNING: Computer names are not required to be unique in Jamf. The API will act on the first matching record found. Use Computer IDs or Serial Numbers for reliable identification."
+-   default_value: ''
+    description: 'Comma-separated list of computer names to add (e.g., "MacBook-1,MacBook-2").
+        WARNING: Computer names are not required to be unique in Jamf. The API will
+        act on the first matching record found. Use Computer IDs or Serial Numbers
+        for reliable identification.'
     is_mandatory: false
-    default_value: ""
-  - name: Serial Numbers
+    name: Computer Names
     type: string
+-   default_value: ''
     description: Comma-separated list of serial numbers to add (e.g., "ABC123,DEF456")
     is_mandatory: false
-    default_value: ""
-dynamic_results_metadata:
-  - result_name: JsonResult
-    show_result: true
-    result_example: |
-      {
-          "status": "success",
-          "group_id": "1",
-          "computers_processed": 2,
-          "message": "Successfully added 2 computer(s) to group 1",
-          "group_name": "Marketing Laptops"
-      }
-
+    name: Serial Numbers
+    type: string
+script: AssignToGroup.py
+timeout_seconds: 600
+type: containment

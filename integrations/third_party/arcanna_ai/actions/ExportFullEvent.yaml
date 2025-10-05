@@ -1,67 +1,21 @@
-name: Export full event
-description: ''
-integration_identifier: ArcannaAI
-parameters:
-    -   name: Job ID
-        default_value: ' '
-        type: string
-        description: Where to fetch event
-        is_mandatory: true
-    -   name: Event ID
-        default_value: ' '
-        type: string
-        description: Event ID To fetch
-        is_mandatory: true
-dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: "{\n    \"event_id\": \" 32072928741742\",\n    \"ingest_timestamp\"\
-        : \"2024-05-30T07:21:46.292874Z\",\n    \"status\": \"OK\",\n    \"arcanna_event\"\
-        : {\n        \"id\": \"32072928741742\",\n        \"metadata\": {\n      \
-        \      \"severity\": 0,\n            \"ingested_timestamp\": \"2024-05-30T07:21:46.292874Z\"\
-        ,\n            \"id\": \"32072928741742\",\n            \"description\": \"\
-        NEW_USER_CMD_LINE_WINDOWSA484EC16-379B-432E-B960-8DF24A381054\"\n        },\n\
-        \        \"arcanna\": {\n            \"result\": \"class_2\",\n          \
-        \  \"result_label\": \"Medium\",\n            \"inference_status\": \"finished\"\
-        ,\n            \"bucket_state\": null,\n            \"original_id\": \"32072928741742\"\
-        ,\n            \"original_index\": \"\",\n            \"artifacts\": [],\n\
-        \            \"log_messages\": [\n                {\n                    \"\
-        component\": \"Input\",\n                    \"level\": \"info\",\n      \
-        \              \"component_subcategory\": \"Undefined\",\n               \
-        \     \"content\": \"Read from Undefined\",\n                    \"timestamp\"\
-        : \"2024-05-30T07:21:55.939337+00:00\"\n                },\n             \
-        \   {\n                    \"component\": \"Inference\",\n               \
-        \     \"level\": \"warn\",\n                    \"component_subcategory\"\
-        : \"Generic\",\n                    \"content\": \"Skip record because it\
-        \ is incompatible with selected features.\",\n                    \"timestamp\"\
-        : \"2024-05-30T07:21:58.445649+00:00\"\n                },\n             \
-        \   {\n                    \"component\": \"Output\",\n                  \
-        \  \"level\": \"info\",\n                    \"component_subcategory\": \"\
-        Elasticsearch\",\n                    \"content\": \"Writing to Elasticsearch\"\
-        ,\n                    \"timestamp\": \"2024-05-30T07:21:59.218356+00:00\"\
-        \n                }\n            ],\n            \"timers\": {\n         \
-        \       \"output\": {\n                    \"per_alert_in_batch_ms\": 30.0,\n\
-        \                    \"total_ms\": 30,\n                    \"start\": 1717053719188,\n\
-        \                    \"end\": 1717053719218,\n                    \"kafka_overhead_in_ms\"\
-        : 741\n                },\n                \"core\": {\n                 \
-        \   \"end\": 1717053715939\n                },\n                \"total_kafka_overhead_in_s\"\
-        : 1.714,\n                \"inference\": {\n                    \"per_alert_in_batch_ms\"\
-        : 1535.0,\n                    \"total_ms\": 1535,\n                    \"\
-        start\": 1717053716912,\n                    \"end\": 1717053718447,\n   \
-        \                 \"kafka_overhead_in_ms\": 973\n                },\n    \
-        \            \"total_pipeline_in_s\": 3.279\n            },\n            \"\
-        batch_uuid\": \"f652b157-8ebb-4434-9d07-25d69f423f65\",\n            \"inference_result\"\
-        : \"no_decision\",\n            \"model\": {\n                \"path\": \"\
-        generic-1-3207-model-1716805470.hdf5\",\n                \"timestamp\": \"\
-        2024-05-27T10:24:30\"\n            },\n            \"batch_master_uuid\":\
-        \ \"ba66e308-6e8a-4888-8b65-42cc3fa31f0f\",\n            \"bucket_id\": \"\
-        FNTUqupSidwDGFaAd3YpZW\",\n            \"features_hash\": \"9c13e5586414e5b2ba64874931a1653e912e63375256ea01f02b8d000d70bb5b\"\
-        ,\n            \"key_hash\": \"57e5c9981b303223cfd55d99cda6ae5a87be1a58ec829dc3d47f9445a808a08c\"\
-        ,\n            \"full_hash\": \"57e5c9981b303223cfd55d99cda6ae5a87be1a58ec829dc3d47f9445a808a08c9c13e5586414e5b2ba64874931a1653e912e63375256ea01f02b8d000d70bb5b\"\
-        ,\n            \"confidence_score\": 49.71\n        },\n        \"@timestamp\"\
-        : \"2024-05-30T07:21:46.292874Z\",\n        \"timestamp_inference\": \"2024-05-30T07:21:58.443060+00:00\"\
-        \n    }\n}"
-default_result_value: ''
 creator: 57861f63-e407-4200-90d4-a03bed1eb07e
+default_result_value: ''
+description: ''
+dynamic_results_metadata:
+-   result_example_path: resources/ExportFullEvent_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: ArcannaAI
+name: Export full event
+parameters:
+-   default_value: ' '
+    description: Where to fetch event
+    is_mandatory: true
+    name: Job ID
+    type: string
+-   default_value: ' '
+    description: Event ID To fetch
+    is_mandatory: true
+    name: Event ID
+    type: string
 script_result_name: ScriptResult

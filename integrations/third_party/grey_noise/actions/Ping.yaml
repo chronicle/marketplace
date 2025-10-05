@@ -1,12 +1,11 @@
-name: Ping
-description: Connectivity / API Key check.
-integration_identifier: GreyNoise
-parameters: [ ]
-dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: '{}'
-default_result_value: ''
 creator: Admin
+default_result_value: ''
+description: Connectivity / API Key check.
+dynamic_results_metadata:
+-   result_example_path: null
+    result_name: JsonResult
+    show_result: true
+integration_identifier: GreyNoise
+name: Ping
+parameters: []
 script_result_name: ScriptResult

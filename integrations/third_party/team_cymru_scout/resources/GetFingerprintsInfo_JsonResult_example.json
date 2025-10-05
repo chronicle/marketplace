@@ -1,0 +1,43 @@
+{
+    "1.1.1.1": {
+        "request_id": "3ea7c1be-b952-50e1-9161-ba4768171163",
+        "ip": "1.1.1.1",
+        "size": 20,
+        "start_date": "2024-07-30",
+        "end_date": "2024-08-20",
+        "sections": [
+            "fingerprints"
+        ],
+        "usage": {
+            "used_queries": 1394,
+            "remaining_queries": 48606,
+            "query_limit": 50000,
+            "foundation_api_usage": {
+                "used_queries": 2,
+                "remaining_queries": 9998,
+                "query_limit": 10000
+            },
+            "ai_insights_usage": {
+                "used_queries": 0,
+                "remaining_queries": 0,
+                "query_limit": 0
+            }
+        },
+        "fingerprints": {
+            "event_count": 3,
+            "fingerprints": [
+                {
+                    "ip": "1.1.1.1",
+                    "type": "jarm",
+                    "fingerprint": "40d1db40d00040d1dc43d1db1db43d5ecfbe778b06e32b538bd51f24eb7398",
+                    "port": 443,
+                    "first_seen": "2024-07-30",
+                    "last_seen": "2024-08-15",
+                    "distinct_ips": 903,
+                    "active_days": 3,
+                    "event_count": 3
+                }
+            ]
+        }
+    }
+}

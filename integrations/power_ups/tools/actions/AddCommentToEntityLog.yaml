@@ -1,23 +1,22 @@
-name: Add Comment to Entity Log
+creator: Robert
+default_result_value: ''
 description: This action will add a comment to the Entity Log for each entity in scope
     in the Entity Explorer.
-integration_identifier: Tools
-parameters:
-    -   name: User
-        default_value: '@Administrator'
-        type: user
-        description: The user who created the comment.
-        is_mandatory: true
-    -   name: Comment
-        default_value: <insert comment>
-        type: content
-        description: The comment that will be added to the entity log.
-        is_mandatory: true
 dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: '{}'
-default_result_value: ''
-creator: Robert
+-   result_example_path: null
+    result_name: JsonResult
+    show_result: true
+integration_identifier: Tools
+name: Add Comment to Entity Log
+parameters:
+-   default_value: '@Administrator'
+    description: The user who created the comment.
+    is_mandatory: true
+    name: User
+    type: user
+-   default_value: <insert comment>
+    description: The comment that will be added to the entity log.
+    is_mandatory: true
+    name: Comment
+    type: content
 script_result_name: ScriptResult

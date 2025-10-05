@@ -1,0 +1,12 @@
+[
+    {
+        "Entity": "EMK",
+        "EntityResult": {
+            "status": "created",
+            "enrichment": {
+                "attachment": 0,
+                "linked_entities": "SIEMPLIFY_PS@YAHOO.COM"
+            }
+        }
+    }
+]

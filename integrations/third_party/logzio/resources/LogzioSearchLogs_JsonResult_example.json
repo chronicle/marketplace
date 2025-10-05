@@ -1,0 +1,60 @@
+{
+    "results": [
+        {
+            "request": "value",
+            "agent": "value",
+            "minor": "value",
+            "auth": "value",
+            "ident": "value",
+            "os_major": "value",
+            "type": "value",
+            "major": "value",
+            "clientip": "value",
+            "_logzio_sample_logs": "value",
+            "geoip": {
+                "timezone": "value",
+                "ip": "value",
+                "latitude": "value",
+                "country_name": "value",
+                "country_code2": "value",
+                "continent_code": "value",
+                "location": "value",
+                "longitude": "value"
+            },
+            "os": "value",
+            "verb": "value",
+            "message": "value",
+            "tags": "value",
+            "referrer": "value",
+            "@timestamp": "value",
+            "response": "value",
+            "bytes": "value",
+            "name": "value",
+            "os_name": "value",
+            "httpversion": "value",
+            "device": "value"
+        },
+        {
+            "request": "value",
+            "agent": "value",
+            "minor": "value",
+            "auth": "value",
+            "ident": "value",
+            "os_major": "value",
+            "type": "value",
+            "patch": "value",
+            "major": "value",
+            "clientip": "value",
+            "_logzio_sample_logs": "value",
+            "geoip": {
+                "city_name": "value",
+                "timezone": "value",
+                "ip": "value",
+                "latitude": "value",
+                "country_name": "value",
+                "country_code2": "value",
+                "continent_code": "value"
+            }
+        }
+    ]
+}

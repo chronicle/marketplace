@@ -1,4 +1,5 @@
-name: Reports - Get Download Links
+creator: daniel.harvey
+default_result_value: ''
 description: 'This method returns an Object with information regarding the report
     availability for download and the corresponding download links.
 
@@ -7,21 +8,16 @@ description: 'This method returns an Object with information regarding the repor
 
     Scheduled reports are generated periodically and all report instances are saved
     in the GravityZone database.'
-integration_identifier: Bitdefender GravityZone
-parameters:
-    -   name: Report ID
-        default_value: reportId
-        type: string
-        description: The report ID to fetch
-        is_mandatory: true
 dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: "{\r\n    \"result\": {\r\n        \"readyForDownload\": true,\r\
-        \n        \"allInstancesUrl\":\r\n        \"https://gravityzone.bitdefender.com/api/v1.0/http/downloadReportZip?reportId=5645cba6f12a9a8c5e8b4748&allInstances=1&serviceType=1\"\
-        ,\r\n        \"lastInstanceUrl\": \"https://gravityzone.bitdefender.com/api/v1.0/http/downloadReportZip?reportId=5645cba6f12a9a8c5e8b4748&allInstances=0&serviceType=1\"\
-        \r\n    }\r\n\r\n}"
-default_result_value: ''
-creator: daniel.harvey
+-   result_example_path: resources/ReportsGetDownloadLinks_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: Bitdefender GravityZone
+name: Reports - Get Download Links
+parameters:
+-   default_value: reportId
+    description: The report ID to fetch
+    is_mandatory: true
+    name: Report ID
+    type: string
 script_result_name: ScriptResult

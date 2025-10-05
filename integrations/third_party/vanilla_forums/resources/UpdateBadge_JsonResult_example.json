@@ -1,0 +1,52 @@
+{
+    "userID": 1111,
+    "user": {
+        "userID": 1111,
+        "name": "User Name",
+        "url": "UserURL",
+        "photoUrl": "https://us.v-cdn.JPG",
+        "dateLastActive": "2021-03-09T09:43:29+00:00",
+        "label": "Team"
+    },
+    "badgeID": 101,
+    "badge": {
+        "badgeID": 101,
+        "type": "Manual",
+        "key": "CourseSlug",
+        "name": "Siemplify Certified SOAR Operator Course",
+        "body": "You have completed the \"Siemplify Certified SOAR Operator\" course. ",
+        "photoUrl": "https://us.v-c.png",
+        "points": 20,
+        "enabled": true,
+        "canDelete": true,
+        "countUsers": 28,
+        "class": "",
+        "classLevel": null,
+        "insertUserID": 8,
+        "insertUser": {
+            "userID": 8,
+            "name": "CreatorName",
+            "url": "",
+            "photoUrl": "https://us.v-cdn.ne.jpg",
+            "dateLastActive": "2021-03-09T08:28:20+00:00",
+            "label": "Team"
+        },
+        "dateInserted": "2020-09-23T09:23:44+00:00",
+        "updateUserID": null,
+        "dateUpdated": null,
+        "attributes": [],
+        "url": "/badge/ID/Slug"
+    },
+    "reasonBody": null,
+    "dateEarned": "2021-03-09T10:03:48+00:00",
+    "insertUserID": 8,
+    "insertUser": {
+        "userID": 8,
+        "name": "ShakedTal",
+        "url": "https://X",
+        "photoUrl": "https://us.v-cdn.ne.jpg",
+        "dateLastActive": "2021-03-09T08:28:20+00:00",
+        "label": ""
+    },
+    "dateInserted": "2021-03-09T10:03:48+00:00"
+}

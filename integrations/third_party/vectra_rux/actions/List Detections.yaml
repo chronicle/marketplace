@@ -1,273 +1,101 @@
-name: List Detections
-description: List all the detections for the given entity ID.
-integration_identifier: VectraRUX
-parameters:
-    -   name: Detection Category
-        default_value: ''
-        type: ddl
-        optional_values:
-            - Info
-            - Exfiltration
-            - Lateral Movement
-            - Reconnaissance
-            - Botnet
-            - Command and Control
-        description: Filter detections by Detection Category
-        is_mandatory: false
-    -   name: Threat GTE
-        type: string
-        description: Filter detections whose threat is greater then given value
-        is_mandatory: false
-    -   name: Certainty GTE
-        type: string
-        description: Filter detections if the certainty is greater or equal to given value
-        is_mandatory: false
-    -   name: Last Timestamp GTE
-        type: string
-        description: Filter detections based on timestamp
-        is_mandatory: false
-    -   name: Last Timestamp LTE
-        type: string
-        description: Filter detections based on last time stamp
-        is_mandatory: false
-    -   name: Tags
-        type: string
-        description: Provide tags with coma separated values to filter detections
-        is_mandatory: false
-    -   name: Entity Type
-        default_value: ''
-        type: ddl
-        optional_values:
-            - Host
-            - Account
-        description: Type of Entity
-        is_mandatory: false
-    -   name: Entity ID
-        type: string
-        description: ID of entity
-        is_mandatory: false
-    -   name: Is Targeting Key Asset
-        default_value: ''
-        type: ddl
-        optional_values:
-            - "True"
-            - "False"
-        description: Filter detections based on if it's targeting key asset or not
-        is_mandatory: false
-    -   name: Note Modified Timestamp GTE
-        type: string
-        description: Filter detections based on note modified timestamp
-        is_mandatory: false
-    -   name: Limit
-        type: string
-        description: Number of records to fetch
-        is_mandatory: false
-    -   name: Order
-        default_value: ''
-        type: ddl
-        optional_values:
-            - Ascending
-            - Descending
-        description: Order records by ascending or descending
-        is_mandatory: false
-    -   name: Order By
-        default_value: ''
-        type: ddl
-        optional_values:
-            - last_timestamp
-            - threat_score
-            - certainty_score
-        description: Order records by  last_timestamp, threat_score, and certainty_score
-        is_mandatory: false
-    -   name: State
-        default_value: ''
-        type: ddl
-        optional_values:
-            - Active
-            - Inactive
-            - Fixed
-        description: Filter detections by State
-        is_mandatory: false
-    -   name: Detection Type
-        type: string
-        description: Filter detections by detection type
-        is_mandatory: false
-dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: "[\n    {\n        \"summary\": {\n            \"artifact\": [\n\
-        \                \"atc0003.admin.vectra.ai\",\n                \"atc0003.dyn.vectra.ai\"\
-        \n            ],\n            \"last_timestamp\": \"2024-12-30T22:03:39Z\"\
-        ,\n            \"description\": \"This is the first time this host has been\
-        \ seen on the network.\"\n        },\n        \"notes\": [],\n        \"filtered_by_user\"\
-        : false,\n        \"is_targeting_key_asset\": false,\n        \"detection_type\"\
-        : \"New Host\",\n        \"detection\": \"New Host\",\n        \"description\"\
-        : null,\n        \"id\": 34421,\n        \"last_timestamp\": \"2024-12-30T22:03:39Z\"\
-        ,\n        \"triage_rule_id\": null,\n        \"custom_detection\": null,\n\
-        \        \"url\": \"https://308714519558.cc1.portal.vectra.ai/detections/34421\"\
-        ,\n        \"note\": null,\n        \"is_triaged\": false,\n        \"threat\"\
-        : 0,\n        \"assigned_to\": null,\n        \"filtered_by_rule\": false,\n\
-        \        \"sensor\": \"w4ftj0a8\",\n        \"tags\": [],\n        \"type\"\
-        : \"host\",\n        \"note_modified_by\": null,\n        \"certainty\": 0,\n\
-        \        \"detection_url\": \"https://308714519558.cc1.portal.vectra.ai/detections/34421\"\
-        ,\n        \"note_modified_timestamp\": null,\n        \"groups\": [],\n \
-        \       \"first_timestamp\": \"2024-12-30T22:03:39Z\",\n        \"state\"\
-        : \"active\",\n        \"filtered_by_ai\": false,\n        \"src_host\": {\n\
-        \            \"id\": 69442,\n            \"ip\": \"1.1.1.1\",\n          \
-        \  \"name\": \"csoarrc1-4\",\n            \"url\": \"https://308714519558.cc1.portal.vectra.ai/hosts/69442\"\
-        ,\n            \"is_key_asset\": false,\n            \"groups\": [],\n   \
-        \         \"threat\": 0,\n            \"certainty\": 0\n        },\n     \
-        \   \"created_timestamp\": \"2024-12-30T22:05:31Z\",\n        \"is_marked_custom\"\
-        : false,\n        \"src_ip\": \"1.1.1.1\",\n        \"assigned_date\": null,\n\
-        \        \"data_source\": {\n            \"type\": \"Unknown sensor type\"\
-        ,\n            \"connection_name\": \"Unknown sensor name\",\n           \
-        \ \"connection_id\": \"w4ftj0a8\"\n        },\n        \"sensor_name\": \"\
-        EDR Sensor\",\n        \"src_account\": null,\n        \"is_custom_model\"\
-        : false,\n        \"detection_category\": \"info\",\n        \"investigation_pivot_link\"\
-        : null,\n        \"grouped_details\": [\n            {\n                \"\
-        artifact\": \"atc0003.admin.vectra.ai\",\n                \"via\": \"DNS\"\
-        ,\n                \"last_timestamp\": \"2024-12-30T22:03:39Z\"\n        \
-        \    },\n            {\n                \"artifact\": \"atc0003.dyn.vectra.ai\"\
-        ,\n                \"via\": \"DNS\",\n                \"last_timestamp\":\
-        \ \"2024-12-30T22:03:39Z\"\n            }\n        ]\n    },\n    {\n    \
-        \    \"summary\": {\n            \"artifact\": [\n                \"atc0003.admin.vectra.ai\"\
-        ,\n                \"atc0003.dyn.vectra.ai\"\n            ],\n           \
-        \ \"last_timestamp\": \"2024-12-30T20:11:26Z\",\n            \"description\"\
-        : \"This is the first time this host has been seen on the network.\"\n   \
-        \     },\n        \"notes\": [],\n        \"filtered_by_user\": false,\n \
-        \       \"is_targeting_key_asset\": false,\n        \"detection_type\": \"\
-        New Host\",\n        \"detection\": \"New Host\",\n        \"description\"\
-        : null,\n        \"id\": 34413,\n        \"last_timestamp\": \"2024-12-30T20:11:26Z\"\
-        ,\n        \"triage_rule_id\": null,\n        \"custom_detection\": null,\n\
-        \        \"url\": \"https://308714519558.cc1.portal.vectra.ai/detections/34413\"\
-        ,\n        \"note\": null,\n        \"is_triaged\": false,\n        \"threat\"\
-        : 0,\n        \"assigned_to\": null,\n        \"filtered_by_rule\": false,\n\
-        \        \"sensor\": \"w4ftj0a8\",\n        \"tags\": [],\n        \"type\"\
-        : \"host\",\n        \"note_modified_by\": null,\n        \"certainty\": 0,\n\
-        \        \"detection_url\": \"https://308714519558.cc1.portal.vectra.ai/detections/34413\"\
-        ,\n        \"note_modified_timestamp\": null,\n        \"groups\": [],\n \
-        \       \"first_timestamp\": \"2024-12-30T20:11:26Z\",\n        \"state\"\
-        : \"active\",\n        \"filtered_by_ai\": false,\n        \"src_host\": {\n\
-        \            \"id\": 69434,\n            \"ip\": \"1.1.1.1\",\n          \
-        \  \"name\": \"csoarrc1-3\",\n            \"url\": \"https://308714519558.cc1.portal.vectra.ai/hosts/69434\"\
-        ,\n            \"is_key_asset\": false,\n            \"groups\": [],\n   \
-        \         \"threat\": 0,\n            \"certainty\": 0\n        },\n     \
-        \   \"created_timestamp\": \"2024-12-30T20:13:14Z\",\n        \"is_marked_custom\"\
-        : false,\n        \"src_ip\": \"1.1.1.1\",\n        \"assigned_date\": null,\n\
-        \        \"data_source\": {\n            \"type\": \"Unknown sensor type\"\
-        ,\n            \"connection_name\": \"Unknown sensor name\",\n           \
-        \ \"connection_id\": \"w4ftj0a8\"\n        },\n        \"sensor_name\": \"\
-        EDR Sensor\",\n        \"src_account\": null,\n        \"is_custom_model\"\
-        : false,\n        \"detection_category\": \"info\",\n        \"investigation_pivot_link\"\
-        : null,\n        \"grouped_details\": [\n            {\n                \"\
-        artifact\": \"atc0003.admin.vectra.ai\",\n                \"via\": \"DNS\"\
-        ,\n                \"last_timestamp\": \"2024-12-30T20:11:26Z\"\n        \
-        \    },\n            {\n                \"artifact\": \"atc0003.dyn.vectra.ai\"\
-        ,\n                \"via\": \"DNS\",\n                \"last_timestamp\":\
-        \ \"2024-12-30T20:11:26Z\"\n            }\n        ]\n    },\n    {\n    \
-        \    \"summary\": {\n            \"artifact\": [\n                \"atc0003.admin.vectra.ai\"\
-        ,\n                \"atc0003.dyn.vectra.ai\"\n            ],\n           \
-        \ \"last_timestamp\": \"2024-12-30T18:19:13Z\",\n            \"description\"\
-        : \"This is the first time this host has been seen on the network.\"\n   \
-        \     },\n        \"notes\": [],\n        \"filtered_by_user\": false,\n \
-        \       \"is_targeting_key_asset\": false,\n        \"detection_type\": \"\
-        New Host\",\n        \"detection\": \"New Host\",\n        \"description\"\
-        : null,\n        \"id\": 34405,\n        \"last_timestamp\": \"2024-12-30T18:19:13Z\"\
-        ,\n        \"triage_rule_id\": null,\n        \"custom_detection\": null,\n\
-        \        \"url\": \"https://308714519558.cc1.portal.vectra.ai/detections/34405\"\
-        ,\n        \"note\": null,\n        \"is_triaged\": false,\n        \"threat\"\
-        : 0,\n        \"assigned_to\": null,\n        \"filtered_by_rule\": false,\n\
-        \        \"sensor\": \"w4ftj0a8\",\n        \"tags\": [],\n        \"type\"\
-        : \"host\",\n        \"note_modified_by\": null,\n        \"certainty\": 0,\n\
-        \        \"detection_url\": \"https://308714519558.cc1.portal.vectra.ai/detections/34405\"\
-        ,\n        \"note_modified_timestamp\": null,\n        \"groups\": [],\n \
-        \       \"first_timestamp\": \"2024-12-30T18:19:13Z\",\n        \"state\"\
-        : \"active\",\n        \"filtered_by_ai\": false,\n        \"src_host\": {\n\
-        \            \"id\": 69428,\n            \"ip\": \"1.1.1.1\",\n          \
-        \  \"name\": \"csoarrc1-2\",\n            \"url\": \"https://308714519558.cc1.portal.vectra.ai/hosts/69428\"\
-        ,\n            \"is_key_asset\": false,\n            \"groups\": [],\n   \
-        \         \"threat\": 0,\n            \"certainty\": 0\n        },\n     \
-        \   \"created_timestamp\": \"2024-12-30T18:20:58Z\",\n        \"is_marked_custom\"\
-        : false,\n        \"src_ip\": \"1.1.1.1\",\n        \"assigned_date\": null,\n\
-        \        \"data_source\": {\n            \"type\": \"Unknown sensor type\"\
-        ,\n            \"connection_name\": \"Unknown sensor name\",\n           \
-        \ \"connection_id\": \"w4ftj0a8\"\n        },\n        \"sensor_name\": \"\
-        EDR Sensor\",\n        \"src_account\": null,\n        \"is_custom_model\"\
-        : false,\n        \"detection_category\": \"info\",\n        \"investigation_pivot_link\"\
-        : null,\n        \"grouped_details\": [\n            {\n                \"\
-        artifact\": \"atc0003.admin.vectra.ai\",\n                \"via\": \"DNS\"\
-        ,\n                \"last_timestamp\": \"2024-12-30T18:19:13Z\"\n        \
-        \    },\n            {\n                \"artifact\": \"atc0003.dyn.vectra.ai\"\
-        ,\n                \"via\": \"DNS\",\n                \"last_timestamp\":\
-        \ \"2024-12-30T18:19:13Z\"\n            }\n        ]\n    },\n    {\n    \
-        \    \"summary\": {\n            \"artifact\": [\n                \"atc0003.admin.vectra.ai\"\
-        ,\n                \"atc0003.dyn.vectra.ai\"\n            ],\n           \
-        \ \"last_timestamp\": \"2024-12-30T16:26:56Z\",\n            \"description\"\
-        : \"This is the first time this host has been seen on the network.\"\n   \
-        \     },\n        \"notes\": [],\n        \"filtered_by_user\": false,\n \
-        \       \"is_targeting_key_asset\": false,\n        \"detection_type\": \"\
-        New Host\",\n        \"detection\": \"New Host\",\n        \"description\"\
-        : null,\n        \"id\": 34397,\n        \"last_timestamp\": \"2024-12-30T16:26:56Z\"\
-        ,\n        \"triage_rule_id\": null,\n        \"custom_detection\": null,\n\
-        \        \"url\": \"https://308714519558.cc1.portal.vectra.ai/detections/34397\"\
-        ,\n        \"note\": null,\n        \"is_triaged\": false,\n        \"threat\"\
-        : 0,\n        \"assigned_to\": null,\n        \"filtered_by_rule\": false,\n\
-        \        \"sensor\": \"w4ftj0a8\",\n        \"tags\": [],\n        \"type\"\
-        : \"host\",\n        \"note_modified_by\": null,\n        \"certainty\": 0,\n\
-        \        \"detection_url\": \"https://308714519558.cc1.portal.vectra.ai/detections/34397\"\
-        ,\n        \"note_modified_timestamp\": null,\n        \"groups\": [],\n \
-        \       \"first_timestamp\": \"2024-12-30T16:26:56Z\",\n        \"state\"\
-        : \"active\",\n        \"filtered_by_ai\": false,\n        \"src_host\": {\n\
-        \            \"id\": 69424,\n            \"ip\": \"1.1.1.1\",\n          \
-        \  \"name\": \"csoarrc1-1\",\n            \"url\": \"https://308714519558.cc1.portal.vectra.ai/hosts/69424\"\
-        ,\n            \"is_key_asset\": false,\n            \"groups\": [],\n   \
-        \         \"threat\": 0,\n            \"certainty\": 0\n        },\n     \
-        \   \"created_timestamp\": \"2024-12-30T16:28:46Z\",\n        \"is_marked_custom\"\
-        : false,\n        \"src_ip\": \"1.1.1.1\",\n        \"assigned_date\": null,\n\
-        \        \"data_source\": {\n            \"type\": \"Unknown sensor type\"\
-        ,\n            \"connection_name\": \"Unknown sensor name\",\n           \
-        \ \"connection_id\": \"w4ftj0a8\"\n        },\n        \"sensor_name\": \"\
-        EDR Sensor\",\n        \"src_account\": null,\n        \"is_custom_model\"\
-        : false,\n        \"detection_category\": \"info\",\n        \"investigation_pivot_link\"\
-        : null,\n        \"grouped_details\": [\n            {\n                \"\
-        artifact\": \"atc0003.admin.vectra.ai\",\n                \"via\": \"DNS\"\
-        ,\n                \"last_timestamp\": \"2024-12-30T16:26:56Z\"\n        \
-        \    },\n            {\n                \"artifact\": \"atc0003.dyn.vectra.ai\"\
-        ,\n                \"via\": \"DNS\",\n                \"last_timestamp\":\
-        \ \"2024-12-30T16:26:56Z\"\n            }\n        ]\n    },\n    {\n    \
-        \    \"summary\": {\n            \"event_names\": [],\n            \"num_events\"\
-        : 0,\n            \"src_external_hosts\": [],\n            \"identity_type\"\
-        : null,\n            \"assumed_roles\": [],\n            \"user_agents\":\
-        \ [],\n            \"aws_account_ids\": [],\n            \"aws_regions\":\
-        \ [],\n            \"description\": \"This principal invoked AWS control plane\
-        \ APIs associated with browsing of EC2 resources.\"\n        },\n        \"\
-        notes\": [],\n        \"filtered_by_user\": false,\n        \"is_targeting_key_asset\"\
-        : false,\n        \"detection_type\": \"AWS EC2 Browsing Activity\",\n   \
-        \     \"detection\": \"AWS EC2 Browsing Activity\",\n        \"description\"\
-        : null,\n        \"id\": 861,\n        \"last_timestamp\": \"2024-12-29T17:01:06Z\"\
-        ,\n        \"triage_rule_id\": null,\n        \"custom_detection\": null,\n\
-        \        \"url\": \"https://308714519558.cc1.portal.vectra.ai/detections/861\"\
-        ,\n        \"note\": null,\n        \"is_triaged\": false,\n        \"threat\"\
-        : 0,\n        \"assigned_to\": null,\n        \"filtered_by_rule\": false,\n\
-        \        \"sensor\": \"z7hmcp0z\",\n        \"tags\": [],\n        \"type\"\
-        : \"account\",\n        \"note_modified_by\": null,\n        \"certainty\"\
-        : 0,\n        \"detection_url\": \"https://308714519558.cc1.portal.vectra.ai/detections/861\"\
-        ,\n        \"note_modified_timestamp\": null,\n        \"groups\": [],\n \
-        \       \"first_timestamp\": \"2023-11-05T17:01:05Z\",\n        \"state\"\
-        : \"active\",\n        \"filtered_by_ai\": false,\n        \"src_host\": null,\n\
-        \        \"created_timestamp\": \"2023-11-05T17:27:08Z\",\n        \"is_marked_custom\"\
-        : false,\n        \"src_ip\": \"1.1.1.1\",\n        \"assigned_date\": null,\n\
-        \        \"data_source\": {\n            \"type\": \"aws\",\n            \"\
-        connection_name\": \"Demo-Lab\",\n            \"connection_id\": \"z7hmcp0z\"\
-        \n        },\n        \"sensor_name\": \"Vectra X\",\n        \"src_account\"\
-        : {\n            \"id\": 20,\n            \"name\": \"AWS:602592549188\",\n\
-        \            \"url\": \"https://308714519558.cc1.portal.vectra.ai/accounts/20\"\
-        ,\n            \"threat\": 0,\n            \"certainty\": 0,\n           \
-        \ \"privilege_level\": null,\n            \"privilege_category\": null\n \
-        \       },\n        \"is_custom_model\": false,\n        \"detection_category\"\
-        : \"info\",\n        \"investigation_pivot_link\": null,\n        \"grouped_details\"\
-        : []\n    }\n]"
-default_result_value: ''
 creator: Admin
+default_result_value: ''
+description: List all the detections for the given entity ID.
+dynamic_results_metadata:
+-   result_example_path: resources/List Detections_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: VectraRUX
+name: List Detections
+parameters:
+-   default_value: ''
+    description: Filter detections by Detection Category
+    is_mandatory: false
+    name: Detection Category
+    optional_values:
+    - Info
+    - Exfiltration
+    - Lateral Movement
+    - Reconnaissance
+    - Botnet
+    - Command and Control
+    type: ddl
+-   description: Filter detections whose threat is greater then given value
+    is_mandatory: false
+    name: Threat GTE
+    type: string
+-   description: Filter detections if the certainty is greater or equal to given value
+    is_mandatory: false
+    name: Certainty GTE
+    type: string
+-   description: Filter detections based on timestamp
+    is_mandatory: false
+    name: Last Timestamp GTE
+    type: string
+-   description: Filter detections based on last time stamp
+    is_mandatory: false
+    name: Last Timestamp LTE
+    type: string
+-   description: Provide tags with coma separated values to filter detections
+    is_mandatory: false
+    name: Tags
+    type: string
+-   default_value: ''
+    description: Type of Entity
+    is_mandatory: false
+    name: Entity Type
+    optional_values:
+    - Host
+    - Account
+    type: ddl
+-   description: ID of entity
+    is_mandatory: false
+    name: Entity ID
+    type: string
+-   default_value: ''
+    description: Filter detections based on if it's targeting key asset or not
+    is_mandatory: false
+    name: Is Targeting Key Asset
+    optional_values:
+    - 'True'
+    - 'False'
+    type: ddl
+-   description: Filter detections based on note modified timestamp
+    is_mandatory: false
+    name: Note Modified Timestamp GTE
+    type: string
+-   description: Number of records to fetch
+    is_mandatory: false
+    name: Limit
+    type: string
+-   default_value: ''
+    description: Order records by ascending or descending
+    is_mandatory: false
+    name: Order
+    optional_values:
+    - Ascending
+    - Descending
+    type: ddl
+-   default_value: ''
+    description: Order records by  last_timestamp, threat_score, and certainty_score
+    is_mandatory: false
+    name: Order By
+    optional_values:
+    - last_timestamp
+    - threat_score
+    - certainty_score
+    type: ddl
+-   default_value: ''
+    description: Filter detections by State
+    is_mandatory: false
+    name: State
+    optional_values:
+    - Active
+    - Inactive
+    - Fixed
+    type: ddl
+-   description: Filter detections by detection type
+    is_mandatory: false
+    name: Detection Type
+    type: string
 script_result_name: ScriptResult

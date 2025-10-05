@@ -1,12 +1,11 @@
-name: Ping
-description: Checks connectivity with VanillaForums
-integration_identifier: VanillaForums
-parameters: [ ]
-dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: '{}'
-default_result_value: ''
 creator: Admin
+default_result_value: ''
+description: Checks connectivity with VanillaForums
+dynamic_results_metadata:
+-   result_example_path: null
+    result_name: JsonResult
+    show_result: true
+integration_identifier: VanillaForums
+name: Ping
+parameters: []
 script_result_name: ScriptResult

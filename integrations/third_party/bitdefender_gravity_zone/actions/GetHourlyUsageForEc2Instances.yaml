@@ -1,20 +1,18 @@
-name: Get Hourly Usage for EC2 Instances
+creator: daniel.harvey
+default_result_value: ''
 description: This method exposes the hourly usage for each Amazon instance category
     (micro, medium etc.).
-integration_identifier: Bitdefender GravityZone
-parameters:
-    -   name: Target Month
-        default_value: 01/2020
-        type: string
-        description: 'The month for which the usage is returned. The month will be provided
-        in the following format: mm/yyyy. The default value is the current month.'
-        is_mandatory: true
 dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: "{\r\n    \"result\": {\r\n        \"micro\": 11,\r\n        \"\
-        medium\": 157\r\n    }\r\n}"
-default_result_value: ''
-creator: daniel.harvey
+-   result_example_path: resources/GetHourlyUsageForEc2Instances_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: Bitdefender GravityZone
+name: Get Hourly Usage for EC2 Instances
+parameters:
+-   default_value: 01/2020
+    description: 'The month for which the usage is returned. The month will be provided
+        in the following format: mm/yyyy. The default value is the current month.'
+    is_mandatory: true
+    name: Target Month
+    type: string
 script_result_name: ScriptResult

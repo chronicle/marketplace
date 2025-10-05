@@ -1,0 +1,77 @@
+{
+    "1.1.1.1": {
+        "request_id": "2bd820a6-ce25-5b58-96d5-d188559024aa",
+        "ip": "1.1.1.1",
+        "size": 20,
+        "start_date": "2024-07-30",
+        "end_date": "2024-08-20",
+        "sections": [
+            "open_ports"
+        ],
+        "usage": {
+            "used_queries": 1398,
+            "remaining_queries": 48602,
+            "query_limit": 50000,
+            "foundation_api_usage": {
+                "used_queries": 2,
+                "remaining_queries": 9998,
+                "query_limit": 10000
+            },
+            "ai_insights_usage": {
+                "used_queries": 0,
+                "remaining_queries": 0,
+                "query_limit": 0
+            }
+        },
+        "open_ports": {
+            "event_count": 1,
+            "unique_ports": 1,
+            "open_ports": [
+                {
+                    "ip": "1.1.1.1",
+                    "port": 443,
+                    "protocol": 6,
+                    "protocol_text": "TCP",
+                    "service": "https",
+                    "banner": "HTTP/1.1 400 Bad Request\r\nContent-Length: 0",
+                    "banner_sha1": "43da3ad75474158df7032ca582483fccd99dddda",
+                    "first_seen": "2024-08-01",
+                    "last_seen": "2024-08-19",
+                    "country_codes": [
+                        "US"
+                    ],
+                    "as_info": [
+                        {
+                            "asn": 139646,
+                            "as_name": "HKMTC-AS-AP HONG KONG Megalayer Technology Co.,Limited, HK"
+                        }
+                    ],
+                    "tags": null,
+                    "event_count": 5
+                },
+                {
+                    "ip": "1.1.1.1",
+                    "port": 443,
+                    "protocol": 6,
+                    "protocol_text": "TCP",
+                    "service": "https",
+                    "banner": "TLS/1.1 cipher:0xc009, 9a16eb5c.nip.io, 9a16eb5c.nip.io",
+                    "banner_sha1": "8961df1a16a1137bb607cd8bd21d7d8b80d0cfcf",
+                    "first_seen": "2024-07-30",
+                    "last_seen": "2024-08-15",
+                    "country_codes": [
+                        "US"
+                    ],
+                    "as_info": [
+                        {
+                            "asn": 139646,
+                            "as_name": "HKMTC-AS-AP HONG KONG Megalayer Technology Co.,Limited, HK"
+                        }
+                    ],
+                    "tags": null,
+                    "event_count": 4
+                }
+            ]
+        }
+    }
+}

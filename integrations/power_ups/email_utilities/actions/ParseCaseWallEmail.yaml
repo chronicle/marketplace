@@ -1,230 +1,63 @@
-name: Parse Case Wall Email
+creator: 2afb1e45-9047-46ac-8f30-af7a83000d3b
+default_result_value: ''
 description: This action will parse an EML or MSG file that has been attached to the
     case wall.
+dynamic_results_metadata:
+-   result_example_path: resources/ParseCaseWallEmail_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
 integration_identifier: EmailUtilities
+name: Parse Case Wall Email
 parameters:
-    -   name: Create Entities
-        default_value: 'true'
-        type: boolean
-        description: 'When enabled, this will create User entities out of the To and From
+-   default_value: 'true'
+    description: 'When enabled, this will create User entities out of the To and From
         headers and a Email Subject entity out of the Subject field. '
-        is_mandatory: false
-    -   name: Exclude Entities Regex
-        default_value: ''
-        type: string
-        description: Observed entities that match the supplied regex will not be created.
-        is_mandatory: false
-    -   name: Original EML Only
-        default_value: 'true'
-        type: boolean
-        description: Extract attachments from the original EML only.
-        is_mandatory: false
-    -   name: Create Observed Entities
-        default_value: All
-        type: ddl
-        optional_values:
-            - All
-            - URLs
-            - Emails
-            - IPs
-            - Hashes
-            - URLs, Emails, and IPs
-            - URLs, Emails, and Hashes
-            - Emails and IPs
-            - URLs and Hashes
-            - Emails and Hashes
-            - None
-        description: 'Create Entities out of the observed entities in the email body.
+    is_mandatory: false
+    name: Create Entities
+    type: boolean
+-   default_value: ''
+    description: Observed entities that match the supplied regex will not be created.
+    is_mandatory: false
+    name: Exclude Entities Regex
+    type: string
+-   default_value: 'true'
+    description: Extract attachments from the original EML only.
+    is_mandatory: false
+    name: Original EML Only
+    type: boolean
+-   default_value: All
+    description: 'Create Entities out of the observed entities in the email body.
 
         ''All'' will create URL, Email, IP, and Hash entities.'
-        is_mandatory: false
-    -   name: Save Attachments to Case Wall
-        default_value: 'true'
-        type: boolean
-        description: Save the extracted attachments to the case wall.
-        is_mandatory: false
-    -   name: Fang Entities
-        default_value: 'true'
-        type: boolean
-        description: When enabled, entities that are defanged (example.com => example[.]com)
-            will be converted to fanged entities.
-        is_mandatory: false
-    -   name: Custom Entity Regexes
-        default_value: '{ }'
-        type: code
-        description: A JSON object that can parse out entities from body and subject.
-        is_mandatory: false
-dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: "{\r\n    \"parsed_emails\": [\r\n        {\r\n            \"\
-        attached_emails\": [\r\n                {\r\n                    \"attachments\"\
-        : [\r\n                        {\r\n                            \"extension\"\
-        : \"string\",\r\n                            \"filename\": \"string\",\r\n\
-        \                            \"hash\": {\r\n                             \
-        \   \"md5\": \"string\",\r\n                                \"sha1\": \"string\"\
-        ,\r\n                                \"sha256\": \"string\",\r\n         \
-        \                       \"sha512\": \"string\"\r\n                       \
-        \     },\r\n                            \"level\": 0,\r\n                \
-        \            \"mime_type\": \"string\",\r\n                            \"\
-        mime_type_short\": \"string\",\r\n                            \"size\": 0\r\
-        \n                        }\r\n                    ],\r\n                \
-        \    \"body\": [\r\n                        {\r\n                        \
-        \    \"content\": \"string\",\r\n                            \"content_type\"\
-        : \"string\",\r\n                            \"hash\": \"string\"\r\n    \
-        \                    }\r\n                    ],\r\n                    \"\
-        header\": {\r\n                        \"cc\": \"string\",\r\n           \
-        \             \"date\": \"string\",\r\n                        \"from\": \"\
-        string\",\r\n                        \"header\": {\r\n                   \
-        \         \"authentication-results\": [\r\n                              \
-        \  \"string\"\r\n                            ],\r\n                      \
-        \      \"cc\": [\r\n                                \"string\"\r\n       \
-        \                     ],\r\n                            \"content-type\":\
-        \ [\r\n                                \"string\"\r\n                    \
-        \        ],\r\n                            \"date\": [\r\n               \
-        \                 \"string\"\r\n                            ],\r\n       \
-        \                     \"dkim-signature\": [\r\n                          \
-        \      \"string\"\r\n                            ],\r\n                  \
-        \          \"from\": [\r\n                                \"string\"\r\n \
-        \                           ],\r\n                            \"message-id\"\
-        : [\r\n                                \"string\"\r\n                    \
-        \        ],\r\n                            \"mime-version\": [\r\n       \
-        \                         \"string\"\r\n                            ],\r\n\
-        \                            \"original-recipient\": [\r\n               \
-        \                 \"string\"\r\n                            ],\r\n       \
-        \                     \"received\": [\r\n                                \"\
-        string\"\r\n                            ],\r\n                           \
-        \ \"received-spf\": [\r\n                                \"string\"\r\n  \
-        \                          ],\r\n                            \"return-path\"\
-        : [\r\n                                \"string\"\r\n                    \
-        \        ],\r\n                            \"subject\": [\r\n            \
-        \                    \"string\"\r\n                            ],\r\n    \
-        \                        \"to\": [\r\n                                \"string\"\
-        \r\n                            ],\r\n                            \"x-icloud-spam-score\"\
-        : [\r\n                                \"string\"\r\n                    \
-        \        ],\r\n                            \"x-proofpoint-spam-details\":\
-        \ [\r\n                                \"string\"\r\n                    \
-        \        ],\r\n                            \"x-proofpoint-virus-version\"\
-        : [\r\n                                \"string\"\r\n                    \
-        \        ],\r\n                            \"x-received\": [\r\n         \
-        \                       \"string\"\r\n                            ]\r\n  \
-        \                      },\r\n                        \"received\": [\r\n \
-        \                           {\r\n                                \"by\": [\r\
-        \n                                    \"string\"\r\n                     \
-        \           ],\r\n                                \"date\": \"string\",\r\n\
-        \                                \"from\": [\r\n                         \
-        \           \"string\"\r\n                                ],\r\n         \
-        \                       \"src\": \"string\",\r\n                         \
-        \       \"with\": \"string\"\r\n                            }\r\n        \
-        \                ],\r\n                        \"receiving\": [\r\n      \
-        \                      {\r\n                                \"domains\": [\r\
-        \n                                    \"string\"\r\n                     \
-        \           ],\r\n                                \"hosts\": [\r\n       \
-        \                             \"string\"\r\n                             \
-        \   ]\r\n                            }\r\n                        ],\r\n \
-        \                       \"sending\": [\r\n                            {\r\n\
-        \                                \"domains\": [\r\n                      \
-        \              \"string\"\r\n                                ],\r\n      \
-        \                          \"hosts\": [\r\n                              \
-        \      \"string\"\r\n                                ],\r\n              \
-        \                  \"ips\": [\r\n                                    \"string\"\
-        \r\n                                ]\r\n                            }\r\n\
-        \                        ],\r\n                        \"subject\": \"string\"\
-        ,\r\n                        \"to\": [\r\n                            \"string\"\
-        \r\n                        ]\r\n                    },\r\n              \
-        \      \"level\": 0,\r\n                    \"source_file\": \"string\"\r\n\
-        \                }\r\n            ],\r\n            \"attachment_id\": 0,\r\
-        \n            \"attachment_name\": \"string\",\r\n            \"attachments\"\
-        : [\r\n                {\r\n                    \"content_header\": {\r\n\
-        \                        \"content-disposition\": [\r\n                  \
-        \          \"string\"\r\n                        ],\r\n                  \
-        \      \"content-id\": [\r\n                            \"string\"\r\n   \
-        \                     ],\r\n                        \"content-transfer-encoding\"\
-        : [\r\n                            \"string\"\r\n                        ],\r\
-        \n                        \"content-type\": [\r\n                        \
-        \    \"string\"\r\n                        ],\r\n                        \"\
-        x-attachment-id\": [\r\n                            \"string\"\r\n       \
-        \                 ]\r\n                    },\r\n                    \"extension\"\
-        : \"string\",\r\n                    \"filename\": \"string\",\r\n       \
-        \             \"hash\": {\r\n                        \"md5\": \"string\",\r\
-        \n                        \"sha1\": \"string\",\r\n                      \
-        \  \"sha256\": \"string\",\r\n                        \"sha512\": \"string\"\
-        \r\n                    },\r\n                    \"level\": 0,\r\n      \
-        \              \"mime_type\": \"string\",\r\n                    \"mime_type_short\"\
-        : \"string\",\r\n                    \"ole_data\": [\r\n                 \
-        \       {\r\n                            \"hide_if_false\": 0,\r\n       \
-        \                     \"id\": \"string\",\r\n                            \"\
-        name\": \"string\",\r\n                            \"risk\": \"string\",\r\
-        \n                            \"value\": \"string\"\r\n                  \
-        \      }\r\n                    ],\r\n                    \"size\": 0\r\n\
-        \                }\r\n            ],\r\n            \"result\": {\r\n    \
-        \            \"attachments\": [\r\n                    {\r\n             \
-        \           \"content_header\": {\r\n                            \"content-disposition\"\
-        : [\r\n                                \"string\"\r\n                    \
-        \        ],\r\n                            \"content-id\": [\r\n         \
-        \                       \"string\"\r\n                            ],\r\n \
-        \                           \"content-transfer-encoding\": [\r\n         \
-        \                       \"string\"\r\n                            ],\r\n \
-        \                           \"content-type\": [\r\n                      \
-        \          \"string\"\r\n                            ],\r\n              \
-        \              \"x-attachment-id\": [\r\n                                \"\
-        string\"\r\n                            ]\r\n                        },\r\n\
-        \                        \"extension\": \"string\",\r\n                  \
-        \      \"filename\": \"string\",\r\n                        \"hash\": {\r\n\
-        \                            \"md5\": \"string\",\r\n                    \
-        \        \"sha1\": \"string\",\r\n                            \"sha256\":\
-        \ \"string\",\r\n                            \"sha512\": \"string\"\r\n  \
-        \                      },\r\n                        \"level\": 0,\r\n   \
-        \                     \"mime_type\": \"string\",\r\n                     \
-        \   \"mime_type_short\": \"string\",\r\n                        \"ole_data\"\
-        : [\r\n                            {\r\n                                \"\
-        hide_if_false\": 0,\r\n                                \"id\": \"string\"\
-        ,\r\n                                \"name\": \"string\",\r\n           \
-        \                     \"risk\": \"string\",\r\n                          \
-        \      \"value\": \"string\"\r\n                            }\r\n        \
-        \                ],\r\n                        \"size\": 0\r\n           \
-        \         }\r\n                ],\r\n                \"body\": [\r\n     \
-        \               {\r\n                        \"content\": \"string\",\r\n\
-        \                        \"content_type\": \"string\",\r\n               \
-        \         \"hash\": \"string\"\r\n                    }\r\n              \
-        \  ],\r\n                \"header\": {\r\n                    \"date\": \"\
-        string\",\r\n                    \"from\": \"string\",\r\n               \
-        \     \"header\": {\r\n                        \"content-type\": [\r\n   \
-        \                         \"string\"\r\n                        ],\r\n   \
-        \                     \"date\": [\r\n                            \"string\"\
-        \r\n                        ],\r\n                        \"from\": [\r\n\
-        \                            \"string\"\r\n                        ],\r\n\
-        \                        \"message-id\": [\r\n                           \
-        \ \"string\"\r\n                        ],\r\n                        \"mime-version\"\
-        : [\r\n                            \"string\"\r\n                        ],\r\
-        \n                        \"subject\": [\r\n                            \"\
-        string\"\r\n                        ],\r\n                        \"to\":\
-        \ [\r\n                            \"string\"\r\n                        ]\r\
-        \n                    },\r\n                    \"received\": [\r\n      \
-        \                  {\r\n                            \"by\": [\r\n        \
-        \                        \"string\"\r\n                            ],\r\n\
-        \                            \"date\": \"string\",\r\n                   \
-        \         \"from\": [\r\n                                \"string\"\r\n  \
-        \                          ],\r\n                            \"src\": \"string\"\
-        ,\r\n                            \"with\": \"string\"\r\n                \
-        \        }\r\n                    ],\r\n                    \"receiving\"\
-        : [\r\n                        {\r\n                            \"domains\"\
-        : [\r\n                                \"string\"\r\n                    \
-        \        ],\r\n                            \"hosts\": [\r\n              \
-        \                  \"string\"\r\n                            ]\r\n       \
-        \                 }\r\n                    ],\r\n                    \"sending\"\
-        : [\r\n                        {\r\n                            \"domains\"\
-        : [\r\n                                \"string\"\r\n                    \
-        \        ],\r\n                            \"hosts\": [\r\n              \
-        \                  \"string\"\r\n                            ],\r\n      \
-        \                      \"ips\": [\r\n                                \"string\"\
-        \r\n                            ]\r\n                        }\r\n       \
-        \             ],\r\n                    \"subject\": \"string\",\r\n     \
-        \               \"to\": [\r\n                        \"string\"\r\n      \
-        \              ]\r\n                },\r\n                \"level\": 0,\r\n\
-        \                \"source_file\": \"string\"\r\n            }\r\n        }\r\
-        \n    ]\r\n}"
-default_result_value: ''
-creator: 2afb1e45-9047-46ac-8f30-af7a83000d3b
+    is_mandatory: false
+    name: Create Observed Entities
+    optional_values:
+    - All
+    - URLs
+    - Emails
+    - IPs
+    - Hashes
+    - URLs, Emails, and IPs
+    - URLs, Emails, and Hashes
+    - Emails and IPs
+    - URLs and Hashes
+    - Emails and Hashes
+    - None
+    type: ddl
+-   default_value: 'true'
+    description: Save the extracted attachments to the case wall.
+    is_mandatory: false
+    name: Save Attachments to Case Wall
+    type: boolean
+-   default_value: 'true'
+    description: When enabled, entities that are defanged (example.com => example[.]com)
+        will be converted to fanged entities.
+    is_mandatory: false
+    name: Fang Entities
+    type: boolean
+-   default_value: '{ }'
+    description: A JSON object that can parse out entities from body and subject.
+    is_mandatory: false
+    name: Custom Entity Regexes
+    type: code
 script_result_name: ScriptResult

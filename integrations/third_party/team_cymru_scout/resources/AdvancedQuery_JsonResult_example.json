@@ -1,0 +1,416 @@
+{
+    "request_id": "593a8f91-57a1-521e-b8cc-57de7e3bc6ae",
+    "total": 594,
+    "query": "fingerprints.hash = \"40d1db40d00040d1dc43d1db1db43d5ecfbe778b06e32b538bd51f24eb7398\"",
+    "size": 3,
+    "start_date": "2024-09-18",
+    "end_date": "2024-09-22",
+    "usage": {
+        "used_queries": 14173,
+        "remaining_queries": 35827,
+        "query_limit": 50000,
+        "foundation_api_usage": {
+            "used_queries": 2665,
+            "remaining_queries": 7335,
+            "query_limit": 10000
+        },
+        "ai_insights_usage": {
+            "used_queries": 0,
+            "remaining_queries": 0,
+            "query_limit": 0
+        }
+    },
+    "ips": [
+        {
+            "ip": "1.1.1.1",
+            "country_codes": [
+                "US"
+            ],
+            "as_info": [
+                {
+                    "asn": 139646,
+                    "as_name": "HKMTC-AS-AP HONG KONG Megalayer Technology Co.,Limited, HK"
+                }
+            ],
+            "tags": null,
+            "event_count": 1,
+            "summary": {
+                "last_seen": "2024-09-21",
+                "whois": {
+                    "asn": 174,
+                    "as_name": "Cogent Communications",
+                    "net_name": "COGENT-154-22-16",
+                    "org_name": "PSINet, Inc."
+                },
+                "open_ports": [
+                    {
+                        "ip": "1.1.1.1",
+                        "port": 443,
+                        "protocol": 6,
+                        "protocol_text": "TCP",
+                        "service": "https",
+                        "event_count": 1
+                    }
+                ],
+                "pdns": null,
+                "top_peers": [
+                    {
+                        "ip": "1.1.1.1",
+                        "event_count": 2
+                    },
+                    {
+                        "ip": "1.1.1.1",
+                        "event_count": 1
+                    }
+                ],
+                "comms_total": 3,
+                "service_counts": [
+                    {
+                        "proto": 6,
+                        "proto_text": "",
+                        "port": 80,
+                        "event_count": 2,
+                        "service": {
+                            "service_name": "http",
+                            "port": 80,
+                            "proto_number": 6,
+                            "description": "World Wide Web HTTP"
+                        }
+                    }
+                ],
+                "fingerprints": [
+                    {
+                        "ip": "1.1.1.1",
+                        "type": "jarm",
+                        "signature": "40d1db40d00040d1dc43d1db1db43d5ecfbe778b06e32b538bd51f24eb7398",
+                        "event_count": 1
+                    }
+                ],
+                "certs": [
+                    {
+                        "ip": "1.1.1.1",
+                        "issuer": "CN=E5, O=Let's Encrypt, C=US",
+                        "issuer_common_name": "E5",
+                        "common_name": "9a16eb5c.nip.io",
+                        "port": 443,
+                        "event_count": 1
+                    }
+                ]
+            },
+            "comms_enrichment": {}
+        },
+        {
+            "ip": "1.1.1.1",
+            "country_codes": [
+                "CA"
+            ],
+            "as_info": [
+                {
+                    "asn": 14061,
+                    "as_name": "DIGITALOCEAN-ASN, US"
+                }
+            ],
+            "tags": [
+                {
+                    "id": 82,
+                    "name": "cloud",
+                    "children": [
+                        {
+                            "id": 931,
+                            "name": "digitalocean",
+                            "children": null
+                        }
+                    ]
+                }
+            ],
+            "event_count": 1,
+            "summary": {
+                "last_seen": "2024-09-21",
+                "whois": {
+                    "asn": 14061,
+                    "as_name": "DigitalOcean, LLC",
+                    "net_name": "DIGITALOCEAN",
+                    "org_name": "DigitalOcean, LLC"
+                },
+                "open_ports": [
+                    {
+                        "ip": "1.1.1.1",
+                        "port": 80,
+                        "protocol": 6,
+                        "protocol_text": "TCP",
+                        "service": "http",
+                        "event_count": 3
+                    },
+                    {
+                        "ip": "1.1.1.1",
+                        "port": 3389,
+                        "protocol": 6,
+                        "protocol_text": "TCP",
+                        "service": "ms-wbt-server",
+                        "event_count": 3
+                    },
+                    {
+                        "ip": "1.1.1.1",
+                        "port": 22,
+                        "protocol": 6,
+                        "protocol_text": "TCP",
+                        "service": "ssh",
+                        "event_count": 3
+                    },
+                    {
+                        "ip": "1.1.1.1",
+                        "port": 443,
+                        "protocol": 6,
+                        "protocol_text": "TCP",
+                        "service": "https",
+                        "event_count": 2
+                    }
+                ],
+                "pdns": [
+                    {
+                        "ip": "1.1.1.1",
+                        "domain": "ns3.evilginxtest.shop",
+                        "event_count": 4
+                    },
+                    {
+                        "ip": "1.1.1.1",
+                        "domain": "ns4.evilginxtest.shop",
+                        "event_count": 4
+                    },
+                    {
+                        "ip": "1.1.1.1",
+                        "domain": "ns1.evilginxtest.shop",
+                        "event_count": 4
+                    },
+                    {
+                        "ip": "1.1.1.1",
+                        "domain": "ns2.evilginxtest.shop",
+                        "event_count": 4
+                    }
+                ],
+                "top_peers": [
+                    {
+                        "ip": "1.1.1.1",
+                        "event_count": 19
+                    },
+                    {
+                        "ip": "1.1.1.1",
+                        "event_count": 2
+                    },
+                    {
+                        "ip": "1.1.1.1",
+                        "event_count": 2
+                    },
+                    {
+                        "ip": "1.1.1.1",
+                        "event_count": 1
+                    },
+                    {
+                        "ip": "1.1.1.1",
+                        "event_count": 1
+                    }
+                ],
+                "comms_total": 31,
+                "service_counts": [
+                    {
+                        "proto": 6,
+                        "proto_text": "",
+                        "port": 22,
+                        "event_count": 21,
+                        "service": {
+                            "service_name": "ssh",
+                            "port": 22,
+                            "proto_number": 6,
+                            "description": "The Secure Shell (SSH) Protocol"
+                        }
+                    },
+                    {
+                        "proto": 6,
+                        "proto_text": "",
+                        "port": 80,
+                        "event_count": 1,
+                        "service": {
+                            "service_name": "http",
+                            "port": 80,
+                            "proto_number": 6,
+                            "description": "World Wide Web HTTP"
+                        }
+                    },
+                    {
+                        "proto": 6,
+                        "proto_text": "",
+                        "port": 8081,
+                        "event_count": 1,
+                        "service": {
+                            "service_name": "sunproxyadmin",
+                            "port": 8081,
+                            "proto_number": 6,
+                            "description": "Sun Proxy Admin Service"
+                        }
+                    },
+                    {
+                        "proto": 6,
+                        "proto_text": "",
+                        "port": 9876,
+                        "event_count": 1,
+                        "service": {
+                            "service_name": "sd",
+                            "port": 9876,
+                            "proto_number": 6,
+                            "description": "Session Director"
+                        }
+                    }
+                ],
+                "fingerprints": [
+                    {
+                        "ip": "1.1.1.1",
+                        "type": "jarm",
+                        "signature": "40d1db40d00040d1dc43d1db1db43d5ecfbe778b06e32b538bd51f24eb7398",
+                        "event_count": 1
+                    }
+                ],
+                "certs": [
+                    {
+                        "ip": "1.1.1.1",
+                        "issuer": "CN=Chisel, OU=Unit, O=Test, L=San Jose, ST=California, C=US",
+                        "issuer_common_name": "Chisel",
+                        "common_name": "Chisel",
+                        "port": 443,
+                        "event_count": 1
+                    },
+                    {
+                        "ip": "1.1.1.1",
+                        "issuer": "O=",
+                        "issuer_common_name": "",
+                        "common_name": "",
+                        "port": 443,
+                        "event_count": 1
+                    }
+                ]
+            },
+            "comms_enrichment": {}
+        },
+        {
+            "ip": "1.1.1.1",
+            "country_codes": [
+                "US"
+            ],
+            "as_info": [
+                {
+                    "asn": 979,
+                    "as_name": "NETLAB-SDN, US"
+                }
+            ],
+            "tags": null,
+            "event_count": 1,
+            "summary": {
+                "last_seen": "2024-09-23",
+                "whois": {
+                    "asn": 174,
+                    "as_name": "Cogent Communications",
+                    "net_name": "NETLAB",
+                    "org_name": "Private Customer"
+                },
+                "open_ports": [
+                    {
+                        "ip": "1.1.1.1",
+                        "port": 443,
+                        "protocol": 6,
+                        "protocol_text": "TCP",
+                        "service": "https",
+                        "event_count": 4
+                    },
+                    {
+                        "ip": "1.1.1.1",
+                        "port": 22,
+                        "protocol": 6,
+                        "protocol_text": "TCP",
+                        "service": "ssh",
+                        "event_count": 1
+                    }
+                ],
+                "pdns": null,
+                "top_peers": [
+                    {
+                        "ip": "1.1.1.1",
+                        "event_count": 24
+                    },
+                    {
+                        "ip": "1.1.1.1",
+                        "event_count": 12
+                    },
+                    {
+                        "ip": "1.1.1.1",
+                        "event_count": 1
+                    },
+                    {
+                        "ip": "1.1.1.1",
+                        "event_count": 1
+                    },
+                    {
+                        "ip": "1.1.1.1",
+                        "event_count": 1
+                    }
+                ],
+                "comms_total": 39,
+                "service_counts": [
+                    {
+                        "proto": 6,
+                        "proto_text": "",
+                        "port": 22,
+                        "event_count": 38,
+                        "service": {
+                            "service_name": "ssh",
+                            "port": 22,
+                            "proto_number": 6,
+                            "description": "The Secure Shell (SSH) Protocol"
+                        }
+                    },
+                    {
+                        "proto": 6,
+                        "proto_text": "",
+                        "port": 36424,
+                        "event_count": 1,
+                        "service": {
+                            "service_name": "",
+                            "port": 0,
+                            "proto_number": 0,
+                            "description": ""
+                        }
+                    },
+                    {
+                        "proto": 17,
+                        "proto_text": "",
+                        "port": 5060,
+                        "event_count": 1,
+                        "service": {
+                            "service_name": "sip",
+                            "port": 5060,
+                            "proto_number": 17,
+                            "description": "SIP"
+                        }
+                    }
+                ],
+                "fingerprints": [
+                    {
+                        "ip": "1.1.1.1",
+                        "type": "jarm",
+                        "signature": "40d1db40d00040d1dc43d1db1db43d5ecfbe778b06e32b538bd51f24eb7398",
+                        "event_count": 1
+                    }
+                ],
+                "certs": [
+                    {
+                        "ip": "1.1.1.1",
+                        "issuer": "CN=E5, O=Let's Encrypt, C=US",
+                        "issuer_common_name": "E5",
+                        "common_name": "s1.huangshi.org",
+                        "port": 443,
+                        "event_count": 4
+                    }
+                ]
+            },
+            "comms_enrichment": {}
+        }
+    ]
+}

@@ -1,11 +1,10 @@
-name: Ping
-description: Test Connectivity
-integration_identifier: SendGrid
-parameters: [ ]
-dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: '{}'
-default_result_value: ''
 creator: Mike
+default_result_value: ''
+description: Test Connectivity
+dynamic_results_metadata:
+-   result_example_path: null
+    result_name: JsonResult
+    show_result: true
+integration_identifier: SendGrid
+name: Ping
+parameters: []

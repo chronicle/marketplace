@@ -1,26 +1,25 @@
-name: Run JSONPath Query
+creator: Rob
+default_result_value: ''
 description: 'The action runs an JSONPath Query on a given json and extracts values
     according to the expression.
 
     View https://github.com/h2non/jsonpath-ng for more information on JSONPath'
-integration_identifier: Functions
-parameters:
-    -   name: Json
-        default_value: '{}'
-        type: code
-        description: Json input
-        is_mandatory: true
-    -   name: JSONPath Expression
-        default_value: ''
-        type: string
-        description: JSONPath expressions always refers to a JSON structure in the same
-            way as XPath expressions are used in combination with an XML document.
-        is_mandatory: true
 dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: '{}'
-default_result_value: ''
-creator: Rob
+-   result_example_path: null
+    result_name: JsonResult
+    show_result: true
+integration_identifier: Functions
+name: Run JSONPath Query
+parameters:
+-   default_value: '{}'
+    description: Json input
+    is_mandatory: true
+    name: Json
+    type: code
+-   default_value: ''
+    description: JSONPath expressions always refers to a JSON structure in the same
+        way as XPath expressions are used in combination with an XML document.
+    is_mandatory: true
+    name: JSONPath Expression
+    type: string
 script_result_name: ScriptResult

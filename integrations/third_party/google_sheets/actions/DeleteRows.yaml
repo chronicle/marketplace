@@ -1,36 +1,35 @@
-name: Delete Rows
+creator: Admin
+default_result_value: ''
 description: 'Deletes rows in a given worksheet '
+dynamic_results_metadata:
+-   result_example_path: null
+    result_name: JsonResult
+    show_result: false
 integration_identifier: Google Sheets
+name: Delete Rows
 parameters:
-    -   name: Sheet Id
-        default_value: <Sheet-Id>
-        type: string
-        description: 'The sheet id can be found in the sheet url.
+-   default_value: <Sheet-Id>
+    description: 'The sheet id can be found in the sheet url.
 
         https://docs.google.com/spreadsheets/d/{YourSpreadSheetId}/edit#gid=0'
-        is_mandatory: true
-    -   name: Worksheet Name
-        default_value: <Sheet-Name>
-        type: string
-        description: 'The worksheet name is the Sheet tab name. The default Sheet name
+    is_mandatory: true
+    name: Sheet Id
+    type: string
+-   default_value: <Sheet-Name>
+    description: 'The worksheet name is the Sheet tab name. The default Sheet name
         is "Sheet1". Note: it is case sensitive. '
-        is_mandatory: false
-    -   name: From Row
-        default_value: '2'
-        type: string
-        description: The row number from which you would like to start deleting the rows.
-        is_mandatory: true
-    -   name: To Row
-        default_value: '3'
-        type: string
-        description: 'The row number that will define the range of the rows that will
+    is_mandatory: false
+    name: Worksheet Name
+    type: string
+-   default_value: '2'
+    description: The row number from which you would like to start deleting the rows.
+    is_mandatory: true
+    name: From Row
+    type: string
+-   default_value: '3'
+    description: 'The row number that will define the range of the rows that will
         be deleted. '
-        is_mandatory: true
-dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: false
-        # language=json
-        result_example: '{}'
-default_result_value: ''
-creator: Admin
+    is_mandatory: true
+    name: To Row
+    type: string
 script_result_name: ScriptResult

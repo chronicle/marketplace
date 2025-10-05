@@ -1,29 +1,16 @@
-name: Upload Image From File Path
-description: Upload image from file path to Imgbb ( the outcome is the image URL)
-integration_identifier: Imgbb
-parameters:
-    -   name: Image File Path
-        default_value: ''
-        type: string
-        description: The file path of the image you would like to upload to Imgbb
-        is_mandatory: true
-dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: "{\r\n\t\"data\": {\r\n\t\t\"id\": \"TgSJ5m1\",\r\n\t\t\"title\"\
-        : \"08cdb41c98bf\",\r\n\t\t\"url_viewer\": \"https://ibb.co/Tg5m1\",\r\n\t\
-        \t\"url\": \"https://i.ibb.co/1m5Bx8M/08c41c98bf.jpg\",\r\n\t\t\"display_url\"\
-        : \"https://i.ibb.co/1m5Bx8M/08cdbc98bf.jpg\",\r\n\t\t\"size\": 5520,\r\n\t\
-        \t\"time\": \"1600338870\",\r\n\t\t\"expiration\": \"600\",\r\n\t\t\"image\"\
-        : {\r\n\t\t\t\"filename\": \"08cdb41c98bf.jpg\",\r\n\t\t\t\"name\": \"08cdb41c98bf\"\
-        ,\r\n\t\t\t\"mime\": \"image/jpeg\",\r\n\t\t\t\"extension\": \"jpg\",\r\n\t\
-        \t\t\"url\": \"https://i.ibb.co/1m5Bx8M/08c41c98bf.jpg\"\r\n\t\t},\r\n\t\t\
-        \"thumb\": {\r\n\t\t\t\"filename\": \"08cdb41c98bf.jpg\",\r\n\t\t\t\"name\"\
-        : \"08cdb41c98bf\",\r\n\t\t\t\"mime\": \"image/jpeg\",\r\n\t\t\t\"extension\"\
-        : \"jpg\",\r\n\t\t\t\"url\": \"https://i.ibb.co/TgSJ5m1/08cdb41c98bf.jpg\"\
-        \r\n\t\t},\r\n\t\t\"delete_url\": \"https://ibb.co/TgSJ5m1/06651ef6cec6909c85af7d18409c39\"\
-        \r\n\t},\r\n\t\"success\": true,\r\n\t\"status\": 200\r\n}"
-default_result_value: ''
 creator: TehilaGourary
+default_result_value: ''
+description: Upload image from file path to Imgbb ( the outcome is the image URL)
+dynamic_results_metadata:
+-   result_example_path: resources/UploadImageFromFilePath_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: Imgbb
+name: Upload Image From File Path
+parameters:
+-   default_value: ''
+    description: The file path of the image you would like to upload to Imgbb
+    is_mandatory: true
+    name: Image File Path
+    type: string
 script_result_name: ScriptResult

@@ -1,14 +1,13 @@
-name: Assign Case to Current User
+creator: Admin
+default_result_value: ''
 description: A manual action that when executed, will assign the case to whoever executed
     the playbook action. Designed to be placed at the start of a playbook, and executed
     when an analyst starts working on the case.
-integration_identifier: Workflow Tools
-parameters: [ ]
 dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: '{}'
-default_result_value: ''
-creator: Admin
+-   result_example_path: null
+    result_name: JsonResult
+    show_result: true
+integration_identifier: Workflow Tools
+name: Assign Case to Current User
+parameters: []
 script_result_name: AssignedUser

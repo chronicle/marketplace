@@ -1,0 +1,338 @@
+[
+    {
+        "Entity": "outlook.com",
+        "EntityResult": {
+            "id": [
+                "2019401_DOMAIN_COM-VRSN"
+            ],
+            "status": [
+                "clientDeleteProhibited https://icann.org/epp#clientDeleteProhibited",
+                "clientTransferProhibited https://icann.org/epp#clientTransferProhibited",
+                "clientUpdateProhibited https://icann.org/epp#clientUpdateProhibited",
+                "serverDeleteProhibited https://icann.org/epp#serverDeleteProhibited",
+                "serverTransferProhibited https://icann.org/epp#serverTransferProhibited",
+                "serverUpdateProhibited https://icann.org/epp#serverUpdateProhibited"
+            ],
+            "creation_date": [
+                "1994-08-18T04:00:00"
+            ],
+            "expiration_date": [
+                "2022-08-17T04:00:00"
+            ],
+            "updated_date": [
+                "2021-07-16T09:32:12"
+            ],
+            "registrar": [
+                "MarkMonitor Inc."
+            ],
+            "whois_server": [
+                "whois.markmonitor.com"
+            ],
+            "nameservers": [
+                "NS1-38.AZURE-DNS.COM",
+                "NS2-38.AZURE-DNS.NET",
+                "NS3-38.AZURE-DNS.ORG",
+                "NS4-38.AZURE-DNS.INFO",
+                "NSE12.O365FILTERING.COM",
+                "NSE13.O365FILTERING.COM",
+                "NSE21.O365FILTERING.COM",
+                "NSE24.O365FILTERING.COM"
+            ],
+            "emails": [
+                "abusecomplaints@markmonitor.com"
+            ],
+            "contacts": {
+                "registrant": null,
+                "tech": null,
+                "admin": null,
+                "billing": null
+            },
+            "age_in_days": 9987
+        }
+    },
+    {
+        "Entity": "1.1.1.1",
+        "EntityResult": {
+            "nir": null,
+            "asn_registry": "arin",
+            "asn": "15169",
+            "asn_cidr": "1.1.1.1/19",
+            "asn_country_code": "US",
+            "asn_date": "2014-08-27",
+            "asn_description": "GOOGLE, US",
+            "query": "1.1.1.1",
+            "network": {
+                "handle": "NET-104-196-0-0-1",
+                "status": [
+                    "active"
+                ],
+                "remarks": [
+                    {
+                        "title": "Registration Comments",
+                        "description": "** The IP addresses under this netblock are in use by Google Cloud customers ** \r\n\r\nDirect all copyright and legal complaints to \r\nhttps://support.google.com/legal/go/report\r\n\r\nDirect all spam and abuse complaints to \r\nhttps://support.google.com/code/go/gce_abuse_report\r\n\r\nFor fastest response, use the relevant forms above.\r\n\r\nComplaints can also be sent to the GC Abuse desk \r\n(google-cloud-compliance@google.com) \r\nbut may have longer turnaround times.\r\n\r\nComplaints sent to any other POC will be ignored.",
+                        "links": null
+                    }
+                ],
+                "notices": [
+                    {
+                        "title": "Terms of Service",
+                        "description": "By using the ARIN RDAP/Whois service, you are agreeing to the RDAP/Whois Terms of Use",
+                        "links": [
+                            "https://www.arin.net/resources/registry/whois/tou/"
+                        ]
+                    },
+                    {
+                        "title": "Whois Inaccuracy Reporting",
+                        "description": "If you see inaccuracies in the results, please visit: ",
+                        "links": [
+                            "https://www.arin.net/resources/registry/whois/inaccuracy_reporting/"
+                        ]
+                    },
+                    {
+                        "title": "Copyright Notice",
+                        "description": "Copyright 1997-2021, American Registry for Internet Numbers, Ltd.",
+                        "links": null
+                    }
+                ],
+                "links": [
+                    "https://rdap.arin.net/registry/ip/104.196.0.0",
+                    "https://whois.arin.net/rest/net/NET-104-196-0-0-1"
+                ],
+                "events": [
+                    {
+                        "action": "last changed",
+                        "timestamp": "2015-09-21T20:50:14-04:00",
+                        "actor": null
+                    },
+                    {
+                        "action": "registration",
+                        "timestamp": "2014-08-27T13:55:35-04:00",
+                        "actor": null
+                    }
+                ],
+                "raw": null,
+                "start_address": "1.1.1.1",
+                "end_address": "1.1.1.1",
+                "cidr": "1.1.1.1/14",
+                "ip_version": "v4",
+                "type": "DIRECT ALLOCATION",
+                "name": "GOOGLE-CLOUD",
+                "country": null,
+                "parent_handle": "NET-104-0-0-0-0"
+            },
+            "entities": [
+                "GOOGL-2"
+            ],
+            "objects": {
+                "GOOGL-2": {
+                    "handle": "GOOGL-2",
+                    "status": null,
+                    "remarks": [
+                        {
+                            "title": "Registration Comments",
+                            "description": "*** The IP addresses under this Org-ID are in use by Google Cloud customers *** \r\n\r\nDirect all copyright and legal complaints to \r\nhttps://support.google.com/legal/go/report\r\n\r\nDirect all spam and abuse complaints to \r\nhttps://support.google.com/code/go/gce_abuse_report\r\n\r\nFor fastest response, use the relevant forms above.\r\n\r\nComplaints can also be sent to the GC Abuse desk \r\n(google-cloud-compliance@google.com) \r\nbut may have longer turnaround times.\r\n\r\nComplaints sent to any other POC will be ignored.",
+                            "links": null
+                        }
+                    ],
+                    "notices": null,
+                    "links": [
+                        "https://rdap.arin.net/registry/entity/GOOGL-2",
+                        "https://whois.arin.net/rest/org/GOOGL-2"
+                    ],
+                    "events": [
+                        {
+                            "action": "last changed",
+                            "timestamp": "2019-11-01T05:34:25-04:00",
+                            "actor": null
+                        },
+                        {
+                            "action": "registration",
+                            "timestamp": "2006-09-29T16:40:11-04:00",
+                            "actor": null
+                        }
+                    ],
+                    "raw": null,
+                    "roles": [
+                        "registrant"
+                    ],
+                    "contact": {
+                        "name": "Google LLC",
+                        "kind": "org",
+                        "address": [
+                            {
+                                "type": null,
+                                "value": "1600 Amphitheatre Parkway\nMountain View\nCA\n94043\nUnited States"
+                            }
+                        ],
+                        "phone": null,
+                        "email": null,
+                        "role": null,
+                        "title": null
+                    },
+                    "events_actor": null,
+                    "entities": [
+                        "GCABU-ARIN",
+                        "ZG39-ARIN"
+                    ]
+                },
+                "GCABU-ARIN": {
+                    "handle": "GCABU-ARIN",
+                    "status": [
+                        "validated"
+                    ],
+                    "remarks": null,
+                    "notices": [
+                        {
+                            "title": "Terms of Service",
+                            "description": "By using the ARIN RDAP/Whois service, you are agreeing to the RDAP/Whois Terms of Use",
+                            "links": [
+                                "https://www.arin.net/resources/registry/whois/tou/"
+                            ]
+                        },
+                        {
+                            "title": "Whois Inaccuracy Reporting",
+                            "description": "If you see inaccuracies in the results, please visit: ",
+                            "links": [
+                                "https://www.arin.net/resources/registry/whois/inaccuracy_reporting/"
+                            ]
+                        },
+                        {
+                            "title": "Copyright Notice",
+                            "description": "Copyright 1997-2021, American Registry for Internet Numbers, Ltd.",
+                            "links": null
+                        }
+                    ],
+                    "links": [
+                        "https://rdap.arin.net/registry/entity/GCABU-ARIN",
+                        "https://whois.arin.net/rest/poc/GCABU-ARIN"
+                    ],
+                    "events": [
+                        {
+                            "action": "last changed",
+                            "timestamp": "2021-04-09T11:46:04-04:00",
+                            "actor": null
+                        },
+                        {
+                            "action": "registration",
+                            "timestamp": "2011-03-30T00:36:28-04:00",
+                            "actor": null
+                        }
+                    ],
+                    "raw": null,
+                    "roles": [
+                        "abuse",
+                        "noc"
+                    ],
+                    "contact": {
+                        "name": "GC Abuse",
+                        "kind": "group",
+                        "address": [
+                            {
+                                "type": null,
+                                "value": "1600 Amphitheatre Parkway\nMountain View\nCA\n94043\nUnited States"
+                            }
+                        ],
+                        "phone": [
+                            {
+                                "type": [
+                                    "work",
+                                    "voice"
+                                ],
+                                "value": "+1-650-253-0000"
+                            }
+                        ],
+                        "email": [
+                            {
+                                "type": null,
+                                "value": "google-cloud-compliance@google.com"
+                            }
+                        ],
+                        "role": null,
+                        "title": null
+                    },
+                    "events_actor": null,
+                    "entities": null
+                },
+                "ZG39-ARIN": {
+                    "handle": "ZG39-ARIN",
+                    "status": [
+                        "validated"
+                    ],
+                    "remarks": null,
+                    "notices": [
+                        {
+                            "title": "Terms of Service",
+                            "description": "By using the ARIN RDAP/Whois service, you are agreeing to the RDAP/Whois Terms of Use",
+                            "links": [
+                                "https://www.arin.net/resources/registry/whois/tou/"
+                            ]
+                        },
+                        {
+                            "title": "Whois Inaccuracy Reporting",
+                            "description": "If you see inaccuracies in the results, please visit: ",
+                            "links": [
+                                "https://www.arin.net/resources/registry/whois/inaccuracy_reporting/"
+                            ]
+                        },
+                        {
+                            "title": "Copyright Notice",
+                            "description": "Copyright 1997-2021, American Registry for Internet Numbers, Ltd.",
+                            "links": null
+                        }
+                    ],
+                    "links": [
+                        "https://rdap.arin.net/registry/entity/ZG39-ARIN",
+                        "https://whois.arin.net/rest/poc/ZG39-ARIN"
+                    ],
+                    "events": [
+                        {
+                            "action": "last changed",
+                            "timestamp": "2021-11-10T10:26:54-05:00",
+                            "actor": null
+                        },
+                        {
+                            "action": "registration",
+                            "timestamp": "2000-11-30T13:54:08-05:00",
+                            "actor": null
+                        }
+                    ],
+                    "raw": null,
+                    "roles": [
+                        "administrative",
+                        "technical"
+                    ],
+                    "contact": {
+                        "name": "Google LLC",
+                        "kind": "group",
+                        "address": [
+                            {
+                                "type": null,
+                                "value": "1600 Amphitheatre Parkway\nMountain View\nCA\n94043\nUnited States"
+                            }
+                        ],
+                        "phone": [
+                            {
+                                "type": [
+                                    "work",
+                                    "voice"
+                                ],
+                                "value": "+1-650-253-0000"
+                            }
+                        ],
+                        "email": [
+                            {
+                                "type": null,
+                                "value": "arin-contact@google.com"
+                            }
+                        ],
+                        "role": null,
+                        "title": null
+                    },
+                    "events_actor": null,
+                    "entities": null
+                }
+            },
+            "raw": null
+        }
+    }
+]

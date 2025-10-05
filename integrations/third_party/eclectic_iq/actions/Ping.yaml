@@ -1,12 +1,11 @@
-name: Ping
-description: This action facilitates testing connectivity with EclecticIQ.
-integration_identifier: EclecticIQ
-parameters: [ ]
-dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: false
-        # language=json
-        result_example: '{}'
-default_result_value: ''
 creator: 02d62532-046f-494f-8c5f-6541026a07d1
+default_result_value: ''
+description: This action facilitates testing connectivity with EclecticIQ.
+dynamic_results_metadata:
+-   result_example_path: null
+    result_name: JsonResult
+    show_result: false
+integration_identifier: EclecticIQ
+name: Ping
+parameters: []
 script_result_name: ScriptResult

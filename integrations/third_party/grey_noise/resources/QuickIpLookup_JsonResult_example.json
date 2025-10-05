@@ -1,0 +1,16 @@
+{
+    "results": [
+        {
+            "Entity": "8.8.8.8",
+            "EntityResult": [
+                {
+                    "code": "0x09",
+                    "ip": "8.8.8.8",
+                    "noise": false,
+                    "riot": true,
+                    "code_message": "IP was found in RIOT"
+                }
+            ]
+        }
+    ]
+}

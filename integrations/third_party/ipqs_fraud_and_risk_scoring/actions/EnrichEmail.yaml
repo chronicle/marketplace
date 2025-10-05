@@ -1,4 +1,5 @@
-name: Enrich Email
+creator: IPQS
+default_result_value: ''
 description: This action provides real-time email address reputation scoring and validation
     with hundreds of syntax & DNS checks. The API can be leveraged to determine if
     the email address inbox exists with the mail service provider and is able to accept
@@ -6,41 +7,39 @@ description: This action provides real-time email address reputation scoring and
     reputation or has recently been associated with abuse or threats. Additional risk
     scoring can detect disposable and temporary mail services as well as emails with
     a history of fraudulent behavior online.
-integration_identifier: IPQS Fraud and Risk Scoring
-parameters:
-    -   name: Abuse Strictness
-        default_value: '0'
-        type: ddl
-        optional_values:
-            - '0'
-            - '1'
-            - '2'
-        description: Set the strictness level for machine learning pattern recognition
-            of abusive email addresses with the "recent_abuse" data point.
-        is_mandatory: true
-    -   name: Fast
-        default_value: 'false'
-        type: boolean
-        description: When this parameter is enabled our API will not perform an SMTP check
-            with the mail service provider, which greatly increases the API speed.
-        is_mandatory: false
-    -   name: Timeout in seconds
-        default_value: '7'
-        type: string
-        description: 'Maximum number of seconds to wait for a reply from a mail service
-        provider. '
-        is_mandatory: false
-    -   name: Suggest Domain
-        default_value: 'false'
-        type: boolean
-        description: Force analyze if the email addresses domain has a typo and should
-            be corrected to a popular mail service.
-        is_mandatory: false
 dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: '{}'
-default_result_value: ''
-creator: IPQS
+-   result_example_path: null
+    result_name: JsonResult
+    show_result: true
+integration_identifier: IPQS Fraud and Risk Scoring
+name: Enrich Email
+parameters:
+-   default_value: '0'
+    description: Set the strictness level for machine learning pattern recognition
+        of abusive email addresses with the "recent_abuse" data point.
+    is_mandatory: true
+    name: Abuse Strictness
+    optional_values:
+    - '0'
+    - '1'
+    - '2'
+    type: ddl
+-   default_value: 'false'
+    description: When this parameter is enabled our API will not perform an SMTP check
+        with the mail service provider, which greatly increases the API speed.
+    is_mandatory: false
+    name: Fast
+    type: boolean
+-   default_value: '7'
+    description: 'Maximum number of seconds to wait for a reply from a mail service
+        provider. '
+    is_mandatory: false
+    name: Timeout in seconds
+    type: string
+-   default_value: 'false'
+    description: Force analyze if the email addresses domain has a typo and should
+        be corrected to a popular mail service.
+    is_mandatory: false
+    name: Suggest Domain
+    type: boolean
 script_result_name: ScriptResult

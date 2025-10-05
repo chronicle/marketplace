@@ -1,0 +1,17 @@
+[
+    {
+        "count": 1,
+        "isPublic": false,
+        "description": "Manual List",
+        "lastUpdateDatetime": "2021-07-06T16:47:13+00:00",
+        "pluginParameters": {},
+        "pluginUuid": "00000000-6714-4000-8000-000000000000",
+        "interval": 60,
+        "enabled": true,
+        "isHealthy": true,
+        "name": "My Manual List",
+        "lastSyncDatetime": null,
+        "type": "manual",
+        "uuid": "58ad80e8-e50d-473c-8e6c-ba284b73778b"
+    }
+]
