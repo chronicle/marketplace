@@ -32,7 +32,6 @@ import rich
 import typer
 
 import mp.core.config
-import mp.core.constants
 import mp.core.file_utils
 from mp.core.custom_types import RepositoryType
 from mp.core.utils import ensure_valid_list

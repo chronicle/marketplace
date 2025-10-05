@@ -15,7 +15,6 @@
 from __future__ import annotations
 
 import json
-import pathlib
 import shutil
 from typing import TYPE_CHECKING
 
@@ -28,6 +27,7 @@ from mp.core.config import get_marketplace_path
 from mp.dev_env.minor_version_bump import minor_version_bump
 
 if TYPE_CHECKING:
+    import pathlib
     from collections.abc import Generator
 
 INTEGRATIONS_CACHE_FOLDER_PATH: pathlib.Path = get_marketplace_path() / ".integrations_cache"

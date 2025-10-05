@@ -22,8 +22,6 @@ from typing import TYPE_CHECKING, Annotated
 
 import typer
 
-import mp.build_project.marketplace
-import mp.core.code_manipulation
 import mp.core.config
 import mp.core.constants
 import mp.core.file_utils

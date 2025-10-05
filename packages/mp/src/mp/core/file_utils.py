@@ -551,6 +551,16 @@ def png_path_to_bytes(file_path: pathlib.Path) -> str | None:
 
 
 def create_dir_if_not_exists(p: pathlib.Path, /) -> pathlib.Path:
-    """Create the provided path as a directory if it doesn't exist"""
+    """Create the provided path as a directory if it doesn't exist.
+
+    Doesn't raise any error if the dir already exists
+
+    Args:
+        p: The dir's path to create if it doesn't exist
+
+    Returns:
+        The created path
+
+    """
     p.mkdir(exist_ok=True)
     return p
