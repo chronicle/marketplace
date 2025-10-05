@@ -32,23 +32,13 @@ if TYPE_CHECKING:
 
 INTEGRATIONS_CACHE_FOLDER_PATH: pathlib.Path = get_marketplace_path() / ".integrations_cache"
 
-ORIG_BUILT_INTEGRATION_PATH = (
-    pathlib.Path(__file__).parent.parent.parent
-    / "mock_marketplace"
-    / "mock_built_integration"
-    / "mock_integration"
-)
-ORIG_NON_BUILT_INTEGRATION_PATH = (
-    pathlib.Path(__file__).parent.parent.parent
-    / "mock_marketplace"
-    / "commercial"
-    / "mock_integration"
-)
-
 
 @pytest.fixture
 def sandbox(
-    tmp_path: pathlib.Path, request: pytest.FixtureRequest
+    tmp_path: pathlib.Path,
+    request: pytest.FixtureRequest,
+    built_integration: pathlib.Path,
+    non_built_integration: pathlib.Path,
 ) -> Generator[dict[str, pathlib.Path], None, None]:
     """Creates a per-test sandbox by cloning the built and non-built integration.
 
@@ -73,8 +63,8 @@ def sandbox(
     built_dst.parent.mkdir(parents=True, exist_ok=True)
     non_built_dst.parent.mkdir(parents=True, exist_ok=True)
 
-    shutil.copytree(ORIG_BUILT_INTEGRATION_PATH, built_dst)
-    shutil.copytree(ORIG_NON_BUILT_INTEGRATION_PATH, non_built_dst)
+    shutil.copytree(built_integration, built_dst)
+    shutil.copytree(non_built_integration, non_built_dst)
 
     def_path: pathlib.Path = built_dst / f"Integration-{integration_name}.def"
     shutil.move(built_dst / "Integration-mock_integration.def", def_path)

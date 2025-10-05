@@ -217,8 +217,8 @@ def build(  # noqa: PLR0913
         if is_full_build(repository):
             rich.print("Checking for duplicate integrations...")
             raise_errors_for_duplicate_integrations(
-                commercial_path=commercial_mp.out_path,
-                community_path=commercial_mp.out_path,
+                commercial_path=commercial_mp.out_dir,
+                community_path=commercial_mp.out_dir,
             )
             rich.print("Done checking for duplicate integrations.")
 

@@ -29,7 +29,6 @@ import operator
 from typing import TYPE_CHECKING
 
 import mp.core.constants
-import mp.core.file_utils
 
 from .restructurable import Restructurable
 

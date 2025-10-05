@@ -217,7 +217,7 @@ wheels = [
 [[package]]
 name = "environmentcommon"
 version = "1.0.2"
-source = { path = "../../../packages/envcommon/EnvironmentCommon-1.0.2/EnvironmentCommon-1.0.2-py2.py3-none-any.whl" }
+source = { path = "../../../../packages/envcommon/EnvironmentCommon-1.0.2/EnvironmentCommon-1.0.2-py2.py3-none-any.whl" }
 wheels = [
     { filename = "environmentcommon-1.0.2-py2.py3-none-any.whl", hash = "sha256:a31d611ddf539fb081cfe9423a8d506d198fb5aefdb225c5534904ef9d80aaaa" },
 ]
@@ -389,7 +389,7 @@ wheels = [
 [[package]]
 name = "integration-testing"
 version = "2.2.10"
-source = { path = "../../../packages/integration_testing_whls/integration_testing-2.2.10-py3-none-any.whl" }
+source = { path = "../../../../packages/integration_testing_whls/integration_testing-2.2.10-py3-none-any.whl" }
 dependencies = [
     { name = "aiohttp" },
     { name = "environmentcommon" },
@@ -728,14 +728,14 @@ dev = [
 
 [package.metadata]
 requires-dist = [
-    { name = "environmentcommon", path = "../../../packages/envcommon/EnvironmentCommon-1.0.2/EnvironmentCommon-1.0.2-py2.py3-none-any.whl" },
+    { name = "environmentcommon", path = "../../../../packages/envcommon/EnvironmentCommon-1.0.2/EnvironmentCommon-1.0.2-py2.py3-none-any.whl" },
     { name = "requests", specifier = ">=2.32.4" },
-    { name = "tipcommon", path = "../../../packages/tipcommon/TIPCommon-2.2.10/TIPCommon-2.2.10-py2.py3-none-any.whl" },
+    { name = "tipcommon", path = "../../../../packages/tipcommon/TIPCommon-2.2.10/TIPCommon-2.2.10-py2.py3-none-any.whl" },
 ]
 
 [package.metadata.requires-dev]
 dev = [
-    { name = "integration-testing", path = "../../../packages/integration_testing_whls/integration_testing-2.2.10-py3-none-any.whl" },
+    { name = "integration-testing", path = "../../../../packages/integration_testing_whls/integration_testing-2.2.10-py3-none-any.whl" },
     { name = "pytest", specifier = ">=8.3.5" },
     { name = "pytest-json-report", specifier = ">=1.5.0" },
     { name = "soar-sdk", git = "https://github.com/chronicle/soar-sdk" },
@@ -779,7 +779,7 @@ dependencies = [
 [[package]]
 name = "tipcommon"
 version = "2.2.10"
-source = { path = "../../../packages/tipcommon/TIPCommon-2.2.10/TIPCommon-2.2.10-py2.py3-none-any.whl" }
+source = { path = "../../../../packages/tipcommon/TIPCommon-2.2.10/TIPCommon-2.2.10-py2.py3-none-any.whl" }
 dependencies = [
     { name = "google-api-python-client" },
     { name = "google-auth" },

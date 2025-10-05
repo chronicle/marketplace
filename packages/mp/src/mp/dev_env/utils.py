@@ -118,7 +118,7 @@ def find_built_integration_dir(identifier: str) -> pathlib.Path:
         typer.Exit: If the built integration is not found.
 
     """
-    root: pathlib.Path = mp.core.file_utils.get_out_integrations_path()
+    root: pathlib.Path = mp.core.file_utils.create_or_get_out_integrations_dir()
     for repo in mp.core.constants.INTEGRATIONS_TYPES:
         candidate = root / repo / identifier
         if candidate.exists():

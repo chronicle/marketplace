@@ -91,7 +91,7 @@ def assert_build_integration(
         marketplace: Marketplace = mp.build_project.marketplace.Marketplace(community)
         marketplace.build_integration(integration)
 
-        out_integration: pathlib.Path = marketplace.out_path / integration.name
+        out_integration: pathlib.Path = marketplace.out_dir / integration.name
         out_py_version: pathlib.Path = out_integration / mp.core.constants.PYTHON_VERSION_FILE
         out_py_version.unlink(missing_ok=True)
 

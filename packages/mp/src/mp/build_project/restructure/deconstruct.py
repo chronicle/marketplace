@@ -30,7 +30,6 @@ from typing import TYPE_CHECKING, Any, TypeAlias
 import rich
 import toml
 
-import mp.core
 import mp.core.constants
 import mp.core.file_utils
 import mp.core.unix

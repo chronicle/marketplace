@@ -26,13 +26,9 @@ if TYPE_CHECKING:
 
 
 @pytest.fixture
-def temp_integration(mock_get_marketplace_path: str) -> Iterator[pathlib.Path]:
+def temp_integration(built_integration: pathlib.Path) -> Iterator[pathlib.Path]:
     """Create a temporary integration directory with mock files."""
     with tempfile.TemporaryDirectory() as temp_dir:
         temp_path = pathlib.Path(temp_dir)
-        test_file_dir = pathlib.Path(__file__).parent
-        mock_path = (
-            test_file_dir.parent.parent / "mock_marketplace" / "third_party" / "mock_integration"
-        )
-        shutil.copytree(mock_path.resolve(), temp_path / "mock_integration")
-        yield temp_path / "mock_integration"
+        shutil.copytree(built_integration.resolve(), temp_path / built_integration.name)
+        yield temp_path / built_integration.name

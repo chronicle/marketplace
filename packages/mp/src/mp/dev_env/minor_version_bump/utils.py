@@ -25,7 +25,6 @@ import rich
 import yaml
 
 import mp.core.constants
-import mp.core.file_utils
 
 CONFIG_PATH = pathlib.Path.home() / ".mp_dev_env.json"
 INTEGRATIONS_CACHE_DIR_NAME: str = ".integrations_cache"
