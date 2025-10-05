@@ -148,8 +148,8 @@ class ActionMetadata(
         meta_path: pathlib.Path = path / mp.core.constants.ACTIONS_DIR
         if not meta_path.exists():
             return []
-        metadata_objects: list[Self] = []
 
+        metadata_objects: list[Self] = []
         for p in meta_path.rglob(f"*{mp.core.constants.DEF_FILE_SUFFIX}"):
             action_metadata_json: dict[str, Any] = mp.core.file_utils.load_yaml_file(p)
             drms_with_json_contents: list[NonBuiltDynamicResultsMetadata] = _load_json_examples(
@@ -287,6 +287,7 @@ class ActionMetadata(
             if not drm.result_example or drm.result_example == "{}":
                 drm.result_example = None
                 continue
+
             json_file_name: str = f"{self.name}_{drm.result_name}_example.json"
             json_file_path: str = f"{mp.core.constants.RESOURCES_DIR}/{json_file_name}"
             drm.result_example = json_file_path

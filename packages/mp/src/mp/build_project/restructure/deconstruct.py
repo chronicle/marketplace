@@ -30,7 +30,6 @@ from typing import TYPE_CHECKING, Any, TypeAlias
 import rich
 import toml
 
-import mp.core
 import mp.core.constants
 import mp.core.file_utils
 import mp.core.unix
@@ -148,6 +147,7 @@ class DeconstructIntegration:
             for drm in drms:
                 if not drm.result_example:
                     continue
+
                 json_file_name: str = f"{action_name}_{drm.result_name}_example.json"
                 json_file_path: pathlib.Path = resources_dir / json_file_name
                 mp.core.file_utils.write_str_to_json_file(json_file_path, drm.result_example)

@@ -29,7 +29,6 @@ from typing import TYPE_CHECKING, Any
 import yaml
 
 import mp.core.constants
-import mp.core.validators
 
 from . import config, constants
 from .custom_types import JsonString, ManagerName, Products
@@ -525,14 +524,15 @@ def read_and_validate_json_file(json_path: pathlib.Path) -> JsonString:
     """
     try:
         content: JsonString = json_path.read_text(encoding="utf-8")
-        json.loads(content)  # Validate by attempting to parse
-        return content  # noqa: TRY300
+        json.loads(content)
     except json.JSONDecodeError as e:
         msg = f"Invalid JSON content in file: {json_path}"
         raise ValueError(msg) from e
     except FileNotFoundError as e:
         msg = f"File {json_path} does not exist"
         raise ValueError(msg) from e
+    else:
+        return content
 
 
 def write_str_to_json_file(json_path: pathlib.Path, json_content: JsonString) -> None:
