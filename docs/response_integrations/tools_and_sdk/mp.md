@@ -55,7 +55,7 @@ mp build --quiet --repository third_party
 mp test --verbose --integration my_integration
 
 # Configure mp parameters
-mp config --marketplace-path . --processes 7 --display-config
+mp config --root-path . --processes 7 --display-config
 ```
 
 ## Development Environment Commands

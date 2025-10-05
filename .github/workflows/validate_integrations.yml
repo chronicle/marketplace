@@ -33,7 +33,7 @@ jobs:
       env:
         GITHUB_PR_SHA: ${{ github.event.pull_request.head.sha }}
       run: |
-        mp config --marketplace-path . --processes 10 --display-config
+        mp config --root-path . --processes 10 --display-config
         mp validate --repository third_party --only-pre-build
 
     - name: Upload Validation Report
