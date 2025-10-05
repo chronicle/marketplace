@@ -19,7 +19,8 @@ from __future__ import annotations
 REPO_NAME: str = "marketplace"
 
 PROJECT_FILE: str = "pyproject.toml"
-INTEGRATIONS_DIR_NAME: str = "integrations"
+CONTENT_DIR_NAME: str = "content"
+INTEGRATIONS_DIR_NAME: str = "response_integrations"
 COMMUNITY_DIR_NAME: str = "third_party"
 COMMERCIAL_DIR_NAME: str = "commercial"
 POWERUPS_DIR_NAME: str = "power_ups"

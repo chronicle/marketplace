@@ -24,7 +24,6 @@ import toml
 import typer
 
 import mp.core.constants
-import mp.core.file_utils
 from mp.core.config import get_marketplace_path
 
 from .utils import (

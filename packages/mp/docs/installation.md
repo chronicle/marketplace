@@ -77,7 +77,7 @@ When installing `mp` it automatically assumes the marketplace repo is installed 
 To configure a different path run
 
 ```shell
-mp config --marketplace-path /path/to/marketplace 
+mp config --root-path /path/to/marketplace 
 ```
 
 To find more about configurations, run

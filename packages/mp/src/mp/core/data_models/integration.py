@@ -21,7 +21,6 @@ from typing import TYPE_CHECKING, TypedDict
 
 import mp.core.constants
 import mp.core.file_utils
-import mp.core.utils
 
 from .action.metadata import ActionMetadata
 from .connector.metadata import ConnectorMetadata

@@ -32,7 +32,6 @@ import rich
 import typer
 
 import mp.core.config
-import mp.core.constants
 import mp.core.file_utils
 from mp.core.custom_types import RepositoryType
 from mp.core.utils import ensure_valid_list
@@ -189,7 +188,7 @@ def build(  # noqa: PLR0913
                 "You can verify your configuration by running [bold]mp config "
                 "--display-config[/bold].\n"
                 "If the path is incorrect, re-configure it by running [bold]mp config "
-                "--marketplace-path <your_path>[/bold]."
+                "--root-path <your_path>[/bold]."
             )
 
         rich.print("Done building integrations.")
@@ -217,8 +216,8 @@ def build(  # noqa: PLR0913
         if is_full_build(repository):
             rich.print("Checking for duplicate integrations...")
             raise_errors_for_duplicate_integrations(
-                commercial_path=commercial_mp.out_path,
-                community_path=commercial_mp.out_path,
+                commercial_path=commercial_mp.out_dir,
+                community_path=commercial_mp.out_dir,
             )
             rich.print("Done checking for duplicate integrations.")
 
@@ -238,12 +237,12 @@ def _build_integrations(
     if not_found:
         rich.print(
             "The following integrations could not be found in"
-            f" the {marketplace_.marketplace_name} marketplace: {', '.join(not_found)}\n"
+            f" the {marketplace_.name} marketplace: {', '.join(not_found)}\n"
         )
     if valid_integrations_:
         rich.print(
             "Building the following integrations in the"
-            f" the {marketplace_.marketplace_name} marketplace:"
+            f" the {marketplace_.name} marketplace:"
             f" {', '.join(valid_integration_names)}"
         )
         if deconstruct:

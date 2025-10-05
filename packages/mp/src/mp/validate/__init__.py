@@ -23,7 +23,6 @@ from typing import TYPE_CHECKING, Annotated, TypeAlias
 import typer
 
 import mp.core.config
-import mp.core.constants
 import mp.core.file_utils
 from mp.build_project.marketplace import Marketplace
 from mp.core.custom_types import RepositoryType
