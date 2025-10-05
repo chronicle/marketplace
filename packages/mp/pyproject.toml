@@ -1,6 +1,6 @@
 [project]
 name = "mp"
-version = "1.7.0"
+version = "1.8.0"
 description = "General Purpose CLI tool for Google SecOps Marketplace"
 readme = "README.md"
 authors = [
@@ -16,7 +16,8 @@ keywords = [
     "google",
     "secops",
     "soar",
-    "marketplace"
+    "marketplace",
+    "content hub",
 ]
 
 classifiers = [
