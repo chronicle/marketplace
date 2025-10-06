@@ -47,7 +47,7 @@ if TYPE_CHECKING:
     from mp.core.config import RuntimeParams
 
 
-__all__: list[str] = ["app"]
+__all__: list[str] = ["app", "build"]
 app: typer.Typer = typer.Typer()
 
 

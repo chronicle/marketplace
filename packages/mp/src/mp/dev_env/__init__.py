@@ -30,7 +30,7 @@ from .minor_version_bump import minor_version_bump
 if TYPE_CHECKING:
     import pathlib
 
-__all__: tuple[str, ...] = ("app",)
+__all__: list[str] = ["app", "deploy", "login"]
 app: typer.Typer = typer.Typer(
     help="Commands for interacting with the development environment (playground)"
 )

@@ -32,7 +32,7 @@ import typer
 
 import mp.core.config
 
-__all__: list[str] = ["app"]
+__all__: list[str] = ["app", "config"]
 app: typer.Typer = typer.Typer()
 
 

@@ -47,7 +47,7 @@ POST_BUILD: str = "Post-Build"
 ValidationFn: TypeAlias = Callable[[pathlib.Path], ValidationResults]
 
 
-__all__: list[str] = ["Configurations", "app"]
+__all__: list[str] = ["Configurations", "app", "validate"]
 app: typer.Typer = typer.Typer()
 
 

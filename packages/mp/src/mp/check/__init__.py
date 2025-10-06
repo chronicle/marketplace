@@ -41,7 +41,7 @@ if TYPE_CHECKING:
     from mp.core.config import RuntimeParams
     from mp.core.custom_types import RuffParams
 
-__all__: list[str] = ["app"]
+__all__: list[str] = ["app", "check"]
 app: typer.Typer = typer.Typer()
 
 
