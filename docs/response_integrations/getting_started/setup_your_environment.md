@@ -3,14 +3,14 @@
 ## JetBrains IDEs Setup Guide
 
 This guide will help you configure JetBrains IDEs (like PyCharm, IntelliJ IDEA with Python plugin)
-for development in the Google SecOps Marketplace Content Repository. Proper IDE configuration will
+for development in the Google SecOps Content Hub Repository. Proper IDE configuration will
 enhance your development experience with features like code completion, linting, and type checking.
 
 ## Initial Setup
 
 ### Project Setup
 
-You have two options, to open the mono repo as a project or to open individual integrations as
+You have two options, to open the mono repo as a project or to open individual response integrations as
 projects. When opening a single integration as a project, you can set the python interpreter of the
 project to be the interpreter found in the virtual environment of the integration.
 

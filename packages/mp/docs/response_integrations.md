@@ -1,4 +1,4 @@
-# Google SecOps Marketplace Integration Guide
+# Google SecOps Response Integrations Guide
 
 ## Overview
 
