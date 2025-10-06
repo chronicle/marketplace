@@ -47,11 +47,10 @@ def json_serial(obj):
 def main():
     siemplify = SiemplifyAction()
 
-    status = EXECUTION_STATE_COMPLETED  # used to flag back to siemplify system
-    output_message = ""  # human readable message, showed in UI as the action result
-    result_value = (
-        True  # Set a simple result value, used for playbook if\else and placeholders.
-    )
+    status = EXECUTION_STATE_COMPLETED
+    output_message = ""
+    result_value = True
+
     siemplify.script_name = "Parse Email"
     siemplify.LOGGER.info(f"Starting {siemplify.script_name}.")
 
@@ -205,7 +204,6 @@ def main():
             siemplify.update_entities(updated_entities)
     siemplify.result.add_json(attachment_name, parsed_email, "Email File")
 
-    # print(json.dumps({"parsed_emails": parsed_emails}, sort_keys=True, default=json_serial))
     siemplify.result.add_result_json(
         json.dumps(
             {"parsed_emails": parsed_emails},
