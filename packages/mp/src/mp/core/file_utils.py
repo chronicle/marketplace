@@ -53,17 +53,17 @@ def get_integrations_path(
         The marketplace's integrations' directory path
 
     """
-    return _get_integrations_path() / integrations_classification.value
+    return create_or_get_integrations_path() / integrations_classification.value
 
 
-def _get_integrations_path() -> pathlib.Path:
-    """Get the integrations' path.
+def create_or_get_integrations_path() -> pathlib.Path:
+    """Get the content/integrations path.
 
     Returns:
-        The integrations' directory path
+        The content/integrations directory path
 
     """
-    return create_or_get_content_dir() / constants.INTEGRATIONS_DIR_NAME
+    return create_dir_if_not_exists(create_or_get_content_dir() / constants.INTEGRATIONS_DIR_NAME)
 
 
 def get_all_integrations_paths(integrations_classification: str) -> list[pathlib.Path]:
@@ -79,7 +79,7 @@ def get_all_integrations_paths(integrations_classification: str) -> list[pathlib
     marketplace_dir_names: tuple[str, ...] = constants.INTEGRATIONS_DIRS_NAMES_DICT[
         integrations_classification
     ]
-    return [_get_integrations_path() / dir_name for dir_name in marketplace_dir_names]
+    return [create_or_get_integrations_path() / dir_name for dir_name in marketplace_dir_names]
 
 
 def create_or_get_content_dir() -> pathlib.Path:
@@ -160,9 +160,7 @@ def discover_core_modules(path: pathlib.Path) -> list[ManagerName]:
     )
 
 
-def get_integrations_and_groups_from_paths(
-    *paths: pathlib.Path,
-) -> Products[set[pathlib.Path]]:
+def get_integrations_and_groups_from_paths(*paths: pathlib.Path) -> Products[set[pathlib.Path]]:
     """Get all integrations and integration groups paths from the provided paths.
 
     Args:

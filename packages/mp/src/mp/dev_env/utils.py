@@ -125,6 +125,7 @@ def find_built_integration_dir(identifier: str) -> pathlib.Path:
             return candidate
 
     rich.print(
-        f"[red]Built integration not found for identifier '{identifier}' in out/integrations.[/red]"
+        f"[red]Built integration not found for identifier '{identifier}'"
+        " in out/content/integrations.[/red]"
     )
     raise typer.Exit(1)

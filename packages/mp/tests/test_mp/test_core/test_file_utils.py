@@ -164,7 +164,9 @@ def test_is_group(tmp_path: pathlib.Path) -> None:
 
 
 def test_get_all_integrations_paths(tmp_path: pathlib.Path) -> None:
-    with unittest.mock.patch("mp.core.file_utils._get_integrations_path", return_value=tmp_path):
+    with unittest.mock.patch(
+        "mp.core.file_utils.create_or_get_integrations_path", return_value=tmp_path
+    ):
         community_paths = mp.core.file_utils.get_all_integrations_paths(
             mp.core.constants.COMMUNITY_DIR_NAME
         )
