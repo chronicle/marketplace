@@ -1,28 +1,24 @@
-name: Extract Tags
+creator: 3f87d231-3e72-4ca5-9fb0-bd6998ebcd8d
+default_result_value: ''
 description: Extract tags from the input IP address, and its peers, and check if any
     input tags are associated with the IP address, or its peers, or not.
-integration_identifier: TeamCymruScout
-parameters:
-    -   name: IP Address
-        default_value: 1.1.1.1
-        type: string
-        description: IP Address whose tags need to extracted. Tags for the peers of this
-            IP would be extracted as well.
-        is_mandatory: true
-    -   name: Tags to Search
-        default_value: malware, phishing
-        type: string
-        description: Comma-separated string of tags that need to be searched in the tags
-            associated with the IP address.
-        is_mandatory: true
 dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: "{\r\n    \"1.1.1.1 \": [\r\n        \"ccr2116-12g-4s+\",\r\n\
-        \        \"router\",\r\n        \"telnet-scanner\",\r\n        \"scanner\"\
-        ,\r\n        \"mikrotik\"\r\n    ],\r\n    \"1.1.1.1\": [\r\n        \"winshare-scanner\"\
-        ,\r\n        \"scanner\"\r\n    ]\r\n}"
-default_result_value: ''
-creator: 3f87d231-3e72-4ca5-9fb0-bd6998ebcd8d
+-   result_example_path: resources/ExtractTags_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: TeamCymruScout
+name: Extract Tags
+parameters:
+-   default_value: 1.1.1.1
+    description: IP Address whose tags need to extracted. Tags for the peers of this
+        IP would be extracted as well.
+    is_mandatory: true
+    name: IP Address
+    type: string
+-   default_value: malware, phishing
+    description: Comma-separated string of tags that need to be searched in the tags
+        associated with the IP address.
+    is_mandatory: true
+    name: Tags to Search
+    type: string
 script_result_name: ScriptResult

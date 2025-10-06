@@ -1,31 +1,30 @@
-name: Send Analyst Feedback to Arcanna
-description: ''
-integration_identifier: ArcannaAI
-parameters:
-    -   name: Event Id
-        default_value: ''
-        type: string
-        description: Arcanna Event id
-        is_mandatory: true
-    -   name: Username
-        default_value: Admin
-        type: user
-        description: Analyst name who uses this action
-        is_mandatory: true
-    -   name: Job Id
-        default_value: ''
-        type: string
-        description: Arcanna Job Id
-        is_mandatory: true
-    -   name: Analyst Feedback
-        default_value: _
-        type: string
-        description: A string representing the feedback an analyst provides on an event.
-        is_mandatory: true
-dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: false
-        # language=json
-        result_example: '{ "status": "updated" }'
-default_result_value: ''
 creator: 57861f63-e407-4200-90d4-a03bed1eb07e
+default_result_value: ''
+description: ''
+dynamic_results_metadata:
+-   result_example_path: resources/SendAnalystFeedbackToArcanna_JsonResult_example.json
+    result_name: JsonResult
+    show_result: false
+integration_identifier: ArcannaAI
+name: Send Analyst Feedback to Arcanna
+parameters:
+-   default_value: ''
+    description: Arcanna Event id
+    is_mandatory: true
+    name: Event Id
+    type: string
+-   default_value: Admin
+    description: Analyst name who uses this action
+    is_mandatory: true
+    name: Username
+    type: user
+-   default_value: ''
+    description: Arcanna Job Id
+    is_mandatory: true
+    name: Job Id
+    type: string
+-   default_value: _
+    description: A string representing the feedback an analyst provides on an event.
+    is_mandatory: true
+    name: Analyst Feedback
+    type: string

@@ -1,33 +1,21 @@
-name: Send Document
-description: Send document by URL to a chat.
-integration_identifier: Telegram
-parameters:
-    -   name: Document URL
-        default_value: https://www.soundczech.cz/temp/lorem-ipsum.pdf
-        type: string
-        description: URL of the document to send to given chat
-        is_mandatory: true
-    -   name: Chat ID
-        default_value: '1'
-        type: string
-        description: ID of the chat to send the document to
-        is_mandatory: true
-dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: "{\r\n\t\"ok\": true,\r\n\t\"result\": {\r\n\t\t\"message_id\"\
-        : 8,\r\n\t\t\"sender_chat\": {\r\n\t\t\t\"id\": -1111,\r\n\t\t\t\"title\"\
-        : \"TestChannel\",\r\n\t\t\t\"type\": \"channel\"\r\n\t\t},\r\n\t\t\"chat\"\
-        : {\r\n\t\t\t\"id\": -111,\r\n\t\t\t\"title\": \"TestChannel\",\r\n\t\t\t\"\
-        type\": \"channel\"\r\n\t\t},\r\n\t\t\"date\": 1640516830,\r\n\t\t\"document\"\
-        : {\r\n\t\t\t\"file_name\": \"lorem-ipsum.pdf\",\r\n\t\t\t\"mime_type\": \"\
-        application/pdf\",\r\n\t\t\t\"thumb\": {\r\n\t\t\t\t\"file_id\": \"AAMCBAADHQRpAch6AAMIYchM3pXxgqwAAcZBlzvei4hGpJJ-AALdAgACLmxFUmkJZbh140xRAQAHbQADIwQ\"\
-        ,\r\n\t\t\t\t\"file_unique_id\": \"AQAD3QIAAi5sRVJy\",\r\n\t\t\t\t\"file_size\"\
-        : 21415,\r\n\t\t\t\t\"width\": 226,\r\n\t\t\t\t\"height\": 320\r\n\t\t\t},\r\
-        \n\t\t\t\"file_id\": \"BQACAgQAAx0EaQHIegADCGHITN6V8YKsAAHGQZc73ouIRqSSfgAC3QIAAi5sRVJpCWW4deNMUSME\"\
-        ,\r\n\t\t\t\"file_unique_id\": \"AgAD3QIAAi5sRVI\",\r\n\t\t\t\"file_size\"\
-        : 77123\r\n\t\t}\r\n\t}\r\n}"
-default_result_value: ''
 creator: community
+default_result_value: ''
+description: Send document by URL to a chat.
+dynamic_results_metadata:
+-   result_example_path: resources/SendDocument_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: Telegram
+name: Send Document
+parameters:
+-   default_value: https://www.soundczech.cz/temp/lorem-ipsum.pdf
+    description: URL of the document to send to given chat
+    is_mandatory: true
+    name: Document URL
+    type: string
+-   default_value: '1'
+    description: ID of the chat to send the document to
+    is_mandatory: true
+    name: Chat ID
+    type: string
 script_result_name: ScriptResult

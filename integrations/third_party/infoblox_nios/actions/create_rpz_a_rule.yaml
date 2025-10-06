@@ -1,56 +1,44 @@
-name: Create RPZ A Rule
+creator: Admin
+default_result_value: ''
 description: 'Creates an RPZ Substitute rule which maps domain name (A record) or
     an IPv4 address to a substitute IPv4 address for DNS redirection or blocking. '
+dynamic_results_metadata:
+-   result_example_path: resources/create_rpz_a_rule_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
 integration_identifier: InfobloxNIOS
+name: Create RPZ A Rule
 parameters:
--   name: Object Type
-    default_value: Domain Name
-    type: ddl
+-   default_value: Domain Name
+    description: The type of the object for which to create record.
+    is_mandatory: true
+    name: Object Type
     optional_values:
     - IP Address
     - Domain Name
-    description: The type of the object for which to create record.
-    is_mandatory: true
--   name: Name
-    default_value: ''
-    type: string
+    type: ddl
+-   default_value: ''
     description: Specify the name of the rule.
     is_mandatory: true
--   name: RP Zone
-    default_value: ''
+    name: Name
     type: string
+-   default_value: ''
     description: The zone to assign the rule to.
     is_mandatory: true
--   name: IPv4 Address
-    default_value: ''
+    name: RP Zone
     type: string
+-   default_value: ''
     description: The IPv4 address of the substitute rule.
     is_mandatory: true
--   name: Comment
+    name: IPv4 Address
     type: string
-    description: Comment for this rule.
+-   description: Comment for this rule.
     is_mandatory: false
--   name: Additional Parameters
+    name: Comment
     type: string
-    description: JSON object containing additional parameters to create response policy
+-   description: JSON object containing additional parameters to create response policy
         zone.
     is_mandatory: false
-dynamic_results_metadata:
--   result_name: JsonResult
-    show_result: true
-    result_example: |
-        {
-            "_ref": "record:rpz:a/ZG5zLmJpbmRfYSQuX2RlZmF1bHQuY29tLnJwei50aHJlYXQsMTEuMi4xMi4xMCwwLjAuMC4w:10.12.2.11.threat.rpz.com/default",
-            "comment": "nightly-test-a-sub",
-            "disable": false,
-            "extattrs": {},
-            "ipv4addr": "0.0.0.0",
-            "name": "10.12.2.11.threat.rpz.com",
-            "rp_zone": "threat.rpz.com",
-            "use_ttl": false,
-            "view": "default",
-            "zone": "threat.rpz.com"
-        }
-default_result_value: ''
-creator: Admin
+    name: Additional Parameters
+    type: string
 script_result_name: ScriptResult

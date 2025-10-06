@@ -1,130 +1,34 @@
-name: Scan Artifact
+creator: Admin
+default_result_value: ''
 description: 'Launch a Houdin scan on a given artifact, and retrieve all results.
-    The action returns automatically when your scan is done.
-    Compatible types are: Public IPv4/IPv6, URL, Domain, MD5, SHA1, SHA256
-    Note: Action is running as async, adjust script timeout value in Google SecOps IDE for action, as needed.'
+    The action returns automatically when your scan is done. Compatible types are:
+    Public IPv4/IPv6, URL, Domain, MD5, SHA1, SHA256 Note: Action is running as async,
+    adjust script timeout value in Google SecOps IDE for action, as needed.'
+dynamic_results_metadata:
+-   result_example_path: resources/scan_artifact_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
 integration_identifier: Houdin-io
 is_async: true
+name: Scan Artifact
 parameters:
-    -   name: artifact
-        default_value: test.com
-        type: string
-        description: 'An artifact to scan on the Houdin.io platform. Currently supported types: IPv4, IPv6, URL, Domain, MD5, SHA1, SHA256'
-        is_mandatory: true
-    -   name: scanOn
-        default_value: ''
-        type: multi_choice_parameter
-        description: '(Optional) An array of scanners you want Houdin to use.'
-        is_mandatory: false
-        optional_values:
-            - vt
-            - urlscan
-            - alienvault
-            - abuseipdb
-            - triage
-            - mesmer
-            - servicenow
-dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: |
-          {
-            "scanID": "houdin-1232085c-d4cc-43df-b841-e49e81520a3e",
-            "clientID": "6848b13cd6d2453c384404a0",
-            "status": "Done",
-            "artifact": "malicious.com",
-            "scanOn": [
-              "vt",
-              "urlscan",
-              "alienvault",
-              "abuseipdb",
-              "triage",
-              "mesmer"],
-            "scanResults": {
-              "vt": {
-                "result": {
-                  "data": {
-                    "id": "malicious.com",
-                    "type": "domain",
-                    "attributes": {
-                      "reputation": -60,
-                      "last_analysis_stats": {
-                        "malicious": 12,
-                        "suspicious": 0,
-                        "undetected": 28,
-                        "harmless": 54
-                      }
-                    }
-                  }
-                }
-              },
-              "urlscan": {
-                "result": {
-                  "results": [
-                    {
-                      "task": {
-                        "url": "http://malicious.com/payload.ps1"},
-                      "page": {
-                        "status": "200"},
-                      "_id": "01983b58-ffc8-777d-903b-fa813685774d"
-                    }
-                  ],
-                  "total": 253
-                }
-              },
-              "alienvault": {
-                "result": {
-                  "general": {
-                    "indicator": "malicious.com",
-                    "type": "domain",
-                    "pulse_info": {
-                      "count": 4}
-                  }
-                }
-              },
-              "abuseipdb": {
-                "result": {
-                  "ipAddress": "149.28.227.54",
-                  "abuseConfidenceScore": 0,
-                  "countryCode": "US",
-                  "totalReports": 0
-                }
-              },
-              "triage": {
-                "result": {
-                  "lastScan": {
-                    "analysis": {
-                      "score": 5},
-                    "sample": {
-                      "id": "240312-mnz43seh3s",
-                      "target": "http://malicious.com",
-                      "score": 5
-                    }
-                  }
-                }
-              },
-              "mesmer": {
-                "result": {
-                  "observable": "malicious.com",
-                  "globalScore": "9",
-                  "summary": "The domain malicious.com is confirmed malicious with multiple reports.",
-                  "tags": [
-                    {
-                      "value": "Trojan",
-                      "color": "red",
-                      "source": "vt"},
-                    {
-                      "value": "Malware",
-                      "color": "red",
-                      "source": "alienvault"}
-                  ]
-                }
-              }
-            },
-            "scanTime": "2025-07-27T17:28:30.905Z",
-            "expiresAfter": "2025-08-24T17:28:30.905Z"
-          }
-default_result_value: ''
-creator: Admin
+-   default_value: test.com
+    description: 'An artifact to scan on the Houdin.io platform. Currently supported
+        types: IPv4, IPv6, URL, Domain, MD5, SHA1, SHA256'
+    is_mandatory: true
+    name: artifact
+    type: string
+-   default_value: ''
+    description: (Optional) An array of scanners you want Houdin to use.
+    is_mandatory: false
+    name: scanOn
+    optional_values:
+    - vt
+    - urlscan
+    - alienvault
+    - abuseipdb
+    - triage
+    - mesmer
+    - servicenow
+    type: multi_choice_parameter
 script_result_name: ScriptResult

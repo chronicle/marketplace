@@ -1,53 +1,40 @@
-name: Create RPZ MX Rule
+creator: Admin
+default_result_value: ''
 description: Adds a mail exchange override rule to an RPZ.
+dynamic_results_metadata:
+-   result_example_path: resources/create_rpz_mx_rule_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
 integration_identifier: InfobloxNIOS
+name: Create RPZ MX Rule
 parameters:
--   name: Name
-    default_value: ''
-    type: string
+-   default_value: ''
     description: Specify the name of the rule.
     is_mandatory: true
--   name: RP Zone
-    default_value: ''
+    name: Name
     type: string
+-   default_value: ''
     description: The zone to assign the rule to.
     is_mandatory: true
--   name: Mail Exchanger
-    default_value: ''
+    name: RP Zone
     type: string
+-   default_value: ''
     description: Specify the mail exchanger for the rule.
     is_mandatory: true
--   name: Preference
-    default_value: '0'
+    name: Mail Exchanger
     type: string
+-   default_value: '0'
     description: Preference value for the rule.
     is_mandatory: true
--   name: Comment
+    name: Preference
     type: string
-    description: Comment for this rule.
+-   description: Comment for this rule.
     is_mandatory: false
--   name: Additional Parameters
+    name: Comment
     type: string
-    description: JSON object containing additional parameters to create response policy
+-   description: JSON object containing additional parameters to create response policy
         zone.
     is_mandatory: false
-dynamic_results_metadata:
--   result_name: JsonResult
-    show_result: true
-    result_example: |
-        {
-            "_ref": "record:rpz:mx/ZG5zLmJpbmRfbXgkLl9kZWZhdWx0LmNvbS5ycHoudGhyZWF0Lm5pZ2h0bHkxLXRlc3QtbXgtc3ViLjAuMC4wLjAuNQ:nightly1-test-mx-sub.threat.rpz.com/default",
-            "comment": "nightly-test-mx-sub",
-            "disable": false,
-            "extattrs": {},
-            "mail_exchanger": "0.0.0.0",
-            "name": "nightly1-test-mx-sub.threat.rpz.com",
-            "preference": 5,
-            "rp_zone": "threat.rpz.com",
-            "use_ttl": false,
-            "view": "default",
-            "zone": "threat.rpz.com"
-        }
-default_result_value: ''
-creator: Admin
+    name: Additional Parameters
+    type: string
 script_result_name: ScriptResult

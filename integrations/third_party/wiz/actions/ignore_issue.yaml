@@ -1,37 +1,29 @@
-name: Ignore Issue
+creator: admin
 description: 'Use the Ignore Issue action to ignore a specified issue in Wiz. Note:
     This action only works on Graph Control or Cloud Configuration issues.'
+dynamic_results_metadata:
+-   result_example_path: resources/ignore_issue_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
 integration_identifier: Wiz
+name: Ignore Issue
 parameters:
--   name: Issue ID
-    default_value: ''
-    type: string
+-   default_value: ''
     description: The unique identifier of the issue in Wiz.
     is_mandatory: true
--   name: Resolution Reason
-    default_value: False Positive
-    type: ddl
+    name: Issue ID
+    type: string
+-   default_value: False Positive
+    description: The reason for the resolution of the issue.
+    is_mandatory: false
+    name: Resolution Reason
     optional_values:
     - False Positive
     - Exception
     - Won't Fix
-    description: The reason for the resolution of the issue.
-    is_mandatory: false
--   name: Resolution Note
-    default_value: ''
-    type: string
+    type: ddl
+-   default_value: ''
     description: A note that gives additional context for the issue resolution.
     is_mandatory: true
-dynamic_results_metadata:
-    # language=json
--   result_example: |
-        {
-            "id": "abc",
-            "note": "",
-            "status": "REJECTED",
-            "dueAt": null,
-            "resolutionReason": "FALSE_POSITIVE"
-        }
-    result_name: JsonResult
-    show_result: true
-creator: admin
+    name: Resolution Note
+    type: string

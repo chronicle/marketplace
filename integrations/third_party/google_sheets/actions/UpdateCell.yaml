@@ -1,35 +1,34 @@
-name: Update  Cell
+creator: Admin
+default_result_value: ''
 description: Updates a specific cell in a sheet
+dynamic_results_metadata:
+-   result_example_path: null
+    result_name: JsonResult
+    show_result: false
 integration_identifier: Google Sheets
+name: Update  Cell
 parameters:
-    -   name: Sheet Id
-        default_value: <Sheet-Id>
-        type: string
-        description: 'The sheet id can be found in the sheet url.
+-   default_value: <Sheet-Id>
+    description: 'The sheet id can be found in the sheet url.
 
         https://docs.google.com/spreadsheets/d/{YourSpreadSheetId}/edit#gid=0'
-        is_mandatory: true
-    -   name: Worksheet Name
-        default_value: <Sheet-Name>
-        type: string
-        description: 'The worksheet name is the Sheet tab name. The default Sheet name
+    is_mandatory: true
+    name: Sheet Id
+    type: string
+-   default_value: <Sheet-Name>
+    description: 'The worksheet name is the Sheet tab name. The default Sheet name
         is "Sheet1". Note: it is case sensitive. '
-        is_mandatory: false
-    -   name: Cell
-        default_value: A12
-        type: string
-        description: The cell you would like to update in the sheet
-        is_mandatory: true
-    -   name: Value
-        default_value: <Value>
-        type: string
-        description: The value you would like to update in the cell
-        is_mandatory: true
-dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: false
-        # language=json
-        result_example: '{}'
-default_result_value: ''
-creator: Admin
+    is_mandatory: false
+    name: Worksheet Name
+    type: string
+-   default_value: A12
+    description: The cell you would like to update in the sheet
+    is_mandatory: true
+    name: Cell
+    type: string
+-   default_value: <Value>
+    description: The value you would like to update in the cell
+    is_mandatory: true
+    name: Value
+    type: string
 script_result_name: ScriptResult

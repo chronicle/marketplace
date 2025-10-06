@@ -30,7 +30,6 @@ from typing import TYPE_CHECKING, Any, TypeAlias
 import rich
 import toml
 
-import mp.core
 import mp.core.constants
 import mp.core.file_utils
 import mp.core.unix
@@ -45,6 +44,7 @@ if TYPE_CHECKING:
     import pathlib
     from collections.abc import Mapping, MutableMapping
 
+    from mp.core.data_models.action.dynamic_results_metadata import DynamicResultsMetadata
     from mp.core.data_models.custom_families.metadata import NonBuiltCustomFamily
     from mp.core.data_models.integration import Integration
     from mp.core.data_models.mapping_rules.metadata import NonBuiltMappingRule
@@ -140,6 +140,18 @@ class DeconstructIntegration:
                 self.integration.metadata.svg_logo, resources_dir / LOGO_FILE
             )
 
+    def _create_actions_json_example_files(self) -> None:
+        resources_dir: pathlib.Path = self.out_path / RESOURCES_DIR
+        for action_name, action_metadata in self.integration.actions_metadata.items():
+            drms: list[DynamicResultsMetadata] = action_metadata.dynamic_results_metadata
+            for drm in drms:
+                if not drm.result_example:
+                    continue
+
+                json_file_name: str = f"{action_name}_{drm.result_name}_example.json"
+                json_file_path: pathlib.Path = resources_dir / json_file_name
+                mp.core.file_utils.write_str_to_json_file(json_file_path, drm.result_example)
+
     def _create_definition_file(self) -> None:
         def_file: pathlib.Path = self.out_path / mp.core.constants.DEFINITION_FILE
         mp.core.file_utils.write_yaml_to_file(
@@ -171,6 +183,7 @@ class DeconstructIntegration:
             mp.core.file_utils.write_yaml_to_file(mapping, mr)
 
     def _create_scripts_dirs(self) -> None:
+        self._create_actions_json_example_files()
         self._create_scripts_dir(
             repo_dir=mp.core.constants.OUT_ACTION_SCRIPTS_DIR,
             out_dir=mp.core.constants.ACTIONS_DIR,

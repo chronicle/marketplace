@@ -1,24 +1,22 @@
-name: Download File To Path
-description: 'Downloads a file stored in Google Drive to a specific path '
-integration_identifier: Google Drive
-parameters:
-    -   name: File Id
-        default_value: <file_id>
-        type: string
-        description: The file Id is presented in the file URL. See example - https://drive.google.com/drive/u/0/folders/{file-id}
-        is_mandatory: true
-    -   name: Folder Path
-        default_value: /temp
-        type: string
-        description: 'The folder path chosen to save the file you want to download from
-        Google Drive. '
-        is_mandatory: false
-dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: "{\n  \"name\": \"image.png\",\n  \"type\": \"image/png\",\n \
-        \ \"size\": \"208349\",\n  \"saved_to\": \"/temp/image.png\"\n}"
-default_result_value: ''
 creator: Admin
+default_result_value: ''
+description: 'Downloads a file stored in Google Drive to a specific path '
+dynamic_results_metadata:
+-   result_example_path: resources/DownloadFileToPath_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: Google Drive
+name: Download File To Path
+parameters:
+-   default_value: <file_id>
+    description: The file Id is presented in the file URL. See example - https://drive.google.com/drive/u/0/folders/{file-id}
+    is_mandatory: true
+    name: File Id
+    type: string
+-   default_value: /temp
+    description: 'The folder path chosen to save the file you want to download from
+        Google Drive. '
+    is_mandatory: false
+    name: Folder Path
+    type: string
 script_result_name: ScriptResult

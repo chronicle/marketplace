@@ -1,35 +1,27 @@
-name: Custom Query
+creator: TehilaGourary
+default_result_value: ''
 description: 'Custom query
 
     See the documentation: "https://docs.fp.tools/"'
+dynamic_results_metadata:
+-   result_example_path: resources/CustomQuery_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
 integration_identifier: Flashpoint
+name: Custom Query
 parameters:
-    -   name: Query Content
-        default_value: "{\n  \"query\": \"malcious\",\n  \"limit\": \"100\",\n  \"start_date\"\
+-   default_value: "{\n  \"query\": \"malcious\",\n  \"limit\": \"100\",\n  \"start_date\"\
         : \"2020-02-26T14:49:07Z\",\n  \"end_date\": \"2020-11-26T14:49:07Z\",\n \
         \ \"search_tags\": \"malware\",\n  \"sort_timestamp\": \"des\"\n}"
-        type: code
-        description: The content of the query to search.
-        is_mandatory: true
-    -   name: New Query URL
-        default_value: /all/search
-        type: string
-        description: 'The new query URL path.
+    description: The content of the query to search.
+    is_mandatory: true
+    name: Query Content
+    type: code
+-   default_value: /all/search
+    description: 'The new query URL path.
 
         /all/search'
-        is_mandatory: true
-dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: "[\r\n  {\r\n    \"Attribute\": [\r\n      {\r\n        \"category\"\
-        : \"string\",\r\n        \"comment\": \"string\",\r\n        \"fpid\": {},\r\
-        \n        \"href\": {},\r\n        \"timestamp\": 0,\r\n        \"type\":\
-        \ \"string\",\r\n        \"uuid\": \"string\",\r\n        \"value\": {}\r\n\
-        \      }\r\n    ],\r\n    \"RelatedEvent\": {},\r\n    \"Tag\": [\r\n    \
-        \  {\r\n        \"name\": \"string\"\r\n      }\r\n    ],\r\n    \"attribute_count\"\
-        : 0,\r\n    \"date\": \"string\",\r\n    \"event_creator_email\": \"string\"\
-        ,\r\n    \"href\": \"string\",\r\n    \"uuid\": \"string\"\r\n  }\r\n]"
-default_result_value: ''
-creator: TehilaGourary
+    is_mandatory: true
+    name: New Query URL
+    type: string
 script_result_name: ScriptResult

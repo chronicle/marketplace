@@ -1,12 +1,11 @@
-name: Ping
-description: Test connectivity with Google Sheets
-integration_identifier: Google Sheets
-parameters: [ ]
-dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: '{}'
-default_result_value: ''
 creator: Admin
+default_result_value: ''
+description: Test connectivity with Google Sheets
+dynamic_results_metadata:
+-   result_example_path: null
+    result_name: JsonResult
+    show_result: true
+integration_identifier: Google Sheets
+name: Ping
+parameters: []
 script_result_name: ScriptResult

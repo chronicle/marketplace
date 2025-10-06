@@ -1,38 +1,37 @@
-name: Math Functions
+creator: Robert
+default_result_value: ''
 description: "A set of built-in Python functions - \nAbs - returns the absolute value\
     \ of a number\nFloat - returns a floating point number\nDisplay - converts the\
     \ number to include commas where needed\nHex - converts a number into a hexadecimal\
     \ value\nInt - returns an integer number\nMax - returns the largest item in an\
     \ iterable \nMin - returns the smallest item in an iterable\nRound - rounds a\
     \ number\nSort - returns a sorted number\nSum - sums the items of an iterator"
-integration_identifier: Functions
-parameters:
-    -   name: Function
-        default_value: Max
-        type: ddl
-        optional_values:
-            - Max
-            - Min
-            - Round
-            - Sort
-            - Sum
-            - Float
-            - Hex
-            - Int
-            - Abs
-            - Display
-        description: Select the Math Function you would like to run on the number
-        is_mandatory: true
-    -   name: Numbers
-        default_value: 13.5,-90,566,11.32
-        type: string
-        description: The numbers you would like to run the Math function on.
-        is_mandatory: true
 dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: '{}'
-default_result_value: ''
-creator: Robert
+-   result_example_path: null
+    result_name: JsonResult
+    show_result: true
+integration_identifier: Functions
+name: Math Functions
+parameters:
+-   default_value: Max
+    description: Select the Math Function you would like to run on the number
+    is_mandatory: true
+    name: Function
+    optional_values:
+    - Max
+    - Min
+    - Round
+    - Sort
+    - Sum
+    - Float
+    - Hex
+    - Int
+    - Abs
+    - Display
+    type: ddl
+-   default_value: 13.5,-90,566,11.32
+    description: The numbers you would like to run the Math function on.
+    is_mandatory: true
+    name: Numbers
+    type: string
 script_result_name: ScriptResult

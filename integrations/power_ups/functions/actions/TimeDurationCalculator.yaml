@@ -1,37 +1,36 @@
-name: Time Duration Calculator
+creator: Rob
+default_result_value: ''
 description: The Time Duration Calculator will calculate the time that has elapsed/difference
     between two dates with time.
+dynamic_results_metadata:
+-   result_example_path: null
+    result_name: JsonResult
+    show_result: true
 integration_identifier: Functions
+name: Time Duration Calculator
 parameters:
-    -   name: Input DateTime 1
-        default_value: ''
-        type: string
-        description: The first input datetime value.  Supports either strftime format
-            or "now" for the current time.
-        is_mandatory: true
-    -   name: Input DateTime 1 Format
-        default_value: '%Y-%m-%dT%H:%M:%S%z'
-        type: string
-        description: 'The strftime format of the DateTime string.
+-   default_value: ''
+    description: The first input datetime value.  Supports either strftime format
+        or "now" for the current time.
+    is_mandatory: true
+    name: Input DateTime 1
+    type: string
+-   default_value: '%Y-%m-%dT%H:%M:%S%z'
+    description: 'The strftime format of the DateTime string.
 
         https://strftime.org/'
-        is_mandatory: true
-    -   name: Input DateTime 2
-        default_value: now
-        type: string
-        description: The second input datetime value.  Supports either strftime format
-            or "now" for the current time.
-        is_mandatory: true
-    -   name: Input DateTime 2 Format
-        default_value: '%Y-%m-%dT%H:%M:%S%z'
-        type: string
-        description: The strftime format of Input DateTime 2.
-        is_mandatory: true
-dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: '{}'
-default_result_value: ''
-creator: Rob
+    is_mandatory: true
+    name: Input DateTime 1 Format
+    type: string
+-   default_value: now
+    description: The second input datetime value.  Supports either strftime format
+        or "now" for the current time.
+    is_mandatory: true
+    name: Input DateTime 2
+    type: string
+-   default_value: '%Y-%m-%dT%H:%M:%S%z'
+    description: The strftime format of Input DateTime 2.
+    is_mandatory: true
+    name: Input DateTime 2 Format
+    type: string
 script_result_name: seconds

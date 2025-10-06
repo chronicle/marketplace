@@ -1,0 +1,74 @@
+{
+    "results": [
+        {
+            "address": "10.50.8.13",
+            "comment": "",
+            "compartment_id": "",
+            "created_at": "2024-09-04T12:20:38.326472Z",
+            "dhcp_info": null,
+            "disable_dhcp": false,
+            "discovery_attrs": null,
+            "discovery_metadata": null,
+            "external_keys": null,
+            "host": null,
+            "hwaddr": "",
+            "id": "ipam/address/182225cf-6ab8-11ef-8d2e-669fd47b53f9",
+            "interface": "",
+            "names": [
+                {
+                    "name": "gigavue-fm-6501",
+                    "type": "lease"
+                }
+            ],
+            "parent": "ipam/subnet/8abe72ce-fcad-11ee-9624-4a0e9455f8d2",
+            "protocol": "ip4",
+            "range": "ipam/range/fb7bfaf8-24d1-11ef-9e44-e26969575d2b",
+            "space": "ipam/ip_space/29b07f2d-fca7-11ee-952b-26d521eb7155",
+            "state": "used",
+            "tags": {
+                "Snow_cmdb_table_name": "cmdb_ci_ip_device",
+                "Snow_sys_id": "1d9b1bde9316121027d9369d1dba1091"
+            },
+            "updated_at": "2024-12-08T12:45:50.421331Z",
+            "usage": [
+                "DHCP LEASED",
+                "DHCP RANGE"
+            ]
+        },
+        {
+            "address": "10.50.7.89",
+            "comment": "",
+            "compartment_id": "",
+            "created_at": "2024-09-25T06:33:34.317431Z",
+            "dhcp_info": null,
+            "disable_dhcp": false,
+            "discovery_attrs": null,
+            "discovery_metadata": null,
+            "external_keys": null,
+            "host": null,
+            "hwaddr": "",
+            "id": "ipam/address/16bb0923-7b08-11ef-8e4b-861b01ad009b",
+            "interface": "",
+            "names": [
+                {
+                    "name": "ce",
+                    "type": "lease"
+                }
+            ],
+            "parent": "ipam/subnet/8abe72ce-fcad-11ee-9624-4a0e9455f8d2",
+            "protocol": "ip4",
+            "range": "ipam/range/c391412b-fcad-11ee-9624-4a0e9455f8d2",
+            "space": "ipam/ip_space/29b07f2d-fca7-11ee-952b-26d521eb7155",
+            "state": "used",
+            "tags": {
+                "Snow_cmdb_table_name": "cmdb_ci_ip_device",
+                "Snow_sys_id": "0f8b5756479212106f74bc8f016d43ed"
+            },
+            "updated_at": "2024-12-08T12:45:41.024987Z",
+            "usage": [
+                "DHCP LEASED",
+                "DHCP RANGE"
+            ]
+        }
+    ]
+}

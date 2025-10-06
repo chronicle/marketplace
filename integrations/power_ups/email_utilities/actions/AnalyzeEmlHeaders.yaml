@@ -1,23 +1,22 @@
-name: Analyze EML Headers
+creator: Rob
+default_result_value: ''
 description: This actions gets a base64 EML or list of headers and extracts/analyses
     its headers
-integration_identifier: EmailUtilities
-parameters:
-    -   name: Base64 EML
-        default_value: ''
-        type: string
-        description: Base64 string of an EML file.
-        is_mandatory: false
-    -   name: Header List
-        default_value: ''
-        type: string
-        description: Headers list in a JSON format.
-        is_mandatory: false
 dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: '{}'
-default_result_value: ''
-creator: Rob
+-   result_example_path: null
+    result_name: JsonResult
+    show_result: true
+integration_identifier: EmailUtilities
+name: Analyze EML Headers
+parameters:
+-   default_value: ''
+    description: Base64 string of an EML file.
+    is_mandatory: false
+    name: Base64 EML
+    type: string
+-   default_value: ''
+    description: Headers list in a JSON format.
+    is_mandatory: false
+    name: Header List
+    type: string
 script_result_name: ScriptResult

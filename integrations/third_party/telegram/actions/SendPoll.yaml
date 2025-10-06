@@ -1,50 +1,38 @@
-name: Send Poll
+creator: TehilaGourary
+default_result_value: ''
 description: 'Sends a poll with pre-made answers options to a chat.
 
     '
+dynamic_results_metadata:
+-   result_example_path: resources/SendPoll_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
 integration_identifier: Telegram
+name: Send Poll
 parameters:
-    -   name: Chat ID
-        default_value: '123456'
-        type: string
-        description: 'The chat ID which you want the bot to send the question to.
+-   default_value: '123456'
+    description: 'The chat ID which you want the bot to send the question to.
 
         Note: non-anonymous polls can''t be sent to channel chats'
-        is_mandatory: true
-    -   name: Question
-        default_value: ''
-        type: string
-        description: The question you want to send to the chat.
-        is_mandatory: true
-    -   name: Options
-        default_value: '["option 1", "option 2"]'
-        type: content
-        description: "The answer options of the question you want to ask. \nNote: the\
+    is_mandatory: true
+    name: Chat ID
+    type: string
+-   default_value: ''
+    description: The question you want to send to the chat.
+    is_mandatory: true
+    name: Question
+    type: string
+-   default_value: '["option 1", "option 2"]'
+    description: "The answer options of the question you want to ask. \nNote: the\
         \ options should be array of String"
-        is_mandatory: true
-    -   name: Is Anonymous
-        default_value: 'false'
-        type: boolean
-        description: 'Determine if the answers will be anonymous.
+    is_mandatory: true
+    name: Options
+    type: content
+-   default_value: 'false'
+    description: 'Determine if the answers will be anonymous.
 
         Note: none anonymous question can''t sent to channel chats.'
-        is_mandatory: false
-dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: "{\r\n\t\"ok\": true,\r\n\t\"result\": {\r\n\t\t\"message_id\"\
-        : 35,\r\n\t\t\"sender_chat\": {\r\n\t\t\t\"id\": -1111111,\r\n\t\t\t\"title\"\
-        : \"test\",\r\n\t\t\t\"username\": \"test\",\r\n\t\t\t\"type\": \"channel\"\
-        \r\n\t\t},\r\n\t\t\"chat\": {\r\n\t\t\t\"id\": -1111111,\r\n\t\t\t\"title\"\
-        : \"test\",\r\n\t\t\t\"username\": \"test\",\r\n\t\t\t\"type\": \"channel\"\
-        \r\n\t\t},\r\n\t\t\"date\": 1605435080,\r\n\t\t\"poll\": {\r\n\t\t\t\"id\"\
-        : \"123456789\",\r\n\t\t\t\"question\": \"Do you confirm\",\r\n\t\t\t\"options\"\
-        : [{\r\n\t\t\t\t\"text\": \"Yes\",\r\n\t\t\t\t\"voter_count\": 0\r\n\t\t\t\
-        }, {\r\n\t\t\t\t\"text\": \"No\",\r\n\t\t\t\t\"voter_count\": 0\r\n\t\t\t\
-        }],\r\n\t\t\t\"total_voter_count\": 0,\r\n\t\t\t\"is_closed\": false,\r\n\t\
-        \t\t\"is_anonymous\": true,\r\n\t\t\t\"type\": \"regular\",\r\n\t\t\t\"allows_multiple_answers\"\
-        : false\r\n\t\t}\r\n\t}\r\n}"
-default_result_value: ''
-creator: TehilaGourary
+    is_mandatory: false
+    name: Is Anonymous
+    type: boolean
 script_result_name: ScriptResult

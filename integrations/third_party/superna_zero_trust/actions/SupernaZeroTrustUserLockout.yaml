@@ -1,21 +1,20 @@
-name: Superna Zero Trust User Lockout
+creator: 015f9a45-808a-4c76-8598-adad98670462
+default_result_value: ''
 description: Use this playbook to lockout a suspected user from all Superna protected
     NAS storage,  This will resolve user permissions to data and apply a deny read
     permission to SMB shares
-integration_identifier: SupernaZeroTrust
-parameters:
-    -   name: UserName
-        default_value: demo\demo1
-        type: string
-        description: Input the user to be locked out of NAS storage in format domain\username
-            or user@domain name
-        is_mandatory: true
 dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: '{}'
-default_result_value: ''
-creator: 015f9a45-808a-4c76-8598-adad98670462
+-   result_example_path: null
+    result_name: JsonResult
+    show_result: true
+integration_identifier: SupernaZeroTrust
 is_async: true
+name: Superna Zero Trust User Lockout
+parameters:
+-   default_value: demo\demo1
+    description: Input the user to be locked out of NAS storage in format domain\username
+        or user@domain name
+    is_mandatory: true
+    name: UserName
+    type: string
 script_result_name: ScriptResult

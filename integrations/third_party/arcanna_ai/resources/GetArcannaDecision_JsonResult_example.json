@@ -1,0 +1,11 @@
+{
+    "event_id": "3207204311332",
+    "ingest_timestamp": "2024-05-30T07:06:02.020431Z",
+    "status": "OK",
+    "result": "class_1",
+    "result_label": "Escalate",
+    "error_message": "",
+    "bucket_state": "new",
+    "outlier": false,
+    "confidence_score": 86.43
+}

@@ -1,0 +1,31 @@
+{
+    "id": 559,
+    "assigned_by": {
+        "id": 22237,
+        "username": "api_client_25cb417aab214139ae8c7394e2b1a3db"
+    },
+    "date_assigned": "2024-11-21T08:26:26.766207Z",
+    "date_resolved": null,
+    "events": [
+        {
+            "assignment_id": 559,
+            "actor": 22237,
+            "event_type": "created",
+            "datetime": "2024-11-21T08:26:26Z",
+            "context": {
+                "to": 31,
+                "entity_t_score": 0,
+                "entity_c_score": 0
+            }
+        }
+    ],
+    "outcome": null,
+    "resolved_by": null,
+    "triaged_detections": null,
+    "host_id": null,
+    "account_id": 485,
+    "assigned_to": {
+        "id": 31,
+        "username": "samir.hadfa@crestdatasys.com"
+    }
+}

@@ -1,0 +1,5 @@
+{
+    "graph_def": "string",
+    "metric_query": "string",
+    "snapshot_url": "https://app.datadoghq.com/s/f12345678/aaa-bbb-ccc"
+}

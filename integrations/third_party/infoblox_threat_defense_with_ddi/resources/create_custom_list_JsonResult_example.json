@@ -1,0 +1,19 @@
+{
+    "confidence_level": "MEDIUM",
+    "created_time": "2025-07-07T09:01:38Z",
+    "description": "Test action",
+    "id": 831832,
+    "item_count": 1,
+    "items": [
+        "example1.somedomain.com"
+    ],
+    "items_described": [],
+    "name": "test-89",
+    "policies": [],
+    "tags": {
+        "Test2": "SS2"
+    },
+    "threat_level": "INFO",
+    "type": "custom_list",
+    "updated_time": "2025-07-07T09:01:38Z"
+}

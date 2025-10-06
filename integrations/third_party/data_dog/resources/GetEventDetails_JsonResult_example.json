@@ -1,0 +1,118 @@
+{
+    "event": {
+        "date_happened": 1614781413,
+        "alert_type": "error",
+        "resource": "/api/v1/events/<event_id>",
+        "title": "Event Title",
+        "url": "/event/event?id=<event_id>",
+        "text": "",
+        "tags": [
+            "tag1",
+            "tag2"
+        ],
+        "id": "< event_id >",
+        "priority": "normal",
+        "host": "None",
+        "device_name": "None",
+        "payload": {
+            "transition": {
+                "trans_name": "Triggered",
+                "trans_type": "alert"
+            },
+            "monitor": {
+                "created_at": 1614781411000,
+                "name": "",
+                "tags": [],
+                "deleted": null,
+                "templated_name": "",
+                "org_id": 123456,
+                "modified": 1614781411000,
+                "options": {
+                    "notify_audit": false,
+                    "locked": false,
+                    "timeout_h": 0,
+                    "silenced": {},
+                    "include_tags": true,
+                    "thresholds": {
+                        "critical": 50.0,
+                        "warning": 40.0
+                    },
+                    "new_host_delay": 300,
+                    "queryConfig": {
+                        "logset": {
+                            "name": "*"
+                        },
+                        "track": "logs",
+                        "timeRange": {
+                            "to": 1614767945471,
+                            "live": true,
+                            "from": 1614767045471
+                        },
+                        "queryString": "",
+                        "indexes": [
+                            "*"
+                        ],
+                        "queryIsFailed": false
+                    },
+                    "notify_no_data": false,
+                    "enable_logs_sample": true,
+                    "groupby_simple_monitor": false,
+                    "renotify_interval": 0,
+                    "no_data_timeframe": 2,
+                    "aggregation": {
+                        "metric": "count",
+                        "type": "count",
+                        "groupBy": "tag_kube_namespace"
+                    }
+                },
+                "query": "",
+                "message": "",
+                "type": "log alert",
+                "id": 22222
+            },
+            "text_only_message": "Namespace: Namespace",
+            "states": {
+                "dest_state": "Alert",
+                "source_state": "OK"
+            },
+            "avalanche_window": null,
+            "result": {
+                "group": "kube_namespace:kube_namespace",
+                "display_logs_sample": {},
+                "result_ts": 1614781411,
+                "rum_url": "",
+                "trace_analytics_url": "",
+                "state_counts": {
+                    "1": 1,
+                    "0": 0,
+                    "3": 0,
+                    "2": 0,
+                    "5": 0,
+                    "6": 0
+                },
+                "avalanche": false,
+                "groups": {
+                    "kube_namespace:kub_namespace": {
+                        "status": 1,
+                        "latest_ts": 0
+                    }
+                },
+                "logs_url": "",
+                "group_key": "kube_namespace",
+                "state_id": 1,
+                "result_id": 0,
+                "num_groups": 1,
+                "metadata": {
+                    "to_js_ts": 1614781413000,
+                    "monitor_id": 111111,
+                    "snap_url": "",
+                    "from_js_ts": 1614738213000,
+                    "alert_url": "/",
+                    "process_url": "",
+                    "is_usertest": true
+                }
+            },
+            "alert_cycle_key": 0
+        }
+    }
+}

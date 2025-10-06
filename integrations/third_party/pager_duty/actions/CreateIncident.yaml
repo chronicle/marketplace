@@ -1,84 +1,37 @@
-name: Create Incident
+creator: tcondello
+default_result_value: ''
 description: 'Create a new incident with the given parameters.
 
     '
-integration_identifier: PagerDuty
-parameters:
-    -   name: Details
-        default_value: A disk is getting full on this machine. You should investigate
-            what is causing the disk to fill, and ensure that there is an automated process
-            in place for ensuring data is rotated (eg. logs should have logrotate around
-            them). If data is expected to stay on this disk forever, you should start
-            planning to scale up to a larger disk.
-        type: string
-        description: ''
-        is_mandatory: true
-    -   name: Title
-        default_value: The server is on fire.
-        type: string
-        description: ''
-        is_mandatory: true
-    -   name: Email
-        default_value: tcondello@siemplify.co
-        type: string
-        description: ''
-        is_mandatory: true
-    -   name: Urgency
-        default_value: high
-        type: string
-        description: ''
-        is_mandatory: true
 dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: "{\n    \"incident\": {\n        \"incident_number\": 5,\n   \
-        \     \"title\": \"TEST TEST 3\",\n        \"description\": \"TEST TEST 3\"\
-        ,\n        \"created_at\": \"2023-04-03T09:42:54Z\",\n        \"status\":\
-        \ \"triggered\",\n        \"incident_key\": \"4e529b3b3494498bba65e6f58e3ae8d7\"\
-        ,\n        \"service\": {\n            \"id\": \"PE2WRHD\",\n            \"\
-        type\": \"service_reference\",\n            \"summary\": \"Community OnCall\"\
-        ,\n            \"self\": \"https://api.eu.pagerduty.com/services/PE2WRHD\"\
-        ,\n            \"html_url\": \"https://google-com-2.eu.pagerduty.com/service-directory/PE2WRHD\"\
-        \n        },\n        \"assignments\": [\n            {\n                \"\
-        at\": \"2023-04-03T09:42:54Z\",\n                \"assignee\": {\n       \
-        \             \"id\": \"PCRYIVB\",\n                    \"type\": \"user_reference\"\
-        ,\n                    \"summary\": \"Gal Pk\",\n                    \"self\"\
-        : \"https://api.eu.pagerduty.com/users/PCRYIVB\",\n                    \"\
-        html_url\": \"https://google-com-2.eu.pagerduty.com/users/PCRYIVB\"\n    \
-        \            }\n            }\n        ],\n        \"assigned_via\": \"escalation_policy\"\
-        ,\n        \"last_status_change_at\": \"2023-04-03T09:42:54Z\",\n        \"\
-        first_trigger_log_entry\": {\n            \"id\": \"RS4E640MOTRXX7NN2STVY3C35D\"\
-        ,\n            \"type\": \"trigger_log_entry_reference\",\n            \"\
-        summary\": \"Triggered through the website.\",\n            \"self\": \"https://api.eu.pagerduty.com/log_entries/RS4E640MOTRXX7NN2STVY3C35D\"\
-        ,\n            \"html_url\": \"https://google-com-2.eu.pagerduty.com/incidents/Q1NJENORB5TPAU/log_entries/RS4E640MOTRXX7NN2STVY3C35D\"\
-        \n        },\n        \"alert_counts\": {\n            \"all\": 0,\n     \
-        \       \"triggered\": 0,\n            \"resolved\": 0\n        },\n     \
-        \   \"is_mergeable\": true,\n        \"escalation_policy\": {\n          \
-        \  \"id\": \"PMTZZA8\",\n            \"type\": \"escalation_policy_reference\"\
-        ,\n            \"summary\": \"Community OnCall-ep\",\n            \"self\"\
-        : \"https://api.eu.pagerduty.com/escalation_policies/PMTZZA8\",\n        \
-        \    \"html_url\": \"https://google-com-2.eu.pagerduty.com/escalation_policies/PMTZZA8\"\
-        \n        },\n        \"teams\": [],\n        \"impacted_services\": [\n \
-        \           {\n                \"id\": \"PE2WRHD\",\n                \"type\"\
-        : \"service_reference\",\n                \"summary\": \"Community OnCall\"\
-        ,\n                \"self\": \"https://api.eu.pagerduty.com/services/PE2WRHD\"\
-        ,\n                \"html_url\": \"https://google-com-2.eu.pagerduty.com/service-directory/PE2WRHD\"\
-        \n            }\n        ],\n        \"pending_actions\": [],\n        \"\
-        acknowledgements\": [],\n        \"basic_alert_grouping\": null,\n       \
-        \ \"alert_grouping\": null,\n        \"last_status_change_by\": {\n      \
-        \      \"id\": \"PE2WRHD\",\n            \"type\": \"service_reference\",\n\
-        \            \"summary\": \"Community OnCall\",\n            \"self\": \"\
-        https://api.eu.pagerduty.com/services/PE2WRHD\",\n            \"html_url\"\
-        : \"https://google-com-2.eu.pagerduty.com/service-directory/PE2WRHD\"\n  \
-        \      },\n        \"priority\": null,\n        \"incidents_responders\":\
-        \ [],\n        \"responder_requests\": [],\n        \"subscriber_requests\"\
-        : [],\n        \"urgency\": \"low\",\n        \"id\": \"Q1NJENORB5TPAU\",\n\
-        \        \"type\": \"incident\",\n        \"summary\": \"[#5] TEST TEST 3\"\
-        ,\n        \"self\": \"https://api.eu.pagerduty.com/incidents/Q1NJENORB5TPAU\"\
-        ,\n        \"html_url\": \"https://google-com-2.eu.pagerduty.com/incidents/Q1NJENORB5TPAU\"\
-        ,\n        \"body\": {\n            \"details\": \"TEST TEST  3\"\n      \
-        \  }\n    }\n}"
-default_result_value: ''
-creator: tcondello
+-   result_example_path: resources/CreateIncident_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: PagerDuty
+name: Create Incident
+parameters:
+-   default_value: A disk is getting full on this machine. You should investigate
+        what is causing the disk to fill, and ensure that there is an automated process
+        in place for ensuring data is rotated (eg. logs should have logrotate around
+        them). If data is expected to stay on this disk forever, you should start
+        planning to scale up to a larger disk.
+    description: ''
+    is_mandatory: true
+    name: Details
+    type: string
+-   default_value: The server is on fire.
+    description: ''
+    is_mandatory: true
+    name: Title
+    type: string
+-   default_value: tcondello@siemplify.co
+    description: ''
+    is_mandatory: true
+    name: Email
+    type: string
+-   default_value: high
+    description: ''
+    is_mandatory: true
+    name: Urgency
+    type: string
 script_result_name: ScriptResult

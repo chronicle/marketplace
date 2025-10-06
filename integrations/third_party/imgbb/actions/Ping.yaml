@@ -1,12 +1,11 @@
-name: Ping
-description: Test connectivity with Imgbb
-integration_identifier: Imgbb
-parameters: [ ]
-dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: false
-        # language=json
-        result_example: '{}'
-default_result_value: ''
 creator: TehilaGourary
+default_result_value: ''
+description: Test connectivity with Imgbb
+dynamic_results_metadata:
+-   result_example_path: null
+    result_name: JsonResult
+    show_result: false
+integration_identifier: Imgbb
+name: Ping
+parameters: []
 script_result_name: ScriptResult

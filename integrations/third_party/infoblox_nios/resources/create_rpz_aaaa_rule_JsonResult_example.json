@@ -1,0 +1,12 @@
+{
+    "_ref": "record:rpz:aaaa:ipaddress/ZG5zLmJpbmRfYWFhYSQuX2RlZmF1bHQuY29tLnJwei50aHJlYXQscnB6LWlwLmQ2MC5lMzIuZjFiOS56ei4yLjEyOCwyMDAxOmRiODo4NWEzOjo4YTJlOjM3MDo3MzM0:d60%3Ae32%3Af1b9%3A%3A2.threat.rpz.com/default",
+    "comment": "nightly-test-a-sub",
+    "disable": false,
+    "extattrs": {},
+    "ipv6addr": "2001:db8:85a3::8a2e:370:7334",
+    "name": "d60:e32:f1b9::2.threat.rpz.com",
+    "rp_zone": "threat.rpz.com",
+    "use_ttl": false,
+    "view": "default",
+    "zone": "threat.rpz.com"
+}

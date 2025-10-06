@@ -1,0 +1,33 @@
+{
+    "light_id": "2",
+    "info": {
+        "light reachability": true,
+        "results": [
+            {
+                "success": {
+                    "/lights/2/state/hue": 10000
+                }
+            },
+            {
+                "success": {
+                    "/lights/2/state/sat": 254
+                }
+            },
+            {
+                "success": {
+                    "/lights/2/state/bri": 254
+                }
+            },
+            {
+                "success": {
+                    "/lights/2/state/on": false
+                }
+            },
+            {
+                "success": {
+                    "/lights/3/state/alert": "none"
+                }
+            }
+        ]
+    }
+}

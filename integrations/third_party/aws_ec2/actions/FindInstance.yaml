@@ -1,4 +1,5 @@
-name: Find Instance
+creator: TehilaGourary
+default_result_value: ''
 description: 'Fetch the information of a specific instance.
 
     Note: if you do not specify instance IDs or filters, the output includes information
@@ -7,113 +8,35 @@ description: 'Fetch the information of a specific instance.
     For more information:
 
     https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/ec2.html#EC2.Client.describe_instances'
+dynamic_results_metadata:
+-   result_example_path: resources/FindInstance_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
 integration_identifier: AWS - EC2
+name: Find Instance
 parameters:
-    -   name: Instance Ids
-        default_value: ''
-        type: string
-        description: 'The instance IDs which you want to fetch.
+-   default_value: ''
+    description: 'The instance IDs which you want to fetch.
 
         For example: instanceID1,instanceID2
 
         '
-        is_mandatory: false
-    -   name: Filters
-        default_value: '{"Name": "instance-type", "Values": ["t2.micro"]}'
-        type: content
-        description: "The filters of the instances you want to fetch.\nFor example: \n\
+    is_mandatory: false
+    name: Instance Ids
+    type: string
+-   default_value: '{"Name": "instance-type", "Values": ["t2.micro"]}'
+    description: "The filters of the instances you want to fetch.\nFor example: \n\
         {\"NameFilter1\": \"NameFilter1\", \"Values\": [\"value1\", \"value2\"]}"
-        is_mandatory: false
-    -   name: Max Results
-        default_value: ''
-        type: string
-        description: 'The maximum number of results to return (between 5 to 1000)
+    is_mandatory: false
+    name: Filters
+    type: content
+-   default_value: ''
+    description: 'The maximum number of results to return (between 5 to 1000)
 
         For example: 5
 
         '
-        is_mandatory: false
-dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: "{\r\n\t\"Reservations\": [{\r\n\t\t\"Groups\": [{\r\n\t\t\t\"\
-        GroupName\": \"string\",\r\n\t\t\t\"GroupId\": \"string\"\r\n\t\t}],\r\n\t\
-        \t\"Instances\": [{\r\n\t\t\t\"AmiLaunchIndex\": 123,\r\n\t\t\t\"ImageId\"\
-        : \"string\",\r\n\t\t\t\"InstanceId\": \"string\",\r\n\t\t\t\"InstanceType\"\
-        : \"t1.micro\",\r\n\t\t\t\"KernelId\": \"string\",\r\n\t\t\t\"KeyName\": \"\
-        string\",\r\n\t\t\t\"LaunchTime\": \"1.1.20\",\r\n\t\t\t\"Monitoring\": {\r\
-        \n\t\t\t\t\"State\": \"disabled\"\r\n\t\t\t},\r\n\t\t\t\"Placement\": {\r\n\
-        \t\t\t\t\"AvailabilityZone\": \"string\",\r\n\t\t\t\t\"Affinity\": \"string\"\
-        ,\r\n\t\t\t\t\"GroupName\": \"string\",\r\n\t\t\t\t\"PartitionNumber\": 123,\r\
-        \n\t\t\t\t\"HostId\": \"string\",\r\n\t\t\t\t\"Tenancy\": \"default\",\r\n\
-        \t\t\t\t\"SpreadDomain\": \"string\",\r\n\t\t\t\t\"HostResourceGroupArn\"\
-        : \"string\"\r\n\t\t\t},\r\n\t\t\t\"Platform\": \"Windows\",\r\n\t\t\t\"PrivateDnsName\"\
-        : \"string\",\r\n\t\t\t\"PrivateIpAddress\": \"string\",\r\n\t\t\t\"ProductCodes\"\
-        : [{\r\n\t\t\t\t\"ProductCodeId\": \"string\",\r\n\t\t\t\t\"ProductCodeType\"\
-        : \"devpay\"\r\n\t\t\t}],\r\n\t\t\t\"PublicDnsName\": \"string\",\r\n\t\t\t\
-        \"PublicIpAddress\": \"string\",\r\n\t\t\t\"RamdiskId\": \"string\",\r\n\t\
-        \t\t\"State\": {\r\n\t\t\t\t\"Code\": 123,\r\n\t\t\t\t\"Name\": \"pending\"\
-        \r\n\t\t\t},\r\n\t\t\t\"StateTransitionReason\": \"string\",\r\n\t\t\t\"SubnetId\"\
-        : \"string\",\r\n\t\t\t\"VpcId\": \"string\",\r\n\t\t\t\"Architecture\": \"\
-        i386\",\r\n\t\t\t\"BlockDeviceMappings\": [{\r\n\t\t\t\t\"DeviceName\": \"\
-        string\",\r\n\t\t\t\t\"Ebs\": {\r\n\t\t\t\t\t\"AttachTime\": \"1.1.20\",\r\
-        \n\t\t\t\t\t\"DeleteOnTermination\": \"True\",\r\n\t\t\t\t\t\"Status\": \"\
-        attaching\",\r\n\t\t\t\t\t\"VolumeId\": \"string\"\r\n\t\t\t\t}\r\n\t\t\t\
-        }],\r\n\t\t\t\"ClientToken\": \"string\",\r\n\t\t\t\"EbsOptimized\": \"True\"\
-        ,\r\n\t\t\t\"EnaSupport\": \"True\",\r\n\t\t\t\"Hypervisor\": \"ovm\",\r\n\
-        \t\t\t\"IamInstanceProfile\": {\r\n\t\t\t\t\"Arn\": \"string\",\r\n\t\t\t\t\
-        \"Id\": \"string\"\r\n\t\t\t},\r\n\t\t\t\"InstanceLifecycle\": \"spot\",\r\
-        \n\t\t\t\"ElasticGpuAssociations\": [{\r\n\t\t\t\t\"ElasticGpuId\": \"string\"\
-        ,\r\n\t\t\t\t\"ElasticGpuAssociationId\": \"string\",\r\n\t\t\t\t\"ElasticGpuAssociationState\"\
-        : \"string\",\r\n\t\t\t\t\"ElasticGpuAssociationTime\": \"string\"\r\n\t\t\
-        \t}],\r\n\t\t\t\"ElasticInferenceAcceleratorAssociations\": [{\r\n\t\t\t\t\
-        \"ElasticInferenceAcceleratorArn\": \"string\",\r\n\t\t\t\t\"ElasticInferenceAcceleratorAssociationId\"\
-        : \"string\",\r\n\t\t\t\t\"ElasticInferenceAcceleratorAssociationState\":\
-        \ \"string\",\r\n\t\t\t\t\"ElasticInferenceAcceleratorAssociationTime\": \"\
-        1.1.20\"\r\n\t\t\t}],\r\n\t\t\t\"NetworkInterfaces\": [{\r\n\t\t\t\t\"Association\"\
-        : {\r\n\t\t\t\t\t\"CarrierIp\": \"string\",\r\n\t\t\t\t\t\"IpOwnerId\": \"\
-        string\",\r\n\t\t\t\t\t\"PublicDnsName\": \"string\",\r\n\t\t\t\t\t\"PublicIp\"\
-        : \"string\"\r\n\t\t\t\t},\r\n\t\t\t\t\"Attachment\": {\r\n\t\t\t\t\t\"AttachTime\"\
-        : \"1.1.20\",\r\n\t\t\t\t\t\"AttachmentId\": \"string\",\r\n\t\t\t\t\t\"DeleteOnTermination\"\
-        : \"True\",\r\n\t\t\t\t\t\"DeviceIndex\": \"111\",\r\n\t\t\t\t\t\"Status\"\
-        : \"attaching\",\r\n\t\t\t\t\t\"NetworkCardIndex\": \"111\"\r\n\t\t\t\t},\r\
-        \n\t\t\t\t\"Description\": \"string\",\r\n\t\t\t\t\"Groups\": [{\r\n\t\t\t\
-        \t\t\"GroupName\": \"string\",\r\n\t\t\t\t\t\"GroupId\": \"string\"\r\n\t\t\
-        \t\t}],\r\n\t\t\t\t\"Ipv6Addresses\": [{\r\n\t\t\t\t\t\"Ipv6Address\": \"\
-        string\"\r\n\t\t\t\t}],\r\n\t\t\t\t\"MacAddress\": \"string\",\r\n\t\t\t\t\
-        \"NetworkInterfaceId\": \"string\",\r\n\t\t\t\t\"OwnerId\": \"string\",\r\n\
-        \t\t\t\t\"PrivateDnsName\": \"string\",\r\n\t\t\t\t\"PrivateIpAddress\": \"\
-        string\",\r\n\t\t\t\t\"PrivateIpAddresses\": [{\r\n\t\t\t\t\t\"Association\"\
-        : {\r\n\t\t\t\t\t\t\"CarrierIp\": \"string\",\r\n\t\t\t\t\t\t\"IpOwnerId\"\
-        : \"string\",\r\n\t\t\t\t\t\t\"PublicDnsName\": \"string\",\r\n\t\t\t\t\t\t\
-        \"PublicIp\": \"string\"\r\n\t\t\t\t\t},\r\n\t\t\t\t\t\"Primary\": \"True\"\
-        ,\r\n\t\t\t\t\t\"PrivateDnsName\": \"string\",\r\n\t\t\t\t\t\"PrivateIpAddress\"\
-        : \"string\"\r\n\t\t\t\t}],\r\n\t\t\t\t\"SourceDestCheck\": \"True\",\r\n\t\
-        \t\t\t\"Status\": \"available\",\r\n\t\t\t\t\"SubnetId\": \"string\",\r\n\t\
-        \t\t\t\"VpcId\": \"string\",\r\n\t\t\t\t\"InterfaceType\": \"string\"\r\n\t\
-        \t\t}],\r\n\t\t\t\"OutpostArn\": \"string\",\r\n\t\t\t\"RootDeviceName\":\
-        \ \"string\",\r\n\t\t\t\"RootDeviceType\": \"ebs\",\r\n\t\t\t\"SecurityGroups\"\
-        : [{\r\n\t\t\t\t\"GroupName\": \"string\",\r\n\t\t\t\t\"GroupId\": \"string\"\
-        \r\n\t\t\t}],\r\n\t\t\t\"SourceDestCheck\": \"True\",\r\n\t\t\t\"SpotInstanceRequestId\"\
-        : \"string\",\r\n\t\t\t\"SriovNetSupport\": \"string\",\r\n\t\t\t\"StateReason\"\
-        : {\r\n\t\t\t\t\"Code\": \"string\",\r\n\t\t\t\t\"Message\": \"string\"\r\n\
-        \t\t\t},\r\n\t\t\t\"Tags\": [{\r\n\t\t\t\t\"Key\": \"string\",\r\n\t\t\t\t\
-        \"Value\": \"string\"\r\n\t\t\t}],\r\n\t\t\t\"VirtualizationType\": \"hvm\"\
-        ,\r\n\t\t\t\"CpuOptions\": {\r\n\t\t\t\t\"CoreCount\": \"123\",\r\n\t\t\t\t\
-        \"ThreadsPerCore\": \"123\"\r\n\t\t\t},\r\n\t\t\t\"CapacityReservationId\"\
-        : \"string\",\r\n\t\t\t\"CapacityReservationSpecification\": {\r\n\t\t\t\t\
-        \"CapacityReservationPreference\": \"open\",\r\n\t\t\t\t\"CapacityReservationTarget\"\
-        : {\r\n\t\t\t\t\t\"CapacityReservationId\": \"string\",\r\n\t\t\t\t\t\"CapacityReservationResourceGroupArn\"\
-        : \"string\"\r\n\t\t\t\t}\r\n\t\t\t},\r\n\t\t\t\"HibernationOptions\": {\r\
-        \n\t\t\t\t\"Configured\": \"True\"\r\n\t\t\t},\r\n\t\t\t\"Licenses\": [{\r\
-        \n\t\t\t\t\"LicenseConfigurationArn\": \"string\"\r\n\t\t\t}],\r\n\t\t\t\"\
-        MetadataOptions\": {\r\n\t\t\t\t\"State\": \"pending\",\r\n\t\t\t\t\"HttpTokens\"\
-        : \"optional\",\r\n\t\t\t\t\"HttpPutResponseHopLimit\": \"111\",\r\n\t\t\t\
-        \t\"HttpEndpoint\": \"disabled\"\r\n\t\t\t},\r\n\t\t\t\"EnclaveOptions\":\
-        \ {\r\n\t\t\t\t\"Enabled\": \"True\"\r\n\t\t\t}\r\n\t\t}],\r\n\t\t\"OwnerId\"\
-        : \"string\",\r\n\t\t\"RequesterId\": \"string\",\r\n\t\t\"ReservationId\"\
-        : \"string\"\r\n\t}],\r\n\t\"NextToken\": \"string\"\r\n}"
-default_result_value: ''
-creator: TehilaGourary
+    is_mandatory: false
+    name: Max Results
+    type: string
 script_result_name: ScriptResult

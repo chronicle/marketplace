@@ -1,39 +1,39 @@
-name: Add Analyst Note
+creator: admin
 description: Add an analyst note to previously enriched entities in Siemplify, to
     Recorded Future entities. Action will add the note to the relevant scope entities.
+dynamic_results_metadata: []
 integration_identifier: RecordedFutureIntelligence
+name: Add Analyst Note
 parameters:
-    -   name: Note Title
-        default_value: Note Title
-        type: string
-        description: Specify the title for the note
-        is_mandatory: true
-    -   name: Note Text
-        default_value: Note Text
-        type: string
-        description: Specify the Text for the note
-        is_mandatory: true
-    -   name: Topic
-        default_value: "None"
-        type: ddl
-        optional_values:
-            - None
-            - Actor Profile
-            - Analyst On-Demand Report
-            - Cyber Threat Analysis
-            - Flash Report
-            - Indicator
-            - Informational
-            - Malware/Tool Profile
-            - Source Profile
-            - Threat Lead
-            - Validated Intelligence Event
-            - Weekly Threat Landscape
-            - YARA Rule
-        description: Specify the relevant Note topic from the list, if needed.
-        is_mandatory: false
-dynamic_results_metadata: [ ]
-creator: admin
+-   default_value: Note Title
+    description: Specify the title for the note
+    is_mandatory: true
+    name: Note Title
+    type: string
+-   default_value: Note Text
+    description: Specify the Text for the note
+    is_mandatory: true
+    name: Note Text
+    type: string
+-   default_value: None
+    description: Specify the relevant Note topic from the list, if needed.
+    is_mandatory: false
+    name: Topic
+    optional_values:
+    - None
+    - Actor Profile
+    - Analyst On-Demand Report
+    - Cyber Threat Analysis
+    - Flash Report
+    - Indicator
+    - Informational
+    - Malware/Tool Profile
+    - Source Profile
+    - Threat Lead
+    - Validated Intelligence Event
+    - Weekly Threat Landscape
+    - YARA Rule
+    type: ddl
+script_result_name: note_id
 simulation_data_json: '{"Entities": ["FILEHASH", "DestinationURL", "CVE", "HOSTNAME",
     "ADDRESS"]}'
-script_result_name: note_id

@@ -1,0 +1,37 @@
+{
+    "unit": "cpu",
+    "aggregation_by": "avg",
+    "start_time": 1607040000000,
+    "end_time": 1610668799000,
+    "full_timeseries_points_list": [
+        [
+            1607040000000.0,
+            0.008314899947867048
+        ],
+        [
+            1607644800000.0,
+            0.04104587218344665
+        ],
+        [
+            1608249600000.0,
+            0.050120122766495044
+        ],
+        [
+            1608854400000.0,
+            0.007100906014306722
+        ],
+        [
+            1609459200000.0,
+            0.007120135038524259
+        ],
+        [
+            1610064000000.0,
+            0.0063300259286052755
+        ]
+    ],
+    "sum_of_the_metric_values": 0.120031961879245,
+    "average_of_the_metric_values": 0.02000532697987417,
+    "min_of_the_metric_values": 0.0063300259286052755,
+    "max_of_the_metric_values": 0.050120122766495044,
+    "expression": "avg:kubernetes.cpu.system.total{kube_namespace:x,pod_name:y}"
+}

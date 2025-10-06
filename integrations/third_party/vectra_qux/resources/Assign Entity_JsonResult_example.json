@@ -1,0 +1,31 @@
+{
+    "id": 232,
+    "assigned_by": {
+        "id": 58,
+        "username": "cds-gaurang"
+    },
+    "date_assigned": "2024-11-21T08:30:30.905491Z",
+    "date_resolved": null,
+    "events": [
+        {
+            "assignment_id": 232,
+            "actor": 58,
+            "event_type": "created",
+            "datetime": "2024-11-21T08:30:30Z",
+            "context": {
+                "to": 31,
+                "entity_t_score": 0,
+                "entity_c_score": 0
+            }
+        }
+    ],
+    "outcome": null,
+    "resolved_by": null,
+    "triaged_detections": null,
+    "host_id": 36376,
+    "account_id": null,
+    "assigned_to": {
+        "id": 31,
+        "username": "emartin"
+    }
+}

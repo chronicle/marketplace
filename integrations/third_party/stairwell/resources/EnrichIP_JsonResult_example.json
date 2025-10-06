@@ -1,0 +1,19 @@
+{
+    "uninterestingAddr": false,
+    "opinionsMostRecent": [
+        {
+            "verdict": "string",
+            "environment": "string",
+            "email": "string",
+            "createTime": "2025-07-09T14:39:00Z"
+        }
+    ],
+    "commentsMostRecent": [
+        {
+            "body": "string",
+            "email": "string",
+            "createTime": "2025-07-09T14:39:00Z",
+            "environment": "string"
+        }
+    ]
+}

@@ -1,0 +1,252 @@
+{
+    "playbook_alert_id": "task:1ce58e62-de8a-471b-81d4-c98743376937",
+    "panel_status": {
+        "status": "New",
+        "priority": "Moderate",
+        "created": "2024-11-05T15:33:25.392Z",
+        "updated": "2024-11-05T15:34:40.652Z",
+        "case_rule_id": "report:oT8Yal",
+        "case_rule_label": "Domain Abuse",
+        "owner_id": "uhash:oDJ5LVWfXL",
+        "owner_name": "Enterprise - Moise",
+        "organisation_id": "uhash:5zQaSyRpA1",
+        "organisation_name": "Professional Services Development",
+        "owner_organisation_details": {
+            "organisations": [
+                {
+                    "organisation_id": "uhash:oDJ5LVWfXL",
+                    "organisation_name": "Enterprise - Moise"
+                }
+            ],
+            "enterprise_id": "uhash:5zQaSyRpA1",
+            "enterprise_name": "Professional Services Development"
+        },
+        "entity_id": "idn:s.kitca.com",
+        "entity_name": "s.kitca.com",
+        "entity_criticality": "Medium",
+        "risk_score": 26,
+        "context_list": [
+            {
+                "context": "Active Mail Server"
+            },
+            {
+                "context": "Domain for sale"
+            }
+        ],
+        "targets": [
+            "idn:kiteca.com"
+        ],
+        "actions_taken": []
+    },
+    "panel_action": [],
+    "panel_evidence_summary": {
+        "explanation": "Alert was created as a result of a triggered typosquat detection",
+        "resolved_record_list": [
+            {
+                "entity": "idn:mail.h-email.net",
+                "risk_score": 10,
+                "criticality": "Low",
+                "record_type": "MX",
+                "context_list": [
+                    {
+                        "context": "Active Mail Server"
+                    }
+                ]
+            },
+            {
+                "entity": "idn:ns1.parkingcrew.net",
+                "risk_score": 20,
+                "criticality": "Low",
+                "record_type": "NS",
+                "context_list": []
+            },
+            {
+                "entity": "ip:1.1.1.1",
+                "risk_score": 36,
+                "criticality": "Medium",
+                "record_type": "A",
+                "context_list": []
+            },
+            {
+                "entity": "idn:ns2.parkingcrew.net",
+                "risk_score": 15,
+                "criticality": "Low",
+                "record_type": "NS",
+                "context_list": []
+            }
+        ],
+        "screenshots": [
+            {
+                "description": "An image associated with the Playbook Alert",
+                "image_id": "img:ca92035d-a5b3-49a6-9a0e-a8583a7c0599",
+                "created": "2024-11-05T15:44:51.959Z",
+                "availability": "Available",
+                "tag": "Domain for sale"
+            }
+        ],
+        "screenshot_mentions": []
+    },
+    "panel_evidence_dns": {
+        "ip_list": [
+            {
+                "entity": "ip:1.1.1.1",
+                "risk_score": 36,
+                "criticality": "Medium",
+                "record_type": "A",
+                "context_list": []
+            }
+        ],
+        "mx_list": [
+            {
+                "entity": "idn:mail.h-email.net",
+                "risk_score": 10,
+                "criticality": "Low",
+                "record_type": "MX",
+                "context_list": [
+                    {
+                        "context": "Active Mail Server"
+                    }
+                ]
+            }
+        ],
+        "ns_list": [
+            {
+                "entity": "idn:ns1.parkingcrew.net",
+                "risk_score": 20,
+                "criticality": "Low",
+                "record_type": "NS",
+                "context_list": []
+            },
+            {
+                "entity": "idn:ns2.parkingcrew.net",
+                "risk_score": 15,
+                "criticality": "Low",
+                "record_type": "NS",
+                "context_list": []
+            }
+        ]
+    },
+    "panel_evidence_whois": {
+        "body": [
+            {
+                "provider": "sub_domain_whois",
+                "entity": "idn:s.kitca.com",
+                "attribute": "attr:whois",
+                "value": {
+                    "privateRegistration": false,
+                    "status": "clientDeleteProhibited clientRenewProhibited clientTransferProhibited clientUpdateProhibited",
+                    "nameServers": [
+                        "idn:ns1.parkingcrew.net",
+                        "idn:ns2.parkingcrew.net"
+                    ],
+                    "registrarName": "GoDaddy.com, LLC",
+                    "createdDate": "2013-07-12T00:00:00.000Z"
+                },
+                "added": "2024-07-11T00:26:54.263Z"
+            },
+            {
+                "provider": "sub_domain_whois",
+                "entity": "idn:s.kitca.com",
+                "attribute": "attr:whoisContacts",
+                "value": {
+                    "type": "technicalContact"
+                },
+                "added": "2024-07-11T00:26:54.263Z"
+            },
+            {
+                "provider": "sub_domain_whois",
+                "entity": "idn:s.kitca.com",
+                "attribute": "attr:whoisContacts",
+                "value": {
+                    "type": "administrativeContact"
+                },
+                "added": "2024-07-11T00:26:54.263Z"
+            },
+            {
+                "provider": "sub_domain_whois",
+                "entity": "idn:s.kitca.com",
+                "attribute": "attr:whoisContacts",
+                "value": {
+                    "type": "registrant"
+                },
+                "added": "2024-07-11T00:26:54.263Z"
+            }
+        ]
+    },
+    "panel_log": [
+        {
+            "id": "uuid:b42cb447-6d81-4d65-860a-291b6505eb22",
+            "created": "2024-11-05T15:34:40.652Z",
+            "modified": "2024-11-05T15:34:40.652Z",
+            "action_priority": "Moderate",
+            "changes": {
+                "priority_change": {
+                    "old": "Informational",
+                    "new": "Moderate",
+                    "type": "priority_change"
+                }
+            },
+            "context": {
+                "type": "domain_abuse",
+                "changes": [
+                    {
+                        "old": "Informational",
+                        "new": "Moderate",
+                        "type": "priority_change"
+                    },
+                    {
+                        "domain": "idn:s.kitca.com",
+                        "removed": [],
+                        "added": [
+                            {
+                                "id": "idn:mail.h-email.net",
+                                "assessments": [
+                                    {
+                                        "id": "attr:typosquatVerdictActiveMailServer",
+                                        "level": 2
+                                    }
+                                ]
+                            }
+                        ],
+                        "type": "malicious_dns_change"
+                    }
+                ]
+            }
+        }
+    ],
+    "panel_log_v2": [
+        {
+            "id": "uuid:b42cb447-6d81-4d65-860a-291b6505eb22",
+            "created": "2024-11-05T15:34:40.652Z",
+            "changes": [
+                {
+                    "old": "Informational",
+                    "new": "Moderate",
+                    "type": "priority_change"
+                },
+                {
+                    "domain": "s.kitca.com",
+                    "removed": [],
+                    "added": [
+                        {
+                            "id": "idn:mail.h-email.net",
+                            "assessments": [
+                                {
+                                    "id": "Active Mail Server",
+                                    "level": 2
+                                }
+                            ]
+                        }
+                    ],
+                    "type": "malicious_dns_change"
+                }
+            ]
+        }
+    ],
+    "category": "domain_abuse",
+    "linked_cases": [
+        1351,
+        1353,
+        1356
+    ]
+}

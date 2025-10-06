@@ -1,17 +1,16 @@
-name: Attach Playbook to All Case Alerts
-description: Attach a specific playbook to all alerts in a case
-integration_identifier: Tools
-parameters:
-    -   name: Playbook Name
-        default_value: ''
-        type: string
-        description: Playbook, which should be attached to all alerts
-        is_mandatory: true
-dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: false
-        # language=json
-        result_example: '{}'
-default_result_value: ''
 creator: Admin
+default_result_value: ''
+description: Attach a specific playbook to all alerts in a case
+dynamic_results_metadata:
+-   result_example_path: null
+    result_name: JsonResult
+    show_result: false
+integration_identifier: Tools
+name: Attach Playbook to All Case Alerts
+parameters:
+-   default_value: ''
+    description: Playbook, which should be attached to all alerts
+    is_mandatory: true
+    name: Playbook Name
+    type: string
 script_result_name: ScriptResult

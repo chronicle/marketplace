@@ -1,27 +1,26 @@
-name: Create Content
+creator: Admin
+default_result_value: ''
 description: Creates new content in a specific document
+dynamic_results_metadata:
+-   result_example_path: null
+    result_name: JsonResult
+    show_result: false
 integration_identifier: Google Docs
+name: Create Content
 parameters:
-    -   name: Document Id
-        default_value: <document_id>
-        type: string
-        description: 'The document Id can be found in the URL.
+-   default_value: <document_id>
+    description: 'The document Id can be found in the URL.
 
         For example: https://docs.google.com/document/d/{YourDocumentId}/'
-        is_mandatory: true
-    -   name: Json
-        default_value: "{\n  \"items\": [\n    {\n      \"index\": 1,\n      \"text\"\
+    is_mandatory: true
+    name: Document Id
+    type: string
+-   default_value: "{\n  \"items\": [\n    {\n      \"index\": 1,\n      \"text\"\
         : \"Hello \"\n    },\n    {\n      \"index\": 7,\n      \"text\": \"World\"\
         \n    }\n  ]\n}"
-        type: code
-        description: The content you want to insert. Most elements in the body have startIndex
-            and endIndex, these indicate the offset of an element's beginning and end.
-        is_mandatory: true
-dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: false
-        # language=json
-        result_example: '{}'
-default_result_value: ''
-creator: Admin
+    description: The content you want to insert. Most elements in the body have startIndex
+        and endIndex, these indicate the offset of an element's beginning and end.
+    is_mandatory: true
+    name: Json
+    type: code
 script_result_name: ScriptResult

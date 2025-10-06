@@ -1,54 +1,33 @@
-name: logzio-search-logs
-description: Searches logs in your Logz.io operations account.
-integration_identifier: Logzio
-parameters:
-    -   name: query
-        default_value: '*'
-        type: string
-        description: A search query written in valid Lucene syntax. Cannot be null - send
-            a wildcard (*) if not using a search query.
-        is_mandatory: false
-    -   name: size
-        type: string
-        description: Number of log results per query. Limited to 1000 logs.
-        is_mandatory: false
-    -   name: to_time
-        default_value: ''
-        type: string
-        description: Latest time to search. (Leave this empty if you used a relative time
-            for the parameter ‘from_time’.)
-        is_mandatory: false
-    -   name: from_time
-        default_value: ''
-        type: string
-        description: 'Earliest time to search. Accepts formats supported by dateparser
-        lib: Unix timestamps, relative time, or the format  "%Y-%m-%dT%H:%M:%S.%f".'
-        is_mandatory: true
-dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: "{\n\t\"results\": [{\n\t\t\"request\": \"value\",\n\t\t\"agent\"\
-        : \"value\",\n\t\t\"minor\": \"value\",\n\t\t\"auth\": \"value\",\n\t\t\"\
-        ident\": \"value\",\n\t\t\"os_major\": \"value\",\n\t\t\"type\": \"value\"\
-        ,\n\t\t\"major\": \"value\",\n\t\t\"clientip\": \"value\",\n\t\t\"_logzio_sample_logs\"\
-        : \"value\",\n\t\t\"geoip\": {\n\t\t\t\"timezone\": \"value\",\n\t\t\t\"ip\"\
-        : \"value\",\n\t\t\t\"latitude\": \"value\",\n\t\t\t\"country_name\": \"value\"\
-        ,\n\t\t\t\"country_code2\": \"value\",\n\t\t\t\"continent_code\": \"value\"\
-        ,\n\t\t\t\"location\": \"value\",\n\t\t\t\"longitude\": \"value\"\n\t\t},\n\
-        \t\t\"os\": \"value\",\n\t\t\"verb\": \"value\",\n\t\t\"message\": \"value\"\
-        ,\n\t\t\"tags\": \"value\",\n\t\t\"referrer\": \"value\",\n\t\t\"@timestamp\"\
-        : \"value\",\n\t\t\"response\": \"value\",\n\t\t\"bytes\": \"value\",\n\t\t\
-        \"name\": \"value\",\n\t\t\"os_name\": \"value\",\n\t\t\"httpversion\": \"\
-        value\",\n\t\t\"device\": \"value\"\n\t}, {\n\t\t\"request\": \"value\",\n\
-        \t\t\"agent\": \"value\",\n\t\t\"minor\": \"value\",\n\t\t\"auth\": \"value\"\
-        ,\n\t\t\"ident\": \"value\",\n\t\t\"os_major\": \"value\",\n\t\t\"type\":\
-        \ \"value\",\n\t\t\"patch\": \"value\",\n\t\t\"major\": \"value\",\n\t\t\"\
-        clientip\": \"value\",\n\t\t\"_logzio_sample_logs\": \"value\",\n\t\t\"geoip\"\
-        : {\n\t\t\t\"city_name\": \"value\",\n\t\t\t\"timezone\": \"value\",\n\t\t\
-        \t\"ip\": \"value\",\n\t\t\t\"latitude\": \"value\",\n\t\t\t\"country_name\"\
-        : \"value\",\n\t\t\t\"country_code2\": \"value\",\n\t\t\t\"continent_code\"\
-        : \"value\"\n\t\t}\n\t}]\n}"
-default_result_value: ''
 creator: Admin
+default_result_value: ''
+description: Searches logs in your Logz.io operations account.
+dynamic_results_metadata:
+-   result_example_path: resources/LogzioSearchLogs_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: Logzio
+name: logzio-search-logs
+parameters:
+-   default_value: '*'
+    description: A search query written in valid Lucene syntax. Cannot be null - send
+        a wildcard (*) if not using a search query.
+    is_mandatory: false
+    name: query
+    type: string
+-   description: Number of log results per query. Limited to 1000 logs.
+    is_mandatory: false
+    name: size
+    type: string
+-   default_value: ''
+    description: "Latest time to search. (Leave this empty if you used a relative\
+        \ time for the parameter \u2018from_time\u2019.)"
+    is_mandatory: false
+    name: to_time
+    type: string
+-   default_value: ''
+    description: 'Earliest time to search. Accepts formats supported by dateparser
+        lib: Unix timestamps, relative time, or the format  "%Y-%m-%dT%H:%M:%S.%f".'
+    is_mandatory: true
+    name: from_time
+    type: string
 script_result_name: ScriptResult

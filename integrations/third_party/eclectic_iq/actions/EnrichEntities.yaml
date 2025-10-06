@@ -1,25 +1,11 @@
-name: Enrich Entities
-description: This action helps in  enrichment of entities with EclecticIQ.
-integration_identifier: EclecticIQ
-parameters: [ ]
-dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: "[\n  {\n    \"Entity\": \"entity\",\n    \"EntityResult\": {\n\
-        \      \"observable_type\": \"ipv4\",\n      \"confidence\": \"low\",\n  \
-        \    \"created_at\": \"2023-09-06T15:00:12.428401+00:00\",\n      \"last_updated_at\"\
-        : \"2024-05-08T06:01:41.413741+00:00\",\n      \"observable_id\": \"123\"\
-        ,\n      \"entities\": [\n        {\n          \"created_at\": \"2024-05-08T06:01:41.413741+00:00\"\
-        ,\n          \"description\": \"desc\",\n          \"title\": \"title\",\n\
-        \          \"sources\": [\n            \"test\"\n          ],\n          \"\
-        last_updated_at\": \"2024-05-08T06:01:41.413741+00:00\",\n          \"type\"\
-        : \"indicator\",\n          \"tags\": [\n            \"test\"\n          ],\n\
-        \          \"estimated_observed_time\": \"2024-05-08T06:01:41.413741+00:00\"\
-        ,\n          \"estimated_threat_start_time\": \"2024-05-08T06:01:41.413741+00:00\"\
-        ,\n          \"half_life\": \"7\",\n          \"platform_link\": \"http://eclecticic.local/entity\"\
-        \n        }\n      ],\n      \"platform_link\": \"http://eclecticic.local/observable\"\
-        \n    }\n  }\n]\n"
-default_result_value: ''
 creator: 02d62532-046f-494f-8c5f-6541026a07d1
+default_result_value: ''
+description: This action helps in  enrichment of entities with EclecticIQ.
+dynamic_results_metadata:
+-   result_example_path: resources/EnrichEntities_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: EclecticIQ
+name: Enrich Entities
+parameters: []
 script_result_name: ScriptResult

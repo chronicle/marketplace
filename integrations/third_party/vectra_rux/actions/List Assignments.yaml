@@ -1,75 +1,48 @@
-name: List Assignments
+creator: Admin
+default_result_value: ''
 description: List all the assignments based on the query parameters.
+dynamic_results_metadata:
+-   result_example_path: resources/List Assignments_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
 integration_identifier: VectraRUX
+name: List Assignments
 parameters:
-    -   name: Accounts IDs
-        type: string
-        description: Comma-separated account ids to filter out accounts.
-        is_mandatory: false
-    -   name: Assignees IDs
-        type: string
-        description: Comma-separated user ids to filter out accounts.
-        is_mandatory: false
-    -   name: Resolution IDs
-        type: string
-        description: Comma-separated outcome ids to filter out accounts.
-        is_mandatory: false
-    -   name: Resolved
-        default_value: "None"
-        type: ddl
-        optional_values:
-            - "None"
-            - "True"
-            - "False"
-        description: Filter by resolved status.[true/false]
-        is_mandatory: false
-    -   name: Created After
-        type: string
-        description: 'Filter by created after the timestamp.
+-   description: Comma-separated account ids to filter out accounts.
+    is_mandatory: false
+    name: Accounts IDs
+    type: string
+-   description: Comma-separated user ids to filter out accounts.
+    is_mandatory: false
+    name: Assignees IDs
+    type: string
+-   description: Comma-separated outcome ids to filter out accounts.
+    is_mandatory: false
+    name: Resolution IDs
+    type: string
+-   default_value: None
+    description: Filter by resolved status.[true/false]
+    is_mandatory: false
+    name: Resolved
+    optional_values:
+    - None
+    - 'True'
+    - 'False'
+    type: ddl
+-   description: 'Filter by created after the timestamp.
 
         Supported formats: 2 minutes, 2 hours, 2 days, 2 weeks, 2 months, 2 years,
         yyyy-mm-dd, yyyy-mm-ddTHH: MM:SSZ. '
-        is_mandatory: false
-    -   name: Limit
-        type: string
-        description: Specify the limit for fetching the records.
-        is_mandatory: false
-    -   name: Hosts IDs
-        default_value: ' '
-        type: string
-        description: Comma-separated host ids to filter out accounts.
-        is_mandatory: false
-dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: "[\n    {\n        \"id\": 554,\n        \"assigned_by\": {\n\
-        \            \"id\": 22231,\n            \"username\": \"crest.phantom@crestdata.ai\"\
-        \n        },\n        \"date_assigned\": \"2024-11-20T09:48:55Z\",\n     \
-        \   \"date_resolved\": \"2024-11-20T09:52:26Z\",\n        \"events\": [\n\
-        \            {\n                \"assignment_id\": 554,\n                \"\
-        actor\": 33,\n                \"event_type\": \"resolved\",\n            \
-        \    \"datetime\": \"2024-11-20T09:52:26Z\",\n                \"context\"\
-        : {\n                    \"entity_t_score\": 76,\n                    \"entity_c_score\"\
-        : 88,\n                    \"triage_as\": \"My triage rule\",\n          \
-        \          \"triaged_detection_ids\": [\n                        33810\n \
-        \                   ],\n                    \"fixed_detection_ids\": null,\n\
-        \                    \"created_rule_ids\": [\n                        478\n\
-        \                    ]\n                }\n            },\n            {\n\
-        \                \"assignment_id\": 554,\n                \"actor\": 22231,\n\
-        \                \"event_type\": \"created\",\n                \"datetime\"\
-        : \"2024-11-20T09:48:55Z\",\n                \"context\": {\n            \
-        \        \"to\": 22227,\n                    \"entity_t_score\": 76,\n   \
-        \                 \"entity_c_score\": 88\n                }\n            }\n\
-        \        ],\n        \"outcome\": {\n            \"id\": 1,\n            \"\
-        builtin\": true,\n            \"user_selectable\": true,\n            \"title\"\
-        : \"Benign True Positive\",\n            \"category\": \"benign_true_positive\"\
-        \n        },\n        \"resolved_by\": {\n            \"id\": 33,\n      \
-        \      \"username\": \"api_client_a7f5be37ee144f3495ec08c150146c7a\"\n   \
-        \     },\n        \"triaged_detections\": [\n            33810\n        ],\n\
-        \        \"host_id\": null,\n        \"account_id\": 471,\n        \"assigned_to\"\
-        : {\n            \"id\": 22227,\n            \"username\": \"gaurang.delavadiya@crestdata.ai\"\
-        \n        }\n    }\n]"
-default_result_value: ''
-creator: Admin
+    is_mandatory: false
+    name: Created After
+    type: string
+-   description: Specify the limit for fetching the records.
+    is_mandatory: false
+    name: Limit
+    type: string
+-   default_value: ' '
+    description: Comma-separated host ids to filter out accounts.
+    is_mandatory: false
+    name: Hosts IDs
+    type: string
 script_result_name: ScriptResult

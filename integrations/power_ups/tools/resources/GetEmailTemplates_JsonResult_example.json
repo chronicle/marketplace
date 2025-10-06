@@ -1,0 +1,43 @@
+{
+    "templates": [
+        {
+            "type": 0,
+            "name": "Standard Template Name",
+            "content": "Thisis the content of a standard email template.",
+            "creatorUserName": "Rob",
+            "forMigration": false,
+            "environments": [
+                "ReedSales"
+            ],
+            "id": 1,
+            "creationTimeUnixTimeInMs": 1618588676723,
+            "modificationTimeUnixTimeInMs": 1618588676734
+        },
+        {
+            "type": 0,
+            "name": "AllENV Template",
+            "content": "All env template",
+            "creatorUserName": "Rob",
+            "forMigration": false,
+            "environments": [
+                "*"
+            ],
+            "id": 3,
+            "creationTimeUnixTimeInMs": 1618588714655,
+            "modificationTimeUnixTimeInMs": 1618588714655
+        },
+        {
+            "type": 0,
+            "name": "ReedSales_Create Record",
+            "content": "{\n    \"state\": \"1\",\n    \"impact\":\"3\",\n    \"priority\": \"5\",\n    \"short_description\": \"Incident involvinguser(s): [Alert.Users]\",\n    \"u_incident_insights\": \"[CaseData.JsonResult|\"insights\" | filter(\"triggeredBy\", \"=\", \"VirusTotalV3\") | \"content\"]\",\n    \"severity\":\"3\"\n}\n",
+            "creatorUserName": "Rob",
+            "forMigration": false,
+            "environments": [
+                "ReedSales"
+            ],
+            "id": 5,
+            "creationTimeUnixTimeInMs": 1618601564841,
+            "modificationTimeUnixTimeInMs": 1618601564841
+        }
+    ]
+}

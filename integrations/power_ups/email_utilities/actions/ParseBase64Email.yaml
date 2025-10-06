@@ -1,269 +1,30 @@
-name: Parse Base64 Email
+creator: Rob
+default_result_value: ''
 description: This action is an improved version of Parse EML Base64 blob.  It will
     parse EML and MSG files.
-integration_identifier: EmailUtilities
-parameters:
-    -   name: Stop Transport At Header
-        type: string
-        description: Stop processing the transport at this header field.
-        is_mandatory: false
-    -   name: EML/MSG Base64 String
-        default_value: <insert base64 string>
-        type: content
-        description: The base64 representation of an EML or MSG file.
-        is_mandatory: true
-    -   name: Blacklisted Headers
-        type: string
-        description: Headers to exclude from the response.
-        is_mandatory: false
-    -   name: Use Blacklist As Whitelist
-        default_value: 'false'
-        type: boolean
-        description: To only include the listed headers.
-        is_mandatory: false
 dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: "{\n    \"attached_emails\": [\n        {\n            \"email\"\
-        : {\n                \"body\": [\n                    {\n                \
-        \        \"content\": \"string\",\n                        \"content_header\"\
-        : {\n                            \"content-transfer-encoding\": [\n      \
-        \                          \"string\"\n                            ],\n  \
-        \                          \"content-type\": [\n                         \
-        \       \"string\"\n                            ]\n                      \
-        \  },\n                        \"content_type\": \"string\",\n           \
-        \             \"domain\": [\n                            \"string\"\n    \
-        \                    ],\n                        \"email\": [\n          \
-        \                  \"string\"\n                        ],\n              \
-        \          \"hash\": \"string\"\n                    }\n                ],\n\
-        \                \"filename\": \"string\",\n                \"header\": {\n\
-        \                    \"date\": \"string\",\n                    \"from\":\
-        \ \"string\",\n                    \"header\": {\n                       \
-        \ \"accept-language\": [\n                            \"string\"\n       \
-        \                 ],\n                        \"authentication-results\":\
-        \ [\n                            \"string\"\n                        ],\n\
-        \                        \"content-language\": [\n                       \
-        \     \"string\"\n                        ],\n                        \"content-transfer-encoding\"\
-        : [\n                            \"string\"\n                        ],\n\
-        \                        \"content-type\": [\n                           \
-        \ \"string\"\n                        ],\n                        \"date\"\
-        : [\n                            \"string\"\n                        ],\n\
-        \                        \"from\": [\n                            \"string\"\
-        \n                        ],\n                        \"message-id\": [\n\
-        \                            \"string\"\n                        ],\n    \
-        \                    \"mime-version\": [\n                            \"string\"\
-        \n                        ],\n                        \"received\": [\n  \
-        \                          \"string\"\n                        ],\n      \
-        \                  \"return-path\": [\n                            \"string\"\
-        \n                        ],\n                        \"subject\": [\n   \
-        \                         \"string\"\n                        ],\n       \
-        \                 \"thread-index\": [\n                            \"string\"\
-        \n                        ],\n                        \"thread-topic\": [\n\
-        \                            \"string\"\n                        ],\n    \
-        \                    \"to\": [\n                            \"string\"\n \
-        \                       ],\n                        \"x-forefront-antispam-report\"\
-        : [\n                            \"string\"\n                        ],\n\
-        \                        \"x-microsoft-antispam\": [\n                   \
-        \         \"string\"\n                        ],\n                       \
-        \ \"x-microsoft-antispam-mailbox-delivery\": [\n                         \
-        \   \"string\"\n                        ],\n                        \"x-microsoft-antispam-message-info\"\
-        : [\n                            \"string\"\n                        ],\n\
-        \                        \"x-ms-exchange-antispam-messagedata\": [\n     \
-        \                       \"string\"\n                        ],\n         \
-        \               \"x-ms-exchange-crosstenant-authas\": [\n                \
-        \            \"string\"\n                        ],\n                    \
-        \    \"x-ms-exchange-crosstenant-authsource\": [\n                       \
-        \     \"string\"\n                        ],\n                        \"x-ms-exchange-crosstenant-fromentityheader\"\
-        : [\n                            \"string\"\n                        ],\n\
-        \                        \"x-ms-exchange-crosstenant-id\": [\n           \
-        \                 \"string\"\n                        ],\n               \
-        \         \"x-ms-exchange-crosstenant-mailboxtype\": [\n                 \
-        \           \"string\"\n                        ],\n                     \
-        \   \"x-ms-exchange-crosstenant-network-message-id\": [\n                \
-        \            \"string\"\n                        ],\n                    \
-        \    \"x-ms-exchange-crosstenant-originalarrivaltime\": [\n              \
-        \              \"string\"\n                        ],\n                  \
-        \      \"x-ms-exchange-crosstenant-userprincipalname\": [\n              \
-        \              \"string\"\n                        ],\n                  \
-        \      \"x-ms-exchange-organization-authas\": [\n                        \
-        \    \"string\"\n                        ],\n                        \"x-ms-exchange-organization-authmechanism\"\
-        : [\n                            \"string\"\n                        ],\n\
-        \                        \"x-ms-exchange-organization-authsource\": [\n  \
-        \                          \"string\"\n                        ],\n      \
-        \                  \"x-ms-exchange-organization-expirationinterval\": [\n\
-        \                            \"string\"\n                        ],\n    \
-        \                    \"x-ms-exchange-organization-expirationintervalreason\"\
-        : [\n                            \"string\"\n                        ],\n\
-        \                        \"x-ms-exchange-organization-expirationstarttime\"\
-        : [\n                            \"string\"\n                        ],\n\
-        \                        \"x-ms-exchange-organization-expirationstarttimereason\"\
-        : [\n                            \"string\"\n                        ],\n\
-        \                        \"x-ms-exchange-organization-messagedirectionality\"\
-        : [\n                            \"string\"\n                        ],\n\
-        \                        \"x-ms-exchange-organization-network-message-id\"\
-        : [\n                            \"string\"\n                        ],\n\
-        \                        \"x-ms-exchange-organization-scl\": [\n         \
-        \                   \"string\"\n                        ],\n             \
-        \           \"x-ms-exchange-processed-by-bccfoldering\": [\n             \
-        \               \"string\"\n                        ],\n                 \
-        \       \"x-ms-exchange-transport-crosstenantheadersstamped\": [\n       \
-        \                     \"string\"\n                        ],\n           \
-        \             \"x-ms-exchange-transport-endtoendlatency\": [\n           \
-        \                 \"string\"\n                        ],\n               \
-        \         \"x-ms-office365-filtering-correlation-id\": [\n               \
-        \             \"string\"\n                        ],\n                   \
-        \     \"x-ms-oob-tlc-oobclassifiers\": [\n                            \"string\"\
-        \n                        ],\n                        \"x-ms-publictraffictype\"\
-        : [\n                            \"string\"\n                        ],\n\
-        \                        \"x-ms-tnef-correlator\": [\n                   \
-        \         \"string\"\n                        ],\n                       \
-        \ \"x-ms-traffictypediagnostic\": [\n                            \"string\"\
-        \n                        ],\n                        \"x-originating-ip\"\
-        : [\n                            \"string\"\n                        ]\n \
-        \                   },\n                    \"received\": [\n            \
-        \            {\n                            \"by\": [\n                  \
-        \              \"string\"\n                            ],\n              \
-        \              \"date\": \"string\",\n                            \"from\"\
-        : [\n                                \"string\"\n                        \
-        \    ],\n                            \"src\": \"string\",\n              \
-        \              \"with\": \"string\"\n                        }\n         \
-        \           ],\n                    \"received_domain\": [\n             \
-        \           \"string\"\n                    ],\n                    \"received_domains_internal\"\
-        : [],\n                    \"received_ip\": [\n                        \"\
-        string\"\n                    ],\n                    \"receiving\": [\n \
-        \                       {\n                            \"domains\": [\n  \
-        \                              \"string\"\n                            ],\n\
-        \                            \"emails\": [],\n                           \
-        \ \"hosts\": [\n                                \"string\"\n             \
-        \               ],\n                            \"ips\": []\n            \
-        \            },\n                        {\n                            \"\
-        domains\": [\n                                \"string\"\n               \
-        \             ],\n                            \"emails\": [],\n          \
-        \                  \"hosts\": [\n                                \"string\"\
-        \n                            ],\n                            \"ips\": [\n\
-        \                                \"string\"\n                            ]\n\
-        \                        }\n                    ],\n                    \"\
-        sending\": [\n                        {\n                            \"domains\"\
-        : [\n                                \"string\"\n                        \
-        \    ],\n                            \"emails\": [],\n                   \
-        \         \"hosts\": [\n                                \"string\"\n     \
-        \                       ],\n                            \"ips\": [\n     \
-        \                           \"string\"\n                            ]\n  \
-        \                      },\n                        {\n                   \
-        \         \"domains\": [\n                                \"string\"\n   \
-        \                         ],\n                            \"emails\": [],\n\
-        \                            \"hosts\": [\n                              \
-        \  \"string\"\n                            ],\n                          \
-        \  \"ips\": []\n                        }\n                    ],\n      \
-        \              \"subject\": \"string\",\n                    \"to\": [\n \
-        \                       \"string\"\n                    ]\n              \
-        \  }\n            },\n            \"filename\": \"string\"\n        }\n  \
-        \  ],\n    \"attachments\": [\n        {\n            \"content_header\":\
-        \ {\n                \"content-description\": [\n                    \"string\"\
-        \n                ],\n                \"content-disposition\": [\n       \
-        \             \"string\"\n                ],\n                \"content-transfer-encoding\"\
-        : [\n                    \"string\"\n                ],\n                \"\
-        content-type\": [\n                    \"string\"\n                ]\n   \
-        \         },\n            \"extension\": \"string\",\n            \"filename\"\
-        : \"string\",\n            \"hash\": {\n                \"md5\": \"string\"\
-        ,\n                \"sha1\": \"string\",\n                \"sha256\": \"string\"\
-        ,\n                \"sha512\": \"string\"\n            },\n            \"\
-        raw\": \"string\",\n            \"size\": 1111,\n            \"subject\":\
-        \ \"string\"\n        }\n    ],\n    \"body\": [\n        {\n            \"\
-        content\": \"string\",\n            \"content_header\": {\n              \
-        \  \"content-transfer-encoding\": [\n                    \"string\"\n    \
-        \            ],\n                \"content-type\": [\n                   \
-        \ \"string\"\n                ]\n            },\n            \"content_type\"\
-        : \"string\",\n            \"domain\": [\n                \"string\"\n   \
-        \         ],\n            \"email\": [\n                \"string\"\n     \
-        \       ],\n            \"hash\": \"string\",\n            \"uri\": [\n  \
-        \              \"string\"\n            ]\n        },\n        {\n        \
-        \    \"content\": \"string\",\n            \"content_header\": {\n       \
-        \         \"content-transfer-encoding\": [\n                    \"string\"\
-        \n                ],\n                \"content-type\": [\n              \
-        \      \"string\"\n                ]\n            },\n            \"content_type\"\
-        : \"string\",\n            \"domain\": [\n                \"string\"\n   \
-        \         ],\n            \"email\": [\n                \"string\"\n     \
-        \       ],\n            \"hash\": \"string\"\n        }\n    ],\n    \"domains\"\
-        : [\n        \"string\"\n    ],\n    \"emails\": [\n        \"string\"\n \
-        \   ],\n    \"header\": {\n        \"date\": \"string\",\n        \"from\"\
-        : \"string\",\n        \"header\": {\n            \"accept-language\": [\n\
-        \                \"string\"\n            ],\n            \"authentication-results\"\
-        : [\n                \"string\"\n            ],\n            \"content-language\"\
-        : [\n                \"string\"\n            ],\n            \"content-type\"\
-        : [\n                \"string\"\n            ],\n            \"date\": [\n\
-        \                \"string\"\n            ],\n            \"from\": [\n   \
-        \             \"string\"\n            ],\n            \"message-id\": [\n\
-        \                \"string\"\n            ],\n            \"mime-version\"\
-        : [\n                \"string\"\n            ],\n            \"received\"\
-        : [\n                \"string\"\n            ],\n            \"subject\":\
-        \ [\n                \"string\"\n            ],\n            \"thread-index\"\
-        : [\n                \"string\"\n            ],\n            \"thread-topic\"\
-        : [\n                \"string\"\n            ],\n            \"to\": [\n \
-        \               \"string\"\n            ],\n            \"x-forefront-antispam-report\"\
-        : [\n                \"string\"\n            ],\n            \"x-microsoft-antispam\"\
-        : [\n                \"string\"\n            ],\n            \"x-microsoft-antispam-mailbox-delivery\"\
-        : [\n                \"string\"\n            ],\n            \"x-microsoft-antispam-message-info\"\
-        : [\n                \"string\"\n            ],\n            \"x-ms-exchange-antispam-messagedata\"\
-        : [\n                \"string\"\n            ],\n            \"x-ms-exchange-crosstenant-authas\"\
-        : [\n                \"string\"\n            ],\n            \"x-ms-exchange-crosstenant-authsource\"\
-        : [\n                \"string\"\n            ],\n            \"x-ms-exchange-crosstenant-fromentityheader\"\
-        : [\n                \"string\"\n            ],\n            \"x-ms-exchange-crosstenant-id\"\
-        : [\n                \"string\"\n            ],\n            \"x-ms-exchange-crosstenant-mailboxtype\"\
-        : [\n                \"string\"\n            ],\n            \"x-ms-exchange-crosstenant-network-message-id\"\
-        : [\n                \"string\"\n            ],\n            \"x-ms-exchange-crosstenant-originalarrivaltime\"\
-        : [\n                \"string\"\n            ],\n            \"x-ms-exchange-crosstenant-userprincipalname\"\
-        : [\n                \"string\"\n            ],\n            \"x-ms-exchange-organization-authmechanism\"\
-        : [\n                \"string\"\n            ],\n            \"x-ms-exchange-organization-authsource\"\
-        : [\n                \"string\"\n            ],\n            \"x-ms-exchange-organization-compliancelabelid\"\
-        : [\n                \"string\"\n            ],\n            \"x-ms-exchange-organization-network-message-id\"\
-        : [\n                \"string\"\n            ],\n            \"x-ms-exchange-organization-originalclientipaddress\"\
-        : [\n                \"string\"\n            ],\n            \"x-ms-exchange-organization-originalserveripaddress\"\
-        : [\n                \"string\"\n            ],\n            \"x-ms-exchange-organization-recordreviewcfmtype\"\
-        : [\n                \"string\"\n            ],\n            \"x-ms-exchange-organization-submissionquotaskipped\"\
-        : [\n                \"string\"\n            ],\n            \"x-ms-exchange-processed-by-bccfoldering\"\
-        : [\n                \"string\"\n            ],\n            \"x-ms-exchange-transport-crosstenantheadersstamped\"\
-        : [\n                \"string\"\n            ],\n            \"x-ms-exchange-transport-endtoendlatency\"\
-        : [\n                \"string\"\n            ],\n            \"x-ms-has-attach\"\
-        : [\n                \"string\"\n            ],\n            \"x-ms-office365-filtering-correlation-id\"\
-        : [\n                \"string\"\n            ],\n            \"x-ms-oob-tlc-oobclassifiers\"\
-        : [\n                \"string\"\n            ],\n            \"x-ms-publictraffictype\"\
-        : [\n                \"string\"\n            ],\n            \"x-ms-traffictypediagnostic\"\
-        : [\n                \"string\"\n            ],\n            \"x-originating-ip\"\
-        : [\n                \"string\"\n            ]\n        },\n        \"received\"\
-        : [\n            {\n                \"by\": [\n                    \"string\"\
-        \n                ],\n                \"date\": \"string\",\n            \
-        \    \"from\": [\n                    \"string\"\n                ],\n   \
-        \             \"src\": \"string\",\n                \"with\": \"string\"\n\
-        \            }\n        ],\n        \"received_domain\": [\n            \"\
-        string\"\n        ],\n        \"received_domains_internal\": [],\n       \
-        \ \"received_ip\": [\n            \"string\"\n        ],\n        \"receiving\"\
-        : [\n            {\n                \"domains\": [\n                    \"\
-        string\"\n                ],\n                \"emails\": [],\n          \
-        \      \"hosts\": [\n                    \"string\"\n                ],\n\
-        \                \"ips\": []\n            },\n            {\n            \
-        \    \"domains\": [\n                    \"string\"\n                ],\n\
-        \                \"emails\": [],\n                \"hosts\": [\n         \
-        \           \"string\"\n                ],\n                \"ips\": [\n \
-        \                   \"string\"\n                ]\n            }\n       \
-        \ ],\n        \"sending\": [\n            {\n                \"domains\":\
-        \ [\n                    \"string\"\n                ],\n                \"\
-        emails\": [],\n                \"hosts\": [\n                    \"string\"\
-        \n                ],\n                \"ips\": [\n                    \"string\"\
-        \n                ]\n            },\n            {\n                \"domains\"\
-        : [\n                    \"string\"\n                ],\n                \"\
-        emails\": [],\n                \"hosts\": [\n                    \"string\"\
-        \n                ],\n                \"ips\": []\n            }\n       \
-        \ ],\n        \"subject\": \"string\",\n        \"to\": [\n            \"\
-        string\"\n        ]\n    },\n    \"ips\": [\n        \"string\"\n    ],\n\
-        \    \"observed\": {\n        \"domains\": [\n            \"string\"\n   \
-        \     ],\n        \"emails\": [\n            \"string\"\n        ],\n    \
-        \    \"ips\": [],\n        \"urls\": [\n            \"string\"\n        ]\n\
-        \    },\n    \"received\": {\n        \"domains\": [\n            \"string\"\
-        \n        ],\n        \"domains_internal\": [],\n        \"emails\": [],\n\
-        \        \"foremail\": [],\n        \"ips\": [\n            \"string\"\n \
-        \       ]\n    },\n    \"urls\": [\n        \"string\"\n    ]\n}"
-default_result_value: ''
-creator: Rob
+-   result_example_path: resources/ParseBase64Email_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: EmailUtilities
+name: Parse Base64 Email
+parameters:
+-   description: Stop processing the transport at this header field.
+    is_mandatory: false
+    name: Stop Transport At Header
+    type: string
+-   default_value: <insert base64 string>
+    description: The base64 representation of an EML or MSG file.
+    is_mandatory: true
+    name: EML/MSG Base64 String
+    type: content
+-   description: Headers to exclude from the response.
+    is_mandatory: false
+    name: Blacklisted Headers
+    type: string
+-   default_value: 'false'
+    description: To only include the listed headers.
+    is_mandatory: false
+    name: Use Blacklist As Whitelist
+    type: boolean
 script_result_name: ScriptResult

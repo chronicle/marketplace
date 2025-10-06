@@ -1,0 +1,439 @@
+[
+    {
+        "id": 7153,
+        "category": "EXFILTRATION",
+        "detection": "Data Smuggler",
+        "detection_category": "EXFILTRATION",
+        "detection_type": "Data Smuggler",
+        "custom_detection": "AI-Filtered",
+        "description": null,
+        "src_ip": "1.1.1.1",
+        "state": "active",
+        "certainty": 0,
+        "threat": 0,
+        "created_timestamp": "2025-01-02T03:08:34Z",
+        "first_timestamp": "2025-01-02T02:59:53Z",
+        "last_timestamp": "2025-01-02T03:11:03Z",
+        "targets_key_asset": false,
+        "is_targeting_key_asset": false,
+        "src_account": null,
+        "src_host": {
+            "id": 40613,
+            "ip": "1.1.1.1",
+            "name": "IP-1.1.1.1",
+            "is_key_asset": false,
+            "groups": [],
+            "threat": 30,
+            "certainty": 90
+        },
+        "note": null,
+        "note_modified_by": null,
+        "note_modified_timestamp": null,
+        "sensor": "whx12u9g",
+        "sensor_name": "FGU-lab-vcenter",
+        "tags": [],
+        "triage_rule_id": 2511,
+        "assigned_to": null,
+        "assigned_date": null,
+        "groups": [
+            {
+                "id": 12,
+                "name": "Cognito - Dropbox",
+                "description": "Domains used by the Dropbox service",
+                "type": "domain",
+                "last_modified": "2021-09-23T18:28:31Z",
+                "last_modified_by": "cognito"
+            }
+        ],
+        "is_marked_custom": false,
+        "is_custom_model": false,
+        "src_linked_account": null,
+        "grouped_details": [
+            {
+                "events": [
+                    {
+                        "grouping_field": "multi_fields",
+                        "multi_fields": "KrCyO4DV",
+                        "id": 192093,
+                        "subtype": "pull",
+                        "first_timestamp": "2025-01-02T02:59:53Z",
+                        "last_timestamp": "2025-01-02T03:00:23Z",
+                        "couch_note_id": [
+                            "KrCyO4DV"
+                        ],
+                        "flex5": [],
+                        "app_protocol": null,
+                        "target_domains": [],
+                        "bytes_received": 786614643,
+                        "bytes_sent": 199119,
+                        "proxy_ip": null,
+                        "sessions": [
+                            {
+                                "target_host": null,
+                                "dst_ip": "1.1.1.1",
+                                "dst_port": 445,
+                                "protocol": "tcp",
+                                "app_protocol": "smb",
+                                "bytes_received": 786614643,
+                                "first_timestamp": "2025-01-02T02:59:53Z",
+                                "duration": 30
+                            }
+                        ],
+                        "origin_ips": [
+                            "1.1.1.1"
+                        ],
+                        "target_summary": {
+                            "dst_port": 443,
+                            "protocol": "tcp",
+                            "app_protocol": "tls",
+                            "bytes_sent": 105044371,
+                            "first_timestamp": "2025-01-02T03:06:09Z",
+                            "last_timestamp": "2025-01-02T03:06:58Z"
+                        }
+                    },
+                    {
+                        "grouping_field": "multi_fields",
+                        "multi_fields": "KrCyO4G1",
+                        "id": 192103,
+                        "subtype": "pull",
+                        "first_timestamp": "2025-01-02T02:59:53Z",
+                        "last_timestamp": "2025-01-02T03:00:23Z",
+                        "couch_note_id": [
+                            "KrCyO4G1"
+                        ],
+                        "flex5": [],
+                        "app_protocol": null,
+                        "target_domains": [],
+                        "bytes_received": 786614643,
+                        "bytes_sent": 199119,
+                        "proxy_ip": null,
+                        "sessions": [
+                            {
+                                "target_host": null,
+                                "dst_ip": "1.1.1.1",
+                                "dst_port": 445,
+                                "protocol": "tcp",
+                                "app_protocol": "smb",
+                                "bytes_received": 786614643,
+                                "first_timestamp": "2025-01-02T02:59:53Z",
+                                "duration": 30
+                            }
+                        ],
+                        "origin_ips": [
+                            "1.1.1.1"
+                        ],
+                        "target_summary": {
+                            "dst_port": 443,
+                            "protocol": "tcp",
+                            "app_protocol": "tls",
+                            "bytes_sent": 105044347,
+                            "first_timestamp": "2025-01-02T03:10:30Z",
+                            "last_timestamp": "2025-01-02T03:11:03Z"
+                        }
+                    },
+                    {
+                        "grouping_field": "multi_fields",
+                        "multi_fields": "KrCyO4E-",
+                        "id": 192099,
+                        "subtype": "pull",
+                        "first_timestamp": "2025-01-02T02:59:53Z",
+                        "last_timestamp": "2025-01-02T03:00:23Z",
+                        "couch_note_id": [
+                            "KrCyO4E-"
+                        ],
+                        "flex5": [],
+                        "app_protocol": null,
+                        "target_domains": [],
+                        "bytes_received": 786614643,
+                        "bytes_sent": 199119,
+                        "proxy_ip": null,
+                        "sessions": [
+                            {
+                                "target_host": null,
+                                "dst_ip": "1.1.1.1",
+                                "dst_port": 445,
+                                "protocol": "tcp",
+                                "app_protocol": "smb",
+                                "bytes_received": 786614643,
+                                "first_timestamp": "2025-01-02T02:59:53Z",
+                                "duration": 30
+                            }
+                        ],
+                        "origin_ips": [
+                            "1.1.1.1"
+                        ],
+                        "target_summary": {
+                            "dst_port": 443,
+                            "protocol": "tcp",
+                            "app_protocol": "tls",
+                            "bytes_sent": 105044347,
+                            "first_timestamp": "2025-01-02T03:06:58Z",
+                            "last_timestamp": "2025-01-02T03:07:27Z"
+                        }
+                    },
+                    {
+                        "grouping_field": "multi_fields",
+                        "multi_fields": "KrCyO4FZ",
+                        "id": 192101,
+                        "subtype": "pull",
+                        "first_timestamp": "2025-01-02T02:59:53Z",
+                        "last_timestamp": "2025-01-02T03:00:23Z",
+                        "couch_note_id": [
+                            "KrCyO4FZ"
+                        ],
+                        "flex5": [],
+                        "app_protocol": null,
+                        "target_domains": [],
+                        "bytes_received": 786614643,
+                        "bytes_sent": 199119,
+                        "proxy_ip": null,
+                        "sessions": [
+                            {
+                                "target_host": null,
+                                "dst_ip": "1.1.1.1",
+                                "dst_port": 445,
+                                "protocol": "tcp",
+                                "app_protocol": "smb",
+                                "bytes_received": 786614643,
+                                "first_timestamp": "2025-01-02T02:59:53Z",
+                                "duration": 30
+                            }
+                        ],
+                        "origin_ips": [
+                            "1.1.1.1"
+                        ],
+                        "target_summary": {
+                            "dst_port": 443,
+                            "protocol": "tcp",
+                            "app_protocol": "tls",
+                            "bytes_sent": 210088273,
+                            "first_timestamp": "2025-01-02T03:08:01Z",
+                            "last_timestamp": "2025-01-02T03:09:34Z"
+                        }
+                    },
+                    {
+                        "grouping_field": "multi_fields",
+                        "multi_fields": "KrCyO4Ds",
+                        "id": 192097,
+                        "subtype": "pull",
+                        "first_timestamp": "2025-01-02T02:59:53Z",
+                        "last_timestamp": "2025-01-02T03:00:23Z",
+                        "couch_note_id": [
+                            "KrCyO4Ds"
+                        ],
+                        "flex5": [],
+                        "app_protocol": null,
+                        "target_domains": [],
+                        "bytes_received": 786614643,
+                        "bytes_sent": 199119,
+                        "proxy_ip": null,
+                        "sessions": [
+                            {
+                                "target_host": null,
+                                "dst_ip": "1.1.1.1",
+                                "dst_port": 445,
+                                "protocol": "tcp",
+                                "app_protocol": "smb",
+                                "bytes_received": 786614643,
+                                "first_timestamp": "2025-01-02T02:59:53Z",
+                                "duration": 30
+                            }
+                        ],
+                        "origin_ips": [
+                            "1.1.1.1"
+                        ],
+                        "target_summary": {
+                            "dst_port": 443,
+                            "protocol": "tcp",
+                            "app_protocol": "tls",
+                            "bytes_sent": 105044371,
+                            "first_timestamp": "2025-01-02T03:05:01Z",
+                            "last_timestamp": "2025-01-02T03:05:37Z"
+                        }
+                    },
+                    {
+                        "grouping_field": "multi_fields",
+                        "multi_fields": "KrCyO4Dk",
+                        "id": 192095,
+                        "subtype": "pull",
+                        "first_timestamp": "2025-01-02T02:59:53Z",
+                        "last_timestamp": "2025-01-02T03:00:23Z",
+                        "couch_note_id": [
+                            "KrCyO4Dk"
+                        ],
+                        "flex5": [],
+                        "app_protocol": null,
+                        "target_domains": [],
+                        "bytes_received": 786614643,
+                        "bytes_sent": 199119,
+                        "proxy_ip": null,
+                        "sessions": [
+                            {
+                                "target_host": null,
+                                "dst_ip": "1.1.1.1",
+                                "dst_port": 445,
+                                "protocol": "tcp",
+                                "app_protocol": "smb",
+                                "bytes_received": 786614643,
+                                "first_timestamp": "2025-01-02T02:59:53Z",
+                                "duration": 30
+                            }
+                        ],
+                        "origin_ips": [
+                            "1.1.1.1"
+                        ],
+                        "target_summary": {
+                            "dst_port": 443,
+                            "protocol": "tcp",
+                            "app_protocol": "tls",
+                            "bytes_sent": 105044371,
+                            "first_timestamp": "2025-01-02T03:02:59Z",
+                            "last_timestamp": "2025-01-02T03:03:26Z"
+                        }
+                    }
+                ],
+                "multi_fields": [
+                    "content.dropboxapi.com",
+                    "1.1.1.1"
+                ],
+                "first_timestamp": "2025-01-02T03:02:59Z",
+                "last_timestamp": "2025-01-02T03:11:03Z",
+                "app_protocol": null,
+                "dst_ips": [
+                    "1.1.1.1"
+                ],
+                "target_domains": [
+                    "content.dropboxapi.com"
+                ],
+                "bytes_received": 6412,
+                "bytes_sent": 735310080,
+                "proxy_ip": null
+            }
+        ],
+        "summary": {
+            "dst_ports": [
+                443
+            ],
+            "protocols": [
+                "tcp"
+            ],
+            "bytes_sent": 735310080,
+            "dst_ips": [
+                "content.dropboxapi.com"
+            ]
+        },
+        "campaign_summaries": [],
+        "is_triaged": true,
+        "filtered_by_ai": true,
+        "filtered_by_user": false,
+        "filtered_by_rule": false,
+        "_doc_modified_ts": "2025-01-02T08:41:49.317653",
+        "detection_url": "",
+        "url": ""
+    },
+    {
+        "summary": {
+            "accounts": [
+                ""
+            ],
+            "function_uuids": [
+                "wkssvc",
+                "srvsvc"
+            ],
+            "dst_ips": [
+                "1.1.1.1"
+            ]
+        },
+        "id": 7152,
+        "category": "RECONNAISSANCE",
+        "detection": "RPC Targeted Recon",
+        "detection_category": "RECONNAISSANCE",
+        "detection_type": "RPC Targeted Recon",
+        "custom_detection": null,
+        "description": null,
+        "src_ip": "1.1.1.1",
+        "state": "active",
+        "certainty": 33,
+        "threat": 54,
+        "created_timestamp": "2025-01-02T01:42:04Z",
+        "first_timestamp": "2025-01-02T01:30:26Z",
+        "last_timestamp": "2025-01-02T03:13:19Z",
+        "targets_key_asset": false,
+        "is_targeting_key_asset": false,
+        "src_account": null,
+        "src_host": {
+            "id": 40613,
+            "ip": "1.1.1.1",
+            "name": "IP-1.1.1.1",
+            "is_key_asset": false,
+            "groups": [],
+            "threat": 30,
+            "certainty": 90
+        },
+        "note": null,
+        "note_modified_by": null,
+        "note_modified_timestamp": null,
+        "sensor": "whx12u9g",
+        "sensor_name": "FGU-lab-vcenter",
+        "tags": [],
+        "triage_rule_id": null,
+        "assigned_to": null,
+        "assigned_date": null,
+        "groups": [],
+        "is_marked_custom": false,
+        "is_custom_model": false,
+        "src_linked_account": null,
+        "grouped_details": [
+            {
+                "dst_profiles": [],
+                "src_profiles": [],
+                "anomalous_profiles": [
+                    {
+                        "account": "",
+                        "function_call": "NetrWkstaGetInfo",
+                        "function_uuid": "wkssvc",
+                        "count": 2,
+                        "first_timestamp": "2025-01-02T01:30:26.897Z",
+                        "last_timestamp": "2025-01-02T03:13:19.275Z"
+                    },
+                    {
+                        "account": "",
+                        "function_call": "NetrServerGetInfo",
+                        "function_uuid": "srvsvc",
+                        "count": 2,
+                        "first_timestamp": "2025-01-02T01:30:26.897Z",
+                        "last_timestamp": "2025-01-02T03:13:19.275Z"
+                    },
+                    {
+                        "account": "",
+                        "function_call": "NetrShareEnum",
+                        "function_uuid": "srvsvc",
+                        "count": 4,
+                        "first_timestamp": "2025-01-02T01:30:26.897Z",
+                        "last_timestamp": "2025-01-02T03:13:19.275Z"
+                    }
+                ],
+                "first_timestamp": "2025-01-02T01:30:26Z",
+                "last_timestamp": "2025-01-02T03:13:19Z",
+                "dst_hosts": [
+                    {
+                        "id": 40611,
+                        "name": "IP-1.1.1.1",
+                        "ip": "1.1.1.1"
+                    }
+                ],
+                "dst_ips": [
+                    "1.1.1.1"
+                ]
+            }
+        ],
+        "campaign_summaries": [],
+        "is_triaged": false,
+        "filtered_by_ai": false,
+        "filtered_by_user": false,
+        "filtered_by_rule": false,
+        "_doc_modified_ts": "2025-01-02T08:41:49.317887",
+        "detection_url": "",
+        "url": ""
+    }
+]

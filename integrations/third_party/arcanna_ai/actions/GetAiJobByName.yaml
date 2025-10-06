@@ -1,32 +1,15 @@
-name: Get AI Job by name
-description: ''
-integration_identifier: ArcannaAI
-parameters:
-    -   name: Job name
-        default_value: ' '
-        type: string
-        description: 'Job name for which the job details should be fetched '
-        is_mandatory: true
-dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: true
-        # language=json
-        result_example: "{\n    \"job_id\": 3207,\n    \"title\": \"Arcanna Accenture\
-        \ Demo Calin Exposer\",\n    \"status\": \"ENABLED\",\n    \"retrain_state\"\
-        : \"RETRAIN_FINISHED\",\n    \"retrain_msg\": \"Retraining finished successfully\"\
-        ,\n    \"labels\": [\n        \"Low\",\n        \"Medium\",\n        \"High\"\
-        ,\n        \"Critical\",\n        \"Informational\"\n    ],\n    \"features\"\
-        : [\n        \"preserve_original_id\",\n        \"additional_properties.AlertGroupIdentifier\"\
-        ,\n        \"additional_properties.detection_1_ruleLabels_1_value\",\n   \
-        \     \"additional_properties.detection_1_ruleLabels_2_value\",\n        \"\
-        additional_properties.detection_1_ruleLabels_4_key\",\n        \"additional_properties.detection_1_ruleType\"\
-        ,\n        \"additional_properties.event_target_process_file_fullPath\",\n\
-        \        \"source_host_name\",\n        \"source_nt_domain\",\n        \"\
-        source_process_name\",\n        \"source_user_name\"\n    ],\n    \"processed_documents_count\"\
-        : 50,\n    \"feedback_documents_count\": 10,\n    \"last_processed_timestamp\"\
-        : \"2024-05-30T07:21:59.391204+00:00\",\n    \"last_feedback_timestamp\":\
-        \ \"2024-08-13T09:47:21.605603+00:00\",\n    \"last_train_start_timestamp\"\
-        : \"2024-05-27T10:24:35.382371+00:00\",\n    \"last_train_finished_timestamp\"\
-        : \"2024-05-27T10:24:50.067615+00:00\",\n    \"invalid\": false\n}"
-default_result_value: ''
 creator: 57861f63-e407-4200-90d4-a03bed1eb07e
+default_result_value: ''
+description: ''
+dynamic_results_metadata:
+-   result_example_path: resources/GetAiJobByName_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: ArcannaAI
+name: Get AI Job by name
+parameters:
+-   default_value: ' '
+    description: 'Job name for which the job details should be fetched '
+    is_mandatory: true
+    name: Job name
+    type: string

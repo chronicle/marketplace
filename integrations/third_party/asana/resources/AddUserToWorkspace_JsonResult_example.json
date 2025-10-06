@@ -1,0 +1,22 @@
+{
+    "data": {
+        "gid": "12345",
+        "resource_type": "user",
+        "name": "Greg Sanchez",
+        "email": "gsanchez@example.com",
+        "photo": {
+            "image_128x128": "https://...",
+            "image_21x21": "https://...",
+            "image_27x27": "https://...",
+            "image_36x36": "https://...",
+            "image_60x60": "https://..."
+        },
+        "workspaces": [
+            {
+                "gid": "12345",
+                "resource_type": "workspace",
+                "name": "My Company Workspace"
+            }
+        ]
+    }
+}

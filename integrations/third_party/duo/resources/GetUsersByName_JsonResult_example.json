@@ -1,0 +1,101 @@
+{
+    "user_name": "username",
+    "user_id": "ABC123",
+    "user_data": [
+        {
+            "alias1": null,
+            "alias2": null,
+            "alias3": null,
+            "alias4": null,
+            "aliases": {},
+            "created": 1488805062,
+            "desktoptokens": [],
+            "email": "username@domain.tld",
+            "firstname": "USER T",
+            "groups": [
+                {
+                    "desc": "",
+                    "group_id": "ABC123",
+                    "mobile_otp_enabled": false,
+                    "name": "GROUP_NAME (from AD sync \"CORP AD\")",
+                    "push_enabled": false,
+                    "sms_enabled": false,
+                    "status": "Active",
+                    "voice_enabled": false
+                },
+                {
+                    "desc": "",
+                    "group_id": "ABC123",
+                    "mobile_otp_enabled": false,
+                    "name": "GROUP_NAME (from AD sync \"CORP AD\")",
+                    "push_enabled": false,
+                    "sms_enabled": false,
+                    "status": "Active",
+                    "voice_enabled": false
+                },
+                {
+                    "desc": "",
+                    "group_id": "ABC123",
+                    "mobile_otp_enabled": false,
+                    "name": "GROUP_NAME (from AD sync \"CORP AD\")",
+                    "push_enabled": false,
+                    "sms_enabled": false,
+                    "status": "Active",
+                    "voice_enabled": false
+                }
+            ],
+            "is_enrolled": true,
+            "last_directory_sync": 1625224570,
+            "last_login": 1625237130,
+            "lastname": "LASTNAME",
+            "notes": "",
+            "phones": [
+                {
+                    "activated": true,
+                    "capabilities": [
+                        "auto",
+                        "push",
+                        "sms",
+                        "phone",
+                        "mobile_otp"
+                    ],
+                    "encrypted": "Encrypted",
+                    "extension": "",
+                    "fingerprint": "Disabled",
+                    "last_seen": "2021-07-02T14:45:30",
+                    "model": "PHONE MODEL",
+                    "name": "",
+                    "number": "+12223334444",
+                    "phone_id": "ABC123",
+                    "platform": "Phone OS",
+                    "postdelay": "",
+                    "predelay": "",
+                    "screenlock": "Locked",
+                    "sms_passcodes_sent": true,
+                    "tampered": "Not tampered",
+                    "type": "Mobile"
+                }
+            ],
+            "realname": "USER T LASTNAME",
+            "status": "active",
+            "tokens": [
+                {
+                    "serial": "ABC123",
+                    "token_id": "123ABC",
+                    "totp_step": null,
+                    "type": "d1"
+                },
+                {
+                    "serial": "123456789",
+                    "token_id": "ABC123",
+                    "totp_step": null,
+                    "type": "yk"
+                }
+            ],
+            "u2ftokens": [],
+            "user_id": "ABC123",
+            "username": "username",
+            "webauthncredentials": []
+        }
+    ]
+}

@@ -1,18 +1,17 @@
-name: Update Alert Score
+creator: Rob
+default_result_value: ''
 description: 'This will update the alert score by the amount supplied in the ''Input''
     parameter. '
-integration_identifier: Tools
-parameters:
-    -   name: Input
-        default_value: '0'
-        type: string
-        description: The value to increment or decrement the alert score by.
-        is_mandatory: true
 dynamic_results_metadata:
-    -   result_name: JsonResult
-        show_result: false
-        # language=json
-        result_example: '{}'
-default_result_value: ''
-creator: Rob
+-   result_example_path: null
+    result_name: JsonResult
+    show_result: false
+integration_identifier: Tools
+name: Update Alert Score
+parameters:
+-   default_value: '0'
+    description: The value to increment or decrement the alert score by.
+    is_mandatory: true
+    name: Input
+    type: string
 script_result_name: ScriptResult

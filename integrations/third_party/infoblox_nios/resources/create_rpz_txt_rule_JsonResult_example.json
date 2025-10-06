@@ -1,0 +1,12 @@
+{
+    "_ref": "record:rpz:txt/ZG5zLmJpbmRfdHh0JC5fZGVmYXVsdC5jb20ucnB6LnRocmVhdC5uaWdodGx5LXRlc3QtbXgtc3ViLiJ0ZXN0MSI:nightly-test-mx-sub.threat.rpz.com/default",
+    "comment": "nightly-test-mx-sub",
+    "disable": false,
+    "extattrs": {},
+    "name": "nightly-test-mx-sub.threat.rpz.com",
+    "rp_zone": "threat.rpz.com",
+    "text": "Threat Zone",
+    "use_ttl": false,
+    "view": "default",
+    "zone": "threat.rpz.com"
+}

@@ -1,0 +1,24 @@
+{
+    "results": [
+        {
+            "address": "10.196.217.80",
+            "client_id": "ff:29:1e:55:ab:00:01:00:01:2f:e2:5b:40:00:0c:29:1e:55:ab",
+            "ends": "2025-06-16T05:59:11Z",
+            "fingerprint": "VMware::Windows:",
+            "fingerprint_processed": "processed",
+            "ha_group": null,
+            "hardware": "00:0c:29:1e:55:ab",
+            "host": "dhcp/host/1516583",
+            "hostname": "infoblox",
+            "iaid": 0,
+            "last_updated": "2025-06-16T04:59:11.372Z",
+            "options": "{\"Options\":[{\"Code\":\"61\",\"Value\":\"/ykeVasAAQABL+JbQAAMKR5Vqw==\"},{\"Code\":\"12\",\"Value\":\"YmxveG9uZS1pbmZvYmxveA==\"},{\"Code\":\"50\",\"Value\":\"CsTZUA==\"},{\"Code\":\"53\",\"Value\":\"Aw==\"},{\"Code\":\"54\",\"Value\":\"CsTZtQ==\"},{\"Code\":\"55\",\"Value\":\"ARwCAw8GdwwsLxp5Kg==\"}]}",
+            "preferred_lifetime": "2025-06-16T04:59:11Z",
+            "protocol": "",
+            "space": "ipam/ip_space/1f99d3a6-2982-11f0-b65e-fe20d626f7e6",
+            "starts": "2025-06-16T04:59:11Z",
+            "state": "used",
+            "type": "DHCPv4"
+        }
+    ]
+}

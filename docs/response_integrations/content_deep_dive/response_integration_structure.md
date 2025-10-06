@@ -47,6 +47,7 @@ integration_name/
 │   └── job2.yaml
 │
 ├── resources/
+│   ├── action1_JsonResult_example.json
 │   ├── image.png
 │   └── logo.svg
 │
