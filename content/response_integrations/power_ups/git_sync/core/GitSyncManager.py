@@ -18,6 +18,10 @@ import re
 import tempfile
 import uuid
 from typing import TYPE_CHECKING, Any
+from TIPCommon.types import SingleJson
+
+# # Type alias for JSON-like dictionary
+# SingleJson: TypeAlias = Dict[str, Any]
 
 from jinja2 import Template
 
@@ -686,9 +690,7 @@ class WorkflowInstaller:
                     (
                         x
                         for x in old_steps
-                        if (x.get("instanceName") == step.get("instanceName") and
-                            x.get("actionProvider") == step.get("actionProvider")
-                            )
+                        if self._is_matching_step(x, step)
                     ),
                     None,
                 )
@@ -984,6 +986,14 @@ class WorkflowInstaller:
         """
         self._get_step_parameter_by_name(step, parameter_name)["value"] = (
             parameter_value
+        )
+
+    @staticmethod
+    def _is_matching_step(step_1: SingleJson, step_2: SingleJson) -> bool:
+        """Checks if step 'step_1' matches the key attributes of 'step_2'."""
+        return (
+                step_1.get("instanceName") == step_2.get("instanceName")
+                and step_1.get("actionProvider") == step_2.get("actionProvider")
         )
 
     @staticmethod
