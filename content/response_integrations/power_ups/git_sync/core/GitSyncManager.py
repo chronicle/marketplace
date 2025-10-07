@@ -686,7 +686,9 @@ class WorkflowInstaller:
                     (
                         x
                         for x in old_steps
-                        if x.get("instanceName") == step.get("instanceName")
+                        if (x.get("instanceName") == step.get("instanceName") and
+                            x.get("actionProvider") == step.get("actionProvider")
+                            )
                     ),
                     None,
                 )
