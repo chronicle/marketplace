@@ -181,7 +181,7 @@ def deploy(
 
     utils.build_integration(integration)
     built_dir: pathlib.Path = utils.find_built_integration_dir(identifier)
-    minor_version_bump(built_dir, source_path)
+    minor_version_bump(built_dir, source_path, identifier)
 
     zip_path: pathlib.Path = utils.zip_integration_dir(built_dir)
     rich.print(f"Zipped built integration at {zip_path}")
@@ -216,11 +216,16 @@ def _get_integration_path(integration: str) -> pathlib.Path:
             source_path = candidate
             break
 
-    if not source_path:
+    if not source_path or not source_path.exists():
         rich.print(
             f"[red]Could not find source integration "
             f"at {integrations_root}/{'|'.join(mp.core.constants.INTEGRATIONS_TYPES)}/{integration}"
             f"[/red]"
+            "\nPlease ensure the content-hub path is properly configured."
+            "\nYou can verify your configuration by running [bold]mp config"
+            " --display-config[/bold]."
+            "\nIf the path is incorrect, re-configure it by running [bold]mp config"
+            " --root-path <your_path>[/bold]."
         )
         raise typer.Exit(1)
 

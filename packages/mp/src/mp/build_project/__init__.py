@@ -184,7 +184,7 @@ def build(  # noqa: PLR0913
         )
         if commercial_not_found.intersection(community_not_found):
             rich.print(
-                "Please ensure the marketplace path is properly configured.\n"
+                "Please ensure the content-hub path is properly configured.\n"
                 "You can verify your configuration by running [bold]mp config "
                 "--display-config[/bold].\n"
                 "If the path is incorrect, re-configure it by running [bold]mp config "

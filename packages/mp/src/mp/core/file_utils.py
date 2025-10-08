@@ -82,6 +82,18 @@ def get_all_integrations_paths(integrations_classification: str) -> list[pathlib
     return [create_or_get_integrations_path() / dir_name for dir_name in marketplace_dir_names]
 
 
+def create_or_get_integrations_dir() -> pathlib.Path:
+    """Get the content path.
+
+    If the directory doesn't exist, it creates it
+
+    Returns:
+        The root/content/integrations directory path
+
+    """
+    return create_dir_if_not_exists(create_or_get_content_dir() / constants.INTEGRATIONS_DIR_NAME)
+
+
 def create_or_get_content_dir() -> pathlib.Path:
     """Get the content path.
 
