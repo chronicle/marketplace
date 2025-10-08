@@ -20,9 +20,6 @@ import uuid
 from typing import TYPE_CHECKING, Any
 from TIPCommon.types import SingleJson
 
-# # Type alias for JSON-like dictionary
-# SingleJson: TypeAlias = Dict[str, Any]
-
 from jinja2 import Template
 
 from .cache import Cache, Context, get_context_factory
