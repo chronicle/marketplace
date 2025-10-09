@@ -1,0 +1,7 @@
+creator: admin
+description: Use the Ping action to test the connectivity to Azure Monitor.
+dynamic_results_metadata: []
+integration_identifier: AzureMonitor
+name: Ping
+parameters: []
+script_result_name: is_success

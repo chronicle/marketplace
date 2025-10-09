@@ -1,0 +1,52 @@
+identifier: AzureMonitor
+name: Azure Monitor
+parameters:
+  - name: Login API Root
+    default_value: https://login.microsoftonline.com
+    type: string
+    description: Login API root of the Azure Monitor service.
+    is_mandatory: true
+    integration_identifier: AzureMonitor
+  - name: API Root
+    default_value: https://api.loganalytics.io
+    type: string
+    description: API root of the Azure Monitor service.
+    is_mandatory: true
+    integration_identifier: AzureMonitor
+  - name: Tenant ID
+    default_value: ""
+    type: string
+    description: Azure Monitor account tenant ID.
+    is_mandatory: true
+    integration_identifier: AzureMonitor
+  - name: Client ID
+    default_value: ""
+    type: string
+    description: Azure Monitor account Client ID.
+    is_mandatory: true
+    integration_identifier: AzureMonitor
+  - name: Client Secret
+    default_value: ""
+    type: password
+    description: Azure Monitor account Client Secret.
+    is_mandatory: true
+    integration_identifier: AzureMonitor
+  - name: Workspace ID
+    default_value: ""
+    type: string
+    description: Azure Monitor account Workspace ID.
+    is_mandatory: true
+    integration_identifier: AzureMonitor
+  - name: Verify SSL
+    default_value: true
+    type: boolean
+    description: If selected, the integration validates the SSL certificate when connecting to Azure Monitor. Selected by default.
+    is_mandatory: true
+    integration_identifier: AzureMonitor
+documentation_link: https://cloud.google.com/chronicle/docs/soar/marketplace-integrations/AzureMonitor
+categories:
+  - IT & Infrastructure
+  - Azure
+  - Cloud
+svg_logo_path: resources/logo.svg
+image_path: resources/image.png

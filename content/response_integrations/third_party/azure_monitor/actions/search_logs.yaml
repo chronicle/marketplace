@@ -1,0 +1,40 @@
+creator: admin
+description: 'Use the Search Logs action to search logs based on the provided query in Azure Monitor.'
+dynamic_results_metadata:
+- result_name: JsonResult
+  show_result: true
+  result_example_path: resources/search_logs_JsonResult_example.json
+integration_identifier: AzureMonitor
+name: Search Logs
+parameters:
+- name: Workspace ID
+  type: string
+  default_value: ''
+  description: 'ID of the workspace that needs to be searched. If nothing is provided, action will take the Workspace ID provided in the integration configuration.'
+  is_mandatory: false
+- name: Query
+  type: string
+  default_value: ''
+  description: Query that needs to be executed.
+  is_mandatory: true
+- name: Time Frame
+  type: string
+  default_value: Last Hour
+  description: Time frame for the query. If “Custom” is selected, you also need to provide “Start Time”.
+  is_mandatory: false
+- name: Start Time
+  type: string
+  default_value: ''
+  description: 'Start time for the query. Mandatory if Time Frame is Custom. Format: ISO 8601.'
+  is_mandatory: false
+- name: End Time
+  type: string
+  default_value: ''
+  description: 'End time for the query. Format: ISO 8601. If not provided and Time Frame is Custom, current time will be used.'
+  is_mandatory: false
+- name: Max Results To Return
+  type: string
+  default_value: '100'
+  description: Number of results to return from the search. Maximum 1000.
+  is_mandatory: true
+script_result_name: is_success
