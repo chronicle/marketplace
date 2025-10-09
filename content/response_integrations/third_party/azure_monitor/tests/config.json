@@ -1,0 +1,9 @@
+{
+  "Login API Root": "https://login.microsoftonline.com",
+  "API Root": "https://api.loganalytics.io",
+  "Tenant ID": "test-tenant",
+  "Client ID": "test-client-id",
+  "Client Secret": "test-secret",
+  "Workspace ID": "test-workspace",
+  "Verify SSL": true
+}
