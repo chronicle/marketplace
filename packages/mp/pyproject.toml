@@ -1,6 +1,6 @@
 [project]
 name = "mp"
-version = "1.7.0"
+version = "1.8.1"
 description = "General Purpose CLI tool for Google SecOps Marketplace"
 readme = "README.md"
 authors = [
@@ -10,13 +10,14 @@ authors = [
     { name = "Amit Joseph", email = "amitjoseph@google.com" },
     { name = "Hagit Eliahu", email = "haggit@google.com" },
 ]
-requires-python = ">=3.11,<3.12"
+requires-python = "==3.11.*"
 keywords = [
     "mp",
     "google",
     "secops",
     "soar",
-    "marketplace"
+    "marketplace",
+    "content hub",
 ]
 
 classifiers = [

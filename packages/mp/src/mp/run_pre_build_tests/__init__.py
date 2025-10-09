@@ -22,8 +22,6 @@ from typing import TYPE_CHECKING, Annotated
 
 import typer
 
-import mp.build_project.marketplace
-import mp.core.code_manipulation
 import mp.core.config
 import mp.core.constants
 import mp.core.file_utils
@@ -45,7 +43,7 @@ WINDOWS_SCRIPT_NAME: str = "run_pre_build_tests.bat"
 UNIX_SCRIPT_NAME: str = "run_pre_build_tests.sh"
 SUCCESS_STATUS_CODES: set[int] = {0, 2}
 
-__all__: list[str] = ["TestIssue", "TestWarning", "app"]
+__all__: list[str] = ["TestIssue", "TestWarning", "app", "run_pre_build_tests"]
 app: typer.Typer = typer.Typer()
 
 

@@ -1,0 +1,33 @@
+[project]
+name = "Functions"
+version = "30.0"
+description = "A set of math and data manipulation actions created for Google SecOps Community to power up playbook capabilities."
+requires-python = ">=3.11,<3.12"
+dependencies = [
+    "bleach==6.2.0",
+    "hashid==3.1.4",
+    "jsonpath-ng==1.7.0",
+    "pillow==11.0.0",
+    "pytz==2024.2",
+    "tinycss2==1.4.0",
+    "tld==0.13",
+    "urlextract==1.9.0",
+    "xmltodict==0.14.2",
+]
+
+[dependency-groups]
+dev = [
+    "environmentcommon",
+    "integration-testing",
+    "pytest>=8.3.5",
+    "pytest-json-report>=1.5.0",
+    "soar-sdk",
+    "tipcommon",
+]
+
+[tool.uv.sources]
+soar-sdk = { git = "https://github.com/chronicle/soar-sdk.git" }
+integration-testing = { path = "../../../../packages/integration_testing_whls/integration_testing-2.2.7-py3-none-any.whl" }
+tipcommon = { path = "../../../../packages/tipcommon/TIPCommon-2.2.7/TIPCommon-2.2.7-py2.py3-none-any.whl" }
+environmentcommon = { path = "../../../../packages/envcommon/EnvironmentCommon-1.0.2/EnvironmentCommon-1.0.2-py2.py3-none-any.whl" }
+

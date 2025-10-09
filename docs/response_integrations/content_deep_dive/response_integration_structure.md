@@ -3,7 +3,7 @@
 ## Integration Structure Guide
 
 This document outlines the standard folder structure and file contents for creating a new
-integration in the `integrations/third_party` directory of the Google SecOps Marketplace Content
+integration in the `content/response_integrations/third_party` directory of the Google SecOps Content Hub
 Repository.
 
 **Note:** All file names must be in snake_case

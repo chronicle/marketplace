@@ -27,7 +27,7 @@ exclude = [
     "node_modules",
     "site-packages",
     "venv",
-    "mock_marketplace",
+    "mock_content_hub",
 ]
 
 # Same as Black.
@@ -102,10 +102,10 @@ preview = true
     "PLR6301",
     "PLC1901",
 ]
-"**/integrations/**" = [
+"**/response_integrations/**" = [
     "TID252",
 ]
-"**/integrations/third_party/**" = [
+"**/response_integrations/third_party/**" = [
     "CPY",
 ]
 

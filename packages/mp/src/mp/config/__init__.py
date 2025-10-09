@@ -32,13 +32,13 @@ import typer
 
 import mp.core.config
 
-__all__: list[str] = ["app"]
+__all__: list[str] = ["app", "config"]
 app: typer.Typer = typer.Typer()
 
 
 @app.command(name="config", help="Configure script settings")
 def config(
-    marketplace_path: Annotated[
+    root_path: Annotated[
         str | None,
         typer.Option(
             help="Configure the path to tip-marketplace repository root directory",
@@ -63,13 +63,13 @@ def config(
     """Run the `mp config` command.
 
     Args:
-        marketplace_path: the path to the marketplace repository root directory
+        root_path: the path to the repository root directory
         processes: the number of processes can be run in parallel
         display_config: whether to display the configuration after making the changes
 
     """
-    if marketplace_path is not None:
-        _set_marketplace_path(marketplace_path)
+    if root_path is not None:
+        _set_marketplace_path(root_path)
 
     if processes is not None:
         _set_processes_number(processes)

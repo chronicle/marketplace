@@ -17,7 +17,6 @@ from __future__ import annotations
 import os
 from typing import TYPE_CHECKING, NotRequired, TypeAlias, TypedDict
 
-import mp.core.file_utils
 import mp.core.unix
 from mp.core.constants import PROJECT_FILE, RELEASE_NOTES_FILE
 from mp.core.data_models.pyproject_toml import PyProjectToml

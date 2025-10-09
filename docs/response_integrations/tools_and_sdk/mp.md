@@ -1,15 +1,15 @@
-# mp: Your Google SecOps Marketplace Integration Powerhouse
+# mp: Your Google SecOps Content Hub Powerhouse
 
 **`mp`**, short for **`marketpalce`**, is a command-line interface (CLI)
-tool designed to streamline the development and maintenance of Google SecOps marketplace
-integrations.
+tool designed to streamline the development and maintenance of Google SecOps Content Hub
+response integrations.
 It empowers developers by providing a unified platform for building,
-testing, and ensuring the quality of their integrations.
+testing, and ensuring the quality of their response integrations.
 
 ## Key Features
 
-- **Build Integrations**: Convert non-built integrations to the format required by
-  Google SecOps Marketplace
+- **Build Response Integrations**: Convert non-built response integrations to the format required by
+  Google SecOps Content Hub
 - **Code Quality**: Format and lint Python code with ruff, and statically type-check
   with mypy
 - **Developer Workflow**: Streamline the development process with helpful commands and
@@ -24,7 +24,7 @@ documentation:
 - [Installation Guide](/packages/mp/docs/installation.md)—How to install the tool
 - [Usage Guide](/packages/mp/docs/usage.md)—How to use the available commands
 - [Development Guide](/packages/mp/docs/development.md)—How to set up your development environment
-- [Marketplace Integration Guide](/packages/mp/docs/marketplace.md)—How to work with marketplace
+- [Response Integrations Guide](/packages/mp/docs/response_integrations.md)—How to work with response
   integrations
 - [Contributing Guidelines](/packages/mp/docs/contributing.md)—How to contribute to the project
 
@@ -55,7 +55,7 @@ mp build --quiet --repository third_party
 mp test --verbose --integration my_integration
 
 # Configure mp parameters
-mp config --marketplace-path . --processes 7 --display-config
+mp config --root-path . --processes 7 --display-config
 ```
 
 ## Development Environment Commands
@@ -84,5 +84,5 @@ Build and deploy an integration to the dev environment:
 mp dev-env deploy <integration_name>
 ```
 
-- `<integration_name>`: The name of the integration directory under `integrations/commercial` or
-  `integrations/third_party`.
+- `<integration_name>`: The name of the integration directory under `content/response_integrations/commercial` or
+  `content/response_integrations/third_party`.

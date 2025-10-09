@@ -32,6 +32,7 @@ __all__: list[str] = [
     "build_project",
     "check",
     "config",
+    "dev_env",
     "format_app",
     "main",
     "run_pre_build_tests",

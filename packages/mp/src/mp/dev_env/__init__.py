@@ -12,22 +12,28 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-
 from __future__ import annotations
 
 import json
-import pathlib
-from typing import Annotated, NamedTuple
+from typing import TYPE_CHECKING, Annotated, NamedTuple
 
 import rich
 import typer
 
+import mp.core.constants
+import mp.core.file_utils
 from mp.telemetry import track_command
 
 from . import api, utils
 from .minor_version_bump import minor_version_bump
 
-app = typer.Typer(help="Commands for interacting with the development environment (playground)")
+if TYPE_CHECKING:
+    import pathlib
+
+__all__: list[str] = ["app", "deploy", "login"]
+app: typer.Typer = typer.Typer(
+    help="Commands for interacting with the development environment (playground)"
+)
 
 
 class DevEnvParams(NamedTuple):
@@ -169,28 +175,15 @@ def deploy(
         typer.Exit: If the integration is not found.
 
     """
-    config = utils.load_dev_env_config()
-    integrations_root = pathlib.Path.cwd() / "integrations"
-    source_path = None
+    config: dict[str, str] = utils.load_dev_env_config()
+    source_path: pathlib.Path = _get_integration_path(integration)
+    identifier: str = utils.get_integration_identifier(source_path)
 
-    for repo in ["commercial", "third_party"]:
-        candidate = integrations_root / repo / integration
-        if candidate.exists():
-            source_path = candidate
-            break
-
-    if not source_path:
-        rich.print(
-            f"[red]Could not find source integration "
-            f"at integrations/commercial|third_party/{integration}[/red]"
-        )
-        raise typer.Exit(1)
-
-    identifier = utils.get_integration_identifier(source_path)
     utils.build_integration(integration)
-    built_dir = utils.find_built_integration_dir(source_path, identifier)
-    minor_version_bump(built_dir, source_path)
-    zip_path = utils.zip_integration_dir(built_dir)
+    built_dir: pathlib.Path = utils.find_built_integration_dir(identifier)
+    minor_version_bump(built_dir, source_path, identifier)
+
+    zip_path: pathlib.Path = utils.zip_integration_dir(built_dir)
     rich.print(f"Zipped built integration at {zip_path}")
 
     try:
@@ -204,10 +197,36 @@ def deploy(
             )
         backend_api.login()
         details = backend_api.get_integration_details(zip_path, is_staging=is_staging)
-        integration_id = details["identifier"]
+        integration_id: str = details["identifier"]
         result = backend_api.upload_integration(zip_path, integration_id, is_staging=is_staging)
         rich.print(f"Upload result: {result}")
         rich.print("[green]✅ Integration deployed successfully.[/green]")
+
     except Exception as e:
         rich.print(f"[red]Upload failed: {e}[/red]")
         raise typer.Exit(1) from e
+
+
+def _get_integration_path(integration: str) -> pathlib.Path:
+    source_path: pathlib.Path | None = None
+    integrations_root: pathlib.Path = mp.core.file_utils.create_or_get_integrations_dir()
+    for repo in mp.core.constants.INTEGRATIONS_TYPES:
+        candidate: pathlib.Path = integrations_root / repo / integration
+        if candidate.exists():
+            source_path = candidate
+            break
+
+    if not source_path or not source_path.exists():
+        rich.print(
+            f"[red]Could not find source integration "
+            f"at {integrations_root}/{'|'.join(mp.core.constants.INTEGRATIONS_TYPES)}/{integration}"
+            f"[/red]"
+            "\nPlease ensure the content-hub path is properly configured."
+            "\nYou can verify your configuration by running [bold]mp config"
+            " --display-config[/bold]."
+            "\nIf the path is incorrect, re-configure it by running [bold]mp config"
+            " --root-path <your_path>[/bold]."
+        )
+        raise typer.Exit(1)
+
+    return source_path

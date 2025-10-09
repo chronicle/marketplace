@@ -3,7 +3,7 @@
 Hello there, developer! This directory is home to a collection of shared code packages (think of
 them as specialized
 toolkits) designed to assist you in building and maintaining integrations for the Google SecOps
-marketplace. Our goal is
+Content Hub. Our goal is
 to simplify common development tasks, promote consistency, and help you create robust and reliable
 integrations.
 
@@ -17,7 +17,7 @@ These are foundational libraries that you'll often use when developing integrati
   functionalities that are
   frequently needed when building integrations. It helps you avoid reinventing the wheel and focuses
   on common patterns
-  seen in marketplace integrations.
+  seen in response integrations.
 * **`EnvironmentCommon`**: This library provides functionalities that `TIPCommon` depends on, often
   related to handling
   environment-specific configurations or interactions.

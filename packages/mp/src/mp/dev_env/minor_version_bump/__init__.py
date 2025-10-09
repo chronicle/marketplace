@@ -24,7 +24,6 @@ import toml
 import typer
 
 import mp.core.constants
-import mp.core.file_utils
 from mp.core.config import get_marketplace_path
 
 from .utils import (
@@ -42,39 +41,34 @@ VERSIONS_CACHE_FILE_NAME: str = "version_cache.yaml"
 
 
 def minor_version_bump(
-    integration_dir_built: pathlib.Path, integration_dir_non_built: pathlib.Path
+    integration_dir_built: pathlib.Path,
+    integration_dir_non_built: pathlib.Path,
+    integration_id: str,
 ) -> None:
-    """Bump the minor version of an integration, to enable new venv creation.
+    """Bump the minor version of an integration to enable new venv creation.
 
     Args:
         integration_dir_built (pathlib.Path): The path to the built integration directory.
         integration_dir_non_built (pathlib.Path): The path to the non-built integration directory.
+        integration_id (str): The integration identifier.
 
     Raises:
         typer.Exit: If the 'packages/mp' folder cannot be found in a parent directory.
 
     """
     try:
-        integrations_cache_folder: pathlib.Path = (
-            get_marketplace_path() / INTEGRATIONS_CACHE_DIR_NAME
-        )
-        integration_name = integration_dir_non_built.name
-
         pyproject_path: pathlib.Path = integration_dir_non_built / mp.core.constants.PROJECT_FILE
         pyproject_data: dict[str, Any] = toml.load(pyproject_path)
-        current_major_version = math.floor(float(pyproject_data["project"]["version"]))
 
-        previous_cache: VersionCache | None = load_and_validate_cache(
-            integrations_cache_folder, integration_name, current_major_version
+        version: float = float(pyproject_data["project"]["version"])
+        cache_dir: pathlib.Path = get_marketplace_path() / INTEGRATIONS_CACHE_DIR_NAME
+        cache: VersionCache | None = load_and_validate_cache(
+            cache_dir, integration_id, math.floor(version)
         )
-
         updated_hash: str = calculate_dependencies_hash(pyproject_data)
+        updated_version_cache: VersionCache = update_version_cache(cache, updated_hash, version)
 
-        updated_version_cache: VersionCache = update_version_cache(
-            previous_cache, updated_hash, pyproject_data
-        )
-
-        update_cache_file(integrations_cache_folder, integration_dir_built, updated_version_cache)
+        update_cache_file(cache_dir, integration_dir_built, updated_version_cache)
         update_built_def_file(integration_dir_built, updated_version_cache)
 
     except FileNotFoundError as e:

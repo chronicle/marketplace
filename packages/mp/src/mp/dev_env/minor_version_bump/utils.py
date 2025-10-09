@@ -25,7 +25,6 @@ import rich
 import yaml
 
 import mp.core.constants
-import mp.core.file_utils
 
 CONFIG_PATH = pathlib.Path.home() / ".mp_dev_env.json"
 INTEGRATIONS_CACHE_DIR_NAME: str = ".integrations_cache"
@@ -42,7 +41,9 @@ class VersionCache:
 
 
 def load_and_validate_cache(
-    cache_folder: pathlib.Path, integration_name: str, current_major_version: int
+    cache_folder: pathlib.Path,
+    integration_name: str,
+    current_major_version: int,
 ) -> VersionCache | None:
     """Load and validates a cached version file.
 
@@ -60,9 +61,11 @@ def load_and_validate_cache(
     cache: VersionCache | None = _load_cached_version(cache_folder, integration_name)
     if not cache:
         return None
+
     if not _validate_cached_version(cache, current_major_version):
         (cache_folder / integration_name / VERSIONS_CACHE_FILE_NAME).unlink()
         return None
+
     return cache
 
 
@@ -72,6 +75,7 @@ def _load_cached_version(cache_folder: pathlib.Path, integration_name: str) -> V
     version_file_path = integration_cache_dir / VERSIONS_CACHE_FILE_NAME
     if not version_file_path.exists():
         return None
+
     try:
         cached_data: dict[str, Any] = yaml.safe_load(version_file_path.read_text(encoding="utf-8"))
         return VersionCache(
@@ -102,68 +106,54 @@ def calculate_dependencies_hash(pyproject_data: dict[str, Any]) -> str:
     sections_to_hash: dict[str, Any] = {}
     if dependencies := pyproject_data.get("project", {}).get("dependencies"):
         sections_to_hash["dependencies"] = dependencies
+
     if dep_groups := pyproject_data.get("dependency-groups"):
         sections_to_hash["dependency-groups"] = dep_groups
+
     serialized_data: bytes = json.dumps(sections_to_hash, sort_keys=True, indent=None).encode(
         "utf-8"
     )
-    return hashlib.md5(serialized_data).hexdigest()  # noqa: S324
+    return hashlib.md5(serialized_data, usedforsecurity=False).hexdigest()
 
 
 def update_version_cache(
     previous_cache: VersionCache | None,
     updated_hash: str,
-    pyproject_data: dict[str, Any],
+    version: float,
 ) -> VersionCache:
-    """Update the version cache based on a new hash and pyproject data.
+    """Update the version cache based on the new hash and the pyproject data.
 
     Args:
         previous_cache: The previous version cache, or None if it's the first
             cache being created.
         updated_hash: The new hash to be stored in the cache.
-        pyproject_data: The data from the pyproject.toml file.
+        version: The integration version in cache
 
     Returns:
         A new `VersionCache` object with the updated version, hash, and next
 
     """
-    plus_factor: float = 0.1
-    minus_factor: float = -0.1
-    updated_version: float
-    next_change: float
-    if previous_cache:
-        updated_version, next_change = _update_existing_version_cache(previous_cache, updated_hash)
-    else:
-        base_version = float(pyproject_data["project"]["version"])
-        updated_version = base_version + (plus_factor * 2)
-        next_change = minus_factor
+    if previous_cache is not None:
+        return _update_existing_version_cache(previous_cache, updated_hash)
 
-    return VersionCache(
-        version=round(updated_version, 2),
-        hash=updated_hash,
-        next_version_change=next_change,
-    )
+    delta: float = 0.1
+    updated_version: float = round(version + (delta * 2), 2)
+    return VersionCache(version=updated_version, hash=updated_hash, next_version_change=-delta)
 
 
-def _update_existing_version_cache(
-    previous_cache: VersionCache | None, updated_hash: str
-) -> tuple[float, float]:
-    plus_factor: float = 0.1
-    minus_factor: float = -0.1
-    if previous_cache.hash != updated_hash:
-        updated_version = previous_cache.version + previous_cache.next_version_change
-        next_change = (
-            plus_factor if previous_cache.next_version_change == minus_factor else minus_factor
-        )
-    else:
-        updated_version = previous_cache.version
-        next_change = previous_cache.next_version_change
+def _update_existing_version_cache(previous_cache: VersionCache, updated_hash: str) -> VersionCache:
+    if previous_cache.hash == updated_hash:
+        return previous_cache
 
-    return updated_version, next_change
+    updated_version = round(previous_cache.version + previous_cache.next_version_change, 2)
+    next_change = -previous_cache.next_version_change
+    return VersionCache(updated_version, updated_hash, next_change)
 
 
 def update_cache_file(
-    cache_folder: pathlib.Path, integration_dir_built: pathlib.Path, updated_cache: VersionCache
+    cache_folder: pathlib.Path,
+    integration_dir_built: pathlib.Path,
+    updated_cache: VersionCache,
 ) -> None:
     """Update the YAML cache file with the new version information.
 
