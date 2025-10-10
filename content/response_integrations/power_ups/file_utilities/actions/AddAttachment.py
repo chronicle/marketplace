@@ -19,6 +19,7 @@ import json
 import requests
 from soar_sdk.SiemplifyAction import SiemplifyAction
 from soar_sdk.SiemplifyUtils import output_handler
+from core.FileUtilitiesManager import validate_response
 
 
 @output_handler
@@ -54,6 +55,7 @@ def main():
         headers=headers,
         verify=verify_ssl,
     )
+    validate_response(response, "Unable to add attachment. Reason:")
     json_response = response.json()
 
     siemplify.result.add_result_json(json.dumps(json_response))

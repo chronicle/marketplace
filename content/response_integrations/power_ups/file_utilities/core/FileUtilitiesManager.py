@@ -11,14 +11,12 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
 from __future__ import annotations
 
+import requests
 from filelock import FileLock
 
-
-class EntityFileManagerException(Exception):
-    pass
+from exceptions import EntityFileManagerException, FileUtilitiesHTTPException
 
 
 class EntityFileManager:
@@ -91,3 +89,25 @@ class EntityFileManager:
             return True
         except KeyError:
             raise EntityFileManagerException("Entity not found in file")
+
+
+def validate_response(
+    response: requests.Response,
+    error_msg: str = "An error occurred",
+) -> None:
+    """Validate response
+
+    Args:
+        response (requests.Response): Response to validate
+        error_msg (str): Default message to display on error
+
+    Raises:
+        FileUtilitiesHTTPException: If there is any error in the response
+
+    """
+    try:
+        response.raise_for_status()
+
+    except requests.HTTPError as error:
+        msg = f"{error_msg}: {error}\n{error.response.content}"
+        raise FileUtilitiesHTTPException(msg) from error
