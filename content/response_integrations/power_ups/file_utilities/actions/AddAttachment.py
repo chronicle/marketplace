@@ -72,7 +72,7 @@ def main():
 
     siemplify.result.add_result_json(json.dumps(json_response))
 
-    output_message = f"Successfully added attachment to case with ID {case_id}."
+    output_message = "Successfully added attachment to the case."
     siemplify.end(output_message, True, EXECUTION_STATE_COMPLETED)
 
 
