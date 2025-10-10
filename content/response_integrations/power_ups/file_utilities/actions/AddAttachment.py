@@ -17,9 +17,13 @@ from __future__ import annotations
 import json
 
 import requests
+from core.exceptions import FileUtilitiesHTTPException
 from core.FileUtilitiesManager import validate_response
+from soar_sdk.ScriptResult import EXECUTION_STATE_COMPLETED, EXECUTION_STATE_FAILED
 from soar_sdk.SiemplifyAction import SiemplifyAction
 from soar_sdk.SiemplifyUtils import output_handler
+
+SCRIPT_NAME = "Add Attachment"
 
 
 @output_handler
@@ -55,12 +59,21 @@ def main():
         headers=headers,
         verify=verify_ssl,
     )
-    validate_response(response, "Unable to add attachment. Reason:")
+    try:
+        validate_response(response, "Unable to add attachment. Reason:")
+
+    except FileUtilitiesHTTPException as e:
+        siemplify.LOGGER.error(f"Error occurred while adding attachment. Error: {e}")
+        siemplify.LOGGER.exception(e)
+        output_message = f'Error executing action "{SCRIPT_NAME}": {e}'
+        siemplify.end(output_message, False, EXECUTION_STATE_FAILED)
+
     json_response = response.json()
 
     siemplify.result.add_result_json(json.dumps(json_response))
 
-    siemplify.end("Max number , Min Number", True)
+    output_message = f"Successfully added attachment to case with ID {case_id}."
+    siemplify.end(output_message, True, EXECUTION_STATE_COMPLETED)
 
 
 if __name__ == "__main__":
