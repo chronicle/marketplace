@@ -125,3 +125,9 @@
   item_type: Integration
   publish_time: '2024-12-26'
   ticket_number: ''
+- description: Add Attachment - Updated error handling.
+  integration_version: 18.0
+  item_name: FileUtilities
+  item_type: Integration
+  publish_time: '2025-10-15'
+  ticket_number: '405127010'
