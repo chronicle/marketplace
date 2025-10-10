@@ -14,8 +14,9 @@
 from __future__ import annotations
 
 import requests
-from .exceptions import EntityFileManagerException, FileUtilitiesHTTPException
 from filelock import FileLock
+
+from .exceptions import EntityFileManagerException, FileUtilitiesHTTPException
 
 
 class EntityFileManager:
