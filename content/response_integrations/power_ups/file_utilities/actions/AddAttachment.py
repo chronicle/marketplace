@@ -17,9 +17,9 @@ from __future__ import annotations
 import json
 
 import requests
+from core.FileUtilitiesManager import validate_response
 from soar_sdk.SiemplifyAction import SiemplifyAction
 from soar_sdk.SiemplifyUtils import output_handler
-from core.FileUtilitiesManager import validate_response
 
 
 @output_handler
