@@ -1,7 +1,8 @@
 class Config(object):
-    """ The main configuration class"""
-    VERSION: str = 'Google-SecOps:1.0.0'
-    INTEGRATION_NAME: str = 'ANYRUN Sandbox'
-    DATE_TIME_FORMAT: str = '%Y-%m-%d %H:%M:%S'
+    """The main configuration class"""
 
-    SANDBOX_DATATABLE: str = 'anyrun_sandbox_iocs'
+    VERSION: str = "Google-SecOps:1.0.0"
+    INTEGRATION_NAME: str = "ANYRUN Sandbox"
+    DATE_TIME_FORMAT: str = "%Y-%m-%d %H:%M:%S"
+
+    SANDBOX_DATATABLE: str = "anyrun_sandbox_iocs"

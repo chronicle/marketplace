@@ -18,57 +18,58 @@ def main():
     siemplify = SiemplifyAction()
 
     token = extract_configuration_param(
-        siemplify,
-        Config.INTEGRATION_NAME,
-        param_name="ANY.RUN Sandbox API KEY",
-        is_mandatory=True
+        siemplify, Config.INTEGRATION_NAME, param_name="ANY.RUN Sandbox API KEY", is_mandatory=True
     )
 
     attachments = siemplify.get_attachments()
 
     if not attachments:
-        siemplify.end('Attachment is not found.', False, EXECUTION_STATE_FAILED)
+        siemplify.end("Attachment is not found.", False, EXECUTION_STATE_FAILED)
 
-    attachment_name, attachment_id = attachments[0].get('name'), attachments[0].get('id')
+    attachment_name, attachment_id = attachments[0].get("name"), attachments[0].get("id")
     attachment_data = siemplify.get_attachment(attachment_id)
-    
+
     with SandboxConnector.android(
-        token, 
-        integration=Config.VERSION, 
-        proxy=setup_action_proxy(siemplify)
+        token, integration=Config.VERSION, proxy=setup_action_proxy(siemplify)
     ) as connector:
-        task_uuid = connector.run_file_analysis( 
-            attachment_data, 
-            attachment_name, 
-            obj_ext_cmd=extract_action_param(siemplify, param_name='obj_ext_cmd'), 
-            **prepare_base_params(siemplify) 
+        task_uuid = connector.run_file_analysis(
+            attachment_data,
+            attachment_name,
+            obj_ext_cmd=extract_action_param(siemplify, param_name="obj_ext_cmd"),
+            **prepare_base_params(siemplify),
         )
 
-        siemplify.add_comment(f'Link to the ANY.RUN interactive analysis: https://app.any.run/tasks/{task_uuid}')
+        siemplify.add_comment(
+            f"Link to the ANY.RUN interactive analysis: https://app.any.run/tasks/{task_uuid}"
+        )
 
         for status in connector.get_task_status(task_uuid):
             siemplify.LOGGER.info(status)
 
-        report = connector.get_analysis_report(task_uuid, report_format='html')
-            
+        report = connector.get_analysis_report(task_uuid, report_format="html")
+
         save_attachment_to_case_wall(
-            siemplify, 
+            siemplify,
             CaseWallAttachment(
-                f'{attachment_name[:15]}_anyrun_sandbox_report',
-                '.html',
+                f"{attachment_name[:15]}_anyrun_sandbox_report",
+                ".html",
                 b64encode(report.encode()).decode(),
-                True
-            )
+                True,
+            ),
         )
 
-        if iocs := connector.get_analysis_report(task_uuid, report_format='ioc'):
+        if iocs := connector.get_analysis_report(task_uuid, report_format="ioc"):
             data_tables = DataTableManager(siemplify)
             data_tables.update_sandbox_indicators(iocs, task_uuid)
             siemplify.add_comment(prepare_report_comment(iocs))
 
         status = connector.get_analysis_verdict(task_uuid)
-        siemplify.end(f'File analysis for the entity: {attachment_name} is successfully ended. Analysis status: {status}.', False, EXECUTION_STATE_COMPLETED)
-            
+        siemplify.end(
+            f"File analysis for the entity: {attachment_name} is successfully ended. Analysis status: {status}.",
+            False,
+            EXECUTION_STATE_COMPLETED,
+        )
+
 
 if __name__ == "__main__":
     main()

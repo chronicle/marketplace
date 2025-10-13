@@ -8,7 +8,7 @@ from ..core.data_table_manager import DataTableManager
 @output_handler
 def main():
     siemplify = SiemplifyJob()
-        
+
     feed_fetch_depth = extract_job_param(siemplify, param_name="feed_fetch_depth", input_type=int)
 
     data_tables = DataTableManager(siemplify)

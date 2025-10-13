@@ -19,57 +19,55 @@ def main():
     siemplify = SiemplifyAction()
 
     token = extract_configuration_param(
-        siemplify,
-        Config.INTEGRATION_NAME,
-        param_name="ANY.RUN Sandbox API KEY",
-        is_mandatory=True
+        siemplify, Config.INTEGRATION_NAME, param_name="ANY.RUN Sandbox API KEY", is_mandatory=True
     )
 
-    urls = extract_action_param(siemplify, param_name='url', is_mandatory=True)
+    urls = extract_action_param(siemplify, param_name="url", is_mandatory=True)
 
     if not urls:
-        siemplify.end('Destination URL is not found.', False, EXECUTION_STATE_FAILED)
+        siemplify.end("Destination URL is not found.", False, EXECUTION_STATE_FAILED)
 
-    for obj_url in urls.split(','):
-
+    for obj_url in urls.split(","):
         with SandboxConnector.windows(
-            token, 
-            integration=Config.VERSION, 
-            proxy=setup_action_proxy(siemplify)
+            token, integration=Config.VERSION, proxy=setup_action_proxy(siemplify)
         ) as connector:
-            task_uuid = connector.run_url_analysis( 
+            task_uuid = connector.run_url_analysis(
                 obj_url=obj_url,
-                obj_ext_browser=extract_action_param(siemplify, param_name='obj_ext_browser'),
-                **prepare_base_params(siemplify)
+                obj_ext_browser=extract_action_param(siemplify, param_name="obj_ext_browser"),
+                **prepare_base_params(siemplify),
             )
 
-            siemplify.add_comment(f'Link to the ANY.RUN interactive analysis: https://app.any.run/tasks/{task_uuid}')
+            siemplify.add_comment(
+                f"Link to the ANY.RUN interactive analysis: https://app.any.run/tasks/{task_uuid}"
+            )
 
             for status in connector.get_task_status(task_uuid):
                 siemplify.LOGGER.info(status)
 
-            report = connector.get_analysis_report(task_uuid, report_format='html')
-                
+            report = connector.get_analysis_report(task_uuid, report_format="html")
+
             save_attachment_to_case_wall(
-                siemplify, 
+                siemplify,
                 CaseWallAttachment(
-                    f'{obj_url[:15]}_anyrun_sandbox_report',
-                    '.html',
+                    f"{obj_url[:15]}_anyrun_sandbox_report",
+                    ".html",
                     b64encode(report.encode()).decode(),
-                    True
-                )
+                    True,
+                ),
             )
 
-            if iocs := connector.get_analysis_report(task_uuid, report_format='ioc'):
+            if iocs := connector.get_analysis_report(task_uuid, report_format="ioc"):
                 data_tables = DataTableManager(siemplify)
                 data_tables.update_sandbox_indicators(iocs, task_uuid)
                 siemplify.add_comment(prepare_report_comment(iocs))
 
             status = connector.get_analysis_verdict(task_uuid)
-            siemplify.add_comment(f'URL analysis for the entity:\n{obj_url} is successfully ended.\nAnalysis status: {status}.')
+            siemplify.add_comment(
+                f"URL analysis for the entity:\n{obj_url} is successfully ended.\nAnalysis status: {status}."
+            )
 
-    siemplify.end(f'URL analysis is successfully ended.', False, EXECUTION_STATE_COMPLETED)
-            
+    siemplify.end(f"URL analysis is successfully ended.", False, EXECUTION_STATE_COMPLETED)
+
 
 if __name__ == "__main__":
     main()

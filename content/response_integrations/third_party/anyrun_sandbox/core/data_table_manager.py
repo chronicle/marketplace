@@ -11,50 +11,45 @@ from anyrun.iterators import FeedsIterator
 
 from ..core.config import Config
 from ..core.utils import (
-    build_base_url, 
+    build_base_url,
     build_sandbox_data_table_payload,
-    build_sandbox_indicators_payload
+    build_sandbox_indicators_payload,
 )
 
 
 class DataTableManager(object):
-    """ Provides methods to manage IOCs and interact with DataTables"""
+    """Provides methods to manage IOCs and interact with DataTables"""
+
     def __init__(self, siemplify: SiemplifyAction) -> None:
         google_secops_project_id = extract_configuration_param(
-            siemplify,
-            Config.INTEGRATION_NAME,
-            param_name="Project ID",
-            is_mandatory=True
+            siemplify, Config.INTEGRATION_NAME, param_name="Project ID", is_mandatory=True
         )
 
         google_secops_project_location = extract_configuration_param(
-            siemplify,
-            Config.INTEGRATION_NAME,
-            param_name="Project location",
-            is_mandatory=True
+            siemplify, Config.INTEGRATION_NAME, param_name="Project location", is_mandatory=True
         )
 
         google_secops_instance_id = extract_configuration_param(
-            siemplify,
-            Config.INTEGRATION_NAME,
-            param_name="Instance ID",
-            is_mandatory=True
+            siemplify, Config.INTEGRATION_NAME, param_name="Instance ID", is_mandatory=True
         )
 
         google_secops_sevice_account_json = json.loads(
             extract_configuration_param(
-                siemplify, 
+                siemplify,
                 Config.INTEGRATION_NAME,
                 param_name="Google service account",
-                is_mandatory=True
+                is_mandatory=True,
             )
         )
 
-
         self._logger = siemplify.LOGGER
-        self._http_session = requests.AuthorizedSession(build_credentials_from_sa(google_secops_sevice_account_json))
-        self._base_url = build_base_url(google_secops_project_id, google_secops_project_location, google_secops_instance_id)
-    
+        self._http_session = requests.AuthorizedSession(
+            build_credentials_from_sa(google_secops_sevice_account_json)
+        )
+        self._base_url = build_base_url(
+            google_secops_project_id, google_secops_project_location, google_secops_instance_id
+        )
+
     def update_sandbox_indicators(self, feeds: list[dict], task_uuid: str) -> None:
         """
         Initializes the process of updating indicators
@@ -63,11 +58,13 @@ class DataTableManager(object):
         :param task_uuid: ANY.RUN Sandbox analysis UUID
         """
         if not self._is_datatable_exists(Config.SANDBOX_DATATABLE):
-            self._create_data_table(Config.SANDBOX_DATATABLE, build_sandbox_data_table_payload(Config.SANDBOX_DATATABLE))
-        
+            self._create_data_table(
+                Config.SANDBOX_DATATABLE, build_sandbox_data_table_payload(Config.SANDBOX_DATATABLE)
+            )
+
         if payload := build_sandbox_indicators_payload(feeds, task_uuid):
             self._load_indicators(Config.SANDBOX_DATATABLE, payload)
-        
+
     def _is_datatable_exists(self, data_table_name: str) -> bool:
         """
         Checks if requested DataTable exists
@@ -75,14 +72,14 @@ class DataTableManager(object):
         :param data_table_name: DataTable name
         :return: True if DataTable exists else None
         """
-        url = f'{self._base_url}/dataTables/{data_table_name}'
-        response = self._make_request('GET', url)
+        url = f"{self._base_url}/dataTables/{data_table_name}"
+        response = self._make_request("GET", url)
 
         if response.status_code == HTTPStatus.OK:
-            self._logger.info(f'DataTable: {data_table_name} is already exists.')
+            self._logger.info(f"DataTable: {data_table_name} is already exists.")
             return True
 
-        self._logger.info(f'DataTable: {data_table_name} is not found.')
+        self._logger.info(f"DataTable: {data_table_name} is not found.")
 
     def _create_data_table(self, data_table_name: str, payload: dict) -> None:
         """
@@ -91,9 +88,9 @@ class DataTableManager(object):
         :param data_table_name: DataTable name
         :param payload: DataTable schema
         """
-        self._logger.info(f'Create DataTable: {data_table_name}.')
-        url = f'{self._base_url}/dataTables?dataTableId={data_table_name}'
-        self._make_request('POST', url, payload)
+        self._logger.info(f"Create DataTable: {data_table_name}.")
+        url = f"{self._base_url}/dataTables?dataTableId={data_table_name}"
+        self._make_request("POST", url, payload)
 
     def _load_indicators(self, data_table_name: str, payload: dict) -> None:
         """
@@ -102,8 +99,8 @@ class DataTableManager(object):
         :param data_table_name: DataTable name
         :param payload: DataTable schema
         """
-        url = f'{self._base_url}/dataTables/{data_table_name}/dataTableRows:bulkCreate'
-        self._make_request('POST', url, payload)
+        url = f"{self._base_url}/dataTables/{data_table_name}/dataTableRows:bulkCreate"
+        self._make_request("POST", url, payload)
 
     def _make_request(self, method: str, url: str, payload: dict | None = None) -> Response:
         """
