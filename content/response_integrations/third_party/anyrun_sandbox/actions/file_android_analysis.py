@@ -1,16 +1,16 @@
-from SiemplifyAction import SiemplifyAction
-from SiemplifyUtils import unix_now, convert_unixtime_to_datetime, output_handler
-from ScriptResult import EXECUTION_STATE_COMPLETED, EXECUTION_STATE_FAILED
-from TIPCommon.extraction import extract_action_param, extract_configuration_param
-from TIPCommon.rest.soar_api import save_attachment_to_case_wall
-from TIPCommon.data_models import CaseWallAttachment
 from base64 import b64encode
 
-from ..core.utils import prepare_base_params, setup_action_proxy, prepare_report_comment
-from ..core.data_table_manager import DataTableManager
-from ..core.config import Config
-
 from anyrun.connectors import SandboxConnector
+from ScriptResult import EXECUTION_STATE_COMPLETED, EXECUTION_STATE_FAILED
+from SiemplifyAction import SiemplifyAction
+from SiemplifyUtils import output_handler
+from TIPCommon.data_models import CaseWallAttachment
+from TIPCommon.extraction import extract_action_param, extract_configuration_param
+from TIPCommon.rest.soar_api import save_attachment_to_case_wall
+
+from ..core.config import Config
+from ..core.data_table_manager import DataTableManager
+from ..core.utils import prepare_base_params, prepare_report_comment, setup_action_proxy
 
 
 @output_handler
@@ -65,7 +65,8 @@ def main():
 
         status = connector.get_analysis_verdict(task_uuid)
         siemplify.end(
-            f"File analysis for the entity: {attachment_name} is successfully ended. Analysis status: {status}.",
+            f"File analysis for the entity: {attachment_name} is successfully ended. "
+            f"Analysis status: {status}.",
             False,
             EXECUTION_STATE_COMPLETED,
         )

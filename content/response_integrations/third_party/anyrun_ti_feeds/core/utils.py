@@ -1,14 +1,14 @@
 from TIPCommon.extraction import (
     extract_job_param,
-    extract_action_param,
-    extract_configuration_param,
 )
 
 
 def extract_feed_value(feed: dict) -> str:
     """Extracts IOC value"""
     pattern = feed.get("pattern")
-    return pattern.split(" = '")[1][:-2]
+    if pattern:
+        return pattern.split(" = '")[1][:-2]
+    return ""
 
 
 def build_base_url(project_id: str, project_location: str, project_instance_id: str) -> str:
@@ -62,14 +62,14 @@ def build_taxii_data_table_payload(data_table_name: str) -> dict:
     }
 
 
-def build_taxii_indicators_payload(feeds: list[dict]) -> list[dict[str, str]] | None:
+def build_taxii_indicators_payload(feeds: list[dict]) -> dict[str, list[dict]] | None:
     """
     Converts ANY.RUN IOCs to the SecOps DataTable rows
 
     :param feeds: ANY.RUN Indicators
     :return: DataTable rows
     """
-    payload = {"requests": []}
+    payload: dict[str, list[dict]] = {"requests": []}
 
     for feed in feeds:
         payload["requests"].append({
@@ -102,3 +102,5 @@ def setup_job_proxy(siemplify) -> str | None:
             proxy_url = f"https://{username}:{password}@{host}:{port}"
 
         return proxy_url
+
+    return None

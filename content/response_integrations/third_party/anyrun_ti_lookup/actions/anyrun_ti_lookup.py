@@ -1,22 +1,21 @@
 import json
 from base64 import b64encode
 
+from anyrun.connectors import LookupConnector
+from ScriptResult import EXECUTION_STATE_COMPLETED, EXECUTION_STATE_FAILED
 from SiemplifyAction import SiemplifyAction
-from SiemplifyUtils import unix_now, convert_unixtime_to_datetime, output_handler
-from ScriptResult import EXECUTION_STATE_COMPLETED, EXECUTION_STATE_FAILED, EXECUTION_STATE_TIMEDOUT
-from TIPCommon.rest.soar_api import save_attachment_to_case_wall
+from SiemplifyUtils import output_handler
 from TIPCommon.data_models import CaseWallAttachment
-from TIPCommon.extraction import extract_action_param, extract_configuration_param
+from TIPCommon.extraction import extract_configuration_param
+from TIPCommon.rest.soar_api import save_attachment_to_case_wall
 
 from ..core.config import Config
 from ..core.utils import (
-    setup_action_proxy,
     convert_score,
-    prepare_report_comment,
     generate_lookup_reference,
+    prepare_report_comment,
+    setup_action_proxy,
 )
-
-from anyrun.connectors import LookupConnector
 
 
 def initialize_lookup(
@@ -82,7 +81,8 @@ def main():
                     siemplify, token, lookup_entity, entity_identifier, lookup_depth
                 )
                 siemplify.LOGGER.info(
-                    f"Entity: entity_identifier was lookuped. Json summary attached to the case wall."
+                    "Entity: entity_identifier was lookuped. "
+                    "Json summary attached to the case wall."
                 )
                 results.append((entity_type, entity_identifier, verdict))
             else:
@@ -90,7 +90,7 @@ def main():
                 results.append((entity_type, entity_identifier, "Not supported entity"))
 
     siemplify.add_comment(prepare_report_comment(results))
-    siemplify.end(f"Intelligence is successfully ended.", False, EXECUTION_STATE_COMPLETED)
+    siemplify.end("Intelligence is successfully ended.", False, EXECUTION_STATE_COMPLETED)
 
 
 if __name__ == "__main__":

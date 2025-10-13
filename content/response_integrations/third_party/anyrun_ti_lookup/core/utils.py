@@ -75,3 +75,5 @@ def setup_action_proxy(siemplify) -> str | None:
             proxy_url = f"https://{username}:{password}@{host}:{port}"
 
         return proxy_url
+
+    return None

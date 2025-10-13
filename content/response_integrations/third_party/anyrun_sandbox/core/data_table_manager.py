@@ -1,13 +1,10 @@
 import json
 from http import HTTPStatus
 
+from google.auth.transport import Response, requests
 from SiemplifyAction import SiemplifyAction
+from TIPCommon.extraction import extract_configuration_param
 from TIPCommon.rest.auth import build_credentials_from_sa
-from TIPCommon.extraction import extract_action_param, extract_configuration_param
-
-from google.auth.transport import requests, Response
-from anyrun.connectors import FeedsConnector
-from anyrun.iterators import FeedsIterator
 
 from ..core.config import Config
 from ..core.utils import (
@@ -75,11 +72,12 @@ class DataTableManager(object):
         url = f"{self._base_url}/dataTables/{data_table_name}"
         response = self._make_request("GET", url)
 
-        if response.status_code == HTTPStatus.OK:
+        if response.status == HTTPStatus.OK:
             self._logger.info(f"DataTable: {data_table_name} is already exists.")
             return True
 
         self._logger.info(f"DataTable: {data_table_name} is not found.")
+        return False
 
     def _create_data_table(self, data_table_name: str, payload: dict) -> None:
         """

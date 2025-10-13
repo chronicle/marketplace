@@ -1,13 +1,12 @@
-from SiemplifyAction import SiemplifyAction
-from SiemplifyUtils import unix_now, convert_unixtime_to_datetime, output_handler
+from anyrun import RunTimeException
+from anyrun.connectors import FeedsConnector
+from anyrun.connectors.sandbox.base_connector import BaseSandboxConnector
 from ScriptResult import EXECUTION_STATE_COMPLETED, EXECUTION_STATE_FAILED
+from SiemplifyAction import SiemplifyAction
+from SiemplifyUtils import output_handler
 from TIPCommon.extraction import extract_configuration_param
 
 from ..core.config import Config
-
-from anyrun.connectors import FeedsConnector, LookupConnector
-from anyrun.connectors.sandbox.base_connector import BaseSandboxConnector
-from anyrun import RunTimeException
 
 
 @output_handler
@@ -23,7 +22,7 @@ def main():
         if extract_configuration_param(
             siemplify, Config.INTEGRATION_NAME, param_name="Enable proxy", input_type=bool
         ):
-            check_proxy(siemplify, token)
+            check_proxy(siemplify, sandbox_token)
 
         with BaseSandboxConnector(api_key=sandbox_token, integration=Config.VERSION) as connector:
             connector.check_authorization()

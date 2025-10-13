@@ -1,22 +1,20 @@
 import json
-
-from google.auth.transport import requests, Response
+from datetime import UTC, datetime, timedelta
 from http import HTTPStatus
-from datetime import datetime, timedelta, UTC
-
-from SiemplifyJob import SiemplifyJob
-from TIPCommon.rest.auth import build_credentials_from_sa
-from TIPCommon.extraction import extract_configuration_param
 
 from anyrun.connectors import FeedsConnector
 from anyrun.iterators import FeedsIterator
+from google.auth.transport import Response, requests
+from SiemplifyJob import SiemplifyJob
+from TIPCommon.extraction import extract_configuration_param
+from TIPCommon.rest.auth import build_credentials_from_sa
 
 from ..core.config import Config
 from ..core.utils import (
-    setup_job_proxy,
     build_base_url,
     build_taxii_data_table_payload,
     build_taxii_indicators_payload,
+    setup_job_proxy,
 )
 
 
@@ -83,7 +81,7 @@ class DataTableManager(object):
     def _is_datatable_exists(
         self,
         data_table_name: str,
-    ) -> None:
+    ) -> bool:
         """
         Checks if requested DataTable exists
 
@@ -93,11 +91,12 @@ class DataTableManager(object):
         url = f"{self._base_url}/dataTables/{data_table_name}"
         response = self._make_request("GET", url)
 
-        if response.status_code == HTTPStatus.OK:
+        if response.status == HTTPStatus.OK:
             self._logger.info(f"DataTable: {data_table_name} is already exists.")
             return True
 
         self._logger.info(f"DataTable: {data_table_name} is not found.")
+        return False
 
     def _create_data_table(self, data_table_name: str, payload: dict) -> None:
         """
@@ -108,8 +107,7 @@ class DataTableManager(object):
         """
         self._logger.info(f"Create DataTable: {data_table_name}.")
         url = f"{self._base_url}/dataTables?dataTableId={data_table_name}"
-        response = self._make_request("POST", url, payload)
-        self._siemplify.LOGGER.info(response.json())
+        self._make_request("POST", url, payload)
 
     def _delete_data_table(self, data_table_name: str) -> None:
         """
@@ -150,7 +148,7 @@ class DataTableManager(object):
             if payload := build_taxii_indicators_payload(feeds):
                 self._load_indicators(data_table_name, payload)
 
-    def _load_indicators(self, data_table_name: str, payload: dict) -> None:
+    def _load_indicators(self, data_table_name: str, payload: dict | list[dict[str, str]]) -> None:
         """
         Loads indicators into a DataTable
 
@@ -160,7 +158,9 @@ class DataTableManager(object):
         url = f"{self._base_url}/dataTables/{data_table_name}/dataTableRows:bulkCreate"
         self._make_request("POST", url, payload)
 
-    def _make_request(self, method: str, url: str, payload: dict | None = None) -> Response:
+    def _make_request(
+        self, method: str, url: str, payload: dict | dict | list[dict[str, str]] | None = None
+    ) -> Response:
         """
         Performs a request to the specified endpoint
 

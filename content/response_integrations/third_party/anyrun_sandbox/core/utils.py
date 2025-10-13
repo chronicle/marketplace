@@ -1,5 +1,4 @@
 from TIPCommon.extraction import (
-    extract_job_param,
     extract_action_param,
     extract_configuration_param,
 )
@@ -18,7 +17,7 @@ def prepare_report_comment(results: list[dict]) -> str:
 
     for feed in results:
         if feed.get("reputation") in (1, 2):
-            verdict = {1: "Suspiciuos", 2: "Malicious"}.get(feed.get("reputation"))
+            verdict = {1: "Suspiciuos", 2: "Malicious"}.get(feed.get("reputation", 2))
             raws += f"Type: {feed.get('type')} Value: {feed.get('ioc')} Verdict: {verdict}\n"
 
     return (
@@ -96,7 +95,7 @@ def build_sandbox_data_table_payload(data_table_name: str) -> dict:
 
 def build_sandbox_indicators_payload(
     feeds: list[dict], task_uuid: str
-) -> list[dict[str, str]] | None:
+) -> dict[str, list[dict]] | None:
     """
     Converts ANY.RUN IOCs to the SecOps DataTable rows
 
@@ -104,7 +103,7 @@ def build_sandbox_indicators_payload(
     :param task_uuid: ANY.RUN Sandbox analysis UUID
     :return: DataTable rows
     """
-    payload = {"requests": []}
+    payload: dict[str, list[dict]] = {"requests": []}
 
     for feed in feeds:
         if feed.get("reputation") in (1, 2):
@@ -113,7 +112,7 @@ def build_sandbox_indicators_payload(
                     "values": [
                         feed.get("ioc"),
                         feed.get("type"),
-                        {1: "Suspiciuos", 2: "Malicious"}.get(feed.get("reputation")),
+                        {1: "Suspiciuos", 2: "Malicious"}.get(feed.get("reputation", 2)),
                         f"https://app.any.run/tasks/{task_uuid}",
                     ]
                 }
@@ -149,3 +148,5 @@ def setup_action_proxy(siemplify) -> str | None:
             proxy_url = f"https://{username}:{password}@{host}:{port}"
 
         return proxy_url
+
+    return None
