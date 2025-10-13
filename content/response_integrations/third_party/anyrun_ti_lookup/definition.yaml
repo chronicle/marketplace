@@ -45,3 +45,4 @@ categories:
   - Security
 svg_logo_path: resources/logo.svg
 image_path: resources/image.png
+description: ANY.RUN’s Threat Intelligence Lookup (TI Lookup) is a service that allows you to browse IOCs and related threat data to simplify and enrich cyberattack investigations. This integration is owned by the ANY.RUN. Support Contact support@any.run.

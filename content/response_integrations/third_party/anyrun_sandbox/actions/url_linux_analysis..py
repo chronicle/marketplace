@@ -8,7 +8,7 @@ from TIPCommon.rest.soar_api import save_attachment_to_case_wall
 from TIPCommon.data_models import CaseWallAttachment
 
 from ..core.utils import prepare_base_params, setup_action_proxy, prepare_report_comment
-from ..core.DataTableManager import DataTableManager
+from ..core.data_table_manager import DataTableManager
 from ..core.config import Config
 
 from anyrun.connectors import SandboxConnector
@@ -32,7 +32,7 @@ def main():
 
     for obj_url in urls.split(','):
 
-        with SandboxConnector.windows(
+        with SandboxConnector.linux(
             token, 
             integration=Config.VERSION, 
             proxy=setup_action_proxy(siemplify)
@@ -40,6 +40,7 @@ def main():
             task_uuid = connector.run_url_analysis( 
                 obj_url=obj_url,
                 obj_ext_browser=extract_action_param(siemplify, param_name='obj_ext_browser'),
+                env_os=extract_action_param(siemplify, param_name='env_os'),
                 **prepare_base_params(siemplify)
             )
 

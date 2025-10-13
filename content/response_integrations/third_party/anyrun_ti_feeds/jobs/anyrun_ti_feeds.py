@@ -2,7 +2,7 @@ from SiemplifyJob import SiemplifyJob
 from SiemplifyUtils import output_handler
 from TIPCommon.extraction import extract_job_param
 
-from ..core.DataTableManager import DataTableManager
+from ..core.data_table_manager import DataTableManager
 
 
 @output_handler

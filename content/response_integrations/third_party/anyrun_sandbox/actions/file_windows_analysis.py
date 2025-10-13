@@ -7,7 +7,7 @@ from TIPCommon.data_models import CaseWallAttachment
 from base64 import b64encode
 
 from ..core.utils import prepare_base_params, setup_action_proxy, prepare_report_comment
-from ..core.DataTableManager import DataTableManager
+from ..core.data_table_manager import DataTableManager
 from ..core.config import Config
 
 from anyrun.connectors import SandboxConnector

@@ -1,13 +1,14 @@
+from base64 import b64encode
+
 from SiemplifyAction import SiemplifyAction
 from SiemplifyUtils import unix_now, convert_unixtime_to_datetime, output_handler
 from ScriptResult import EXECUTION_STATE_COMPLETED, EXECUTION_STATE_FAILED
 from TIPCommon.extraction import extract_action_param, extract_configuration_param
 from TIPCommon.rest.soar_api import save_attachment_to_case_wall
 from TIPCommon.data_models import CaseWallAttachment
-from base64 import b64encode
 
 from ..core.utils import prepare_base_params, setup_action_proxy, prepare_report_comment
-from ..core.DataTableManager import DataTableManager
+from ..core.data_table_manager import DataTableManager
 from ..core.config import Config
 
 from anyrun.connectors import SandboxConnector
@@ -31,13 +32,14 @@ def main():
 
     for obj_url in urls.split(','):
 
-        with SandboxConnector.android(
+        with SandboxConnector.windows(
             token, 
             integration=Config.VERSION, 
             proxy=setup_action_proxy(siemplify)
         ) as connector:
             task_uuid = connector.run_url_analysis( 
                 obj_url=obj_url,
+                obj_ext_browser=extract_action_param(siemplify, param_name='obj_ext_browser'),
                 **prepare_base_params(siemplify)
             )
 
