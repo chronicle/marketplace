@@ -19,11 +19,17 @@ def main():
     pager_duty = PagerDutyManager(api_token)
     try:
         siemplify.LOGGER.info("Getting all the incidents")
-        incidents = pager_duty.list_incidents()
-        siemplify.result.add_result_json(incidents)
-        output_message = "Successfully retrieved Incidents\n"
-        result_value = True
-        status = EXECUTION_STATE_COMPLETED
+        incidents = pager_duty.get_all_incidents()
+        if incidents:
+            siemplify.result.add_result_json(incidents)
+            output_message = "Successfully retrieved Incidents\n"
+            result_value = True
+            status = EXECUTION_STATE_COMPLETED
+        else:
+            output_message = "Incidents not found\n"
+            result_value = True
+            status = EXECUTION_STATE_COMPLETED
+            
 
     except Exception as e:
         output_message = f"There was an error to retrieve all incidents.{e!s}"
