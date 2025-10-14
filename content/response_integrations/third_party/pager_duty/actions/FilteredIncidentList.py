@@ -1,6 +1,6 @@
 from __future__ import annotations
+
 import json
-from urllib.parse import quote_plus
 
 from soar_sdk.ScriptResult import EXECUTION_STATE_COMPLETED, EXECUTION_STATE_FAILED
 from soar_sdk.SiemplifyAction import SiemplifyAction

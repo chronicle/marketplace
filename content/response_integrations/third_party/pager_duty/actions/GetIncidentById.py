@@ -38,7 +38,6 @@ def main():
             result_value = True
             status = EXECUTION_STATE_COMPLETED
 
-
     except PagerDutyException as e:
         output_message = f"No Incident Found {e!s}\n"
         result_value = False

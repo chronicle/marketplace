@@ -1,7 +1,8 @@
 from __future__ import annotations
 
-import requests
 from urllib.parse import quote_plus
+
+import requests
 
 
 class PagerDutyManager:

@@ -29,7 +29,6 @@ def main():
             output_message = "Incidents not found\n"
             result_value = True
             status = EXECUTION_STATE_COMPLETED
-            
 
     except Exception as e:
         output_message = f"There was an error to retrieve all incidents.{e!s}"
