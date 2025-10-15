@@ -11,14 +11,12 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
 from __future__ import annotations
 
+import requests
 from filelock import FileLock
 
-
-class EntityFileManagerException(Exception):
-    pass
+from .exceptions import EntityFileManagerException, FileUtilitiesHTTPException
 
 
 class EntityFileManager:
@@ -38,8 +36,9 @@ class EntityFileManager:
         self.entities = []
 
     def __enter__(self):
-        """This function is executed with a "with" statement. It will acquire the lock, and block other processes from
-        using this file (only if it's using py-filelock or check the .lock file). Once locked, it will fetch the rows
+        """This function is executed with a "with" statement. It will acquire the lock,
+        and block other processes from using this file (only if it's using py-filelock
+        or check the .lock file). Once locked, it will fetch the rows
         from the file to self.entities to make changes.
         :return:
         """
@@ -48,8 +47,9 @@ class EntityFileManager:
         return self
 
     def __exit__(self, typ, value, traceback):
-        """This function is executed in the end of the "with" statement. It will write the changed to the file and release
-        the lock. All parameters are built-ins of python and are not required.
+        """This function is executed in the end of the "with" statement.
+        It will write the changed to the file and release the lock. All parameters are
+        built-ins of python and are not required.
         :param typ: Ignore.
         :param value: Ignore.
         :param traceback: Ignore.
@@ -91,3 +91,25 @@ class EntityFileManager:
             return True
         except KeyError:
             raise EntityFileManagerException("Entity not found in file")
+
+
+def validate_response(
+    response: requests.Response,
+    error_msg: str = "An error occurred",
+) -> None:
+    """Validate response
+
+    Args:
+        response (requests.Response): Response to validate
+        error_msg (str): Default message to display on error
+
+    Raises:
+        FileUtilitiesHTTPException: If there is any error in the response
+
+    """
+    try:
+        response.raise_for_status()
+
+    except requests.HTTPError as error:
+        msg = f"{error_msg}: {error}\n{error.response.content}"
+        raise FileUtilitiesHTTPException(msg) from error
