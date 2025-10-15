@@ -35,24 +35,21 @@ class PagerDutyManager:
         """Acknowledges an incident in PagerDuty
         API Reference: https://developer.pagerduty.com/api-reference/8a0e1aa2ec666-update-an-incident
         """
-        # The 'From' header with a valid user email is required for this operation.
-        # The connector does not provide an email, so this call will likely fail with a 400 error.
-        # A user email should be passed to this function to be used in the 'From' header.
-        url = f"{self.BASE_URL}{self.INCIDENTS_URI}/{incident_id}"
-        payload = {"incident": {"type": "incident", "status": "acknowledged"}}
+        url = self.BASE_URL + self.INCIDENTS_URI + f"/{incident_id}"
+        data = {"statuses[]": "acknowledged"}
         headers = {
             "Content-Type": "application/json",
             "Accept": "application/vnd.pagerduty+json;version=2",
             "Authorization": f"Token token={self.api_key}",
         }
-        response = self.requests_session.put(
+        response = requests.request(
+            "GET",
             url,
             headers=headers,
-            json=payload,
+            params=data,
             timeout=10,
         )
-        response.raise_for_status()
-        return response.json()
+        return response
 
     def list_oncalls(self):
         url = f"{self.BASE_URL}/oncalls"
