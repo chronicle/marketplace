@@ -606,7 +606,7 @@ class SiemplifyParamikoSSHVendor:
         MD5_PREFIX = "MD5:"
 
         if self.siemplify_logger:
-            self.siemplify_logger.info(f"🔍 Verifying fingerprint...")
+            self.siemplify_logger.info("Verifying fingerprint...")
 
         if not self.git_server_fingerprint or not self.git_server_fingerprint.strip():
             return False
@@ -704,7 +704,7 @@ class SiemplifyParamikoSSHVendor:
                     else:
                         if self.vendor.siemplify_logger:
                             self.vendor.siemplify_logger.error(
-                                f"Fingerprint verification failed."
+                                "Fingerprint verification failed."
                             )
                         raise paramiko.ssh_exception.SSHException(
                             f"Host key verification failed for {hostname}"
@@ -716,7 +716,7 @@ class SiemplifyParamikoSSHVendor:
         else:
             if self.siemplify_logger:
                 self.siemplify_logger.warn(
-                    f"No fingerprint provided - using insecure mode"
+                    "No fingerprint provided - using insecure mode"
                 )
 
             # Legacy mode: keep existing insecure behavior

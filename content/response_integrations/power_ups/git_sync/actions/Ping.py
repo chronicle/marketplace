@@ -22,7 +22,6 @@ from soar_sdk.SiemplifyUtils import output_handler
 from ..core.GitManager import GitSyncException
 from ..core.constants import COMMIT_AUTHOR_REGEX, DEFAULT_AUTHOR, DEFAULT_USERNAME
 from ..core.GitSyncManager import GitSyncManager
-from dulwich import porcelain
 
 SCRIPT_NAME = "Ping"
 INTEGRATION_NAME = "GitSync"
