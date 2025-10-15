@@ -602,53 +602,40 @@ class SiemplifyParamikoSSHVendor:
 
     def _verify_host_key_fingerprint(self, received_key):
         """Verify the received key against the expected fingerprint"""
-        SHA256_PREFIX = "SHA256:"
-        MD5_PREFIX = "MD5:"
-
-        if self.siemplify_logger:
-            self.siemplify_logger.info("Verifying fingerprint...")
-
-        if not self.git_server_fingerprint or not self.git_server_fingerprint.strip():
+        if not self.git_server_fingerprint:
             return False
+
+        fingerprint = self.git_server_fingerprint.strip()
+        self.siemplify_logger.info(f"Verifying fingerprint: {fingerprint}")
 
         try:
-            fingerprint = self.git_server_fingerprint.strip()
-
-            if fingerprint.startswith(SHA256_PREFIX):
-                expected_fingerprint = fingerprint[len(SHA256_PREFIX):]
+            if fingerprint.startswith("SHA256:"):
+                expected_fingerprint = fingerprint.replace("SHA256:", "")
                 key_hash = hashlib.sha256(received_key.asbytes()).digest()
-                actual_fingerprint = base64.b64encode(key_hash).decode("ascii").rstrip("=")
-
-                self.siemplify_logger.info(f"Expected: {self.git_server_fingerprint}")
-                self.siemplify_logger.info(f"Actual:   {actual_fingerprint}")
-
+                actual_fingerprint = (
+                    base64.b64encode(key_hash).decode("ascii").rstrip("=")
+                )
+                self.siemplify_logger.info(
+                    f"Actual SHA256 fingerprint: {actual_fingerprint}"
+                )
                 return actual_fingerprint == expected_fingerprint
-
-            elif fingerprint.startswith(MD5_PREFIX) or ":" in fingerprint:
-                expected_fingerprint = fingerprint.replace(MD5_PREFIX, "").lower()
+            elif fingerprint.startswith("MD5:"):
+                expected_fingerprint = fingerprint.replace("MD5:", "").lower()
                 key_hash = hashlib.md5(received_key.asbytes()).digest()
                 actual_fingerprint = ":".join(f"{b:02x}" for b in key_hash)
-
-                self.siemplify_logger.info(f"Expected: {self.git_server_fingerprint}")
-                self.siemplify_logger.info(f"Actual:   {actual_fingerprint}")
-
-                return actual_fingerprint == expected_fingerprint
-
-            else:
-                # Assume base64 SHA256 without prefix
-                key_hash = hashlib.sha256(received_key.asbytes()).digest()
-                actual_fingerprint = base64.b64encode(key_hash).decode("ascii").rstrip("=")
-                return actual_fingerprint == fingerprint
-
-        except (ValueError, TypeError) as e:
-            if self.siemplify_logger:
-                self.siemplify_logger.error(f"Invalid fingerprint format: {e}")
-            return False
-        except Exception as e:
-            if self.siemplify_logger:
-                self.siemplify_logger.error(
-                    f"Failed to verify host key fingerprint: {e}", exc_info=True
+                self.siemplify_logger.info(
+                    f"Actual MD5 fingerprint: {actual_fingerprint}"
                 )
+                return actual_fingerprint == expected_fingerprint
+            else:
+                self.siemplify_logger.error(
+                    f"Unsupported fingerprint format: {fingerprint}"
+                )
+                return False
+        except Exception as e:
+            self.siemplify_logger.error(
+                f"Failed to verify host key fingerprint: {e}", exc_info=True
+            )
             return False
 
     def run_command(
@@ -693,13 +680,11 @@ class SiemplifyParamikoSSHVendor:
                             f"Verifying fingerprint for {hostname}"
                         )
 
-                    # Call _verify_host_key_fingerprint to handle the actual comparison
                     if self.vendor._verify_host_key_fingerprint(key):
                         if self.vendor.siemplify_logger:
                             self.vendor.siemplify_logger.info(
                                 "Fingerprint verified - accepting connection"
                             )
-                        # Add the key to the host keys
                         client.get_host_keys().add(hostname, key.get_name(), key)
                     else:
                         if self.vendor.siemplify_logger:

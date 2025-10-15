@@ -117,7 +117,7 @@ def connect_to_git_server_to_verify_fingerprint(siemplify: SiemplifyAction, gits
         gitsync.git_client.get_head_tree()
         siemplify.LOGGER.info("Git connection and fingerprint verification successful")
     except Exception as e:
-        raise GitSyncException(f"Git connection failed (fingerprint verification failed): {e}")
+        raise GitSyncException(f"Git connection failed (fingerprint verification may have failed): {e}")
 
 
 if __name__ == "__main__":
