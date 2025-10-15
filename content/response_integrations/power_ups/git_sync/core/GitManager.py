@@ -600,7 +600,7 @@ class SiemplifyParamikoSSHVendor:
 
         self.siemplify_logger = siemplify_logger
 
-    def _verify_host_key_fingerprint(self, received_key):
+    def _verify_host_key_fingerprint(self, received_key) -> bool:
         """Verify the received key against the expected fingerprint"""
         if not self.git_server_fingerprint:
             return False
@@ -612,30 +612,21 @@ class SiemplifyParamikoSSHVendor:
             if fingerprint.startswith("SHA256:"):
                 expected_fingerprint = fingerprint.replace("SHA256:", "")
                 key_hash = hashlib.sha256(received_key.asbytes()).digest()
-                actual_fingerprint = (
-                    base64.b64encode(key_hash).decode("ascii").rstrip("=")
-                )
-                self.siemplify_logger.info(
-                    f"Actual SHA256 fingerprint: {actual_fingerprint}"
-                )
+                actual_fingerprint = base64.b64encode(key_hash).decode("ascii").rstrip("=")
+                self.siemplify_logger.info(f"Actual SHA256 fingerprint: {actual_fingerprint}")
                 return actual_fingerprint == expected_fingerprint
             elif fingerprint.startswith("MD5:"):
                 expected_fingerprint = fingerprint.replace("MD5:", "").lower()
                 key_hash = hashlib.md5(received_key.asbytes()).digest()
                 actual_fingerprint = ":".join(f"{b:02x}" for b in key_hash)
-                self.siemplify_logger.info(
-                    f"Actual MD5 fingerprint: {actual_fingerprint}"
-                )
+                self.siemplify_logger.info(f"Actual MD5 fingerprint: {actual_fingerprint}")
                 return actual_fingerprint == expected_fingerprint
             else:
-                self.siemplify_logger.error(
-                    f"Unsupported fingerprint format: {fingerprint}"
-                )
+                self.siemplify_logger.error(f"Unsupported fingerprint format: {fingerprint}")
                 return False
         except Exception as e:
-            self.siemplify_logger.error(
-                f"Failed to verify host key fingerprint: {e}", exc_info=True
-            )
+            self.siemplify_logger.exception(e)
+            self.siemplify_logger.error(f"Failed to verify host key fingerprint: {e}", exc_info=True)
             return False
 
     def run_command(
@@ -666,43 +657,12 @@ class SiemplifyParamikoSSHVendor:
 
         # Handle host key verification based on whether git_server_fingerprint is provided
         if self.git_server_fingerprint:
-            class AlwaysVerifyPolicy(paramiko.client.MissingHostKeyPolicy):
-                def __init__(self, vendor_instance):
-                    self.vendor = vendor_instance
-
-                def missing_host_key(self, client, hostname, key):
-                    """Called for unknown hosts"""
-                    self._verify_and_decide(client, hostname, key)
-
-                def _verify_and_decide(self, client, hostname, key):
-                    if self.vendor.siemplify_logger:
-                        self.vendor.siemplify_logger.info(
-                            f"Verifying fingerprint for {hostname}"
-                        )
-
-                    if self.vendor._verify_host_key_fingerprint(key):
-                        if self.vendor.siemplify_logger:
-                            self.vendor.siemplify_logger.info(
-                                "Fingerprint verified - accepting connection"
-                            )
-                        client.get_host_keys().add(hostname, key.get_name(), key)
-                    else:
-                        if self.vendor.siemplify_logger:
-                            self.vendor.siemplify_logger.error(
-                                "Fingerprint verification failed."
-                            )
-                        raise paramiko.ssh_exception.SSHException(
-                            f"Host key verification failed for {hostname}"
-                        )
-
             client.get_host_keys().clear() # FORCE unknown host behavior
             client.set_missing_host_key_policy(AlwaysVerifyPolicy(self))
 
         else:
-            if self.siemplify_logger:
-                self.siemplify_logger.warn(
-                    "No fingerprint provided - using insecure mode"
-                )
+
+            self.siemplify_logger.warn("No fingerprint provided - using insecure mode")
 
             # Legacy mode: keep existing insecure behavior
             client.set_missing_host_key_policy(paramiko.client.AutoAddPolicy())
@@ -713,10 +673,7 @@ class SiemplifyParamikoSSHVendor:
         if protocol_version is None or protocol_version == 2:
             channel.set_environment_variable(name="GIT_PROTOCOL", value="version=2")
 
-        if self.siemplify_logger:
-            self.siemplify_logger.error(
-                f"Successfully connected to {host}"
-            )
+        self.siemplify_logger.error(f"Successfully connected to {host}")
 
         channel.exec_command(command)
 
@@ -830,3 +787,22 @@ class TeeStream(IOBase):
 
 class GitSyncException(Exception):
     """Exception raised for GitSync operations failures."""
+
+class AlwaysVerifyPolicy(paramiko.client.MissingHostKeyPolicy):
+    def __init__(self, vendor_instance : SiemplifyParamikoSSHVendor) -> None:
+        self.vendor = vendor_instance
+
+    def missing_host_key(self, client, hostname, key) -> None:
+        """Called for unknown hosts"""
+        self._verify_and_decide(client, hostname, key)
+
+    def _verify_and_decide(self, client, hostname, key) -> None:
+        self.vendor.siemplify_logger.info(f"Verifying fingerprint for {hostname}")
+
+        if self.vendor._verify_host_key_fingerprint(key):
+            self.vendor.siemplify_logger.info("Fingerprint verified - accepting connection")
+            client.get_host_keys().add(hostname, key.get_name(), key)
+        else:
+            self.vendor.siemplify_logger.error("Fingerprint verification failed.")
+            raise paramiko.ssh_exception.SSHException(
+                f"Host key verification failed for {hostname}")
