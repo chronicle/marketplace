@@ -1,5 +1,5 @@
 version = 1
-revision = 3
+revision = 2
 requires-python = "==3.11.*"
 
 [[package]]
@@ -309,7 +309,7 @@ wheels = [
 
 [[package]]
 name = "gitsync"
-version = "41.0"
+version = "42.0"
 source = { virtual = "." }
 dependencies = [
     { name = "dulwich" },
@@ -338,7 +338,7 @@ requires-dist = [
     { name = "packaging", specifier = ">=24.2" },
     { name = "paramiko", specifier = ">=3.5.0" },
     { name = "requests", specifier = ">=2.32.3" },
-    { name = "tipcommon", path = "../../../../packages/tipcommon/TIPCommon-2.2.9/TIPCommon-2.2.9-py2.py3-none-any.whl" },
+    { name = "tipcommon", path = "../../../../packages/tipcommon/TIPCommon-2.2.15/TIPCommon-2.2.15-py2.py3-none-any.whl" },
 ]
 
 [package.metadata.requires-dev]
@@ -921,8 +921,8 @@ dependencies = [
 
 [[package]]
 name = "tipcommon"
-version = "2.2.9"
-source = { path = "../../../../packages/tipcommon/TIPCommon-2.2.9/TIPCommon-2.2.9-py2.py3-none-any.whl" }
+version = "2.2.15"
+source = { path = "../../../../packages/tipcommon/TIPCommon-2.2.15/TIPCommon-2.2.15-py2.py3-none-any.whl" }
 dependencies = [
     { name = "google-api-python-client" },
     { name = "google-auth" },
@@ -932,7 +932,7 @@ dependencies = [
     { name = "requests" },
 ]
 wheels = [
-    { filename = "tipcommon-2.2.9-py2.py3-none-any.whl", hash = "sha256:b1730aadb7cb2b96a53995c8bba1067c6229fb5091dea73d273cde4fc0970d59" },
+    { filename = "tipcommon-2.2.15-py2.py3-none-any.whl", hash = "sha256:c3e4963d7c28aba249ade128fd9ed068a71917aa4948cd6d7af4c40eeafcb8e4" },
 ]
 
 [package.metadata]
