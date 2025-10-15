@@ -38,6 +38,7 @@ def main():
         INTEGRATION_NAME,
         "Git Server Fingerprint",
         print_value=True,
+        default_value="",
     )
     git_password = siemplify.extract_configuration_param(
         INTEGRATION_NAME,
@@ -98,7 +99,7 @@ def main():
     test_connectivity(gitsync, siemplify)
 
     # Test Git connectivity with fingerprint verification (only if the optional fingerprint is provided)
-    if git_server_fingerprint and git_server_fingerprint.strip():
+    if git_server_fingerprint.strip():
         connect_to_git_server_to_verify_fingerprint(siemplify, gitsync)
     else:
         siemplify.LOGGER.info("No git server fingerprint provided - skipping fingerprint verification test")
