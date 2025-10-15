@@ -20,7 +20,7 @@ import shutil
 import stat
 from io import StringIO, IOBase
 import sys
-from typing import TYPE_CHECKING, Union, TextIO
+from typing import TYPE_CHECKING, Union, TextIO, Any
 from urllib.parse import urlparse, urlunparse
 
 import dulwich
@@ -163,7 +163,7 @@ class Git:
             **{
                 k: v
                 for k, v in kwargs.items()
-                if k not in ["git_server_fingerprint", "siemplify_logger"]
+                if k not in {"git_server_fingerprint", "siemplify_logger"}
             },
         )
         # dulwich patch to newer paramiko versions returning string and not bytes
@@ -590,7 +590,7 @@ class Git:
 
 class SiemplifyParamikoSSHVendor:
     def __init__(
-        self, siemplify_logger: SiemplifyLogger, git_server_fingerprint: str, **kwargs
+        self, siemplify_logger: SiemplifyLogger, git_server_fingerprint: str, **kwargs: Any
     ):
         """SSH client for dulwich that supports private keys instead of user:password"""
         self.kwargs = kwargs
@@ -661,7 +661,6 @@ class SiemplifyParamikoSSHVendor:
             client.set_missing_host_key_policy(AlwaysVerifyPolicy(self))
 
         else:
-
             self.siemplify_logger.warn("No fingerprint provided - using insecure mode")
 
             # Legacy mode: keep existing insecure behavior
@@ -787,6 +786,7 @@ class TeeStream(IOBase):
 
 class GitSyncException(Exception):
     """Exception raised for GitSync operations failures."""
+
 
 class AlwaysVerifyPolicy(paramiko.client.MissingHostKeyPolicy):
     def __init__(self, vendor_instance : SiemplifyParamikoSSHVendor) -> None:
