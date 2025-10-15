@@ -14,7 +14,6 @@
 
 from __future__ import annotations
 
-import base64
 import json
 import os
 import shutil
@@ -36,6 +35,10 @@ from dulwich.objects import Blob, Commit, ShaFile, Tree
 from dulwich.refs import HEADREF, LOCAL_BRANCH_PREFIX
 from dulwich.repo import Repo
 from paramiko.ssh_exception import SSHException
+import hashlib
+import base64
+import paramiko.ed25519key
+
 
 from .definitions import File, Metadata
 
@@ -66,6 +69,7 @@ class Git:
         author: str,
         verify_ssl: bool,
         logger: SiemplifyLogger,
+        git_server_fingerprint: str,
     ):
         """Wrapper for dulwich - a pure python git client.
 
@@ -79,6 +83,7 @@ class Git:
             <james.bond@gmail.com>
             verify_ssl (bool): Whether to verify SSL with the git provider
             logger (Logger): A logger instance
+            git_server_fingerprint: SSH fingerprint for verification (SHA256:... or MD5:...)
 
         """
         self.logger = logger
@@ -91,19 +96,32 @@ class Git:
         self.password = password
         self.author = author.encode("utf-8")
         self.verify_ssl = verify_ssl
+        self.git_server_fingerprint = git_server_fingerprint
+
+        self.modify_dulwich_client(logger, git_server_fingerprint)
 
         if self.repo_url.startswith("ssh://") or self.repo_url.startswith("git@"):
             # When using ssh - the username is ignored
-            self.connection_args = {"password": self.convert_password_to_private_key()}
+            self.connection_args = {
+                "password": self.convert_password_to_private_key(),
+                "git_server_fingerprint": git_server_fingerprint,
+                "siemplify_logger": self.logger,
+            }
         elif "bitbucket.org" in self.repo_url and "x-token-auth" not in self.repo_url:
             parsed = urlparse(self.repo_url)
             netloc = f"x-token-auth:{self.password}@{parsed.hostname}"
             self.repo_url = urlunparse(parsed._replace(netloc=netloc))
-            self.connection_args = {}
+            self.connection_args = {
+                "siemplify_logger": self.logger,
+                "git_server_fingerprint": git_server_fingerprint,
+            }
+
         else:
             self.connection_args = {
                 "username": self.username,
                 "password": self.password,
+                "siemplify_logger": self.logger,
+                "git_server_fingerprint": git_server_fingerprint,
             }
 
         # Check if the git repo is present and pull changes. Otherwise, clone the repo.
@@ -133,6 +151,23 @@ class Git:
             self._checkout()
 
         self.tree: Tree = self.get_head_tree()
+
+    @staticmethod
+    def modify_dulwich_client(logger: SiemplifyLogger, git_server_fingerprint: str, ):
+        # dulwich patch to add requests support : https://github.com/jelmer/dulwich/pull/933
+        _mod_client.HttpGitClient = RequestsHttpGitClient
+        # dulwich patch to add paramiko support (can't pass pkey parameter)
+        _mod_client.get_ssh_vendor = lambda **kwargs: SiemplifyParamikoSSHVendor(
+            siemplify_logger=logger,
+            git_server_fingerprint=git_server_fingerprint or "",
+            **{
+                k: v
+                for k, v in kwargs.items()
+                if k not in ["git_server_fingerprint", "siemplify_logger"]
+            },
+        )
+        # dulwich patch to newer paramiko versions returning string and not bytes
+        _mod_client._remote_error_from_stderr = remote_error_from_stderr
 
     @property
     def head(self) -> Commit:
@@ -554,9 +589,67 @@ class Git:
 
 
 class SiemplifyParamikoSSHVendor:
-    def __init__(self, **kwargs):
+    def __init__(
+        self, siemplify_logger: SiemplifyLogger, git_server_fingerprint: str, **kwargs
+    ):
         """SSH client for dulwich that supports private keys instead of user:password"""
         self.kwargs = kwargs
+        self.git_server_fingerprint = (
+            git_server_fingerprint.strip() if git_server_fingerprint else None
+        )
+
+        self.siemplify_logger = siemplify_logger
+
+    def _verify_host_key_fingerprint(self, received_key):
+        """Verify the received key against the expected fingerprint"""
+        SHA256_PREFIX = "SHA256:"
+        MD5_PREFIX = "MD5:"
+
+        if self.siemplify_logger:
+            self.siemplify_logger.info(f"🔍 Verifying fingerprint...")
+
+        if not self.git_server_fingerprint or not self.git_server_fingerprint.strip():
+            return False
+
+        try:
+            fingerprint = self.git_server_fingerprint.strip()
+
+            if fingerprint.startswith(SHA256_PREFIX):
+                expected_fingerprint = fingerprint[len(SHA256_PREFIX):]
+                key_hash = hashlib.sha256(received_key.asbytes()).digest()
+                actual_fingerprint = base64.b64encode(key_hash).decode("ascii").rstrip("=")
+
+                self.siemplify_logger.info(f"Expected: {self.git_server_fingerprint}")
+                self.siemplify_logger.info(f"Actual:   {actual_fingerprint}")
+
+                return actual_fingerprint == expected_fingerprint
+
+            elif fingerprint.startswith(MD5_PREFIX) or ":" in fingerprint:
+                expected_fingerprint = fingerprint.replace(MD5_PREFIX, "").lower()
+                key_hash = hashlib.md5(received_key.asbytes()).digest()
+                actual_fingerprint = ":".join(f"{b:02x}" for b in key_hash)
+
+                self.siemplify_logger.info(f"Expected: {self.git_server_fingerprint}")
+                self.siemplify_logger.info(f"Actual:   {actual_fingerprint}")
+
+                return actual_fingerprint == expected_fingerprint
+
+            else:
+                # Assume base64 SHA256 without prefix
+                key_hash = hashlib.sha256(received_key.asbytes()).digest()
+                actual_fingerprint = base64.b64encode(key_hash).decode("ascii").rstrip("=")
+                return actual_fingerprint == fingerprint
+
+        except (ValueError, TypeError) as e:
+            if self.siemplify_logger:
+                self.siemplify_logger.error(f"Invalid fingerprint format: {e}")
+            return False
+        except Exception as e:
+            if self.siemplify_logger:
+                self.siemplify_logger.error(
+                    f"Failed to verify host key fingerprint: {e}", exc_info=True
+                )
+            return False
 
     def run_command(
         self,
@@ -584,13 +677,61 @@ class SiemplifyParamikoSSHVendor:
 
         connection_kwargs.update(kwargs)
 
-        policy = paramiko.client.MissingHostKeyPolicy()
-        client.set_missing_host_key_policy(policy)
+        # Handle host key verification based on whether git_server_fingerprint is provided
+        if self.git_server_fingerprint:
+            class AlwaysVerifyPolicy(paramiko.client.MissingHostKeyPolicy):
+                def __init__(self, vendor_instance):
+                    self.vendor = vendor_instance
+
+                def missing_host_key(self, client, hostname, key):
+                    """Called for unknown hosts"""
+                    self._verify_and_decide(client, hostname, key)
+
+                def _verify_and_decide(self, client, hostname, key):
+                    if self.vendor.siemplify_logger:
+                        self.vendor.siemplify_logger.info(
+                            f"Verifying fingerprint for {hostname}"
+                        )
+
+                    # Call _verify_host_key_fingerprint to handle the actual comparison
+                    if self.vendor._verify_host_key_fingerprint(key):
+                        if self.vendor.siemplify_logger:
+                            self.vendor.siemplify_logger.info(
+                                "Fingerprint verified - accepting connection"
+                            )
+                        # Add the key to the host keys
+                        client.get_host_keys().add(hostname, key.get_name(), key)
+                    else:
+                        if self.vendor.siemplify_logger:
+                            self.vendor.siemplify_logger.error(
+                                f"Fingerprint verification failed."
+                            )
+                        raise paramiko.ssh_exception.SSHException(
+                            f"Host key verification failed for {hostname}"
+                        )
+
+            client.get_host_keys().clear() # FORCE unknown host behavior
+            client.set_missing_host_key_policy(AlwaysVerifyPolicy(self))
+
+        else:
+            if self.siemplify_logger:
+                self.siemplify_logger.warn(
+                    f"No fingerprint provided - using insecure mode"
+                )
+
+            # Legacy mode: keep existing insecure behavior
+            client.set_missing_host_key_policy(paramiko.client.AutoAddPolicy())
+
         client.connect(**connection_kwargs)
         channel = client.get_transport().open_session()
 
         if protocol_version is None or protocol_version == 2:
             channel.set_environment_variable(name="GIT_PROTOCOL", value="version=2")
+
+        if self.siemplify_logger:
+            self.siemplify_logger.error(
+                f"Successfully connected to {host}"
+            )
 
         channel.exec_command(command)
 
@@ -609,14 +750,6 @@ def remote_error_from_stderr(stderr):
         return HangupException(lines)
     except AttributeError:
         return HangupException([line.encode("utf-8") for line in lines])
-
-
-# dulwich patch to add requests support : https://github.com/jelmer/dulwich/pull/933
-_mod_client.HttpGitClient = RequestsHttpGitClient
-# dulwich patch to add paramiko support (can't pass pkey parameter)
-_mod_client.get_ssh_vendor = SiemplifyParamikoSSHVendor
-# dulwich patch to newer paramiko versions returning string and not bytes
-_mod_client._remote_error_from_stderr = remote_error_from_stderr
 
 class TeeStream(IOBase):
     """Stream multiplexer with protected system streams.
