@@ -1,6 +1,9 @@
-class Config(object):
+from __future__ import annotations
+
+
+class Config:
     VERSION: str = "Google-SecOps:1.0.0"
-    INTEGRATION_NAME: str = "ANYRUN TI Lookup"
+    INTEGRATION_NAME: str = "ANYRUN-TI-Lookup"
 
     ENTITIES: dict[str, str] = {
         "address": "destination_ip",

@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from soar_sdk.SiemplifyJob import SiemplifyJob
 from soar_sdk.SiemplifyUtils import output_handler
 from TIPCommon.extraction import extract_job_param
@@ -9,7 +11,7 @@ from ..core.data_table_manager import DataTableManager
 def main():
     siemplify = SiemplifyJob()
 
-    feed_fetch_depth = extract_job_param(siemplify, param_name="feed_fetch_depth", input_type=int)
+    feed_fetch_depth = extract_job_param(siemplify, param_name="Feed Fetch Depth", input_type=int)
 
     data_tables = DataTableManager(siemplify)
     data_tables.update_taxii_indicators(feed_fetch_depth)

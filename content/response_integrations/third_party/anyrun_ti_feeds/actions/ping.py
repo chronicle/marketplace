@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from anyrun import RunTimeException
 from anyrun.connectors import FeedsConnector
 from soar_sdk.ScriptResult import EXECUTION_STATE_COMPLETED, EXECUTION_STATE_FAILED
@@ -16,7 +18,7 @@ def main():
     feeds_token = extract_configuration_param(
         siemplify,
         Config.INTEGRATION_NAME,
-        param_name="ANY.RUN TI Feeds Basic token",
+        param_name="ANYRUN TI Feeds Basic token",
         is_mandatory=True,
     )
 

@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from anyrun import RunTimeException
 from anyrun.connectors import FeedsConnector
 from anyrun.connectors.sandbox.base_connector import BaseSandboxConnector
@@ -15,7 +17,7 @@ def main():
     siemplify.script_name = f"{Config.INTEGRATION_NAME} - Ping"
 
     sandbox_token = extract_configuration_param(
-        siemplify, Config.INTEGRATION_NAME, param_name="ANY.RUN Sandbox API KEY", is_mandatory=True
+        siemplify, Config.INTEGRATION_NAME, param_name="ANYRUN Sandbox API KEY", is_mandatory=True
     )
 
     try:

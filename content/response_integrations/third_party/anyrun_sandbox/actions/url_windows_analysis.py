@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from base64 import b64encode
 
 from anyrun.connectors import SandboxConnector
@@ -18,10 +20,10 @@ def main():
     siemplify = SiemplifyAction()
 
     token = extract_configuration_param(
-        siemplify, Config.INTEGRATION_NAME, param_name="ANY.RUN Sandbox API KEY", is_mandatory=True
+        siemplify, Config.INTEGRATION_NAME, param_name="ANYRUN Sandbox API KEY", is_mandatory=True
     )
 
-    urls = extract_action_param(siemplify, param_name="url", is_mandatory=True)
+    urls = extract_action_param(siemplify, param_name="Url", is_mandatory=True)
 
     if not urls:
         siemplify.end("Destination URL is not found.", False, EXECUTION_STATE_FAILED)
@@ -32,7 +34,7 @@ def main():
         ) as connector:
             task_uuid = connector.run_url_analysis(
                 obj_url=obj_url,
-                obj_ext_browser=extract_action_param(siemplify, param_name="obj_ext_browser"),
+                obj_ext_browser=extract_action_param(siemplify, param_name="Obj Ext Browser"),
                 **prepare_base_params(siemplify),
             )
 

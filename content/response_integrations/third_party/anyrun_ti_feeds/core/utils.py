@@ -1,6 +1,6 @@
-from TIPCommon.extraction import (
-    extract_job_param,
-)
+from __future__ import annotations
+
+from TIPCommon.extraction import extract_job_param
 
 
 def extract_feed_value(feed: dict) -> str:

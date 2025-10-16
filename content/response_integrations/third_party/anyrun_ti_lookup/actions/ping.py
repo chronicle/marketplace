@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from anyrun import RunTimeException
 from anyrun.connectors import FeedsConnector, LookupConnector
 from soar_sdk.ScriptResult import EXECUTION_STATE_COMPLETED, EXECUTION_STATE_FAILED
@@ -16,7 +18,7 @@ def main():
     lookup_token = extract_configuration_param(
         siemplify,
         Config.INTEGRATION_NAME,
-        param_name="ANY.RUN TI Lookup API KEY",
+        param_name="ANYRUN TI Lookup API KEY",
         is_mandatory=True,
     )
 

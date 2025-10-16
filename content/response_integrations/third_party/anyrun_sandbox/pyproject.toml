@@ -1,10 +1,11 @@
 [project]
 name = "ANYRUN-Sandbox"
-version = "1.0.0"
+version = "1.0"
 description = "ANY.RUN's Interactive Sandbox is a cloud-based service that provides SOC teams with a simple way to analyze cyber threats, enabling rapid threat intelligence and deep analysis in a secure environment."
 requires-python = ">=3.11,<3.12"
 dependencies = [
-    "anyrun-sdk>=1.10.10"
+    "anyrun-sdk>=1.10.10",
+    "google-auth>=2.41.1",
 ]
 
 [dependency-groups]

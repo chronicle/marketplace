@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from base64 import b64encode
 
 from anyrun.connectors import SandboxConnector
@@ -18,7 +20,7 @@ def main():
     siemplify = SiemplifyAction()
 
     token = extract_configuration_param(
-        siemplify, Config.INTEGRATION_NAME, param_name="ANY.RUN Sandbox API KEY", is_mandatory=True
+        siemplify, Config.INTEGRATION_NAME, param_name="ANYRUN Sandbox API KEY", is_mandatory=True
     )
 
     attachments = siemplify.get_attachments()
@@ -35,12 +37,12 @@ def main():
         task_uuid = connector.run_file_analysis(
             attachment_data,
             attachment_name,
-            env_version=extract_action_param(siemplify, param_name="env_version"),
-            env_bitness=extract_action_param(siemplify, param_name="env_bitness"),
-            env_type=extract_action_param(siemplify, param_name="env_type"),
-            obj_ext_startfolder=extract_action_param(siemplify, param_name="obj_ext_startfolder"),
-            obj_ext_cmd=extract_action_param(siemplify, param_name="obj_ext_cmd"),
-            obj_force_elevation=extract_action_param(siemplify, param_name="obj_force_elevation"),
+            env_version=extract_action_param(siemplify, param_name="Env Version"),
+            env_bitness=extract_action_param(siemplify, param_name="Env Bitness"),
+            env_type=extract_action_param(siemplify, param_name="Env Type"),
+            obj_ext_startfolder=extract_action_param(siemplify, param_name="Obj Ext StartFolder"),
+            obj_ext_cmd=extract_action_param(siemplify, param_name="Obj Ext Cmd"),
+            obj_force_elevation=extract_action_param(siemplify, param_name="Obj Force Elevation"),
             **prepare_base_params(siemplify),
         )
 

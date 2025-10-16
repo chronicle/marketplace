@@ -1,6 +1,6 @@
 [project]
 name = "ANYRUN-TI-Lookup"
-version = "1.0.0"
+version = "1.0"
 description = "ANY.RUN’s Threat Intelligence Lookup (TI Lookup) is a service that allows you to browse IOCs and related threat data to simplify and enrich cyberattack investigations."
 requires-python = ">=3.11,<3.12"
 dependencies = [

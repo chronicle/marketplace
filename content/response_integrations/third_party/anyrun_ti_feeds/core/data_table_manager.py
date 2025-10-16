@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import json
 from datetime import UTC, datetime, timedelta
 from http import HTTPStatus
@@ -5,7 +7,7 @@ from http import HTTPStatus
 from anyrun.connectors import FeedsConnector
 from anyrun.iterators import FeedsIterator
 from google.auth.transport import Response, requests
-from SiemplifyJob import SiemplifyJob
+from soar_sdk.SiemplifyJob import SiemplifyJob
 from TIPCommon.extraction import extract_configuration_param
 from TIPCommon.rest.auth import build_credentials_from_sa
 
@@ -18,14 +20,14 @@ from ..core.utils import (
 )
 
 
-class DataTableManager(object):
+class DataTableManager:
     """Provides methods to manage IOCs and interact with DataTables"""
 
     def __init__(self, siemplify: SiemplifyJob) -> None:
         token = extract_configuration_param(
             siemplify,
             Config.INTEGRATION_NAME,
-            param_name="ANY.RUN TI Feeds Basic token",
+            param_name="ANYRUN TI Feeds Basic token",
             is_mandatory=True,
         )
 

@@ -1,8 +1,10 @@
+from __future__ import annotations
+
 import json
 from http import HTTPStatus
 
 from google.auth.transport import Response, requests
-from SiemplifyAction import SiemplifyAction
+from soar_sdk.SiemplifyAction import SiemplifyAction
 from TIPCommon.extraction import extract_configuration_param
 from TIPCommon.rest.auth import build_credentials_from_sa
 
@@ -14,7 +16,7 @@ from ..core.utils import (
 )
 
 
-class DataTableManager(object):
+class DataTableManager:
     """Provides methods to manage IOCs and interact with DataTables"""
 
     def __init__(self, siemplify: SiemplifyAction) -> None:

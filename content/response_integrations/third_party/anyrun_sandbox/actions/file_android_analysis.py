@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from base64 import b64encode
 
 from anyrun.connectors import SandboxConnector
@@ -18,7 +20,7 @@ def main():
     siemplify = SiemplifyAction()
 
     token = extract_configuration_param(
-        siemplify, Config.INTEGRATION_NAME, param_name="ANY.RUN Sandbox API KEY", is_mandatory=True
+        siemplify, Config.INTEGRATION_NAME, param_name="ANYRUN Sandbox API KEY", is_mandatory=True
     )
 
     attachments = siemplify.get_attachments()
@@ -35,7 +37,7 @@ def main():
         task_uuid = connector.run_file_analysis(
             attachment_data,
             attachment_name,
-            obj_ext_cmd=extract_action_param(siemplify, param_name="obj_ext_cmd"),
+            obj_ext_cmd=extract_action_param(siemplify, param_name="Obj Ext Cmd"),
             **prepare_base_params(siemplify),
         )
 

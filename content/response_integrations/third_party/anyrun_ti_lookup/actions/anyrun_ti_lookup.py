@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import json
 from base64 import b64encode
 
@@ -49,21 +51,23 @@ def main():
     siemplify = SiemplifyAction()
     results = []
 
-    lookup_depth = siemplify.extract_action_param("lookup_depth", input_type=int)
+    lookup_depth = siemplify.extract_action_param("Lookup Depth", input_type=int)
 
     token = extract_configuration_param(
         siemplify,
         Config.INTEGRATION_NAME,
-        param_name="ANY.RUN TI Lookup API KEY",
+        param_name="ANYRUN TI Lookup API KEY",
         is_mandatory=True,
     )
 
-    if query := siemplify.extract_action_param("query"):
+    if query := siemplify.extract_action_param("Query"):
         verdict = initialize_lookup(siemplify, token, "query", query, lookup_depth)
         results.append(("Query", "query", verdict))
     else:
-        entity_identifiers = siemplify.extract_action_param("identifiers")
-        entity_types = siemplify.extract_action_param("types")
+        # FIXME: These will always return a string. To get a list value,
+        #  use `from TIPCommon.transformation import convert_comma_separated_to_list`
+        entity_identifiers = siemplify.extract_action_param("Identifiers")
+        entity_types = siemplify.extract_action_param("Types")
 
         if not any([entity_identifiers, entity_types]):
             siemplify.end(

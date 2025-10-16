@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from TIPCommon.extraction import extract_configuration_param
 
 from ..core.config import Config
