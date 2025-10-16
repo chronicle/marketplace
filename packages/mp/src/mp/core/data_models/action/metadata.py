@@ -63,6 +63,7 @@ class NonBuiltActionMetadata(TypedDict):
     description: str
     dynamic_results_metadata: list[NonBuiltDynamicResultsMetadata]
     integration_identifier: str
+    integration: NotRequired[str]
     is_async: NotRequired[bool]
     is_custom: NotRequired[bool]
     is_enabled: NotRequired[bool]
@@ -205,6 +206,7 @@ class ActionMetadata(
             An `ActionMetadata` object
 
         """
+        integration_id: str = non_built.get("integration_identifier", non_built["integration"])
         return cls(
             file_name=file_name,
             creator=non_built.get("creator", "admin"),
@@ -213,7 +215,7 @@ class ActionMetadata(
                 DynamicResultsMetadata.from_non_built(drm)
                 for drm in non_built.get("dynamic_results_metadata", [])
             ],
-            integration_identifier=non_built["integration_identifier"],
+            integration_identifier=integration_id,
             is_async=non_built.get("is_async", False),
             is_custom=non_built.get("is_custom", False),
             is_enabled=non_built.get("is_enabled", True),
