@@ -23,6 +23,10 @@ def main():
         siemplify, Config.INTEGRATION_NAME, param_name="ANYRUN Sandbox API KEY", is_mandatory=True
     )
 
+    verify_ssl = extract_configuration_param(
+        siemplify, Config.INTEGRATION_NAME, param_name="Verify SSL"
+    )
+
     attachments = siemplify.get_attachments()
 
     if not attachments:
@@ -32,7 +36,10 @@ def main():
     attachment_data = siemplify.get_attachment(attachment_id)
 
     with SandboxConnector.linux(
-        token, integration=Config.VERSION, proxy=setup_action_proxy(siemplify)
+        token,
+        integration=Config.VERSION,
+        proxy=setup_action_proxy(siemplify),
+        verify_ssl=verify_ssl
     ) as connector:
         task_uuid = connector.run_file_analysis(
             attachment_data,

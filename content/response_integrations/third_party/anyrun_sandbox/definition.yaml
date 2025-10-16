@@ -29,6 +29,12 @@ parameters:
         description: Example [API-KEY AJ13....KA!7]
         is_mandatory: true
         integration_identifier: ANYRUN-Sandbox
+    -   name: Verify SSL
+        type: boolean
+        default_value: true
+        description: Enable to validate SSL certificates for API connections.
+        is_mandatory: false
+        integration_identifier: ANYRUN-Sandbox
     -   default_value: "false"
         description: Enable/disable proxy using.
         is_mandatory: false

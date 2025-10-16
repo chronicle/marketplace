@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 from anyrun import RunTimeException
-from anyrun.connectors import FeedsConnector
 from anyrun.connectors.sandbox.base_connector import BaseSandboxConnector
 from soar_sdk.ScriptResult import EXECUTION_STATE_COMPLETED, EXECUTION_STATE_FAILED
 from soar_sdk.SiemplifyAction import SiemplifyAction
@@ -20,13 +19,21 @@ def main():
         siemplify, Config.INTEGRATION_NAME, param_name="ANYRUN Sandbox API KEY", is_mandatory=True
     )
 
+    verify_ssl = extract_configuration_param(
+        siemplify, Config.INTEGRATION_NAME, param_name="Verify SSL"
+    )
+
     try:
         if extract_configuration_param(
             siemplify, Config.INTEGRATION_NAME, param_name="Enable proxy", input_type=bool
         ):
-            check_proxy(siemplify, sandbox_token)
+            check_proxy(siemplify, sandbox_token, verify_ssl)
 
-        with BaseSandboxConnector(api_key=sandbox_token, integration=Config.VERSION) as connector:
+        with BaseSandboxConnector(
+            api_key=sandbox_token,
+            integration=Config.VERSION,
+            verify_ssl=verify_ssl
+        ) as connector:
             connector.check_authorization()
 
     except RunTimeException as exception:
@@ -45,7 +52,7 @@ def main():
     siemplify.end(output_message, is_succes, status)
 
 
-def check_proxy(siemplify: SiemplifyAction, token: str) -> None:
+def check_proxy(siemplify: SiemplifyAction, token: str, verify_ssl: bool) -> None:
     try:
         host = extract_configuration_param(
             siemplify, Config.INTEGRATION_NAME, param_name="Proxy host"
@@ -67,7 +74,11 @@ def check_proxy(siemplify: SiemplifyAction, token: str) -> None:
         else:
             proxy_url = f"https://{host}:{port}"
 
-        with FeedsConnector(api_key=token, proxy=proxy_url) as connector:
+        with BaseSandboxConnector(
+            api_key=token,
+            proxy=proxy_url,
+            verify_ssl=verify_ssl
+        ) as connector:
             connector.check_proxy()
 
     except TypeError:

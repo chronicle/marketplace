@@ -62,14 +62,17 @@ class DataTableManager:
             google_secops_project_id, google_secops_project_location, google_secops_instance_id
         )
 
-    def update_taxii_indicators(self, feed_fetch_depth: int) -> None:
+    def update_taxii_indicators(self, feed_fetch_depth: int, verify_ssl: bool) -> None:
         """
         Initializes the process of updating indicators
 
         :param feed_fetch_depth: Feed fetch depth
         """
         with FeedsConnector(
-            api_key=self._token, integration=Config.VERSION, proxy=setup_job_proxy(self._siemplify)
+            api_key=self._token,
+            integration=Config.VERSION,
+            proxy=setup_job_proxy(self._siemplify),
+            verify_ssl=verify_ssl
         ) as connector:
             for collection, data_table_name in Config.TAXII_DATATABLES.items():
                 if self._is_datatable_exists(data_table_name):

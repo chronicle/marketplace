@@ -23,6 +23,10 @@ def main():
         siemplify, Config.INTEGRATION_NAME, param_name="ANYRUN Sandbox API KEY", is_mandatory=True
     )
 
+    verify_ssl = extract_configuration_param(
+        siemplify, Config.INTEGRATION_NAME, param_name="Verify SSL"
+    )
+
     urls = extract_action_param(siemplify, param_name="Url", is_mandatory=True)
 
     if not urls:
@@ -30,7 +34,10 @@ def main():
 
     for obj_url in urls.split(","):
         with SandboxConnector.linux(
-            token, integration=Config.VERSION, proxy=setup_action_proxy(siemplify)
+            token,
+            ntegration=Config.VERSION,
+            proxy=setup_action_proxy(siemplify),
+            verify_ssl=verify_ssl
         ) as connector:
             task_uuid = connector.run_url_analysis(
                 obj_url=obj_url,

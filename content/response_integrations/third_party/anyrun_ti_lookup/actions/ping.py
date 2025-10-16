@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from anyrun import RunTimeException
-from anyrun.connectors import FeedsConnector, LookupConnector
+from anyrun.connectors import LookupConnector
 from soar_sdk.ScriptResult import EXECUTION_STATE_COMPLETED, EXECUTION_STATE_FAILED
 from soar_sdk.SiemplifyAction import SiemplifyAction
 from soar_sdk.SiemplifyUtils import output_handler
@@ -22,13 +22,21 @@ def main():
         is_mandatory=True,
     )
 
+    verify_ssl = extract_configuration_param(
+        siemplify, Config.INTEGRATION_NAME, param_name="Verify SSL"
+    )
+
     try:
         if extract_configuration_param(
             siemplify, Config.INTEGRATION_NAME, param_name="Enable proxy", input_type=bool
         ):
-            check_proxy(siemplify, lookup_token)
+            check_proxy(siemplify, lookup_token, verify_ssl)
 
-        with LookupConnector(api_key=lookup_token, integration=Config.VERSION) as connector:
+        with LookupConnector(
+            api_key=lookup_token,
+            integration=Config.VERSION,
+            verify_ssl=verify_ssl
+        ) as connector:
             connector.check_authorization()
 
     except RunTimeException as exception:
@@ -47,7 +55,11 @@ def main():
     siemplify.end(output_message, is_succes, status)
 
 
-def check_proxy(siemplify: SiemplifyAction, token: str) -> None:
+def check_proxy(
+    siemplify: SiemplifyAction,
+    token: str,
+    verify_ssl: bool
+) -> None:
     try:
         host = extract_configuration_param(
             siemplify, Config.INTEGRATION_NAME, param_name="Proxy host"
@@ -69,7 +81,11 @@ def check_proxy(siemplify: SiemplifyAction, token: str) -> None:
         else:
             proxy_url = f"https://{host}:{port}"
 
-        with FeedsConnector(api_key=token, proxy=proxy_url) as connector:
+        with LookupConnector(
+            api_key=token,
+            proxy=proxy_url,
+            verify_ssl=verify_ssl
+        ) as connector:
             connector.check_proxy()
 
     except TypeError:
