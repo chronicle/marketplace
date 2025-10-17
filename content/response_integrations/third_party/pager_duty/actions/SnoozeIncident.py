@@ -24,9 +24,15 @@ def main():
         siemplify.LOGGER.info("Starting Snoozing process")
         try:
             incident = pager_duty.snooze_incident(email_from, incident_id)
-            output_message = "Successfully Created Incident\n"
-            result_value = True
-            status = EXECUTION_STATE_COMPLETED
+            if incident:
+                output_message = "Successfully Snoozed Incident\n"
+                siemplify.result.add_result_json(incident)
+                result_value = True
+                status = EXECUTION_STATE_COMPLETED
+            else:
+                output_message = "Incident wasnt snoozed\n"
+                result_value = True
+                status = EXECUTION_STATE_COMPLETED
 
         except PagerDutyException as e:
             output_message = f"Incident wasnt snoozed\n {e!s}"
@@ -39,7 +45,6 @@ def main():
         status = EXECUTION_STATE_FAILED
 
     siemplify.LOGGER.info("----------------- Main - Finished -----------------")
-    siemplify.result.add_result_json(incident)
     siemplify.end(output_message, result_value, status)
 
 
